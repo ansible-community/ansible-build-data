@@ -5,7 +5,7 @@ ansible.windows
 arista.eos
 awx.awx
 azure.azcollection
-check_point.mgmt
+checkpoint.mgmt
 chocolatey.chocolatey
 cisco.aci
 cisco.asa
@@ -22,17 +22,20 @@ community.crypto
 community.general
 community.grafana
 community.kubernetes
+community.libvirt
 #community.mongodb
 #community.network
+community.rabbitmq
 community.vmware
-#community.vmware_rest
 #community.windows
+#community.zabbix
 containers.podman
 cyberark.bizdev
 dellemc_networking.os10
 #dellemc_networking.os6
 #dellemc_networking.os9
 f5networks.f5_modules
+fortinet.fortimanager
 fortinet.fortios
 frr.frr
 google.cloud
@@ -43,6 +46,8 @@ netapp.aws
 netapp.elementsw
 netapp.ontap
 netbox.netbox
+ngine_io.cloudstack
+ngine_io.vultr
 openstack.cloud
 openvswitch.openvswitch
 #ovirt.ovirt
@@ -52,5 +57,6 @@ servicenow.servicenow
 skydive.skydive
 splunk.enterprise_security
 theforeman.foreman
+vmware.vmware_rest
 vyos.vyos
 wti.remote
