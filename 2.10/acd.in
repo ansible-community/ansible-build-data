@@ -43,6 +43,8 @@ netapp.aws
 netapp.elementsw
 netapp.ontap
 netbox.netbox
+ngine_io.cloudstack
+ngine_io.vultr
 openstack.cloud
 openvswitch.openvswitch
 #ovirt.ovirt
