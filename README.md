@@ -29,7 +29,8 @@ may be referred to by other projects and scripts.
   The version range specifies potential versions of the collection that are
   backwards compatible with what was available when the initial Ansible-X.Y.0
   release was frozen.  Only versions of the collections within those ranges
-  will be considered for Ansible minor releases.
+  will be considered for Ansible minor releases.  This file will be created by the
+  ``ansibulled new_acd`` command.
 
 * Lastly, there will be multiple, `acd-X.Y.Z.deps` files.  Those files contain
   lines which consist of `namespace.collection` followed by a single version like::
@@ -37,4 +38,5 @@ may be referred to by other projects and scripts.
       awx.awx: 11.2.5
 
   The version specifies the exact version of the collection that appeared in that
-  release of Ansible.
+  release of Ansible.  This file will be created by the ``ansibulled
+  build_single`` command.
