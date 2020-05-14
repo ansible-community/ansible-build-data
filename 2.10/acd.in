@@ -28,7 +28,7 @@ community.libvirt
 community.rabbitmq
 community.vmware
 #community.windows
-#community.zabbix
+community.zabbix
 containers.podman
 cyberark.pas
 dellemc_networking.os10
@@ -50,7 +50,7 @@ ngine_io.cloudstack
 ngine_io.vultr
 openstack.cloud
 openvswitch.openvswitch
-#ovirt.ovirt
+ovirt.ovirt
 purestorage.flasharray
 purestorage.flashblade
 servicenow.servicenow
