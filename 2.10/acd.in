@@ -24,7 +24,7 @@ community.grafana
 community.kubernetes
 #community.libvirt
 #community.mongodb
-#community.network
+community.network
 #community.rabbitmq
 community.vmware
 #community.windows
