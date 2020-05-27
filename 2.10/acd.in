@@ -22,12 +22,12 @@ community.crypto
 community.general
 community.grafana
 community.kubernetes
-#community.libvirt
-#community.mongodb
+community.libvirt
+community.mongodb
 community.network
-#community.rabbitmq
+community.rabbitmq
 community.vmware
-#community.windows
+community.windows
 community.zabbix
 containers.podman
 cyberark.pas
