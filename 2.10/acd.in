@@ -55,7 +55,7 @@ purestorage.flasharray
 purestorage.flashblade
 servicenow.servicenow
 skydive.skydive
-splunk.enterprise_security
+splunk.es
 theforeman.foreman
 vyos.vyos
 wti.remote
