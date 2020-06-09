@@ -31,7 +31,7 @@ community.rabbitmq: 0.1.0
 community.vmware: 0.4.1-dev8
 community.windows: 0.0.1
 community.zabbix: 0.1.0
-containers.podman: 1.0.1
+containers.podman: 1.0.3
 cyberark.pas: 1.0.5
 dellemc_networking.os10: 1.0.2
 f5networks.f5_modules: 1.3.0
@@ -44,7 +44,7 @@ junipernetworks.junos: 0.0.4-dev9
 netapp.aws: 20.6.0
 netapp.elementsw: 20.6.0
 netapp.ontap: 20.6.0
-netbox.netbox: 0.2.1
+netbox.netbox: 0.2.2
 ngine_io.cloudstack: 0.0.1
 ngine_io.vultr: 0.0.1
 openstack.cloud: 1.0.1
@@ -54,6 +54,6 @@ purestorage.flasharray: 1.2.7
 purestorage.flashblade: 1.2.3
 servicenow.servicenow: 1.0.2
 skydive.skydive: 0.0.1-dev6
-theforeman.foreman: 0.8.0
-vyos.vyos: 0.0.4-dev5
+theforeman.foreman: 0.8.1
+vyos.vyos: 0.0.4-dev7
 wti.remote: 1.0.1
