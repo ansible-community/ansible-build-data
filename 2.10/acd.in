@@ -16,6 +16,7 @@ cisco.meraki
 cisco.mso
 cisco.nxos
 cisco.ucs
+cloudscale_ch.cloud
 community.aws
 community.azure
 community.crypto
