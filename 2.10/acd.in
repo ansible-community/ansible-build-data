@@ -31,20 +31,23 @@ community.vmware
 community.windows
 community.zabbix
 containers.podman
+cyberark.conjur
 cyberark.pas
-dellemc_networking.os10
-#dellemc_networking.os6
-#dellemc_networking.os9
+#dellemc.os10 # https://github.com/ansible-collections/dellemc.os10/issues/20
+#dellemc.os6 # https://github.com/ansible-collections/dellemc.os10/issues/20
+#dellemc.os9 # https://github.com/ansible-collections/dellemc.os10/issues/20
 f5networks.f5_modules
 fortinet.fortimanager
 fortinet.fortios
 frr.frr
 google.cloud
-#hetzner.hcloud
+#hetzner.hcloud # https://github.com/ansible-collections/hetzner.hcloud/issues/10
 ibm.qradar
 junipernetworks.junos
+# mellanox.onyx
 netapp.aws
 netapp.elementsw
+netapp_eseries.santricity
 netapp.ontap
 netbox.netbox
 ngine_io.cloudstack
@@ -59,5 +62,6 @@ servicenow.servicenow
 skydive.skydive
 splunk.es
 theforeman.foreman
+vmware.vmware_rest
 vyos.vyos
 wti.remote
