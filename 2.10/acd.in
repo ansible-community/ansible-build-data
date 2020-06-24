@@ -33,6 +33,7 @@ community.zabbix
 containers.podman
 cyberark.conjur
 cyberark.pas
+dellemc_networking.os10
 #dellemc.os10 # https://github.com/ansible-collections/dellemc.os10/issues/20
 #dellemc.os6 # https://github.com/ansible-collections/dellemc.os10/issues/20
 #dellemc.os9 # https://github.com/ansible-collections/dellemc.os10/issues/20
