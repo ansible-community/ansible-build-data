@@ -42,7 +42,7 @@ fortinet.fortimanager
 fortinet.fortios
 frr.frr
 google.cloud
-#hetzner.hcloud # https://github.com/ansible-collections/hetzner.hcloud/issues/10
+hetzner.hcloud
 ibm.qradar
 junipernetworks.junos
 # mellanox.onyx
