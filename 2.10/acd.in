@@ -46,7 +46,7 @@ hetzner.hcloud
 ibm.qradar
 #infobox.nios_modules # https://github.com/infobloxopen/infoblox-ansible/issues/7
 junipernetworks.junos
-# mellanox.onyx
+mellanox.onyx
 netapp.aws
 netapp.elementsw
 netapp_eseries.santricity
