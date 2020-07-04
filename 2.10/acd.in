@@ -65,6 +65,6 @@ servicenow.servicenow
 skydive.skydive
 splunk.es
 theforeman.foreman
-vmware.vmware_rest
+#vmware.vmware_rest
 vyos.vyos
 wti.remote
