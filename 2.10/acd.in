@@ -20,6 +20,7 @@ cloudscale_ch.cloud
 community.aws
 community.azure
 community.crypto
+# community.digitalocean https://github.com/ansible-collections/community.digitalocean/issues/1
 community.general
 community.grafana
 community.kubernetes
