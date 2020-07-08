@@ -47,7 +47,7 @@ frr.frr
 google.cloud
 hetzner.hcloud
 ibm.qradar
-#infobox.nios_modules # https://github.com/infobloxopen/infoblox-ansible/issues/7
+#infobox.nios_modules # NOT FOR 2.10 https://github.com/infobloxopen/infoblox-ansible/issues/7
 junipernetworks.junos
 mellanox.onyx
 netapp.aws
