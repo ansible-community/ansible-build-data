@@ -20,12 +20,13 @@ cloudscale_ch.cloud
 community.aws
 community.azure
 community.crypto
-# community.digitalocean https://github.com/ansible-collections/community.digitalocean/issues/1
+community.digitalocean
 community.general
 community.grafana
 community.kubernetes
 community.libvirt
 community.mongodb
+# community.mysql
 community.network
 community.proxysql
 community.rabbitmq
@@ -66,6 +67,5 @@ servicenow.servicenow
 skydive.skydive
 splunk.es
 theforeman.foreman
-#vmware.vmware_rest
 vyos.vyos
 wti.remote
