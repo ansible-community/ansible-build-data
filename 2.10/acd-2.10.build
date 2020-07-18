@@ -3,7 +3,7 @@ _ansible_base_version: 2.10.0b1
 amazon.aws: >=1.0.0,<2.0.0
 ansible.netcommon: >=1.0.0,<2.0.0
 ansible.posix: >=1.0.0,<2.0.0
-ansible.windows: >=0.0.0,<1.0.0
+ansible.windows: >=0.0.0,<2.0.0
 arista.eos: >=1.0.0,<2.0.0
 awx.awx: >=13.0.0,<14.0.0
 azure.azcollection: >=0.0.0,<1.0.0
@@ -33,7 +33,7 @@ community.network: >=0.0.0,<1.0.0
 community.proxysql: >=0.0.0,<1.0.0
 community.rabbitmq: >=0.0.0,<1.0.0
 community.vmware: >=1.0.0,<2.0.0
-community.windows: >=0.0.0,<1.0.0
+community.windows: >=0.0.0,<2.0.0
 community.zabbix: >=0.0.0,<1.0.0
 containers.podman: >=1.0.0,<2.0.0
 cyberark.conjur: >=1.0.0,<2.0.0
