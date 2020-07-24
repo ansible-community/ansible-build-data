@@ -1,5 +1,5 @@
 _acd_version: 2.10
-_ansible_base_version: 2.10.0b1
+_ansible_base_version: 2.10.0rc2
 amazon.aws: >=1.0.0,<2.0.0
 ansible.netcommon: >=1.0.0,<2.0.0
 ansible.posix: >=1.0.0,<2.0.0
@@ -38,7 +38,7 @@ community.zabbix: >=0.0.0,<1.0.0
 containers.podman: >=1.0.0,<2.0.0
 cyberark.conjur: >=1.0.0,<2.0.0
 cyberark.pas: >=1.0.0,<2.0.0
-dellemc_networking.os10: >=1.0.0,<2.0.0
+dellemc.os10: >=0.0.0,<1.0.0
 f5networks.f5_modules: >=1.0.0,<2.0.0
 fortinet.fortimanager: >=1.0.0,<2.0.0
 fortinet.fortios: >=1.0.0,<2.0.0
