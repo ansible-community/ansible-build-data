@@ -6,489 +6,158 @@ Ansible 2.10 Release Notes
   :local:
   :depth: 2
 
-v2.10.0a4
+v2.10.0a5
 =========
 
 .. contents::
   :local:
   :depth: 2
 
-Unchanged Collections
----------------------
-
-- amazon.aws (still version 1.0.1-dev9)
-- ansible.netcommon (still version 1.0.1-dev8)
-- arista.eos (still version 1.0.1-dev9)
-- awx.awx (still version 13.0.0)
-- check_point.mgmt (still version 1.0.5)
-- chocolatey.chocolatey (still version 1.0.2)
-- cisco.aci (still version 0.0.7)
-- cisco.asa (still version 1.0.1-dev3)
-- cisco.intersight (still version 1.0.7)
-- cisco.ucs (still version 1.4.0)
-- cloudscale_ch.cloud (still version 1.0.0)
-- community.aws (still version 1.0.1-dev1)
-- community.azure (still version 0.1.0)
-- community.crypto (still version 1.0.0)
-- community.digitalocean (still version 0.1.0)
-- community.general (still version 0.3.0-experimental.meta.redirects-3)
-- community.grafana (still version 0.2.2)
-- community.kubernetes (still version 0.11.1)
-- community.libvirt (still version 0.1.0)
-- community.mongodb (still version 0.1.2)
-- community.mysql (still version 0.1.0)
-- community.network (still version 0.2.1)
-- community.proxysql (still version 0.1.0)
-- community.rabbitmq (still version 0.1.0)
-- community.vmware (still version 1.0.1-dev9)
-- community.zabbix (still version 0.2.0)
-- cyberark.conjur (still version 1.0.6)
-- cyberark.pas (still version 1.0.5)
-- dellemc_networking.os10 (still version 1.0.2)
-- fortinet.fortimanager (still version 1.0.3)
-- fortinet.fortios (still version 1.0.13)
-- google.cloud (still version 0.10.1)
-- hetzner.hcloud (still version 0.2.0)
-- ibm.qradar (still version 1.0.2-dev1)
-- infinidat.infinibox (still version 1.2.3)
-- junipernetworks.junos (still version 1.0.1-dev6)
-- mellanox.onyx (still version 0.1.0)
-- netapp.aws (still version 20.6.0)
-- netapp.elementsw (still version 20.6.0)
-- netapp.ontap (still version 20.7.0)
-- netapp_eseries.santricity (still version 1.0.8)
-- netbox.netbox (still version 0.3.1)
-- ngine_io.cloudstack (still version 0.3.0)
-- ngine_io.exoscale (still version 0.1.1)
-- ngine_io.vultr (still version 0.3.0)
-- openstack.cloud (still version 1.0.1)
-- ovirt.ovirt (still version 1.0.0)
-- purestorage.flashblade (still version 1.2.6)
-- servicenow.servicenow (still version 1.0.3-dev2)
-- skydive.skydive (still version 0.0.1-dev6)
-- splunk.es (still version 1.0.1-dev1)
-- theforeman.foreman (still version 1.0.1)
-- wti.remote (still version 1.0.1)
-
 Ansible Base
 ------------
 
-Ansible 2.10.0a4 contains Ansible-base version 2.10.0b1.
-This is the same version of Ansible-base as in the previous Ansible release.
-
-
-Changed Collections
--------------------
-
-- ansible.posix was upgraded from version 1.0.1-dev8 to version 1.1.1-dev4.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ansible.windows was upgraded from version 0.0.1-beta.3 to version 0.2.0.
-  The changes are reported in the combined changelog below.
-- azure.azcollection was upgraded from version 0.2.0 to version 0.3.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.ios was upgraded from version 1.0.1-dev4 to version 1.0.1-dev5.
-  The collection did not have a changelog in this version.
-- cisco.iosxr was upgraded from version 1.0.3-dev6 to version 1.0.3-dev7.
-  The collection did not have a changelog in this version.
-- cisco.meraki was upgraded from version 1.3.1 to version 1.3.2.
-  The changes are reported in the combined changelog below.
-- cisco.mso was upgraded from version 0.0.7 to version 0.0.8.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.nxos was upgraded from version 1.0.1-dev7 to version 1.0.1-dev8.
-  The collection did not have a changelog in this version.
-- community.windows was upgraded from version 0.0.1 to version 0.2.0.
-  The changes are reported in the combined changelog below.
-- containers.podman was upgraded from version 1.0.5 to version 1.1.1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- f5networks.f5_modules was upgraded from version 1.4.0 to version 1.5.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- frr.frr was upgraded from version 1.0.1-dev1 to version 1.0.1-dev2.
-  The collection did not have a changelog in this version.
-- openvswitch.openvswitch was upgraded from version 1.0.1-dev3 to version 1.0.1-dev4.
-  The collection did not have a changelog in this version.
-- purestorage.flasharray was upgraded from version 1.3.0 to version 1.3.1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- vyos.vyos was upgraded from version 1.0.2-dev2 to version 1.0.2-dev4.
-  The collection did not have a changelog in this version.
-
-Minor Changes
--------------
-
-ansible.windows
-~~~~~~~~~~~~~~~
-
-- Checks for and resolves a condition where effective nameservers are obfucated, usually by malware. See https://www.welivesecurity.com/2016/06/02/crouching-tiger-hidden-dns/
-- Windows - add deprecation notice in the Windows setup module when running on Server 2008, 2008 R2, and Windows 7
-- setup - Added `ansible_architecture2`` to match the same format that setup on POSIX hosts return. Unlike ``ansible_architecture`` this value is not localized to the host's language settings.
-- setup - Implemented the ``gather_timeout`` option to restrict how long each subset can run for
-- setup - Refactor to speed up the time taken to run the module
-- setup.ps1 - parity with linux regarding missing local facts path (https://github.com/ansible/ansible/issues/57974)
-- win_command, win_shell - Add the ability to override the console output encoding with ``output_encoding_override`` - https://github.com/ansible/ansible/issues/54896
-- win_dns_client - Added support for setting IPv6 DNS servers - https://github.com/ansible/ansible/issues/55962
-- win_domain_computer - Use new Ansible.Basic wrapper for better invocation reporting
-- win_domain_controller - Added the ``domain_log_path`` to control the directory for the new AD log files location - https://github.com/ansible/ansible/issues/59348
-- win_find - Improve performance when scanning heavily nested directories and align behaviour to the ``find`` module.
-- win_package - Added proxy support for retrieving packages from a URL - https://github.com/ansible/ansible/issues/43818
-- win_package - Added support for ``.appx``, ``.msix``, ``.appxbundle``, and ``.msixbundle`` package - https://github.com/ansible/ansible/issues/50765
-- win_package - Added support for ``.msp`` packages - https://github.com/ansible/ansible/issues/22789
-- win_package - Added support for specifying the HTTP method when getting files from a URL - https://github.com/ansible/ansible/issues/35377
-- win_package - Move across to ``Ansible.Basic`` for better invocation logging
-- win_package - Read uninstall strings from the ``QuietUninstallString`` if present to better support argumentless uninstalls of registry based packages.
-- win_package - Scan packages in the current user's registry hive - https://github.com/ansible/ansible/issues/45950
-- win_regedit - Use new Ansible.Basic wrapper for better invocation reporting
-- win_share - Implement append parameter for access rules (https://github.com/ansible/ansible/issues/59237)
-- windows setup - Added ``ansible_os_installation_type`` to denote the type of Windows installation the remote host is.
-
-cisco.meraki
-~~~~~~~~~~~~
-
-- meraki_device - Added deprecation notices to some parameters
-- meraki_network - Added deprecation notices to some parameters
-
-community.windows
-~~~~~~~~~~~~~~~~~
-
-- win_disk_facts - Set output array order to be by disk number property - https://github.com/ansible/ansible/issues/63998
-- win_domain_computer - ``sam_account_name`` with missing ``$`` will have it added automatically (https://github.com/ansible-collections/community.windows/pull/93)
-- win_domain_computer - add support for offline domain join (https://github.com/ansible-collections/community.windows/pull/93)
-- win_domain_group_membership - Add multi-domain forest support - https://github.com/ansible/ansible/issues/59829
-- win_domain_user - Added the ``identity`` module option to explicitly set the identity of the user when searching for it - https://github.com/ansible/ansible/issues/45298
-- win_firewall- Change req check from wmf version to cmdlets presence - https://github.com/ansible/ansible/issues/63003
-- win_firewall_rule - add parameter to support ICMP Types and Codes (https://github.com/ansible/ansible/issues/46809)
-- win_iis_webapplication - add new options ``connect_as``, ``username``, ``password``.
-- win_iis_webapplication - now uses the current application pool of the website instead of the DefaultAppPool if none was specified.
-- win_nssm - Implement additional parameters - (https://github.com/ansible/ansible/issues/62620)
-- win_pester - Only execute ``*.tests.ps1`` in ``path`` to match the default behaviour in Pester - https://github.com/ansible/ansible/issues/55736
-
-Breaking Changes / Porting Guide
---------------------------------
-
-ansible.windows
-~~~~~~~~~~~~~~~
-
-- setup - Make sure ``ansible_date_time.epoch`` is seconds since EPOCH in UTC to mirror the POSIX facts. The ``ansible_date_time.epoch_local`` contains seconds since EPOCH in the local timezone for backwards compatibility
-- setup - Will now add the IPv6 scope on link local addresses for ``ansible_ip_addresses``
-- setup - ``ansible_processor`` will now return the index before the other values to match the POSIX fact behaviour
-- win_find - No longer filters by size on directories, this feature had a lot of bugs, slowed down the module, and not a supported scenario with the ``find`` module.
-
-Deprecated Features
--------------------
-
-ansible.windows
-~~~~~~~~~~~~~~~
-
-- win_domain_computer - Deprecated the undocumented ``log_path`` option. This option will be removed in a major release after ``2022-07-01``.
-- win_regedit - Deprecated using forward slashes as a path separator, use backslashes to avoid ambiguity between a forward slash in the key name or a forward slash as a path separator. This feature will be removed in a major release after ``2021-07-01``.
-
-Removed Features (previously deprecated)
-----------------------------------------
-
-community.windows
-~~~~~~~~~~~~~~~~~
-
-- win_disk_image - removed the deprecated return value ``mount_path`` in favour of ``mount_paths``.
-
-Bugfixes
---------
-
-ansible.windows
-~~~~~~~~~~~~~~~
-
-- Fix detection of DHCP setting so that resetting to DHCP doesn't cause ``CHANGED`` status on every run. See https://github.com/ansible/ansible/issues/66450
-- setup - Remove usage of WMI to speed up execution time and work with standard user accounts
-- win_acl - Fixed error when setting rights on directory for which inheritance from parent directory has been disabled.
-- win_dns_client - Only configure network adapters that are IP Enabled - https://github.com/ansible/ansible/issues/58958
-- win_dsc - Always import module that contains DSC resource to ensure the required assemblies are loaded before parsing it - https://github.com/ansible-collections/ansible.windows/issues/66
-- win_find - Fix deduped files mistaken for directories (https://github.com/ansible/ansible/issues/58511)
-- win_find - Get-FileStat used [int] instead of [int64] for file size calculations
-- win_package - Handle quoted and unquoted strings in the registry ``UninstallString`` value - https://github.com/ansible/ansible/issues/40973
-- win_reboot - add ``boot_time_command`` parameter to override the default command used to determine whether or not a system was rebooted (https://github.com/ansible/ansible/issues/58868)
-- win_share - Allow for root letters paths
-- win_uri win_get_url - Fix the behaviour of ``follow_redirects: safe`` to actual redirect on ``GET`` and ``HEAD`` requests - https://github.com/ansible/ansible/issues/65556
-
-cisco.meraki
-~~~~~~~~~~~~
-
-- Fixed sanity errors in all modules including documentation and argument specs
-- Remove unnecessary files from the collection package, significantly reduces package size
-- meraki_ssid - Specifying tags for VLAN information would crash as it was an improper type
-- meraki_webhook - Fix crash with missing variable
-- meraki_webhook - Fix response when creating webhook test
-
-community.windows
-~~~~~~~~~~~~~~~~~
-
-- **security issue** win_unzip - normalize paths in archive to ensure extracted files do not escape from the target directory (CVE-2020-1737)
-- psexec - Fix issue where the Kerberos package was not detected as being available.
-- psexec - Fix issue where the ``interactive`` option was not being passed down to the library.
-- win_credential - Fix issue that errors when trying to add a ``name`` with wildcards.
-- win_domain_computer - Fix idempotence checks when ``sAMAccountName`` is different from ``name``
-- win_domain_computer - Honour the explicit domain server and credentials when moving or removing a computer object - https://github.com/ansible/ansible/pull/63093
-- win_domain_user - Better handle cases when getting a new user's groups fail - https://github.com/ansible/ansible/issues/54331
-- win_format - Idem not working if file exist but same fs (https://github.com/ansible/ansible/issues/58302)
-- win_format - fixed issue where module would not change allocation unit size (https://github.com/ansible/ansible/issues/56961)
-- win_iis_webapppool - Do not try and set attributes in check mode when the pool did not exist
-- win_iis_website - Actually restart the site when ``state=restarted`` - https://github.com/ansible/ansible/issues/63828
-- win_partition - Fix invalid variable name causing a failure on checks - https://github.com/ansible/ansible/issues/62401
-- win_partition - don't resize partitions if size difference is < 1 MiB
-- win_timezone - Allow for _dstoff timezones
-- win_unzip - Fix support for paths with square brackets not being detected properly
-
-v2.10.0a3
-=========
-
-.. contents::
-  :local:
-  :depth: 2
-
-Added Collections
------------------
-
-- community.digitalocean (version 0.1.0)
-- community.mysql (version 0.1.0)
-- community.proxysql (version 0.1.0)
-- infinidat.infinibox (version 1.2.3)
-
-Unchanged Collections
----------------------
-
-- ansible.windows (still version 0.0.1-beta.3)
-- awx.awx (still version 13.0.0)
-- azure.azcollection (still version 0.2.0)
-- check_point.mgmt (still version 1.0.5)
-- chocolatey.chocolatey (still version 1.0.2)
-- cisco.aci (still version 0.0.7)
-- cisco.intersight (still version 1.0.7)
-- cisco.meraki (still version 1.3.1)
-- cisco.ucs (still version 1.4.0)
-- cloudscale_ch.cloud (still version 1.0.0)
-- community.aws (still version 1.0.1-dev1)
-- community.azure (still version 0.1.0)
-- community.crypto (still version 1.0.0)
-- community.grafana (still version 0.2.2)
-- community.kubernetes (still version 0.11.1)
-- community.libvirt (still version 0.1.0)
-- community.mongodb (still version 0.1.2)
-- community.network (still version 0.2.1)
-- community.rabbitmq (still version 0.1.0)
-- community.vmware (still version 1.0.1-dev9)
-- community.windows (still version 0.0.1)
-- community.zabbix (still version 0.2.0)
-- cyberark.conjur (still version 1.0.6)
-- cyberark.pas (still version 1.0.5)
-- dellemc_networking.os10 (still version 1.0.2)
-- f5networks.f5_modules (still version 1.4.0)
-- fortinet.fortimanager (still version 1.0.3)
-- fortinet.fortios (still version 1.0.13)
-- frr.frr (still version 1.0.1-dev1)
-- google.cloud (still version 0.10.1)
-- hetzner.hcloud (still version 0.2.0)
-- mellanox.onyx (still version 0.1.0)
-- netapp.aws (still version 20.6.0)
-- netapp.elementsw (still version 20.6.0)
-- netapp.ontap (still version 20.7.0)
-- netapp_eseries.santricity (still version 1.0.8)
-- ngine_io.cloudstack (still version 0.3.0)
-- ngine_io.exoscale (still version 0.1.1)
-- ngine_io.vultr (still version 0.3.0)
-- openstack.cloud (still version 1.0.1)
-- ovirt.ovirt (still version 1.0.0)
-- servicenow.servicenow (still version 1.0.3-dev2)
-- skydive.skydive (still version 0.0.1-dev6)
-- theforeman.foreman (still version 1.0.1)
-- vyos.vyos (still version 1.0.2-dev2)
-- wti.remote (still version 1.0.1)
-
-Ansible Base
-------------
-
-Ansible 2.10.0a3 contains Ansible-base version 2.10.0b1.
-This is the same version of Ansible-base as in the previous Ansible release.
-
-
-Changed Collections
--------------------
-
-- amazon.aws was upgraded from version 1.0.1-dev7 to version 1.0.1-dev9.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ansible.netcommon was upgraded from version 1.0.1-dev4 to version 1.0.1-dev8.
-  The collection did not have a changelog in this version.
-- ansible.posix was upgraded from version 1.0.1-dev2 to version 1.0.1-dev8.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- arista.eos was upgraded from version 1.0.1-dev3 to version 1.0.1-dev9.
-  The collection did not have a changelog in this version.
-- cisco.asa was upgraded from version 1.0.1-dev2 to version 1.0.1-dev3.
-  The collection did not have a changelog in this version.
-- cisco.ios was upgraded from version 1.0.1-dev2 to version 1.0.1-dev4.
-  The collection did not have a changelog in this version.
-- cisco.iosxr was upgraded from version 1.0.3-dev3 to version 1.0.3-dev6.
-  The collection did not have a changelog in this version.
-- cisco.mso was upgraded from version 0.0.6 to version 0.0.7.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.nxos was upgraded from version 1.0.1-dev3 to version 1.0.1-dev7.
-  The collection did not have a changelog in this version.
-- community.digitalocean was upgraded to version 0.1.0.
-  The changes are reported in the combined changelog below.
-- community.general was upgraded from version 0.3.0-experimental.meta.redirects to version 0.3.0-experimental.meta.redirects-3.
-  The changes are reported in the combined changelog below.
-- community.mysql was upgraded to version 0.1.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.proxysql was upgraded to version 0.1.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- containers.podman was upgraded from version 1.0.4 to version 1.0.5.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ibm.qradar was upgraded from version 1.0.1 to version 1.0.2-dev1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- infinidat.infinibox was upgraded to version 1.2.3.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- junipernetworks.junos was upgraded from version 1.0.1-dev4 to version 1.0.1-dev6.
-  The collection did not have a changelog in this version.
-- netbox.netbox was upgraded from version 0.2.3 to version 0.3.1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- openvswitch.openvswitch was upgraded from version 1.0.1-dev2 to version 1.0.1-dev3.
-  The collection did not have a changelog in this version.
-- purestorage.flasharray was upgraded from version 1.2.7 to version 1.3.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- purestorage.flashblade was upgraded from version 1.2.4 to version 1.2.6.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- splunk.es was upgraded from version 1.0.0 to version 1.0.1-dev1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-
-v2.10.0a2
-=========
-
-.. contents::
-  :local:
-  :depth: 2
-
-Added Collections
------------------
-
-- cyberark.conjur (version 1.0.6)
-- hetzner.hcloud (version 0.2.0)
-- mellanox.onyx (version 0.1.0)
-- netapp_eseries.santricity (version 1.0.8)
-
-Unchanged Collections
----------------------
-
-- ansible.windows (still version 0.0.1-beta.3)
-- check_point.mgmt (still version 1.0.5)
-- chocolatey.chocolatey (still version 1.0.2)
-- cisco.mso (still version 0.0.6)
-- community.azure (still version 0.1.0)
-- community.grafana (still version 0.2.2)
-- community.libvirt (still version 0.1.0)
-- community.mongodb (still version 0.1.2)
-- community.rabbitmq (still version 0.1.0)
-- community.windows (still version 0.0.1)
-- community.zabbix (still version 0.2.0)
-- cyberark.pas (still version 1.0.5)
-- dellemc_networking.os10 (still version 1.0.2)
-- f5networks.f5_modules (still version 1.4.0)
-- fortinet.fortimanager (still version 1.0.3)
-- netapp.aws (still version 20.6.0)
-- netapp.elementsw (still version 20.6.0)
-- ngine_io.exoscale (still version 0.1.1)
-- openstack.cloud (still version 1.0.1)
-- ovirt.ovirt (still version 1.0.0)
-- purestorage.flasharray (still version 1.2.7)
-- skydive.skydive (still version 0.0.1-dev6)
-- wti.remote (still version 1.0.1)
-
-Ansible Base
-------------
-
-Ansible 2.10.0a2 contains Ansible-base version 2.10.0b1.
-This is a newer version than version 2.10.0.dev1 contained in the previous Ansible release.
-
+Ansible 2.10.0a5 contains Ansible-base version 2.10.0rc2.
 The changes are reported in the combined changelog below.
 
 Changed Collections
 -------------------
 
-- amazon.aws was upgraded from version 0.1.3-dev4 to version 1.0.1-dev7.
+- amazon.aws was upgraded to version 1.0.1-dev9.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ansible.netcommon was upgraded from version 0.0.3 to version 1.0.1-dev4.
+- ansible.netcommon was upgraded to version 1.0.1-dev8.
   The changes are reported in the combined changelog below.
-- ansible.posix was upgraded from version 0.1.4-dev9 to version 1.0.1-dev2.
+- ansible.posix was upgraded to version 1.1.1-dev4.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- arista.eos was upgraded from version 0.0.3-dev81 to version 1.0.1-dev3.
+- ansible.windows was upgraded to version 0.2.0.
   The changes are reported in the combined changelog below.
-- awx.awx was upgraded from version 12.0.0 to version 13.0.0.
+- arista.eos was upgraded to version 1.0.1-dev9.
+  The changes are reported in the combined changelog below.
+- awx.awx was upgraded to version 13.0.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- azure.azcollection was upgraded from version 0.1.3 to version 0.2.0.
+- azure.azcollection was upgraded to version 0.3.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.aci was upgraded from version 0.0.6 to version 0.0.7.
+- check_point.mgmt was upgraded to version 1.0.6.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.asa was upgraded from version 0.0.2-dev9 to version 1.0.1-dev2.
-  The changes are reported in the combined changelog below.
-- cisco.intersight was upgraded from version 1.0.6 to version 1.0.7.
+- chocolatey.chocolatey was upgraded to version 1.0.2.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.ios was upgraded from version 0.0.3-dev95 to version 1.0.1-dev2.
-  The changes are reported in the combined changelog below.
-- cisco.iosxr was upgraded from version 0.0.3-dev8 to version 1.0.3-dev3.
-  The changes are reported in the combined changelog below.
-- cisco.meraki was upgraded from version 1.3.0 to version 1.3.1.
-  The collection did not have a changelog in this version.
-- cisco.nxos was upgraded from version 0.0.3-dev99 to version 1.0.1-dev3.
-  The changes are reported in the combined changelog below.
-- cisco.ucs was upgraded from version 1.2.0 to version 1.4.0.
+- cisco.aci was upgraded to version 0.0.7.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cloudscale_ch.cloud was upgraded from version 0.1.0 to version 1.0.0.
+- cisco.asa was upgraded to version 1.0.1-dev4.
+  The changes are reported in the combined changelog below.
+- cisco.intersight was upgraded to version 1.0.7.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.aws was upgraded from version 0.1.3-dev2 to version 1.0.1-dev1.
+- cisco.ios was upgraded to version 1.0.1-dev6.
+  The changes are reported in the combined changelog below.
+- cisco.iosxr was upgraded to version 1.0.3-dev7.
+  The changes are reported in the combined changelog below.
+- cisco.meraki was upgraded to version 1.3.2.
+  The changes are reported in the combined changelog below.
+- cisco.mso was upgraded to version 0.0.8.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.crypto was upgraded from version 0.1.0 to version 1.0.0.
+- cisco.nxos was upgraded to version 1.0.1-dev9.
   The changes are reported in the combined changelog below.
-- community.general was upgraded from version 0.1.4 to version 0.3.0-experimental.meta.redirects.
+- cisco.ucs was upgraded to version 1.4.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- cloudscale_ch.cloud was upgraded to version 1.0.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- community.aws was upgraded to version 1.0.1-dev1.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- community.azure was upgraded to version 0.1.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- community.crypto was upgraded to version 1.0.0.
   The changes are reported in the combined changelog below.
-- community.kubernetes was upgraded from version 0.11.0 to version 0.11.1.
+- community.digitalocean was upgraded to version 0.1.0.
   The changes are reported in the combined changelog below.
-- community.network was upgraded from version 0.1.0 to version 0.2.1.
+- community.general was upgraded to version 0.3.0-experimental.meta.redirects-3.
   The changes are reported in the combined changelog below.
-- community.vmware was upgraded from version 0.4.1-dev8 to version 1.0.1-dev9.
+- community.grafana was upgraded to version 0.2.2.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- community.kubernetes was upgraded to version 0.11.1.
   The changes are reported in the combined changelog below.
-- containers.podman was upgraded from version 1.0.3 to version 1.0.4.
+- community.libvirt was upgraded to version 0.1.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- community.mongodb was upgraded to version 0.1.2.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- community.mysql was upgraded to version 0.1.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- community.network was upgraded to version 0.2.1.
+  The changes are reported in the combined changelog below.
+- community.proxysql was upgraded to version 0.1.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- community.rabbitmq was upgraded to version 0.1.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- community.vmware was upgraded to version 1.0.1-dev9.
+  The changes are reported in the combined changelog below.
+- community.windows was upgraded to version 0.2.0.
+  The changes are reported in the combined changelog below.
+- community.zabbix was upgraded to version 0.2.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- containers.podman was upgraded to version 1.1.2.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 - cyberark.conjur was upgraded to version 1.0.6.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- fortinet.fortios was upgraded from version 1.0.9 to version 1.0.13.
+- cyberark.pas was upgraded to version 1.0.5.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- frr.frr was upgraded from version 0.0.2 to version 1.0.1-dev1.
+- dellemc.os10 was upgraded to version 0.1.0-dev2.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- f5networks.f5_modules was upgraded to version 1.5.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- fortinet.fortimanager was upgraded to version 1.0.3.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- fortinet.fortios was upgraded to version 1.0.13.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- frr.frr was upgraded to version 1.0.1-dev2.
   The changes are reported in the combined changelog below.
-- google.cloud was upgraded from version 0.0.9 to version 0.10.1.
+- google.cloud was upgraded to version 0.10.1.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 - hetzner.hcloud was upgraded to version 0.2.0.
   The changes are reported in the combined changelog below.
-- ibm.qradar was upgraded from version 0.0.9-dev4 to version 1.0.1.
+- ibm.qradar was upgraded to version 1.0.2-dev1.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- junipernetworks.junos was upgraded from version 0.0.4-dev9 to version 1.0.1-dev4.
+- infinidat.infinibox was upgraded to version 1.2.3.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- junipernetworks.junos was upgraded to version 1.0.1-dev6.
   The changes are reported in the combined changelog below.
 - mellanox.onyx was upgraded to version 0.1.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- netapp.ontap was upgraded from version 20.6.1 to version 20.7.0.
+- netapp.aws was upgraded to version 20.6.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- netapp.elementsw was upgraded to version 20.6.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- netapp.ontap was upgraded to version 20.7.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 - netapp_eseries.santricity was upgraded to version 1.0.8.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- netbox.netbox was upgraded from version 0.2.2 to version 0.2.3.
+- netbox.netbox was upgraded to version 0.3.1.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ngine_io.cloudstack was upgraded from version 0.2.0 to version 0.3.0.
+- ngine_io.cloudstack was upgraded to version 0.3.0.
   The changes are reported in the combined changelog below.
-- ngine_io.vultr was upgraded from version 0.0.1 to version 0.3.0.
+- ngine_io.exoscale was upgraded to version 0.1.1.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- ngine_io.vultr was upgraded to version 0.3.0.
   The changes are reported in the combined changelog below.
-- openvswitch.openvswitch was upgraded from version 0.0.2-dev1 to version 1.0.1-dev2.
+- openstack.cloud was upgraded to version 1.0.1.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- openvswitch.openvswitch was upgraded to version 1.0.1-dev4.
   The changes are reported in the combined changelog below.
-- purestorage.flashblade was upgraded from version 1.2.3 to version 1.2.4.
+- ovirt.ovirt was upgraded to version 1.0.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- servicenow.servicenow was upgraded from version 1.0.2 to version 1.0.3-dev2.
+- purestorage.flasharray was upgraded to version 1.3.1.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- splunk.es was upgraded from version 0.0.3-dev1 to version 1.0.0.
+- purestorage.flashblade was upgraded to version 1.2.6.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- theforeman.foreman was upgraded from version 0.8.1 to version 1.0.1.
+- servicenow.servicenow was upgraded to version 1.0.3-dev2.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- vyos.vyos was upgraded from version 0.0.4-dev9 to version 1.0.2-dev2.
+- skydive.skydive was upgraded to version 0.0.1-dev6.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- splunk.es was upgraded to version 1.0.1-dev1.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- theforeman.foreman was upgraded to version 1.0.1.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- vyos.vyos was upgraded to version 1.0.2-dev6.
   The changes are reported in the combined changelog below.
+- wti.remote was upgraded to version 1.0.1.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 
 Major Changes
 -------------
@@ -516,6 +185,21 @@ community.kubernetes
 ~~~~~~~~~~~~~~~~~~~~
 
 - Add changelog and fragments and document changelog process (https://github.com/ansible-collections/community.kubernetes/pull/131).
+- helm - New module for managing Helm charts (https://github.com/ansible-collections/community.kubernetes/pull/61).
+- helm_info - New module for retrieving Helm chart information (https://github.com/ansible-collections/community.kubernetes/pull/61).
+- helm_repository - New module for managing Helm repositories (https://github.com/ansible-collections/community.kubernetes/pull/61).
+- k8s - Inventory source migrated from Ansible 2.9 to Kubernetes collection.
+- k8s - Lookup plugin migrated from Ansible 2.9 to Kubernetes collection.
+- k8s - Module migrated from Ansible 2.9 to Kubernetes collection.
+- k8s_auth - Module migrated from Ansible 2.9 to Kubernetes collection.
+- k8s_config_resource_name - Filter plugin migrated from Ansible 2.9 to Kubernetes collection.
+- k8s_exec - New module for executing commands on pods via Kubernetes API (https://github.com/ansible-collections/community.kubernetes/pull/14).
+- k8s_info - Module migrated from Ansible 2.9 to Kubernetes collection.
+- k8s_log - New module for retrieving pod logs (https://github.com/ansible-collections/community.kubernetes/pull/16).
+- k8s_scale - Module migrated from Ansible 2.9 to Kubernetes collection.
+- k8s_service - Module migrated from Ansible 2.9 to Kubernetes collection.
+- kubectl - Connection plugin migrated from Ansible 2.9 to Kubernetes collection.
+- openshift - Inventory source migrated from Ansible 2.9 to Kubernetes collection.
 
 Minor Changes
 -------------
@@ -531,8 +215,10 @@ Ansible Base
 - Add a new config parameter, WIN_ASYNC_STARTUP_TIMEOUT, which allows configuration of the named pipe connection timeout under Windows when launching async tasks.
 - Add a per-plugin stage option to override the global toggle to control the execution of individual vars plugins (per task, after inventory, or both).
 - Add an additional check for importing journal from systemd-python module (https://github.com/ansible/ansible/issues/60595).
+- Add an example for using var in with_sequence (https://github.com/ansible/ansible/issues/68836).
 - Add new magic variable ``ansible_collection`` that contains the collection name
 - Add new magic variable ``ansible_role_name`` that contains the FQCN of the role
+- Add standard Python 2/3 compatibility boilerplate to setup script, module_utils and docs_fragments which were missing them.
 - Added PopOS as a part of Debian OS distribution family (https://github.com/ansible/ansible/issues/69286).
 - Added hostname support for PopOS in hostname module.
 - Added openEuler OS in RedHat OS Family.
@@ -546,6 +232,7 @@ Ansible Base
 - Ansible.ModuleUtils.WebRequest - Move username and password aliases out of util to avoid option name collision
 - Change order of arguments in ansible cli to use --ask-vault-password and --vault-password-file by default
 - CollectionRequirement - Add a metadata property to update and retrieve the _metadata attribute.
+- Command module: Removed suggestions to use modules which have moved to collections and out of ansible-base
 - Enable Ansible Collections loader to discover and import collections from ``site-packages`` dir and ``PYTHONPATH``-added locations.
 - Enable testing the AIX platform as a remote OS in ansible-test
 - Flatten the directory hierarchy of modules
@@ -563,6 +250,7 @@ Ansible Base
 - Simplify dict2items filter example in loop documentation (https://github.com/ansible/ansible/issues/65505).
 - Templating - Add globals to the jinja2 environment at ``Templar`` instantiation, instead of customizing the template object. Only customize the template object, to disable lookups. (https://github.com/ansible/ansible/pull/69278)
 - Templating - Add support to auto unroll generators produced by jinja2 filters, to prevent the need of explicit use of ``|list`` (https://github.com/ansible/ansible/pull/68014)
+- The plugin loader now keeps track of the collection where a plugin was resolved to, in particular whether the plugin was loaded from ansible-base's internal paths (``ansible.builtin``) or from user-supplied paths (no collection name).
 - The results queue and counter for results are now split for standard / handler results. This allows the governing strategy to be truly independent from the handler strategy, which basically follows the linear methodology.
 - Update required library message with correct grammer in basic.py.
 - Updated inventory script location for EC2, Openstack, and Cobbler after collection (https://github.com/ansible/ansible/issues/68897).
@@ -580,10 +268,12 @@ Ansible Base
 - ansible-doc - return values will be properly formatted (https://github.com/ansible/ansible/pull/69796).
 - ansible-galaxy - Add ``download`` option for ``ansible-galaxy collection`` to download collections and their dependencies for an offline install
 - ansible-galaxy - Add a `verify` subcommand to `ansible-galaxy collection`. The collection found on the galaxy server is downloaded to a tempfile to compare the checksums of the files listed in the MANIFEST.json and the FILES.json with the contents of the installed collection.
+- ansible-galaxy - Add installation successful message
 - ansible-galaxy - Added the ability to display the progress wheel through the C.GALAXY_DISPLAY_PROGRESS config option. Also this now defaults to displaying the progress wheel if stdout has a tty.
 - ansible-galaxy - Added the ability to ignore further files and folders using a pattern with the ``build_ignore`` key in a collection's ``galaxy.yml`` (https://github.com/ansible/ansible/issues/59228).
 - ansible-galaxy - Allow installing collections from git repositories.
 - ansible-galaxy - Always ignore the ``tests/output`` directory when building a collection as it is used by ``ansible-test`` for test output (https://github.com/ansible/ansible/issues/59228).
+- ansible-galaxy - Change the output verbosity level of the download message from 3 to 0 (https://github.com/ansible/ansible/issues/70010)
 - ansible-galaxy - Display message if both collections and roles are specified in a requirements file but can't be installed together.
 - ansible-galaxy - Install both collections and roles with ``ansible-galaxy install -r requirements.yml`` in certain scenarios.
 - ansible-galaxy - Requirement entries for collections now support a 'type' key to indicate whether the collection is a galaxy artifact, file, url, or git repo.
@@ -605,9 +295,11 @@ Ansible Base
 - ansible-test - Added support for testing on Fedora 32.
 - ansible-test - General code cleanup.
 - ansible-test - Now includes testing support for RHEL 8.2
+- ansible-test - Provisioning of RHEL instances now includes installation of pinned versions of ``packaging`` and ``pyparsing`` to match the downstream vendored versions.
 - ansible-test - Refactor code to consolidate filesystem access and improve handling of encoding.
 - ansible-test - Refactored CI related logic into a basic provider abstraction.
 - ansible-test - Remove obsolete support for provisioning remote vCenter instances. The supporting services are no longer available.
+- ansible-test - Report the correct line number in the ``yamllint`` sanity test when reporting ``libyaml`` parse errors in module documentation.
 - ansible-test - Support writing compact JSON files instead of formatting and indenting the output.
 - ansible-test - Update Ubuntu 18.04 test container to version 1.13 which includes ``venv``
 - ansible-test - Update ``default-test-container`` to version 1.11, which includes Python 3.9.0a4.
@@ -664,8 +356,10 @@ Ansible Base
 - blockinfile - Update module documentation to clarify insertbefore/insertafter usage.
 - callbacks - Allow modules to return `None` as before/after entries for diff. This should make it easier for modules to report the "not existing" state of the entity they touched.
 - combine filter - now accept a ``list_merge`` argument which modifies its behaviour when the hashes to merge contain arrays/lists.
+- conditionals - change the default of CONDITIONAL_BARE_VARS to False (https://github.com/ansible/ansible/issues/70682).
 - config - accept singular version of ``collections_path`` ini setting and ``ANSIBLE_COLLECTIONS_PATH`` environment variable setting
 - core filters - Adding ``path_join`` filter to the core filters list
+- debconf - add a note about no_log=True since module might expose sensitive information to logs (https://github.com/ansible/ansible/issues/32386).
 - distro - Update bundled version of distro from 1.4.0 to 1.5.0
 - dnf - Properly handle idempotent transactions with package name wildcard globs (https://github.com/ansible/ansible/issues/62809)
 - dnf - Properly handle module AppStreams that don't define stream (https://github.com/ansible/ansible/issues/63683)
@@ -678,6 +372,7 @@ Ansible Base
 - host_group_vars plugin - Require whitelisting and whitelist by default.
 - new magic variable - ``ansible_config_file`` - full path of used Ansible config file
 - package_facts.py - Add support for Pacman package manager.
+- pipe lookup - update docs for Popen with shell=True usages (https://github.com/ansible/ansible/issues/70159).
 - plugin loader - Add MODULE_IGNORE_EXTS config option to skip over certain extensions when looking for script and binary modules.
 - powershell (shell plugin) - Fix `join_path` to support UNC paths (https://github.com/ansible/ansible/issues/66341)
 - regexp_replace filter - add multiline support for regex_replace filter (https://github.com/ansible/ansible/issues/61985)
@@ -710,10 +405,41 @@ Ansible Base
 - win_package - Scan packages in the current user's registry hive - https://github.com/ansible/ansible/issues/45950
 - windows collections - Support relative module util imports in PowerShell modules and module_utils
 
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- Checks for and resolves a condition where effective nameservers are obfucated, usually by malware. See https://www.welivesecurity.com/2016/06/02/crouching-tiger-hidden-dns/
+- Windows - add deprecation notice in the Windows setup module when running on Server 2008, 2008 R2, and Windows 7
+- setup - Added `ansible_architecture2`` to match the same format that setup on POSIX hosts return. Unlike ``ansible_architecture`` this value is not localized to the host's language settings.
+- setup - Implemented the ``gather_timeout`` option to restrict how long each subset can run for
+- setup - Refactor to speed up the time taken to run the module
+- setup.ps1 - parity with linux regarding missing local facts path (https://github.com/ansible/ansible/issues/57974)
+- win_command, win_shell - Add the ability to override the console output encoding with ``output_encoding_override`` - https://github.com/ansible/ansible/issues/54896
+- win_dns_client - Added support for setting IPv6 DNS servers - https://github.com/ansible/ansible/issues/55962
+- win_domain_computer - Use new Ansible.Basic wrapper for better invocation reporting
+- win_domain_controller - Added the ``domain_log_path`` to control the directory for the new AD log files location - https://github.com/ansible/ansible/issues/59348
+- win_find - Improve performance when scanning heavily nested directories and align behaviour to the ``find`` module.
+- win_package - Added proxy support for retrieving packages from a URL - https://github.com/ansible/ansible/issues/43818
+- win_package - Added support for ``.appx``, ``.msix``, ``.appxbundle``, and ``.msixbundle`` package - https://github.com/ansible/ansible/issues/50765
+- win_package - Added support for ``.msp`` packages - https://github.com/ansible/ansible/issues/22789
+- win_package - Added support for specifying the HTTP method when getting files from a URL - https://github.com/ansible/ansible/issues/35377
+- win_package - Move across to ``Ansible.Basic`` for better invocation logging
+- win_package - Read uninstall strings from the ``QuietUninstallString`` if present to better support argumentless uninstalls of registry based packages.
+- win_package - Scan packages in the current user's registry hive - https://github.com/ansible/ansible/issues/45950
+- win_regedit - Use new Ansible.Basic wrapper for better invocation reporting
+- win_share - Implement append parameter for access rules (https://github.com/ansible/ansible/issues/59237)
+- windows setup - Added ``ansible_os_installation_type`` to denote the type of Windows installation the remote host is.
+
 cisco.iosxr
 ~~~~~~~~~~~
 
 - Bring plugin table to correct position (https://github.com/ansible-collections/cisco.iosxr/pull/44)
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- meraki_device - Added deprecation notices to some parameters
+- meraki_network - Added deprecation notices to some parameters
 
 community.crypto
 ~~~~~~~~~~~~~~~~
@@ -908,11 +634,13 @@ community.kubernetes
 - Minor documentation fixes and use of FQCN in some examples (https://github.com/ansible-collections/community.kubernetes/pull/114).
 - Remove action_groups_redirection entry from meta/runtime.yml (https://github.com/ansible-collections/community.kubernetes/pull/127).
 - Remove deprecated ANSIBLE_METADATA field (https://github.com/ansible-collections/community.kubernetes/pull/95).
+- Rename repository to ``community.kubernetes`` (https://github.com/ansible-collections/community.kubernetes/pull/81).
 - Use FQCN in module docs and plugin examples (https://github.com/ansible-collections/community.kubernetes/pull/146).
 - Use improved kubernetes diffs where possible (https://github.com/ansible-collections/community.kubernetes/pull/105).
 - helm - add 'atomic' option (https://github.com/ansible-collections/community.kubernetes/pull/115).
 - helm - minor code refactoring (https://github.com/ansible-collections/community.kubernetes/pull/110).
 - helm_info and helm_repository - minor code refactor (https://github.com/ansible-collections/community.kubernetes/pull/117).
+- k8s - Added ``persist_config`` option for persisting refreshed tokens (https://github.com/ansible-collections/community.kubernetes/issues/49).
 - k8s - Handle set object retrieved from lookup plugin (https://github.com/ansible-collections/community.kubernetes/pull/118).
 
 community.network
@@ -980,6 +708,21 @@ community.vmware
 - vmware_tag now returns tag_status instead of Ansible internal key results (https://github.com/ansible/ansible/issues/62083).
 - vmware_vm_inventory inventory plugin, raise more descriptive error when all template strings in ``hostnames`` fail.
 
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- win_disk_facts - Set output array order to be by disk number property - https://github.com/ansible/ansible/issues/63998
+- win_domain_computer - ``sam_account_name`` with missing ``$`` will have it added automatically (https://github.com/ansible-collections/community.windows/pull/93)
+- win_domain_computer - add support for offline domain join (https://github.com/ansible-collections/community.windows/pull/93)
+- win_domain_group_membership - Add multi-domain forest support - https://github.com/ansible/ansible/issues/59829
+- win_domain_user - Added the ``identity`` module option to explicitly set the identity of the user when searching for it - https://github.com/ansible/ansible/issues/45298
+- win_firewall- Change req check from wmf version to cmdlets presence - https://github.com/ansible/ansible/issues/63003
+- win_firewall_rule - add parameter to support ICMP Types and Codes (https://github.com/ansible/ansible/issues/46809)
+- win_iis_webapplication - add new options ``connect_as``, ``username``, ``password``.
+- win_iis_webapplication - now uses the current application pool of the website instead of the DefaultAppPool if none was specified.
+- win_nssm - Implement additional parameters - (https://github.com/ansible/ansible/issues/62620)
+- win_pester - Only execute ``*.tests.ps1`` in ``path`` to match the default behaviour in Pester - https://github.com/ansible/ansible/issues/55736
+
 ngine_io.cloudstack
 ~~~~~~~~~~~~~~~~~~~
 
@@ -997,6 +740,14 @@ vyos.vyos
 
 Breaking Changes / Porting Guide
 --------------------------------
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- setup - Make sure ``ansible_date_time.epoch`` is seconds since EPOCH in UTC to mirror the POSIX facts. The ``ansible_date_time.epoch_local`` contains seconds since EPOCH in the local timezone for backwards compatibility
+- setup - Will now add the IPv6 scope on link local addresses for ``ansible_ip_addresses``
+- setup - ``ansible_processor`` will now return the index before the other values to match the POSIX fact behaviour
+- win_find - No longer filters by size on directories, this feature had a lot of bugs, slowed down the module, and not a supported scenario with the ``find`` module.
 
 community.general
 ~~~~~~~~~~~~~~~~~
@@ -1023,6 +774,12 @@ Ansible Base
 - Using the DefaultCallback without the correspodning doc_fragment or copying the documentation.
 - hash_behaviour - Deprecate ``hash_behaviour`` for future removal.
 - script inventory plugin - The 'cache' option is deprecated and will be removed in 2.12. Its use has been removed from the plugin since it has never had any effect.
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- win_domain_computer - Deprecated the undocumented ``log_path`` option. This option will be removed in a major release after ``2022-07-01``.
+- win_regedit - Deprecated using forward slashes as a path separator, use backslashes to avoid ambiguity between a forward slash in the key name or a forward slash as a path separator. This feature will be removed in a major release after ``2021-07-01``.
 
 community.crypto
 ~~~~~~~~~~~~~~~~
@@ -1082,6 +839,11 @@ community.vmware
 - vmware_vmkernel - Removed deprecated ``ip_address`` option; use sub-option ip_address in the network option instead
 - vmware_vmkernel - Removed deprecated ``subnet_mask`` option; use sub-option subnet_mask in the network option instead
 
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- win_disk_image - removed the deprecated return value ``mount_path`` in favour of ``mount_paths``.
+
 Security Fixes
 --------------
 
@@ -1107,19 +869,28 @@ community.general
 - **security issue** - Ansible: Splunk and Sumologic callback plugins leak sensitive data in logs (CVE-2019-14864)
 - ldap_attr, ldap_entry - The ``params`` option has been removed in Ansible-2.10 as it circumvents Ansible's option handling.  Setting ``bind_pw`` with the ``params`` option was disallowed in Ansible-2.7, 2.8, and 2.9 as it was insecure.  For information about this policy, see the discussion at: https://meetbot.fedoraproject.org/ansible-meeting/2017-09-28/ansible_dev_meeting.2017-09-28-15.00.log.html This fixes CVE-2020-1746
 
+community.kubernetes
+~~~~~~~~~~~~~~~~~~~~
+
+- kubectl - Warn about information disclosure when using options like ``kubectl_password``, ``kubectl_extra_args``, and ``kubectl_token`` to pass data through to the command line using the ``kubectl`` connection plugin (https://github.com/ansible-collections/community.kubernetes/pull/51).
+
 Bugfixes
 --------
 
 Ansible Base
 ~~~~~~~~~~~~
 
+- **security issue** atomic_move - change default permissions when creating temporary files so they are not world readable (https://github.com/ansible/ansible/issues/67794) (CVE-2020-1736)
 - ActionBase - Add new ``cleanup`` method that is explicitly run by the ``TaskExecutor`` to ensure that the shell plugins ``tmpdir`` is always removed. This change means that individual action plugins need not be responsible for removing the temporary directory, which ensures that we don't have code paths that accidentally leave behind the temporary directory.
 - Add example setting for ``collections_paths`` parameter to ``examples/ansible.cfg``
 - Add missing gcp modules to gcp module defaults group
 - Added support for Flatcar Container Linux in distribution and hostname modules. (https://github.com/ansible/ansible/pull/69627)
 - Added support for OSMC distro in hostname module (https://github.com/ansible/ansible/issues/66189).
+- Address the deprecation of the use of stdlib distutils in packaging. It's a short-term hotfix for the problem (https://github.com/ansible/ansible/issues/70456, https://github.com/pypa/setuptools/issues/2230, https://github.com/pypa/setuptools/commit/bd110264)
+- Allow TypeErrors on Undefined variables in filters to be handled or deferred when processing for loops.
 - Allow tasks to notify a fqcn handler name (https://github.com/ansible/ansible/issues/68181)
 - An invalid value is hard to track down if you don't know where it came from, return field name instead.
+- Ansible output now uses stdout to determine column width instead of stdin
 - Ansible.Basic - Fix issue when setting a ``no_log`` parameter to an empty string - https://github.com/ansible/ansible/issues/62613
 - Ansible.ModuleUtils.WebRequest - actually set no proxy when ``use_proxy: no`` is set on a Windows module - https://github.com/ansible/ansible/issues/68528
 - AnsibleDumper - Add a representer for AnsibleUnsafeBytes (https://github.com/ansible/ansible/issues/62562).
@@ -1139,6 +910,7 @@ Ansible Base
 - Ensure that keywords defined as booleans are correctly interpreting their input, before patch any random string would be interpreted as False
 - Ensure we don't allow ansible_facts subkey of ansible_facts to override top level, also fix 'deprefixing' to prevent key transforms.
 - Fact Delegation - Add ability to indicate which facts must always be delegated. Primarily for ``discovered_interpreter_python`` right now, but extensible later. (https://github.com/ansible/ansible/issues/61002)
+- Fix ``delegate_facts: true`` when ``ansible_python_interpreter`` is not set. (https://github.com/ansible/ansible/issues/70168)
 - Fix a bug when a host was not removed from a play after ``meta: end_host`` and as a result the host was still present in ``ansible_play_hosts`` and ``ansible_play_batch`` variables.
 - Fix an issue with the ``fileglob`` plugin where passing a subdirectory of non-existent directory would cause it to fail - https://github.com/ansible/ansible/issues/69450
 - Fix case sensitivity for ``lookup()`` (https://github.com/ansible/ansible/issues/66464)
@@ -1162,6 +934,7 @@ Ansible Base
 - Handle exception encountered while parsing the argument description in module when invoked via ansible-doc command (https://github.com/ansible/ansible/issues/60587).
 - Handle exception when /etc/shadow file is missing or not found, while operating user operation in user module (https://github.com/ansible/ansible/issues/63490).
 - HostVarsVars - Template the __repr__ value (https://github.com/ansible/ansible/issues/64128).
+- JSON Encoder - Ensure we treat single vault encrypted values as strings (https://github.com/ansible/ansible/issues/70784)
 - Make netconf plugin configurable to set ncclient device handler name in netconf plugin (https://github.com/ansible/ansible/pull/65718)
 - Make sure if a collection is supplied as a string that we transform it into a list.
 - Misc typo fixes in various documentation pages.
@@ -1172,17 +945,26 @@ Ansible Base
 - Prevent rewriting nested Block's data in filter_tagged_tasks
 - Prevent templating unused variables for {% include %} (https://github.com/ansible/ansible/issues/68699)
 - Properly handle unicode in ``safe_eval``. (https://github.com/ansible/ansible/issues/66943)
+- Python module_utils finder - refactor logic to eliminate many corner cases, remove recursion, fix base module_utils redirections
 - Remove a temp directory created by wait_for_connection action plugin (https://github.com/ansible/ansible/issues/62407).
 - Remove the unnecessary warning about aptitude not being installed (https://github.com/ansible/ansible/issues/56832).
 - Remove unused Python imports in ``ansible-inventory``.
 - Role Installation - Ensure that a role containing files with non-ascii characters can be installed (https://github.com/ansible/ansible/issues/69133)
 - RoleRequirement - include stderr in the error message if a scm command fails (https://github.com/ansible/ansible/issues/41336)
+- SSH plugin - Improve error message when ssh client is not found on the host
+- Sanitize no_log values from any response keys that might be returned from the uri module.
 - Skipping of become for ``network_cli`` connections now works when ``network_cli`` is sourced from a collection.
+- Stop adding the connection variables to the output results
 - Strictly check string datatype for 'tasks_from', 'vars_from', 'defaults_from', and 'handlers_from' in include_role (https://github.com/ansible/ansible/issues/68515).
 - Strip no log values from module response keys (https://github.com/ansible/ansible/issues/68400)
+- TaskExecutor - Handle unexpected errors as failed while post validating loops (https://github.com/ansible/ansible/issues/70050).
 - TaskQueueManager - Explicitly set the mutliprocessing start method to ``fork`` to avoid issues with the default on macOS now being ``spawn``.
+- Template connection variables before using them (https://github.com/ansible/ansible/issues/70598).
 - Templating - Ansible was caching results of Jinja2 expressions in some cases where these expressions could have dynamic results, like password generation (https://github.com/ansible/ansible/issues/34144).
+- Terminal plugins - add "\e[m" to the list of ANSI sequences stripped from device output
+- The `ansible_become` value was not being treated as a boolean value when set in an INI format inventory file (fixes bug https://github.com/ansible/ansible/issues/70476).
 - The ansible-galaxy publish command was using an incorrect URL for v3 servers. The configuration for v3 servers includes part of the path fragment that was added in the new test.
+- The machine-readable changelog ``changelogs/changelog.yaml`` is now contained in the release.
 - Update ActionBase._low_level_execute_command to honor executable (https://github.com/ansible/ansible/issues/68054)
 - Update the warning message for ``CONDITIONAL_BARE_VARS`` to list the original conditional not the value of the original conditional (https://github.com/ansible/ansible/issues/67735)
 - Use ``sys.exit`` instead of ``exit`` in ``ansible-inventory``.
@@ -1190,9 +972,13 @@ Ansible Base
 - Use hostnamectl command to get current hostname for host while using systemd strategy (https://github.com/ansible/ansible/issues/59438).
 - Using --start-at-task would fail when it attempted to skip over tasks with no name.
 - Validate include args in handlers.
+- Vault - Allow single vault encrypted values to be used directly as module parameters. (https://github.com/ansible/ansible/issues/68275)
 - Vault - Make the single vaulted value ``AnsibleVaultEncryptedUnicode`` class work more like a string by replicating the behavior of ``collections.UserString`` from Python. These changes don't allow it to be considered a string, but most common python string actions will now work as expected. (https://github.com/ansible/ansible/pull/67823)
 - ``AnsibleUnsafe``/``AnsibleContext``/``Templar`` - Do not treat ``AnsibleUndefined`` as being "unsafe" (https://github.com/ansible/ansible/issues/65198)
 - account for empty strings in when splitting the host pattern (https://github.com/ansible/ansible/issues/61964)
+- action plugins - change all action/module delegations to use FQ names while allowing overrides (https://github.com/ansible/ansible/issues/69788)
+- add constraints file for ``anisble_runner`` test since an update to ``psutil`` is now causing test failures
+- add magic/connection vars updates from delegated host info.
 - add parameter name to warning message when values are converted to strings (https://github.com/ansible/ansible/pull/57145)
 - add_host action now correctly shows idempotency/changed status
 - added 'unimplemented' prefix to file based caching
@@ -1204,6 +990,10 @@ Ansible Base
 - ansible command now correctly sends v2_playbook_on_start to callbacks
 - ansible-connection persists even after playbook run is completed (https://github.com/ansible/ansible/pull/61591)
 - ansible-doc - Allow and give precedence to `removed_at_date` for deprecated modules.
+- ansible-doc - collection name for plugin top-level deprecation was not inserted when deprecating by version (https://github.com/ansible/ansible/pull/70344).
+- ansible-doc - improve error message in text formatter when ``description`` is missing for a (sub-)option or a return value or its ``contains`` (https://github.com/ansible/ansible/pull/70046).
+- ansible-doc - improve man page formatting to avoid problems when YAML anchors are used (https://github.com/ansible/ansible/pull/70045).
+- ansible-doc - include the collection name in the text output (https://github.com/ansible/ansible/pull/70401).
 - ansible-doc now properly handles removed modules/plugins
 - ansible-galaxy - Default collection install path to first path in COLLECTIONS_PATHS (https://github.com/ansible/ansible/pull/62870)
 - ansible-galaxy - Display proper error when invalid token is used for Galaxy servers
@@ -1238,12 +1028,14 @@ Ansible Base
 - ansible-inventory - Restore functionality to allow ``--graph`` to be limited by a host pattern
 - ansible-test - Code cleanup.
 - ansible-test - Disabled the ``duplicate-code`` and ``cyclic-import`` checks for the ``pylint`` sanity test due to inconsistent results.
+- ansible-test - Do not try to validate PowerShell modules ``setup.ps1``, ``slurp.ps1``, and ``async_status.ps1``
 - ansible-test - Do not warn on missing PowerShell or C# util that are in other collections
 - ansible-test - Fix PowerShell module util analysis to properly detect the names of a util when running in a collection
 - ansible-test - Fix regression introduced in https://github.com/ansible/ansible/pull/67063 which caused module_utils analysis to fail on Python 2.x.
 - ansible-test - Fix traceback in validate-modules test when argument_spec is None.
 - ansible-test - Make sure import sanity test virtual environments also remove ``pkg-resources`` if it is not removed by uninstalling ``setuptools``.
 - ansible-test - Remove out-of-date constraint on installing paramiko versions 2.5.0 or later in tests.
+- ansible-test - The ``ansible-doc`` sanity test now works for ``netconf`` plugins.
 - ansible-test - The ``import`` sanity test now correctly blocks access to python modules, not just packages, in the ``ansible`` package.
 - ansible-test - The ``import`` sanity test now correctly provides an empty ``ansible`` package.
 - ansible-test - The shebang sanity test now correctly identifies modules in subdirectories in collections.
@@ -1257,6 +1049,7 @@ Ansible Base
 - ansible-test - during module validation, improve alias handling.
 - ansible-test - for local change detection, allow to specify branch to compare to with ``--base-branch`` for all types of tests (https://github.com/ansible/ansible/pull/69508).
 - ansible-test - improve ``deprecate()`` call checker.
+- ansible-test - integration and unit test change detection now works for filter, lookup and test plugins
 - ansible-test can now install argparse with ``--requirements`` or delegation when the pip version in use is older than version 7.1
 - ansible-test change detection - Run only sanity tests on ``docs/`` and ``changelogs/`` in collections, to avoid triggering full CI runs of integration and unit tests when files in these directories change.
 - ansible-test coverage - Fix the ``--all`` argument when generating coverage reports - https://github.com/ansible/ansible/issues/62096
@@ -1271,6 +1064,7 @@ Ansible Base
 - ansible-test no longer tracebacks during change analysis due to processing an empty python file
 - ansible-test no longer tries to install ``coverage`` 5.0+ since those versions are unsupported
 - ansible-test no longer tries to install ``setuptools`` 45+ on Python 2.x since those versions are unsupported
+- ansible-test now always uses the ``--python`` option for ``virtualenv`` to select the correct interpreter when creating environments with the ``--venv`` option
 - ansible-test now correctly collects code coverage on the last task in a play. This should resolve issues with missing code coverage, empty coverage files and corrupted coverage files resulting from early worker termination.
 - ansible-test now correctly enumerates submodules when a collection resides below the repository root
 - ansible-test now correctly excludes the test results temporary directory when copying files from the remote test system to the local system
@@ -1328,9 +1122,13 @@ Ansible Base
 - ansible-test windows coverage - Output temp files as UTF-8 with BOM to standardise against non coverage runs
 - ansible-vault - Fix ``encrypt_string`` output in a tty when using ``--sdtin-name`` option (https://github.com/ansible/ansible/issues/65121)
 - ansible-vault create - Fix exception on no arguments given
+- api - time.clock is removed in Python 3.8, add backward compatible code (https://github.com/ansible/ansible/issues/70649).
 - apt - Fixed the issue the cache being updated while auto-installing its dependencies even when ``update_cache`` is set to false.
+- apt - include exception message from apt python library in error output
+- assemble - fix decrypt argument in the module (https://github.com/ansible/ansible/issues/65450).
 - assemble module - fix documentation - the remote_src property specified a default value of no but it's actually yes.
 - avoid fatal traceback when a bad FQCN for a callback is supplied in the whitelist (#69401).
+- basic - use PollSelector implementation when DefaultSelector fails (https://github.com/ansible/ansible/issues/70238).
 - become - Fix various plugins that still used play_context to get the become password instead of through the plugin - https://github.com/ansible/ansible/issues/62367
 - blockinfile - fix regression that results in incorrect block in file when the block to be inserted does not end in a line separator (https://github.com/ansible/ansible/pull/69734)
 - blockinfile - preserve line endings on update (https://github.com/ansible/ansible/issues/64966)
@@ -1338,6 +1136,7 @@ Ansible Base
 - code - removes some Python compatibility code for dealing with socket timeouts in ``wait_for``
 - collection loader - ensure Jinja function cache is fully-populated before lookup
 - collection loader - fixed relative imports on Python 2.7, ensure pluginloader caches use full name to prevent names from being clobbered (https://github.com/ansible/ansible/pull/60317)
+- collection metadata - ensure collection loader uses libyaml/CSafeLoader to parse collection metadata if available
 - collection_loader - sort Windows modules below other plugin types so the correct builtin plugin inside a role is selected (https://github.com/ansible/ansible/issues/65298)
 - collections - Handle errors better for filters and tests in collections, where a non-existent collection is specified, or importing the plugin results in an exception (https://github.com/ansible/ansible/issues/66721)
 - combine filter - ``[dict1, [dict2]] | combine`` now raise an error; previously ``combine`` had an undocumented behaviour where it was flattening the list before combining it (https://github.com/ansible/ansible/pull/57894#discussion_r339517518).
@@ -1348,6 +1147,7 @@ Ansible Base
 - core - remove unneeded Python version checks.
 - core - replace a compatibility import of pycompat24.literal_eval with ast.literal_eval.
 - core filters - fix ``extract()`` filter when key does not exist in container (https://github.com/ansible/ansible/issues/64957)
+- cron - encode and decode crontab files in UTF-8 explicitly to allow non-ascii chars in cron filepath and job (https://github.com/ansible/ansible/issues/69492)
 - cron and cronvar - use get_bin_path utility to locate the default crontab executable instead of the hardcoded /usr/bin/crontab. (https://github.com/ansible/ansible/pull/59765)
 - cron cronvar - only run ``get_bin_path()`` once
 - cronvar - use correct binary name (https://github.com/ansible/ansible/issues/63274)
@@ -1366,9 +1166,11 @@ Ansible Base
 - dnf - enable logging using setup_loggers() API in dnf-4.2.17-6 or later
 - dnf - remove custom ``fetch_rpm_from_url`` method in favor of more general ``ansible.module_utils.urls.fetch_file``.
 - dnf module - Ensure the modules exit_json['msg'] response is always string, not sometimes a tuple.
+- ensure delegated vars can resolve hostvars object and access vars from hostvars[inventory_hostname].
 - ensure we pass on interpreter discovery values to delegated host.
 - env lookup plugin - Fix handling of environment variables values containing utf-8 characters. (https://github.com/ansible/ansible/issues/65298)
 - fact gathering - Display warnings and deprecation messages that are created during the fact gathering phase
+- facts - account for Slackware OS with ``+`` in the name (https://github.com/ansible/ansible/issues/38760)
 - facts - fix detection of virtualization type when dmi product name is KVM Server
 - facts - introduce fact "ansible_processor_nproc" which reflects the number of vcpus available to processes (falls back to the number of vcpus available to the scheduler)
 - file - Removed unreachable code in module
@@ -1376,6 +1178,7 @@ Ansible Base
 - file - return ``'state': 'absent'`` when a file does not exist (https://github.com/ansible/ansible/issues/66171)
 - find - clarify description of ``contains`` (https://github.com/ansible/ansible/issues/61983)
 - fix issue in which symlinked collection cannot be listed, though the docs/plugins can be loaded if referenced directly.
+- fix issue with inventory_hostname and delegated host vars mixing on connection settings.
 - fix wrong command line length calculation in ``ansible-console`` when long command inputted
 - for those running uids for invalid users (containers), fallback to uid=<uid> when logging fixes #68007
 - free strategy - Include failed hosts when filtering notified hosts for handlers. The strategy base should determine whether or not to run handlers on those hosts depending on whether forcing handlers is enabled (https://github.com/ansible/ansible/issues/65254).
@@ -1388,6 +1191,7 @@ Ansible Base
 - hostname - Fixed an issue where the hostname on the cloudlinux 6 server could not be set.
 - hostname - make module work on Manjaro Linux (https://github.com/ansible/ansible/issues/61382)
 - hurd - Address FIXMEs. Extract functionality and exit early.
+- if the ``type`` for a module parameter in the argument spec is callable, do not pass ``kwargs`` to avoid errors (https://github.com/ansible/ansible/issues/70017)
 - include_vars - fix stack trace when passing ``dirs`` in an ad-hoc command (https://github.com/ansible/ansible/issues/62633)
 - interpreter discovery will now use correct vars (from delegated host) when in delegate_to task.
 - junit callback - avoid use of deprecated junit_xml method
@@ -1413,8 +1217,10 @@ Ansible Base
 - paramiko_ssh - Removed redundant conditional statement in ``_parse_proxy_command`` that always evaluated to True.
 - paramiko_ssh - improve authentication error message so it is less confusing
 - paramiko_ssh - optimized file handling by using a context manager.
+- pause - handle exception when there is no stdout (https://github.com/ansible/ansible/pull/47851)
 - pip - The virtualenv_command option can now include arguments without requiring the full path to the binary. (https://github.com/ansible/ansible/issues/52275)
 - pip - check_mode with ``state: present`` now returns the correct state for pre-release versioned packages
+- playbooks - detect and propagate failures in ``always`` blocks after ``rescue`` (https://github.com/ansible/ansible/issues/70000)
 - plugins - Allow ensure_type to decrypt the value for string types (and implicit string types) when value is an inline vault.
 - psexec - Fix issue where the Kerberos package was not detected as being available.
 - psexec - Fix issue where the ``interactive`` option was not being passed down to the library.
@@ -1426,7 +1232,10 @@ Ansible Base
 - service_facts - Now correctly parses systemd list-unit-files for systemd >=245
 - setup - properly detect yum package manager for IBM i.
 - setup - service_mgr - detect systemd even if it isn't running, such as during a container build
+- shell - fix quoting of mkdir command in creation of remote_tmp in order to allow spaces and other special characters (https://github.com/ansible/ansible/issues/69577).
 - shell cmd - Properly escape double quotes in the command argument
+- splunk httpapi plugin - switch from splunk.enterprise_security to splunk.es in runtime.yml to reflect upstream change of Collection Name
+- ssh connection plugin - use ``get_option()`` rather than ``_play_context`` to ensure ``ANSBILE_SSH_ARGS`` are applied properly (https://github.com/ansible/ansible/issues/70437)
 - synchronize - allow data to be passed between two managed nodes when using the docker connection plugin (https://github.com/ansible/ansible/pull/65698)
 - synchronize - fix password authentication on Python 2 (https://github.com/ansible/ansible/issues/56629)
 - sysctl - Remove FIXME comments to avoid confusion
@@ -1442,6 +1251,7 @@ Ansible Base
 - update ``user`` module to support silencing ``no_log`` warnings in the future (see: https://github.com/ansible/ansible/pull/64733)
 - uri - Don't return the body even if it failed (https://github.com/ansible/ansible/issues/21003)
 - user - allow 13 asterisk characters in password field without warning
+- user - don't create home directory and missing parents when create_home == false (https://github.com/ansible/ansible/pull/70600).
 - user - fix comprasion on macOS so module does not improperly report a change (https://github.com/ansible/ansible/issues/62969)
 - user - fix stack trace on AIX when attempting to parse shadow file that does not exist (https://github.com/ansible/ansible/issues/62510)
 - user - on systems using busybox, honor the ``on_changed`` parameter to prevent unnecessary password changing (https://github.com/ansible/ansible/issues/65711)
@@ -1449,15 +1259,42 @@ Ansible Base
 - validate-modules - Fix hang when inspecting module with a delegate args spec type
 - virtual facts - detect generic container environment based on non-empty "container" env var
 - wait_for_connection - with pipelining enabled, interpreter discovery would fail if the first connection attempt was not successful
+- win setup - Fix redirection path for the windows setup module
 - win_exec_wrapper - Be more defensive when it comes to getting unhandled exceptions
 - win_package - Handle quoted and unquoted strings in the registry ``UninstallString`` value - https://github.com/ansible/ansible/issues/40973
 - win_uri win_get_url - Fix the behaviour of ``follow_redirects: safe`` to actual redirect on ``GET`` and ``HEAD`` requests - https://github.com/ansible/ansible/issues/65556
+- windows async - use full path when calling PowerShell to reduce reliance on environment vars being correct - https://github.com/ansible/ansible/issues/70655
 - windows environment - Support env vars that contain the unicode variant of single quotes - https://github.com/ansible-collections/ansible.windows/issues/45
+- winrm - preserve winrm forensic data on put_file failures
 - yum - fix bug that caused ``enablerepo`` to not be honored when used with disablerepo all wildcard/glob (https://github.com/ansible/ansible/issues/66549)
 - yum - fixed the handling of releasever parameter
 - yum - performance bugfix, the YumBase object was being  instantiated multiple times unnecessarily, which lead to considerable overhead when operating against large sets of packages.
 - yum - yum tasks can no longer end up running non-yum modules
 - yum/dnf - check type of elements in a name
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- Fix detection of DHCP setting so that resetting to DHCP doesn't cause ``CHANGED`` status on every run. See https://github.com/ansible/ansible/issues/66450
+- setup - Remove usage of WMI to speed up execution time and work with standard user accounts
+- win_acl - Fixed error when setting rights on directory for which inheritance from parent directory has been disabled.
+- win_dns_client - Only configure network adapters that are IP Enabled - https://github.com/ansible/ansible/issues/58958
+- win_dsc - Always import module that contains DSC resource to ensure the required assemblies are loaded before parsing it - https://github.com/ansible-collections/ansible.windows/issues/66
+- win_find - Fix deduped files mistaken for directories (https://github.com/ansible/ansible/issues/58511)
+- win_find - Get-FileStat used [int] instead of [int64] for file size calculations
+- win_package - Handle quoted and unquoted strings in the registry ``UninstallString`` value - https://github.com/ansible/ansible/issues/40973
+- win_reboot - add ``boot_time_command`` parameter to override the default command used to determine whether or not a system was rebooted (https://github.com/ansible/ansible/issues/58868)
+- win_share - Allow for root letters paths
+- win_uri win_get_url - Fix the behaviour of ``follow_redirects: safe`` to actual redirect on ``GET`` and ``HEAD`` requests - https://github.com/ansible/ansible/issues/65556
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- Fixed sanity errors in all modules including documentation and argument specs
+- Remove unnecessary files from the collection package, significantly reduces package size
+- meraki_ssid - Specifying tags for VLAN information would crash as it was an improper type
+- meraki_webhook - Fix crash with missing variable
+- meraki_webhook - Fix response when creating webhook test
 
 community.crypto
 ~~~~~~~~~~~~~~~~
@@ -1656,8 +1493,16 @@ community.kubernetes
 - Fix suboption docs structure for inventory plugins (https://github.com/ansible-collections/community.kubernetes/pull/103).
 - Handle invalid kubeconfig parsing error (https://github.com/ansible-collections/community.kubernetes/pull/119).
 - Make sure Service changes run correctly in check_mode (https://github.com/ansible-collections/community.kubernetes/pull/84).
+- Make sure extra files are not included in built collection (https://github.com/ansible-collections/community.kubernetes/pull/85).
+- Update GitHub Actions workflow for better CI stability (https://github.com/ansible-collections/community.kubernetes/pull/78).
+- k8s - Add exception handling when retrieving k8s client (https://github.com/ansible-collections/community.kubernetes/pull/54).
+- k8s - Fix argspec for 'elements' (https://github.com/ansible-collections/community.kubernetes/issues/13).
+- k8s - Use ``from_yaml`` filter with lookup examples in ``k8s`` module documentation examples (https://github.com/ansible-collections/community.kubernetes/pull/56).
 - k8s_info - remove unneccessary k8s_facts deprecation notice (https://github.com/ansible-collections/community.kubernetes/pull/97).
+- k8s_log - Module no longer attempts to parse log as JSON (https://github.com/ansible-collections/community.kubernetes/pull/69).
 - k8s_scale - Fix scale wait and add tests (https://github.com/ansible-collections/community.kubernetes/pull/100).
+- k8s_service - Fix argspec (https://github.com/ansible-collections/community.kubernetes/issues/33).
+- kubectl - Fix documentation in kubectl connection plugin (https://github.com/ansible-collections/community.kubernetes/pull/52).
 - raw - handle condition when definition is none (https://github.com/ansible-collections/community.kubernetes/pull/139).
 
 community.network
@@ -1726,6 +1571,25 @@ community.vmware
 - vmware_vm_inventory inventory plugin, use the port value while connecting to vCenter (https://github.com/ansible/ansible/issues/64096).
 - vmware_vmkernel - Remove duplicate checks.
 - vmware_vspan_session - Extract repeated code and reduce complexity of function.
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- **security issue** win_unzip - normalize paths in archive to ensure extracted files do not escape from the target directory (CVE-2020-1737)
+- psexec - Fix issue where the Kerberos package was not detected as being available.
+- psexec - Fix issue where the ``interactive`` option was not being passed down to the library.
+- win_credential - Fix issue that errors when trying to add a ``name`` with wildcards.
+- win_domain_computer - Fix idempotence checks when ``sAMAccountName`` is different from ``name``
+- win_domain_computer - Honour the explicit domain server and credentials when moving or removing a computer object - https://github.com/ansible/ansible/pull/63093
+- win_domain_user - Better handle cases when getting a new user's groups fail - https://github.com/ansible/ansible/issues/54331
+- win_format - Idem not working if file exist but same fs (https://github.com/ansible/ansible/issues/58302)
+- win_format - fixed issue where module would not change allocation unit size (https://github.com/ansible/ansible/issues/56961)
+- win_iis_webapppool - Do not try and set attributes in check mode when the pool did not exist
+- win_iis_website - Actually restart the site when ``state=restarted`` - https://github.com/ansible/ansible/issues/63828
+- win_partition - Fix invalid variable name causing a failure on checks - https://github.com/ansible/ansible/issues/62401
+- win_partition - don't resize partitions if size difference is < 1 MiB
+- win_timezone - Allow for _dstoff timezones
+- win_unzip - Fix support for paths with square brackets not being detected properly
 
 hetzner.hcloud
 ~~~~~~~~~~~~~~
@@ -2117,6 +1981,15 @@ System
 - community.general.dpkg_divert - Override a debian package's version of a file
 - community.general.lbu - Local Backup Utility for Alpine Linux
 
+community.kubernetes
+~~~~~~~~~~~~~~~~~~~~
+
+- community.kubernetes.helm - Manages Kubernetes packages with the Helm package manager
+- community.kubernetes.helm_info - Get information from Helm package deployed inside the cluster
+- community.kubernetes.helm_repository - Add and remove Helm repository
+- community.kubernetes.k8s_exec - Execute command in Pod
+- community.kubernetes.k8s_log - Fetch logs from Kubernetes resources
+
 community.network
 ~~~~~~~~~~~~~~~~~
 
@@ -2259,206 +2132,3 @@ vyos.vyos
 - vyos.vyos.vyos_system - Run `set system` commands on VyOS devices
 - vyos.vyos.vyos_user - Manage the collection of local users on VyOS device
 - vyos.vyos.vyos_vlan - Manage VLANs on VyOS network devices
-
-v2.10.0a1
-=========
-
-.. contents::
-  :local:
-  :depth: 2
-
-Ansible Base
-------------
-
-Ansible 2.10.0a1 contains Ansible-base version 2.10.0.dev1.
-Ansible-base did not have a changelog in this version.
-
-Changed Collections
--------------------
-
-- amazon.aws was upgraded to version 0.1.3-dev4.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ansible.netcommon was upgraded to version 0.0.3.
-  The collection did not have a changelog in this version.
-- ansible.posix was upgraded to version 0.1.4-dev9.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ansible.windows was upgraded to version 0.0.1-beta.3.
-  The collection did not have a changelog in this version.
-- arista.eos was upgraded to version 0.0.3-dev81.
-  The collection did not have a changelog in this version.
-- awx.awx was upgraded to version 12.0.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- azure.azcollection was upgraded to version 0.1.3.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- check_point.mgmt was upgraded to version 1.0.5.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- chocolatey.chocolatey was upgraded to version 1.0.2.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.aci was upgraded to version 0.0.6.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.asa was upgraded to version 0.0.2-dev9.
-  The collection did not have a changelog in this version.
-- cisco.intersight was upgraded to version 1.0.6.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.ios was upgraded to version 0.0.3-dev95.
-  The collection did not have a changelog in this version.
-- cisco.iosxr was upgraded to version 0.0.3-dev8.
-  The collection did not have a changelog in this version.
-- cisco.meraki was upgraded to version 1.3.0.
-  The collection did not have a changelog in this version.
-- cisco.mso was upgraded to version 0.0.6.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.nxos was upgraded to version 0.0.3-dev99.
-  The collection did not have a changelog in this version.
-- cisco.ucs was upgraded to version 1.2.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cloudscale_ch.cloud was upgraded to version 0.1.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.aws was upgraded to version 0.1.3-dev2.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.azure was upgraded to version 0.1.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.crypto was upgraded to version 0.1.0.
-  The collection did not have a changelog in this version.
-- community.general was upgraded to version 0.1.4.
-  The collection did not have a changelog in this version.
-- community.grafana was upgraded to version 0.2.2.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.kubernetes was upgraded to version 0.11.0.
-  The changes are reported in the combined changelog below.
-- community.libvirt was upgraded to version 0.1.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.mongodb was upgraded to version 0.1.2.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.network was upgraded to version 0.1.0.
-  The collection did not have a changelog in this version.
-- community.rabbitmq was upgraded to version 0.1.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.vmware was upgraded to version 0.4.1-dev8.
-  The collection did not have a changelog in this version.
-- community.windows was upgraded to version 0.0.1.
-  The collection did not have a changelog in this version.
-- community.zabbix was upgraded to version 0.2.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- containers.podman was upgraded to version 1.0.3.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cyberark.pas was upgraded to version 1.0.5.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- dellemc_networking.os10 was upgraded to version 1.0.2.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- f5networks.f5_modules was upgraded to version 1.4.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- fortinet.fortimanager was upgraded to version 1.0.3.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- fortinet.fortios was upgraded to version 1.0.9.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- frr.frr was upgraded to version 0.0.2.
-  The collection did not have a changelog in this version.
-- google.cloud was upgraded to version 0.0.9.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ibm.qradar was upgraded to version 0.0.9-dev4.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- junipernetworks.junos was upgraded to version 0.0.4-dev9.
-  The collection did not have a changelog in this version.
-- netapp.aws was upgraded to version 20.6.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- netapp.elementsw was upgraded to version 20.6.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- netapp.ontap was upgraded to version 20.6.1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- netbox.netbox was upgraded to version 0.2.2.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ngine_io.cloudstack was upgraded to version 0.2.0.
-  The collection did not have a changelog in this version.
-- ngine_io.exoscale was upgraded to version 0.1.1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ngine_io.vultr was upgraded to version 0.0.1.
-  The collection did not have a changelog in this version.
-- openstack.cloud was upgraded to version 1.0.1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- openvswitch.openvswitch was upgraded to version 0.0.2-dev1.
-  The collection did not have a changelog in this version.
-- ovirt.ovirt was upgraded to version 1.0.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- purestorage.flasharray was upgraded to version 1.2.7.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- purestorage.flashblade was upgraded to version 1.2.3.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- servicenow.servicenow was upgraded to version 1.0.2.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- skydive.skydive was upgraded to version 0.0.1-dev6.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- splunk.es was upgraded to version 0.0.3-dev1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- theforeman.foreman was upgraded to version 0.8.1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- vyos.vyos was upgraded to version 0.0.4-dev9.
-  The collection did not have a changelog in this version.
-- wti.remote was upgraded to version 1.0.1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-
-Major Changes
--------------
-
-community.kubernetes
-~~~~~~~~~~~~~~~~~~~~
-
-- helm - New module for managing Helm charts (https://github.com/ansible-collections/community.kubernetes/pull/61).
-- helm_info - New module for retrieving Helm chart information (https://github.com/ansible-collections/community.kubernetes/pull/61).
-- helm_repository - New module for managing Helm repositories (https://github.com/ansible-collections/community.kubernetes/pull/61).
-- k8s - Inventory source migrated from Ansible 2.9 to Kubernetes collection.
-- k8s - Lookup plugin migrated from Ansible 2.9 to Kubernetes collection.
-- k8s - Module migrated from Ansible 2.9 to Kubernetes collection.
-- k8s_auth - Module migrated from Ansible 2.9 to Kubernetes collection.
-- k8s_config_resource_name - Filter plugin migrated from Ansible 2.9 to Kubernetes collection.
-- k8s_exec - New module for executing commands on pods via Kubernetes API (https://github.com/ansible-collections/community.kubernetes/pull/14).
-- k8s_info - Module migrated from Ansible 2.9 to Kubernetes collection.
-- k8s_log - New module for retrieving pod logs (https://github.com/ansible-collections/community.kubernetes/pull/16).
-- k8s_scale - Module migrated from Ansible 2.9 to Kubernetes collection.
-- k8s_service - Module migrated from Ansible 2.9 to Kubernetes collection.
-- kubectl - Connection plugin migrated from Ansible 2.9 to Kubernetes collection.
-- openshift - Inventory source migrated from Ansible 2.9 to Kubernetes collection.
-
-Minor Changes
--------------
-
-community.kubernetes
-~~~~~~~~~~~~~~~~~~~~
-
-- Rename repository to ``community.kubernetes`` (https://github.com/ansible-collections/community.kubernetes/pull/81).
-- k8s - Added ``persist_config`` option for persisting refreshed tokens (https://github.com/ansible-collections/community.kubernetes/issues/49).
-
-Security Fixes
---------------
-
-community.kubernetes
-~~~~~~~~~~~~~~~~~~~~
-
-- kubectl - Warn about information disclosure when using options like ``kubectl_password``, ``kubectl_extra_args``, and ``kubectl_token`` to pass data through to the command line using the ``kubectl`` connection plugin (https://github.com/ansible-collections/community.kubernetes/pull/51).
-
-Bugfixes
---------
-
-community.kubernetes
-~~~~~~~~~~~~~~~~~~~~
-
-- Make sure extra files are not included in built collection (https://github.com/ansible-collections/community.kubernetes/pull/85).
-- Update GitHub Actions workflow for better CI stability (https://github.com/ansible-collections/community.kubernetes/pull/78).
-- k8s - Add exception handling when retrieving k8s client (https://github.com/ansible-collections/community.kubernetes/pull/54).
-- k8s - Fix argspec for 'elements' (https://github.com/ansible-collections/community.kubernetes/issues/13).
-- k8s - Use ``from_yaml`` filter with lookup examples in ``k8s`` module documentation examples (https://github.com/ansible-collections/community.kubernetes/pull/56).
-- k8s_log - Module no longer attempts to parse log as JSON (https://github.com/ansible-collections/community.kubernetes/pull/69).
-- k8s_service - Fix argspec (https://github.com/ansible-collections/community.kubernetes/issues/33).
-- kubectl - Fix documentation in kubectl connection plugin (https://github.com/ansible-collections/community.kubernetes/pull/52).
-
-New Modules
------------
-
-community.kubernetes
-~~~~~~~~~~~~~~~~~~~~
-
-- community.kubernetes.helm - Manages Kubernetes packages with the Helm package manager
-- community.kubernetes.helm_info - Get information from Helm package deployed inside the cluster
-- community.kubernetes.helm_repository - Add and remove Helm repository
-- community.kubernetes.k8s_exec - Execute command in Pod
-- community.kubernetes.k8s_log - Fetch logs from Kubernetes resources
