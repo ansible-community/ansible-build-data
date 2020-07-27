@@ -1,5 +1,5 @@
 _acd_version: 2.10
-_ansible_base_version: 2.10.0rc2
+_ansible_base_version: 2.10.0rc3
 amazon.aws: >=1.0.0,<2.0.0
 ansible.netcommon: >=1.0.0,<2.0.0
 ansible.posix: >=1.0.0,<2.0.0
