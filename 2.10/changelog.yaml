@@ -15,7 +15,6 @@ releases:
         - community.vmware.vmware_host_ntp - now returns ``host_ntp_status`` instead of Ansible internal key ``results``.
         - community.vmware.vmware_host_service_manager - now returns ``host_service_status`` instead of Ansible internal key ``results``.
         - community.vmware.vmware_tag - now returns ``tag_status`` instead of Ansible internal key ``results``.
-        - community.general.pacman - the deprecated ``recurse`` option has been removed, you should use ``extra_args=--recursive`` instead.
         - community.windows.win_pester - no longer runs all ``*.ps1`` file in the directory specified due to it executing potentially unknown scripts. It will follow the default behaviour of only running tests for files that are like ``*.tests.ps1`` which is built into Pester itself.
         - |
           ansible.windows.win_find - module has been refactored to better match the behaviour of the ``find`` module. Here is what has changed:
