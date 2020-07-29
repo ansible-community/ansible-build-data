@@ -13,6 +13,33 @@ v2.10.0a6
   :local:
   :depth: 2
 
+Release Summary
+---------------
+
+Sixth Ansible 2.10.0 alpha release.
+
+Ansible-base
+------------
+
+Ansible 2.10.0a6 contains Ansible-base version 2.10.0rc3.
+This is a newer version than version 2.10.0rc2 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+- community.zabbix was upgraded from version 0.2.0 to version 0.3.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+
+Bugfixes
+--------
+
+Ansible-base
+~~~~~~~~~~~~
+
+- reset logging level to INFO due to CVE-2019-14846.
+
 Unchanged Collections
 ---------------------
 
@@ -84,39 +111,17 @@ Unchanged Collections
 - vyos.vyos (still version 1.0.2-dev6)
 - wti.remote (still version 1.0.1)
 
-Release Summary
----------------
-
-Sixth Ansible 2.10.0 alpha release.
-
-Ansible Base
-------------
-
-Ansible 2.10.0a6 contains Ansible-base version 2.10.0rc3.
-This is a newer version than version 2.10.0rc2 contained in the previous Ansible release.
-
-The changes are reported in the combined changelog below.
-
-Changed Collections
--------------------
-
-- community.zabbix was upgraded from version 0.2.0 to version 0.3.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-
-Bugfixes
---------
-
-Ansible Base
-~~~~~~~~~~~~
-
-- reset logging level to INFO due to CVE-2019-14846.
-
 v2.10.0a5
 =========
 
 .. contents::
   :local:
   :depth: 2
+
+Release Summary
+---------------
+
+Fifth Ansible 2.10.0 alpha release.
 
 Removed Collections
 -------------------
@@ -127,6 +132,103 @@ Added Collections
 -----------------
 
 - dellemc.os10 (version 0.1.0-dev2)
+
+Ansible-base
+------------
+
+Ansible 2.10.0a5 contains Ansible-base version 2.10.0rc2.
+This is a newer version than version 2.10.0b1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+- check_point.mgmt was upgraded from version 1.0.5 to version 1.0.6.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- cisco.asa was upgraded from version 1.0.1-dev3 to version 1.0.1-dev4.
+  The collection did not have a changelog in this version.
+- cisco.ios was upgraded from version 1.0.1-dev5 to version 1.0.1-dev6.
+  The collection did not have a changelog in this version.
+- cisco.nxos was upgraded from version 1.0.1-dev8 to version 1.0.1-dev9.
+  The collection did not have a changelog in this version.
+- containers.podman was upgraded from version 1.1.1 to version 1.1.2.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- dellemc.os10 was upgraded to version 0.1.0-dev2.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- vyos.vyos was upgraded from version 1.0.2-dev4 to version 1.0.2-dev6.
+  The collection did not have a changelog in this version.
+
+Minor Changes
+-------------
+
+Ansible-base
+~~~~~~~~~~~~
+
+- Add an example for using var in with_sequence (https://github.com/ansible/ansible/issues/68836).
+- Add standard Python 2/3 compatibility boilerplate to setup script, module_utils and docs_fragments which were missing them.
+- Command module: Removed suggestions to use modules which have moved to collections and out of ansible-base
+- The plugin loader now keeps track of the collection where a plugin was resolved to, in particular whether the plugin was loaded from ansible-base's internal paths (``ansible.builtin``) or from user-supplied paths (no collection name).
+- ansible-galaxy - Add installation successful message
+- ansible-galaxy - Change the output verbosity level of the download message from 3 to 0 (https://github.com/ansible/ansible/issues/70010)
+- ansible-test - Provisioning of RHEL instances now includes installation of pinned versions of ``packaging`` and ``pyparsing`` to match the downstream vendored versions.
+- ansible-test - Report the correct line number in the ``yamllint`` sanity test when reporting ``libyaml`` parse errors in module documentation.
+- conditionals - change the default of CONDITIONAL_BARE_VARS to False (https://github.com/ansible/ansible/issues/70682).
+- debconf - add a note about no_log=True since module might expose sensitive information to logs (https://github.com/ansible/ansible/issues/32386).
+- pipe lookup - update docs for Popen with shell=True usages (https://github.com/ansible/ansible/issues/70159).
+
+Bugfixes
+--------
+
+Ansible-base
+~~~~~~~~~~~~
+
+- **security issue** atomic_move - change default permissions when creating temporary files so they are not world readable (https://github.com/ansible/ansible/issues/67794) (CVE-2020-1736)
+- Address the deprecation of the use of stdlib distutils in packaging. It's a short-term hotfix for the problem (https://github.com/ansible/ansible/issues/70456, https://github.com/pypa/setuptools/issues/2230, https://github.com/pypa/setuptools/commit/bd110264)
+- Allow TypeErrors on Undefined variables in filters to be handled or deferred when processing for loops.
+- Ansible output now uses stdout to determine column width instead of stdin
+- Fix ``delegate_facts: true`` when ``ansible_python_interpreter`` is not set. (https://github.com/ansible/ansible/issues/70168)
+- JSON Encoder - Ensure we treat single vault encrypted values as strings (https://github.com/ansible/ansible/issues/70784)
+- Python module_utils finder - refactor logic to eliminate many corner cases, remove recursion, fix base module_utils redirections
+- SSH plugin - Improve error message when ssh client is not found on the host
+- Sanitize no_log values from any response keys that might be returned from the uri module.
+- Stop adding the connection variables to the output results
+- TaskExecutor - Handle unexpected errors as failed while post validating loops (https://github.com/ansible/ansible/issues/70050).
+- Template connection variables before using them (https://github.com/ansible/ansible/issues/70598).
+- Terminal plugins - add "\e[m" to the list of ANSI sequences stripped from device output
+- The `ansible_become` value was not being treated as a boolean value when set in an INI format inventory file (fixes bug https://github.com/ansible/ansible/issues/70476).
+- The machine-readable changelog ``changelogs/changelog.yaml`` is now contained in the release.
+- Vault - Allow single vault encrypted values to be used directly as module parameters. (https://github.com/ansible/ansible/issues/68275)
+- action plugins - change all action/module delegations to use FQ names while allowing overrides (https://github.com/ansible/ansible/issues/69788)
+- add constraints file for ``anisble_runner`` test since an update to ``psutil`` is now causing test failures
+- add magic/connection vars updates from delegated host info.
+- ansible-doc - collection name for plugin top-level deprecation was not inserted when deprecating by version (https://github.com/ansible/ansible/pull/70344).
+- ansible-doc - improve error message in text formatter when ``description`` is missing for a (sub-)option or a return value or its ``contains`` (https://github.com/ansible/ansible/pull/70046).
+- ansible-doc - improve man page formatting to avoid problems when YAML anchors are used (https://github.com/ansible/ansible/pull/70045).
+- ansible-doc - include the collection name in the text output (https://github.com/ansible/ansible/pull/70401).
+- ansible-test - Do not try to validate PowerShell modules ``setup.ps1``, ``slurp.ps1``, and ``async_status.ps1``
+- ansible-test - The ``ansible-doc`` sanity test now works for ``netconf`` plugins.
+- ansible-test - integration and unit test change detection now works for filter, lookup and test plugins
+- ansible-test now always uses the ``--python`` option for ``virtualenv`` to select the correct interpreter when creating environments with the ``--venv`` option
+- api - time.clock is removed in Python 3.8, add backward compatible code (https://github.com/ansible/ansible/issues/70649).
+- apt - include exception message from apt python library in error output
+- assemble - fix decrypt argument in the module (https://github.com/ansible/ansible/issues/65450).
+- basic - use PollSelector implementation when DefaultSelector fails (https://github.com/ansible/ansible/issues/70238).
+- collection metadata - ensure collection loader uses libyaml/CSafeLoader to parse collection metadata if available
+- cron - encode and decode crontab files in UTF-8 explicitly to allow non-ascii chars in cron filepath and job (https://github.com/ansible/ansible/issues/69492)
+- ensure delegated vars can resolve hostvars object and access vars from hostvars[inventory_hostname].
+- facts - account for Slackware OS with ``+`` in the name (https://github.com/ansible/ansible/issues/38760)
+- fix issue with inventory_hostname and delegated host vars mixing on connection settings.
+- if the ``type`` for a module parameter in the argument spec is callable, do not pass ``kwargs`` to avoid errors (https://github.com/ansible/ansible/issues/70017)
+- pause - handle exception when there is no stdout (https://github.com/ansible/ansible/pull/47851)
+- playbooks - detect and propagate failures in ``always`` blocks after ``rescue`` (https://github.com/ansible/ansible/issues/70000)
+- shell - fix quoting of mkdir command in creation of remote_tmp in order to allow spaces and other special characters (https://github.com/ansible/ansible/issues/69577).
+- splunk httpapi plugin - switch from splunk.enterprise_security to splunk.es in runtime.yml to reflect upstream change of Collection Name
+- ssh connection plugin - use ``get_option()`` rather than ``_play_context`` to ensure ``ANSBILE_SSH_ARGS`` are applied properly (https://github.com/ansible/ansible/issues/70437)
+- user - don't create home directory and missing parents when create_home == false (https://github.com/ansible/ansible/pull/70600).
+- win setup - Fix redirection path for the windows setup module
+- windows async - use full path when calling PowerShell to reduce reliance on environment vars being correct - https://github.com/ansible/ansible/issues/70655
+- winrm - preserve winrm forensic data on put_file failures
 
 Unchanged Collections
 ---------------------
@@ -193,108 +295,6 @@ Unchanged Collections
 - theforeman.foreman (still version 1.0.1)
 - wti.remote (still version 1.0.1)
 
-Release Summary
----------------
-
-Fifth Ansible 2.10.0 alpha release.
-
-Ansible Base
-------------
-
-Ansible 2.10.0a5 contains Ansible-base version 2.10.0rc2.
-This is a newer version than version 2.10.0b1 contained in the previous Ansible release.
-
-The changes are reported in the combined changelog below.
-
-Changed Collections
--------------------
-
-- check_point.mgmt was upgraded from version 1.0.5 to version 1.0.6.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.asa was upgraded from version 1.0.1-dev3 to version 1.0.1-dev4.
-  The collection did not have a changelog in this version.
-- cisco.ios was upgraded from version 1.0.1-dev5 to version 1.0.1-dev6.
-  The collection did not have a changelog in this version.
-- cisco.nxos was upgraded from version 1.0.1-dev8 to version 1.0.1-dev9.
-  The collection did not have a changelog in this version.
-- containers.podman was upgraded from version 1.1.1 to version 1.1.2.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- dellemc.os10 was upgraded to version 0.1.0-dev2.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- vyos.vyos was upgraded from version 1.0.2-dev4 to version 1.0.2-dev6.
-  The collection did not have a changelog in this version.
-
-Minor Changes
--------------
-
-Ansible Base
-~~~~~~~~~~~~
-
-- Add an example for using var in with_sequence (https://github.com/ansible/ansible/issues/68836).
-- Add standard Python 2/3 compatibility boilerplate to setup script, module_utils and docs_fragments which were missing them.
-- Command module: Removed suggestions to use modules which have moved to collections and out of ansible-base
-- The plugin loader now keeps track of the collection where a plugin was resolved to, in particular whether the plugin was loaded from ansible-base's internal paths (``ansible.builtin``) or from user-supplied paths (no collection name).
-- ansible-galaxy - Add installation successful message
-- ansible-galaxy - Change the output verbosity level of the download message from 3 to 0 (https://github.com/ansible/ansible/issues/70010)
-- ansible-test - Provisioning of RHEL instances now includes installation of pinned versions of ``packaging`` and ``pyparsing`` to match the downstream vendored versions.
-- ansible-test - Report the correct line number in the ``yamllint`` sanity test when reporting ``libyaml`` parse errors in module documentation.
-- conditionals - change the default of CONDITIONAL_BARE_VARS to False (https://github.com/ansible/ansible/issues/70682).
-- debconf - add a note about no_log=True since module might expose sensitive information to logs (https://github.com/ansible/ansible/issues/32386).
-- pipe lookup - update docs for Popen with shell=True usages (https://github.com/ansible/ansible/issues/70159).
-
-Bugfixes
---------
-
-Ansible Base
-~~~~~~~~~~~~
-
-- **security issue** atomic_move - change default permissions when creating temporary files so they are not world readable (https://github.com/ansible/ansible/issues/67794) (CVE-2020-1736)
-- Address the deprecation of the use of stdlib distutils in packaging. It's a short-term hotfix for the problem (https://github.com/ansible/ansible/issues/70456, https://github.com/pypa/setuptools/issues/2230, https://github.com/pypa/setuptools/commit/bd110264)
-- Allow TypeErrors on Undefined variables in filters to be handled or deferred when processing for loops.
-- Ansible output now uses stdout to determine column width instead of stdin
-- Fix ``delegate_facts: true`` when ``ansible_python_interpreter`` is not set. (https://github.com/ansible/ansible/issues/70168)
-- JSON Encoder - Ensure we treat single vault encrypted values as strings (https://github.com/ansible/ansible/issues/70784)
-- Python module_utils finder - refactor logic to eliminate many corner cases, remove recursion, fix base module_utils redirections
-- SSH plugin - Improve error message when ssh client is not found on the host
-- Sanitize no_log values from any response keys that might be returned from the uri module.
-- Stop adding the connection variables to the output results
-- TaskExecutor - Handle unexpected errors as failed while post validating loops (https://github.com/ansible/ansible/issues/70050).
-- Template connection variables before using them (https://github.com/ansible/ansible/issues/70598).
-- Terminal plugins - add "\e[m" to the list of ANSI sequences stripped from device output
-- The `ansible_become` value was not being treated as a boolean value when set in an INI format inventory file (fixes bug https://github.com/ansible/ansible/issues/70476).
-- The machine-readable changelog ``changelogs/changelog.yaml`` is now contained in the release.
-- Vault - Allow single vault encrypted values to be used directly as module parameters. (https://github.com/ansible/ansible/issues/68275)
-- action plugins - change all action/module delegations to use FQ names while allowing overrides (https://github.com/ansible/ansible/issues/69788)
-- add constraints file for ``anisble_runner`` test since an update to ``psutil`` is now causing test failures
-- add magic/connection vars updates from delegated host info.
-- ansible-doc - collection name for plugin top-level deprecation was not inserted when deprecating by version (https://github.com/ansible/ansible/pull/70344).
-- ansible-doc - improve error message in text formatter when ``description`` is missing for a (sub-)option or a return value or its ``contains`` (https://github.com/ansible/ansible/pull/70046).
-- ansible-doc - improve man page formatting to avoid problems when YAML anchors are used (https://github.com/ansible/ansible/pull/70045).
-- ansible-doc - include the collection name in the text output (https://github.com/ansible/ansible/pull/70401).
-- ansible-test - Do not try to validate PowerShell modules ``setup.ps1``, ``slurp.ps1``, and ``async_status.ps1``
-- ansible-test - The ``ansible-doc`` sanity test now works for ``netconf`` plugins.
-- ansible-test - integration and unit test change detection now works for filter, lookup and test plugins
-- ansible-test now always uses the ``--python`` option for ``virtualenv`` to select the correct interpreter when creating environments with the ``--venv`` option
-- api - time.clock is removed in Python 3.8, add backward compatible code (https://github.com/ansible/ansible/issues/70649).
-- apt - include exception message from apt python library in error output
-- assemble - fix decrypt argument in the module (https://github.com/ansible/ansible/issues/65450).
-- basic - use PollSelector implementation when DefaultSelector fails (https://github.com/ansible/ansible/issues/70238).
-- collection metadata - ensure collection loader uses libyaml/CSafeLoader to parse collection metadata if available
-- cron - encode and decode crontab files in UTF-8 explicitly to allow non-ascii chars in cron filepath and job (https://github.com/ansible/ansible/issues/69492)
-- ensure delegated vars can resolve hostvars object and access vars from hostvars[inventory_hostname].
-- facts - account for Slackware OS with ``+`` in the name (https://github.com/ansible/ansible/issues/38760)
-- fix issue with inventory_hostname and delegated host vars mixing on connection settings.
-- if the ``type`` for a module parameter in the argument spec is callable, do not pass ``kwargs`` to avoid errors (https://github.com/ansible/ansible/issues/70017)
-- pause - handle exception when there is no stdout (https://github.com/ansible/ansible/pull/47851)
-- playbooks - detect and propagate failures in ``always`` blocks after ``rescue`` (https://github.com/ansible/ansible/issues/70000)
-- shell - fix quoting of mkdir command in creation of remote_tmp in order to allow spaces and other special characters (https://github.com/ansible/ansible/issues/69577).
-- splunk httpapi plugin - switch from splunk.enterprise_security to splunk.es in runtime.yml to reflect upstream change of Collection Name
-- ssh connection plugin - use ``get_option()`` rather than ``_play_context`` to ensure ``ANSBILE_SSH_ARGS`` are applied properly (https://github.com/ansible/ansible/issues/70437)
-- user - don't create home directory and missing parents when create_home == false (https://github.com/ansible/ansible/pull/70600).
-- win setup - Fix redirection path for the windows setup module
-- windows async - use full path when calling PowerShell to reduce reliance on environment vars being correct - https://github.com/ansible/ansible/issues/70655
-- winrm - preserve winrm forensic data on put_file failures
-
 v2.10.0a4
 =========
 
@@ -302,69 +302,12 @@ v2.10.0a4
   :local:
   :depth: 2
 
-Unchanged Collections
----------------------
-
-- amazon.aws (still version 1.0.1-dev9)
-- ansible.netcommon (still version 1.0.1-dev8)
-- arista.eos (still version 1.0.1-dev9)
-- awx.awx (still version 13.0.0)
-- check_point.mgmt (still version 1.0.5)
-- chocolatey.chocolatey (still version 1.0.2)
-- cisco.aci (still version 0.0.7)
-- cisco.asa (still version 1.0.1-dev3)
-- cisco.intersight (still version 1.0.7)
-- cisco.ucs (still version 1.4.0)
-- cloudscale_ch.cloud (still version 1.0.0)
-- community.aws (still version 1.0.1-dev1)
-- community.azure (still version 0.1.0)
-- community.crypto (still version 1.0.0)
-- community.digitalocean (still version 0.1.0)
-- community.general (still version 0.3.0-experimental.meta.redirects-3)
-- community.grafana (still version 0.2.2)
-- community.kubernetes (still version 0.11.1)
-- community.libvirt (still version 0.1.0)
-- community.mongodb (still version 0.1.2)
-- community.mysql (still version 0.1.0)
-- community.network (still version 0.2.1)
-- community.proxysql (still version 0.1.0)
-- community.rabbitmq (still version 0.1.0)
-- community.vmware (still version 1.0.1-dev9)
-- community.zabbix (still version 0.2.0)
-- cyberark.conjur (still version 1.0.6)
-- cyberark.pas (still version 1.0.5)
-- dellemc_networking.os10 (still version 1.0.2)
-- fortinet.fortimanager (still version 1.0.3)
-- fortinet.fortios (still version 1.0.13)
-- google.cloud (still version 0.10.1)
-- hetzner.hcloud (still version 0.2.0)
-- ibm.qradar (still version 1.0.2-dev1)
-- infinidat.infinibox (still version 1.2.3)
-- junipernetworks.junos (still version 1.0.1-dev6)
-- mellanox.onyx (still version 0.1.0)
-- netapp.aws (still version 20.6.0)
-- netapp.elementsw (still version 20.6.0)
-- netapp.ontap (still version 20.7.0)
-- netapp_eseries.santricity (still version 1.0.8)
-- netbox.netbox (still version 0.3.1)
-- ngine_io.cloudstack (still version 0.3.0)
-- ngine_io.exoscale (still version 0.1.1)
-- ngine_io.vultr (still version 0.3.0)
-- openstack.cloud (still version 1.0.1)
-- ovirt.ovirt (still version 1.0.0)
-- purestorage.flashblade (still version 1.2.6)
-- servicenow.servicenow (still version 1.0.3-dev2)
-- skydive.skydive (still version 0.0.1-dev6)
-- splunk.es (still version 1.0.1-dev1)
-- theforeman.foreman (still version 1.0.1)
-- wti.remote (still version 1.0.1)
-
 Release Summary
 ---------------
 
 Fourth Ansible 2.10.0 alpha release.
 
-Ansible Base
+Ansible-base
 ------------
 
 Ansible 2.10.0a4 contains Ansible-base version 2.10.0b1.
@@ -528,12 +471,74 @@ community.windows
 - win_timezone - Allow for _dstoff timezones
 - win_unzip - Fix support for paths with square brackets not being detected properly
 
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 1.0.1-dev9)
+- ansible.netcommon (still version 1.0.1-dev8)
+- arista.eos (still version 1.0.1-dev9)
+- awx.awx (still version 13.0.0)
+- check_point.mgmt (still version 1.0.5)
+- chocolatey.chocolatey (still version 1.0.2)
+- cisco.aci (still version 0.0.7)
+- cisco.asa (still version 1.0.1-dev3)
+- cisco.intersight (still version 1.0.7)
+- cisco.ucs (still version 1.4.0)
+- cloudscale_ch.cloud (still version 1.0.0)
+- community.aws (still version 1.0.1-dev1)
+- community.azure (still version 0.1.0)
+- community.crypto (still version 1.0.0)
+- community.digitalocean (still version 0.1.0)
+- community.general (still version 0.3.0-experimental.meta.redirects-3)
+- community.grafana (still version 0.2.2)
+- community.kubernetes (still version 0.11.1)
+- community.libvirt (still version 0.1.0)
+- community.mongodb (still version 0.1.2)
+- community.mysql (still version 0.1.0)
+- community.network (still version 0.2.1)
+- community.proxysql (still version 0.1.0)
+- community.rabbitmq (still version 0.1.0)
+- community.vmware (still version 1.0.1-dev9)
+- community.zabbix (still version 0.2.0)
+- cyberark.conjur (still version 1.0.6)
+- cyberark.pas (still version 1.0.5)
+- dellemc_networking.os10 (still version 1.0.2)
+- fortinet.fortimanager (still version 1.0.3)
+- fortinet.fortios (still version 1.0.13)
+- google.cloud (still version 0.10.1)
+- hetzner.hcloud (still version 0.2.0)
+- ibm.qradar (still version 1.0.2-dev1)
+- infinidat.infinibox (still version 1.2.3)
+- junipernetworks.junos (still version 1.0.1-dev6)
+- mellanox.onyx (still version 0.1.0)
+- netapp.aws (still version 20.6.0)
+- netapp.elementsw (still version 20.6.0)
+- netapp.ontap (still version 20.7.0)
+- netapp_eseries.santricity (still version 1.0.8)
+- netbox.netbox (still version 0.3.1)
+- ngine_io.cloudstack (still version 0.3.0)
+- ngine_io.exoscale (still version 0.1.1)
+- ngine_io.vultr (still version 0.3.0)
+- openstack.cloud (still version 1.0.1)
+- ovirt.ovirt (still version 1.0.0)
+- purestorage.flashblade (still version 1.2.6)
+- servicenow.servicenow (still version 1.0.3-dev2)
+- skydive.skydive (still version 0.0.1-dev6)
+- splunk.es (still version 1.0.1-dev1)
+- theforeman.foreman (still version 1.0.1)
+- wti.remote (still version 1.0.1)
+
 v2.10.0a3
 =========
 
 .. contents::
   :local:
   :depth: 2
+
+Release Summary
+---------------
+
+Third Ansible 2.10.0 alpha release.
 
 Added Collections
 -----------------
@@ -543,62 +548,7 @@ Added Collections
 - community.proxysql (version 0.1.0)
 - infinidat.infinibox (version 1.2.3)
 
-Unchanged Collections
----------------------
-
-- ansible.windows (still version 0.0.1-beta.3)
-- awx.awx (still version 13.0.0)
-- azure.azcollection (still version 0.2.0)
-- check_point.mgmt (still version 1.0.5)
-- chocolatey.chocolatey (still version 1.0.2)
-- cisco.aci (still version 0.0.7)
-- cisco.intersight (still version 1.0.7)
-- cisco.meraki (still version 1.3.1)
-- cisco.ucs (still version 1.4.0)
-- cloudscale_ch.cloud (still version 1.0.0)
-- community.aws (still version 1.0.1-dev1)
-- community.azure (still version 0.1.0)
-- community.crypto (still version 1.0.0)
-- community.grafana (still version 0.2.2)
-- community.kubernetes (still version 0.11.1)
-- community.libvirt (still version 0.1.0)
-- community.mongodb (still version 0.1.2)
-- community.network (still version 0.2.1)
-- community.rabbitmq (still version 0.1.0)
-- community.vmware (still version 1.0.1-dev9)
-- community.windows (still version 0.0.1)
-- community.zabbix (still version 0.2.0)
-- cyberark.conjur (still version 1.0.6)
-- cyberark.pas (still version 1.0.5)
-- dellemc_networking.os10 (still version 1.0.2)
-- f5networks.f5_modules (still version 1.4.0)
-- fortinet.fortimanager (still version 1.0.3)
-- fortinet.fortios (still version 1.0.13)
-- frr.frr (still version 1.0.1-dev1)
-- google.cloud (still version 0.10.1)
-- hetzner.hcloud (still version 0.2.0)
-- mellanox.onyx (still version 0.1.0)
-- netapp.aws (still version 20.6.0)
-- netapp.elementsw (still version 20.6.0)
-- netapp.ontap (still version 20.7.0)
-- netapp_eseries.santricity (still version 1.0.8)
-- ngine_io.cloudstack (still version 0.3.0)
-- ngine_io.exoscale (still version 0.1.1)
-- ngine_io.vultr (still version 0.3.0)
-- openstack.cloud (still version 1.0.1)
-- ovirt.ovirt (still version 1.0.0)
-- servicenow.servicenow (still version 1.0.3-dev2)
-- skydive.skydive (still version 0.0.1-dev6)
-- theforeman.foreman (still version 1.0.1)
-- vyos.vyos (still version 1.0.2-dev2)
-- wti.remote (still version 1.0.1)
-
-Release Summary
----------------
-
-Third Ansible 2.10.0 alpha release.
-
-Ansible Base
+Ansible-base
 ------------
 
 Ansible 2.10.0a3 contains Ansible-base version 2.10.0b1.
@@ -653,12 +603,67 @@ Changed Collections
 - splunk.es was upgraded from version 1.0.0 to version 1.0.1-dev1.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 
+Unchanged Collections
+---------------------
+
+- ansible.windows (still version 0.0.1-beta.3)
+- awx.awx (still version 13.0.0)
+- azure.azcollection (still version 0.2.0)
+- check_point.mgmt (still version 1.0.5)
+- chocolatey.chocolatey (still version 1.0.2)
+- cisco.aci (still version 0.0.7)
+- cisco.intersight (still version 1.0.7)
+- cisco.meraki (still version 1.3.1)
+- cisco.ucs (still version 1.4.0)
+- cloudscale_ch.cloud (still version 1.0.0)
+- community.aws (still version 1.0.1-dev1)
+- community.azure (still version 0.1.0)
+- community.crypto (still version 1.0.0)
+- community.grafana (still version 0.2.2)
+- community.kubernetes (still version 0.11.1)
+- community.libvirt (still version 0.1.0)
+- community.mongodb (still version 0.1.2)
+- community.network (still version 0.2.1)
+- community.rabbitmq (still version 0.1.0)
+- community.vmware (still version 1.0.1-dev9)
+- community.windows (still version 0.0.1)
+- community.zabbix (still version 0.2.0)
+- cyberark.conjur (still version 1.0.6)
+- cyberark.pas (still version 1.0.5)
+- dellemc_networking.os10 (still version 1.0.2)
+- f5networks.f5_modules (still version 1.4.0)
+- fortinet.fortimanager (still version 1.0.3)
+- fortinet.fortios (still version 1.0.13)
+- frr.frr (still version 1.0.1-dev1)
+- google.cloud (still version 0.10.1)
+- hetzner.hcloud (still version 0.2.0)
+- mellanox.onyx (still version 0.1.0)
+- netapp.aws (still version 20.6.0)
+- netapp.elementsw (still version 20.6.0)
+- netapp.ontap (still version 20.7.0)
+- netapp_eseries.santricity (still version 1.0.8)
+- ngine_io.cloudstack (still version 0.3.0)
+- ngine_io.exoscale (still version 0.1.1)
+- ngine_io.vultr (still version 0.3.0)
+- openstack.cloud (still version 1.0.1)
+- ovirt.ovirt (still version 1.0.0)
+- servicenow.servicenow (still version 1.0.3-dev2)
+- skydive.skydive (still version 0.0.1-dev6)
+- theforeman.foreman (still version 1.0.1)
+- vyos.vyos (still version 1.0.2-dev2)
+- wti.remote (still version 1.0.1)
+
 v2.10.0a2
 =========
 
 .. contents::
   :local:
   :depth: 2
+
+Release Summary
+---------------
+
+Second Ansible 2.10.0 alpha release.
 
 Added Collections
 -----------------
@@ -668,39 +673,7 @@ Added Collections
 - mellanox.onyx (version 0.1.0)
 - netapp_eseries.santricity (version 1.0.8)
 
-Unchanged Collections
----------------------
-
-- ansible.windows (still version 0.0.1-beta.3)
-- check_point.mgmt (still version 1.0.5)
-- chocolatey.chocolatey (still version 1.0.2)
-- cisco.mso (still version 0.0.6)
-- community.azure (still version 0.1.0)
-- community.grafana (still version 0.2.2)
-- community.libvirt (still version 0.1.0)
-- community.mongodb (still version 0.1.2)
-- community.rabbitmq (still version 0.1.0)
-- community.windows (still version 0.0.1)
-- community.zabbix (still version 0.2.0)
-- cyberark.pas (still version 1.0.5)
-- dellemc_networking.os10 (still version 1.0.2)
-- f5networks.f5_modules (still version 1.4.0)
-- fortinet.fortimanager (still version 1.0.3)
-- netapp.aws (still version 20.6.0)
-- netapp.elementsw (still version 20.6.0)
-- ngine_io.exoscale (still version 0.1.1)
-- openstack.cloud (still version 1.0.1)
-- ovirt.ovirt (still version 1.0.0)
-- purestorage.flasharray (still version 1.2.7)
-- skydive.skydive (still version 0.0.1-dev6)
-- wti.remote (still version 1.0.1)
-
-Release Summary
----------------
-
-Second Ansible 2.10.0 alpha release.
-
-Ansible Base
+Ansible-base
 ------------
 
 Ansible 2.10.0a2 contains Ansible-base version 2.10.0b1.
@@ -797,7 +770,7 @@ Changed Collections
 Major Changes
 -------------
 
-Ansible Base
+Ansible-base
 ~~~~~~~~~~~~
 
 - Both ansible-doc and ansible-console's help command will error for modules and plugins whose return documentation cannot be parsed as YAML. All modules and plugins passing ``ansible-test sanity --test yamllint`` will not be affected by this.
@@ -824,7 +797,7 @@ community.kubernetes
 Minor Changes
 -------------
 
-Ansible Base
+Ansible-base
 ~~~~~~~~~~~~
 
 - 'Edit on GitHub' link for plugin, cli documentation fixed to navigate to correct plugin, cli source.
@@ -1321,7 +1294,7 @@ community.network
 Deprecated Features
 -------------------
 
-Ansible Base
+Ansible-base
 ~~~~~~~~~~~~
 
 - Using the DefaultCallback without the correspodning doc_fragment or copying the documentation.
@@ -1361,7 +1334,7 @@ community.vmware
 Removed Features (previously deprecated)
 ----------------------------------------
 
-Ansible Base
+Ansible-base
 ~~~~~~~~~~~~
 
 - core - remove support for ``check_invalid_arguments`` in ``AnsibleModule``, ``AzureModule`` and ``UTMModule``.
@@ -1389,7 +1362,7 @@ community.vmware
 Security Fixes
 --------------
 
-Ansible Base
+Ansible-base
 ~~~~~~~~~~~~
 
 - **security issue** - Convert CLI provided passwords to text initially, to prevent unsafe context being lost when converting from bytes->text during post processing of PlayContext. This prevents CLI provided passwords from being incorrectly templated (CVE-2019-14856)
@@ -1414,7 +1387,7 @@ community.general
 Bugfixes
 --------
 
-Ansible Base
+Ansible-base
 ~~~~~~~~~~~~
 
 - ActionBase - Add new ``cleanup`` method that is explicitly run by the ``TaskExecutor`` to ensure that the shell plugins ``tmpdir`` is always removed. This change means that individual action plugins need not be responsible for removing the temporary directory, which ensures that we don't have code paths that accidentally leave behind the temporary directory.
@@ -2564,6 +2537,33 @@ vyos.vyos
 - vyos.vyos.vyos_user - Manage the collection of local users on VyOS device
 - vyos.vyos.vyos_vlan - Manage VLANs on VyOS network devices
 
+Unchanged Collections
+---------------------
+
+- ansible.windows (still version 0.0.1-beta.3)
+- check_point.mgmt (still version 1.0.5)
+- chocolatey.chocolatey (still version 1.0.2)
+- cisco.mso (still version 0.0.6)
+- community.azure (still version 0.1.0)
+- community.grafana (still version 0.2.2)
+- community.libvirt (still version 0.1.0)
+- community.mongodb (still version 0.1.2)
+- community.rabbitmq (still version 0.1.0)
+- community.windows (still version 0.0.1)
+- community.zabbix (still version 0.2.0)
+- cyberark.pas (still version 1.0.5)
+- dellemc_networking.os10 (still version 1.0.2)
+- f5networks.f5_modules (still version 1.4.0)
+- fortinet.fortimanager (still version 1.0.3)
+- netapp.aws (still version 20.6.0)
+- netapp.elementsw (still version 20.6.0)
+- ngine_io.exoscale (still version 0.1.1)
+- openstack.cloud (still version 1.0.1)
+- ovirt.ovirt (still version 1.0.0)
+- purestorage.flasharray (still version 1.2.7)
+- skydive.skydive (still version 0.0.1-dev6)
+- wti.remote (still version 1.0.1)
+
 v2.10.0a1
 =========
 
@@ -2576,7 +2576,7 @@ Release Summary
 
 First Ansible 2.10.0 alpha release.
 
-Ansible Base
+Ansible-base
 ------------
 
 Ansible 2.10.0a1 contains Ansible-base version 2.10.0.dev1.
