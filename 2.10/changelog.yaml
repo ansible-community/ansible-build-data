@@ -3,9 +3,6 @@ releases:
   2.10.0a1:
     changes:
       breaking_changes:
-      - amazon.aws.aws_s3 - can now delete versioned buckets even when they are not
-        empty - set mode to delete to delete a versioned bucket and everything in
-        it.
       - "ansible.windows.win_find - module has been refactored to better match the
         behaviour of the ``find`` module. Here is what has changed:\n  * When the
         directory specified by ``paths`` does not exist or is a file, it will no longer
@@ -45,19 +42,6 @@ releases:
         be removed in a later release; use community.vmware.vmware_host_dns instead.
       - The vyos.vyos.vyos_static_route module has been deprecated and will be removed
         in a later release; use vyos.vyos.vyos_static_routes instead.
-      - amazon.aws.cloudformation - the ``template_format`` option has been deprecated
-        and will be removed in a later release. It has been ignored by the module
-        since Ansible 2.3.
-      - amazon.aws.ec2 - in a later release, the ``group`` and ``group_id`` options
-        will become mutually exclusive.  Currently ``group_id`` is ignored if you
-        pass both.
-      - amazon.aws.ec2_key - the ``wait_timeout`` option has been deprecated and will
-        be removed in a later release. It has had no effect since Ansible 2.5.
-      - amazon.aws.ec2_key - the ``wait`` option has been deprecated and will be removed
-        in a later release. It has had no effect since Ansible 2.5.
-      - amazon.aws.ec2_tag - support for ``list`` as a state has been deprecated and
-        will be removed in a later release.  The ``ec2_tag_info`` can be used to fetch
-        the tags on an EC2 resource.
       - ansible.windows.win_domain_controller - the ``log_path`` option has been deprecated
         and will be removed in a later release. This was undocumented and only related
         to debugging information for module development.
@@ -75,11 +59,6 @@ releases:
         return ``tag_facts`` since it does not return multiple tags with the same
         name and different category id. To maintain the existing behavior use ``tag_info``
         which is a list of tag metadata.
-      major_changes:
-      - 'amazon.aws.ec2 module_utils: The ``AWSRetry`` decorator no longer catches
-        ``NotFound`` exceptions by default.  ``NotFound`` exceptions need to be explicitly
-        added using ``catch_extra_error_codes``.  Some AWS modules may see an increase
-        in transient failures due to AWS''s eventual consistency model.'
       release_summary: 'Release Date: 2020-06-18
 
 
