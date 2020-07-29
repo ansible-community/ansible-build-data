@@ -29,7 +29,6 @@ releases:
       major_changes:
         - "amazon.aws.ec2 module_utils: The ``AWSRetry`` decorator no longer catches ``NotFound`` exceptions by default.  ``NotFound`` exceptions need to be explicitly added using ``catch_extra_error_codes``.  Some AWS modules may see an increase in transient failures due to AWS's eventual consistency model."
       deprecated_features:
-        - The community.general.ldap_attr module has been deprecated and will be removed in a later release; use community.general.ldap_attrs instead.
         - The vyos.vyos.vyos_static_route module has been deprecated and will be removed in a later release; use vyos.vyos.vyos_static_routes instead.
         - The community.vmware.vmware_dns_config module has been deprecated and will be removed in a later release; use community.vmware.vmware_host_dns instead.
         - community.aws.iam_managed_policy - the ``fail_on_delete`` option has been deprecated and will be removed in a later release.  It has always been ignored by the module.
