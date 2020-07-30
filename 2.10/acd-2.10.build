@@ -1,5 +1,5 @@
 _acd_version: 2.10
-_ansible_base_version: 2.10.0rc3
+_ansible_base_version: 2.10.0rc4
 amazon.aws: >=1.0.0,<2.0.0
 ansible.netcommon: >=1.0.0,<2.0.0
 ansible.posix: >=1.0.0,<2.0.0
@@ -25,7 +25,7 @@ community.crypto: >=1.0.0,<2.0.0
 community.digitalocean: >=0.0.0,<1.0.0
 community.general: >=0.0.0,<1.0.0
 community.grafana: >=0.0.0,<1.0.0
-community.kubernetes: >=0.0.0,<1.0.0
+community.kubernetes: >=1.0.0,<2.0.0
 community.libvirt: >=0.0.0,<1.0.0
 community.mongodb: >=0.0.0,<1.0.0
 community.mysql: >=0.0.0,<1.0.0

@@ -6,6 +6,180 @@ Ansible 2.10 Release Notes
   :local:
   :depth: 2
 
+v2.10.0a7
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Ansible-base
+------------
+
+Ansible 2.10.0a7 contains Ansible-base version 2.10.0rc4.
+This is a newer version than version 2.10.0rc3 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+- ansible.netcommon was upgraded from version 1.0.1-dev8 to version 1.1.0.
+  The collection did not have a changelog in this version.
+- cisco.asa was upgraded from version 1.0.1-dev4 to version 1.0.1-dev5.
+  The collection did not have a changelog in this version.
+- cisco.ios was upgraded from version 1.0.1-dev6 to version 1.0.1-dev7.
+  The collection did not have a changelog in this version.
+- community.kubernetes was upgraded from version 0.11.1 to version 1.0.0.
+  The changes are reported in the combined changelog below.
+- containers.podman was upgraded from version 1.1.2 to version 1.1.3.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- google.cloud was upgraded from version 0.10.1 to version 0.10.2.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- junipernetworks.junos was upgraded from version 1.0.1-dev6 to version 1.0.1-dev8.
+  The collection did not have a changelog in this version.
+- vyos.vyos was upgraded from version 1.0.2-dev6 to version 1.0.2-dev8.
+  The collection did not have a changelog in this version.
+
+Major Changes
+-------------
+
+community.kubernetes
+~~~~~~~~~~~~~~~~~~~~
+
+- helm_plugin - new module to manage Helm plugins (https://github.com/ansible-collections/community.kubernetes/pull/154).
+- helm_plugin_info - new modules to gather information about Helm plugins (https://github.com/ansible-collections/community.kubernetes/pull/154).
+- k8s_exec - Return rc for the command executed (https://github.com/ansible-collections/community.kubernetes/pull/158).
+
+Minor Changes
+-------------
+
+Ansible-base
+~~~~~~~~~~~~
+
+- default_callback - moving 'check_mode_markers' documentation in default_callback doc_fragment (https://github.com/ansible-collections/community.general/issues/565).
+
+community.kubernetes
+~~~~~~~~~~~~~~~~~~~~
+
+- Ensure check mode results are as expected (https://github.com/ansible-collections/community.kubernetes/pull/155).
+- Update base branch to 'main' (https://github.com/ansible-collections/community.kubernetes/issues/148).
+- helm - Add support for K8S_AUTH_CONTEXT, K8S_AUTH_KUBECONFIG env (https://github.com/ansible-collections/community.kubernetes/pull/141).
+- helm - Allow creating namespaces with Helm (https://github.com/ansible-collections/community.kubernetes/pull/157).
+- helm - add aliases context for kube_context (https://github.com/ansible-collections/community.kubernetes/pull/152).
+- helm - add support for K8S_AUTH_KUBECONFIG and K8S_AUTH_CONTEXT environment variable (https://github.com/ansible-collections/community.kubernetes/issues/140).
+- helm_info - add aliases context for kube_context (https://github.com/ansible-collections/community.kubernetes/pull/152).
+- helm_info - add support for K8S_AUTH_KUBECONFIG and K8S_AUTH_CONTEXT environment variable (https://github.com/ansible-collections/community.kubernetes/issues/140).
+- k8s_exec - return RC for the command executed (https://github.com/ansible-collections/community.kubernetes/issues/122).
+- k8s_info - Update example using vars (https://github.com/ansible-collections/community.kubernetes/pull/156).
+
+Security Fixes
+--------------
+
+community.kubernetes
+~~~~~~~~~~~~~~~~~~~~
+
+- kubectl - connection plugin now redact kubectl_token and kubectl_password in console log (https://github.com/ansible-collections/community.kubernetes/issues/65).
+- kubectl - redacted token and password from console log (https://github.com/ansible-collections/community.kubernetes/pull/159).
+
+Bugfixes
+--------
+
+Ansible-base
+~~~~~~~~~~~~
+
+- Fix warning for default permission change when no mode is specified. Follow up to https://github.com/ansible/ansible/issues/67794. (CVE-2020-1736)
+- Fixes ansible-test traceback when plugin author is not a string or a list of strings (https://github.com/ansible/ansible/pull/70507)
+- Restore the ability for changed_when/failed_when to function with group_by (#70844).
+- ansible-galaxy collection download - fix downloading tar.gz files and collections in git repositories (https://github.com/ansible/ansible/issues/70429)
+- ansible-galaxy collection install - fix fallback mechanism if the AH server did not have the collection requested - https://github.com/ansible/ansible/issues/70940
+- ansible-test - Add ``pytest < 6.0.0`` constraint for managed installations on Python 3.x to avoid issues with relative imports.
+- ansible-test - Change detection now properly resolves relative imports instead of treating them as absolute imports.
+- ansible-test validate-modules - ``version_added`` on module level was not validated for modules in collections (https://github.com/ansible/ansible/pull/70869).
+- ansible-test validate-modules - return correct error codes ``option-invalid-version-added`` resp. ``return-invalid-version-added`` instead of the wrong error ``deprecation-either-date-or-version`` when an invalid value of ``version_added`` is specified for an option or a return value (https://github.com/ansible/ansible/pull/70869).
+- facts - fix incorrect UTC timestamp in ``iso8601_micro`` and ``iso8601``
+- lineinfile - fix not subscriptable error in exception handling around file creation
+- reboot - Add support for the runit init system, used on Void Linux, that does not support the normal Linux syntax.
+
+community.kubernetes
+~~~~~~~~~~~~~~~~~~~~
+
+- Test against stable ansible branch so molecule tests work (https://github.com/ansible-collections/community.kubernetes/pull/168).
+- Update openshift requirements in k8s module doc (https://github.com/ansible-collections/community.kubernetes/pull/153).
+
+New Modules
+-----------
+
+community.kubernetes
+~~~~~~~~~~~~~~~~~~~~
+
+- community.kubernetes.helm_plugin - Manage Helm plugins
+- community.kubernetes.helm_plugin_info - Gather information about Helm plugins
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 1.0.1-dev9)
+- ansible.posix (still version 1.1.1-dev4)
+- ansible.windows (still version 0.2.0)
+- arista.eos (still version 1.0.1-dev9)
+- awx.awx (still version 13.0.0)
+- azure.azcollection (still version 0.3.0)
+- check_point.mgmt (still version 1.0.6)
+- chocolatey.chocolatey (still version 1.0.2)
+- cisco.aci (still version 0.0.7)
+- cisco.intersight (still version 1.0.7)
+- cisco.iosxr (still version 1.0.3-dev7)
+- cisco.meraki (still version 1.3.2)
+- cisco.mso (still version 0.0.8)
+- cisco.nxos (still version 1.0.1-dev9)
+- cisco.ucs (still version 1.4.0)
+- cloudscale_ch.cloud (still version 1.0.0)
+- community.aws (still version 1.0.1-dev1)
+- community.azure (still version 0.1.0)
+- community.crypto (still version 1.0.0)
+- community.digitalocean (still version 0.1.0)
+- community.general (still version 0.3.0-experimental.meta.redirects-3)
+- community.grafana (still version 0.2.2)
+- community.libvirt (still version 0.1.0)
+- community.mongodb (still version 0.1.2)
+- community.mysql (still version 0.1.0)
+- community.network (still version 0.2.1)
+- community.proxysql (still version 0.1.0)
+- community.rabbitmq (still version 0.1.0)
+- community.vmware (still version 1.0.1-dev9)
+- community.windows (still version 0.2.0)
+- community.zabbix (still version 0.3.0)
+- cyberark.conjur (still version 1.0.6)
+- cyberark.pas (still version 1.0.5)
+- dellemc.os10 (still version 0.1.0-dev2)
+- f5networks.f5_modules (still version 1.5.0)
+- fortinet.fortimanager (still version 1.0.3)
+- fortinet.fortios (still version 1.0.13)
+- frr.frr (still version 1.0.1-dev2)
+- hetzner.hcloud (still version 0.2.0)
+- ibm.qradar (still version 1.0.2-dev1)
+- infinidat.infinibox (still version 1.2.3)
+- mellanox.onyx (still version 0.1.0)
+- netapp.aws (still version 20.6.0)
+- netapp.elementsw (still version 20.6.0)
+- netapp.ontap (still version 20.7.0)
+- netapp_eseries.santricity (still version 1.0.8)
+- netbox.netbox (still version 0.3.1)
+- ngine_io.cloudstack (still version 0.3.0)
+- ngine_io.exoscale (still version 0.1.1)
+- ngine_io.vultr (still version 0.3.0)
+- openstack.cloud (still version 1.0.1)
+- openvswitch.openvswitch (still version 1.0.1-dev4)
+- ovirt.ovirt (still version 1.0.0)
+- purestorage.flasharray (still version 1.3.1)
+- purestorage.flashblade (still version 1.2.6)
+- servicenow.servicenow (still version 1.0.3-dev2)
+- skydive.skydive (still version 0.0.1-dev6)
+- splunk.es (still version 1.0.1-dev1)
+- theforeman.foreman (still version 1.0.1)
+- wti.remote (still version 1.0.1)
+
 v2.10.0a6
 =========
 
