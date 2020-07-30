@@ -15,22 +15,6 @@ releases:
         and ``oif_source`` options. These have been superceeded by ``oif_ps``.
       - community.grafana.grafana_dashboard - the parameter ``message`` is renamed
         to ``commit_message`` since ``message`` is used by Ansible Core engine internally.
-      - community.vmware.vmware_datastore_maintenancemode - now returns ``datastore_status``
-        instead of Ansible internal key ``results``.
-      - community.vmware.vmware_guest_custom_attributes - does not require VM name
-        which was a required parameter for releases prior to Ansible 2.10.
-      - community.vmware.vmware_guest_find - the ``datacenter`` option has been removed.
-      - community.vmware.vmware_host_kernel_manager - now returns ``host_kernel_status``
-        instead of Ansible internal key ``results``.
-      - community.vmware.vmware_host_ntp - now returns ``host_ntp_status`` instead
-        of Ansible internal key ``results``.
-      - community.vmware.vmware_host_service_manager - now returns ``host_service_status``
-        instead of Ansible internal key ``results``.
-      - community.vmware.vmware_tag - now returns ``tag_status`` instead of Ansible
-        internal key ``results``.
-      - community.vmware.vmware_vmkernel - the options ``ip_address`` and ``subnet_mask``
-        have been removed; use the suboptions ``ip_address`` and ``subnet_mask`` of
-        the ``network`` option instead.
       - community.windows.win_pester - no longer runs all ``*.ps1`` file in the directory
         specified due to it executing potentially unknown scripts. It will follow
         the default behaviour of only running tests for files that are like ``*.tests.ps1``
@@ -38,8 +22,6 @@ releases:
       - purestorage.flashblade.purefb_fs - no longer supports the deprecated ``nfs``
         option. This has been superceeded by ``nfsv3``.
       deprecated_features:
-      - The community.vmware.vmware_dns_config module has been deprecated and will
-        be removed in a later release; use community.vmware.vmware_host_dns instead.
       - The vyos.vyos.vyos_static_route module has been deprecated and will be removed
         in a later release; use vyos.vyos.vyos_static_routes instead.
       - ansible.windows.win_domain_controller - the ``log_path`` option has been deprecated
@@ -55,10 +37,6 @@ releases:
         been deprecated and will be removed in a later release. The same functionality
         can be done by using ``become: yes`` and ``become_flags: logon_type=new_credentials
         logon_flags=netcredentials_only`` on the task.'
-      - community.vmware.vmware_tag_info - in a later release, the module will not
-        return ``tag_facts`` since it does not return multiple tags with the same
-        name and different category id. To maintain the existing behavior use ``tag_info``
-        which is a list of tag metadata.
       release_summary: 'Release Date: 2020-06-18
 
 
