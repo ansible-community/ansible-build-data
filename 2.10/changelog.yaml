@@ -2,7 +2,10 @@ ancestor: 2.9.0
 releases:
   2.10.0a1:
     changes:
-      release_summary: First Ansible 2.10.0 alpha release.
+      release_summary: |
+        Release Date: 2020-06-18
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
       # The following are entries from the ansible-base 2.10 porting guide which belong to collections and not to ansible-base, and thus have been removed from there.
       breaking_changes:
         - community.vmware.vmware_guest_find - the ``datacenter`` option has been removed.
@@ -56,21 +59,43 @@ releases:
     release_date: '2020-06-18'
   2.10.0a2:
     changes:
-      release_summary: Second Ansible 2.10.0 alpha release.
+      release_summary: |
+        Release Date: 2020-07-05
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
     release_date: '2020-07-05'
   2.10.0a3:
     changes:
-      release_summary: Third Ansible 2.10.0 alpha release.
+      release_summary: |
+        Release Date: 2020-07-16
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
     release_date: '2020-07-16'
   2.10.0a4:
     changes:
-      release_summary: Fourth Ansible 2.10.0 alpha release.
+      release_summary: |
+        Release Date: 2020-07-24
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
     release_date: '2020-07-24'
   2.10.0a5:
     changes:
-      release_summary: Fifth Ansible 2.10.0 alpha release.
+      release_summary: |
+        Release Date: 2020-07-27
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
     release_date: '2020-07-27'
   2.10.0a6:
     changes:
-      release_summary: Sixth Ansible 2.10.0 alpha release.
+      release_summary: |
+        Release Date: 2020-07-27
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
     release_date: '2020-07-27'
+  2.10.0a7:
+    changes:
+      release_summary: |
+        Release Date: 2020-07-30
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+    release_date: '2020-07-30'

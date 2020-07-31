@@ -13,6 +13,14 @@ v2.10.0a7
   :local:
   :depth: 2
 
+Release Summary
+---------------
+
+Release Date: 2020-07-30
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+
 Ansible-base
 ------------
 
@@ -190,7 +198,10 @@ v2.10.0a6
 Release Summary
 ---------------
 
-Sixth Ansible 2.10.0 alpha release.
+Release Date: 2020-07-27
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
 
 Ansible-base
 ------------
@@ -295,7 +306,10 @@ v2.10.0a5
 Release Summary
 ---------------
 
-Fifth Ansible 2.10.0 alpha release.
+Release Date: 2020-07-27
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
 
 Removed Collections
 -------------------
@@ -479,7 +493,10 @@ v2.10.0a4
 Release Summary
 ---------------
 
-Fourth Ansible 2.10.0 alpha release.
+Release Date: 2020-07-24
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
 
 Ansible-base
 ------------
@@ -712,7 +729,10 @@ v2.10.0a3
 Release Summary
 ---------------
 
-Third Ansible 2.10.0 alpha release.
+Release Date: 2020-07-16
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
 
 Added Collections
 -----------------
@@ -837,7 +857,10 @@ v2.10.0a2
 Release Summary
 ---------------
 
-Second Ansible 2.10.0 alpha release.
+Release Date: 2020-07-05
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
 
 Added Collections
 -----------------
@@ -2748,7 +2771,10 @@ v2.10.0a1
 Release Summary
 ---------------
 
-First Ansible 2.10.0 alpha release.
+Release Date: 2020-06-18
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
 
 Ansible-base
 ------------
