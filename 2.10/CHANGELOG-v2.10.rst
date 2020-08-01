@@ -2,6 +2,8 @@
 Ansible 2.10 Release Notes
 ==========================
 
+This changelog describes changes since Ansible 2.9.0.
+
 .. contents::
   :local:
   :depth: 2
