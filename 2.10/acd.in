@@ -37,8 +37,8 @@ containers.podman
 cyberark.conjur
 cyberark.pas
 dellemc.os10
-#dellemc.os6 # https://github.com/ansible-collections/dellemc.os10/issues/20
-#dellemc.os9 # https://github.com/ansible-collections/dellemc.os10/issues/20
+dellemc.os6
+dellemc.os9
 f5networks.f5_modules
 fortinet.fortimanager
 fortinet.fortios
