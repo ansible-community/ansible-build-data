@@ -3,14 +3,6 @@ releases:
   2.10.0a1:
     changes:
       breaking_changes:
-      - "ansible.windows.win_find - module has been refactored to better match the
-        behaviour of the ``find`` module. Here is what has changed:\n  * When the
-        directory specified by ``paths`` does not exist or is a file, it will no longer
-        fail and will just warn the user\n  * Junction points are no longer reported
-        as ``islnk``, use ``isjunction`` to properly report these files. This behaviour
-        matches the ansible.windows.win_stat module\n  * Directories no longer return
-        a ``size``, this matches the ``stat`` and ``find`` behaviour and has been
-        removed due to the difficulties in correctly reporting the size of a directory\n"
       - cisco.nxos.nxos_igmp_interface - no longer supports the deprecated ``oif_prefix``
         and ``oif_source`` options. These have been superceeded by ``oif_ps``.
       - community.grafana.grafana_dashboard - the parameter ``message`` is renamed
@@ -24,19 +16,6 @@ releases:
       deprecated_features:
       - The vyos.vyos.vyos_static_route module has been deprecated and will be removed
         in a later release; use vyos.vyos.vyos_static_routes instead.
-      - ansible.windows.win_domain_controller - the ``log_path`` option has been deprecated
-        and will be removed in a later release. This was undocumented and only related
-        to debugging information for module development.
-      - ansible.windows.win_package - the ``ensure`` alias for the ``state`` option
-        has been deprecated and will be removed in a later release. Please use ``state``
-        instead of ``ensure``.
-      - ansible.windows.win_package - the ``productid`` alias for the ``product_id``
-        option has been deprecated and will be removed in a later release. Please
-        use ``product_id`` instead of ``productid``.
-      - 'ansible.windows.win_package - the ``username`` and ``password`` options has
-        been deprecated and will be removed in a later release. The same functionality
-        can be done by using ``become: yes`` and ``become_flags: logon_type=new_credentials
-        logon_flags=netcredentials_only`` on the task.'
       release_summary: 'Release Date: 2020-06-18
 
 
@@ -44,8 +23,6 @@ releases:
 
         '
       removed_features:
-      - ansible.windows.win_stat - removed the deprecated ``get_md55`` option and
-        ``md5`` return value.
       - community.windows.win_psexec - removed the deprecated ``extra_opts`` option.
     release_date: '2020-06-18'
   2.10.0a2:
