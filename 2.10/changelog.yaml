@@ -7,10 +7,6 @@ releases:
         and ``oif_source`` options. These have been superceeded by ``oif_ps``.
       - community.grafana.grafana_dashboard - the parameter ``message`` is renamed
         to ``commit_message`` since ``message`` is used by Ansible Core engine internally.
-      - community.windows.win_pester - no longer runs all ``*.ps1`` file in the directory
-        specified due to it executing potentially unknown scripts. It will follow
-        the default behaviour of only running tests for files that are like ``*.tests.ps1``
-        which is built into Pester itself.
       - purestorage.flashblade.purefb_fs - no longer supports the deprecated ``nfs``
         option. This has been superceeded by ``nfsv3``.
       deprecated_features:
@@ -22,8 +18,6 @@ releases:
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
 
         '
-      removed_features:
-      - community.windows.win_psexec - removed the deprecated ``extra_opts`` option.
     release_date: '2020-06-18'
   2.10.0a2:
     changes:
