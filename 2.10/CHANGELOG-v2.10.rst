@@ -2,6 +2,8 @@
 Ansible 2.10 Release Notes
 ==========================
 
+This changelog describes changes since Ansible 2.9.0.
+
 .. contents::
   :local:
   :depth: 2
@@ -12,6 +14,14 @@ v2.10.0a7
 .. contents::
   :local:
   :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2020-07-30
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
 
 Ansible-base
 ------------
@@ -190,7 +200,10 @@ v2.10.0a6
 Release Summary
 ---------------
 
-Sixth Ansible 2.10.0 alpha release.
+Release Date: 2020-07-27
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
 
 Ansible-base
 ------------
@@ -295,7 +308,10 @@ v2.10.0a5
 Release Summary
 ---------------
 
-Fifth Ansible 2.10.0 alpha release.
+Release Date: 2020-07-27
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
 
 Removed Collections
 -------------------
@@ -479,7 +495,10 @@ v2.10.0a4
 Release Summary
 ---------------
 
-Fourth Ansible 2.10.0 alpha release.
+Release Date: 2020-07-24
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
 
 Ansible-base
 ------------
@@ -712,7 +731,10 @@ v2.10.0a3
 Release Summary
 ---------------
 
-Third Ansible 2.10.0 alpha release.
+Release Date: 2020-07-16
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
 
 Added Collections
 -----------------
@@ -837,7 +859,10 @@ v2.10.0a2
 Release Summary
 ---------------
 
-Second Ansible 2.10.0 alpha release.
+Release Date: 2020-07-05
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
 
 Added Collections
 -----------------
@@ -2748,7 +2773,10 @@ v2.10.0a1
 Release Summary
 ---------------
 
-First Ansible 2.10.0 alpha release.
+Release Date: 2020-06-18
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
 
 Ansible-base
 ------------
@@ -2756,128 +2784,128 @@ Ansible-base
 Ansible 2.10.0a1 contains Ansible-base version 2.10.0.dev1.
 Ansible-base did not have a changelog in this version.
 
-Changed Collections
--------------------
+Included Collections
+--------------------
 
-- amazon.aws was upgraded to version 0.1.3-dev4.
+- amazon.aws with version 0.1.3-dev4.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ansible.netcommon was upgraded to version 0.0.3.
+- ansible.netcommon with version 0.0.3.
   The collection did not have a changelog in this version.
-- ansible.posix was upgraded to version 0.1.4-dev9.
+- ansible.posix with version 0.1.4-dev9.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ansible.windows was upgraded to version 0.0.1-beta.3.
+- ansible.windows with version 0.0.1-beta.3.
   The collection did not have a changelog in this version.
-- arista.eos was upgraded to version 0.0.3-dev81.
+- arista.eos with version 0.0.3-dev81.
   The collection did not have a changelog in this version.
-- awx.awx was upgraded to version 12.0.0.
+- awx.awx with version 12.0.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- azure.azcollection was upgraded to version 0.1.3.
+- azure.azcollection with version 0.1.3.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- check_point.mgmt was upgraded to version 1.0.5.
+- check_point.mgmt with version 1.0.5.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- chocolatey.chocolatey was upgraded to version 1.0.2.
+- chocolatey.chocolatey with version 1.0.2.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.aci was upgraded to version 0.0.6.
+- cisco.aci with version 0.0.6.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.asa was upgraded to version 0.0.2-dev9.
+- cisco.asa with version 0.0.2-dev9.
   The collection did not have a changelog in this version.
-- cisco.intersight was upgraded to version 1.0.6.
+- cisco.intersight with version 1.0.6.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.ios was upgraded to version 0.0.3-dev95.
+- cisco.ios with version 0.0.3-dev95.
   The collection did not have a changelog in this version.
-- cisco.iosxr was upgraded to version 0.0.3-dev8.
+- cisco.iosxr with version 0.0.3-dev8.
   The collection did not have a changelog in this version.
-- cisco.meraki was upgraded to version 1.3.0.
+- cisco.meraki with version 1.3.0.
   The collection did not have a changelog in this version.
-- cisco.mso was upgraded to version 0.0.6.
+- cisco.mso with version 0.0.6.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.nxos was upgraded to version 0.0.3-dev99.
+- cisco.nxos with version 0.0.3-dev99.
   The collection did not have a changelog in this version.
-- cisco.ucs was upgraded to version 1.2.0.
+- cisco.ucs with version 1.2.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cloudscale_ch.cloud was upgraded to version 0.1.0.
+- cloudscale_ch.cloud with version 0.1.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.aws was upgraded to version 0.1.3-dev2.
+- community.aws with version 0.1.3-dev2.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.azure was upgraded to version 0.1.0.
+- community.azure with version 0.1.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.crypto was upgraded to version 0.1.0.
+- community.crypto with version 0.1.0.
   The collection did not have a changelog in this version.
-- community.general was upgraded to version 0.1.4.
+- community.general with version 0.1.4.
   The collection did not have a changelog in this version.
-- community.grafana was upgraded to version 0.2.2.
+- community.grafana with version 0.2.2.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.kubernetes was upgraded to version 0.11.0.
+- community.kubernetes with version 0.11.0.
   The changes are reported in the combined changelog below.
-- community.libvirt was upgraded to version 0.1.0.
+- community.libvirt with version 0.1.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.mongodb was upgraded to version 0.1.2.
+- community.mongodb with version 0.1.2.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.network was upgraded to version 0.1.0.
+- community.network with version 0.1.0.
   The collection did not have a changelog in this version.
-- community.rabbitmq was upgraded to version 0.1.0.
+- community.rabbitmq with version 0.1.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.vmware was upgraded to version 0.4.1-dev8.
+- community.vmware with version 0.4.1-dev8.
   The collection did not have a changelog in this version.
-- community.windows was upgraded to version 0.0.1.
+- community.windows with version 0.0.1.
   The collection did not have a changelog in this version.
-- community.zabbix was upgraded to version 0.2.0.
+- community.zabbix with version 0.2.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- containers.podman was upgraded to version 1.0.3.
+- containers.podman with version 1.0.3.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cyberark.pas was upgraded to version 1.0.5.
+- cyberark.pas with version 1.0.5.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- dellemc_networking.os10 was upgraded to version 1.0.2.
+- dellemc_networking.os10 with version 1.0.2.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- f5networks.f5_modules was upgraded to version 1.4.0.
+- f5networks.f5_modules with version 1.4.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- fortinet.fortimanager was upgraded to version 1.0.3.
+- fortinet.fortimanager with version 1.0.3.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- fortinet.fortios was upgraded to version 1.0.9.
+- fortinet.fortios with version 1.0.9.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- frr.frr was upgraded to version 0.0.2.
+- frr.frr with version 0.0.2.
   The collection did not have a changelog in this version.
-- google.cloud was upgraded to version 0.0.9.
+- google.cloud with version 0.0.9.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ibm.qradar was upgraded to version 0.0.9-dev4.
+- ibm.qradar with version 0.0.9-dev4.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- junipernetworks.junos was upgraded to version 0.0.4-dev9.
+- junipernetworks.junos with version 0.0.4-dev9.
   The collection did not have a changelog in this version.
-- netapp.aws was upgraded to version 20.6.0.
+- netapp.aws with version 20.6.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- netapp.elementsw was upgraded to version 20.6.0.
+- netapp.elementsw with version 20.6.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- netapp.ontap was upgraded to version 20.6.1.
+- netapp.ontap with version 20.6.1.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- netbox.netbox was upgraded to version 0.2.2.
+- netbox.netbox with version 0.2.2.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ngine_io.cloudstack was upgraded to version 0.2.0.
+- ngine_io.cloudstack with version 0.2.0.
   The collection did not have a changelog in this version.
-- ngine_io.exoscale was upgraded to version 0.1.1.
+- ngine_io.exoscale with version 0.1.1.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- ngine_io.vultr was upgraded to version 0.0.1.
+- ngine_io.vultr with version 0.0.1.
   The collection did not have a changelog in this version.
-- openstack.cloud was upgraded to version 1.0.1.
+- openstack.cloud with version 1.0.1.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- openvswitch.openvswitch was upgraded to version 0.0.2-dev1.
+- openvswitch.openvswitch with version 0.0.2-dev1.
   The collection did not have a changelog in this version.
-- ovirt.ovirt was upgraded to version 1.0.0.
+- ovirt.ovirt with version 1.0.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- purestorage.flasharray was upgraded to version 1.2.7.
+- purestorage.flasharray with version 1.2.7.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- purestorage.flashblade was upgraded to version 1.2.3.
+- purestorage.flashblade with version 1.2.3.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- servicenow.servicenow was upgraded to version 1.0.2.
+- servicenow.servicenow with version 1.0.2.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- skydive.skydive was upgraded to version 0.0.1-dev6.
+- skydive.skydive with version 0.0.1-dev6.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- splunk.es was upgraded to version 0.0.3-dev1.
+- splunk.es with version 0.0.3-dev1.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- theforeman.foreman was upgraded to version 0.8.1.
+- theforeman.foreman with version 0.8.1.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- vyos.vyos was upgraded to version 0.0.4-dev9.
+- vyos.vyos with version 0.0.4-dev9.
   The collection did not have a changelog in this version.
-- wti.remote was upgraded to version 1.0.1.
+- wti.remote with version 1.0.1.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 
 Major Changes
@@ -2922,7 +2950,6 @@ Breaking Changes / Porting Guide
     * Junction points are no longer reported as ``islnk``, use ``isjunction`` to properly report these files. This behaviour matches the ansible.windows.win_stat module
     * Directories no longer return a ``size``, this matches the ``stat`` and ``find`` behaviour and has been removed due to the difficulties in correctly reporting the size of a directory
 - cisco.nxos.nxos_igmp_interface - no longer supports the deprecated ``oif_prefix`` and ``oif_source`` options. These have been superceeded by ``oif_ps``.
-- community.general.pacman - the deprecated ``recurse`` option has been removed, you should use ``extra_args=--recursive`` instead.
 - community.grafana.grafana_dashboard - the parameter ``message`` is renamed to ``commit_message`` since ``message`` is used by Ansible Core engine internally.
 - community.vmware.vmware_datastore_maintenancemode - now returns ``datastore_status`` instead of Ansible internal key ``results``.
 - community.vmware.vmware_guest_custom_attributes - does not require VM name which was a required parameter for releases prior to Ansible 2.10.
@@ -2938,7 +2965,6 @@ Breaking Changes / Porting Guide
 Deprecated Features
 -------------------
 
-- The community.general.ldap_attr module has been deprecated and will be removed in a later release; use community.general.ldap_attrs instead.
 - The community.vmware.vmware_dns_config module has been deprecated and will be removed in a later release; use community.vmware.vmware_host_dns instead.
 - The vyos.vyos.vyos_static_route module has been deprecated and will be removed in a later release; use vyos.vyos.vyos_static_routes instead.
 - amazon.aws.cloudformation - the ``template_format`` option has been deprecated and will be removed in a later release. It has been ignored by the module since Ansible 2.3.

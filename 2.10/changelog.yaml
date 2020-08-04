@@ -2,7 +2,10 @@ ancestor: 2.9.0
 releases:
   2.10.0a1:
     changes:
-      release_summary: First Ansible 2.10.0 alpha release.
+      release_summary: |
+        Release Date: 2020-06-18
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
       # The following are entries from the ansible-base 2.10 porting guide which belong to collections and not to ansible-base, and thus have been removed from there.
       breaking_changes:
         - community.vmware.vmware_guest_find - the ``datacenter`` option has been removed.
@@ -12,7 +15,6 @@ releases:
         - community.vmware.vmware_host_ntp - now returns ``host_ntp_status`` instead of Ansible internal key ``results``.
         - community.vmware.vmware_host_service_manager - now returns ``host_service_status`` instead of Ansible internal key ``results``.
         - community.vmware.vmware_tag - now returns ``tag_status`` instead of Ansible internal key ``results``.
-        - community.general.pacman - the deprecated ``recurse`` option has been removed, you should use ``extra_args=--recursive`` instead.
         - community.windows.win_pester - no longer runs all ``*.ps1`` file in the directory specified due to it executing potentially unknown scripts. It will follow the default behaviour of only running tests for files that are like ``*.tests.ps1`` which is built into Pester itself.
         - |
           ansible.windows.win_find - module has been refactored to better match the behaviour of the ``find`` module. Here is what has changed:
@@ -27,7 +29,6 @@ releases:
       major_changes:
         - "amazon.aws.ec2 module_utils: The ``AWSRetry`` decorator no longer catches ``NotFound`` exceptions by default.  ``NotFound`` exceptions need to be explicitly added using ``catch_extra_error_codes``.  Some AWS modules may see an increase in transient failures due to AWS's eventual consistency model."
       deprecated_features:
-        - The community.general.ldap_attr module has been deprecated and will be removed in a later release; use community.general.ldap_attrs instead.
         - The vyos.vyos.vyos_static_route module has been deprecated and will be removed in a later release; use vyos.vyos.vyos_static_routes instead.
         - The community.vmware.vmware_dns_config module has been deprecated and will be removed in a later release; use community.vmware.vmware_host_dns instead.
         - community.aws.iam_managed_policy - the ``fail_on_delete`` option has been deprecated and will be removed in a later release.  It has always been ignored by the module.
@@ -56,21 +57,43 @@ releases:
     release_date: '2020-06-18'
   2.10.0a2:
     changes:
-      release_summary: Second Ansible 2.10.0 alpha release.
+      release_summary: |
+        Release Date: 2020-07-05
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
     release_date: '2020-07-05'
   2.10.0a3:
     changes:
-      release_summary: Third Ansible 2.10.0 alpha release.
+      release_summary: |
+        Release Date: 2020-07-16
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
     release_date: '2020-07-16'
   2.10.0a4:
     changes:
-      release_summary: Fourth Ansible 2.10.0 alpha release.
+      release_summary: |
+        Release Date: 2020-07-24
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
     release_date: '2020-07-24'
   2.10.0a5:
     changes:
-      release_summary: Fifth Ansible 2.10.0 alpha release.
+      release_summary: |
+        Release Date: 2020-07-27
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
     release_date: '2020-07-27'
   2.10.0a6:
     changes:
-      release_summary: Sixth Ansible 2.10.0 alpha release.
+      release_summary: |
+        Release Date: 2020-07-27
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
     release_date: '2020-07-27'
+  2.10.0a7:
+    changes:
+      release_summary: |
+        Release Date: 2020-07-30
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+    release_date: '2020-07-30'
