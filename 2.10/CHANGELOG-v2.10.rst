@@ -8,6 +8,346 @@ This changelog describes changes since Ansible 2.9.0.
   :local:
   :depth: 2
 
+v2.10.0a8
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2020-08-06
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- dellemc.os6 (version 1.0.1)
+- dellemc.os9 (version 1.0.1)
+
+Ansible-base
+------------
+
+Ansible 2.10.0a8 contains Ansible-base version 2.10.0rc4.
+This is the same version of Ansible-base as in the previous Ansible release.
+
+
+Changed Collections
+-------------------
+
+- ansible.netcommon was upgraded from version 1.1.0 to version 1.1.1.
+  The collection did not have a changelog in this version.
+- ansible.posix was upgraded from version 1.1.1-dev4 to version 1.1.1-dev9.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- arista.eos was upgraded from version 1.0.1-dev9 to version 1.0.1.
+  The collection did not have a changelog in this version.
+- awx.awx was upgraded from version 13.0.0 to version 14.0.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- cisco.asa was upgraded from version 1.0.1-dev5 to version 1.0.1.
+  The collection did not have a changelog in this version.
+- cisco.intersight was upgraded from version 1.0.7 to version 1.0.8.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- cisco.ios was upgraded from version 1.0.1-dev7 to version 1.0.1.
+  The collection did not have a changelog in this version.
+- cisco.iosxr was upgraded from version 1.0.3-dev7 to version 1.0.3.
+  The collection did not have a changelog in this version.
+- cisco.nxos was upgraded from version 1.0.1-dev9 to version 1.0.1.
+  The collection did not have a changelog in this version.
+- community.general was upgraded from version 0.3.0-experimental.meta.redirects-3 to version 1.0.0.
+  The changes are reported in the combined changelog below.
+- community.mongodb was upgraded from version 0.1.2 to version 1.0.0.
+  The changes are reported in the combined changelog below.
+- community.network was upgraded from version 0.2.1 to version 1.0.0.
+  The changes are reported in the combined changelog below.
+- community.vmware was upgraded from version 1.0.1-dev9 to version 1.1.1-dev2.
+  The changes are reported in the combined changelog below.
+- containers.podman was upgraded from version 1.1.3 to version 1.1.4.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- dellemc.os10 was upgraded from version 0.1.0-dev2 to version 1.0.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- dellemc.os6 was upgraded to version 1.0.1.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- dellemc.os9 was upgraded to version 1.0.1.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- fortinet.fortimanager was upgraded from version 1.0.3 to version 1.0.4.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- frr.frr was upgraded from version 1.0.1-dev2 to version 1.0.1.
+  The collection did not have a changelog in this version.
+- google.cloud was upgraded from version 0.10.2 to version 1.0.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- junipernetworks.junos was upgraded from version 1.0.1-dev8 to version 1.0.1-dev9.
+  The collection did not have a changelog in this version.
+- netapp.aws was upgraded from version 20.6.0 to version 20.8.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- netapp.elementsw was upgraded from version 20.6.0 to version 20.8.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- netapp.ontap was upgraded from version 20.7.0 to version 20.8.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- openvswitch.openvswitch was upgraded from version 1.0.1-dev4 to version 1.0.1.
+  The collection did not have a changelog in this version.
+- vyos.vyos was upgraded from version 1.0.2-dev8 to version 1.0.2.
+  The collection did not have a changelog in this version.
+
+Minor Changes
+-------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- Add the ``gcpubsub``, ``gcpubsub_info`` and ``gcpubsub_facts`` (to be removed in 3.0.0) modules. These were originally in community.general, but removed on the assumption that they have been moved to google.cloud. Since this turned out to be incorrect, we re-added them for 1.0.0.
+- Add the deprecated ``gcp_backend_service``, ``gcp_forwarding_rule`` and ``gcp_healthcheck`` modules, which will be removed in 2.0.0. These were originally in community.general, but removed on the assumption that they have been moved to google.cloud. Since this turned out to be incorrect, we re-added them for 1.0.0.
+- The collection is now actively tested in CI with the latest Ansible 2.9 release.
+- airbrake_deployment - add ``version`` param; clarified docs on ``revision`` param (https://github.com/ansible-collections/community.general/pull/583).
+- apk - added ``no_cache`` option (https://github.com/ansible-collections/community.general/pull/548).
+- firewalld - the module has been moved to the ``ansible.posix`` collection. A redirection is active, which will be removed in version 2.0.0 (https://github.com/ansible-collections/community.general/pull/623).
+- gitlab_project - add support for merge_method on projects (https://github.com/ansible/ansible/pull/66813).
+- gitlab_runners inventory plugin - permit environment variable input for ``server_url``, ``api_token`` and ``filter`` options (https://github.com/ansible-collections/community.general/pull/611).
+- haproxy - add options to dis/enable health and agent checks.  When health and agent checks are enabled for a service, a disabled service will re-enable itself automatically.  These options also change the state of the agent checks to match the requested state for the backend (https://github.com/ansible-collections/community.general/issues/684).
+- log_plays callback - use v2 methods (https://github.com/ansible-collections/community.general/pull/442).
+- logstash callback - add ini config (https://github.com/ansible-collections/community.general/pull/610).
+- lxd_container - added support of ``--target`` flag for cluster deployments (https://github.com/ansible-collections/community.general/issues/637).
+- parted - accept negative numbers in ``part_start`` and ``part_end``
+- pkgng - added ``stdout`` and ``stderr`` attributes to the result (https://github.com/ansible-collections/community.general/pull/560).
+- pkgng - added support for upgrading all packages using ``name: *, state: latest``, similar to other package providers (https://github.com/ansible-collections/community.general/pull/569).
+- postgresql_query - add search_path parameter (https://github.com/ansible-collections/community.general/issues/625).
+- rundeck_acl_policy - add check for rundeck_acl_policy name parameter (https://github.com/ansible-collections/community.general/pull/612).
+- slack - add support for sending messages built with block kit (https://github.com/ansible-collections/community.general/issues/380).
+- splunk callback - add an option to allow not to validate certificate from HEC (https://github.com/ansible-collections/community.general/pull/596).
+- xfconf - add arrays support (https://github.com/ansible/ansible/issues/46308).
+- xfconf - add support for ``uint`` type (https://github.com/ansible-collections/community.general/pull/696).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- Added module to be able to create, update, or delete VMware VM storage policies for virtual machines.
+- vmware_cluster_info - added ``properties`` and ``schema`` options and supported the getting of clusters resource summary information.
+- vmware_content_deploy_ovf_template - handle exception while deploying VM using OVF template.
+- vmware_content_deploy_template - handle exception while deploying VM (https://github.com/ansible-collections/vmware/issues/182).
+- vmware_dvs_portgroup - Added support for distributed port group with private VLAN.
+- vmware_guest_snapshot_info - Document that `folder` is required if the VM `name` is defined (https://github.com/ansible-collections/vmware/issues/243)
+- vmware_host_iscsi - a new module for the ESXi hosts that is dedicated to the management of the iSCSI configuration
+- vmware_migrate_vmk - allow migration from a VMware vSphere Distrubuted Switch to a ESXi Standard Switch
+- vmware_vcenter_settings_info - a new module for gather information about vCenter settings
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- log_plays callback - add missing information to the logs generated by the callback plugin. This changes the log message format (https://github.com/ansible-collections/community.general/pull/442).
+- pkgng - passing ``name: *`` with ``state: absent`` will no longer remove every installed package from the system. It is now a noop. (https://github.com/ansible-collections/community.general/pull/569).
+- pkgng - passing ``name: *`` with ``state: latest`` or ``state: present`` will no longer install every package from the configured package repositories. Instead, ``name: *, state: latest`` will upgrade all already-installed packages, and ``name: *, state: present`` is a noop. (https://github.com/ansible-collections/community.general/pull/569).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_datastore_maintenancemode - now returns ``datastore_status`` instead of Ansible internal key ``results``.
+- vmware_guest_custom_attributes - does not require VM name which was a required parameter for releases prior to Ansible 2.10.
+- vmware_guest_find - the ``datacenter`` option has been removed.
+- vmware_host_kernel_manager - now returns ``host_kernel_status`` instead of Ansible internal key ``results``.
+- vmware_host_ntp - now returns ``host_ntp_status`` instead of Ansible internal key ``results``.
+- vmware_host_service_manager - now returns ``host_service_status`` instead of Ansible internal key ``results``.
+- vmware_tag - now returns ``tag_status`` instead of Ansible internal key ``results``.
+- vmware_vmkernel - the options ``ip_address`` and ``subnet_mask`` have been removed; use the suboptions ``ip_address`` and ``subnet_mask`` of the ``network`` option instead.
+
+Deprecated Features
+-------------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- The ldap_attr module has been deprecated and will be removed in a later release; use ldap_attrs instead.
+- xbps - the ``force`` option never had any effect. It is now deprecated, and will be removed in 3.0.0 (https://github.com/ansible-collections/community.general/pull/568).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- The vmware_dns_config module has been deprecated and will be removed in a later release; use vmware_host_dns instead.
+- vca - vca_fw, vca_nat, vca_app are deprecated since these modules rely on deprecated part of Pyvcloud library.
+- vmware_tag_info - in a later release, the module will not return ``tag_facts`` since it does not return multiple tags with the same name and different category id. To maintain the existing behavior use ``tag_info`` which is a list of tag metadata.
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- conjur_variable lookup - has been moved to the ``cyberark.conjur`` collection. A redirection is active, which will be removed in version 2.0.0 (https://github.com/ansible-collections/community.general/pull/570).
+- digital_ocean_* - all DigitalOcean modules have been moved to the ``community.digitalocean`` collection. A redirection is active, which will be removed in version 2.0.0 (https://github.com/ansible-collections/community.general/pull/622).
+- infini_* - all infinidat modules have been moved to the ``infinidat.infinibox`` collection. A redirection is active, which will be removed in version 2.0.0 (https://github.com/ansible-collections/community.general/pull/607).
+- logicmonitor - the module has been removed in 1.0.0 since it is unmaintained and the API used by the module has been turned off in 2017 (https://github.com/ansible-collections/community.general/issues/539, https://github.com/ansible-collections/community.general/pull/541).
+- logicmonitor_facts - the module has been removed in 1.0.0 since it is unmaintained and the API used by the module has been turned off in 2017 (https://github.com/ansible-collections/community.general/issues/539, https://github.com/ansible-collections/community.general/pull/541).
+- mysql_* - all MySQL modules have been moved to the ``community.mysql`` collection. A redirection is active, which will be removed in version 2.0.0 (https://github.com/ansible-collections/community.general/pull/633).
+- proxysql_* - all ProxySQL modules have been moved to the ``community.proxysql`` collection. A redirection is active, which will be removed in version 2.0.0 (https://github.com/ansible-collections/community.general/pull/624).
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- onyx - all onyx modules and plugins have been moved to the mellanox.onyx collection. Redirects have been added that will be removed in community.network 2.0.0 (https://github.com/ansible-collections/community.network/pull/83).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_portgroup - removed 'inbound_policy', and 'rolling_order' deprecated options.
+
+Bugfixes
+--------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- aix_filesystem - fix issues with ismount module_util pathing for Ansible 2.9 (https://github.com/ansible-collections/community.general/pull/567).
+- consul_kv lookup - fix ``ANSIBLE_CONSUL_URL`` environment variable handling (https://github.com/ansible/ansible/issues/51960).
+- consul_kv lookup - fix arguments handling (https://github.com/ansible-collections/community.general/pull/303).
+- digital_ocean_tag_info - fix crash when querying for an individual tag (https://github.com/ansible-collections/community.general/pull/615).
+- doas become plugin - address a bug with the parameters handling that was breaking the plugin in community.general when ``become_flags`` and ``become_user`` were not explicitly specified (https://github.com/ansible-collections/community.general/pull/704).
+- docker_compose - add a condition to prevent service startup if parameter ``stopped`` is true. Otherwise, the service will be started on each play and stopped again immediately due to the ``stopped`` parameter and breaks the idempotency of the module (https://github.com/ansible-collections/community.general/issues/532).
+- docker_compose - disallow usage of the parameters ``stopped`` and ``restarted`` at the same time. This breaks also the idempotency (https://github.com/ansible-collections/community.general/issues/532).
+- docker_container - use Config MacAddress by default instead of Networks. Networks MacAddress is empty in some cases (https://github.com/ansible/ansible/issues/70206).
+- docker_container - various error fixes in string handling for Python 2 to avoid crashes when non-ASCII characters are used in strings (https://github.com/ansible-collections/community.general/issues/640).
+- docker_swarm - removes ``advertise_addr`` from list of required arguments when ``state`` is ``"join"`` (https://github.com/ansible-collections/community.general/issues/439).
+- dzdo become plugin - address a bug with the parameters handling that was breaking the plugin in community.general when ``become_user`` was not explicitly specified (https://github.com/ansible-collections/community.general/pull/708).
+- filesystem - resizefs of xfs filesystems is fixed. Filesystem needs to be mounted.
+- jenkins_plugin - replace MD5 checksum verification with SHA1 due to MD5 being disabled on systems with FIPS-only algorithms enabled (https://github.com/ansible/ansible/issues/34304).
+- jira - improve error message handling (https://github.com/ansible-collections/community.general/pull/311).
+- jira - improve error message handling with multiple errors (https://github.com/ansible-collections/community.general/pull/707).
+- kubevirt - Add aliases 'interface_name' for network_name (https://github.com/ansible/ansible/issues/55641).
+- nmcli - fix idempotetency when modifying an existing connection (https://github.com/ansible-collections/community.general/issues/481).
+- osx_defaults - fix handling negative integers (https://github.com/ansible-collections/community.general/issues/134).
+- pacman - treat package names containing .zst as package files during installation (https://www.archlinux.org/news/now-using-zstandard-instead-of-xz-for-package-compression/, https://github.com/ansible-collections/community.general/pull/650).
+- pbrun become plugin - address a bug with the parameters handling that was breaking the plugin in community.general when ``become_user`` was not explicitly specified (https://github.com/ansible-collections/community.general/pull/708).
+- postgresql_privs - fix crash when set privileges on schema with hyphen in the name (https://github.com/ansible-collections/community.general/issues/656).
+- postgresql_set - only display a warning about restarts, when restarting is needed (https://github.com/ansible-collections/community.general/pull/651).
+- redfish_info, redfish_config, redfish_command - Fix Redfish response payload decode on Python 3.5 (https://github.com/ansible-collections/community.general/issues/686)
+- selective - mark task failed correctly (https://github.com/ansible/ansible/issues/63767).
+- snmp_facts - skip ``EndOfMibView`` values (https://github.com/ansible/ansible/issues/49044).
+- yarn - fixed an index out of range error when no outdated packages where returned by yarn executable (see https://github.com/ansible-collections/community.general/pull/474).
+- yarn - fixed an too many values to unpack error when scoped packages are installed (see https://github.com/ansible-collections/community.general/pull/474).
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- edgeos_config - Added `cat` command to allow display of large files without `less`. Led to a timeout error. (https://github.com/ansible-collections/community.network/issues/79)
+- edgeos_config - fixed issue where config could be saved while in check mode (https://github.com/ansible-collections/community.network/pull/78)
+- edgeos_facts - Added `cat` command to allow display of large files without `less`. Led to a timeout error. (https://github.com/ansible-collections/community.network/issues/79)
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_content_deploy_ovf_template - use datastore_id in deployment_spec (https://github.com/ansible-collections/vmware/pull/287).
+- vmware_dvs_portgroup_find - Fix comparison between str and int on method vlan_match (https://github.com/ansible-collections/vmware/pull/52).
+- vmware_guest - cdrom.controller_number, cdrom.unit_number are handled as integer. (https://github.com/ansible-collections/vmware/issues/274).
+- vmware_vm_inventory - CustomFieldManager is not present in ESXi, handle this condition (https://github.com/ansible-collections/vmware/issues/269).
+
+New Plugins
+-----------
+
+Inventory
+~~~~~~~~~
+
+- community.general.cobbler - Cobbler inventory source
+
+Lookup
+~~~~~~
+
+- community.general.dsv - Get secrets from Thycotic DevOps Secrets Vault
+- community.general.tss - Get secrets from Thycotic Secret Server
+
+New Modules
+-----------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+Cloud
+^^^^^
+
+Docker
+......
+
+- community.general.docker_stack_info - Return information on a docker stack
+
+Database
+^^^^^^^^
+
+Misc
+....
+
+- community.general.odbc - Execute SQL via ODBC
+
+System
+^^^^^^
+
+- community.general.launchd - Manage macOS services
+
+community.mongodb
+~~~~~~~~~~~~~~~~~
+
+- community.mongodb.mongodb_balancer - Manages the MongoDB Sharded Cluster Balancer.
+- community.mongodb.mongodb_index - Creates or drops indexes on MongoDB collections.
+- community.mongodb.mongodb_info - Gather information about MongoDB instance.
+- community.mongodb.mongodb_maintenance - Enables or disables maintnenance mode for a secondary member.
+- community.mongodb.mongodb_oplog - Resizes the MongoDB oplog.
+- community.mongodb.mongodb_parameter - Change an administrative parameter on a MongoDB server
+- community.mongodb.mongodb_replicaset - Initialises a MongoDB replicaset.
+- community.mongodb.mongodb_shard - Add or remove shards from a MongoDB Cluster
+- community.mongodb.mongodb_shutdown - Cleans up all database resources and then terminates the process.
+- community.mongodb.mongodb_status - Validates the status of the cluster.
+- community.mongodb.mongodb_stepdown - Step down the MongoDB node from a PRIMARY state.
+- community.mongodb.mongodb_user - Adds or removes a user from a MongoDB database
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 1.0.1-dev9)
+- ansible.windows (still version 0.2.0)
+- azure.azcollection (still version 0.3.0)
+- check_point.mgmt (still version 1.0.6)
+- chocolatey.chocolatey (still version 1.0.2)
+- cisco.aci (still version 0.0.7)
+- cisco.meraki (still version 1.3.2)
+- cisco.mso (still version 0.0.8)
+- cisco.ucs (still version 1.4.0)
+- cloudscale_ch.cloud (still version 1.0.0)
+- community.aws (still version 1.0.1-dev1)
+- community.azure (still version 0.1.0)
+- community.crypto (still version 1.0.0)
+- community.digitalocean (still version 0.1.0)
+- community.grafana (still version 0.2.2)
+- community.kubernetes (still version 1.0.0)
+- community.libvirt (still version 0.1.0)
+- community.mysql (still version 0.1.0)
+- community.proxysql (still version 0.1.0)
+- community.rabbitmq (still version 0.1.0)
+- community.windows (still version 0.2.0)
+- community.zabbix (still version 0.3.0)
+- cyberark.conjur (still version 1.0.6)
+- cyberark.pas (still version 1.0.5)
+- f5networks.f5_modules (still version 1.5.0)
+- fortinet.fortios (still version 1.0.13)
+- hetzner.hcloud (still version 0.2.0)
+- ibm.qradar (still version 1.0.2-dev1)
+- infinidat.infinibox (still version 1.2.3)
+- mellanox.onyx (still version 0.1.0)
+- netapp_eseries.santricity (still version 1.0.8)
+- netbox.netbox (still version 0.3.1)
+- ngine_io.cloudstack (still version 0.3.0)
+- ngine_io.exoscale (still version 0.1.1)
+- ngine_io.vultr (still version 0.3.0)
+- openstack.cloud (still version 1.0.1)
+- ovirt.ovirt (still version 1.0.0)
+- purestorage.flasharray (still version 1.3.1)
+- purestorage.flashblade (still version 1.2.6)
+- servicenow.servicenow (still version 1.0.3-dev2)
+- skydive.skydive (still version 0.0.1-dev6)
+- splunk.es (still version 1.0.1-dev1)
+- theforeman.foreman (still version 1.0.1)
+- wti.remote (still version 1.0.1)
+
 v2.10.0a7
 =========
 
@@ -775,7 +1115,7 @@ Changed Collections
 - community.digitalocean was upgraded to version 0.1.0.
   The changes are reported in the combined changelog below.
 - community.general was upgraded from version 0.3.0-experimental.meta.redirects to version 0.3.0-experimental.meta.redirects-3.
-  The changes are reported in the combined changelog below.
+  The collection did not have a changelog in this version.
 - community.mysql was upgraded to version 0.1.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 - community.proxysql was upgraded to version 0.1.0.
@@ -1236,7 +1576,6 @@ community.general
 - ali_instance_info - Add params ``name_prefix``, ``filters``
 - alicloud modules - Add authentication params to all modules
 - alicloud modules - now only support Python 3.6, not support Python 2.x
-- apk - added ``no_cache`` option (https://github.com/ansible-collections/community.general/pull/548).
 - cisco_spark - the module has been renamed to ``cisco_webex`` (https://github.com/ansible-collections/community.general/pull/457).
 - cloudflare_dns - Report unexpected failure with more detail (https://github.com/ansible-collections/community.general/pull/511).
 - database - add support to unique indexes in postgresql_idx
@@ -1303,10 +1642,8 @@ community.general
 - open_iscsi - allow ``portal`` parameter to be a domain name by resolving the portal ip address beforehand (https://github.com/ansible-collections/community.general/pull/461).
 - packet_device - add ``tags`` parameter on device creation (https://github.com/ansible-collections/community.general/pull/418)
 - pacman - Improve package state detection speed: Don't query for full details of a package.
-- parted - accept negative numbers in ``part_start`` and ``part_end``
 - parted - add the ``fs_type`` parameter (https://github.com/ansible-collections/community.general/issues/135).
 - pear - added ``prompts`` parameter to allow users to specify expected prompt that could hang Ansible execution (https://github.com/ansible-collections/community.general/pull/530).
-- pkgng - added ``stdout`` and ``stderr`` attributes to the result (https://github.com/ansible-collections/community.general/pull/560).
 - postgresql_copy - add the ``trust_input`` parameter (https://github.com/ansible-collections/community.general/pull/313).
 - postgresql_db - add ``dump_extra_args`` parameter (https://github.com/ansible/ansible/pull/66717).
 - postgresql_db - add support for .pgc file format for dump and restores.
@@ -1522,7 +1859,6 @@ community.general
 - redfish_config - the ``bios_attribute_name`` and ``bios_attribute_value`` options will be removed. To maintain the existing behavior use the ``bios_attributes`` option instead.
 - redfish_config and redfish_command - the behavior to select the first System, Manager, or Chassis resource to modify when multiple are present will be removed. Use the new ``resource_id`` option to specify target resource to modify.
 - redfish_config, redfish_command - Behavior to modify the first System, Mananger, or Chassis resource when multiple are present is deprecated. Use the new ``resource_id`` option to specify target resource to modify.
-- xbps - the ``force`` option never had any effect. It is now deprecated, and will be removed in 3.0.0 (https://github.com/ansible-collections/community.general/pull/568).
 - zabbix_proxy - deprecates ``interface`` sub-options ``type`` and ``main`` when proxy type is set to passive via ``status=passive``. Make sure these suboptions are removed from your playbook as they were never supported by Zabbix in the first place.
 
 community.vmware
@@ -1547,8 +1883,6 @@ community.general
 ~~~~~~~~~~~~~~~~~
 
 - core - remove support for ``check_invalid_arguments`` in ``UTMModule``.
-- logicmonitor - the module has been removed in 1.0.0 since it is unmaintained and the API used by the module has been turned off in 2017 (https://github.com/ansible-collections/community.general/issues/539, https://github.com/ansible-collections/community.general/pull/541).
-- logicmonitor_facts - the module has been removed in 1.0.0 since it is unmaintained and the API used by the module has been turned off in 2017 (https://github.com/ansible-collections/community.general/issues/539, https://github.com/ansible-collections/community.general/pull/541).
 - pacman - Removed deprecated ``recurse`` option, use ``extra_args=--recursive`` instead
 
 community.vmware
@@ -1972,13 +2306,10 @@ community.general
 - Run command in absent state in atomic_image module.
 - While deleting gitlab user, name, email and password is no longer required ini gitlab_user module (https://github.com/ansible/ansible/issues/61921).
 - airbrake_deployment - Allow deploy notifications for Airbrake compatible v2 api (e.g. Errbit)
-- aix_filesystem - fix issues with ismount module_util pathing for Ansible 2.9 (https://github.com/ansible-collections/community.general/pull/567).
 - apt_rpm - fix ``package`` type from ``str`` to ``list`` to fix invoking with list of packages (https://github.com/ansible-collections/community.general/issues/143).
 - archive - make module compatible with older Ansible versions (https://github.com/ansible-collections/community.general/pull/306).
 - become - Fix various plugins that still used play_context to get the become password instead of through the plugin - https://github.com/ansible/ansible/issues/62367
 - cloudflare_dns - fix KeyError 'success' (https://github.com/ansible-collections/community.general/issues/236).
-- consul_kv lookup - fix ``ANSIBLE_CONSUL_URL`` environment variable handling (https://github.com/ansible/ansible/issues/51960).
-- consul_kv lookup - fix arguments handling (https://github.com/ansible-collections/community.general/pull/303).
 - cronvar - only run ``get_bin_path()`` once
 - cronvar - use correct binary name (https://github.com/ansible/ansible/issues/63274)
 - cronvar - use get_bin_path utility to locate the default crontab executable instead of the hardcoded /usr/bin/crontab. (https://github.com/ansible/ansible/pull/59765)
@@ -1988,8 +2319,6 @@ community.general
 - dense callback - fix plugin access to its configuration variables and remove a warning message (https://github.com/ansible/ansible/issues/64628).
 - digital_ocean_droplet - Fix creation of DigitalOcean droplets using digital_ocean_droplet module (https://github.com/ansible/ansible/pull/61655)
 - docker connection plugin - do not prefix remote path if running on Windows containers.
-- docker_compose - add a condition to prevent service startup if parameter ``stopped`` is true. Otherwise, the service will be started on each play and stopped again immediately due to the ``stopped`` parameter and breaks the idempotency of the module (https://github.com/ansible-collections/community.general/issues/532).
-- docker_compose - disallow usage of the parameters ``stopped`` and ``restarted`` at the same time. This breaks also the idempotency (https://github.com/ansible-collections/community.general/issues/532).
 - docker_compose - fix issue where docker deprecation warning results in ansible erroneously reporting a failure
 - docker_container - fix idempotency for IP addresses for networks. The old implementation checked the effective IP addresses assigned by the Docker daemon, and not the specified ones. This causes idempotency issues for containers which are not running, since they have no effective IP addresses assigned.
 - docker_container - fix network idempotence comparison error.
@@ -2012,7 +2341,6 @@ community.general
 - docker_swarm_service - ``source`` must no longer be specified for ``tmpfs`` mounts.
 - docker_swarm_service - fix task always reporting as changed when using ``healthcheck.start_period``.
 - docker_swarm_service - passing ``test: [NONE]`` now actually disables the image's healthcheck, as documented.
-- filesystem - resizefs of xfs filesystems is fixed. Filesystem needs to be mounted.
 - firewalld - enable the firewalld module to function offline with firewalld version 0.7.0 and newer (https://github.com/ansible/ansible/issues/63254)
 - flatpak and flatpak_remote - fix command line construction to build commands as lists instead of strings.
 - gcp_storage_file lookup - die gracefully when the ``google.cloud`` collection is not installed, or changed in an incompatible way.
@@ -2840,7 +3168,7 @@ Included Collections
 - community.libvirt with version 0.1.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 - community.mongodb with version 0.1.2.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The collection did not have a changelog in this version.
 - community.network with version 0.1.0.
   The collection did not have a changelog in this version.
 - community.rabbitmq with version 0.1.0.
