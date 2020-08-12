@@ -1268,7 +1268,7 @@ Changed Collections
 - containers.podman was upgraded from version 1.0.3 to version 1.0.4.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 - cyberark.conjur was upgraded to version 1.0.6.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`_.
 - fortinet.fortios was upgraded from version 1.0.9 to version 1.0.13.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 - frr.frr was upgraded from version 0.0.2 to version 1.0.1-dev1.
