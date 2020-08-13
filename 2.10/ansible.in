@@ -43,6 +43,7 @@ f5networks.f5_modules
 fortinet.fortimanager
 fortinet.fortios
 frr.frr
+gluster.gluster
 google.cloud
 hetzner.hcloud
 ibm.qradar
