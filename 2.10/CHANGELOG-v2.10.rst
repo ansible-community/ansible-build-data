@@ -3930,8 +3930,6 @@ Included Collections
 Major Changes
 -------------
 
-- amazon.aws.ec2 module_utils: The ``AWSRetry`` decorator no longer catches ``NotFound`` exceptions by default.  ``NotFound`` exceptions need to be explicitly added using ``catch_extra_error_codes``.  Some AWS modules may see an increase in transient failures due to AWS's eventual consistency model.
-
 community.kubernetes
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -3963,49 +3961,23 @@ community.kubernetes
 Breaking Changes / Porting Guide
 --------------------------------
 
-- amazon.aws.aws_s3 - can now delete versioned buckets even when they are not empty - set mode to delete to delete a versioned bucket and everything in it.
 - ansible.windows.win_find - module has been refactored to better match the behaviour of the ``find`` module. Here is what has changed:
     * When the directory specified by ``paths`` does not exist or is a file, it will no longer fail and will just warn the user
     * Junction points are no longer reported as ``islnk``, use ``isjunction`` to properly report these files. This behaviour matches the ansible.windows.win_stat module
     * Directories no longer return a ``size``, this matches the ``stat`` and ``find`` behaviour and has been removed due to the difficulties in correctly reporting the size of a directory
 - cisco.nxos.nxos_igmp_interface - no longer supports the deprecated ``oif_prefix`` and ``oif_source`` options. These have been superceeded by ``oif_ps``.
 - community.grafana.grafana_dashboard - the parameter ``message`` is renamed to ``commit_message`` since ``message`` is used by Ansible Core engine internally.
-- community.vmware.vmware_datastore_maintenancemode - now returns ``datastore_status`` instead of Ansible internal key ``results``.
-- community.vmware.vmware_guest_custom_attributes - does not require VM name which was a required parameter for releases prior to Ansible 2.10.
-- community.vmware.vmware_guest_find - the ``datacenter`` option has been removed.
-- community.vmware.vmware_host_kernel_manager - now returns ``host_kernel_status`` instead of Ansible internal key ``results``.
-- community.vmware.vmware_host_ntp - now returns ``host_ntp_status`` instead of Ansible internal key ``results``.
-- community.vmware.vmware_host_service_manager - now returns ``host_service_status`` instead of Ansible internal key ``results``.
-- community.vmware.vmware_tag - now returns ``tag_status`` instead of Ansible internal key ``results``.
-- community.vmware.vmware_vmkernel - the options ``ip_address`` and ``subnet_mask`` have been removed; use the suboptions ``ip_address`` and ``subnet_mask`` of the ``network`` option instead.
 - community.windows.win_pester - no longer runs all ``*.ps1`` file in the directory specified due to it executing potentially unknown scripts. It will follow the default behaviour of only running tests for files that are like ``*.tests.ps1`` which is built into Pester itself.
 - purestorage.flashblade.purefb_fs - no longer supports the deprecated ``nfs`` option. This has been superceeded by ``nfsv3``.
 
 Deprecated Features
 -------------------
 
-- The community.vmware.vmware_dns_config module has been deprecated and will be removed in a later release; use community.vmware.vmware_host_dns instead.
 - The vyos.vyos.vyos_static_route module has been deprecated and will be removed in a later release; use vyos.vyos.vyos_static_routes instead.
-- amazon.aws.cloudformation - the ``template_format`` option has been deprecated and will be removed in a later release. It has been ignored by the module since Ansible 2.3.
-- amazon.aws.ec2 - in a later release, the ``group`` and ``group_id`` options will become mutually exclusive.  Currently ``group_id`` is ignored if you pass both.
-- amazon.aws.ec2_key - the ``wait_timeout`` option has been deprecated and will be removed in a later release. It has had no effect since Ansible 2.5.
-- amazon.aws.ec2_key - the ``wait`` option has been deprecated and will be removed in a later release. It has had no effect since Ansible 2.5.
-- amazon.aws.ec2_tag - support for ``list`` as a state has been deprecated and will be removed in a later release.  The ``ec2_tag_info`` can be used to fetch the tags on an EC2 resource.
 - ansible.windows.win_domain_controller - the ``log_path`` option has been deprecated and will be removed in a later release. This was undocumented and only related to debugging information for module development.
 - ansible.windows.win_package - the ``ensure`` alias for the ``state`` option has been deprecated and will be removed in a later release. Please use ``state`` instead of ``ensure``.
 - ansible.windows.win_package - the ``productid`` alias for the ``product_id`` option has been deprecated and will be removed in a later release. Please use ``product_id`` instead of ``productid``.
 - ansible.windows.win_package - the ``username`` and ``password`` options has been deprecated and will be removed in a later release. The same functionality can be done by using ``become: yes`` and ``become_flags: logon_type=new_credentials logon_flags=netcredentials_only`` on the task.
-- community.aws.data_pipeline - the ``version`` option has been deprecated and will be removed in a later release. It has always been ignored by the module.
-- community.aws.ec2_eip - the ``wait_timeout`` option has been deprecated and will be removed in a later release. It has had no effect since Ansible 2.3.
-- community.aws.ec2_lc - the ``associate_public_ip_address`` option has been deprecated and will be removed in a later release. It has always been ignored by the module.
-- community.aws.elb_network_lb - in a later release, the default behaviour for the ``state`` option will change from ``absent`` to ``present``.  To maintain the existing behavior explicitly set state to ``absent``.
-- community.aws.iam_managed_policy - the ``fail_on_delete`` option has been deprecated and will be removed in a later release.  It has always been ignored by the module.
-- community.aws.iam_policy - in a later release, the default value for the ``skip_duplicates`` option will change from ``true`` to ``false``.  To maintain the existing behavior explicitly set it to ``true``.
-- community.aws.iam_policy - the ``policy_document`` option has been deprecated and will be removed in a later release. To maintain the existing behavior use the ``policy_json`` option and read the file with the ``lookup`` plugin.
-- community.aws.iam_role - in a later release, the ``purge_policies`` option (also know as ``purge_policy``) default value will change from ``true`` to ``false``
-- community.aws.s3_lifecycle - the ``requester_pays`` option has been deprecated and will be removed in a later release. It has always been ignored by the module.
-- community.aws.s3_sync - the ``retries`` option has been deprecated and will be removed in a later release. It has always been ignored by the module.
-- community.vmware.vmware_tag_info - in a later release, the module will not return ``tag_facts`` since it does not return multiple tags with the same name and different category id. To maintain the existing behavior use ``tag_info`` which is a list of tag metadata.
 
 Removed Features (previously deprecated)
 ----------------------------------------
