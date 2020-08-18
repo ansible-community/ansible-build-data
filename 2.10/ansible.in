@@ -30,6 +30,7 @@ community.mysql
 community.network
 community.proxysql
 community.rabbitmq
+community.skydive
 community.vmware
 community.windows
 community.zabbix
@@ -65,7 +66,6 @@ ovirt.ovirt
 purestorage.flasharray
 purestorage.flashblade
 servicenow.servicenow
-skydive.skydive
 splunk.es
 theforeman.foreman
 vyos.vyos
