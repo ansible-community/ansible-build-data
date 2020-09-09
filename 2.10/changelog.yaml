@@ -94,3 +94,10 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2020-09-01'
+  2.10.0b2:
+    changes:
+      release_summary: 'Release Date: 2020-09-08
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2020-09-08'

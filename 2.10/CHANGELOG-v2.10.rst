@@ -8,6 +8,152 @@ This changelog describes changes since Ansible 2.9.0.
   :local:
   :depth: 2
 
+v2.10.0b2
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2020-09-08
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-base
+------------
+
+Ansible 2.10.0b2 contains Ansible-base version 2.10.1rc3.
+This is a newer version than version 2.10.1rc2 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+- ansible.netcommon was upgraded from version 1.2.0 to version 1.2.1.
+  The changes are reported in the combined changelog below.
+- ansible.posix was upgraded from version 1.1.0 to version 1.1.1.
+  The changes are reported in the combined changelog below.
+- ibm.qradar was upgraded from version 1.0.2 to version 1.0.3.
+  There are no changes recorded in the changelog.
+- ovirt.ovirt was upgraded from version 1.1.2 to version 1.1.3.
+  The changes are reported in the combined changelog below.
+- splunk.es was upgraded from version 1.0.1 to version 1.0.2.
+  There are no changes recorded in the changelog.
+
+Minor Changes
+-------------
+
+Ansible-base
+~~~~~~~~~~~~
+
+- ansible-test - Add ``macos/10.15`` as a supported value for the ``--remote`` option.
+- ansible-test - Allow custom ``--remote-stage`` options for development and testing.
+- ansible-test - Fix ``ansible-test coverage`` reporting sub-commands (``report``, ``html``, ``xml``) on Python 2.6.
+- ansible-test - Remove the discontinued ``us-east-2`` choice from the ``--remote-aws-region`` option.
+- ansible-test - Request remote resources by provider name for all provider types.
+- ansible-test - Show a warning when the obsolete ``--remote-aws-region`` option is used.
+- ansible-test - Support custom remote endpoints with the ``--remote-endpoint`` option.
+- ansible-test - Update built-in service endpoints for the ``--remote`` option.
+- ansible-test - Use new endpoint for Parallels based instances with the ``--remote`` option.
+- ansible-test - default container now uses default-test-container 2.7.0 and ansible-base-test-container 1.6.0. This brings in Python 3.9.0rc1 for testing.
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- skippy - fixed the deprecation warning (by date) for skippy callback plugin
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- Add GPL license (https://github.com/oVirt/ovirt-ansible-collection/pull/101).
+
+Bugfixes
+--------
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- Fixed "Object of type Capabilities is not JSON serializable" when using default netconf plugin.
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- Fix synchronize to work with renamed docker and buildah connection plugins.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 1.2.0)
+- ansible.windows (still version 1.0.0)
+- arista.eos (still version 1.0.3)
+- awx.awx (still version 14.1.0)
+- azure.azcollection (still version 1.0.0)
+- check_point.mgmt (still version 1.0.6)
+- chocolatey.chocolatey (still version 1.0.2)
+- cisco.aci (still version 1.0.0)
+- cisco.asa (still version 1.0.3)
+- cisco.intersight (still version 1.0.8)
+- cisco.ios (still version 1.0.3)
+- cisco.iosxr (still version 1.0.5)
+- cisco.meraki (still version 2.0.0)
+- cisco.mso (still version 1.0.0)
+- cisco.nxos (still version 1.1.0)
+- cisco.ucs (still version 1.5.0)
+- cloudscale_ch.cloud (still version 1.1.0)
+- community.aws (still version 1.2.0)
+- community.azure (still version 1.0.0)
+- community.crypto (still version 1.1.0)
+- community.digitalocean (still version 1.0.0)
+- community.general (still version 1.1.0)
+- community.grafana (still version 1.0.0)
+- community.kubernetes (still version 1.0.0)
+- community.libvirt (still version 1.0.0)
+- community.mongodb (still version 1.0.0)
+- community.mysql (still version 1.0.0)
+- community.network (still version 1.1.0)
+- community.proxysql (still version 1.0.0)
+- community.rabbitmq (still version 1.0.1)
+- community.skydive (still version 1.0.0)
+- community.vmware (still version 1.2.0)
+- community.windows (still version 1.0.0)
+- community.zabbix (still version 1.0.0)
+- containers.podman (still version 1.2.0)
+- cyberark.conjur (still version 1.0.7)
+- cyberark.pas (still version 1.0.5)
+- dellemc.os10 (still version 1.0.1)
+- dellemc.os6 (still version 1.0.2)
+- dellemc.os9 (still version 1.0.2)
+- f5networks.f5_modules (still version 1.5.0)
+- fortinet.fortimanager (still version 1.0.5)
+- fortinet.fortios (still version 1.0.15)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.1)
+- google.cloud (still version 1.0.0)
+- hetzner.hcloud (still version 1.0.0)
+- infinidat.infinibox (still version 1.2.3)
+- junipernetworks.junos (still version 1.1.0)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 20.8.0)
+- netapp.elementsw (still version 20.8.0)
+- netapp.ontap (still version 20.8.0)
+- netapp_eseries.santricity (still version 1.0.8)
+- netbox.netbox (still version 1.0.2)
+- ngine_io.cloudstack (still version 1.0.1)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.0.0)
+- openstack.cloud (still version 1.1.0)
+- openvswitch.openvswitch (still version 1.0.5)
+- purestorage.flasharray (still version 1.4.0)
+- purestorage.flashblade (still version 1.3.0)
+- servicenow.servicenow (still version 1.0.2)
+- theforeman.foreman (still version 1.1.0)
+- vyos.vyos (still version 1.0.4)
+- wti.remote (still version 1.0.1)
+
 v2.10.0b1
 =========
 
@@ -48,7 +194,7 @@ Changed Collections
 - ansible.netcommon was upgraded from version 1.1.3-dev3 to version 1.2.0.
   The changes are reported in the combined changelog below.
 - ansible.posix was upgraded from version 1.1.1-dev9 to version 1.1.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The collection did not have a changelog in this version.
 - ansible.windows was upgraded from version 0.2.0 to version 1.0.0.
   The changes are reported in the combined changelog below.
 - arista.eos was upgraded from version 1.0.3-dev1 to version 1.0.3.
@@ -124,7 +270,7 @@ Changed Collections
 - gluster.gluster was upgraded from version 1.0.0 to version 1.0.1.
   The collection did not have a changelog in this version.
 - ibm.qradar was upgraded from version 1.0.2-dev1 to version 1.0.2.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  There are no changes recorded in the changelog.
 - junipernetworks.junos was upgraded from version 1.0.1 to version 1.1.0.
   The changes are reported in the combined changelog below.
 - mellanox.onyx was upgraded from version 0.1.0 to version 1.0.0.
@@ -146,7 +292,7 @@ Changed Collections
 - servicenow.servicenow was upgraded from version 1.0.3-dev2 to version 1.0.2.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 - splunk.es was upgraded from version 1.0.1-dev1 to version 1.0.1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  There are no changes recorded in the changelog.
 - theforeman.foreman was upgraded from version 1.0.1 to version 1.1.0.
   The changes are reported in the combined changelog below.
 - vyos.vyos was upgraded from version 1.0.4-dev1 to version 1.0.4.
@@ -1345,7 +1491,7 @@ Changed Collections
 - ansible.netcommon was upgraded from version 1.1.0 to version 1.1.1.
   The changes are reported in the combined changelog below.
 - ansible.posix was upgraded from version 1.1.1-dev4 to version 1.1.1-dev9.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The collection did not have a changelog in this version.
 - arista.eos was upgraded from version 1.0.1-dev9 to version 1.0.1.
   The changes are reported in the combined changelog below.
 - awx.awx was upgraded from version 13.0.0 to version 14.0.0.
@@ -2352,7 +2498,7 @@ Changed Collections
 -------------------
 
 - ansible.posix was upgraded from version 1.0.1-dev8 to version 1.1.1-dev4.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The changes are reported in the combined changelog below.
 - ansible.windows was upgraded from version 0.0.1-beta.3 to version 0.2.0.
   The changes are reported in the combined changelog below.
 - azure.azcollection was upgraded from version 0.2.0 to version 0.3.0.
@@ -2384,6 +2530,11 @@ Changed Collections
 
 Minor Changes
 -------------
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- firewalld - add firewalld module to ansible.posix collection
 
 ansible.windows
 ~~~~~~~~~~~~~~~
@@ -2636,7 +2787,7 @@ Changed Collections
 - ansible.netcommon was upgraded from version 1.0.1-dev4 to version 1.0.1-dev8.
   The collection did not have a changelog in this version.
 - ansible.posix was upgraded from version 1.0.1-dev2 to version 1.0.1-dev8.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The collection did not have a changelog in this version.
 - arista.eos was upgraded from version 1.0.1-dev3 to version 1.0.1-dev9.
   The collection did not have a changelog in this version.
 - cisco.asa was upgraded from version 1.0.1-dev2 to version 1.0.1-dev3.
@@ -2660,7 +2811,7 @@ Changed Collections
 - containers.podman was upgraded from version 1.0.4 to version 1.0.5.
   The changes are reported in the combined changelog below.
 - ibm.qradar was upgraded from version 1.0.1 to version 1.0.2-dev1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The collection did not have a changelog in this version.
 - infinidat.infinibox was upgraded to version 1.2.3.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 - junipernetworks.junos was upgraded from version 1.0.1-dev4 to version 1.0.1-dev6.
@@ -2674,7 +2825,7 @@ Changed Collections
 - purestorage.flashblade was upgraded from version 1.2.4 to version 1.2.6.
   The collection did not have a changelog in this version.
 - splunk.es was upgraded from version 1.0.0 to version 1.0.1-dev1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The collection did not have a changelog in this version.
 
 Minor Changes
 -------------
@@ -2871,7 +3022,7 @@ Changed Collections
 - ansible.netcommon was upgraded from version 0.0.3 to version 1.0.1-dev4.
   The changes are reported in the combined changelog below.
 - ansible.posix was upgraded from version 0.1.4-dev9 to version 1.0.1-dev2.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The changes are reported in the combined changelog below.
 - arista.eos was upgraded from version 0.0.3-dev81 to version 1.0.1-dev3.
   The changes are reported in the combined changelog below.
 - awx.awx was upgraded from version 12.0.0 to version 13.0.0.
@@ -2921,7 +3072,7 @@ Changed Collections
 - hetzner.hcloud was upgraded to version 0.2.0.
   The changes are reported in the combined changelog below.
 - ibm.qradar was upgraded from version 0.0.9-dev4 to version 1.0.1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The changes are reported in the combined changelog below.
 - junipernetworks.junos was upgraded from version 0.0.4-dev9 to version 1.0.1-dev4.
   The changes are reported in the combined changelog below.
 - mellanox.onyx was upgraded to version 0.1.0.
@@ -2943,7 +3094,7 @@ Changed Collections
 - servicenow.servicenow was upgraded from version 1.0.2 to version 1.0.3-dev2.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 - splunk.es was upgraded from version 0.0.3-dev1 to version 1.0.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The changes are reported in the combined changelog below.
 - theforeman.foreman was upgraded from version 0.8.1 to version 1.0.1.
   The changes are reported in the combined changelog below.
 - vyos.vyos was upgraded from version 0.0.4-dev9 to version 1.0.2-dev2.
@@ -2962,6 +3113,11 @@ Ansible-base
 - Routing data built into Ansible 2.10 ensures that 2.9 content should work unmodified on 2.10. Formerly included modules and plugins that were moved to collections are still accessible by their original unqualified names, so long as their destination collections are installed.
 - When deprecations are done in code, they to specify a ``collection_name`` so that deprecation warnings can mention which collection - or ansible-base - is deprecating a feature. This affects all ``Display.deprecated()`` or ``AnsibleModule.deprecate()`` or ``Ansible.Basic.Deprecate()`` calls, and ``removed_in_version``/``removed_at_date`` or ``deprecated_aliases`` in module argument specs.
 - ansible-test now uses a different ``default`` test container for Ansible Collections
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- Bootstrap Collection (https://github.com/ansible-collections/ansible.posix/pull/1).
 
 community.general
 ~~~~~~~~~~~~~~~~~
@@ -3167,6 +3323,20 @@ Ansible-base
 - win_package - Read uninstall strings from the ``QuietUninstallString`` if present to better support argumentless uninstalls of registry based packages.
 - win_package - Scan packages in the current user's registry hive - https://github.com/ansible/ansible/issues/45950
 - windows collections - Support relative module util imports in PowerShell modules and module_utils
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- CI should use devel (https://github.com/ansible-collections/ansible.posix/pull/6).
+- Enable tests for at, patch and synchronize modules (https://github.com/ansible-collections/ansible.posix/pull/5).
+- Enabled tags in galaxy.yml (https://github.com/ansible-collections/ansible.posix/issues/18).
+- Migrate hacking/cgroup_perf_recap_graph.py to this collection, since the cgroup_perf_recap callback lives here.
+- Remove license key from galaxy.yml.
+- Remove sanity jobs from shippable (https://github.com/ansible-collections/ansible.posix/pull/43).
+- Removed ANSIBLE_METADATA from all the modules.
+- Revert "Enable at, patch and synchronize tests (https://github.com/ansible-collections/ansible.posix/pull/5)".
+- Update EXAMPLES section in modules to use FQCN.
+- Update README.md (https://github.com/ansible-collections/ansible.posix/pull/4/).
 
 cisco.iosxr
 ~~~~~~~~~~~
@@ -3974,6 +4144,22 @@ Ansible-base
 - yum - yum tasks can no longer end up running non-yum modules
 - yum/dnf - check type of elements in a name
 
+ansible.posix
+~~~~~~~~~~~~~
+
+- Allow unsetting existing environment vars via environment by specifying a null value (https://github.com/ansible/ansible/pull/68236).
+- Mount - Handle remount with new options (https://github.com/ansible/ansible/issues/59460).
+- Profile_tasks - result was a odict_items which is not subscriptable, so the slicing was failing (https://github.com/ansible/ansible/issues/59059).
+- Revert "mount - Check if src exists before mounted (ansible/ansible#61752)".
+- Typecast results before use in profile_tasks callback (https://github.com/ansible/ansible/issues/69563).
+- authorized_keys - Added FIDO2 security keys (https://github.com/ansible-collections/ansible.posix/issues/17).
+- authorized_keys - fix inconsistent return value for check mode (https://github.com/ansible-collections/ansible.posix/issues/37)
+- json callback - Fix host result to task references in the resultant JSON output for non-lockstep strategy plugins such as free (https://github.com/ansible/ansible/issues/65931)
+- mount - fix issues with ismount module_util pathing for Ansible 2.9 (fixes https://github.com/ansible-collections/ansible.posix/issues/21)
+- patch - fix FQCN usage for action plugin (https://github.com/ansible-collections/ansible.posix/issues/11)
+- selinux - add missing configuration keys for /etc/selinux/config (https://github.com/ansible-collections/ansible.posix/issues/23)
+- synchronize - fix FQCN usage for action plugin (https://github.com/ansible-collections/ansible.posix/issues/11)
+
 cisco.iosxr
 ~~~~~~~~~~~
 
@@ -4368,6 +4554,19 @@ ansible.netcommon
 - ansible.netcommon.restconf_config - Handles create, update, read and delete of configuration data on RESTCONF enabled devices.
 - ansible.netcommon.restconf_get - Fetch configuration/state data from RESTCONF enabled devices.
 - ansible.netcommon.telnet - Executes a low-down and dirty telnet command
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- ansible.posix.acl - Set and retrieve file ACL information.
+- ansible.posix.at - Schedule the execution of a command or script file via the at command
+- ansible.posix.authorized_key - Adds or removes an SSH authorized key
+- ansible.posix.mount - Control active and configured mount points
+- ansible.posix.patch - Apply patch files using the GNU patch tool
+- ansible.posix.seboolean - Toggles SELinux booleans
+- ansible.posix.selinux - Change policy and state of SELinux
+- ansible.posix.synchronize - A wrapper around rsync to make common tasks in your playbooks quick and easy
+- ansible.posix.sysctl - Manage entries in sysctl.conf.
 
 arista.eos
 ~~~~~~~~~~
@@ -4899,6 +5098,17 @@ hetzner.hcloud
 - hetzner.hcloud.hcloud_load_balancer_target - Manage Hetzner Cloud Load Balancer targets
 - hetzner.hcloud.hcloud_load_balancer_type_info - Gather infos about the Hetzner Cloud Load Balancer types.
 
+ibm.qradar
+~~~~~~~~~~
+
+- ibm.qradar.ibm.qradar.deploy - Trigger a qradar configuration deployment
+- ibm.qradar.ibm.qradar.log_source_management - Manage Log Sources in QRadar
+- ibm.qradar.ibm.qradar.offense_action - Take action on a QRadar Offense
+- ibm.qradar.ibm.qradar.offense_info - Obtain information about one or many QRadar Offenses, with filter options
+- ibm.qradar.ibm.qradar.offense_note - Create or update a QRadar Offense Note
+- ibm.qradar.ibm.qradar.rule - Manage state of QRadar Rules, with filter options
+- ibm.qradar.ibm.qradar.rule_info - Obtain information about one or many QRadar Rules, with filter options
+
 junipernetworks.junos
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -4967,6 +5177,15 @@ openvswitch.openvswitch
 - openvswitch.openvswitch.openvswitch_bridge - Manage Open vSwitch bridges
 - openvswitch.openvswitch.openvswitch_db - Configure open vswitch database.
 - openvswitch.openvswitch.openvswitch_port - Manage Open vSwitch ports
+
+splunk.es
+~~~~~~~~~
+
+- splunk.es.splunk.es.adaptive_response_notable_event - Manage Splunk Enterprise Security Notable Event Adaptive Responses
+- splunk.es.splunk.es.correlation_search - Manage Splunk Enterprise Security Correlation Searches
+- splunk.es.splunk.es.correlation_search_info - Manage Splunk Enterprise Security Correlation Searches
+- splunk.es.splunk.es.data_input_monitor - Manage Splunk Data Inputs of type Monitor
+- splunk.es.splunk.es.data_input_network - Manage Splunk Data Inputs of type TCP or UDP
 
 theforeman.foreman
 ~~~~~~~~~~~~~~~~~~
@@ -5111,7 +5330,7 @@ Included Collections
 - ansible.netcommon with version 0.0.3.
   The collection did not have a changelog in this version.
 - ansible.posix with version 0.1.4-dev9.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The collection did not have a changelog in this version.
 - ansible.windows with version 0.0.1-beta.3.
   The collection did not have a changelog in this version.
 - arista.eos with version 0.0.3-dev81.
@@ -5187,7 +5406,7 @@ Included Collections
 - google.cloud with version 0.0.9.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 - ibm.qradar with version 0.0.9-dev4.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The collection did not have a changelog in this version.
 - junipernetworks.junos with version 0.0.4-dev9.
   The collection did not have a changelog in this version.
 - netapp.aws with version 20.6.0.
@@ -5219,7 +5438,7 @@ Included Collections
 - skydive.skydive with version 0.0.1-dev6.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 - splunk.es with version 0.0.3-dev1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The collection did not have a changelog in this version.
 - theforeman.foreman with version 0.8.1.
   The collection did not have a changelog in this version.
 - vyos.vyos with version 0.0.4-dev9.
