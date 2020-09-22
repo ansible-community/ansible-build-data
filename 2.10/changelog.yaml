@@ -111,7 +111,7 @@ releases:
   2.10.0:
     changes:
       known_issues:
-        - "Due to a limitation in pip, you cannot ``pip install --upgrade`` from ansible-2.9 or earlier to ansible-2.10 or higher. Instead, you must explicitly use ``pip uninstall ansible`` before pip installing the new version. The install of the ansible package has been modified to warn you if you attempt to upgrade via pip with instructions to uninstall first."
+        - "Due to a limitation in pip, you cannot ``pip install --upgrade`` from ansible-2.9 or earlier to ansible-2.10 or higher. Instead, you must explicitly use ``pip uninstall ansible`` before pip installing the new version. If you attempt to upgrade Ansible with pip without first uninstalling, the installer warns you to uninstall first."
         - |
             The individual collections that make up the ansible-2.10.0 package can be viewed independently. However, they aren't currently listed by ansible-galaxy. A workaround for this is to explicitly specify where ansible has installed the collections -- ``COLLECTION_INSTALL=$(python -c 'import ansible, os.path ; print("%s/../ansible_collections" % os.path.dirname(ansible.__file__))') ansible-galaxy collection list -p "$COLLECTION_INSTALL"``.
         - |
