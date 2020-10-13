@@ -530,12 +530,6 @@ New Modules
 arista.eos
 ~~~~~~~~~~
 
-
-
-
-Ansible.Collections.Ansible Collections.Arista.Eos.Plugins.Modules
-..................................................................
-
 - arista.eos.eos_ospfv3 - OSPFv3 resource module
 
 cisco.ios
