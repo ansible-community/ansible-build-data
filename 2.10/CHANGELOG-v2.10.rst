@@ -8,6 +8,651 @@ This changelog describes changes since Ansible 2.9.0.
   :local:
   :depth: 2
 
+v2.10.1
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2020-10-13
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-base
+------------
+
+Ansible 2.10.1 contains Ansible-base version 2.10.2.
+This is a newer version than version 2.10.1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+- amazon.aws was upgraded from version 1.2.0 to version 1.2.1.
+  The changes are reported in the combined changelog below.
+- ansible.netcommon was upgraded from version 1.2.1 to version 1.3.0.
+  The changes are reported in the combined changelog below.
+- ansible.windows was upgraded from version 1.0.0 to version 1.0.1.
+  The changes are reported in the combined changelog below.
+- arista.eos was upgraded from version 1.0.3 to version 1.1.0.
+  The changes are reported in the combined changelog below.
+- azure.azcollection was upgraded from version 1.0.0 to version 1.2.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- cisco.ios was upgraded from version 1.0.3 to version 1.1.0.
+  The changes are reported in the combined changelog below.
+- cisco.iosxr was upgraded from version 1.0.5 to version 1.1.0.
+  The changes are reported in the combined changelog below.
+- cisco.nxos was upgraded from version 1.1.0 to version 1.2.0.
+  The changes are reported in the combined changelog below.
+- cloudscale_ch.cloud was upgraded from version 1.1.0 to version 1.2.0.
+  The changes are reported in the combined changelog below.
+- community.aws was upgraded from version 1.2.0 to version 1.2.1.
+  The changes are reported in the combined changelog below.
+- community.crypto was upgraded from version 1.1.1 to version 1.2.0.
+  The changes are reported in the combined changelog below.
+- community.general was upgraded from version 1.1.0 to version 1.2.0.
+  The changes are reported in the combined changelog below.
+- community.kubernetes was upgraded from version 1.0.0 to version 1.1.1.
+  The changes are reported in the combined changelog below.
+- community.mysql was upgraded from version 1.0.0 to version 1.1.0.
+  The changes are reported in the combined changelog below.
+- community.network was upgraded from version 1.1.0 to version 1.2.0.
+  The changes are reported in the combined changelog below.
+- community.vmware was upgraded from version 1.2.0 to version 1.3.0.
+  The changes are reported in the combined changelog below.
+- community.windows was upgraded from version 1.0.0 to version 1.1.0.
+  The changes are reported in the combined changelog below.
+- containers.podman was upgraded from version 1.2.0 to version 1.3.1.
+  The changes are reported in the combined changelog below.
+- google.cloud was upgraded from version 1.0.0 to version 1.0.1.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- hetzner.hcloud was upgraded from version 1.0.0 to version 1.1.0.
+  The changes are reported in the combined changelog below.
+- junipernetworks.junos was upgraded from version 1.1.0 to version 1.1.1.
+  The changes are reported in the combined changelog below.
+- netapp.aws was upgraded from version 20.8.0 to version 20.9.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- netapp.elementsw was upgraded from version 20.8.0 to version 20.10.0.
+  The changes are reported in the combined changelog below.
+- netapp.ontap was upgraded from version 20.8.0 to version 20.10.0.
+  The changes are reported in the combined changelog below.
+- netbox.netbox was upgraded from version 1.0.2 to version 1.1.0.
+  The changes are reported in the combined changelog below.
+- openstack.cloud was upgraded from version 1.1.0 to version 1.2.0.
+  The changes are reported in the combined changelog below.
+- ovirt.ovirt was upgraded from version 1.1.3 to version 1.1.4.
+  The changes are reported in the combined changelog below.
+- theforeman.foreman was upgraded from version 1.1.0 to version 1.3.0.
+  The changes are reported in the combined changelog below.
+- vyos.vyos was upgraded from version 1.0.4 to version 1.0.5.
+  The changes are reported in the combined changelog below.
+
+Major Changes
+-------------
+
+community.kubernetes
+~~~~~~~~~~~~~~~~~~~~
+
+- k8s - Add support for template parameter (https://github.com/ansible-collections/community.kubernetes/pull/230).
+- k8s_* - Add support for vaulted kubeconfig and src (https://github.com/ansible-collections/community.kubernetes/pull/193).
+
+Minor Changes
+-------------
+
+Ansible-base
+~~~~~~~~~~~~
+
+- ansible-test - Raise the number of bytes scanned by ansible-test to determine if a file is binary to 4096.
+
+amazon.aws
+~~~~~~~~~~
+
+- ec2_eni - Add support for tagging.
+- ec2_eni - Port ec2_eni module to boto3 and add an integration test suite.
+- ec2_eni_info - Add retries on transient AWS failures.
+- ec2_eni_info - Add support for providing an ENI ID.
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- Confirmed commit fails with TypeError in IOS XR netconf plugin (https://github.com/ansible-collections/cisco.iosxr/issues/74)
+- The netconf_config module now allows root tag with namespace prefix.
+- cli_config: Add new return value diff which is returned when the cliconf plugin supports onbox diff
+- cli_config: Clarify when commands is returned when the module is run
+
+arista.eos
+~~~~~~~~~~
+
+- Added 'mode' to examples in documentation of eos_l2_interfaces.
+- Added eos ospfv3 resource module (https://github.com/ansible-collections/arista.eos/pull/109).
+- Added unit test cases for eos_lldp_global module.
+
+cisco.ios
+~~~~~~~~~
+
+- Add ios_ospfv3 module.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- Added iosxr ospfv3 resource module (https://github.com/ansible-collections/cisco.iosxr/pull/81).
+- Platform supported coments token to be provided when invoking the object.
+
+cisco.nxos
+~~~~~~~~~~
+
+- Add nxos_ospfv3 module.
+- Allow other transfer protocols than scp to pull files from a NXOS device in nxos_file_copy module. sftp, http, https, tftp and ftp can be choosen as a transfer protocol, when the file_pull parameter is true..
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- server_group - The module has been refactored and the code simplifed (https://github.com/cloudscale-ch/ansible-collection-cloudscale/pull/23).
+- volume - The module has been refactored and the code simplifed (https://github.com/cloudscale-ch/ansible-collection-cloudscale/pull/24).
+
+community.aws
+~~~~~~~~~~~~~
+
+- aws_ssm connection plugin - Change the (internal) variable name from timeout to plugin_timeout to avoid conflicts with ansible/ansible default timeout (#69284,
+- aws_ssm connection plugin - add STS token options to aws_ssm connection plugin.
+- ec2_scaling_policy - Add support for step_adjustments
+- ec2_scaling_policy - Migrate from boto to boto3
+- rds_subnet_group module - Add Boto3 support and remove Boto support.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme_certificate - allow to pass CSR file as content with new option ``csr_content`` (https://github.com/ansible-collections/community.crypto/pull/115).
+- x509_certificate_info - add ``fingerprints`` return value which returns certificate fingerprints (https://github.com/ansible-collections/community.crypto/pull/121).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- hashi_vault - support ``VAULT_NAMESPACE`` environment variable for namespaced lookups against Vault Enterprise (in addition to the ``namespace=`` flag supported today) (https://github.com/ansible-collections/community.general/pull/929).
+- hashi_vault lookup - add ``VAULT_TOKEN_FILE`` as env option to specify ``token_file`` param (https://github.com/ansible-collections/community.general/issues/373).
+- hashi_vault lookup - add ``VAULT_TOKEN_PATH`` as env option to specify ``token_path`` param (https://github.com/ansible-collections/community.general/issues/373).
+- ipa_user - add ``userauthtype`` option (https://github.com/ansible-collections/community.general/pull/951).
+- iptables_state - use FQCN when calling a module from action plugin (https://github.com/ansible-collections/community.general/pull/967).
+- nagios - add the ``acknowledge`` action (https://github.com/ansible-collections/community.general/pull/820).
+- nagios - add the ``host`` and ``all`` values for the ``forced_check`` action (https://github.com/ansible-collections/community.general/pull/998).
+- nagios - add the ``service_check`` action (https://github.com/ansible-collections/community.general/pull/820).
+- nagios - rename the ``service_check`` action to ``forced_check`` since we now are able to check both a particular service, all services of a particular host and the host itself (https://github.com/ansible-collections/community.general/pull/998).
+- pkgutil - module can now accept a list of packages (https://github.com/ansible-collections/community.general/pull/799).
+- pkgutil - module has a new option, ``force``, equivalent to the ``-f`` option to the `pkgutil <http://pkgutil.net/>`_ command (https://github.com/ansible-collections/community.general/pull/799).
+- pkgutil - module now supports check mode (https://github.com/ansible-collections/community.general/pull/799).
+- postgresql_privs - add the ``usage_on_types`` option (https://github.com/ansible-collections/community.general/issues/884).
+- proxmox_kvm - improve code readability (https://github.com/ansible-collections/community.general/pull/934).
+- pushover - add device parameter (https://github.com/ansible-collections/community.general/pull/802).
+- redfish_command - add sub-command for ``EnableContinuousBootOverride`` and ``DisableBootOverride`` to allow setting BootSourceOverrideEnabled Redfish property (https://github.com/ansible-collections/community.general/issues/824).
+- redfish_command - support same reset actions on Managers as on Systems (https://github.com/ansible-collections/community.general/issues/901).
+- slack - add support for updating messages (https://github.com/ansible-collections/community.general/issues/304).
+- xml - fixed issue were changed was returned when removing non-existent xpath (https://github.com/ansible-collections/community.general/pull/1007).
+- zypper_repository - proper failure when python-xml is missing (https://github.com/ansible-collections/community.general/pull/939).
+
+community.kubernetes
+~~~~~~~~~~~~~~~~~~~~
+
+- Add Makefile and downstream build script for kubernetes.core (https://github.com/ansible-collections/community.kubernetes/pull/197).
+- Add execution environment metadata (https://github.com/ansible-collections/community.kubernetes/pull/211).
+- Add probot stale bot configuration to autoclose issues (https://github.com/ansible-collections/community.kubernetes/pull/196).
+- Added a contribution guide (https://github.com/ansible-collections/community.kubernetes/pull/192).
+- Refactor module_utils (https://github.com/ansible-collections/community.kubernetes/pull/223).
+- Replace KubernetesAnsibleModule class with dummy class (https://github.com/ansible-collections/community.kubernetes/pull/227).
+- Replace KubernetesRawModule class with K8sAnsibleMixin (https://github.com/ansible-collections/community.kubernetes/pull/231).
+- common - Do not mark task as changed when diff is irrelevant (https://github.com/ansible-collections/community.kubernetes/pull/228).
+- helm - Add appVersion idempotence check to Helm (https://github.com/ansible-collections/community.kubernetes/pull/246).
+- helm - Return status in check mode (https://github.com/ansible-collections/community.kubernetes/pull/192).
+- helm - Support for single or multiple values files (https://github.com/ansible-collections/community.kubernetes/pull/93).
+- helm_* - Support vaulted kubeconfig (https://github.com/ansible-collections/community.kubernetes/pull/229).
+- k8s - SelfSubjectAccessReviews supported when 405 response received (https://github.com/ansible-collections/community.kubernetes/pull/237).
+- k8s - add testcase for adding multiple resources using template parameter (https://github.com/ansible-collections/community.kubernetes/issues/243).
+- k8s_info - Add support for wait (https://github.com/ansible-collections/community.kubernetes/pull/235).
+- k8s_info - update custom resource example (https://github.com/ansible-collections/community.kubernetes/issues/202).
+- kubectl plugin - correct console log (https://github.com/ansible-collections/community.kubernetes/issues/200).
+- raw - Handle exception raised by underlying APIs (https://github.com/ansible-collections/community.kubernetes/pull/180).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql modules - add the ``check_hostname`` option (https://github.com/ansible-collections/community.mysql/issues/28).
+- mysql modules - patch the ``Connection`` class to add a destructor that ensures connections to the server are explicitly closed (https://github.com/ansible-collections/community.mysql/pull/44).
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- edgeswitch_facts - added ``startupconfig`` to facts module - to allow the comparision between startup and running config (https://github.com/ansible-collections/community.network/pull/105).
+- routeros_facts - now also collecting data about BGP and OSPF (https://github.com/ansible-collections/community.network/pull/101).
+- routeros_facts - set configuration export on to verbose, for full configuration export (https://github.com/ansible-collections/community.network/pull/104).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- module_utils/vmware - Ignore leading and trailing whitespace when searching for objects (https://github.com/ansible-collections/vmware/issues/335)
+- vmware_cluster_info - Fixed issue of a cluster name doesn't URL-decode(https://github.com/ansible-collections/vmware/pull/366)
+- vmware_guest - takes now into account the ``esxi_hostname`` argument to create the vm on the right host according to the doc (https://github.com/ansible-collections/vmware/pull/359).
+- vmware_guest_custom_attributes - Fixed issue when trying to set a VM custom attribute when there are custom attributes with the same name for other object types (https://github.com/ansible-collections/community.vmware/issues/412).
+- vmware_guest_customization_info - Fixed to get values properly for LinuxPrep and SysPrep parameters(https://github.com/ansible-collections/vmware/pull/368)
+- vmware_guest_info - Fix get tags API call (https://github.com/ansible-collections/community.vmware/issues/403).
+- vmware_guest_network - Fixed to port group changes to work properly and NSX-T port group supported(https://github.com/ansible-collections/community.vmware/pull/401).
+- vmware_host_iscsi_info - a new module for the ESXi hosts that is dedicated to gathering information of the iSCSI configuration(https://github.com/ansible-collections/community.vmware/pull/402).
+- vmware_vm_inventory - update requirements doc.
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- win_dns_record - Support NS record creation,modification and deletion
+- win_firewall - Support defining the default inbound and outbound action of traffic in Windows firewall.
+- win_psrepository - Added the ``proxy`` option that defines the proxy to use for the repository being managed
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Create podman_network module for podman networks management
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- hcloud_floating_ip Allow creating Floating IP with protection
+- hcloud_load_balancer Allow creating Load Balancer with protection
+- hcloud_network Allow creating Network with protection
+- hcloud_server Allow creating server with protection
+- hcloud_volume Allow creating Volumes with protection
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- Use FQCN to M() references in modules documentation (https://github.com/ansible-collections/junipernetworks.junos/pull/79)
+
+netapp.elementsw
+~~~~~~~~~~~~~~~~
+
+- na_elementsw_node - ``cluster_name`` to set the cluster name on new nodes.
+- na_elementsw_node - ``preset_only`` to only set the cluster name before creating a cluster with na_elementsw_cluster.
+- na_elementsw_volume - ``qos_policy_name`` to provide a QOS policy name or ID.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_cluster - ``node_name`` to set the node name when adding a node, or as an alternative to `cluster_ip_address`` to remove a node.
+- na_ontap_cluster - ``state`` can be set to ``absent`` to remove a node identified with ``cluster_ip_address`` or ``node_name``.
+- na_ontap_qtree - ``wait_for_completion`` and ``time_out`` to wait for qtree deletion when using REST.
+- na_ontap_quotas - ``soft_disk_limit`` and ``soft_file_limit`` for the quota target.
+- na_ontap_rest_info - Support for gather subsets - ``application_info, application_template_info, autosupport_config_info , autosupport_messages_history, ontap_system_version, storage_flexcaches_info, storage_flexcaches_origin_info, storage_ports_info, storage_qos_policies, storage_qtrees_config, storage_quota_reports, storage_quota_policy_rules, storage_shelves_config, storage_snapshot_policies, support_ems_config, support_ems_events, support_ems_filters``
+- na_ontap_rest_info - Support for gather subsets - ``initiator_groups_info, san_fcp_services, san_iscsi_credentials, san_iscsi_services, san_lun_maps, storage_luns_info, storage_NVMe_namespaces.``
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Add ``follow_redirects`` option to inventory plugin (https://github.com/netbox-community/ansible_modules/pull/323)
+
+openstack.cloud
+~~~~~~~~~~~~~~~
+
+- lb_health_monitor - Make it possible to create a health monitor to a pool
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- compute_resource - added ``caching_enabled`` option for VMware compute resources
+- domain, host, hostgroup, operatingsystem, subnet - manage parameters in a single API call (https://bugzilla.redhat.com/show_bug.cgi?id=1855008)
+- external_usergroup - rename the ``auth_source_ldap`` parameter to ``auth_source`` (``auth_source_ldap`` is still supported via an alias)
+- host - add ``compute_attributes`` parameter to module (https://bugzilla.redhat.com/show_bug.cgi?id=1871815)
+- provisioning_template - update list of possible template kinds (https://bugzilla.redhat.com/show_bug.cgi?id=1871978)
+- repository - update supported parameters (https://github.com/theforeman/foreman-ansible-modules/issues/935)
+- server URL and credentials can now also be specified using environment variables (https://github.com/theforeman/foreman-ansible-modules/issues/837)
+- subnet - add support for external IPAM (https://github.com/theforeman/foreman-ansible-modules/issues/966)
+
+Deprecated Features
+-------------------
+
+cisco.nxos
+~~~~~~~~~~
+
+- Deprecated `nxos_smu` in favour of `nxos_rpm` module.
+- The `nxos_ospf_vrf` module is deprecated by `nxos_ospfv2` and `nxos_ospfv3` Resource Modules.
+
+Security Fixes
+--------------
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- openssl_csr - the option ``privatekey_content`` was not marked as ``no_log``, resulting in it being dumped into the system log by default, and returned in the registered results in the ``invocation`` field (CVE-2020-25646, https://github.com/ansible-collections/community.crypto/pull/125).
+- openssl_privatekey_info - the option ``content`` was not marked as ``no_log``, resulting in it being dumped into the system log by default, and returned in the registered results in the ``invocation`` field (CVE-2020-25646, https://github.com/ansible-collections/community.crypto/pull/125).
+- openssl_publickey - the option ``privatekey_content`` was not marked as ``no_log``, resulting in it being dumped into the system log by default, and returned in the registered results in the ``invocation`` field (CVE-2020-25646, https://github.com/ansible-collections/community.crypto/pull/125).
+- openssl_signature - the option ``privatekey_content`` was not marked as ``no_log``, resulting in it being dumped into the system log by default, and returned in the registered results in the ``invocation`` field (CVE-2020-25646, https://github.com/ansible-collections/community.crypto/pull/125).
+- x509_certificate - the options ``privatekey_content`` and ``ownca_privatekey_content`` were not marked as ``no_log``, resulting in it being dumped into the system log by default, and returned in the registered results in the ``invocation`` field (CVE-2020-25646, https://github.com/ansible-collections/community.crypto/pull/125).
+- x509_crl - the option ``privatekey_content`` was not marked as ``no_log``, resulting in it being dumped into the system log by default, and returned in the registered results in the ``invocation`` field (CVE-2020-25646, https://github.com/ansible-collections/community.crypto/pull/125).
+
+Bugfixes
+--------
+
+Ansible-base
+~~~~~~~~~~~~
+
+- Pass the connection's timeout to connection plugins instead of the task's timeout.
+- Provide more information in AnsibleUndefinedVariable (https://github.com/ansible/ansible/issues/55152)
+- ansible-doc - properly show plugin name when ``name:`` is used instead of ``<plugin_type>:`` (https://github.com/ansible/ansible/pull/71966).
+- ansible-test - Change classification using ``--changed`` now consistently handles common configuration files for supported CI providers.
+- ansible-test - The ``resource_prefix`` variable provided to tests running on Azure Pipelines is now converted to lowercase to match other CI providers.
+- collection loader - fix bogus code coverage entries for synthetic packages
+- psrp - Fix hang when copying an empty file to the remote target
+- runas - create a new token when running as ``SYSTEM`` to ensure it has the full privileges assigned to that account
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- cli_parse - Ensure only native types are returned to the control node from the parser.
+- netconf - Changed log level for message of using default netconf plugin to match the level used when a platform-specific netconf plugin is found
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- win_copy - fix bug when copying a single file during a folder copy operation
+
+arista.eos
+~~~~~~~~~~
+
+- Added 'mode' key to eos_interfaces to handle the layer2/3 switchport mode of an interface.
+- Added fix to maintain the idempotency while using overridden operation.
+- Check for existing configuration when trunk_allowed_vlans is issued, is added.
+- Fixed typo and index out of range errors while handling protocol_options. (https://github.com/ansible-collections/arista.eos/pull/115)
+
+cisco.ios
+~~~~~~~~~
+
+- Add support for interface type Virtual-Template (https://github.com/ansible-collections/cisco.ios/pull/154).
+- Added support for interface Tunnel (https://github.com/ansible-collections/cisco.ios/pull/145).
+- Fix element type of ios_command's command parameter (https://github.com/ansible-collections/cisco.ios/pull/151).
+- To fix the incorrect command displayed under ios_l3_interfaces resource module docs (https://github.com/ansible-collections/cisco.ios/pull/149).
+
+cisco.nxos
+~~~~~~~~~~
+
+- Correctly parse facts for lacp interfaces mode information (https://github.com/ansible-collections/cisco.nxos/pull/164).
+- Fix for nxos smu issue (https://github.com/ansible-collections/cisco.nxos/pull/160).
+- Fix regex for parsing configuration in nxos_lag_interfaces.
+- Fix regexes in nxos_acl_interfaces facts and some code cleanup (https://github.com/ansible-collections/cisco.nxos/issues/149).
+- Fix rendering of `log-adjacency-changes` commands.
+- Preserve whitespaces in banner text (https://github.com/ansible-collections/cisco.nxos/pull/146).
+
+community.aws
+~~~~~~~~~~~~~
+
+- aws_ssm connection plugin - namespace file uploads to S3 into unique folders per host, to prevent name collisions. Also deletes files from S3 to ensure temp files are not left behind. (https://github.com/ansible-collections/community.aws/issues/221, https://github.com/ansible-collections/community.aws/issues/222)
+- rds_instance - fixed tag type conversion issue for creating read replicas.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- openssl_pkcs12 - do not crash when reading PKCS#12 file which has no private key and/or no main certificate (https://github.com/ansible-collections/community.crypto/issues/103).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- aerospike_migrations - handle exception when unstable-cluster is returned (https://github.com/ansible-collections/community.general/pull/900).
+- django_manage - fix idempotence for ``createcachetable`` (https://github.com/ansible-collections/community.general/pull/699).
+- docker_container - fix idempotency problem with ``published_ports`` when strict comparison is used and list is empty (https://github.com/ansible-collections/community.general/issues/978).
+- gem - fix get_installed_versions: correctly parse ``default`` version (https://github.com/ansible-collections/community.general/pull/783).
+- hashi_vault - add missing ``mount_point`` parameter for approle auth (https://github.com/ansible-collections/community.general/pull/897).
+- hashi_vault lookup - ``token_path`` in config file overridden by env ``HOME`` (https://github.com/ansible-collections/community.general/issues/373).
+- homebrew_cask - fixed issue where a cask with ``@`` in the name is incorrectly reported as invalid (https://github.com/ansible-collections/community.general/issues/733).
+- interfaces_file - escape regular expression characters in old value (https://github.com/ansible-collections/community.general/issues/777).
+- launchd - fix for user-level services (https://github.com/ansible-collections/community.general/issues/896).
+- nmcli - set ``C`` locale when executing ``nmcli`` (https://github.com/ansible-collections/community.general/issues/989).
+- parted - fix creating partition when label is changed (https://github.com/ansible-collections/community.general/issues/522).
+- pkg5 - now works when Python 3 is used on the target (https://github.com/ansible-collections/community.general/pull/789).
+- postgresql_privs - allow to pass ``PUBLIC`` role written in lowercase letters (https://github.com/ansible-collections/community.general/issues/857).
+- postgresql_privs - fix the module mistakes a procedure for a function (https://github.com/ansible-collections/community.general/issues/994).
+- postgresql_privs - rollback if nothing changed (https://github.com/ansible-collections/community.general/issues/885).
+- postgresql_privs - the module was attempting to revoke grant options even though ``grant_option`` was not specified (https://github.com/ansible-collections/community.general/pull/796).
+- proxmox_kvm - defer error-checking for non-existent VMs in order to fix idempotency of tasks using ``state=absent`` and properly recognize a success (https://github.com/ansible-collections/community.general/pull/811).
+- proxmox_kvm - improve handling of long-running tasks by creating a dedicated function (https://github.com/ansible-collections/community.general/pull/831).
+- slack - fix ``xox[abp]`` token identification to capture everything after ``xox[abp]``, as the token is the only thing that should be in this argument (https://github.com/ansible-collections/community.general/issues/862).
+- terraform - fix incorrectly reporting a status of unchanged when number of resources added or destroyed are multiples of 10 (https://github.com/ansible-collections/community.general/issues/561).
+- timezone - support Python3 on macos/darwin (https://github.com/ansible-collections/community.general/pull/945).
+- zfs - fixed ``invalid character '@' in pool name"`` error when working with snapshots on a root zvol (https://github.com/ansible-collections/community.general/issues/932).
+
+community.kubernetes
+~~~~~~~~~~~~~~~~~~~~
+
+- common - handle exception raised due to DynamicClient (https://github.com/ansible-collections/community.kubernetes/pull/224).
+- helm - add replace parameter (https://github.com/ansible-collections/community.kubernetes/issues/106).
+- k8s (inventory) - Set the connection plugin and transport separately (https://github.com/ansible-collections/community.kubernetes/pull/208).
+- k8s (inventory) - Specify FQCN for k8s inventory plugin to fix use with Ansible 2.9 (https://github.com/ansible-collections/community.kubernetes/pull/250).
+- k8s - Fix sanity test 'compile' failing because of positional args (https://github.com/ansible-collections/community.kubernetes/issues/260).
+- k8s_info - add wait functionality (https://github.com/ansible-collections/community.kubernetes/issues/18).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql modules - fix crash when ``!includedir`` option is in config file (https://github.com/ansible-collections/community.mysql/issues/46).
+- mysql_db - fix false warning related to ``unsafe_login_password`` option (https://github.com/ansible-collections/community.mysql/issues/33).
+- mysql_user - added tests to verify that TLS requirements are removed with an empty ``tls_requires`` option (https://github.com/ansible-collections/community.mysql/issues/20).
+- mysql_user - correct procedure to check existing TLS requirements (https://github.com/ansible-collections/community.mysql/pull/26).
+- mysql_user - fix module's crash when modifying a user with ``host_all`` (https://github.com/ansible-collections/community.mysql/issues/39).
+- mysql_user - minor syntax fixes (https://github.com/ansible-collections/community.mysql/pull/26).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- ``module_utils/vmware.py`` handles an object name using special characters that URL-decoded(https://github.com/ansible-collections/vmware/pull/380).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- multiple modules - fix diff calculation for lower/upper cases
+- podman_container - Add note about containerPort setting
+- podman_container - Fix init option it's boolean not string
+- podman_container - Remove pyyaml from requirements
+- podman_network - Check if dnsname plugin installed for CNI
+- podman_volume - Fix return data from podman_volume module
+- podman_volume - Set options for a volume as list and fix idempotency
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- hcloud_floating_ip Fix idempotency when floating ip is assigned to server
+
+netapp.elementsw
+~~~~~~~~~~~~~~~~
+
+- na_elementsw_node - fix check_mode so that no action is taken.
+- na_elementsw_node - improve error reporting when cluster name cannot be set because node is already active.
+- na_elementsw_schedule - missing imports TimeIntervalFrequency, Schedule, ScheduleInfo have been added back
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_* - change version_added from '2.6' to '2.6.0' where applicable to satisfy sanity checker.
+- na_ontap_aggregate - support concurrent actions for rename/modify/add_object_store and create/add_object_store.
+- na_ontap_cluster - ``check_mode`` is now working properly.
+- na_ontap_cluster - ``single_node_cluster`` option was ignored.
+- na_ontap_info - KeyError on ``tree`` for quota_report_info.
+- na_ontap_info - better reporting on KeyError traceback, option to ignore error.
+- na_ontap_interface - ``home_node`` is not required in pre-cluster mode.
+- na_ontap_interface - ``role`` is not required if ``service_policy`` is present and ONTAP version is 9.8.
+- na_ontap_interface - traceback in get_interface if node is not reachable.
+- na_ontap_job_schedule - allow ``job_minutes`` to set number to -1 for job creation with REST too.
+- na_ontap_qtree - fixed ``None is not subscriptable`` exception on rename operation.
+- na_ontap_snapmirror_policy - report error when attempting to change ``policy_type`` rather than taking no action.
+- na_ontap_volume - ``encrypt`` with a value of ``false`` is ignored when creating a volume.
+- na_ontap_volume - fixed ``KeyError`` exception on ``size`` when reporting creation error.
+- netapp.py - uncaught exception (traceback) on zapi.NaApiError.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Prevent inventory plugin from failing on 403 and print warning message (https://github.com/netbox-community/ansible_modules/pull/354)
+- Update ``netbox_ip_address`` module to accept ``assigned_object`` to work with NetBox 2.9 (https://github.com/netbox-community/ansible_modules/pull/345)
+- Update inventory plugin to properly associate IP address to interfaces with NetBox 2.9 (https://github.com/netbox-community/ansible_modules/pull/334)
+- Update inventory plugin to work with tags with NetBox 2.9 (https://github.com/netbox-community/ansible_modules/pull/340)
+- Update modules to be able to properly update tags to work with NetBox 2.9 (https://github.com/netbox-community/ansible_modules/pull/345)
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- ovirt inventory - Add close of connection at the end (https://github.com/oVirt/ovirt-ansible-collection/pull/122).
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- content_view - remove CVs from lifecycle environments before deleting them (https://bugzilla.redhat.com/show_bug.cgi?id=1875314)
+- external_usergroup - support non-LDAP external groups (https://github.com/theforeman/foreman-ansible-modules/issues/956)
+- host - properly scope image lookups by the compute resource (https://bugzilla.redhat.com/show_bug.cgi?id=1878693)
+- image - fix quoting of search values (https://github.com/theforeman/foreman-ansible-modules/issues/927)
+- inventory plugin - include empty parent groups in the inventory (https://github.com/theforeman/foreman-ansible-modules/issues/919)
+
+vyos.vyos
+~~~~~~~~~
+
+- Added openvpn vtu interface support.
+- Update network integration auth timeout for connection local.
+- terminal plugin - Overhaul ansi_re to remove more escape sequences
+
+New Plugins
+-----------
+
+Inventory
+~~~~~~~~~
+
+- community.general.proxmox - Proxmox inventory source
+- community.general.stackpath_compute - StackPath Edge Computing inventory source
+
+New Modules
+-----------
+
+arista.eos
+~~~~~~~~~~
+
+
+
+
+Ansible.Collections.Ansible Collections.Arista.Eos.Plugins.Modules
+..................................................................
+
+- arista.eos.eos_ospfv3 - OSPFv3 resource module
+
+cisco.ios
+~~~~~~~~~
+
+- cisco.ios.ios_ospfv3 - OSPFv3 resource module
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- cisco.iosxr.iosxr_ospfv3 - ospfv3 resource module
+
+cisco.nxos
+~~~~~~~~~~
+
+- cisco.nxos.nxos_ospfv3 - OSPFv3 resource module
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- cloudscale_ch.cloud.network - Manages networks on the cloudscale.ch IaaS service
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+Cloud
+^^^^^
+
+Scaleway
+........
+
+- community.general.scaleway_database_backup - Scaleway database backups management module
+
+Source Control
+^^^^^^^^^^^^^^
+
+Gitlab
+......
+
+- community.general.gitlab_group_members - Manage group members on GitLab Server
+- community.general.gitlab_group_variable - Creates, updates, or deletes GitLab groups variables
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- containers.podman.podman_network - Manage Podman networks
+
+netapp.elementsw
+~~~~~~~~~~~~~~~~
+
+- netapp.elementsw.na_elementsw_qos_policy - NetApp Element Software create/modify/rename/delete QOS Policy
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- netapp.ontap.na_ontap_active_directory - NetApp ONTAP configure active directory
+- netapp.ontap.na_ontap_mcc_mediator - NetApp ONTAP Add and Remove MetroCluster Mediator
+- netapp.ontap.na_ontap_metrocluster - NetApp ONTAP set up a MetroCluster
+
+openstack.cloud
+~~~~~~~~~~~~~~~
+
+- openstack.cloud.volume_backup module - Add/Delete Openstack volumes backup.
+- openstack.cloud.volume_backup_info module - Retrieve information about Openstack volume backups.
+- openstack.cloud.volume_snapshot_info module - Retrieve information about Openstack volume snapshots.
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- theforeman.foreman.status_info - Get status info
+
+Unchanged Collections
+---------------------
+
+- ansible.posix (still version 1.1.1)
+- awx.awx (still version 14.1.0)
+- check_point.mgmt (still version 1.0.6)
+- chocolatey.chocolatey (still version 1.0.2)
+- cisco.aci (still version 1.0.0)
+- cisco.asa (still version 1.0.3)
+- cisco.intersight (still version 1.0.8)
+- cisco.meraki (still version 2.0.0)
+- cisco.mso (still version 1.0.0)
+- cisco.ucs (still version 1.5.0)
+- community.azure (still version 1.0.0)
+- community.digitalocean (still version 1.0.0)
+- community.grafana (still version 1.0.0)
+- community.libvirt (still version 1.0.0)
+- community.mongodb (still version 1.0.0)
+- community.proxysql (still version 1.0.0)
+- community.rabbitmq (still version 1.0.1)
+- community.skydive (still version 1.0.0)
+- community.zabbix (still version 1.0.0)
+- cyberark.conjur (still version 1.0.7)
+- cyberark.pas (still version 1.0.5)
+- dellemc.os10 (still version 1.0.1)
+- dellemc.os6 (still version 1.0.2)
+- dellemc.os9 (still version 1.0.2)
+- f5networks.f5_modules (still version 1.5.0)
+- fortinet.fortimanager (still version 1.0.5)
+- fortinet.fortios (still version 1.0.15)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.1)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.2.3)
+- mellanox.onyx (still version 1.0.0)
+- netapp_eseries.santricity (still version 1.0.8)
+- ngine_io.cloudstack (still version 1.0.1)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.0.0)
+- openvswitch.openvswitch (still version 1.0.5)
+- purestorage.flasharray (still version 1.4.0)
+- purestorage.flashblade (still version 1.3.0)
+- servicenow.servicenow (still version 1.0.2)
+- splunk.es (still version 1.0.2)
+- wti.remote (still version 1.0.1)
+
 v2.10.0
 =======
 
@@ -140,9 +785,9 @@ Included Collections
 - netapp.aws with version 20.8.0.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 - netapp.elementsw with version 20.8.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The changes are reported in the combined changelog below.
 - netapp.ontap with version 20.8.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The changes are reported in the combined changelog below.
 - netapp_eseries.santricity with version 1.0.8.
   Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
 - netbox.netbox with version 1.0.2.
@@ -1232,6 +1877,151 @@ junipernetworks.junos
 - Gathered state operation enabled. Parsed and rendered state operations implemented.
 - Gathered state operation enabledand Parsed and rendered state operations implemented.
 
+netapp.elementsw
+~~~~~~~~~~~~~~~~
+
+- add "required:true" where missing.
+- add "type:str" (or int, dict) where missing in documentation section.
+- na_elementsw_drive - add all drives in a cluster, allow for a list of nodes or a list of drives.
+- refactor existing modules as a collection
+- remove "required:true" for state and use present as default.
+- use a three group format for ``version_added``.  So 2.7 becomes 2.7.0.  Same thing for 2.8 and 2.9.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- Added REST support to existing modules.
+    By default, the module will use REST if the target system supports it, and the options are supported.  Otherwise, it will switch back to ZAPI.
+    This behavior can be controlled with the ``use_rest`` option.
+    Always - to force REST.  The module fails and reports an error if REST cannot be used.
+    Never - to force ZAPI.  This could be useful if you find some incompatibility with REST, or want to confirm the behavior is identical between REST and ZAPI.
+    Auto - the default, as described above.
+- add ``type:`` and ``elements:`` information where missing.
+- all modules - SSL certificate authentication in addition to username/password (python 2.7 or 3.x).
+- all modules - ``cert_filepath``, ``key_filepath`` to enable SSL certificate authentication (python 2.7 or 3.x).
+- module_utils/netapp - add retry on wait_on_job when job failed. Abort 3 consecutive errors.
+- na_ontap_aggregate - ``disk_count`` option allows adding additional disk to aggregate.
+- na_ontap_aggregate - ``raid_type`` options supports 'raid_0' for ONTAP Select.
+- na_ontap_aggregate - add ``snaplock_type``.
+- na_ontap_aggregate - support ``disk_size_with_unit`` option.
+- na_ontap_autosupport_invoke - added REST support for sending autosupport message.
+- na_ontap_cluster - added single node cluster option, also now supports for modify cluster contact and location option.
+- na_ontap_cluster_config - role - Port Flowcontrol and autonegotiate can be set in role
+- na_ontap_cluster_config - role updated to support a cleaner playbook
+- na_ontap_cluster_peer - ``encryption_protocol_proposed`` option allows specifying encryption protocol to be used for inter-cluster communication.
+- na_ontap_command - ``vserver`` - to allow command to run as either cluster admin or vserver admin.  To run as vserver admin you must use the vserver option.
+- na_ontap_disks - ``disk_type`` option allows to assign specified type of disk.
+- na_ontap_dns - added REST support for dns creation and modification on cluster vserver.
+- na_ontap_efficiency_policy - ``changelog_threshold_percent`` to set the percentage at which the changelog will be processed for a threshold type of policy, tested once each hour.
+- na_ontap_export_policy - REST support
+- na_ontap_firmware_upgrade - ``force_disruptive_update`` and ``package_url`` options allows to make choices for download and upgrading packages.
+- na_ontap_firmware_upgrade - ``reboot_sp`` - reboot service processor before downloading package.
+- na_ontap_firmware_upgrade - ``rename_package`` - rename file when downloading service processor package.
+- na_ontap_firmware_upgrade - ``replace_package`` - replace local file when downloading service processor package.
+- na_ontap_firmware_upgrade - ignore timeout when downloading image unless ``fail_on_502_error`` is set to true.
+- na_ontap_igroup_initiator - ``force_remove`` to forcibly remove initiators from an igroup that is currently mapped to a LUN.
+- na_ontap_info - Added ``vscan_status_info``, ``vscan_scanner_pool_info``, ``vscan_connection_status_all_info``, ``vscan_connection_extended_stats_info``
+- na_ontap_info - New info's added ``cifs_server_info``, ``cifs_share_info``, ``cifs_vserver_security_info``, ``cluster_peer_info``, ``clock_info``, ``export_policy_info``, ``export_rule_info``, ``fcp_adapter_info``, ``fcp_alias_info``, ``fcp_service_info``, ``job_schedule_cron_info``, ``kerberos_realm_info``, ``ldap_client``, ``ldap_config``, ``net_failover_group_info``, ``net_firewall_info``, ``net_ipspaces_info``, ``net_port_broadcast_domain_info``, ``net_routes_info``, ``net_vlan_info``, ``nfs_info``, ``ntfs_dacl_info``, ``ntfs_sd_info``, ``ntp_server_info``, ``role_info``, ``service_processor_network_info``, ``sis_policy_info``, ``snapmirror_policy_info``, ``snapshot_policy_info``, ``vscan_info``, ``vserver_peer_info``
+- na_ontap_info - New info's added ``snapshot_info``
+- na_ontap_info - New info's added ``storage_bridge_info``
+- na_ontap_info - New info's added `cluster_identity_info``
+- na_ontap_info - Now allow you use to vsadmin to get info (Must user ``vserver`` option).
+- na_ontap_info - ``desired_attributes`` advanced feature to select which fields to return.
+- na_ontap_info - ``max_records`` option specifies maximum number of records returned in a single ZAPI call.
+- na_ontap_info - ``max_records`` option to set maximum number of records to return per subset.
+- na_ontap_info - ``summary`` option specifies a boolean flag to control return all or none of the info attributes.
+- na_ontap_info - ``use_native_zapi_tags`` to disable the conversion of '_' to '-' for attribute keys.
+- na_ontap_info - new fact - aggr_efficiency_info.
+- na_ontap_info - new fact - cluster_switch_info.
+- na_ontap_info - new fact - disk_info.
+- na_ontap_info - new fact - env_sensors_info.
+- na_ontap_info - new fact - iscsi_service_info.
+- na_ontap_info - new fact - license_info.
+- na_ontap_info - new fact - metrocluster_check_info.
+- na_ontap_info - new fact - metrocluster_info.
+- na_ontap_info - new fact - metrocluster_node_info.
+- na_ontap_info - new fact - net_dev_discovery_info.
+- na_ontap_info - new fact - net_interface_service_policy_info.
+- na_ontap_info - new fact - ontap_system_version.
+- na_ontap_info - new fact - ontapi_version (and deprecate ontap_version, both fields are reported for now).
+- na_ontap_info - new fact - qtree_info.
+- na_ontap_info - new fact - quota_report_info.
+- na_ontap_info - new fact - service_processor_info.
+- na_ontap_info - new fact - shelf_info.
+- na_ontap_info - new fact - sis_info.
+- na_ontap_info - new fact - snapmirror_destination_info.
+- na_ontap_info - new fact - subsys_health_info.
+- na_ontap_info - new fact - sys_cluster_alerts.
+- na_ontap_info - new fact - sysconfig_info.
+- na_ontap_info - new fact - volume_move_target_aggr_info.
+- na_ontap_info - new fact - volume_space_info.
+- na_ontap_info - support ``continue_on_error`` option to continue when a ZAPI is not supported on a vserver, or for cluster RPC errors.
+- na_ontap_info - support ``query`` option to specify which objects to return.
+- na_ontap_info - support ``vserver`` tunneling to limit output to one vserver.
+- na_ontap_interface - ``failover_group`` to specify the failover group for the LIF. ``is_ipv4_link_local`` to specify the LIF's are to acquire a ipv4 link local address.
+- na_ontap_interface - ``service_policy`` option to identify a single service or a list of services that will use a LIF.
+- na_ontap_ipspace - REST support
+- na_ontap_job_schedule - REST support
+- na_ontap_kerberos_realm - ``ad_server_ip`` option specifies IP Address of the Active Directory Domain Controller (DC).
+- na_ontap_kerberos_realm - ``ad_server_name`` option specifies Host name of the Active Directory Domain Controller (DC).
+- na_ontap_ldap_client - support ``ad_domain`` and ``preferred_ad_server`` options.
+- na_ontap_motd - rename ``message`` to ``motd_message`` to avoid conflict with Ansible internal variable name.
+- na_ontap_nas_create - role - fix typo in README file, add CIFS example. -
+- na_ontap_nas_create - role updated to support a cleaner playbook
+- na_ontap_ndmp - REST support - only ``enable`` and ``authtype`` are supported with REST
+- na_ontap_net_routes - REST support
+- na_ontap_nvme_namespace - ``block_size`` option allows specifying size in bytes of a logical block.
+- na_ontap_nvme_namespace - ``size_unit`` to specify size in different units.
+- na_ontap_pb_get_online_volumes.yml - example playbook to list volumes that are online (or offline).
+- na_ontap_pb_install_SSL_certificate.yml - playbook example - installing a self-signed SSL certificate, and enabling SSL certificate authentication.
+- na_ontap_pb_install_SSL_certificate_REST.yml - example playbook to install SSL certificates using REST APIs.
+- na_ontap_qtree - REST support - ``oplocks`` is not supported with REST, defaults to enable.
+- na_ontap_qtree - ``force_delete`` option with a DEFAULT of ``true`` so that ZAPI behavior is aligned with REST.
+- na_ontap_rest_cli - add OPTIONS as a supported verb and return list of allowed verbs.
+- na_ontap_rest_info - Support for gather subsets - ``cloud_targets_info, cluster_chassis_info, cluster_jobs_info, cluster_metrics_info, cluster_schedules, broadcast_domains_info, cluster_software_history, cluster_software_packages, network_ports_info, ip_interfaces_info, ip_routes_info, ip_service_policies, network_ipspaces_info, san_fc_logins_info, san_fc_wppn-aliases, svm_dns_config_info, svm_ldap_config_info, svm_name_mapping_config_info, svm_nis_config_info, svm_peers_info, svm_peer-permissions_info``.
+- na_ontap_rest_info - Support for gather subsets - ``cluster_node_info, cluster_peer_info, disk_info, cifs_services_info, cifs_share_info``.
+- na_ontap_rest_info - Support for gather subsets for 9.8+ - ``cluster_metrocluster_diagnostics``.
+- na_ontap_rest_info - ``fields`` options to request specific fields from subset.
+- na_ontap_san_create - role updated to support a cleaner playbook
+- na_ontap_security_certificates - ``ignore_name_if_not_supported`` option to not fail if ``name`` is present since ``name`` is not supported in ONTAP 9.6 and 9.7.
+- na_ontap_snapmirror - ``relationship-info-only`` option allows to manage relationship information.
+- na_ontap_snapmirror - ``relationship_state`` option for breaking the snapmirror relationship.
+- na_ontap_snapmirror - ``update_snapmirror`` option for updating the snapmirror relationship.
+- na_ontap_snapmirror - now performs restore with optional field ``source_snapshot`` for specific snapshot or uses latest.
+- na_ontap_snapmirror - performs resync when the ``relationship_state`` is active and the current state is broken-off.
+- na_ontap_snapmirror - snapmirror now allows resume feature.
+- na_ontap_snapmirror_policy - REST is included and all defaults are removed from options.
+- na_ontap_snapmirror_policy - support for SnapMirror policy rules.
+- na_ontap_snapshot_policy - ``prefix`` - option to use for creating snapshot policy.
+- na_ontap_software_update - ``download_only`` options allows to download cluster image without software update.
+- na_ontap_software_update - ``stabilize_minutes`` option specifies number of minutes needed to stabilize node before update.
+- na_ontap_software_update - added ``timeout`` option to give enough time for the update to complete.
+- na_ontap_svm - REST support - ``root_volume``, ``root_volume_aggregate``, ``root_volume_security_style`` are not supported with REST.
+- na_ontap_ucadapter - ``pair_adapters`` option allows specifying the list of adapters which also need to be offline.
+- na_ontap_user - ``authentication_password`` option specifies password for the authentication protocol of SNMPv3 user.
+- na_ontap_user - ``authentication_protocol`` option specifies authentication protocol fo SNMPv3 user.
+- na_ontap_user - ``engine_id`` option specifies authoritative entity's EngineID for the SNMPv3 user.
+- na_ontap_user - ``privacy_password`` option specifies password for the privacy protocol of SNMPv3 user.
+- na_ontap_user - ``privacy_protocol`` option specifies privacy protocol of SNMPv3 user.
+- na_ontap_user - ``remote_switch_ipaddress`` option specifies the IP Address of the remote switch of SNMPv3 user.
+- na_ontap_user - added REST support for ONTAP user creation, modification & deletion.
+- na_ontap_volume - ``auto_remap_luns`` option controls automatic mapping of LUNs during volume rehost.
+- na_ontap_volume - ``check_interval`` option checks if a volume move has been completed and then waits this number of seconds before checking again.
+- na_ontap_volume - ``cutover_action`` option allows specifying the action to be taken for cutover.
+- na_ontap_volume - ``force_restore`` option forces volume to restore even if the volume has one or more newer Snapshotcopies.
+- na_ontap_volume - ``force_unmap_luns`` option controls automatic unmapping of LUNs during volume rehost.
+- na_ontap_volume - ``from_vserver`` option allows volume rehost from one vserver to another.
+- na_ontap_volume - ``preserve_lun_ids`` option controls LUNs in the volume being restored will remain mapped and their identities preserved.
+- na_ontap_volume - ``snapshot_auto_delete`` option allows to manage auto delete settings of a specified volume.
+- na_ontap_volume - ``snapshot_restore`` option specifies name of snapshot to restore from.
+- na_ontap_volume - add ``group_id`` and ``user_id``.
+- na_ontap_volume_clone - ``split`` option to split clone volume from parent volume.
+- na_ontap_vscan_scanner_pool - support modification.
+- na_ontap_vserver_create - role updated to support a cleaner playbook
+- na_ontap_vserver_create has a new default variable ``netapp_version`` set to 140. If you are running 9.2 or below please add the variable to your playbook and set to 120
+- update ``required:`` information.
+- use a three group format for ``version_added``.  So 2.7 becomes 2.7.0.  Same thing for 2.8 and 2.9.
+
 netbox.netbox
 ~~~~~~~~~~~~~
 
@@ -1282,8 +2072,7 @@ openstack.cloud
 ~~~~~~~~~~~~~~~
 
 - A basic module subclass was introduced and a few modules moved to inherit from it.
-- Added changelog.
-- Added more useful information from exception
+- Add more useful information from exception
 - Added pip installation option for collection.
 - Added template for generation of artibtrary module.
 - Renaming all modules and removing "os" prefix from names.
@@ -1611,12 +2400,6 @@ community.zabbix
 ~~~~~~~~~~~~~~~~
 
 - zabbix_proxy (module) - deprecates ``interface`` sub-options ``type`` and ``main`` when proxy type is set to passive via ``status=passive``. Make sure these suboptions are removed from your playbook as they were never supported by Zabbix in the first place.
-
-openstack.cloud
-~~~~~~~~~~~~~~~
-
-- foo - The bar option has been deprecated. Use the username option instead.
-- send_request - The quic option has been deprecated. Use the protocol option instead.
 
 Removed Features (previously deprecated)
 ----------------------------------------
@@ -2802,6 +3585,156 @@ junipernetworks.junos
 - set_config called only when state is not gathered so that gathered opeartion works fine (https://github.com/ansible-collections/junipernetworks.junos/issues/93).
 - set_config called only when state is not gathered so that gathered opeartion works fine for l2_interfaces resource module (https://github.com/ansible-collections/junipernetworks.junos/issues/91).
 
+netapp.elementsw
+~~~~~~~~~~~~~~~~
+
+- galaxy.yml - fix path to github repository.
+- galaxy.yml - fix repository and homepage links.
+- na_elementsw_access_group - fix check_mode so that no action is taken.
+- na_elementsw_admin_users - fix check_mode so that no action is taken.
+- na_elementsw_cluster - create cluster if it does not exist.  Do not expect MVIP or SVIP to exist before create.
+- na_elementsw_cluster_snmp - double exception because of AttributeError.
+- na_elementsw_drive - node_id or drive_id were not handled properly when using numeric ids.
+- na_elementsw_initiators - volume_access_group_id was ignored.  volume_access_groups was ignored and redundant.
+- na_elementsw_ldap - double exception because of AttributeError.
+- na_elementsw_snapshot_schedule - ignore schedules being deleted (idempotency), remove default values and fix documentation.
+- na_elementsw_vlan - AttributeError if VLAN already exists.
+- na_elementsw_vlan - change in attributes was ignored.
+- na_elementsw_vlan - fix check_mode so that no action is taken.
+- na_elementsw_volume - Argument '512emulation' in argument_spec is not a valid python identifier - renamed to enable512emulation.
+- na_elementsw_volume - double exception because of AttributeError.
+- netapp.py - report error in case of connection error rather than raising a generic exception by default.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- REST API call now honors the ``http_port`` parameter.
+- REST API detection now works with vserver (use_rest - Auto).
+- module_utils/netapp_module - cater for empty lists in get_modified_attributes().
+- module_utils/netapp_module - cater for lists with duplicate elements in compare_lists().
+- na ontap_net_routes - change metric type from string to int.
+- na_ontap_aggregate - Fixed traceback when running as vsadmin and cleanly error out.
+- na_ontap_aggregate - ``disk-info`` error when using ``disks`` option.
+- na_ontap_autosupport_invoke - ``message`` has changed to ``autosupport_message`` as Redhat has reserved this word. ``message`` has been alias'd to ``autosupport_message``.
+- na_ontap_autosupport_invoke - when using ZAPI and name is not given, send autosupport message to all nodes in the cluster.
+- na_ontap_cg_snapshot - properly states it does not support check_mode.
+- na_ontap_cifs_server - Fixed KeyError exception on 'cifs_server_name'
+- na_ontap_cifs_server - delete AD account if username and password are provided when state=absent
+- na_ontap_cifs_server - minor documentation changes correction of create example with "name" parameter and adding type to parameters.
+- na_ontap_cifs_vserver - fix documentation and add more examples.
+- na_ontap_cluster - ONTAP 9.3 or earlier does not support ZAPI element single-node-cluster.
+- na_ontap_cluster - autosupport log pushed after cluster create is performed, removed license add or remove option.
+- na_ontap_cluster - module was not idempotent when changing location or contact information.
+- na_ontap_cluster_ha - support check_mode.
+- na_ontap_cluster_peer - EMS log wrongly uses destination credentials with source hostname.
+- na_ontap_cluster_peer - support check_mode.
+- na_ontap_command - fixed traceback when using return_dict if u'1' is present in result value.
+- na_ontap_command - replace invalid backspace characters (0x08) with '.'.
+- na_ontap_command - stdout_lines_filter contains data only if include/exlude_lines parameter is used. (zeten30)
+- na_ontap_command - stripped_line len is checked only once, filters are inside if block. (zeten30)
+- na_ontap_disks - support check_mode.
+- na_ontap_dns - report error if modify or delete operations are attempted on cserver when using REST.  Make create operation idempotent for cserver when using REST.  Support for modify/delete on cserver when using REST will be added later.
+- na_ontap_dns - support check_mode.
+- na_ontap_efficiency_policy - change ``duration`` type from int to str to support '-' input.
+- na_ontap_fcp - support check_mode.
+- na_ontap_firewall_policy - documentation changed for supported service parameter.
+- na_ontap_firewall_policy - portmap added as a valid service
+- na_ontap_firmware_download - exception on PCDATA if ONTAP returns a BEL (0x07) character.
+- na_ontap_firmware_upgrade - ignore timeout when downloading firmware images by default.
+- na_ontap_firmware_upgrade - images are not downloaded, but the module reports success.
+- na_ontap_flexcache - support check_mode.
+- na_ontap_igroup - idempotency issue when using uppercase hex digits (A, B, C, D, E, F) in WWN (ONTAP uses lowercase).
+- na_ontap_igroup_initiator - idempotency issue when using uppercase hex digits (A, B, C, D, E, F) in WWN (ONTAP uses lowercase).
+- na_ontap_info - Fixed error causing module to fail on ``metrocluster_check_info``, ``env_sensors_info`` and ``volume_move_target_aggr_info``.
+- na_ontap_info - ``metrocluster_check_info`` has been removed as it was breaking the info module for everyone who didn't have a metrocluster set up. We are working on adding this back in a future update.
+- na_ontap_info - `metrocluster_check_info` does not trigger a traceback but adds an "error" info element if the target system is not set up for metrocluster.
+- na_ontap_info - cifs_server_info - fix KeyError exception on ``domain`` if only ``domain-workgroup`` is present.
+- na_ontap_info - conversion from '-' to '_' was not done for lists of dictionaries.
+- na_ontap_info - lists were incorrectly processed in convert_keys, returning {}.
+- na_ontap_info - qtree_info is missing most entries.  Changed key from `vserver:id` to `vserver:volume:id` .
+- na_ontap_info - return all records of each gathered subset.
+- na_ontap_interface - allow module to run on node before joining the cluster.
+- na_ontap_iscsi_security - Fixed modify functionality for CHAP and typo correction
+- na_ontap_iscsi_security - adding no_log for password parameters.
+- na_ontap_kerberos_realm - fix ``kdc_vendor`` case sensitivity issue.
+- na_ontap_license - support check_mode.
+- na_ontap_login_messages - Fixed example documentation and spelling mistake issue
+- na_ontap_login_messages - fix documentation link.
+- na_ontap_ndmp - minor documentation changes for restore_vm_cache_size and data_port_range.
+- na_ontap_net_ifgrp - Fixed error for na_ontap_net_ifgrp if no port is given.
+- na_ontap_net_routes - REST does not support the ``metric`` attribute
+- na_ontap_net_subnet - fix ip_ranges option fails on existing subnet.
+- na_ontap_net_subnet - fix rename idempotency issue and updated rename check.
+- na_ontap_node - support check mode.
+- na_ontap_ntfs_dacl - example fix in documentation string.
+- na_ontap_ntfs_sd - documentation string update for examples and made sure owner or group not mandatory.
+- na_ontap_nvme_subsystem - fix fetching unique nvme subsytem based on vserver filter.
+- na_ontap_nvme_subsystem - fixed bug when creating subsystem, vserver was not filtered.
+- na_ontap_password - do not error out if password is identical to previous password (idempotency).
+- na_ontap_ports - now support check mode.
+- na_ontap_portset - adding explicit error message as modify portset is not supported.
+- na_ontap_qtree - Fixed issue with Get function for REST
+- na_ontap_qtree - REST API takes "unix_permissions" as parameter instead of "mode".
+- na_ontap_qtree - unix permission is not available when security style is ntfs
+- na_ontap_restit - error can be a string in addition to a dict.  This fix removes a traceback with AttributeError.
+- na_ontap_routes - support Check Mode correctly.
+- na_ontap_security_certificates - allows (``common_name``, ``type``) as an alternate key since ``name`` is not supported in ONTAP 9.6 and 9.7.
+- na_ontap_snapmirror - Fixed traceback when running as vsadmin.  Do not attempt to break a relationship that is 'Uninitialized'.
+- na_ontap_snapmirror - added initialize boolean option which specifies whether to initialize SnapMirror relation.
+- na_ontap_snapmirror - calling quiesce before snapmirror break.
+- na_ontap_snapmirror - could not delete all rules (bug in netapp_module).
+- na_ontap_snapmirror - fixed KeyError when accessing ``elationship_type`` parameter.
+- na_ontap_snapmirror - fixed snapmirror delete for loadsharing to not go to quiesce state for the rest of the set.
+- na_ontap_snapmirror - support check_mode.
+- na_ontap_snapmirror_policy - fixed a race condition when creating a new policy.
+- na_ontap_snapmirror_policy - fixed idempotency issue withis_network_compression_enabled for REST.
+- na_ontap_snapshot_policy - Fixed KeyError on ``prefix`` issue when prefix parameter isn't supplied.
+- na_ontap_snapshot_policy - fix vsadmin approach for managing snapshot policy.
+- na_ontap_software_update - Incorrectly stated that it support check mode, it does not.
+- na_ontap_software_update - ignore connection errors during update as nodes cannot be reachable.
+- na_ontap_svm - ``allowed_protocols`` added to param in proper way in case of using REST API
+- na_ontap_svm - if language C.UTF-8 is specified, the module is not idempotent
+- na_ontap_svm - if snapshot policy is changed, modify fails with "Extra input - snapshot_policy"
+- na_ontap_svm_options - support check_mode.
+- na_ontap_ucadapter - fixed KeyError if type is not provided and mode is 'cna'.
+- na_ontap_user - checked `applications` does not contain snmp when using REST API call.
+- na_ontap_user - enable lock state and password to be set in the same task for existing user.
+- na_ontap_user - fixed KeyError if locked key not set with REST API call.
+- na_ontap_user - fixed KeyError if password is not provided.
+- na_ontap_user - fixed KeyError if vserver - is empty with REST API call (useful to indicate cluster scope).
+- na_ontap_user - minor documentation update for application parameter.
+- na_ontap_volume - Fixed error reporting if efficiency policy cannot be read.  Do not attempt to read efficiency policy if not needed.
+- na_ontap_volume - Fixed error when modifying volume efficiency policy.
+- na_ontap_volume - ``efficiency_policy`` was ignored
+- na_ontap_volume - ``volume_security_style`` option now allows modify.
+- na_ontap_volume - `wait_on_completion` is supported with volume moves.
+- na_ontap_volume - enforce that space_slo and space_guarantee are mutually exclusive
+- na_ontap_volume - fix KeyError on 'style' when volume is of type - data-protection.
+- na_ontap_volume - fix KeyError on 'style' when volume is offline.
+- na_ontap_volume - fixed KeyError when getting info on a MVD volume
+- na_ontap_volume - fixed error when deleting flexGroup volume with ONTAP 9.7.
+- na_ontap_volume - improve error reporting if required parameter is present but not set.
+- na_ontap_volume - issue when snapdir_access and atime_update not passed together.
+- na_ontap_volume - modify was invoked multiple times when once is enough.
+- na_ontap_volume - suppress traceback in wait_for_completion as volume may not be completely ready.
+- na_ontap_volume - tiering option requires 9.4 or later (error on volume-comp-aggr-attributes)
+- na_ontap_volume_autosize - Support check_mode when `reset` option is given.
+- na_ontap_volume_clone - Fixed KeyError exception on ``volume``
+- na_ontap_volume_clone - fixed 'Extra input - parent-vserver' error when running as cluster admin.
+- na_ontap_volume_snaplock - Fixed KeyError exception on 'is-volume-append-mode-enabled'
+- na_ontap_volume_snaplock - fix documentation link.
+- na_ontap_vscan_on_access_policy - ``bool`` type was not properly set for ``scan_files_with_no_ext``.
+- na_ontap_vscan_on_access_policy - ``policy_status`` enable/disable option was not supported.
+- na_ontap_vscan_on_demand_task - ``file_ext_to_include`` was not handled properly.
+- na_ontap_vscan_scanner_pool - fix module only gets one scanner pool.
+- na_ontap_vscan_scanner_pool - has been updated to match the standard format used for all other ontap modules
+- na_ontap_vscan_scanner_pool_policy - scanner_pool apply policy support on modification.
+- na_ontap_vserver_cifs_security - fix int and boolean options when modifying vserver cifs security.
+- na_ontap_vserver_create(role) - lif creation now defaults to system-defined unless iscsi lif type.
+- na_ontap_vserver_peer - EMS log wrongly uses destination credentials with source hostname.
+- na_ontap_vserver_peer - support check_mode.
+- use_rest is now case insensitive.
+
 netbox.netbox
 ~~~~~~~~~~~~~
 
@@ -3815,6 +4748,132 @@ junipernetworks.junos
 - junipernetworks.junos.junos_vlan - (deprecated, removed after 2022-06-01) Manage VLANs on Juniper JUNOS network devices
 - junipernetworks.junos.junos_vlans - VLANs resource module
 - junipernetworks.junos.junos_vrf - Manage the VRF definitions on Juniper JUNOS devices
+
+netapp.elementsw
+~~~~~~~~~~~~~~~~
+
+- netapp.elementsw.na_elementsw_access_group - NetApp Element Software Manage Access Groups
+- netapp.elementsw.na_elementsw_access_group_volumes - NetApp Element Software Add/Remove Volumes to/from Access Group
+- netapp.elementsw.na_elementsw_account - NetApp Element Software Manage Accounts
+- netapp.elementsw.na_elementsw_admin_users - NetApp Element Software Manage Admin Users
+- netapp.elementsw.na_elementsw_backup - NetApp Element Software Create Backups
+- netapp.elementsw.na_elementsw_check_connections - NetApp Element Software Check connectivity to MVIP and SVIP.
+- netapp.elementsw.na_elementsw_cluster - NetApp Element Software Create Cluster
+- netapp.elementsw.na_elementsw_cluster_config - Configure Element SW Cluster
+- netapp.elementsw.na_elementsw_cluster_pair - NetApp Element Software Manage Cluster Pair
+- netapp.elementsw.na_elementsw_cluster_snmp - Configure Element SW Cluster SNMP
+- netapp.elementsw.na_elementsw_drive - NetApp Element Software Manage Node Drives
+- netapp.elementsw.na_elementsw_initiators - Manage Element SW initiators
+- netapp.elementsw.na_elementsw_ldap - NetApp Element Software Manage ldap admin users
+- netapp.elementsw.na_elementsw_network_interfaces - NetApp Element Software Configure Node Network Interfaces
+- netapp.elementsw.na_elementsw_node - NetApp Element Software Node Operation
+- netapp.elementsw.na_elementsw_snapshot - NetApp Element Software Manage Snapshots
+- netapp.elementsw.na_elementsw_snapshot_restore - NetApp Element Software Restore Snapshot
+- netapp.elementsw.na_elementsw_snapshot_schedule - NetApp Element Software Snapshot Schedules
+- netapp.elementsw.na_elementsw_vlan - NetApp Element Software Manage VLAN
+- netapp.elementsw.na_elementsw_volume - NetApp Element Software Manage Volumes
+- netapp.elementsw.na_elementsw_volume_clone - NetApp Element Software Create Volume Clone
+- netapp.elementsw.na_elementsw_volume_pair - NetApp Element Software Volume Pair
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- netapp.ontap.na_ontap_aggregate - NetApp ONTAP manage aggregates.
+- netapp.ontap.na_ontap_autosupport - NetApp ONTAP Autosupport
+- netapp.ontap.na_ontap_autosupport_invoke - NetApp ONTAP send AutoSupport message
+- netapp.ontap.na_ontap_broadcast_domain - NetApp ONTAP manage broadcast domains.
+- netapp.ontap.na_ontap_broadcast_domain_ports - NetApp ONTAP manage broadcast domain ports
+- netapp.ontap.na_ontap_cg_snapshot - NetApp ONTAP manage consistency group snapshot
+- netapp.ontap.na_ontap_cifs - NetApp ONTAP Manage cifs-share
+- netapp.ontap.na_ontap_cifs_acl - NetApp ONTAP manage cifs-share-access-control
+- netapp.ontap.na_ontap_cifs_server - NetApp ONTAP CIFS server configuration
+- netapp.ontap.na_ontap_cluster - NetApp ONTAP cluster - create a cluster and add/remove nodes.
+- netapp.ontap.na_ontap_cluster_ha - NetApp ONTAP Manage HA status for cluster
+- netapp.ontap.na_ontap_cluster_peer - NetApp ONTAP Manage Cluster peering
+- netapp.ontap.na_ontap_command - NetApp ONTAP Run any cli command, the username provided needs to have console login permission.
+- netapp.ontap.na_ontap_disks - NetApp ONTAP Assign disks to nodes
+- netapp.ontap.na_ontap_dns - NetApp ONTAP Create, delete, modify DNS servers.
+- netapp.ontap.na_ontap_efficiency_policy - NetApp ONTAP manage efficiency policies (sis policies)
+- netapp.ontap.na_ontap_export_policy - NetApp ONTAP manage export-policy
+- netapp.ontap.na_ontap_export_policy_rule - NetApp ONTAP manage export policy rules
+- netapp.ontap.na_ontap_fcp - NetApp ONTAP Start, Stop and Enable FCP services.
+- netapp.ontap.na_ontap_file_directory_policy - NetApp ONTAP create, delete, or modify vserver security file-directory policy
+- netapp.ontap.na_ontap_firewall_policy - NetApp ONTAP Manage a firewall policy
+- netapp.ontap.na_ontap_firmware_upgrade - NetApp ONTAP firmware upgrade for SP, shelf, ACP, and disk.
+- netapp.ontap.na_ontap_flexcache - NetApp ONTAP FlexCache - create/delete relationship
+- netapp.ontap.na_ontap_igroup - NetApp ONTAP iSCSI or FC igroup configuration
+- netapp.ontap.na_ontap_igroup_initiator - NetApp ONTAP igroup initiator configuration
+- netapp.ontap.na_ontap_info - NetApp information gatherer
+- netapp.ontap.na_ontap_interface - NetApp ONTAP LIF configuration
+- netapp.ontap.na_ontap_ipspace - NetApp ONTAP Manage an ipspace
+- netapp.ontap.na_ontap_iscsi - NetApp ONTAP manage iSCSI service
+- netapp.ontap.na_ontap_iscsi_security - NetApp ONTAP Manage iscsi security.
+- netapp.ontap.na_ontap_job_schedule - NetApp ONTAP Job Schedule
+- netapp.ontap.na_ontap_kerberos_realm - NetApp ONTAP vserver nfs kerberos realm
+- netapp.ontap.na_ontap_ldap - NetApp ONTAP LDAP
+- netapp.ontap.na_ontap_ldap_client - NetApp ONTAP LDAP client
+- netapp.ontap.na_ontap_license - NetApp ONTAP protocol and feature licenses
+- netapp.ontap.na_ontap_login_messages - Setup login banner and message of the day
+- netapp.ontap.na_ontap_lun - NetApp ONTAP manage LUNs
+- netapp.ontap.na_ontap_lun_copy - NetApp ONTAP copy LUNs
+- netapp.ontap.na_ontap_lun_map - NetApp ONTAP LUN maps
+- netapp.ontap.na_ontap_motd - Setup motd
+- netapp.ontap.na_ontap_ndmp - NetApp ONTAP NDMP services configuration
+- netapp.ontap.na_ontap_net_ifgrp - NetApp Ontap modify network interface group
+- netapp.ontap.na_ontap_net_port - NetApp ONTAP network ports.
+- netapp.ontap.na_ontap_net_routes - NetApp ONTAP network routes
+- netapp.ontap.na_ontap_net_subnet - NetApp ONTAP Create, delete, modify network subnets.
+- netapp.ontap.na_ontap_net_vlan - NetApp ONTAP network VLAN
+- netapp.ontap.na_ontap_nfs - NetApp ONTAP NFS status
+- netapp.ontap.na_ontap_node - NetApp ONTAP Rename a node.
+- netapp.ontap.na_ontap_ntfs_dacl - NetApp Ontap create, delate or modify NTFS DACL (discretionary access control list)
+- netapp.ontap.na_ontap_ntfs_sd - NetApp ONTAP create, delete or modify NTFS security descriptor
+- netapp.ontap.na_ontap_ntp - NetApp ONTAP NTP server
+- netapp.ontap.na_ontap_nvme - NetApp ONTAP Manage NVMe Service
+- netapp.ontap.na_ontap_nvme_namespace - NetApp ONTAP Manage NVME Namespace
+- netapp.ontap.na_ontap_nvme_subsystem - NetApp ONTAP Manage NVME Subsystem
+- netapp.ontap.na_ontap_object_store - NetApp ONTAP manage object store config.
+- netapp.ontap.na_ontap_ports - NetApp ONTAP add/remove ports
+- netapp.ontap.na_ontap_portset - NetApp ONTAP Create/Delete portset
+- netapp.ontap.na_ontap_qos_adaptive_policy_group - NetApp ONTAP Adaptive Quality of Service policy group.
+- netapp.ontap.na_ontap_qos_policy_group - NetApp ONTAP manage policy group in Quality of Service.
+- netapp.ontap.na_ontap_qtree - NetApp ONTAP manage qtrees
+- netapp.ontap.na_ontap_quota_policy - NetApp Ontap create, rename or delete quota policy
+- netapp.ontap.na_ontap_quotas - NetApp ONTAP Quotas
+- netapp.ontap.na_ontap_rest_cli - NetApp ONTAP Run any cli command, the username provided needs to have console login permission.
+- netapp.ontap.na_ontap_rest_info - NetApp ONTAP information gatherer using REST APIs
+- netapp.ontap.na_ontap_restit - NetApp ONTAP Run any REST API on ONTAP
+- netapp.ontap.na_ontap_security_certificates - NetApp ONTAP manage security certificates.
+- netapp.ontap.na_ontap_security_key_manager - NetApp ONTAP security key manager.
+- netapp.ontap.na_ontap_service_processor_network - NetApp ONTAP service processor network
+- netapp.ontap.na_ontap_snapmirror - NetApp ONTAP or ElementSW Manage SnapMirror
+- netapp.ontap.na_ontap_snapmirror_policy - NetApp ONTAP create, delete or modify SnapMirror policies
+- netapp.ontap.na_ontap_snapshot - NetApp ONTAP manage Snapshots
+- netapp.ontap.na_ontap_snapshot_policy - NetApp ONTAP manage Snapshot Policy
+- netapp.ontap.na_ontap_snmp - NetApp ONTAP SNMP community
+- netapp.ontap.na_ontap_snmp_traphosts - NetApp ONTAP SNMP traphosts.
+- netapp.ontap.na_ontap_software_update - NetApp ONTAP Update Software
+- netapp.ontap.na_ontap_ssh_command - NetApp ONTAP Run any cli command over plain SSH using paramiko.
+- netapp.ontap.na_ontap_svm - NetApp ONTAP SVM
+- netapp.ontap.na_ontap_svm_options - NetApp ONTAP Modify SVM Options
+- netapp.ontap.na_ontap_ucadapter - NetApp ONTAP UC adapter configuration
+- netapp.ontap.na_ontap_unix_group - NetApp ONTAP UNIX Group
+- netapp.ontap.na_ontap_unix_user - NetApp ONTAP UNIX users
+- netapp.ontap.na_ontap_user - NetApp ONTAP user configuration and management
+- netapp.ontap.na_ontap_user_role - NetApp ONTAP user role configuration and management
+- netapp.ontap.na_ontap_volume - NetApp ONTAP manage volumes.
+- netapp.ontap.na_ontap_volume_autosize - NetApp ONTAP manage volume autosize
+- netapp.ontap.na_ontap_volume_clone - NetApp ONTAP manage volume clones.
+- netapp.ontap.na_ontap_volume_snaplock - NetApp ONTAP manage volume snaplock retention.
+- netapp.ontap.na_ontap_vscan - NetApp ONTAP Vscan enable/disable.
+- netapp.ontap.na_ontap_vscan_on_access_policy - NetApp ONTAP Vscan on access policy configuration.
+- netapp.ontap.na_ontap_vscan_on_demand_task - NetApp ONTAP Vscan on demand task configuration.
+- netapp.ontap.na_ontap_vscan_scanner_pool - NetApp ONTAP Vscan Scanner Pools Configuration.
+- netapp.ontap.na_ontap_vserver_cifs_security - NetApp ONTAP vserver CIFS security modification
+- netapp.ontap.na_ontap_vserver_peer - NetApp ONTAP Vserver peering
+- netapp.ontap.na_ontap_wait_for_condition - NetApp ONTAP wait_for_condition.  Loop over a get status request until a condition is met.
+- netapp.ontap.na_ontap_wwpn_alias - NetApp ONTAP set FCP WWPN Alias
+- netapp.ontap.na_ontap_zapit - NetApp ONTAP Run any ZAPI on ONTAP
 
 netbox.netbox
 ~~~~~~~~~~~~~

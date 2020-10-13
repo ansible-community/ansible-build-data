@@ -1,5 +1,51 @@
 ancestor: 2.9.0
 releases:
+  2.10.0:
+    changes:
+      known_issues:
+      - Due to a limitation in pip, you cannot ``pip install --upgrade`` from ansible-2.9
+        or earlier to ansible-2.10 or higher. Instead, you must explicitly use ``pip
+        uninstall ansible`` before pip installing the new version. If you attempt
+        to upgrade Ansible with pip without first uninstalling, the installer warns
+        you to uninstall first.
+      - 'The individual collections that make up the ansible-2.10.0 package can be
+        viewed independently. However, they are not currently listed by ansible-galaxy.
+        To view these collections with ansible-galaxy, explicitly specify where ansible
+        has installed the collections -- ``COLLECTION_INSTALL=$(python -c ''import
+        ansible, os.path ; print("%s/../ansible_collections" % os.path.dirname(ansible.__file__))'')
+        ansible-galaxy collection list -p "$COLLECTION_INSTALL"``.
+
+        '
+      - 'These fortios modules are not automatically redirected from their 2.9.x names
+        to the new 2.10.x names within collections. You must modify your playbooks
+        to use fully qualified collection names for them. You can use the documentation
+        (https://docs.ansible.com/ansible/2.10/collections/fortinet/fortios/) for
+        the ``fortinet.fortios`` collection to determine what the fully qualified
+        collection names are.
+
+
+        * fortios_address
+
+        * fortios_config
+
+        * fortios_firewall_DoS_policy
+
+        * fortios_firewall_DoS_policy6
+
+        * fortios_ipv4_policy
+
+        * fortios_switch_controller_802_1X_settings
+
+        * fortios_switch_controller_security_policy_802_1X
+
+        * fortios_system_firmware_upgrade
+
+        * fortios_system_nd_proxy
+
+        * fortios_webfilter
+
+        '
+    release_date: '2020-09-22'
   2.10.0a1:
     changes:
       breaking_changes:
@@ -108,23 +154,10 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2020-09-15'
-  2.10.0:
+  2.10.1:
     changes:
-      known_issues:
-        - "Due to a limitation in pip, you cannot ``pip install --upgrade`` from ansible-2.9 or earlier to ansible-2.10 or higher. Instead, you must explicitly use ``pip uninstall ansible`` before pip installing the new version. If you attempt to upgrade Ansible with pip without first uninstalling, the installer warns you to uninstall first."
-        - |
-            The individual collections that make up the ansible-2.10.0 package can be viewed independently. However, they are not currently listed by ansible-galaxy. To view these collections with ansible-galaxy, explicitly specify where ansible has installed the collections -- ``COLLECTION_INSTALL=$(python -c 'import ansible, os.path ; print("%s/../ansible_collections" % os.path.dirname(ansible.__file__))') ansible-galaxy collection list -p "$COLLECTION_INSTALL"``.
-        - |
-            These fortios modules are not automatically redirected from their 2.9.x names to the new 2.10.x names within collections. You must modify your playbooks to use fully qualified collection names for them. You can use the documentation (https://docs.ansible.com/ansible/2.10/collections/fortinet/fortios/) for the ``fortinet.fortios`` collection to determine what the fully qualified collection names are.
+      release_summary: 'Release Date: 2020-10-13
 
-            * fortios_address
-            * fortios_config
-            * fortios_firewall_DoS_policy
-            * fortios_firewall_DoS_policy6
-            * fortios_ipv4_policy
-            * fortios_switch_controller_802_1X_settings
-            * fortios_switch_controller_security_policy_802_1X
-            * fortios_system_firmware_upgrade
-            * fortios_system_nd_proxy
-            * fortios_webfilter
-    release_date: '2020-09-22'
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2020-10-13'
