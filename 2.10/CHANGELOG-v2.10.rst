@@ -8,6 +8,599 @@ This changelog describes changes since Ansible 2.9.0.
   :local:
   :depth: 2
 
+v2.10.2
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2020-11-03
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-base
+------------
+
+Ansible 2.10.2 contains Ansible-base version 2.10.3.
+This is a newer version than version 2.10.2 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+- ansible.netcommon was upgraded from version 1.3.0 to version 1.4.1.
+  The changes are reported in the combined changelog below.
+- ansible.windows was upgraded from version 1.0.1 to version 1.2.0.
+  There are no changes recorded in the changelog.
+- arista.eos was upgraded from version 1.1.0 to version 1.2.0.
+  The changes are reported in the combined changelog below.
+- cisco.aci was upgraded from version 1.0.0 to version 1.1.0.
+  The changes are reported in the combined changelog below.
+- cisco.ios was upgraded from version 1.1.0 to version 1.2.0.
+  The changes are reported in the combined changelog below.
+- cisco.meraki was upgraded from version 2.0.0 to version 2.1.1.
+  The changes are reported in the combined changelog below.
+- cisco.mso was upgraded from version 1.0.0 to version 1.0.1.
+  The changes are reported in the combined changelog below.
+- cisco.nxos was upgraded from version 1.2.0 to version 1.3.0.
+  The changes are reported in the combined changelog below.
+- cisco.ucs was upgraded from version 1.5.0 to version 1.6.0.
+  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+- community.mongodb was upgraded from version 1.0.0 to version 1.1.0.
+  The changes are reported in the combined changelog below.
+- community.mysql was upgraded from version 1.1.0 to version 1.1.1.
+  The changes are reported in the combined changelog below.
+- community.zabbix was upgraded from version 1.0.0 to version 1.1.0.
+  The changes are reported in the combined changelog below.
+- containers.podman was upgraded from version 1.3.1 to version 1.3.2.
+  The changes are reported in the combined changelog below.
+- dellemc.os10 was upgraded from version 1.0.1 to version 1.0.2.
+  The changes are reported in the combined changelog below.
+- dellemc.os6 was upgraded from version 1.0.2 to version 1.0.3.
+  The changes are reported in the combined changelog below.
+- dellemc.os9 was upgraded from version 1.0.2 to version 1.0.3.
+  There are no changes recorded in the changelog.
+- f5networks.f5_modules was upgraded from version 1.5.0 to version 1.6.0.
+  The changes are reported in the combined changelog below.
+- junipernetworks.junos was upgraded from version 1.1.1 to version 1.2.0.
+  The changes are reported in the combined changelog below.
+- netapp_eseries.santricity was upgraded from version 1.0.8 to version 1.1.0.
+  The changes are reported in the combined changelog below.
+- ovirt.ovirt was upgraded from version 1.1.4 to version 1.2.1.
+  The changes are reported in the combined changelog below.
+- purestorage.flasharray was upgraded from version 1.4.0 to version 1.5.0.
+  The changes are reported in the combined changelog below.
+- purestorage.flashblade was upgraded from version 1.3.0 to version 1.4.0.
+  The changes are reported in the combined changelog below.
+- servicenow.servicenow was upgraded from version 1.0.2 to version 1.0.3.
+  The changes are reported in the combined changelog below.
+- theforeman.foreman was upgraded from version 1.3.0 to version 1.4.0.
+  The changes are reported in the combined changelog below.
+- vyos.vyos was upgraded from version 1.0.5 to version 1.1.0.
+  The changes are reported in the combined changelog below.
+
+Major Changes
+-------------
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- cluster_upgrade - Migrate role (https://github.com/oVirt/ovirt-ansible-collection/pull/94).
+- disaster_recovery - Migrate role (https://github.com/oVirt/ovirt-ansible-collection/pull/134).
+- engine_setup - Migrate role (https://github.com/oVirt/ovirt-ansible-collection/pull/69).
+- hosted_engine_setup - Migrate role (https://github.com/oVirt/ovirt-ansible-collection/pull/106).
+- image_template - Migrate role (https://github.com/oVirt/ovirt-ansible-collection/pull/95).
+- infra - Migrate role (https://github.com/oVirt/ovirt-ansible-collection/pull/92).
+- manageiq - Migrate role (https://github.com/oVirt/ovirt-ansible-collection/pull/97).
+- repositories - Migrate role (https://github.com/oVirt/ovirt-ansible-collection/pull/96).
+- shutdown_env - Migrate role (https://github.com/oVirt/ovirt-ansible-collection/pull/112).
+- vm_infra - Migrate role (https://github.com/oVirt/ovirt-ansible-collection/pull/93).
+
+Minor Changes
+-------------
+
+Ansible-base
+~~~~~~~~~~~~
+
+- ansible-test - Add a ``--docker-network`` option to choose the network for running containers when using the ``--docker`` option.
+- ansible-test - Collections can now specify pip constraints for unit and integration test requirements using ``tests/unit/constraints.txt`` and ``tests/integration/constraints.txt`` respectively.
+- ansible-test - python-cryptography is now bounded at <3.2, as 3.2 drops support for OpenSSL 1.0.2 upon which some of our CI infrastructure still depends.
+- dnf - now shows specific package changes (installations/removals) under ``results`` in check_mode. (https://github.com/ansible/ansible/issues/66132)
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- 'prefix' added to NetworkTemplate class, inorder to handle the negate operation for vyos config commands.
+- Add support for json format input format for netconf modules using ``xmltodict``
+- Update docs for netconf_get and netconf_config examples using display=native
+
+arista.eos
+~~~~~~~~~~
+
+- Added ospf_interfaces resource module. (https://github.com/ansible-collections/arista.eos/pull/125)
+- Documented the necessity to use eos_interfaces and eos_l2_interfaces (for l2 configs) in eos_l3_interfaces module.
+- modify short description in ospfv3 resource module.
+- stop integration testing of local connection as it is deprecated.
+
+cisco.aci
+~~~~~~~~~
+
+- Ability to add monitoring policy to epgs and anps
+- Add Ansible Network ENV to fallback
+- Add aci_l3out_external_path_to_member.py & aci_l3out_static_routes modules
+- Add env_fallback for common connection params
+- Add env_fallback for the rest of the argument spec
+- Add new Subclass path support
+- Add new module and test file for leaf breakout port group
+- Added failure message to aci_interface_policy_leaf_policy_group
+- Enable/Disable infra vlan in aci_aep and its test module
+- Set scope default value in aci_l3out_extsubnet
+- Update README.md
+- Update inventory
+- aci_epg_to_domain addition of promiscuous mode (#79)
+- aci_interface_policy_port_security addition of attribute:timeout (#80)
+
+cisco.ios
+~~~~~~~~~
+
+- Add ios_ospf_interfaces module.
+
+cisco.mso
+~~~~~~~~~
+
+- Add delete capability to mso_schema_site
+- Add env_fallback for mso_argument_spec params
+- Add non existing template deletion test
+- Add test file for mso_schema_template
+- Add test file for site_bd_subnet
+- Bump module to v1.0.1
+- Extent mso_tenant test case coverage
+
+cisco.nxos
+~~~~~~~~~~
+
+- Add nxos_ospf_interfaces resource module.
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- all roles - added ``zabbix_{agent,web,server,proxy,javagateway}_conf_mode`` option for configuring a mode of the configuration file for each Zabbix service.
+- zabbix_proxy (role) - added an option ``innodb_default_row_format`` for MariaDB/MySQL if it isn't set to ``dynamic``.
+- zabbix_server - fixed installation output when using MySQL database to not print PostgreSQL.
+- zabbix_user - ``passwd`` no longer required when ALL groups in ``usrgrps`` use LDAP as ``gui_access`` (see `#240 <https://github.com/ansible-collections/community.zabbix/issues/232>`_).
+- zabbix_user - no longer requires ``usrgrps`` when ``state=absent`` (see `#240 <https://github.com/ansible-collections/community.zabbix/issues/232>`_).
+- zabbix_web - added several configuration options for the PHP-FPM setup to configure the listen (socket) file.
+- zabbix_web - added support for configuring Zabbix Web with Nginx, same way as with Apache.
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Add AS3 declaration information to the bigip_device_info module
+- Add AS3, TS, CFE, and DO information to the bigip_device_info module
+- Add CFE declaration information to the bigip_device_info module
+- Add DO declaration information to the bigip_device_info module
+- Add TS declaration information to the bigip_device_info module
+- Add access policy information to the bigip_device_info module
+- Add access profile information to the bigip_device_info module
+- Add meaningful error message for the wait_for parameter in the bigip_command module
+- Add parent_policies and policies_pending_changes information parameters to obtain when gathering asm-policy-stats
+- Add remote_syslog information to the bigip_device_info module.
+- Add renewal option to the bigip_device_license module
+- Add reuse_objects parameter to the bigip_apm_policy_import module
+- Add sync-status information to the bigip_device_info module
+- Add the ability to import API Protection policies to the bigip_apm_policy_import module
+- Added apply information parameter to indicate if an ASM policy has pending changes that need to be applied.
+- Changed the meaning of policies_active and policies_inactive stat information due to changes in TMOS 13.x
+- New bigip_ssl_key_cert module to manage SSL certificates and keys with the transaction interface
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- Add ospfv3 resource module.
+
+netapp_eseries.santricity
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Add functionality to remove all inventory configuration in the nar_santricity_host role. Set configuration.eseries_remove_all_configuration=True to remove all storage pool/volume configuration, host, hostgroup, and lun mapping configuration.
+- Add host_types, host_port_protocols, host_port_information, hostside_io_interface_protocols to netapp_volumes_by_initiators in the na_santricity_facts module.
+- Add storage pool information to the volume_by_initiator facts.
+- Add storage system not found exception to the common role's build_info task.
+- Add volume_metadata option to na_santricity_volume module, add volume_metadata information to the netapp_volumes_by_initiators dictionary in na_santricity_facts module, and update the nar_santricity_host role with the option.
+- Improve nar_santricity_common storage system api determinations; attempts to discover the storage system using the information provided in the inventory before attempting to search the subnet.
+- Increased the storage system discovery connection timeouts to 30 seconds to prevent systems from not being discovered over slow connections.
+- Minimize the facts gathered for the host initiators.
+- Update ib iser determination to account for changes in firmware 11.60.2.
+- Use existing Web Services Proxy storage system identifier when one is already created and one is not provided in the inventory.
+- Utilize eseries_iscsi_iqn before searching host for iqn in nar_santricity_host role.
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- Add GPL license (https://github.com/oVirt/ovirt-ansible-collection/pull/101).
+- hosted_engine_setup - Add compatibility_version (https://github.com/oVirt/ovirt-ansible-collection/pull/125).
+- ovirt_disk - ignore move of HE disks (https://github.com/oVirt/ovirt-ansible-collection/pull/162).
+- ovirt_nic - Add template_version (https://github.com/oVirt/ovirt-ansible-collection/pull/145).
+- ovirt_nic_info - Add template (https://github.com/oVirt/ovirt-ansible-collection/pull/146).
+- ovirt_vm_info - Add current_cd (https://github.com/oVirt/ovirt-ansible-collection/pull/144).
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_apiclient - New module to support API Client management
+- purefa_directory - Add support for managed directories
+- purefa_export - Add support for filesystem exports
+- purefa_fs - Add filesystem management support
+- purefa_hg - Enforce case-sensitivity rules for hostgroup objects
+- purefa_host - Enforce hostname case-sensitivity rules
+- purefa_info - Add support for FA Files features
+- purefa_offload - Add support for Google Cloud offload target
+- purefa_pg - Enforce case-sensitivity rules for protection group objects
+- purefa_policy - Add support for NFS, SMB and Snapshot policy management
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_banner - Module to manage the GUI and SSH login message
+- purefb_certgrp - Module to manage FlashBlade Certificate Groups
+- purefb_certs - Module to create and delete SSL certificates
+- purefb_connect - Support idempotency when exisitng connection is incoming
+- purefb_fs - Add new options for filesystem control (https://github.com/Pure-Storage-Ansible/FlashBlade-Collection/pull/81)
+- purefb_fs - Default filesystem size on creation changes from 32G to ``unlimited``
+- purefb_fs - Fix error in deletion and eradication of filesystem
+- purefb_fs_replica - Remove condition to attach/detach policies on unhealthy replica-link
+- purefb_info - Add support to list filesystem policies
+- purefb_lifecycle - Module to manage FlashBlade Bucket Lifecycle Rules
+- purefb_s3user - Add support for imported user access keys
+- purefb_syslog - Module to manage syslog server configuration
+
+servicenow.servicenow
+~~~~~~~~~~~~~~~~~~~~~
+
+- adds the ability to use `SN_INSTANCE` (ex. `dev61775`) or `SN_HOST` (ex. `dev61775.service-now.com`) with the inventory plugin.
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- global_parameter - allow to set hidden flag (https://github.com/theforeman/foreman-ansible-modules/issues/1024)
+- job_template - stricter validation of ``template_inputs`` sub-options
+- redhat_manifest - allow configuring content access mode (https://github.com/theforeman/foreman-ansible-modules/issues/820)
+- subnet - verify the server has the ``remote_execution`` plugin when specifying ``remote_execution_proxies``
+- the ``apypie`` library is vendored inside the collection, so users only have to install ``requests`` manually now.
+
+vyos.vyos
+~~~~~~~~~
+
+- Added ospf_interfaces resource module.
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+Ansible-base
+~~~~~~~~~~~~
+
+- ansible-galaxy login command has been removed (see https://github.com/ansible/ansible/issues/71560)
+
+Deprecated Features
+-------------------
+
+cisco.nxos
+~~~~~~~~~~
+
+- Deprecated `nxos_interface_ospf` in favor of `nxos_ospf_interfaces` Resource Module.
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Removed arp_state parameter from the bigip_virtual_address module
+
+Bugfixes
+--------
+
+Ansible-base
+~~~~~~~~~~~~
+
+- Collection callbacks were ignoring options and rules for stdout and adhoc cases.
+- Collections - Ensure ``action_loader.get`` is called with ``collection_list`` to properly find collections when ``collections:`` search is specified (https://github.com/ansible/ansible/issues/72170)
+- Fix ``RecursionError`` when templating large vars structures (https://github.com/ansible/ansible/issues/71920)
+- ansible-doc - plugin option deprecations now also get ``collection_name`` added (https://github.com/ansible/ansible/pull/71735).
+- ansible-test - Always connect additional Docker containers to the network used by the current container (if any).
+- ansible-test - Always map ``/var/run/docker.sock`` into test containers created by the ``--docker`` option if the docker host is not ``localhost``.
+- ansible-test - Attempt to detect the Docker hostname instead of assuming ``localhost``.
+- ansible-test - Correctly detect running in a Docker container on Azure Pipelines.
+- ansible-test - Prefer container IP at ``.NetworkSettings.Networks.{NetworkName}.IPAddress`` over ``.NetworkSettings.IPAddress``.
+- ansible-test - The ``cs`` and ``openshift`` test plugins now search for containers on the current network instead of assuming the ``bridge`` network.
+- ansible-test - Using the ``--remote`` option on Azure Pipelines now works from a job running in a container.
+- async_wrapper - Fix race condition when ``~/.ansible_async`` folder tries to be created by multiple async tasks at the same time - https://github.com/ansible/ansible/issues/59306
+- dnf - it is now possible to specify both ``security: true`` and ``bugfix: true`` to install updates of both types. Previously, only security would get installed if both were true. (https://github.com/ansible/ansible/issues/70854)
+- facts - fix distribution fact for SLES4SAP (https://github.com/ansible/ansible/pull/71559).
+- is_string/vault - Ensure the is_string helper properly identifies AnsibleVaultEncryptedUnicode as a string (https://github.com/ansible/ansible/pull/71609)
+- powershell - remove getting the PowerShell version from the env var ``POWERSHELL_VERSION``. This feature never worked properly and can cause conflicts with other libraries that use this var
+- url lookup - make sure that options supplied in ansible.cfg are actually used (https://github.com/ansible/ansible/pull/71736).
+- user - AnsibleModule.run_command returns a tuple of return code, stdout and stderr. The module main function of the user module expects user.create_user to return a tuple of return code, stdout and stderr. Fix the locations where stdout and stderr got reversed.
+- user - Local users with an expiry date cannot be created as the ``luseradd`` / ``lusermod`` commands do not support the ``-e`` option. Set the expiry time in this case via ``lchage`` after the user was created / modified. (https://github.com/ansible/ansible/issues/71942)
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- Added support for private key based authentication with libssh transport (https://github.com/ansible-collections/ansible.netcommon/issues/168)
+- Fixed ipaddr filter plugins in ansible.netcommon collections is not working with latest Ansible (https://github.com/ansible-collections/ansible.netcommon/issues/157)
+- Fixed netconf_rpc task fails due to encoding issue in the response (https://github.com/ansible-collections/ansible.netcommon/issues/151)
+- Fixed ssh_type none issue while using net_put and net_get module (https://github.com/ansible-collections/ansible.netcommon/issues/153)
+- Fixed unit tests under python3.5
+- ipaddr filter - query "address/prefix" (also: "gateway", "gw", "host/prefix", "hostnet", and "router") now handles addresses with /32 prefix or /255.255.255.255 netmask
+- network_cli - Update underlying ssh connection's play_context in update_play_context, so that the username or password can be updated
+
+arista.eos
+~~~~~~~~~~
+
+- updated config dict, with duplex key when speed changes from 'x' to 'forced x' (https://github.com/ansible-collections/arista.eos/pull/120).
+
+cisco.aci
+~~~~~~~~~
+
+- Existing_config variable is not reset during loop
+- Fix convertion of json/yaml payload to xml in aci_rest
+- Fix dump of config for aci_rest
+- Fix galaxy import warnings
+- Fix how validity of private key/private key file is checked to support new types
+- Fix incorrect domain types in aci_domain_to_encap_pool module
+- Fix issue of "current" in firmware_source module
+- Fix sanity issue in aci_rest and bump version to v1.0.1
+
+cisco.ios
+~~~~~~~~~
+
+- To enable ios ospfv3 integration tests (https://github.com/ansible-collections/cisco.ios/pull/165).
+- To fix IOS static routes idempotency issue coz of netmask to cidr conversion (https://github.com/ansible-collections/cisco.ios/pull/177).
+- To fix ios_static_routes where interface ip route-cache config was being parsed and resulted traceback (https://github.com/ansible-collections/cisco.ios/pull/176).
+- To fix ios_vlans traceback bug when the name had Remote in it and added unit TC for the module (https://github.com/ansible-collections/cisco.ios/pull/179).
+- To fix the traceback issue for longer vlan name having more than 32 characters (https://github.com/ansible-collections/cisco.ios/pull/182).
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- meraki_management_interface - Fix crash when modifying a non-MX management interface.
+
+cisco.mso
+~~~~~~~~~
+
+- Fix default value for l2Stretch in mso_schema_template_bd module
+- Fix deletion of schema when wrong template is provided in single template schema
+- Fix examples in documentation for mso_schema_template_l3out and mso_user
+- Fix naming issue in deploy module
+- Remove author emails due to length restriction
+- Remove dead code branch in mso_schema_template
+
+cisco.nxos
+~~~~~~~~~~
+
+- Allow `fex-fabric` option for mode key (https://github.com/ansible-collections/cisco.nxos/issues/166).
+- Fixes for nxos rpm issue (https://github.com/ansible-collections/cisco.nxos/pull/173).
+- Update regex to accept the platform "N77" as supporting fabricpath.
+- Vlan config diff was not removing default values
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_query - fix failing when single-row query contains commas (https://github.com/ansible-collections/community.mysql/issues/51).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- all roles - missing ``become`` set to ``true`` was added to each task that requires admin privleges.
+- zabbix_agent - added new properties and updated documentation to allow for correct Zabbix Agent2 configuration.
+- zabbix_agent - fixed bug where Nginx prevented Apache from working as it was part of the FPM configuration.
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- podman_container - Fix signals case for podman_container
+
+dellemc.os10
+~~~~~~~~~~~~
+
+- Fix issue in using ip_and_mask along with members in os10_vlan role (https://github.com/ansible-collections/dellemc.os10/issues/42)
+- Fix issue in using list of strings for `commands` argument for `os10_command` module (https://github.com/ansible-collections/dellemc.os10/issues/43)
+- Fixed os10_vlan role idempotency issue with description and members (https://github.com/ansible-collections/dellemc.os10/issues/46)
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Changed unicast_failover element type to dictionary
+- Fix force parameter set to yes causing list index out of range error
+- Fix invalid parameter name in the bigip_config_sync action module
+- Fix issue where ASM file download needs to be chunked for larger files.
+- Fix issue with retaining package files in the bigip_lx_package module
+- Fix key error in list comprehension in the AsmPolicyStatsParameters class
+- Fix missing ssh-keyfile parameter causing key error in the bigip action plugin
+
+netapp_eseries.santricity
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Fix check_port_type method for ib iser when ib is the port type.
+- Fix examples in the netapp_e_mgmt_interface module.
+- Fix issue with changing host port name.
+- Fix na_santricity_lun_mapping unmapping issue; previously mapped volumes failed to be unmapped.
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- 01_create_target_hosted_engine_vm - Force basic authentication (https://github.com/oVirt/ovirt-ansible-collection/pull/131).
+- disaster_recovery - Fix multiple configuration issues like paths, "~" support, user input messages, etc. (https://github.com/oVirt/ovirt-ansible-collection/pull/160).
+- hosted_engine_setup - Allow uppercase characters in mac address (https://github.com/oVirt/ovirt-ansible-collection/pull/150).
+- hosted_engine_setup - set custom bios type of hosted-engine VM to Q35+SeaBIOS (https://github.com/oVirt/ovirt-ansible-collection/pull/129).
+- hosted_engine_setup - use zcat instead of gzip (https://github.com/oVirt/ovirt-ansible-collection/pull/130).
+- ovirt inventory - Add close of connection at the end (https://github.com/oVirt/ovirt-ansible-collection/pull/122).
+- ovirt_disk - dont move disk when already in storage_domain (https://github.com/oVirt/ovirt-ansible-collection/pull/135)
+- ovirt_disk - fix upload when direct upload fails (https://github.com/oVirt/ovirt-ansible-collection/pull/120).
+- ovirt_vm - Fix template search (https://github.com/oVirt/ovirt-ansible-collection/pull/132).
+- ovirt_vm - Rename q35_sea to q35_sea_bios (https://github.com/oVirt/ovirt-ansible-collection/pull/111).
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_host - Correctly remove host that is in a hostgroup
+- purefa_volume - Fix failing idempotency on eradicate volume
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_policy - Resolve multiple issues related to incorrect use of timezones
+- purefb_connect - Ensure changing encryption status on array connection is performed correctly
+- purefb_connect - Fix breaking change created in purity_fb SDK 1.9.2 for deletion of array connections
+- purefb_connect - Hide target array API token
+- purefb_ds - Ensure updating directory service configurations completes correctly
+- purefb_info - Fix issue getting array info when encrypted connection exists
+
+servicenow.servicenow
+~~~~~~~~~~~~~~~~~~~~~
+
+- fix inventory plugin transforming hostnames unnecessarily
+- fix malformed documentation on docs.ansible.com
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- Don't try to update an entity, if only parameters that aren't supported by the server are detected as changed. (https://github.com/theforeman/foreman-ansible-modules/issues/975)
+- allow to pass an empty string when refering to entities, thus unsetting the value (https://github.com/theforeman/foreman-ansible-modules/issues/969)
+- compute_profile - don't fail when trying to update compute attributes of a profile (https://github.com/theforeman/foreman-ansible-modules/issues/997)
+- host, hostgroup - support ``None`` as the ``pxe_loader`` (https://github.com/theforeman/foreman-ansible-modules/issues/971)
+- job_template - don't fail when trying to update template_inputs
+- os_default_template - document possible template kind choices (https://bugzilla.redhat.com/show_bug.cgi?id=1889952)
+- smart_class_parameters - don't fail when trying to update override_values
+
+New Modules
+-----------
+
+arista.eos
+~~~~~~~~~~
+
+- arista.eos.eos_ospf_interfaces - ospf_interfaces resource module
+
+cisco.ios
+~~~~~~~~~
+
+- cisco.ios.ios_ospf_interfaces - OSPF Interfaces resource module
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- cisco.meraki.meraki_alert - Manage alerts in the Meraki cloud
+- cisco.meraki.meraki_mx_l2_interface - Configure MX layer 2 interfaces
+
+cisco.nxos
+~~~~~~~~~~
+
+- cisco.nxos.nxos_ospf_interfaces - OSPF Interfaces Resource Module.
+
+community.mongodb
+~~~~~~~~~~~~~~~~~
+
+Community
+^^^^^^^^^
+
+Mongodb
+.......
+
+- community.mongodb.mongodb_shell - Run commands via the MongoDB shell.
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- f5networks.f5_modules.bigip_ssl_key_cert - Import/Delete SSL keys and certs from BIG-IP
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- junipernetworks.junos.junos_ospfv3 - OSPFv3 resource module
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purestorage.flasharray.purefa_apiclient - Manage FlashArray API Clients
+- purestorage.flasharray.purefa_directory - Manage FlashArray File System Directories
+- purestorage.flasharray.purefa_export - Manage FlashArray File System Exports
+- purestorage.flasharray.purefa_fs - Manage FlashArray File Systems
+- purestorage.flasharray.purefa_policy - Manage FlashArray File System Policies
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purestorage.flashblade.purefb_banner - Configure Pure Storage FlashBlade GUI and SSH MOTD message
+- purestorage.flashblade.purefb_certgrp - Manage FlashBlade Certifcate Groups
+- purestorage.flashblade.purefb_certs - Manage FlashBlade SSL Certifcates
+- purestorage.flashblade.purefb_lifecycle - Manage FlashBlade object lifecycles
+- purestorage.flashblade.purefb_syslog - Configure Pure Storage FlashBlade syslog settings
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- theforeman.foreman.job_invocation - Invoke Remote Execution Jobs
+- theforeman.foreman.smart_proxy - Manage Smart Proxies
+
+vyos.vyos
+~~~~~~~~~
+
+- vyos.vyos.vyos_ospf_interfaces - OSPF Interfaces resource module
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 1.2.1)
+- ansible.posix (still version 1.1.1)
+- awx.awx (still version 14.1.0)
+- azure.azcollection (still version 1.2.0)
+- check_point.mgmt (still version 1.0.6)
+- chocolatey.chocolatey (still version 1.0.2)
+- cisco.asa (still version 1.0.3)
+- cisco.intersight (still version 1.0.8)
+- cisco.iosxr (still version 1.1.0)
+- cloudscale_ch.cloud (still version 1.2.0)
+- community.aws (still version 1.2.1)
+- community.azure (still version 1.0.0)
+- community.crypto (still version 1.2.0)
+- community.digitalocean (still version 1.0.0)
+- community.general (still version 1.2.0)
+- community.grafana (still version 1.0.0)
+- community.kubernetes (still version 1.1.1)
+- community.libvirt (still version 1.0.0)
+- community.network (still version 1.2.0)
+- community.proxysql (still version 1.0.0)
+- community.rabbitmq (still version 1.0.1)
+- community.skydive (still version 1.0.0)
+- community.vmware (still version 1.3.0)
+- community.windows (still version 1.1.0)
+- cyberark.conjur (still version 1.0.7)
+- cyberark.pas (still version 1.0.5)
+- fortinet.fortimanager (still version 1.0.5)
+- fortinet.fortios (still version 1.0.15)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.1)
+- google.cloud (still version 1.0.1)
+- hetzner.hcloud (still version 1.1.0)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.2.3)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 20.9.0)
+- netapp.elementsw (still version 20.10.0)
+- netapp.ontap (still version 20.10.0)
+- netbox.netbox (still version 1.1.0)
+- ngine_io.cloudstack (still version 1.0.1)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.0.0)
+- openstack.cloud (still version 1.2.0)
+- openvswitch.openvswitch (still version 1.0.5)
+- splunk.es (still version 1.0.2)
+- wti.remote (still version 1.0.1)
+
 v2.10.1
 =======
 
@@ -86,7 +679,7 @@ Changed Collections
 - openstack.cloud was upgraded from version 1.1.0 to version 1.2.0.
   The changes are reported in the combined changelog below.
 - ovirt.ovirt was upgraded from version 1.1.3 to version 1.1.4.
-  The changes are reported in the combined changelog below.
+  The collection did not have a changelog in this version.
 - theforeman.foreman was upgraded from version 1.1.0 to version 1.3.0.
   The changes are reported in the combined changelog below.
 - vyos.vyos was upgraded from version 1.0.4 to version 1.0.5.
@@ -494,11 +1087,6 @@ netbox.netbox
 - Update inventory plugin to work with tags with NetBox 2.9 (https://github.com/netbox-community/ansible_modules/pull/340)
 - Update modules to be able to properly update tags to work with NetBox 2.9 (https://github.com/netbox-community/ansible_modules/pull/345)
 
-ovirt.ovirt
-~~~~~~~~~~~
-
-- ovirt inventory - Add close of connection at the end (https://github.com/oVirt/ovirt-ansible-collection/pull/122).
-
 theforeman.foreman
 ~~~~~~~~~~~~~~~~~~
 
@@ -755,7 +1343,7 @@ Included Collections
 - dellemc.os9 with version 1.0.2.
   The changes are reported in the combined changelog below.
 - f5networks.f5_modules with version 1.5.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The changes are reported in the combined changelog below.
 - fortinet.fortimanager with version 1.0.5.
   The changes are reported in the combined changelog below.
 - fortinet.fortios with version 1.0.15.
@@ -783,7 +1371,7 @@ Included Collections
 - netapp.ontap with version 20.8.0.
   The changes are reported in the combined changelog below.
 - netapp_eseries.santricity with version 1.0.8.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The collection did not have a changelog in this version.
 - netbox.netbox with version 1.0.2.
   The changes are reported in the combined changelog below.
 - ngine_io.cloudstack with version 1.0.1.
@@ -803,7 +1391,7 @@ Included Collections
 - purestorage.flashblade with version 1.3.0.
   The changes are reported in the combined changelog below.
 - servicenow.servicenow with version 1.0.2.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+  The collection did not have a changelog in this version.
 - splunk.es with version 1.0.2.
   The changes are reported in the combined changelog below.
 - theforeman.foreman with version 1.1.0.
@@ -892,6 +1480,47 @@ community.libvirt
 
 - added generic libvirt inventory plugin
 - removed libvirt_lxc inventory script
+
+dellemc.os10
+~~~~~~~~~~~~
+
+- New role os10_aaa - Facilitates the configuration of Authentication Authorization and Accounting (AAA), TACACS and RADIUS server.
+- New role os10_acl - Facilitates the configuration of Access Control lists.
+- New role os10_bfd - Facilitates the configuration of BFD global attributes.
+- New role os10_bgp - Facilitates the configuration of border gateway protocol (BGP) attributes.
+- New role os10_copy_config - This role pushes the backup running configuration into a OS10 device.
+- New role os10_dns - Facilitates the configuration of domain name service (DNS).
+- New role os10_ecmp - Facilitates the configuration of equal cost multi-path (ECMP) for IPv4.
+- New role os10_fabric_summary Facilitates to get show system information of all the OS10 switches in the fabric.
+- New role os10_flow_monitor Facilitates the configuration of ACL flow-based monitoring attributes.
+- New role os10_image_upgrade Facilitates installation of OS10 software images.
+- New role os10_interface Facilitates the configuration of interface attributes.
+- New role os10_lag Facilitates the configuration of link aggregation group (LAG) attributes.
+- New role os10_lldp Facilitates the configuration of link layer discovery protocol (LLDP) attributes at global and interface level.
+- New role os10_logging Facilitates the configuration of global logging attributes and logging servers.
+- New role os10_network_validation Facilitates validation of wiring connection, BGP neighbors, MTU between neighbors and VLT pair.
+- New role os10_ntp Facilitates the configuration of network time protocol (NTP) attributes.
+- New role os10_prefix_list Facilitates the configuration of IP prefix-list.
+- New role os10_qos Facilitates the configuration of quality of service attributes including policy-map and class-map.
+- New role os10_raguard Facilitates the configuration of IPv6 RA Guard attributes.
+- New role os10_route_map Facilitates the configuration of route-map attributes.
+- New role os10_snmp Facilitates the configuration of  global SNMP attributes.
+- New role os10_system Facilitates the configuration of hostname and hashing algorithm.
+- New role os10_template The role takes the raw string input from the CLI of OS10 device, and returns a structured text in the form of a Python dictionary.
+- New role os10_uplink Facilitates the configuration of uplink attributes like uplink-state group.
+- New role os10_users Facilitates the configuration of global system user attributes.
+- New role os10_vlan Facilitates the configuration of virtual LAN (VLAN) attributes.
+- New role os10_vlt Facilitates the configuration of virtual link trunking (VLT).
+- New role os10_vrf Facilitates the configuration of virtual routing and forwarding (VRF).
+- New role os10_vrrp Facilitates the configuration of virtual router redundancy protocol (VRRP) attributes.
+- New role os10_vxlan Facilitates the configuration of virtual extensible LAN (VXLAN) attributes.
+- New role os10_xstp Facilitates the configuration of xSTP attributes.
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Broke apart bigip_device_auth_radius to implement radius server configuration in bigip_device_auth_server module. Refer to module documentation for usage details
+- Remove redundant parameters in f5_provider to fix disparity between documentation and module parameters
 
 gluster.gluster
 ~~~~~~~~~~~~~~~
@@ -1312,9 +1941,13 @@ cisco.iosxr
 cisco.meraki
 ~~~~~~~~~~~~
 
+- meraki - Add optional debugging for is_update_required() method.
 - meraki_admin - Update endpoints for API v1
+- meraki_alert - Manage network wide alert settings.
 - meraki_device - Added query parameter
 - meraki_intrusion_prevention - Change documentation to show proper way to clear rules
+- meraki_malware - Update documentation to show how to allow multiple URLs at once.
+- meraki_mx_l2_interface - Configure physical interfaces on MX appliances.
 - meraki_mx_uplink - Renamed to meraki_mx_uplink_bandwidth
 - meraki_ssid - Add `WPA3 Only` and `WPA3 Transition Mode`
 - meraki_switchport - Add support for `access_policy_type` parameter
@@ -1807,6 +2440,7 @@ community.zabbix
 - New **role zabbix_web** - previously known as dj-wasabi/zabbix-web.
 - Roles will now install gnupg on Debian OS family if not present.
 - all roles - added the possibility to configure the ``mode`` for the ``yum`` repositories files in case it contains credentials.
+- zabbix inventory plugin now no longer prints DeprecationWarning when used with Python3 due to SafeConfigParser.
 - zabbix_action - arguments ``event_source`` and ``esc_period`` no longer required when ``state=absent``.
 - zabbix_action - new alias ``update_operations`` for ``acknowledge_operations`` parameter.
 - zabbix_action - no longer requires ``password`` and ``ssh_*key_file`` parameters at the same time for ``remote_command`` operations of type SSH.
@@ -1849,6 +2483,53 @@ containers.podman
 - buildah_connection - add support of specific user
 - buildah_connection - added Buildah connection rootless
 - podman_connection - add user flags before container id in podman exec
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Add ImishConfig class to add duplicate records handling capability
+- Add SSH connection type capability to bigip_wait module
+- Add SSL certificate subject_alternative_name information to bigip_device_info module
+- Add ability to install software images on vCMP guests with the bigip_software_install module
+- Add accounting parameter for tacacs type to bigip_device_auth module
+- Add additional dos vectors to bigip_firewall_dos_vector_module
+- Add addon_keys parameter to bigip_device_license module
+- Add aliases for address and port to bigip_monitor_tcp module
+- Add allow_duplicates parameter to bigip_imish_config module
+- Add apply option to bigip_asm_policy_manage module
+- Add check_profiles parameter to bypass profile verification ability in bigip_virtual_server module
+- Add cipher_group parameter to bigip_profile_client_ssl module
+- Add cipher_list parameter to bigip_monitor_https
+- Add dns-oversize DNS protocol security vector to bigip_firewall_doc_vector
+- Add forward_node option to bigip_policy_rule module
+- Add fw_enforcement_policy parameter to bigip_selfip module
+- Add hw_syn_cookie parameter to bigip_vlan module
+- Add ipv6-ext-hdr-frames security vector to bigip_firewall_doc_vector
+- Add management routes information to bigip_device_info module
+- Add option to bypass all module validation for bigip_virtual_server
+- Add persist cookie option to bigip_policy_rule module
+- Add phase1_lifetime parameter to bigip_ike_peer module
+- Add pool order option to bigip_gtm_wide_ip module
+- Add pva_acceleration parameter to bigip_profile_fastl4 module
+- Add retain_package_file option to bigip_lx_package module
+- Add self allow option to bigip_network_globals module
+- Add set_variable type to bigip_policy_rule module
+- Add support for BIG-IQ 7.0 and above to bigiq_device_info module
+- Add time_wait_timeout parameter to bigip_profile_tcp module
+- Add true_names support to bigip_profile_client_ssl modules allowing specifying true filenames of the certificates
+- Add use_for_auth parameter to bigip_device_auth_ldap module to allow setting up LDAP as the authentication source
+- Add virtual server policies information to bigip_device_info
+- New FTP monitor module for configuring and managing FTP monitors
+- New ICMP monitor module for configuring and managing ICMP monitors
+- New SMTP monitor module for configuring and managing SMTP monitors
+- New bigip_asm_advanced_settings module to manage ASM settings
+- New bigip_device_auth_radius module to manage RADIUS auth configuration
+- New bigip_device_auth_radius server module to manage radius server configuration
+- New bigip_gtm_dns_listener module to manage DNS listener configuration
+- New bigip_monitor_mysql module to manage mySQL monitor configuration
+- New bigip_monitor_oracle module to manage oracle monitor configuration
+- New bigip_ssl_csr_module to create CSR files
+- New universal persistence profile module for configuring and managing universal persistence profiles
 
 frr.frr
 ~~~~~~~
@@ -2088,7 +2769,6 @@ openvswitch.openvswitch
 ovirt.ovirt
 ~~~~~~~~~~~
 
-- Add GPL license (https://github.com/oVirt/ovirt-ansible-collection/pull/101).
 - ovirt inventory - Add creation_time (https://github.com/oVirt/ovirt-ansible-collection/pull/34).
 - ovirt inventory - Set inventory plugin insecure if no cafile defined (https://github.com/oVirt/ovirt-ansible-collection/pull/58).
 - ovirt_cluster - Add migration_encrypted option (https://github.com/oVirt/ovirt-ansible-collection/pull/17).
@@ -2395,6 +3075,13 @@ community.zabbix
 
 - zabbix_proxy (module) - deprecates ``interface`` sub-options ``type`` and ``main`` when proxy type is set to passive via ``status=passive``. Make sure these suboptions are removed from your playbook as they were never supported by Zabbix in the first place.
 
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Deprecated bigip_appsvcs_extension module
+- Deprecated bigip_device_facts module name
+- Deprecated bigiq_device_facts module name
+
 Removed Features (previously deprecated)
 ----------------------------------------
 
@@ -2449,6 +3136,16 @@ community.windows
 
 - win_disk_image - removed the deprecated return value ``mount_path`` in favour of ``mount_paths``.
 - win_psexec - removed the deprecated ``extra_opts`` option.
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Remove _bigip_iapplx_package alias
+- Remove _bigip_security_address_list alias
+- Remove _bigip_security_port_list alias
+- Remove _bigip_traffic_group alias
+- Remove bigip_appsvcs_extension module
+- Remove bigip_asm_policy module
 
 Security Fixes
 --------------
@@ -3540,6 +4237,25 @@ containers.podman
 - podman_image - use correct option for remove_signatures flag
 - podman_volume_info - Improve podman volume info tests with new module
 
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Change bigip_data_group module's records parameter type to 'raw'
+- Fix '?' character handling in value for bigip_data_group module
+- Fix ASM policy import issue by users with web-application-security-administrator role
+- Fix IPv6 netmask for self IPs in bigip_device_info
+- Fix a bug with using the true_name parameter in the bigip_profile_client_ssl module
+- Fix allowing authenticated not authorized users using modules to modify a resource
+- Fix an issue with /32 IPV6 subnets being saved as host rather than a network in bigip_data_group module
+- Fix attribute error in bigip_software_install module
+- Fix check_profiles boolean parameter conversion in bigip_virtual_server
+- Fix handling of duplicate records by the bigip_imish_config module
+- Fix idempotency when using true_names parameter in bigip_profile_client_ssl module
+- Fix invalid data type of partition_access parameter in the bigip_user module
+- Fix issue with control characters in pool_id in bigiq_regkey_license_assignment module
+- Fix save_when parameter not saving the configuration as expected in bigip_imish_config module
+- Fix the download of an APM policy in bigip_apm_policy_fetch module
+
 fortinet.fortios
 ~~~~~~~~~~~~~~~~
 
@@ -3922,6 +4638,8 @@ Lookup
 - community.general.etcd3 - Get key values from etcd3 server
 - community.general.lmdb_kv - fetch data from LMDB
 - community.general.tss - Get secrets from Thycotic Secret Server
+- f5networks.f5_modules.bigiq_license - Returns a random license from the list.
+- f5networks.f5_modules.license_hopper - Returns a random license from the list.
 
 Netconf
 ~~~~~~~
@@ -4475,17 +5193,24 @@ community.kubernetes
 community.mongodb
 ~~~~~~~~~~~~~~~~~
 
+- community.mongodb.mongodb_stepdown - Step down the MongoDB node from a PRIMARY state.
+
+Community
+^^^^^^^^^
+
+Mongodb
+.......
+
 - community.mongodb.mongodb_balancer - Manages the MongoDB Sharded Cluster Balancer.
 - community.mongodb.mongodb_index - Creates or drops indexes on MongoDB collections.
 - community.mongodb.mongodb_info - Gather information about MongoDB instance.
-- community.mongodb.mongodb_maintenance - Enables or disables maintnenance mode for a secondary member.
+- community.mongodb.mongodb_maintenance - Enables or disables maintenance mode for a secondary member.
 - community.mongodb.mongodb_oplog - Resizes the MongoDB oplog.
 - community.mongodb.mongodb_parameter - Change an administrative parameter on a MongoDB server
 - community.mongodb.mongodb_replicaset - Initialises a MongoDB replicaset.
 - community.mongodb.mongodb_shard - Add or remove shards from a MongoDB Cluster
-- community.mongodb.mongodb_shutdown - Cleans up all database resources and then terminates the process.
+- community.mongodb.mongodb_shutdown - Cleans up all database resources and then terminates the mongod/mongos process.
 - community.mongodb.mongodb_status - Validates the status of the cluster.
-- community.mongodb.mongodb_stepdown - Step down the MongoDB node from a PRIMARY state.
 - community.mongodb.mongodb_user - Adds or removes a user from a MongoDB database
 
 community.network
@@ -4579,6 +5304,184 @@ dellemc.os9
 - dellemc.os9.os9_command - Run commands on devices running Dell EMC os9.
 - dellemc.os9.os9_config - Manage configuration on devices running os9.
 - dellemc.os9.os9_facts - Collect facts from devices running os9.
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- f5networks.f5_modules.bigip_apm_acl - Manages user-defined APM ACLs.
+- f5networks.f5_modules.bigip_apm_network_access - Manages the APM Network Access resource.
+- f5networks.f5_modules.bigip_apm_policy_fetch - Exports the APM policy or APM access profile from remote nodes.
+- f5networks.f5_modules.bigip_apm_policy_import - Manages BIG-IP APM policy or APM access profile imports.
+- f5networks.f5_modules.bigip_asm_advanced_settings - Manages BIG-IP system ASM advanced settings.
+- f5networks.f5_modules.bigip_asm_dos_application - Manages application settings for DOS profiles.
+- f5networks.f5_modules.bigip_asm_policy_fetch - Exports the ASM policy from remote nodes.
+- f5networks.f5_modules.bigip_asm_policy_import - Manages BIG-IP ASM policy imports.
+- f5networks.f5_modules.bigip_asm_policy_manage - Manages BIG-IP ASM policies
+- f5networks.f5_modules.bigip_asm_policy_server_technology - Manages the Server Technology on an ASM policy.
+- f5networks.f5_modules.bigip_asm_policy_signature_set - Manages Signature Sets on an ASM policy.
+- f5networks.f5_modules.bigip_cgnat_lsn_pool - Manages CGNAT LSN Pools.
+- f5networks.f5_modules.bigip_cli_alias - Manages CLI aliases on a BIG-IP.
+- f5networks.f5_modules.bigip_cli_script - Manages CLI scripts on a BIG-IP.
+- f5networks.f5_modules.bigip_command - Runs TMSH and BASH commands on F5 devices.
+- f5networks.f5_modules.bigip_config - Manages BIG-IP configuration sections.
+- f5networks.f5_modules.bigip_configsync_action - Performs actions related to configuration synchronization (ConfigSync).
+- f5networks.f5_modules.bigip_data_group - Manages data groups on a BIG-IP.
+- f5networks.f5_modules.bigip_device_auth - Manages system authentication on a BIG-IP.
+- f5networks.f5_modules.bigip_device_auth_ldap - Manages LDAP device authentication settings on BIG-IP.
+- f5networks.f5_modules.bigip_device_auth_radius - Manages RADIUS auth configuration on a BIG-IP.
+- f5networks.f5_modules.bigip_device_auth_radius_server - Manages the RADIUS server configuration on a BIG-IP.
+- f5networks.f5_modules.bigip_device_certificate - Manages self-signed device certificates.
+- f5networks.f5_modules.bigip_device_connectivity - Manages device IP configuration settings for HA on a BIG-IP.
+- f5networks.f5_modules.bigip_device_dns - Manages BIG-IP device DNS settings.
+- f5networks.f5_modules.bigip_device_group - Manages device groups on a BIG-IP.
+- f5networks.f5_modules.bigip_device_group_member - Manages members in a device group.
+- f5networks.f5_modules.bigip_device_ha_group - Manages HA group settings on a BIG-IP system.
+- f5networks.f5_modules.bigip_device_httpd - Manages HTTPD related settings on BIG-IP.
+- f5networks.f5_modules.bigip_device_info - Collects information from F5 BIG-IP devices.
+- f5networks.f5_modules.bigip_device_license - Manages license installation and activation on BIG-IP devices.
+- f5networks.f5_modules.bigip_device_ntp - Manages NTP servers on a BIG-IP.
+- f5networks.f5_modules.bigip_device_sshd - Manages the SSHD settings of a BIG-IP.
+- f5networks.f5_modules.bigip_device_syslog - Manages system-level syslog settings on BIG-IP.
+- f5networks.f5_modules.bigip_device_traffic_group - Manages traffic groups on BIG-IP.
+- f5networks.f5_modules.bigip_device_trust - Manages the trust relationships between BIG-IPs.
+- f5networks.f5_modules.bigip_dns_cache_resolver - Manages DNS resolver cache configurations on BIG-IP.
+- f5networks.f5_modules.bigip_dns_nameserver - Manages LTM DNS nameservers on a BIG-IP.
+- f5networks.f5_modules.bigip_dns_resolver - Manages DNS resolvers on a BIG-IP.
+- f5networks.f5_modules.bigip_dns_zone - Manages DNS zones on BIG-IP.
+- f5networks.f5_modules.bigip_file_copy - Manages files in datastores on a BIG-IP.
+- f5networks.f5_modules.bigip_firewall_address_list - Manages address lists on BIG-IP AFM.
+- f5networks.f5_modules.bigip_firewall_dos_profile - Manages AFM DoS profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_firewall_dos_vector - Manages the attack vector configuration in an AFM DoS profile.
+- f5networks.f5_modules.bigip_firewall_global_rules - Manages AFM global rule settings on a BIG-IP.
+- f5networks.f5_modules.bigip_firewall_log_profile - Manages AFM logging profiles configured in the system.
+- f5networks.f5_modules.bigip_firewall_log_profile_network - Configures Network Firewall related settings of the log profile.
+- f5networks.f5_modules.bigip_firewall_policy - Manages AFM security firewall policies on a BIG-IP.
+- f5networks.f5_modules.bigip_firewall_port_list - Manages port lists on BIG-IP AFM.
+- f5networks.f5_modules.bigip_firewall_rule - Manages AFM Firewall rules.
+- f5networks.f5_modules.bigip_firewall_rule_list - Manages AFM security firewall policies on a BIG-IP.
+- f5networks.f5_modules.bigip_firewall_schedule - Manages BIG-IP AFM schedule configurations.
+- f5networks.f5_modules.bigip_gtm_datacenter - Manages the Datacenter configuration on a BIG-IP.
+- f5networks.f5_modules.bigip_gtm_dns_listener - Configures the BIG-IP DNS system to answer TCP or UDP DNS requests.
+- f5networks.f5_modules.bigip_gtm_global - Manages global GTM settings.
+- f5networks.f5_modules.bigip_gtm_monitor_bigip - Manages F5 BIG-IP GTM BIG-IP monitors.
+- f5networks.f5_modules.bigip_gtm_monitor_external - Manages external GTM monitors on a BIG-IP.
+- f5networks.f5_modules.bigip_gtm_monitor_firepass - Manages F5 BIG-IP GTM FirePass monitors.
+- f5networks.f5_modules.bigip_gtm_monitor_http - Manages F5 BIG-IP GTM HTTP monitors.
+- f5networks.f5_modules.bigip_gtm_monitor_https - Manages F5 BIG-IP GTM HTTPS monitors.
+- f5networks.f5_modules.bigip_gtm_monitor_tcp - Manages F5 BIG-IP GTM TCP monitors.
+- f5networks.f5_modules.bigip_gtm_monitor_tcp_half_open - Manages F5 BIG-IP GTM TCP half-open monitors.
+- f5networks.f5_modules.bigip_gtm_pool - Manages F5 BIG-IP GTM pools.
+- f5networks.f5_modules.bigip_gtm_pool_member - Manages GTM pool member settings.
+- f5networks.f5_modules.bigip_gtm_server - Manages F5 BIG-IP GTM servers.
+- f5networks.f5_modules.bigip_gtm_topology_record - Manages GTM Topology Records.
+- f5networks.f5_modules.bigip_gtm_topology_region - Manages GTM Topology Regions.
+- f5networks.f5_modules.bigip_gtm_virtual_server - Manages F5 BIG-IP GTM virtual servers.
+- f5networks.f5_modules.bigip_gtm_wide_ip - Manages F5 BIG-IP GTM wide IPs.
+- f5networks.f5_modules.bigip_hostname - Manages the hostname of a BIG-IP.
+- f5networks.f5_modules.bigip_iapp_service - Manages TCL iApp services on a BIG-IP.
+- f5networks.f5_modules.bigip_iapp_template - Manages TCL iApp templates on a BIG-IP.
+- f5networks.f5_modules.bigip_ike_peer - Manages IPSec IKE Peer configuration on a BIG-IP.
+- f5networks.f5_modules.bigip_imish_config - Manages the BIG-IP advanced routing configuration sections.
+- f5networks.f5_modules.bigip_interface - Manages BIG-IP physical interfaces.
+- f5networks.f5_modules.bigip_ipsec_policy - Manages IPSec policies on a BIG-IP.
+- f5networks.f5_modules.bigip_irule - Manages iRules across different modules on a BIG-IP.
+- f5networks.f5_modules.bigip_log_destination - Manages log destinations on a BIG-IP.
+- f5networks.f5_modules.bigip_log_publisher - Manages log publishers on a BIG-IP.
+- f5networks.f5_modules.bigip_lx_package - Manages Javascript LX packages on a BIG-IP.
+- f5networks.f5_modules.bigip_management_route - Manages system management routes on a BIG-IP.
+- f5networks.f5_modules.bigip_message_routing_peer - Manages peers for routing generic message protocol messages.
+- f5networks.f5_modules.bigip_message_routing_protocol - Manages generic message parser profiles.
+- f5networks.f5_modules.bigip_message_routing_route - Manages static routes for routing message protocol messages.
+- f5networks.f5_modules.bigip_message_routing_router - Manages router profiles for message-routing protocols.
+- f5networks.f5_modules.bigip_message_routing_transport_config - Manages the configuration for an outgoing connection.
+- f5networks.f5_modules.bigip_monitor_dns - Manages DNS monitors on a BIG-IP.
+- f5networks.f5_modules.bigip_monitor_external - Manages external LTM monitors on a BIG-IP.
+- f5networks.f5_modules.bigip_monitor_ftp - Manages FTP monitors on a BIG-IP.
+- f5networks.f5_modules.bigip_monitor_gateway_icmp - Manages F5 BIG-IP LTM gateway ICMP monitors.
+- f5networks.f5_modules.bigip_monitor_http - Manages F5 BIG-IP LTM HTTP monitors
+- f5networks.f5_modules.bigip_monitor_https - Manages F5 BIG-IP LTM HTTPS monitors
+- f5networks.f5_modules.bigip_monitor_icmp - Manages F5 BIG-IP LTM ICMP monitors.
+- f5networks.f5_modules.bigip_monitor_ldap - Manages BIG-IP LDAP monitors.
+- f5networks.f5_modules.bigip_monitor_mysql - Manages BIG-IP MySQL monitors.
+- f5networks.f5_modules.bigip_monitor_oracle - Manages BIG-IP Oracle monitors.
+- f5networks.f5_modules.bigip_monitor_smtp - Manages SMTP monitors on a BIG-IP.
+- f5networks.f5_modules.bigip_monitor_snmp_dca - Manages BIG-IP SNMP data collecting agent (DCA) monitors.
+- f5networks.f5_modules.bigip_monitor_tcp_echo - Manages F5 BIG-IP LTM TCP echo monitors.
+- f5networks.f5_modules.bigip_monitor_tcp_half_open - Manages F5 BIG-IP LTM TCP half-open monitors.
+- f5networks.f5_modules.bigip_monitor_udp - Manages F5 BIG-IP LTM UDP monitors.
+- f5networks.f5_modules.bigip_network_globals - Manages network global settings on a BIG-IP.
+- f5networks.f5_modules.bigip_node - Manages F5 BIG-IP LTM nodes.
+- f5networks.f5_modules.bigip_partition - Manages BIG-IP partitions.
+- f5networks.f5_modules.bigip_password_policy - Manages the authentication password policy on a BIG-IP.
+- f5networks.f5_modules.bigip_policy - Manages the general policy configuration on a BIG-IP.
+- f5networks.f5_modules.bigip_policy_rule - Manages LTM policy rules on a BIG-IP.
+- f5networks.f5_modules.bigip_pool_member - Manages F5 BIG-IP LTM pool members.
+- f5networks.f5_modules.bigip_profile_analytics - Manages HTTP analytics profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_profile_client_ssl - Manages client SSL profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_profile_dns - Manages DNS profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_profile_fastl4 - Manages Fast L4 profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_profile_ftp - Manages FTP profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_profile_http - Manages HTTP profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_profile_http2 - Manages HTTP2 profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_profile_http_compression - Manages HTTP compression profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_profile_oneconnect - Manages OneConnect profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_profile_persistence_cookie - Manages cookie persistence profiles on BIG-IP.
+- f5networks.f5_modules.bigip_profile_persistence_src_addr - Manages source address persistence profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_profile_persistence_universal - Manages universal persistence profiles.
+- f5networks.f5_modules.bigip_profile_server_ssl - Manages server SSL profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_profile_sip - Manages SIP profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_profile_tcp - Manages TCP profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_profile_udp - Manages UDP profiles on a BIG-IP.
+- f5networks.f5_modules.bigip_provision - Manages BIG-IP module provisioning.
+- f5networks.f5_modules.bigip_qkview - Manages qkviews on the device.
+- f5networks.f5_modules.bigip_remote_role - Manages remote roles on a BIG-IP.
+- f5networks.f5_modules.bigip_remote_syslog - Manipulates remote syslog settings on a BIG-IP.
+- f5networks.f5_modules.bigip_remote_user - Manages the default settings for remote user accounts on a BIG-IP.
+- f5networks.f5_modules.bigip_routedomain - Manages route domains on a BIG-IP.
+- f5networks.f5_modules.bigip_selfip - Manages Self IP addresses on a BIG-IP.
+- f5networks.f5_modules.bigip_service_policy - Manages service policies on a BIG-IP.
+- f5networks.f5_modules.bigip_smtp - Manages SMTP settings on the BIG-IP.
+- f5networks.f5_modules.bigip_snat_pool - Manages SNAT pools on a BIG-IP.
+- f5networks.f5_modules.bigip_snat_translation - Manages SNAT Translations on a BIG-IP.
+- f5networks.f5_modules.bigip_snmp - Manipulates general SNMP settings on a BIG-IP.
+- f5networks.f5_modules.bigip_snmp_community - Manages SNMP communities on a BIG-IP.
+- f5networks.f5_modules.bigip_snmp_trap - Manipulates SNMP trap information on a BIG-IP.
+- f5networks.f5_modules.bigip_software_image - Manages software images on a BIG-IP.
+- f5networks.f5_modules.bigip_software_install - Installs software images on a BIG-IP.
+- f5networks.f5_modules.bigip_software_update - Manages the software update settings of a BIG-IP.
+- f5networks.f5_modules.bigip_ssl_certificate - Imports/Deletes certificates from a BIG-IP.
+- f5networks.f5_modules.bigip_ssl_csr - Creates SSL CSR files on the BIG-IP.
+- f5networks.f5_modules.bigip_ssl_key - Imports/Deletes SSL keys from a BIG-IP.
+- f5networks.f5_modules.bigip_ssl_ocsp - Manages OCSP configurations on a BIG-IP.
+- f5networks.f5_modules.bigip_static_route - Manipulates static routes on a BIG-IP.
+- f5networks.f5_modules.bigip_sys_daemon_log_tmm - Manages BIG-IP tmm daemon log settings.
+- f5networks.f5_modules.bigip_sys_db - Manages BIG-IP system database variables.
+- f5networks.f5_modules.bigip_sys_global - Manages BIG-IP global settings.
+- f5networks.f5_modules.bigip_timer_policy - Manages timer policies on a BIG-IP.
+- f5networks.f5_modules.bigip_traffic_selector - Manages IPSec Traffic Selectors on a BIG-IP.
+- f5networks.f5_modules.bigip_trunk - Manages trunks on a BIG-IP.
+- f5networks.f5_modules.bigip_tunnel - Manages tunnels on a BIG-IP.
+- f5networks.f5_modules.bigip_ucs - Manages upload, installation, and removal of UCS files.
+- f5networks.f5_modules.bigip_ucs_fetch - Fetches a UCS file from remote nodes.
+- f5networks.f5_modules.bigip_user - Manages user accounts and user attributes on a BIG-IP.
+- f5networks.f5_modules.bigip_vcmp_guest - Manages vCMP guests on a BIG-IP.
+- f5networks.f5_modules.bigip_virtual_address - Manages LTM virtual addresses on a BIG-IP.
+- f5networks.f5_modules.bigip_virtual_server - Manages LTM virtual servers on a BIG-IP.
+- f5networks.f5_modules.bigip_vlan - Manages VLANs on a BIG-IP.
+- f5networks.f5_modules.bigip_wait - Manages the wait time for a BIG-IP condition before continuing.
+- f5networks.f5_modules.bigiq_application_fasthttp - Manages BIG-IQ FastHTTP applications.
+- f5networks.f5_modules.bigiq_application_fastl4_tcp - Manages BIG-IQ FastL4 TCP applications.
+- f5networks.f5_modules.bigiq_application_fastl4_udp - Manages BIG-IQ FastL4 UDP applications.
+- f5networks.f5_modules.bigiq_application_http - Manages BIG-IQ HTTP applications.
+- f5networks.f5_modules.bigiq_application_https_offload - Manages BIG-IQ HTTPS offload applications.
+- f5networks.f5_modules.bigiq_application_https_waf - Manages BIG-IQ HTTPS WAF applications.
+- f5networks.f5_modules.bigiq_device_discovery - Manages BIG-IP devices through BIG-IQ.
+- f5networks.f5_modules.bigiq_device_info - Collects information from F5 BIG-IQ devices.
+- f5networks.f5_modules.bigiq_regkey_license - Manages licenses in a BIG-IQ registration key pool.
+- f5networks.f5_modules.bigiq_regkey_license_assignment - Manages regkey license assignment on BIG-IPs from a BIG-IQ.
+- f5networks.f5_modules.bigiq_regkey_pool - Manages registration key pools on BIG-IQ.
+- f5networks.f5_modules.bigiq_utility_license - Manages utility licenses on a BIG-IQ.
+- f5networks.f5_modules.bigiq_utility_license_assignment - Manages utility license assignment on BIG-IPs from a BIG-IQ.
 
 fortinet.fortimanager
 ~~~~~~~~~~~~~~~~~~~~~
