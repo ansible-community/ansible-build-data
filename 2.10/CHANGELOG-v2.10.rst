@@ -1949,11 +1949,13 @@ cisco.meraki
 - meraki - Add optional debugging for is_update_required() method.
 - meraki_admin - Update endpoints for API v1
 - meraki_alert - Manage network wide alert settings.
+- meraki_device - Added deprecation notices to some parameters
 - meraki_device - Added query parameter
 - meraki_intrusion_prevention - Change documentation to show proper way to clear rules
 - meraki_malware - Update documentation to show how to allow multiple URLs at once.
 - meraki_mx_l2_interface - Configure physical interfaces on MX appliances.
 - meraki_mx_uplink - Renamed to meraki_mx_uplink_bandwidth
+- meraki_network - Added deprecation notices to some parameters
 - meraki_ssid - Add `WPA3 Only` and `WPA3 Transition Mode`
 - meraki_switchport - Add support for `access_policy_type` parameter
 
@@ -2349,7 +2351,6 @@ community.vmware
 - Added missing backing_disk_mode information about disk which was removed by mistake in vmware_guest_disk_info.
 - Added module to be able to create, update, or delete VMware VM storage policies for virtual machines.
 - Correct datatype for state in vmware_host_lockdown module.
-- Correct example from doc of `vmware_local_role_info.py` to match the change of returned structure.
 - Correct example from doc of `vmware_local_role_info.py` to match the change of returned structure.
 - Handle exceptions raised in connect_to_vsphere_client API.
 - Minor typo fixes in vmware_httpapi related modules and module_utils.
@@ -3732,9 +3733,13 @@ cisco.iosxr
 cisco.meraki
 ~~~~~~~~~~~~
 
+- Fixed sanity errors in all modules including documentation and argument specs
 - Remove unnecessary files from the collection package, significantly reduces package size
 - meraki_admin - Fix error when adding network privileges to admin using network name
+- meraki_ssid - Specifying tags for VLAN information would crash as it was an improper type
 - meraki_switch_stack - Fix situation where module may crash due to switch being in or not in a stack already
+- meraki_webhook - Fix crash with missing variable
+- meraki_webhook - Fix response when creating webhook test
 - meraki_webhook - Proper response is shown when creating webhook test
 
 cisco.mso
@@ -5217,7 +5222,6 @@ Mongodb
 - community.mongodb.mongodb_shard - Add or remove shards from a MongoDB Cluster
 - community.mongodb.mongodb_shutdown - Cleans up all database resources and then terminates the mongod/mongos process.
 - community.mongodb.mongodb_status - Validates the status of the cluster.
-- community.mongodb.mongodb_stepdown - Step down the MongoDB node from a PRIMARY state.
 - community.mongodb.mongodb_user - Adds or removes a user from a MongoDB database
 
 community.network
