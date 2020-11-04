@@ -679,7 +679,7 @@ Changed Collections
 - openstack.cloud was upgraded from version 1.1.0 to version 1.2.0.
   The changes are reported in the combined changelog below.
 - ovirt.ovirt was upgraded from version 1.1.3 to version 1.1.4.
-  The collection did not have a changelog in this version.
+  The changes are reported in the combined changelog below.
 - theforeman.foreman was upgraded from version 1.1.0 to version 1.3.0.
   The changes are reported in the combined changelog below.
 - vyos.vyos was upgraded from version 1.0.4 to version 1.0.5.
@@ -1086,6 +1086,11 @@ netbox.netbox
 - Update inventory plugin to properly associate IP address to interfaces with NetBox 2.9 (https://github.com/netbox-community/ansible_modules/pull/334)
 - Update inventory plugin to work with tags with NetBox 2.9 (https://github.com/netbox-community/ansible_modules/pull/340)
 - Update modules to be able to properly update tags to work with NetBox 2.9 (https://github.com/netbox-community/ansible_modules/pull/345)
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- ovirt inventory - Add close of connection at the end (https://github.com/oVirt/ovirt-ansible-collection/pull/122).
 
 theforeman.foreman
 ~~~~~~~~~~~~~~~~~~
@@ -2769,6 +2774,7 @@ openvswitch.openvswitch
 ovirt.ovirt
 ~~~~~~~~~~~
 
+- Add GPL license (https://github.com/oVirt/ovirt-ansible-collection/pull/101).
 - ovirt inventory - Add creation_time (https://github.com/oVirt/ovirt-ansible-collection/pull/34).
 - ovirt inventory - Set inventory plugin insecure if no cafile defined (https://github.com/oVirt/ovirt-ansible-collection/pull/58).
 - ovirt_cluster - Add migration_encrypted option (https://github.com/oVirt/ovirt-ansible-collection/pull/17).
@@ -5211,6 +5217,7 @@ Mongodb
 - community.mongodb.mongodb_shard - Add or remove shards from a MongoDB Cluster
 - community.mongodb.mongodb_shutdown - Cleans up all database resources and then terminates the mongod/mongos process.
 - community.mongodb.mongodb_status - Validates the status of the cluster.
+- community.mongodb.mongodb_stepdown - Step down the MongoDB node from a PRIMARY state.
 - community.mongodb.mongodb_user - Adds or removes a user from a MongoDB database
 
 community.network
