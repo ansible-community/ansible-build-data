@@ -8,6 +8,108 @@ This changelog describes changes since Ansible 2.9.0.
   :local:
   :depth: 2
 
+v2.10.3
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Ansible-base
+------------
+
+Ansible 2.10.3 contains Ansible-base version 2.10.3.
+This is the same version of Ansible-base as in the previous Ansible release.
+
+
+Changed Collections
+-------------------
+
+- cisco.meraki was upgraded from version 2.1.1 to version 2.1.2.
+  The changes are reported in the combined changelog below.
+
+Bugfixes
+--------
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- Remove test output as it made the collection, and Ansible, huge.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 1.2.1)
+- ansible.netcommon (still version 1.4.1)
+- ansible.posix (still version 1.1.1)
+- ansible.windows (still version 1.2.0)
+- arista.eos (still version 1.2.0)
+- awx.awx (still version 14.1.0)
+- azure.azcollection (still version 1.2.0)
+- check_point.mgmt (still version 1.0.6)
+- chocolatey.chocolatey (still version 1.0.2)
+- cisco.aci (still version 1.1.0)
+- cisco.asa (still version 1.0.3)
+- cisco.intersight (still version 1.0.8)
+- cisco.ios (still version 1.2.0)
+- cisco.iosxr (still version 1.1.0)
+- cisco.mso (still version 1.0.1)
+- cisco.nxos (still version 1.3.0)
+- cisco.ucs (still version 1.6.0)
+- cloudscale_ch.cloud (still version 1.2.0)
+- community.aws (still version 1.2.1)
+- community.azure (still version 1.0.0)
+- community.crypto (still version 1.2.0)
+- community.digitalocean (still version 1.0.0)
+- community.general (still version 1.2.0)
+- community.grafana (still version 1.0.0)
+- community.kubernetes (still version 1.1.1)
+- community.libvirt (still version 1.0.0)
+- community.mongodb (still version 1.1.0)
+- community.mysql (still version 1.1.1)
+- community.network (still version 1.2.0)
+- community.proxysql (still version 1.0.0)
+- community.rabbitmq (still version 1.0.1)
+- community.skydive (still version 1.0.0)
+- community.vmware (still version 1.3.0)
+- community.windows (still version 1.1.0)
+- community.zabbix (still version 1.1.0)
+- containers.podman (still version 1.3.2)
+- cyberark.conjur (still version 1.0.7)
+- cyberark.pas (still version 1.0.5)
+- dellemc.os10 (still version 1.0.2)
+- dellemc.os6 (still version 1.0.3)
+- dellemc.os9 (still version 1.0.3)
+- f5networks.f5_modules (still version 1.6.0)
+- fortinet.fortimanager (still version 1.0.5)
+- fortinet.fortios (still version 1.0.15)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.1)
+- google.cloud (still version 1.0.1)
+- hetzner.hcloud (still version 1.1.0)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.2.3)
+- junipernetworks.junos (still version 1.2.0)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 20.9.0)
+- netapp.elementsw (still version 20.10.0)
+- netapp.ontap (still version 20.10.0)
+- netapp_eseries.santricity (still version 1.1.0)
+- netbox.netbox (still version 1.1.0)
+- ngine_io.cloudstack (still version 1.0.1)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.0.0)
+- openstack.cloud (still version 1.2.0)
+- openvswitch.openvswitch (still version 1.0.5)
+- ovirt.ovirt (still version 1.2.1)
+- purestorage.flasharray (still version 1.5.0)
+- purestorage.flashblade (still version 1.4.0)
+- servicenow.servicenow (still version 1.0.3)
+- splunk.es (still version 1.0.2)
+- theforeman.foreman (still version 1.4.0)
+- vyos.vyos (still version 1.1.0)
+- wti.remote (still version 1.0.1)
+
 v2.10.2
 =======
 
