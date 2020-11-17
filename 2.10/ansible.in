@@ -28,6 +28,7 @@ community.libvirt
 community.mongodb
 community.mysql
 community.network
+community.postgresql
 community.proxysql
 community.rabbitmq
 community.skydive
