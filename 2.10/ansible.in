@@ -30,6 +30,7 @@ community.mysql
 community.network
 community.proxysql
 community.rabbitmq
+community.routeros
 community.skydive
 community.vmware
 community.windows
