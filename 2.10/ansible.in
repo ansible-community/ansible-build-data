@@ -32,6 +32,7 @@ community.network
 community.postgresql
 community.proxysql
 community.rabbitmq
+community.routeros
 community.skydive
 community.vmware
 community.windows
