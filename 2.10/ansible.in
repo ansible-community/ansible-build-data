@@ -21,6 +21,7 @@ community.aws
 community.azure
 community.crypto
 community.digitalocean
+community.docker
 community.general
 community.grafana
 community.kubernetes
