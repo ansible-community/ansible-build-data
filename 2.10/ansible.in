@@ -24,6 +24,7 @@ community.digitalocean
 community.docker
 community.general
 community.grafana
+community.hrobot
 community.kubernetes
 community.libvirt
 community.mongodb
