@@ -30,6 +30,7 @@ community.libvirt
 community.mongodb
 community.mysql
 community.network
+community.okd
 community.postgresql
 community.proxysql
 community.rabbitmq
