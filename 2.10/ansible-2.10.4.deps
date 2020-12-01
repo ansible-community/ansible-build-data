@@ -38,7 +38,7 @@ community.proxysql: 1.0.0
 community.rabbitmq: 1.0.1
 community.routeros: 1.0.0
 community.skydive: 1.0.0
-community.vmware: 1.5.0
+community.vmware: 1.4.0
 community.windows: 1.1.0
 community.zabbix: 1.1.0
 containers.podman: 1.3.2
