@@ -16,6 +16,7 @@ cisco.ios: >=1.0.0,<2.0.0
 cisco.iosxr: >=1.0.0,<2.0.0
 cisco.meraki: >=2.0.0,<3.0.0
 cisco.mso: >=1.0.0,<2.0.0
+cisco.nso: >=1.0.0,<2.0.0
 cisco.nxos: >=1.1.0,<2.0.0
 cisco.ucs: >=1.5.0,<2.0.0
 cloudscale_ch.cloud: >=1.1.0,<2.0.0
