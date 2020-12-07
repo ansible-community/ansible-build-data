@@ -14,6 +14,7 @@ cisco.ios
 cisco.iosxr
 cisco.meraki
 cisco.mso
+cisco.nso
 cisco.nxos
 cisco.ucs
 cloudscale_ch.cloud
