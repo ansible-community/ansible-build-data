@@ -2,6 +2,7 @@ amazon.aws
 ansible.netcommon
 ansible.posix
 ansible.windows
+ansible.utils
 arista.eos
 awx.awx
 azure.azcollection
