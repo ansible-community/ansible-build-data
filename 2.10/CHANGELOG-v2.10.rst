@@ -41,56 +41,61 @@ This is the same version of Ansible-base as in the previous Ansible release.
 Changed Collections
 -------------------
 
-- cisco.aci was upgraded from version 1.1.0 to version 1.1.1.
-  The changes are reported in the combined changelog below.
-- cisco.asa was upgraded from version 1.0.3 to version 1.0.4.
-  The changes are reported in the combined changelog below.
-- cisco.ios was upgraded from version 1.2.0 to version 1.2.1.
-  The changes are reported in the combined changelog below.
-- cisco.iosxr was upgraded from version 1.1.0 to version 1.2.0.
-  The changes are reported in the combined changelog below.
-- cisco.nxos was upgraded from version 1.3.0 to version 1.3.1.
-  The changes are reported in the combined changelog below.
-- cloudscale_ch.cloud was upgraded from version 1.2.0 to version 1.3.0.
-  The changes are reported in the combined changelog below.
-- community.crypto was upgraded from version 1.2.0 to version 1.3.0.
-  The changes are reported in the combined changelog below.
-- community.docker was upgraded to version 1.0.0.
-  The changes are reported in the combined changelog below.
-- community.general was upgraded from version 1.2.0 to version 1.3.0.
-  The changes are reported in the combined changelog below.
-- community.grafana was upgraded from version 1.0.0 to version 1.1.0.
-  The changes are reported in the combined changelog below.
-- community.hrobot was upgraded to version 1.0.0.
-  The changes are reported in the combined changelog below.
-- community.mongodb was upgraded from version 1.1.0 to version 1.1.1.
-  There are no changes recorded in the changelog.
-- community.network was upgraded from version 1.2.0 to version 1.3.0.
-  The changes are reported in the combined changelog below.
-- community.okd was upgraded to version 1.0.1.
-  The changes are reported in the combined changelog below.
-- community.postgresql was upgraded to version 1.0.0.
-  The changes are reported in the combined changelog below.
-- community.routeros was upgraded to version 1.0.0.
-  The changes are reported in the combined changelog below.
-- community.vmware was upgraded from version 1.3.0 to version 1.4.0.
-  The changes are reported in the combined changelog below.
-- dellemc.os6 was upgraded from version 1.0.3 to version 1.0.4.
-  The changes are reported in the combined changelog below.
-- hetzner.hcloud was upgraded from version 1.1.0 to version 1.2.0.
-  The changes are reported in the combined changelog below.
-- junipernetworks.junos was upgraded from version 1.2.0 to version 1.2.1.
-  The changes are reported in the combined changelog below.
-- netapp.elementsw was upgraded from version 20.10.0 to version 20.11.0.
-  The collection did not have a changelog in this version.
-- netapp.ontap was upgraded from version 20.10.0 to version 20.11.0.
-  The collection did not have a changelog in this version.
-- ngine_io.cloudstack was upgraded from version 1.0.1 to version 1.1.0.
-  The changes are reported in the combined changelog below.
-- openvswitch.openvswitch was upgraded from version 1.0.5 to version 1.1.0.
-  The changes are reported in the combined changelog below.
-- ovirt.ovirt was upgraded from version 1.2.1 to version 1.2.3.
-  The changes are reported in the combined changelog below.
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| Collection              | Ansible 2.10.3 | Ansible 2.10.4 | Notes                                                    |
++=========================+================+================+==========================================================+
+| cisco.aci               | 1.1.0          | 1.1.1          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| cisco.asa               | 1.0.3          | 1.0.4          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| cisco.ios               | 1.2.0          | 1.2.1          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| cisco.iosxr             | 1.1.0          | 1.2.0          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| cisco.nxos              | 1.3.0          | 1.3.1          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| cloudscale_ch.cloud     | 1.2.0          | 1.3.0          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| community.crypto        | 1.2.0          | 1.3.0          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| community.docker        |                | 1.0.0          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| community.general       | 1.2.0          | 1.3.0          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| community.grafana       | 1.0.0          | 1.1.0          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| community.hrobot        |                | 1.0.0          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| community.mongodb       | 1.1.0          | 1.1.1          | There are no changes recorded in the changelog.          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| community.network       | 1.2.0          | 1.3.0          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| community.okd           |                | 1.0.1          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| community.postgresql    |                | 1.0.0          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| community.routeros      |                | 1.0.0          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| community.vmware        | 1.3.0          | 1.4.0          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| dellemc.os6             | 1.0.3          | 1.0.4          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| hetzner.hcloud          | 1.1.0          | 1.2.0          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| junipernetworks.junos   | 1.2.0          | 1.2.1          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| netapp.elementsw        | 20.10.0        | 20.11.0        | The collection did not have a changelog in this version. |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| netapp.ontap            | 20.10.0        | 20.11.0        | The collection did not have a changelog in this version. |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| ngine_io.cloudstack     | 1.0.1          | 1.1.0          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| openvswitch.openvswitch | 1.0.5          | 1.1.0          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
+| ovirt.ovirt             | 1.2.1          | 1.2.3          |                                                          |
++-------------------------+----------------+----------------+----------------------------------------------------------+
 
 Major Changes
 -------------
@@ -666,8 +671,13 @@ This is the same version of Ansible-base as in the previous Ansible release.
 Changed Collections
 -------------------
 
-- cisco.meraki was upgraded from version 2.1.1 to version 2.1.2.
-  The changes are reported in the combined changelog below.
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++--------------+----------------+----------------+-------+
+| Collection   | Ansible 2.10.2 | Ansible 2.10.3 | Notes |
++==============+================+================+=======+
+| cisco.meraki | 2.1.1          | 2.1.2          |       |
++--------------+----------------+----------------+-------+
 
 Bugfixes
 --------
@@ -776,56 +786,61 @@ The changes are reported in the combined changelog below.
 Changed Collections
 -------------------
 
-- ansible.netcommon was upgraded from version 1.3.0 to version 1.4.1.
-  The changes are reported in the combined changelog below.
-- ansible.windows was upgraded from version 1.0.1 to version 1.2.0.
-  There are no changes recorded in the changelog.
-- arista.eos was upgraded from version 1.1.0 to version 1.2.0.
-  The changes are reported in the combined changelog below.
-- cisco.aci was upgraded from version 1.0.0 to version 1.1.0.
-  The changes are reported in the combined changelog below.
-- cisco.ios was upgraded from version 1.1.0 to version 1.2.0.
-  The changes are reported in the combined changelog below.
-- cisco.meraki was upgraded from version 2.0.0 to version 2.1.1.
-  The changes are reported in the combined changelog below.
-- cisco.mso was upgraded from version 1.0.0 to version 1.0.1.
-  The changes are reported in the combined changelog below.
-- cisco.nxos was upgraded from version 1.2.0 to version 1.3.0.
-  The changes are reported in the combined changelog below.
-- cisco.ucs was upgraded from version 1.5.0 to version 1.6.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- community.mongodb was upgraded from version 1.0.0 to version 1.1.0.
-  The changes are reported in the combined changelog below.
-- community.mysql was upgraded from version 1.1.0 to version 1.1.1.
-  The changes are reported in the combined changelog below.
-- community.zabbix was upgraded from version 1.0.0 to version 1.1.0.
-  The changes are reported in the combined changelog below.
-- containers.podman was upgraded from version 1.3.1 to version 1.3.2.
-  The changes are reported in the combined changelog below.
-- dellemc.os10 was upgraded from version 1.0.1 to version 1.0.2.
-  The changes are reported in the combined changelog below.
-- dellemc.os6 was upgraded from version 1.0.2 to version 1.0.3.
-  The changes are reported in the combined changelog below.
-- dellemc.os9 was upgraded from version 1.0.2 to version 1.0.3.
-  There are no changes recorded in the changelog.
-- f5networks.f5_modules was upgraded from version 1.5.0 to version 1.6.0.
-  The changes are reported in the combined changelog below.
-- junipernetworks.junos was upgraded from version 1.1.1 to version 1.2.0.
-  The changes are reported in the combined changelog below.
-- netapp_eseries.santricity was upgraded from version 1.0.8 to version 1.1.0.
-  The changes are reported in the combined changelog below.
-- ovirt.ovirt was upgraded from version 1.1.4 to version 1.2.1.
-  The changes are reported in the combined changelog below.
-- purestorage.flasharray was upgraded from version 1.4.0 to version 1.5.0.
-  The changes are reported in the combined changelog below.
-- purestorage.flashblade was upgraded from version 1.3.0 to version 1.4.0.
-  The changes are reported in the combined changelog below.
-- servicenow.servicenow was upgraded from version 1.0.2 to version 1.0.3.
-  The changes are reported in the combined changelog below.
-- theforeman.foreman was upgraded from version 1.3.0 to version 1.4.0.
-  The changes are reported in the combined changelog below.
-- vyos.vyos was upgraded from version 1.0.5 to version 1.1.0.
-  The changes are reported in the combined changelog below.
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                | Ansible 2.10.1 | Ansible 2.10.2 | Notes                                                                                                                        |
++===========================+================+================+==============================================================================================================================+
+| ansible.netcommon         | 1.3.0          | 1.4.1          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.windows           | 1.0.1          | 1.2.0          | There are no changes recorded in the changelog.                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| arista.eos                | 1.1.0          | 1.2.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.aci                 | 1.0.0          | 1.1.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios                 | 1.1.0          | 1.2.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki              | 2.0.0          | 2.1.1          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.mso                 | 1.0.0          | 1.0.1          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.nxos                | 1.2.0          | 1.3.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ucs                 | 1.5.0          | 1.6.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mongodb         | 1.0.0          | 1.1.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql           | 1.1.0          | 1.1.1          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.zabbix          | 1.0.0          | 1.1.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman         | 1.3.1          | 1.3.2          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.os10              | 1.0.1          | 1.0.2          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.os6               | 1.0.2          | 1.0.3          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.os9               | 1.0.2          | 1.0.3          | There are no changes recorded in the changelog.                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules     | 1.5.0          | 1.6.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| junipernetworks.junos     | 1.1.1          | 1.2.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp_eseries.santricity | 1.0.8          | 1.1.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ovirt.ovirt               | 1.1.4          | 1.2.1          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flasharray    | 1.4.0          | 1.5.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade    | 1.3.0          | 1.4.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| servicenow.servicenow     | 1.0.2          | 1.0.3          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman        | 1.3.0          | 1.4.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| vyos.vyos                 | 1.0.5          | 1.1.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
 
 Major Changes
 -------------
@@ -1363,64 +1378,69 @@ The changes are reported in the combined changelog below.
 Changed Collections
 -------------------
 
-- amazon.aws was upgraded from version 1.2.0 to version 1.2.1.
-  The changes are reported in the combined changelog below.
-- ansible.netcommon was upgraded from version 1.2.1 to version 1.3.0.
-  The changes are reported in the combined changelog below.
-- ansible.windows was upgraded from version 1.0.0 to version 1.0.1.
-  The changes are reported in the combined changelog below.
-- arista.eos was upgraded from version 1.0.3 to version 1.1.0.
-  The changes are reported in the combined changelog below.
-- azure.azcollection was upgraded from version 1.0.0 to version 1.2.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.ios was upgraded from version 1.0.3 to version 1.1.0.
-  The changes are reported in the combined changelog below.
-- cisco.iosxr was upgraded from version 1.0.5 to version 1.1.0.
-  The changes are reported in the combined changelog below.
-- cisco.nxos was upgraded from version 1.1.0 to version 1.2.0.
-  The changes are reported in the combined changelog below.
-- cloudscale_ch.cloud was upgraded from version 1.1.0 to version 1.2.0.
-  The changes are reported in the combined changelog below.
-- community.aws was upgraded from version 1.2.0 to version 1.2.1.
-  The changes are reported in the combined changelog below.
-- community.crypto was upgraded from version 1.1.1 to version 1.2.0.
-  The changes are reported in the combined changelog below.
-- community.general was upgraded from version 1.1.0 to version 1.2.0.
-  The changes are reported in the combined changelog below.
-- community.kubernetes was upgraded from version 1.0.0 to version 1.1.1.
-  The changes are reported in the combined changelog below.
-- community.mysql was upgraded from version 1.0.0 to version 1.1.0.
-  The changes are reported in the combined changelog below.
-- community.network was upgraded from version 1.1.0 to version 1.2.0.
-  The changes are reported in the combined changelog below.
-- community.vmware was upgraded from version 1.2.0 to version 1.3.0.
-  The changes are reported in the combined changelog below.
-- community.windows was upgraded from version 1.0.0 to version 1.1.0.
-  The changes are reported in the combined changelog below.
-- containers.podman was upgraded from version 1.2.0 to version 1.3.1.
-  The changes are reported in the combined changelog below.
-- google.cloud was upgraded from version 1.0.0 to version 1.0.1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- hetzner.hcloud was upgraded from version 1.0.0 to version 1.1.0.
-  The changes are reported in the combined changelog below.
-- junipernetworks.junos was upgraded from version 1.1.0 to version 1.1.1.
-  The changes are reported in the combined changelog below.
-- netapp.aws was upgraded from version 20.8.0 to version 20.9.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- netapp.elementsw was upgraded from version 20.8.0 to version 20.10.0.
-  The changes are reported in the combined changelog below.
-- netapp.ontap was upgraded from version 20.8.0 to version 20.10.0.
-  The changes are reported in the combined changelog below.
-- netbox.netbox was upgraded from version 1.0.2 to version 1.1.0.
-  The changes are reported in the combined changelog below.
-- openstack.cloud was upgraded from version 1.1.0 to version 1.2.0.
-  The changes are reported in the combined changelog below.
-- ovirt.ovirt was upgraded from version 1.1.3 to version 1.1.4.
-  The changes are reported in the combined changelog below.
-- theforeman.foreman was upgraded from version 1.1.0 to version 1.3.0.
-  The changes are reported in the combined changelog below.
-- vyos.vyos was upgraded from version 1.0.4 to version 1.0.5.
-  The changes are reported in the combined changelog below.
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection            | Ansible 2.10.0 | Ansible 2.10.1 | Notes                                                                                                                        |
++=======================+================+================+==============================================================================================================================+
+| amazon.aws            | 1.2.0          | 1.2.1          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.netcommon     | 1.2.1          | 1.3.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.windows       | 1.0.0          | 1.0.1          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| arista.eos            | 1.0.3          | 1.1.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| azure.azcollection    | 1.0.0          | 1.2.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios             | 1.0.3          | 1.1.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.iosxr           | 1.0.5          | 1.1.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.nxos            | 1.1.0          | 1.2.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cloudscale_ch.cloud   | 1.1.0          | 1.2.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.aws         | 1.2.0          | 1.2.1          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto      | 1.1.1          | 1.2.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general     | 1.1.0          | 1.2.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.kubernetes  | 1.0.0          | 1.1.1          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql       | 1.0.0          | 1.1.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.network     | 1.1.0          | 1.2.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware      | 1.2.0          | 1.3.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.windows     | 1.0.0          | 1.1.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman     | 1.2.0          | 1.3.1          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| google.cloud          | 1.0.0          | 1.0.1          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| hetzner.hcloud        | 1.0.0          | 1.1.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| junipernetworks.junos | 1.1.0          | 1.1.1          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.aws            | 20.8.0         | 20.9.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.elementsw      | 20.8.0         | 20.10.0        |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap          | 20.8.0         | 20.10.0        |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netbox.netbox         | 1.0.2          | 1.1.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| openstack.cloud       | 1.1.0          | 1.2.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ovirt.ovirt           | 1.1.3          | 1.1.4          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman    | 1.1.0          | 1.3.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| vyos.vyos             | 1.0.4          | 1.0.5          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
 
 Major Changes
 -------------
@@ -2004,148 +2024,153 @@ The changes are reported in the combined changelog below.
 Included Collections
 --------------------
 
-- amazon.aws with version 1.2.0.
-  The changes are reported in the combined changelog below.
-- ansible.netcommon with version 1.2.1.
-  The changes are reported in the combined changelog below.
-- ansible.posix with version 1.1.1.
-  The changes are reported in the combined changelog below.
-- ansible.windows with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- arista.eos with version 1.0.3.
-  The changes are reported in the combined changelog below.
-- awx.awx with version 14.1.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- azure.azcollection with version 1.0.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- check_point.mgmt with version 1.0.6.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- chocolatey.chocolatey with version 1.0.2.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.aci with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- cisco.asa with version 1.0.3.
-  The changes are reported in the combined changelog below.
-- cisco.intersight with version 1.0.8.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cisco.ios with version 1.0.3.
-  The changes are reported in the combined changelog below.
-- cisco.iosxr with version 1.0.5.
-  The changes are reported in the combined changelog below.
-- cisco.meraki with version 2.0.0.
-  The changes are reported in the combined changelog below.
-- cisco.mso with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- cisco.nxos with version 1.1.0.
-  The changes are reported in the combined changelog below.
-- cisco.ucs with version 1.5.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- cloudscale_ch.cloud with version 1.1.0.
-  The changes are reported in the combined changelog below.
-- community.aws with version 1.2.0.
-  The changes are reported in the combined changelog below.
-- community.azure with version 1.0.0.
-  The collection did not have a changelog in this version.
-- community.crypto with version 1.1.1.
-  The changes are reported in the combined changelog below.
-- community.digitalocean with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- community.general with version 1.1.0.
-  The changes are reported in the combined changelog below.
-- community.grafana with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- community.kubernetes with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- community.libvirt with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- community.mongodb with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- community.mysql with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- community.network with version 1.1.0.
-  The changes are reported in the combined changelog below.
-- community.proxysql with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- community.rabbitmq with version 1.0.1.
-  The changes are reported in the combined changelog below.
-- community.skydive with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- community.vmware with version 1.2.0.
-  The changes are reported in the combined changelog below.
-- community.windows with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- community.zabbix with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- containers.podman with version 1.2.0.
-  The changes are reported in the combined changelog below.
-- cyberark.conjur with version 1.0.7.
-  You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`_.
-- cyberark.pas with version 1.0.5.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- dellemc.os10 with version 1.0.1.
-  The changes are reported in the combined changelog below.
-- dellemc.os6 with version 1.0.2.
-  The changes are reported in the combined changelog below.
-- dellemc.os9 with version 1.0.2.
-  The changes are reported in the combined changelog below.
-- f5networks.f5_modules with version 1.5.0.
-  The changes are reported in the combined changelog below.
-- fortinet.fortimanager with version 1.0.5.
-  The changes are reported in the combined changelog below.
-- fortinet.fortios with version 1.0.15.
-  The changes are reported in the combined changelog below.
-- frr.frr with version 1.0.3.
-  The changes are reported in the combined changelog below.
-- gluster.gluster with version 1.0.1.
-  The changes are reported in the combined changelog below.
-- google.cloud with version 1.0.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- hetzner.hcloud with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- ibm.qradar with version 1.0.3.
-  The changes are reported in the combined changelog below.
-- infinidat.infinibox with version 1.2.3.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- junipernetworks.junos with version 1.1.0.
-  The changes are reported in the combined changelog below.
-- mellanox.onyx with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- netapp.aws with version 20.8.0.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
-- netapp.elementsw with version 20.8.0.
-  The changes are reported in the combined changelog below.
-- netapp.ontap with version 20.8.0.
-  The changes are reported in the combined changelog below.
-- netapp_eseries.santricity with version 1.0.8.
-  The collection did not have a changelog in this version.
-- netbox.netbox with version 1.0.2.
-  The changes are reported in the combined changelog below.
-- ngine_io.cloudstack with version 1.0.1.
-  The changes are reported in the combined changelog below.
-- ngine_io.exoscale with version 1.0.0.
-  There are no changes recorded in the changelog.
-- ngine_io.vultr with version 1.0.0.
-  The changes are reported in the combined changelog below.
-- openstack.cloud with version 1.1.0.
-  The changes are reported in the combined changelog below.
-- openvswitch.openvswitch with version 1.0.5.
-  The changes are reported in the combined changelog below.
-- ovirt.ovirt with version 1.1.3.
-  The changes are reported in the combined changelog below.
-- purestorage.flasharray with version 1.4.0.
-  The changes are reported in the combined changelog below.
-- purestorage.flashblade with version 1.3.0.
-  The changes are reported in the combined changelog below.
-- servicenow.servicenow with version 1.0.2.
-  The collection did not have a changelog in this version.
-- splunk.es with version 1.0.2.
-  The changes are reported in the combined changelog below.
-- theforeman.foreman with version 1.1.0.
-  The changes are reported in the combined changelog below.
-- vyos.vyos with version 1.0.4.
-  The changes are reported in the combined changelog below.
-- wti.remote with version 1.0.1.
-  Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Collection                | Ansible 2.9.0 | Ansible 2.10.0 | Notes                                                                                                                                                                                                          |
++===========================+===============+================+================================================================================================================================================================================================================+
+| amazon.aws                |               | 1.2.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ansible.netcommon         |               | 1.2.1          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ansible.posix             |               | 1.1.1          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ansible.windows           |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| arista.eos                |               | 1.0.3          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| awx.awx                   |               | 14.1.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| azure.azcollection        |               | 1.0.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| check_point.mgmt          |               | 1.0.6          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| chocolatey.chocolatey     |               | 1.0.2          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.aci                 |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.asa                 |               | 1.0.3          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight          |               | 1.0.8          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios                 |               | 1.0.3          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.iosxr               |               | 1.0.5          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki              |               | 2.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.mso                 |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.nxos                |               | 1.1.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ucs                 |               | 1.5.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cloudscale_ch.cloud       |               | 1.1.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.aws             |               | 1.2.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.azure           |               | 1.0.0          | The collection did not have a changelog in this version.                                                                                                                                                       |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto          |               | 1.1.1          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.digitalocean    |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.general         |               | 1.1.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.grafana         |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.kubernetes      |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.libvirt         |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.mongodb         |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql           |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.network         |               | 1.1.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.proxysql        |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.rabbitmq        |               | 1.0.1          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.skydive         |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware          |               | 1.2.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.windows         |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.zabbix          |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman         |               | 1.2.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.conjur           |               | 1.0.7          | You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`_. |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.pas              |               | 1.0.5          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.os10              |               | 1.0.1          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.os6               |               | 1.0.2          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.os9               |               | 1.0.2          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules     |               | 1.5.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortimanager     |               | 1.0.5          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortios          |               | 1.0.15         |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| frr.frr                   |               | 1.0.3          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| gluster.gluster           |               | 1.0.1          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| google.cloud              |               | 1.0.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| hetzner.hcloud            |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ibm.qradar                |               | 1.0.3          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| infinidat.infinibox       |               | 1.2.3          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| junipernetworks.junos     |               | 1.1.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| mellanox.onyx             |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| netapp.aws                |               | 20.8.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| netapp.elementsw          |               | 20.8.0         |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap              |               | 20.8.0         |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| netapp_eseries.santricity |               | 1.0.8          | The collection did not have a changelog in this version.                                                                                                                                                       |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| netbox.netbox             |               | 1.0.2          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ngine_io.cloudstack       |               | 1.0.1          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ngine_io.exoscale         |               | 1.0.0          | There are no changes recorded in the changelog.                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ngine_io.vultr            |               | 1.0.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| openstack.cloud           |               | 1.1.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| openvswitch.openvswitch   |               | 1.0.5          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ovirt.ovirt               |               | 1.1.3          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flasharray    |               | 1.4.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade    |               | 1.3.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| servicenow.servicenow     |               | 1.0.2          | The collection did not have a changelog in this version.                                                                                                                                                       |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| splunk.es                 |               | 1.0.2          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman        |               | 1.1.0          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| vyos.vyos                 |               | 1.0.4          |                                                                                                                                                                                                                |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| wti.remote                |               | 1.0.1          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++---------------------------+---------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Major Changes
 -------------
