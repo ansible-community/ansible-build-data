@@ -26,6 +26,7 @@ community.crypto: >=1.1.0,<2.0.0
 community.digitalocean: >=1.0.0,<2.0.0
 community.docker: >=1.0.0,<2.0.0
 community.general: >=1.1.0,<2.0.0
+community.google: >=1.0.0,<2.0.0
 community.grafana: >=1.0.0,<2.0.0
 community.hrobot: >=1.0.0,<2.0.0
 community.kubernetes: >=1.0.0,<2.0.0
