@@ -26,6 +26,7 @@ community.docker
 community.general
 community.google
 community.grafana
+community.hashi_vault
 community.hrobot
 community.kubernetes
 community.libvirt
