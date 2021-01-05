@@ -48,7 +48,7 @@ community.zabbix: 1.1.0
 containers.podman: 1.4.1
 cyberark.conjur: 1.1.0
 cyberark.pas: 1.0.5
-dellemc.os10: 1.1.1
+dellemc.os10: 1.0.2
 dellemc.os6: 1.0.6
 dellemc.os9: 1.0.3
 f5networks.f5_modules: 1.6.0

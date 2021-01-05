@@ -84,8 +84,6 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | cyberark.conjur        | 1.0.7          | 1.1.0          | You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`_. |
 +------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| dellemc.os10           | 1.0.2          | 1.1.1          |                                                                                                                                                                                                                |
-+------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | dellemc.os6            | 1.0.4          | 1.0.6          |                                                                                                                                                                                                                |
 +------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | fortinet.fortios       | 1.0.15         | 1.1.8          | The collection did not have a changelog in this version.                                                                                                                                                       |
@@ -135,12 +133,6 @@ community.general
 
   If you use ansible-base and installed ``community.general`` manually and rely on the hashi_vault lookup plugin, you have to make sure to install the ``community.hashi_vault`` collection as well.
   If you are using FQCNs, in other words ``community.general.hashi_vault`` instead of ``hashi_vault``, it will continue working, but we still recommend to adjust this FQCN as well.
-
-dellemc.os10
-~~~~~~~~~~~~
-
-- os10_bgp - Enhanced router bgp keyword support for non-default vrf which are supported for default vrf and additional keyword to support both default and non-default vrf
-- os10_snmp role - Added support for snmp V3 features in community, group, host, engineID
 
 netbox.netbox
 ~~~~~~~~~~~~~
@@ -305,18 +297,6 @@ containers.podman
 - podman_network - Add support of network options like MTU, VLAN
 - podman_pod - Move pod logic to separate library
 
-dellemc.os10
-~~~~~~~~~~~~
-
-- Adding support for Ansible version 2.9 (https://github.com/ansible-collections/dellemc.os10/pull/58)
-- Enhanced os10_bgp role to support internal BGP redistribution under address-family for V4 and V6
-- Enhanced os10_bgp role to support maximum-prefix configuration under BGP peer and peer-group.
-- os10_ntp role - Added support for vrf and sha1 and sha2-256 authentication-key types
-- os10_snmp role - Added support for source-interface and vrf
-- os10_template - add template for show spanning tree compatibility mode
-- os10_template - add template for show vlt error disabled ports
-- os10_uplink role - Added support for downstream disable-links and auto-recover
-
 netbox.netbox
 ~~~~~~~~~~~~~
 
@@ -390,12 +370,6 @@ community.hashi_vault
 ~~~~~~~~~~~~~~~~~~~~~
 
 - hashi_vault - the ``VAULT_ADDR`` environment variable is now checked last for the ``url`` parameter. For details on which use cases are impacted, see (https://github.com/ansible-collections/community.hashi_vault/issues/8).
-
-dellemc.os10
-~~~~~~~~~~~~
-
-- os10_bgp - Changed "subnet"  key as list format instead of dictionary format under "listen" key to support multiple neighbor prefix for listen command
-- os10_bgp - Changed "vrf" key as list format instead of dictionary format to supprot multiple VRF in router BGP and changed the "vrf" key name to "vrfs"
 
 Deprecated Features
 -------------------
@@ -608,11 +582,6 @@ containers.podman
 - podman_logout - Handle podman logout not logging out when logged in via different tool
 - podman_network - Correct IP range example for podman_network
 
-dellemc.os10
-~~~~~~~~~~~~
-
-- Fixed issue in using interface range in os10_vlan members. (https://github.com/ansible-collections/dellemc.os10/issues/53)
-
 dellemc.os6
 ~~~~~~~~~~~
 
@@ -736,6 +705,7 @@ Unchanged Collections
 - community.skydive (still version 1.0.0)
 - community.zabbix (still version 1.1.0)
 - cyberark.pas (still version 1.0.5)
+- dellemc.os10 (still version 1.0.2)
 - dellemc.os9 (still version 1.0.3)
 - f5networks.f5_modules (still version 1.6.0)
 - fortinet.fortimanager (still version 1.0.5)

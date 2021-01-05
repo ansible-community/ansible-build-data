@@ -48,7 +48,9 @@ community.zabbix: >=1.0.0,<2.0.0
 containers.podman: >=1.2.0,<2.0.0
 cyberark.conjur: >=1.0.0,<2.0.0
 cyberark.pas: >=1.0.0,<2.0.0
-dellemc.os10: >=1.0.0,<2.0.0
+# dellemc.os10 range specified due to breaking changes in the 1.1 release
+# https://github.com/ansible-collections/dellemc.os10/issues/61
+dellemc.os10: >=1.0.0,<1.1.0
 dellemc.os6: >=1.0.0,<2.0.0
 dellemc.os9: >=1.0.0,<2.0.0
 f5networks.f5_modules: >=1.5.0,<2.0.0
