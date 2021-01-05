@@ -182,3 +182,10 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2020-12-01'
+  2.10.5:
+    changes:
+      release_summary: 'Release Date: 2021-01-05
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2021-01-05'
