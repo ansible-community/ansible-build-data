@@ -31,6 +31,7 @@ community.grafana: >=1.0.0,<2.0.0
 community.hashi_vault: >=1.0.0,<2.0.0
 community.hrobot: >=1.0.0,<2.0.0
 community.kubernetes: >=1.0.0,<2.0.0
+community.kubevirt: >=1.0.0,<2.0.0
 community.libvirt: >=1.0.0,<2.0.0
 community.mongodb: >=1.0.0,<2.0.0
 community.mysql: >=1.0.0,<2.0.0
