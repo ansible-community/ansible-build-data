@@ -1,0 +1,4 @@
+---
+collections:
+  cyberark.conjur:
+    changelog-url: https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md
