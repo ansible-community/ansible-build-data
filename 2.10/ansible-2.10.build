@@ -25,6 +25,7 @@ community.azure: >=1.0.0,<2.0.0
 community.crypto: >=1.1.0,<2.0.0
 community.digitalocean: >=1.0.0,<2.0.0
 community.docker: >=1.0.0,<2.0.0
+community.fortios: >=1.0.0,<2.0.0
 community.general: >=1.1.0,<2.0.0
 community.google: >=1.0.0,<2.0.0
 community.grafana: >=1.0.0,<2.0.0
