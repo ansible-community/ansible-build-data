@@ -78,5 +78,6 @@ purestorage.flashblade
 servicenow.servicenow
 splunk.es
 theforeman.foreman
+t_systems_mms.icinga_director
 vyos.vyos
 wti.remote
