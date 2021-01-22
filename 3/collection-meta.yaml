@@ -2,3 +2,5 @@
 collections:
   cyberark.conjur:
     changelog-url: https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md
+  t_systems_mms.icinga_director:
+    changelog-url: https://github.com/T-Systems-MMS/ansible-collection-icinga-director/blob/master/CHANGELOG.md
