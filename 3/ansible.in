@@ -75,6 +75,7 @@ openvswitch.openvswitch
 ovirt.ovirt
 purestorage.flasharray
 purestorage.flashblade
+sensu.sensu_go
 servicenow.servicenow
 splunk.es
 theforeman.foreman
