@@ -41,6 +41,7 @@ community.proxysql
 community.rabbitmq
 community.routeros
 community.skydive
+community.sops
 community.vmware
 community.windows
 community.zabbix
