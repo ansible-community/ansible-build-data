@@ -1,6 +1,16 @@
 ---
 collections:
+  community.sops:
+    maintainers:
+      - endorama
   cyberark.conjur:
     changelog-url: https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md
+  sensu.sensu_go:
+    maintainers:
+      - tadeboro
+      - mancabizjak
   t_systems_mms.icinga_director:
     changelog-url: https://github.com/T-Systems-MMS/ansible-collection-icinga-director/blob/master/CHANGELOG.md
+    maintainers:
+      - rndmh3ro
+      - schurzi
