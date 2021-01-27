@@ -8,6 +8,430 @@ This changelog describes changes since Ansible 2.9.0.
   :local:
   :depth: 2
 
+v2.10.6
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2021-01-26
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- community.fortios (version 1.0.0)
+
+Ansible-base
+------------
+
+Ansible 2.10.6 contains Ansible-base version 2.10.5.
+This is a newer version than version 2.10.4 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection            | Ansible 2.10.5 | Ansible 2.10.6 | Notes                                                                                                                        |
++=======================+================+================+==============================================================================================================================+
+| cisco.intersight      | 1.0.9          | 1.0.10         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.mso             | 1.0.1          | 1.1.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cloudscale_ch.cloud   | 1.3.0          | 1.3.1          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto      | 1.3.0          | 1.4.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker      | 1.1.0          | 1.2.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.fortios     |                | 1.0.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general     | 1.3.2          | 1.3.5          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mongodb     | 1.1.1          | 1.1.2          | The collection did not have a changelog in this version.                                                                     |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql       | 1.1.2          | 1.2.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.network     | 1.3.0          | 1.3.1          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.postgresql  | 1.0.0          | 1.1.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.zabbix      | 1.1.0          | 1.2.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules | 1.6.0          | 1.7.1          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netbox.netbox         | 1.2.0          | 1.2.1          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- For community.general 2.0.0, the kubevirt modules will be moved to the `community.kubevirt <https://galaxy.ansible.com/community/kubevirt>`_ collection.
+  A redirection will be inserted so that users using ansible-base 2.10 or newer do not have to change anything.
+
+  If you use Ansible 2.9 and explicitly use kubevirt modules from this collection, you will need to adjust your playbooks and roles to use FQCNs starting with ``community.kubevirt.`` instead of ``community.general.``,
+  for example replace ``community.general.kubevirt_vm`` in a task by ``community.kubevirt.kubevirt_vm``.
+
+  If you use ansible-base and installed ``community.general`` manually and rely on the kubevirt modules, you have to make sure to install the ``community.kubevirt`` collection as well.
+  If you are using FQCNs, for example ``community.general.kubevirt_vm`` instead of ``kubevirt_vm``, it will continue working, but we still recommend to adjust the FQCNs as well.
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- For community.network 2.0.0, the Cisco NSO modules will be moved to the `cisco.nso <https://galaxy.ansible.com/cisco/nso>`_ collection.
+  A redirection will be inserted so that users using ansible-base 2.10 or newer do not have to change anything.
+
+  If you use Ansible 2.9 and explicitly use Cisco NSO modules from this collection, you will need to adjust your playbooks and roles to use FQCNs starting with ``cisco.nso.`` instead of ``community.network.``,
+  for example replace ``community.network.nso_config`` in a task by ``cisco.nso.nso_config``.
+
+  If you use ansible-base and installed ``community.network`` manually and rely on the Cisco NSO modules, you have to make sure to install the ``cisco.nso`` collection as well.
+  If you are using FQCNs, for example ``community.network.nso_config`` instead of ``nso_config``, it will continue working, but we still recommend to adjust the FQCNs as well.
+- For community.network 2.0.0, the FortiOS modules will be moved to the `community.fortios <https://galaxy.ansible.com/ansible-collections/community.fortios>`_ collection.
+  A redirection will be inserted so that users using ansible-base 2.10 or newer do not have to change anything.
+
+  If you use Ansible 2.9 and explicitly use FortiOS modules from this collection, you will need to adjust your playbooks and roles to use FQCNs starting with ``community.fortios.`` instead of ``community.network.``,
+  for example replace ``community.network.fmgr_device`` in a task by ``community.fortios.fmgr_device``.
+
+  If you use ansible-base and installed ``community.network`` manually and rely on the FortiOS modules, you have to make sure to install the ``community.fortios`` collection as well.
+  If you are using FQCNs, for example ``community.network.fmgr_device`` instead of ``fmgr_device``, it will continue working, but we still recommend to adjust the FQCNs as well.
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Added async_timeout parameter to bigip_ucs_fetch module to allow customization of module wait for async interface
+- Changed bigip_ucs_fetch module to use asynchronous interface when generating UCS files
+
+Minor Changes
+-------------
+
+Ansible-base
+~~~~~~~~~~~~
+
+- ansible-test - Changed the internal name of the custom plugin used to identify use of unwanted imports and functions.
+- ansible-test - The ``pylint`` sanity test is now skipped with a warning on Python 3.9 due to unresolved upstream regressions.
+- ansible-test - The ``pylint`` sanity test is now supported on Python 3.8.
+- ansible-test - add macOS 11.1 as a remote target (https://github.com/ansible/ansible/pull/72622)
+- ansible-test - remote macOS instances no longer install ``virtualenv`` during provisioning
+- ansible-test - virtualenv helper scripts now prefer ``venv`` on Python 3 over ``virtualenv`` if the ``ANSIBLE_TEST_PREFER_VENV`` environment variable is set
+
+cisco.mso
+~~~~~~~~~
+
+- Add DHCP Policy Operations
+- Add SVI MAC Addreess option in mso_schema_site_bd
+- Add additional test file to add tenant from templated payload file
+- Add attribute virtual_ip to mso_schema_site_bd_subnet
+- Add capability for restore and download backup
+- Add capability to upload backup
+- Add check for undeploy under MSO version
+- Add error handeling test file
+- Add error message to display when yaml has failed to load
+- Add galaxy-importer check
+- Add galaxy-importer config
+- Add mso_dhcp_option_policy and mso_dhcp_option_policy_option and test files
+- Add new module mso_rest and test case files to support GET api method
+- Add new options to template bd and updated test file
+- Add notes to use region_cidr module to create region
+- Add task to undeploy the template from the site
+- Add tasks in test file to remove templates for mso_schema_template_migrate
+- Add test case for schema removing
+- Add test cases to verify GET, PUT, POST and DELETE API methods for sites in mso_rest.py
+- Add test file for mso_schema
+- Add test file for mso_schema_template_anp
+- Add test file for region module
+- Add test files yaml_inline and yaml_string to support YAML
+- Add userAssociations to tenants to resolve CI issues
+- Addition of cloud setting for ext epg
+- Changes made to payload of mso_schema_template_external_epg
+- Changes to options in template bd
+- Check warning
+- Documentation Corrected
+- Force arp flood to be true when l2unkwunicast is flood
+- Make changes to display correct status code
+- Modify mso library and updated test file
+- Modify mso_rest test files to make PATCH available, and test other methods against schemas
+- Move options for subnet from mso to the template_bd_subnet module
+- Python lint corrected
+- Redirect log to both stdout and log.txt file & Check warnings and errors
+- Remove creation example in document of mso_schema_site_vrf_region
+- Remove present state from mso_schema module
+- Removed unused variable in mso_schema_site_vrf_region_hub_network
+- Test DHCP Policy Provider added
+- Test file for mso_dhcp_relay_policy added
+- Test file for template_bd_subnet and new option foe module
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- Implemented identical naming support of the same resource type per zone (https://github.com/cloudscale-ch/ansible-collection-cloudscale/pull/46).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- The ACME module_utils has been relicensed back from the Simplified BSD License (https://opensource.org/licenses/BSD-2-Clause) to the GPLv3+ (same license used by most other code in this collection). This undoes a licensing change when the original GPLv3+ licensed code was moved to module_utils in https://github.com/ansible/ansible/pull/40697 (https://github.com/ansible-collections/community.crypto/pull/165).
+- The ``crypto/identify.py`` module_utils has been renamed to ``crypto/pem.py`` (https://github.com/ansible-collections/community.crypto/pull/166).
+- luks_device - ``new_keyfile``, ``new_passphrase``, ``remove_keyfile`` and ``remove_passphrase`` are now idempotent (https://github.com/ansible-collections/community.crypto/issues/19, https://github.com/ansible-collections/community.crypto/pull/168).
+- luks_device - allow to configure PBKDF (https://github.com/ansible-collections/community.crypto/pull/163).
+- openssl_csr, openssl_csr_pipe - allow to specify CRL distribution endpoints with ``crl_distribution_points`` (https://github.com/ansible-collections/community.crypto/issues/147, https://github.com/ansible-collections/community.crypto/pull/167).
+- openssl_pkcs12 - allow to specify certificate bundles in ``other_certificates`` by using new option ``other_certificates_parse_all`` (https://github.com/ansible-collections/community.crypto/issues/149, https://github.com/ansible-collections/community.crypto/pull/166).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_container - added ``default_host_ip`` option which allows to explicitly set the default IP string for published ports without explicitly specified IPs. When using IPv6 binds with Docker 20.10.2 or newer, this needs to be set to an empty string (``""``) (https://github.com/ansible-collections/community.docker/issues/70, https://github.com/ansible-collections/community.docker/pull/71).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_user - refactor to reduce cursor.execute() calls in preparation for adding query logging (https://github.com/ansible-collections/community.mysql/pull/76).
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_query - add ``as_single_query`` option to execute a script content as a single query to avoid semicolon related errors (https://github.com/ansible-collections/community.postgresql/pull/37).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- Updated the roles to support Zabbix 5.2.
+- zabbix_agent - Added a new property `zabbix_agent_dont_detect_ip` when set to true, it won't detect the ips and no need to install the python module `netaddr`.
+- zabbix_agent - Added parameter `zabbix_agent_package_remove` when set to `true` and `zabbix_agent2` is set to `true` it will uninstall the `zabbix-agent` service and package.
+- zabbix_agent - added `zabbix_agent_install_agent_only` Will only install the Zabbix Agent package and not the `zabbix-sender` or `zabbix-get` packages.
+- zabbix_template - Fixed to decode Unicode Escape of multibyte strings in an importing template data(https://github.com/ansible-collections/community.zabbix/pull/226).
+- zabbix_user - added new parameters to set timezone and role_name for users (https://github.com/ansible-collections/community.zabbix/pull/260).
+- zabbix_user - user_medias now defaults to None and is optional (https://github.com/ansible-collections/community.zabbix/pull/264).
+- zabbix_web - added `zabbix_web_rhel_release` which enable scl on RHEL (https://github.com/ansible-collections/community.zabbix/pull/266).
+- zabbix_web - quality of life improvements when using Nginx (https://github.com/ansible-collections/community.zabbix/pull/304).
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Add better error handling for TEEM telemetry connection
+- Changed apm_policy_fetch module to use standard download function
+
+Security Fixes
+--------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- bitbucket_pipeline_variable - **CVE-2021-20180** - hide user sensitive information which are marked as ``secured`` from logging into the console (https://github.com/ansible-collections/community.general/pull/1635).
+- snmp_facts - **CVE-2021-20178** - hide user sensitive information such as ``privkey`` and ``authkey`` from logging into the console (https://github.com/ansible-collections/community.general/pull/1621).
+
+Bugfixes
+--------
+
+Ansible-base
+~~~~~~~~~~~~
+
+- Apply ``_wrap_native_text`` only for builtin filters specified in STRING_TYPE_FILTERS.
+- Documentation change to the apt module to reference lock files (https://github.com/ansible/ansible/issues/73079).
+- Fix --list-tasks format `role_name : task_name` when task name contains the role name. (https://github.com/ansible/ansible/issues/72505)
+- Fix ansible-galaxy collection list to show collections in site-packages (https://github.com/ansible/ansible/issues/70147)
+- Fix bytestring vs string comparison in module_utils.basic.is_special_selinux_path() so that special-cased filesystems which don't support SELinux context attributes still allow files to be manipulated on them. (https://github.com/ansible/ansible/issues/70244)
+- Fix notifying handlers via `role_name : handler_name` when handler name contains the role name. (https://github.com/ansible/ansible/issues/70582)
+- async - Fix Python 3 interpreter parsing from module by comparing with bytes (https://github.com/ansible/ansible/issues/70690)
+- inventory - pass the vars dictionary to combine_vars instead of an individual key's value (https://github.com/ansible/ansible/issues/72975).
+- paramiko connection plugin - Ensure we only reset the connection when one has been previously established (https://github.com/ansible/ansible/issues/65812)
+- systemd - preserve the full unit name when using a templated service and ``systemd`` failed to parse dbus due to a known bug in ``systemd`` (https://github.com/ansible/ansible/pull/72985)
+- user - do the right thing when ``password_lock=True`` and ``password`` are used together (https://github.com/ansible/ansible/issues/72992)
+
+cisco.mso
+~~~~~~~~~
+
+- Fix anp idempotency issue
+- Fix crash issue when using irrelevant site-template
+- Fix default value for mso_schema state parameter
+- Fix examples for mso_schema
+- Fix galaxy-importer check warnings
+- Fix issue on mso_schema_site_vrf_region_cidr_subnet to allow an AWS subnet to be used for a TGW Attachment (Hub Network)
+- Fix module name in example of mso_schema_site_vrf_region
+- Fix mso_backup upload issue
+- Fix sanity test error mso_schema_site_bd
+- Fix some coding standard and improvements to contributed mso_dhcp_relay modules and test files
+- Fix space in asssertion
+- Fix space in site_anp_epg_domain
+- Fix space in test file
+- Remove space from template name in all modules
+- Remove space in template name
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- Fix inventory plugin failing to launch (https://github.com/cloudscale-ch/ansible-collection-cloudscale/issues/49).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme_certificate - error when requested challenge type is not found for non-valid challenges, instead of hanging on step 2 (https://github.com/ansible-collections/community.crypto/issues/171, https://github.com/ansible-collections/community.crypto/pull/173).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_container - allow IPv6 zones (RFC 4007) in bind IPs (https://github.com/ansible-collections/community.docker/pull/66).
+- docker_image - fix crash on loading images with versions of Docker SDK for Python before 2.5.0 (https://github.com/ansible-collections/community.docker/issues/72, https://github.com/ansible-collections/community.docker/pull/73).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- dnsmadeeasy - fix HTTP 400 errors when creating a TXT record (https://github.com/ansible-collections/community.general/issues/1237).
+- docker_container - allow IPv6 zones (RFC 4007) in bind IPs (https://github.com/ansible-collections/community.docker/pull/66).
+- docker_image - fix crash on loading images with versions of Docker SDK for Python before 2.5.0 (https://github.com/ansible-collections/community.docker/issues/72, https://github.com/ansible-collections/community.docker/pull/73).
+- homebrew - add default search path for ``brew`` on Apple silicon hardware (https://github.com/ansible-collections/community.general/pull/1679).
+- homebrew_cask - add default search path for ``brew`` on Apple silicon hardware (https://github.com/ansible-collections/community.general/pull/1679).
+- homebrew_tap - add default search path for ``brew`` on Apple silicon hardware (https://github.com/ansible-collections/community.general/pull/1679).
+- lldp - use ``get_bin_path`` to locate the ``lldpctl`` executable (https://github.com/ansible-collections/community.general/pull/1643).
+- npm - handle json decode exception while parsing command line output (https://github.com/ansible-collections/community.general/issues/1614).
+- onepassword lookup plugin - updated to support password items, which place the password field directly in the payload's ``details`` attribute (https://github.com/ansible-collections/community.general/pull/1610).
+- passwordstore lookup plugin - fix compatibility with gopass when used with ``create=true``. While pass returns 1 on a non-existent password, gopass returns 10, or 11, depending on whether a similar named password was stored. We now just check standard output and that the return code is not zero (https://github.com/ansible-collections/community.general/pull/1589).
+- terraform - fix ``init_reconfigure`` option for proper CLI args (https://github.com/ansible-collections/community.general/pull/1620).
+- terraform - improve result code checking when executing terraform commands (https://github.com/ansible-collections/community.general/pull/1632).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_user - add ``SHOW_ROUTINE`` privilege support (https://github.com/ansible-collections/community.mysql/issues/86).
+- mysql_user - fixed creating user with encrypted password in MySQL 8.0 (https://github.com/ansible-collections/community.mysql/pull/79).
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_info - fix crash caused by wrong PgSQL version parsing (https://github.com/ansible-collections/community.postgresql/issues/40).
+- postgresql_ping - fix crash caused by wrong PgSQL version parsing (https://github.com/ansible-collections/community.postgresql/issues/40).
+- postgresql_set - return a message instead of traceback when a passed parameter has not been found (https://github.com/ansible-collections/community.postgresql/issues/41).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- When installing the Zabbix packages, we disable all other yum repositories except the one for the Zabbix.
+- zabbix_agent - Agent 2 also be able to use userparameters file.
+- zabbix_agent - Also work on SLES 12 sp5
+- zabbix_agent - Documented the property 'zabbix_proxy_ip' in the documentation.
+- zabbix_agent - There was an task that wasn't able to use an http(s)_proxy environment while installing an package.
+- zabbix_agent - Windows - Able to create PSK file
+- zabbix_agent - Windows - Fixing download links to proper version/url
+- zabbix_agent - Windows - Removal of not working property
+- zabbix_agent - Zabbix packages were not able to install properly on Fedora. When the packages are installed, the version will be appended to the package name. This is eofr all RedHat related OS'es.
+- zabbix_agent - fixed issue with zabbix_agent2_tlspsk_auto having no effect when using zabbix_agent2
+- zabbix_agent - fixed issue with zabbix_api_create_hosts and TLS configuration when using zabbix_agent2, where zabbix_agent_tls* settings were used instead of zabbix_agent2_tls*
+- zabbix_host - module will no longer require ``interfaces`` to be present when creating host  with Zabbix 5.2 (https://github.com/ansible-collections/community.zabbix/pull/291).
+- zabbix_host - should no longer fail with 'host cannot have more than one default interface' error (https://github.com/ansible-collections/community.zabbix/pull/309).
+- zabbix_proxy (role) - Added missing paragraph for the SQLite3 as database.
+- zabbix_proxy (role) - The become option was missing in some essential tasks when installing the Zabbix Proxy with SQLite3 as database.
+- zabbix_proxy (role) - Various documentation fixes removing the Zabbix Server and replaced it with actual Zabbix Proxy information.
+- zabbix_proxy - Added new property 'zabbix_proxy_ip' to determine ip for host running the Zabbix Proxy.
+- zabbix_proxy - The 'interface' option was missing when creating an Proxy via the API.
+- zabbix_template - fixed documentation for ``macros`` argument (https://github.com/ansible-collections/community.zabbix/pull/296).
+- zabbix_template - fixed encode error when using Python2 (https://github.com/ansible-collections/community.zabbix/pull/297).
+- zabbix_template - fixed issue when importing templates to zabbix version. >= 5.2
+- zabbix_template_info - fixed encode error when using Python2 (https://github.com/ansible-collections/community.zabbix/pull/297).
+- zabbix_user - disable no_log warning for option override_password.
+- zabbix_user - fixed issue where module couldn't create a user since Zabbix 5.2 (https://github.com/ansible-collections/community.zabbix/pull/260).
+- zabbix_web - fixed issue Role cannot install Zabbix web 5.0 on RHEL 7 (https://github.com/ansible-collections/community.zabbix/issues/202).
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Fix AFM firewall address list error
+- Fix GTM virtual server depenedncy where path to Iapp resources were incorrectly stripped.
+- Fix apm policy existence checks in bigip_apm_policy_fetch module
+- Fix asm policy existence checks in bigip_asm_policy_fetch module
+- Fix bigip_management_route module not idempotent
+- Fix host_begins_with_any, host_is_any, server_name_is_any and host_is_not_any parameters of the bigip_policy_rule module to enforce list as the required parameter type. Change was required since in Ansible a string conversion is applied when the provided argument type is not matching the expected one causing undesired side effects.
+- Fix idempotency issue with gateway_address and route domain in bigip_static_route module
+- Fix issue with bigip_asm_policy_fetch where existing file would break the module run
+- Fix issue with bigip_asm_policy_fetch where similiar policy names would cause wrong policy to be fetched
+- Fix issue with bigip_asm_policy_manage where similiar policy names would cause wrong policy id to be selected
+- Fix iteration bug in bigiq_device_info module
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Allow IDs to be passed into objects that accept a list (https://github.com/netbox-community/ansible_modules/issues/407)
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 1.3.0)
+- ansible.netcommon (still version 1.4.1)
+- ansible.posix (still version 1.1.1)
+- ansible.windows (still version 1.3.0)
+- arista.eos (still version 1.2.0)
+- awx.awx (still version 14.1.0)
+- azure.azcollection (still version 1.3.1)
+- check_point.mgmt (still version 1.0.6)
+- chocolatey.chocolatey (still version 1.0.2)
+- cisco.aci (still version 1.1.1)
+- cisco.asa (still version 1.0.4)
+- cisco.ios (still version 1.2.1)
+- cisco.iosxr (still version 1.2.0)
+- cisco.meraki (still version 2.1.3)
+- cisco.nso (still version 1.0.2)
+- cisco.nxos (still version 1.3.1)
+- cisco.ucs (still version 1.6.0)
+- community.aws (still version 1.3.0)
+- community.azure (still version 1.0.0)
+- community.digitalocean (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.1.0)
+- community.hashi_vault (still version 1.0.0)
+- community.hrobot (still version 1.1.0)
+- community.kubernetes (still version 1.1.1)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.0.0)
+- community.okd (still version 1.0.1)
+- community.proxysql (still version 1.0.0)
+- community.rabbitmq (still version 1.0.1)
+- community.routeros (still version 1.1.0)
+- community.skydive (still version 1.0.0)
+- community.vmware (still version 1.6.0)
+- community.windows (still version 1.2.0)
+- containers.podman (still version 1.4.1)
+- cyberark.conjur (still version 1.1.0)
+- cyberark.pas (still version 1.0.5)
+- dellemc.os10 (still version 1.0.2)
+- dellemc.os6 (still version 1.0.6)
+- dellemc.os9 (still version 1.0.3)
+- fortinet.fortimanager (still version 1.0.5)
+- fortinet.fortios (still version 1.1.8)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.1)
+- google.cloud (still version 1.0.1)
+- hetzner.hcloud (still version 1.2.1)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.2.4)
+- junipernetworks.junos (still version 1.2.1)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 20.9.0)
+- netapp.elementsw (still version 20.11.0)
+- netapp.ontap (still version 20.12.0)
+- netapp_eseries.santricity (still version 1.1.0)
+- ngine_io.cloudstack (still version 1.1.0)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.0.0)
+- openstack.cloud (still version 1.2.1)
+- openvswitch.openvswitch (still version 1.1.0)
+- ovirt.ovirt (still version 1.2.4)
+- purestorage.flasharray (still version 1.5.1)
+- purestorage.flashblade (still version 1.4.0)
+- servicenow.servicenow (still version 1.0.3)
+- splunk.es (still version 1.0.2)
+- theforeman.foreman (still version 1.5.1)
+- vyos.vyos (still version 1.1.0)
+- wti.remote (still version 1.0.1)
+
 v2.10.5
 =======
 
@@ -1564,6 +1988,11 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 
 Major Changes
 -------------
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Add phone home Teem integration into all modules, functionality can be disabled by setting up F5_TEEM environment variable or no_f5_teem provider parameter
 
 ovirt.ovirt
 ~~~~~~~~~~~
@@ -6761,8 +7190,8 @@ community.windows
 community.zabbix
 ~~~~~~~~~~~~~~~~
 
-- community.zabbix.zabbix_discovery_rule - Manage Zabbix discovery rules
-- community.zabbix.zabbix_usergroup - Manage Zabbix user groups
+- community.zabbix.zabbix_discovery_rule - Create/delete/update Zabbix discovery rules
+- community.zabbix.zabbix_usergroup - Create/delete/update Zabbix user groups
 
 containers.podman
 ~~~~~~~~~~~~~~~~~
