@@ -1,5 +1,8 @@
 ---
 collections:
+  dellemc.openmanage:
+    maintainers:
+      - rajeevarakkal
   community.sops:
     maintainers:
       - endorama
