@@ -14,3 +14,8 @@ collections:
     maintainers:
       - rndmh3ro
       - schurzi
+  kubernetes.core:
+    maintainers:
+      - jillr
+      - akasurde
+      - gravesm
