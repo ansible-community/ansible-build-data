@@ -9,6 +9,9 @@ collections:
       - endorama
   cyberark.conjur:
     changelog-url: https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md
+  inspur.sm:
+    maintainers:
+      - ISIB-Group
   sensu.sensu_go:
     maintainers:
       - tadeboro

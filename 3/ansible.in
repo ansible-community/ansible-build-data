@@ -62,6 +62,7 @@ hetzner.hcloud
 ibm.qradar
 infinidat.infinibox
 #infobox.nios_modules # NOT FOR 2.10 https://github.com/infobloxopen/infoblox-ansible/issues/7
+inspur.sm
 junipernetworks.junos
 # community.kubernetes shall be renamed to kubernetes.core, they are already the same build artifact
 # https://github.com/ansible-collections/community.kubernetes/issues/221
