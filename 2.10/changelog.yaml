@@ -196,3 +196,10 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2021-01-26'
+  2.10.7:
+    changes:
+      major_changes:
+        - Restricting the version of the community.okd collection to 1.0.0. The previously included version,
+          1.0.1, had a dependency on kubernetes.core and thus required the installation of an additional
+          collection that was not included in Ansible 2.10. Version 1.0.0 is essentially identical to 1.0.1,
+          except that it uses community.kubernetes, wihch is included in Ansible 2.10.
