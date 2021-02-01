@@ -37,7 +37,7 @@ community.libvirt: >=1.0.0,<2.0.0
 community.mongodb: >=1.0.0,<2.0.0
 community.mysql: >=1.0.0,<2.0.0
 community.network: >=1.1.0,<2.0.0
-community.okd: >=1.0.0,<2.0.0
+community.okd: ==1.0.0
 community.postgresql: >=1.0.0,<2.0.0
 community.proxysql: >=1.0.0,<2.0.0
 community.rabbitmq: >=1.0.0,<2.0.0
