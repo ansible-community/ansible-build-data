@@ -1,5 +1,9 @@
 ---
 collections:
+  dellemc.openmanage:
+    changelog-url: https://github.com/dell/dellemc-openmanage-ansible-modules/blob/collections/CHANGELOG.rst
+    maintainers:
+      - rajeevarakkal
   community.sops:
     maintainers:
       - endorama

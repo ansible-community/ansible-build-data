@@ -48,6 +48,7 @@ community.zabbix
 containers.podman
 cyberark.conjur
 cyberark.pas
+dellemc.openmanage
 dellemc.os10
 dellemc.os6
 dellemc.os9
