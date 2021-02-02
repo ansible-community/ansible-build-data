@@ -1,6 +1,7 @@
 amazon.aws
 ansible.netcommon
 ansible.posix
+ansible.utils
 ansible.windows
 arista.eos
 awx.awx
