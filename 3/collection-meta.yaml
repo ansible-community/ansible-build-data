@@ -1,17 +1,27 @@
 ---
 collections:
-  dellemc.openmanage:
-    changelog-url: https://github.com/dell/dellemc-openmanage-ansible-modules/blob/collections/CHANGELOG.rst
+  ansible.utils:
     maintainers:
-      - rajeevarakkal
+      - cidrblock
+      - ganeshrn
+      - pabelanger
   community.sops:
     maintainers:
       - endorama
   cyberark.conjur:
     changelog-url: https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md
+  dellemc.openmanage:
+    changelog-url: https://github.com/dell/dellemc-openmanage-ansible-modules/blob/collections/CHANGELOG.rst
+    maintainers:
+      - rajeevarakkal
   inspur.sm:
     maintainers:
       - ISIB-Group
+  kubernetes.core:
+    maintainers:
+      - jillr
+      - akasurde
+      - gravesm
   sensu.sensu_go:
     maintainers:
       - tadeboro
@@ -21,8 +31,3 @@ collections:
     maintainers:
       - rndmh3ro
       - schurzi
-  kubernetes.core:
-    maintainers:
-      - jillr
-      - akasurde
-      - gravesm
