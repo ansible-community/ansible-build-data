@@ -8,6 +8,241 @@ This changelog describes changes since Ansible 2.10.0.
   :local:
   :depth: 2
 
+v3.0.0rc1
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2021-02-09
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-base
+------------
+
+Ansible 3.0.0rc1 contains Ansible-base version 2.10.5.
+This is the same version of Ansible-base as in the previous Ansible release.
+
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection            | Ansible 3.0.0b1 | Ansible 3.0.0rc1 | Notes                                                                                                                        |
++=======================+=================+==================+==============================================================================================================================+
+| community.docker      | 1.2.1           | 1.2.2            |                                                                                                                              |
++-----------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general     | 2.0.0           | 2.0.1            |                                                                                                                              |
++-----------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.network     | 2.0.0           | 2.0.1            |                                                                                                                              |
++-----------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.postgresql  | 1.1.0           | 1.1.1            |                                                                                                                              |
++-----------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sops        | 1.0.3           | 1.0.4            |                                                                                                                              |
++-----------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| google.cloud          | 1.0.1           | 1.0.2            | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| servicenow.servicenow | 1.0.3           | 1.0.4            |                                                                                                                              |
++-----------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- For community.general 3.0.0, the ``ome_device_info``, ``idrac_firmware`` and ``idrac_server_config_profile`` modules will be moved to the `dellemc.openmanage <https://galaxy.ansible.com/dellemc/openmanage>`_ collection.
+  A redirection will be inserted so that users using ansible-base 2.10 or newer do not have to change anything.
+
+  If you use Ansible 2.9 and explicitly use the DellEMC modules mentioned above from this collection, you will need to adjust your playbooks and roles to use FQCNs starting with ``dellemc.openmanage.`` instead of ``community.general.``,
+  for example replace ``community.general.ome_device_info`` in a task by ``dellemc.openmanage.ome_device_info``.
+
+  If you use ansible-base and installed ``community.general`` manually and rely on the DellEMC modules mentioned above, you have to make sure to install the ``dellemc.openmanage`` collection as well.
+  If you are using FQCNs, for example ``community.general.ome_device_info`` instead of ``ome_device_info``, it will continue working, but we still recommend to adjust the FQCNs as well.
+
+servicenow.servicenow
+~~~~~~~~~~~~~~~~~~~~~
+
+- add new tests (find with no result, search many)
+- add related tests
+- add support for ServiceNOW table api display_value exclude_reference_link and suppress_pagination_header
+- use new API for pysnow >=0.6.0
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- utm_proxy_auth_profile - the ``frontend_cookie_secret`` return value now contains a placeholder string instead of the module's ``frontend_cookie_secret`` parameter (https://github.com/ansible-collections/community.general/pull/1736).
+
+Security Fixes
+--------------
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_swarm - enabled ``no_log`` for the option ``signing_ca_key`` to prevent accidental disclosure (CVE-2021-20191, https://github.com/ansible-collections/community.docker/pull/80).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- dnsmadeeasy - mark the ``account_key`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- gitlab_runner - mark the ``registration_token`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- hwc_ecs_instance - mark the ``admin_pass`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- ibm_sa_host - mark the ``iscsi_chap_secret`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- keycloak_* modules - mark the ``auth_client_secret`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- keycloak_client - mark the ``registration_access_token`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- librato_annotation - mark the ``api_key`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- logentries_msg - mark the ``token`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- module_utils/_netapp, na_ontap_gather_facts - enabled ``no_log`` for the options ``api_key`` and ``secret_key`` to prevent accidental disclosure (CVE-2021-20191, https://github.com/ansible-collections/community.general/pull/1725).
+- module_utils/identity/keycloak, keycloak_client, keycloak_clienttemplate, keycloak_group - enabled ``no_log`` for the option ``auth_client_secret`` to prevent accidental disclosure (CVE-2021-20191, https://github.com/ansible-collections/community.general/pull/1725).
+- nios_nsgroup - mark the ``tsig_key`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- oneandone_firewall_policy, oneandone_load_balancer, oneandone_monitoring_policy, oneandone_private_network, oneandone_public_ip - mark the ``auth_token`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- ovirt - mark the ``instance_key`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- ovirt - mark the ``instance_rootpw`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- pagerduty_alert - mark the ``api_key``, ``service_key`` and ``integration_key`` parameters as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- pagerduty_change - mark the ``integration_key`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- pingdom - mark the ``key`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- pulp_repo - mark the ``feed_client_key`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- rax_clb_ssl - mark the ``private_key`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- redfish_command - mark the ``update_creds.password`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- rollbar_deployment - mark the ``token`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- spotinst_aws_elastigroup - mark the ``multai_token`` and ``token`` parameters as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- stackdriver - mark the ``key`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.general/pull/1736).
+- utm_proxy_auth_profile - enabled ``no_log`` for the option ``frontend_cookie_secret`` to prevent accidental disclosure (CVE-2021-20191, https://github.com/ansible-collections/community.general/pull/1725).
+- utm_proxy_auth_profile - mark the ``frontend_cookie_secret`` parameter as ``no_log`` to avoid leakage of secrets. This causes the ``utm_proxy_auth_profile`` return value to no longer containing the correct value, but a placeholder (https://github.com/ansible-collections/community.general/pull/1736).
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- ce_vrrp - mark the ``auth_key`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.network/pull/206).
+- cloudengine/ce_vrrp - enabled ``no_log`` for the options ``auth_key`` to prevent accidental disclosure (CVE-2021-20191, https://github.com/ansible-collections/community.network/pull/203).
+- cnos_* modules - mark the ``passwords`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.network/pull/206).
+- enos_* modules - mark the ``passwords`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.network/pull/206).
+- iap_start_workflow - mark the ``token_key`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.network/pull/206).
+- icx_system - mark the ``auth_key`` parameter as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.network/pull/206).
+- itential/iap_start_workflow - enabled ``no_log`` for the options ``token_key`` to prevent accidental disclosure (CVE-2021-20191, https://github.com/ansible-collections/community.network/pull/203).
+- netscaler/netscaler_lb_monitor - enabled ``no_log`` for the options ``radkey`` to prevent accidental disclosure (CVE-2021-20191, https://github.com/ansible-collections/community.network/pull/203).
+- netscaler_lb_monitor - mark the ``password`` and ``secondarypassword`` parameters as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.network/pull/206).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- sops_encrypt - mark the ``aws_secret_access_key`` and ``aws_session_token`` parameters as ``no_log`` to avoid leakage of secrets (https://github.com/ansible-collections/community.sops/pull/54).
+
+Bugfixes
+--------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- filesystem - do not fail when ``resizefs=yes`` and ``fstype=xfs`` if there is nothing to do, even if the filesystem is not mounted. This only covers systems supporting access to unmounted XFS filesystems. Others will still fail (https://github.com/ansible-collections/community.general/issues/1457, https://github.com/ansible-collections/community.general/pull/1478).
+- gitlab_user - make updates to the ``isadmin``, ``password`` and ``confirm`` options of an already existing GitLab user work (https://github.com/ansible-collections/community.general/pull/1724).
+- parted - change the regex that decodes the partition size to better support different formats that parted uses. Change the regex that validates parted's version string (https://github.com/ansible-collections/community.general/pull/1695).
+- redfish_info module, redfish_utils module utils - add ``Name`` and ``Id`` properties to output of Redfish inventory commands (https://github.com/ansible-collections/community.general/issues/1650).
+- sensu-silence module - fix json parsing of sensu API responses on Python 3.5 (https://github.com/ansible-collections/community.general/pull/1703).
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_query - add a warning to set ``as_single_query`` option explicitly (https://github.com/ansible-collections/community.postgresql/pull/54).
+- postgresql_query - fix datetime.timedelta type handling (https://github.com/ansible-collections/community.postgresql/issues/47).
+- postgresql_query - fix decimal handling (https://github.com/ansible-collections/community.postgresql/issues/45).
+- postgresql_set - fails in check_mode on non-numeric values containing `B` (https://github.com/ansible-collections/community.postgresql/issues/48).
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 1.3.0)
+- ansible.netcommon (still version 1.5.0)
+- ansible.posix (still version 1.1.1)
+- ansible.utils (still version 2.0.0)
+- ansible.windows (still version 1.3.0)
+- arista.eos (still version 1.3.0)
+- awx.awx (still version 17.0.1)
+- azure.azcollection (still version 1.4.0)
+- check_point.mgmt (still version 2.0.0)
+- chocolatey.chocolatey (still version 1.0.2)
+- cisco.aci (still version 2.0.0)
+- cisco.asa (still version 1.0.4)
+- cisco.intersight (still version 1.0.10)
+- cisco.ios (still version 1.3.0)
+- cisco.iosxr (still version 1.2.1)
+- cisco.meraki (still version 2.2.0)
+- cisco.mso (still version 1.1.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 1.4.0)
+- cisco.ucs (still version 1.6.0)
+- cloudscale_ch.cloud (still version 2.0.0)
+- community.aws (still version 1.3.0)
+- community.azure (still version 1.0.0)
+- community.crypto (still version 1.4.0)
+- community.digitalocean (still version 1.0.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.1.0)
+- community.hashi_vault (still version 1.0.0)
+- community.hrobot (still version 1.1.0)
+- community.kubernetes (still version 1.1.1)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.0.0)
+- community.mongodb (still version 1.2.0)
+- community.mysql (still version 1.2.0)
+- community.okd (still version 1.0.1)
+- community.proxysql (still version 1.0.0)
+- community.rabbitmq (still version 1.0.1)
+- community.routeros (still version 1.1.0)
+- community.skydive (still version 1.0.0)
+- community.vmware (still version 1.7.0)
+- community.windows (still version 1.2.0)
+- community.zabbix (still version 1.2.0)
+- containers.podman (still version 1.4.1)
+- cyberark.conjur (still version 1.1.0)
+- cyberark.pas (still version 1.0.5)
+- dellemc.openmanage (still version 3.0.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.6)
+- dellemc.os9 (still version 1.0.3)
+- f5networks.f5_modules (still version 1.7.1)
+- fortinet.fortimanager (still version 2.0.1)
+- fortinet.fortios (still version 1.1.8)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.1)
+- hetzner.hcloud (still version 1.2.1)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.2.4)
+- inspur.sm (still version 1.1.2)
+- junipernetworks.junos (still version 1.3.0)
+- kubernetes.core (still version 1.1.1)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 20.9.0)
+- netapp.elementsw (still version 20.11.0)
+- netapp.ontap (still version 21.1.1)
+- netapp_eseries.santricity (still version 1.1.0)
+- netbox.netbox (still version 2.0.0)
+- ngine_io.cloudstack (still version 2.0.0)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.0)
+- openstack.cloud (still version 1.2.1)
+- openvswitch.openvswitch (still version 1.1.0)
+- ovirt.ovirt (still version 1.3.0)
+- purestorage.flasharray (still version 1.5.1)
+- purestorage.flashblade (still version 1.4.0)
+- sensu.sensu_go (still version 1.8.0)
+- splunk.es (still version 1.0.2)
+- t_systems_mms.icinga_director (still version 1.13.0)
+- theforeman.foreman (still version 1.5.1)
+- vyos.vyos (still version 1.1.1)
+- wti.remote (still version 1.0.1)
+
 v3.0.0b1
 ========
 
