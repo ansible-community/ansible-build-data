@@ -204,3 +204,8 @@ releases:
         the installation of an additional collection that was not included in Ansible
         2.10. Version 1.0.0 is essentially identical to 1.0.1, except that it uses
         community.kubernetes, wihch is included in Ansible 2.10.
+      release_summary: 'Release Date: 2021-02-09
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2021-02-09'
