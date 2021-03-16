@@ -22,10 +22,10 @@ Release Date: 2021-03-16
 
 `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
 
-Ansible-base
+Ansible-core
 ------------
 
-Ansible 4.0.0a1 contains Ansible-base version 2.11.0b2.
+Ansible 4.0.0a1 contains Ansible-core version 2.11.0b2.
 This is a newer version than version 2.10.5 contained in the previous Ansible release.
 
 The changes are reported in the combined changelog below.
@@ -144,7 +144,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 Major Changes
 -------------
 
-Ansible-base
+Ansible-core
 ~~~~~~~~~~~~
 
 - A collection can be reinstalled with new version requirements without using the ``--force`` flag. The collection's dependencies will also be updated if necessary with the new requirements. Use ``--upgrade`` to force transitive dependency updates.
@@ -220,7 +220,7 @@ vyos.vyos
 Minor Changes
 -------------
 
-Ansible-base
+Ansible-core
 ~~~~~~~~~~~~
 
 - Add ``--format`` CLI option to ``ansible-galaxy collection list`` which allows for ``human`` (default), ``yaml``, or ``json``. (https://github.com/ansible/ansible/pull/73474)
@@ -819,7 +819,7 @@ vyos.vyos
 Breaking Changes / Porting Guide
 --------------------------------
 
-Ansible-base
+Ansible-core
 ~~~~~~~~~~~~
 
 - Made SCM collections be reinstalled regardless of ``--force`` being present.
@@ -846,7 +846,7 @@ theforeman.foreman
 Deprecated Features
 -------------------
 
-Ansible-base
+Ansible-core
 ~~~~~~~~~~~~
 
 - Starting in 2.14, shell and command modules will no longer have the option to warn and suggest modules in lieu of commands. The ``warn`` parameter to these modules is now deprecated and defaults to ``False``. Similarly, the ``COMMAND_WARNINGS`` configuration option is also deprecated and defaults to ``False``. These will be removed and their presence will become an error in 2.14.
@@ -901,7 +901,7 @@ community.general
 Removed Features (previously deprecated)
 ----------------------------------------
 
-Ansible-base
+Ansible-core
 ~~~~~~~~~~~~
 
 - Removed `SharedPluginLoaderObj` class from ansible.plugins.strategy. It was deprecated in favor of using the standard plugin loader.
@@ -922,7 +922,7 @@ f5networks.f5_modules
 Security Fixes
 --------------
 
-Ansible-base
+Ansible-core
 ~~~~~~~~~~~~
 
 - **security issue** - Mask default and fallback values for ``no_log`` module options (CVE-2021-20228)
@@ -938,7 +938,7 @@ community.docker
 Bugfixes
 --------
 
-Ansible-base
+Ansible-core
 ~~~~~~~~~~~~
 
 - A handler defined within a role will now search handlers subdir for included tasks (issue https://github.com/ansible/ansible/issues/71222).
@@ -1569,7 +1569,7 @@ vyos.vyos
 Known Issues
 ------------
 
-Ansible-base
+Ansible-core
 ~~~~~~~~~~~~
 
 - ansible-test - The ``pylint`` sanity test no longer correctly detects "bad" variable names for non-constants. See https://github.com/PyCQA/pylint/issues/3701 for additional details.
@@ -1590,7 +1590,7 @@ Filter
 New Modules
 -----------
 
-Ansible-base
+Ansible-core
 ~~~~~~~~~~~~
 
 - ansible.builtin.validate_argument_spec - Validate role argument specs.
