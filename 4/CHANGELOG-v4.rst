@@ -8,6 +8,289 @@ This changelog describes changes since Ansible 3.0.0.
   :local:
   :depth: 2
 
+v4.0.0a2
+========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2021-03-23
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 4.0.0a2 contains Ansible-core version 2.11.0b3.
+This is a newer version than version 2.11.0b2 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection            | Ansible 4.0.0a1 | Ansible 4.0.0a2 | Notes                                                                                                                        |
++=======================+=================+=================+==============================================================================================================================+
+| awx.awx               | 17.1.0          | 18.0.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto      | 1.5.0           | 1.6.0           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general     | 2.2.0           | 2.3.0           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hashi_vault | 1.1.2           | 1.1.3           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.network     | 2.0.1           | 2.1.0           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sops        | 1.0.5           | 1.0.6           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.pas          | 1.0.5           | 1.0.6           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| hetzner.hcloud        | 1.3.0           | 1.3.1           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ovirt.ovirt           | 1.4.0           | 1.4.1           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- AnsibleModule - use ``ArgumentSpecValidator`` class for validating argument spec and remove private methods related to argument spec validation. Any modules using private methods should now use the ``ArgumentSpecValidator`` class or the appropriate validation function.
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Callbacks - Migrate more places in the ``TaskExecutor`` to sending callbacks directly over the queue, instead of sending them as ``TaskResult`` and short circuiting in the Strategy to send the callback. This enables closer to real time callbacks of retries and loop results (https://github.com/ansible/ansible/issues/73899)
+- setup - fix distribution facts for Older Amazon Linux with ``/etc/os-release`` (https://github.com/ansible/ansible/issues/73946).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme module_utils - the ``acme`` module_utils has been split up into several Python modules (https://github.com/ansible-collections/community.crypto/pull/184).
+- acme_* modules - codebase refactor which should not be visible to end-users (https://github.com/ansible-collections/community.crypto/pull/184).
+- acme_* modules - support account key passphrases for ``cryptography`` backend (https://github.com/ansible-collections/community.crypto/issues/197, https://github.com/ansible-collections/community.crypto/pull/207).
+- acme_certificate_revoke - support revoking by private keys that are passphrase protected for ``cryptography`` backend (https://github.com/ansible-collections/community.crypto/pull/207).
+- acme_challenge_cert_helper - add ``private_key_passphrase`` parameter (https://github.com/ansible-collections/community.crypto/pull/207).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- archive - refactored some reused code out into a couple of functions (https://github.com/ansible-collections/community.general/pull/2061).
+- csv module utils - new module_utils for shared functions between ``from_csv`` filter and ``read_csv`` module (https://github.com/ansible-collections/community.general/pull/2037).
+- ipa_sudorule - add support for setting sudo runasuser (https://github.com/ansible-collections/community.general/pull/2031).
+- jenkins_job - add a ``validate_certs`` parameter that allows disabling TLS/SSL certificate validation (https://github.com/ansible-collections/community.general/issues/255).
+- kibana_plugin - add parameter for passing ``--allow-root`` flag to kibana and kibana-plugin commands (https://github.com/ansible-collections/community.general/pull/2014).
+- proxmox - added ``purge`` module parameter for use when deleting lxc's with HA options (https://github.com/ansible-collections/community.general/pull/2013).
+- proxmox inventory plugin - added ``tags_parsed`` fact containing tags parsed as a list (https://github.com/ansible-collections/community.general/pull/1949).
+- proxmox_kvm - added new module parameter ``tags`` for use with PVE 6+ (https://github.com/ansible-collections/community.general/pull/2000).
+- rax - elements of list parameters are now validated (https://github.com/ansible-collections/community.general/pull/2006).
+- rax_cdb_user - elements of list parameters are now validated (https://github.com/ansible-collections/community.general/pull/2006).
+- rax_scaling_group - elements of list parameters are now validated (https://github.com/ansible-collections/community.general/pull/2006).
+- read_csv - refactored read_csv module to use shared csv functions from csv module_utils (https://github.com/ansible-collections/community.general/pull/2037).
+- redfish_* modules, redfish_utils module utils - add support for Redfish session create, delete, and authenticate (https://github.com/ansible-collections/community.general/issues/1975).
+- snmp_facts - added parameters ``timeout`` and ``retries`` to module (https://github.com/ansible-collections/community.general/issues/980).
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- edgeos_config - match the space after ``set`` and ``delete`` commands (https://github.com/ansible-collections/community.network/pull/199).
+- nclu - execute ``net commit description <description>`` only if changed ``net pending``'s diff field (https://github.com/ansible-collections/community.network/pull/219).
+
+Deprecated Features
+-------------------
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme module_utils - the ``acme`` module_utils (``ansible_collections.community.crypto.plugins.module_utils.acme``) is deprecated and will be removed in community.crypto 2.0.0. Use the new Python modules in the ``acme`` package instead (``ansible_collections.community.crypto.plugins.module_utils.acme.xxx``) (https://github.com/ansible-collections/community.crypto/pull/184).
+
+Security Fixes
+--------------
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- avi_cloudconnectoruser - mark the ``azure_userpass``, ``gcp_credentials``, ``oci_credentials``, and ``tencent_credentials`` parameters as ``no_log`` to prevent leaking of secret values (https://github.com/ansible-collections/community.network/pull/223).
+- avi_sslkeyandcertificate - mark the ``enckey_base64`` parameter as ``no_log`` to prevent potential leaking of secret values (https://github.com/ansible-collections/community.network/pull/223).
+- avi_webhook - mark the ``verification_token`` parameter as ``no_log`` to prevent potential leaking of secret values (https://github.com/ansible-collections/community.network/pull/223).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Fix adding unrelated candidate names to the plugin loader redirect list.
+- Strategy - When building the task in the Strategy from the Worker, ensure it is properly marked as finalized and squashed. Addresses an issue with ``ansible_failed_task``. (https://github.com/ansible/ansible/issues/57399)
+- ansible-pull - Run all playbooks that when multiple are supplied via the command line (https://github.com/ansible/ansible/issues/72708)
+- find module, fix default pattern when use_regex is true.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- action_module plugin helper - make compatible with latest changes in ansible-core 2.11.0b3 (https://github.com/ansible-collections/community.crypto/pull/202).
+- openssl_privatekey_pipe - make compatible with latest changes in ansible-core 2.11.0b3 (https://github.com/ansible-collections/community.crypto/pull/202).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- Mark various module options with ``no_log=False`` which have a name that potentially could leak secrets, but which do not (https://github.com/ansible-collections/community.general/pull/2001).
+- module_helper module utils - actually ignoring formatting of parameters with value ``None`` (https://github.com/ansible-collections/community.general/pull/2024).
+- module_helper module utils - handling ``ModuleHelperException`` now properly calls ``fail_json()`` (https://github.com/ansible-collections/community.general/pull/2024).
+- module_helper module utils - use the command name as-is in ``CmdMixin`` if it fails ``get_bin_path()`` - allowing full path names to be passed (https://github.com/ansible-collections/community.general/pull/2024).
+- nios* modules - fix modules to work with ansible-core 2.11 (https://github.com/ansible-collections/community.general/pull/2057).
+- proxmox - removed requirement that root password is provided when containter state is ``present`` (https://github.com/ansible-collections/community.general/pull/1999).
+- proxmox inventory - exclude qemu templates from inclusion to the inventory via pools (https://github.com/ansible-collections/community.general/issues/1986, https://github.com/ansible-collections/community.general/pull/1991).
+- proxmox inventory plugin - allowed proxomox tag string to contain commas when returned as fact (https://github.com/ansible-collections/community.general/pull/1949).
+- redfish_config module, redfish_utils module utils - fix IndexError in ``SetManagerNic`` command (https://github.com/ansible-collections/community.general/issues/1692).
+- scaleway inventory plugin - fix pagination on scaleway inventory plugin (https://github.com/ansible-collections/community.general/pull/2036).
+- stacki_host - replaced ``default`` to environment variables with ``fallback`` to them (https://github.com/ansible-collections/community.general/pull/2072).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- hashi_vault - userpass authentication did not work with hvac 0.9.6 or higher (https://github.com/ansible-collections/community.hashi_vault/pull/68).
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- nclu - fix ``net pending`` delimiter string (https://github.com/ansible-collections/community.network/pull/219).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- action_module plugin helper - make compatible with latest changes in ansible-core 2.11.0b3 (https://github.com/ansible-collections/community.sops/pull/58).
+- community.sops.load_vars - make compatible with latest changes in ansible-core 2.11.0b3 (https://github.com/ansible-collections/community.sops/pull/58).
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- hcloud_server - fix a crash related to check mode if ``state=started`` or ``state=stopped`` (https://github.com/ansible-collections/hetzner.hcloud/issues/54).
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- hosted_engine_setup - Fix auth revoke (https://github.com/oVirt/ovirt-ansible-collection/pull/237).
+
+New Plugins
+-----------
+
+Filter
+~~~~~~
+
+- community.general.from_csv - Converts CSV text input into list of dicts
+
+New Modules
+-----------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+Net Tools
+^^^^^^^^^
+
+- community.general.gandi_livedns - Manage Gandi LiveDNS records
+
+Pritunl
+.......
+
+- community.general.pritunl_user - Manage Pritunl Users using the Pritunl API
+- community.general.pritunl_user_info - List Pritunl Users using the Pritunl API
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 1.4.1)
+- ansible.netcommon (still version 2.0.0)
+- ansible.posix (still version 1.2.0)
+- ansible.utils (still version 2.0.1)
+- ansible.windows (still version 1.4.0)
+- arista.eos (still version 2.0.0)
+- azure.azcollection (still version 1.4.0)
+- check_point.mgmt (still version 2.0.0)
+- chocolatey.chocolatey (still version 1.0.2)
+- cisco.aci (still version 2.0.0)
+- cisco.asa (still version 2.0.0)
+- cisco.intersight (still version 1.0.12)
+- cisco.ios (still version 2.0.0)
+- cisco.iosxr (still version 2.0.0)
+- cisco.meraki (still version 2.2.1)
+- cisco.mso (still version 1.1.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 2.0.0)
+- cisco.ucs (still version 1.6.0)
+- cloudscale_ch.cloud (still version 2.1.0)
+- community.aws (still version 1.4.0)
+- community.azure (still version 1.0.0)
+- community.digitalocean (still version 1.0.0)
+- community.docker (still version 1.4.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.2.0)
+- community.hrobot (still version 1.1.1)
+- community.kubernetes (still version 1.2.0)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.0.1)
+- community.mongodb (still version 1.2.1)
+- community.mysql (still version 1.3.0)
+- community.okd (still version 1.1.0)
+- community.postgresql (still version 1.1.1)
+- community.proxysql (still version 1.0.0)
+- community.rabbitmq (still version 1.0.3)
+- community.routeros (still version 1.1.0)
+- community.skydive (still version 1.0.0)
+- community.vmware (still version 1.8.0)
+- community.windows (still version 1.3.0)
+- community.zabbix (still version 1.2.0)
+- containers.podman (still version 1.4.4)
+- cyberark.conjur (still version 1.1.0)
+- dellemc.openmanage (still version 3.1.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- f5networks.f5_modules (still version 1.8.1)
+- fortinet.fortimanager (still version 2.0.1)
+- fortinet.fortios (still version 1.1.9)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.1)
+- google.cloud (still version 1.0.2)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.2.4)
+- inspur.sm (still version 1.1.2)
+- junipernetworks.junos (still version 2.0.0)
+- kubernetes.core (still version 1.2.0)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.2.0)
+- netapp.elementsw (still version 21.3.0)
+- netapp.ontap (still version 21.3.1)
+- netapp_eseries.santricity (still version 1.1.0)
+- netbox.netbox (still version 3.0.0)
+- ngine_io.cloudstack (still version 2.0.0)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.0)
+- openstack.cloud (still version 1.3.0)
+- openvswitch.openvswitch (still version 2.0.0)
+- purestorage.flasharray (still version 1.6.2)
+- purestorage.flashblade (still version 1.4.0)
+- sensu.sensu_go (still version 1.9.1)
+- servicenow.servicenow (still version 1.0.4)
+- splunk.es (still version 1.0.2)
+- t_systems_mms.icinga_director (still version 1.16.0)
+- theforeman.foreman (still version 2.0.1)
+- vyos.vyos (still version 2.0.0)
+- wti.remote (still version 1.0.1)
+
 v4.0.0a1
 ========
 
@@ -1435,7 +1718,7 @@ community.mysql
 community.sops
 ~~~~~~~~~~~~~~
 
-- sops_encrypt - use output type ``yaml`` when path ends with ``.yaml`` (https://github.com/ansible-collections/community.sops/pull/56).
+- community.sops.sops_encrypt - use output type ``yaml`` when path ends with ``.yaml`` (https://github.com/ansible-collections/community.sops/pull/56).
 
 community.vmware
 ~~~~~~~~~~~~~~~~
