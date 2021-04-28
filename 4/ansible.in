@@ -49,6 +49,7 @@ community.zabbix
 containers.podman
 cyberark.conjur
 cyberark.pas
+dellemc.enterprise_sonic
 dellemc.openmanage
 dellemc.os10
 dellemc.os6
@@ -60,6 +61,7 @@ frr.frr
 gluster.gluster
 google.cloud
 hetzner.hcloud
+hpe.nimble
 ibm.qradar
 infinidat.infinibox
 #infobox.nios_modules # NOT FOR 2.10 https://github.com/infobloxopen/infoblox-ansible/issues/7
@@ -70,9 +72,12 @@ junipernetworks.junos
 kubernetes.core
 mellanox.onyx
 netapp.aws
+netapp.azure
+netapp.cloudmanager
 netapp.elementsw
 netapp_eseries.santricity
 netapp.ontap
+netapp.um_info
 netbox.netbox
 ngine_io.cloudstack
 ngine_io.exoscale

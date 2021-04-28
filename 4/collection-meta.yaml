@@ -31,3 +31,22 @@ collections:
     maintainers:
       - rndmh3ro
       - schurzi
+  dellemc.enterprise_sonic:
+    maintainers:
+      - javeedf
+  hpe.nimble:
+    maintainers:
+      - ar-india
+      - datamattsson
+  netapp.azure:
+    maintainers:
+      - carchi8py
+      - lonico
+  netapp.cloudmanager:
+    maintainers:
+      - carchi8py
+      - lonico
+  netapp.um_info:
+    maintainers:
+      - carchi8py
+      - lonico
