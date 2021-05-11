@@ -8,6 +8,144 @@ This changelog describes changes since Ansible 3.0.0.
   :local:
   :depth: 2
 
+v4.0.0rc1
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2021-05-11
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 4.0.0rc1 contains Ansible-core version 2.11.0.
+This is the same version of Ansible-core as in the previous Ansible release.
+
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection        | Ansible 4.0.0b2 | Ansible 4.0.0rc1 | Notes                                                                                                                        |
++===================+=================+==================+==============================================================================================================================+
+| cisco.intersight  | 1.0.14          | 1.0.15           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general | 3.0.1           | 3.0.2            |                                                                                                                              |
++-------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Bugfixes
+--------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- stackpath_compute inventory script - fix broken validation checks for client ID and client secret (https://github.com/ansible-collections/community.general/pull/2448).
+- zfs - certain ZFS properties, especially sizes, would lead to a task being falsely marked as "changed" even when no actual change was made (https://github.com/ansible-collections/community.general/issues/975, https://github.com/ansible-collections/community.general/pull/2454).
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 1.5.0)
+- ansible.netcommon (still version 2.0.2)
+- ansible.posix (still version 1.2.0)
+- ansible.utils (still version 2.1.0)
+- ansible.windows (still version 1.5.0)
+- arista.eos (still version 2.1.1)
+- awx.awx (still version 19.0.0)
+- azure.azcollection (still version 1.5.0)
+- check_point.mgmt (still version 2.0.0)
+- chocolatey.chocolatey (still version 1.1.0)
+- cisco.aci (still version 2.0.0)
+- cisco.asa (still version 2.0.1)
+- cisco.ios (still version 2.0.1)
+- cisco.iosxr (still version 2.1.0)
+- cisco.meraki (still version 2.2.1)
+- cisco.mso (still version 1.1.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 2.2.0)
+- cisco.ucs (still version 1.6.0)
+- cloudscale_ch.cloud (still version 2.1.0)
+- community.aws (still version 1.5.0)
+- community.azure (still version 1.0.0)
+- community.crypto (still version 1.6.2)
+- community.digitalocean (still version 1.1.1)
+- community.docker (still version 1.5.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.2.1)
+- community.hashi_vault (still version 1.1.3)
+- community.hrobot (still version 1.1.1)
+- community.kubernetes (still version 1.2.1)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.0.1)
+- community.mongodb (still version 1.2.1)
+- community.mysql (still version 2.1.0)
+- community.network (still version 3.0.0)
+- community.okd (still version 1.1.2)
+- community.postgresql (still version 1.2.0)
+- community.proxysql (still version 1.0.0)
+- community.rabbitmq (still version 1.0.3)
+- community.routeros (still version 1.1.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.0.6)
+- community.vmware (still version 1.9.0)
+- community.windows (still version 1.3.0)
+- community.zabbix (still version 1.3.0)
+- containers.podman (still version 1.5.0)
+- cyberark.conjur (still version 1.1.0)
+- cyberark.pas (still version 1.0.6)
+- dellemc.enterprise_sonic (still version 1.0.3)
+- dellemc.openmanage (still version 3.3.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- f5networks.f5_modules (still version 1.9.0)
+- fortinet.fortimanager (still version 2.0.2)
+- fortinet.fortios (still version 2.0.1)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.1)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.4.3)
+- hpe.nimble (still version 1.1.3)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.2.4)
+- inspur.sm (still version 1.1.4)
+- junipernetworks.junos (still version 2.1.0)
+- kubernetes.core (still version 1.2.1)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.2.0)
+- netapp.azure (still version 21.5.0)
+- netapp.cloudmanager (still version 21.5.1)
+- netapp.elementsw (still version 21.3.0)
+- netapp.ontap (still version 21.5.0)
+- netapp.um_info (still version 21.5.0)
+- netapp_eseries.santricity (still version 1.2.7)
+- netbox.netbox (still version 3.0.0)
+- ngine_io.cloudstack (still version 2.1.0)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.0)
+- openstack.cloud (still version 1.4.0)
+- openvswitch.openvswitch (still version 2.0.0)
+- ovirt.ovirt (still version 1.4.2)
+- purestorage.flasharray (still version 1.8.0)
+- purestorage.flashblade (still version 1.6.0)
+- sensu.sensu_go (still version 1.9.4)
+- servicenow.servicenow (still version 1.0.5)
+- splunk.es (still version 1.0.2)
+- t_systems_mms.icinga_director (still version 1.16.0)
+- theforeman.foreman (still version 2.0.1)
+- vyos.vyos (still version 2.2.0)
+- wti.remote (still version 1.0.1)
+
 v4.0.0b2
 ========
 
