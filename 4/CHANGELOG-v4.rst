@@ -3702,7 +3702,6 @@ Become
 ~~~~~~
 
 - community.general.sudosu - Run tasks using sudo su -
-- community.general.sudosu - Run tasks using sudo su -
 
 Cache
 ~~~~~
@@ -3712,7 +3711,6 @@ Cache
 Callback
 ~~~~~~~~
 
-- community.general.loganalytics - Posts task results to Azure Log Analytics
 - community.general.loganalytics - Posts task results to Azure Log Analytics
 
 Cliconf
@@ -3726,11 +3724,9 @@ Filter
 
 - community.general.dict - The ``dict`` function as a filter: converts a list of tuples to a dictionary
 - community.general.from_csv - Converts CSV text input into list of dicts
-- community.general.from_csv - Converts CSV text input into list of dicts
 - community.general.hashids_decode - Decodes a sequence of numbers from a YouTube-like hash
 - community.general.hashids_encode - Encodes YouTube-like hashes from a sequence of integers
 - community.general.path_join - Redirects to ansible.builtin.path_join for ansible-base 2.10 or newer, and provides a compatible implementation for Ansible 2.9
-- community.general.version_sort - Sort a list according to version order instead of pure alphabetical one
 - community.general.version_sort - Sort a list according to version order instead of pure alphabetical one
 
 Httpapi
@@ -3813,12 +3809,10 @@ Misc
 ....
 
 - community.general.proxmox_storage_info - Retrieve information about one or more Proxmox VE storages
-- community.general.proxmox_storage_info - Retrieve information about one or more Proxmox VE storages
 
 Opennebula
 ..........
 
-- community.general.one_template - Manages OpenNebula templates
 - community.general.one_template - Manages OpenNebula templates
 
 Files
@@ -3850,7 +3844,6 @@ Net Tools
 ^^^^^^^^^
 
 - community.general.gandi_livedns - Manage Gandi LiveDNS records
-- community.general.gandi_livedns - Manage Gandi LiveDNS records
 
 Pritunl
 .......
@@ -3858,8 +3851,6 @@ Pritunl
 - community.general.pritunl_org - Manages Pritunl Organizations using the Pritunl API
 - community.general.pritunl_org_info - List Pritunl Organizations using the Pritunl API
 - community.general.pritunl_user - Manage Pritunl Users using the Pritunl API
-- community.general.pritunl_user - Manage Pritunl Users using the Pritunl API
-- community.general.pritunl_user_info - List Pritunl Users using the Pritunl API
 - community.general.pritunl_user_info - List Pritunl Users using the Pritunl API
 
 Remote Management
@@ -3869,7 +3860,6 @@ Lenovoxcc
 .........
 
 - community.general.xcc_redfish_command - Manages Lenovo Out-Of-Band controllers using Redfish APIs
-- community.general.xcc_redfish_command - Manages Lenovo Out-Of-Band controllers using Redfish APIs
 
 Source Control
 ^^^^^^^^^^^^^^
@@ -3878,18 +3868,15 @@ Github
 ......
 
 - community.general.github_repo - Manage your repositories on Github
-- community.general.github_repo - Manage your repositories on Github
 
 Gitlab
 ......
 
 - community.general.gitlab_project_members - Manage project members on GitLab Server
-- community.general.gitlab_project_members - Manage project members on GitLab Server
 
 Web Infrastructure
 ^^^^^^^^^^^^^^^^^^
 
-- community.general.jenkins_build - Manage jenkins builds
 - community.general.jenkins_build - Manage jenkins builds
 
 community.vmware
