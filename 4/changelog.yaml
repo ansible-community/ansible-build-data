@@ -59,10 +59,14 @@ releases:
   4.2.0:
     changes:
       deprecated_features:
-        - The community.kubernetes collection is being renamed to kubernetes.core.
-          In Ansible 5, community.kubernetes will be replaced by an empty collection
-          which has deprecated redirects for all the current content to kubernetes.core.
-          If you are using FQCNs starting with ``community.kubernetes.``, please update
-          them to ``kubernetes.core.`` now. Note that kubernetes.core has been included
-          in Ansible since Ansible 3.0.0
-          (https://github.com/ansible-community/community-topics/issues/22).
+      - The community.kubernetes collection is being renamed to kubernetes.core. In
+        Ansible 5, community.kubernetes will be replaced by an empty collection which
+        has deprecated redirects for all the current content to kubernetes.core. If
+        you are using FQCNs starting with ``community.kubernetes.``, please update
+        them to ``kubernetes.core.`` now. Note that kubernetes.core has been included
+        in Ansible since Ansible 3.0.0 (https://github.com/ansible-community/community-topics/issues/22).
+      release_summary: 'Release Date: 2021-06-29
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2021-06-29'
