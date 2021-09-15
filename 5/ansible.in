@@ -21,8 +21,10 @@ cisco.ucs
 cloudscale_ch.cloud
 community.aws
 community.azure
+community.ciscosmb
 community.crypto
 community.digitalocean
+community.dns
 community.docker
 community.fortios
 community.general

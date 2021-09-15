@@ -50,3 +50,9 @@ collections:
     maintainers:
       - carchi8py
       - lonico
+  community.ciscosmb:
+    maintainers:
+      - qaxi
+  community.dns:
+    maintainers:
+      - felixfontein
