@@ -132,6 +132,31 @@ Porting custom scripts
 
 No notable changes
 
+Porting Guide for v4.6.0
+========================
+
+Major Changes
+-------------
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add systemd generation for pods
+- Generate systemd service files for containers
+
+gluster.gluster
+~~~~~~~~~~~~~~~
+
+- enable client.ssl,server.ssl before starting the gluster volume (https://github.com/gluster/gluster-ansible-collection/pull/19)
+
+Deprecated Features
+-------------------
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- grafana_dashboard lookup - Providing a mangled version of the API key is no longer preferred.
+
 Porting Guide for v4.5.0
 ========================
 
