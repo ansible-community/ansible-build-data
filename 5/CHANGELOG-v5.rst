@@ -8,6 +8,485 @@ This changelog describes changes since Ansible 4.0.0.
   :local:
   :depth: 2
 
+v5.0.0a2
+========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2021-10-19
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 5.0.0a2 contains Ansible-core version 2.12.0rc1.
+This is a newer version than version 2.12.0b1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection          | Ansible 5.0.0a1 | Ansible 5.0.0a2 | Notes                                                                                                                        |
++=====================+=================+=================+==============================================================================================================================+
+| ansible.utils       | 2.4.1           | 2.4.2           | There are no changes recorded in the changelog.                                                                              |
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| check_point.mgmt    | 2.0.0           | 2.1.0           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.aci           | 2.0.0           | 2.1.0           |                                                                                                                              |
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.asa           | 2.0.3           | 2.1.0           |                                                                                                                              |
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki        | 2.4.2           | 2.5.0           | The collection did not have a changelog in this version.                                                                     |
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto    | 1.9.4           | 1.9.5           |                                                                                                                              |
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns       | 2.0.0           | 2.0.1           |                                                                                                                              |
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general   | 3.7.0           | 3.8.0           |                                                                                                                              |
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql     | 2.3.0           | 2.3.1           |                                                                                                                              |
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros  | 2.0.0-a1        | 2.0.0-a2        |                                                                                                                              |
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware    | 1.14.0          | 1.15.0          |                                                                                                                              |
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.cloudmanager | 21.10.0         | 21.11.0         |                                                                                                                              |
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap        | 21.11.0         | 21.12.0         |                                                                                                                              |
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netbox.netbox       | 3.1.2           | 3.2.0           |                                                                                                                              |
++---------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Update the ``base`` and ``default`` containers from Python 3.10.0rc2 to 3.10.0.
+
+cisco.aci
+~~~~~~~~~
+
+- Add APIC 5.x to inventory for Integration tests
+- Add a requirements file
+- Add ability to change custom epg name
+- Add aci_cloud_ap module and test file
+- Add aci_cloud_aws_provider module and its test file (#181)
+- Add aci_cloud_bgp_asn module and test file (#180)
+- Add aci_cloud_epg_selector module and test file (#182)
+- Add aci_fabric_spine_profile, aci_fabric_spine_switch_assoc and aci_fabric_switch_block modules and integration tests (#187)
+- Add aci_info
+- Add aci_interface_description module and test file (#167)
+- Add aci_l3out_bgp_peer and aci_l3out_interface modules and test files (#177)
+- Add aci_snmp_client, aci_snmp_client_group, aci_snmp_community_policy, aci_snmp_policy and aci_snmp_user modules and test files (#176)
+- Add aci_syslog_group module and test file (#170)
+- Add aci_syslog_source and aci_syslog_remote_dest modules and test files (#174)
+- Add aci_vmm_controller module and test file
+- Add aci_vmm_vswitch module and test file (#142)
+- Add check for enhanced lag policy
+- Add cloud_external_epg and cloud_external_epg_selector modules and test files (#185)
+- Add directory and aliases file for l3out node profile tests
+- Add ethertype for IPv6
+- Add ethertype ipv4
+- Add functionality to support cryptography for signing
+- Add galaxy-importer check (#115)
+- Add ipv6_l3_unknown_multicast parameter support for aci_bd
+- Add issue templates
+- Add module aci_cloud_epg & test file (#175)
+- Add module aci_l3out_logical_node_profile to manage l3out node profiles
+- Add module and test for aci_contract_subject_to_service_graph
+- Add new module aci_l2out_extepg_to_contract and test file based on aci_l3out_extepg_to_contract
+- Add new modules for L2out - aci_l2out_logical_*
+- Add primary_encap in module tests
+- Add route_profile, route_profile_l3_out to aci_bd
+- Add support and tests for custom_qos_policy parameter in aci_epg
+- Add support for ANSIBLE_NET_SSH_KEYFILE
+- Add support for vmm domain infra port group and tag collection in aci_domain module (#141)
+- Add task to create requirement for enhanced lag policy
+- Add test case for custom epg name
+- Add test file for aci_bd
+- Add tests for ipv6_l3_unknown_multicast parameter support in aci_bd
+- Add tests for l3out node profile module
+- Add tests to create multiple node profiles and query all node profiles in an L3out
+- Add variable references and fix naming in l3out_node_profile tests
+- Add version check for changing custom epg name
+- Added Enhanced Lag Policy for VMware VMM Domain Profile in module aci_epg_to_domain
+- Change CI to latest version of ansible and python 3.8
+- Change child_configs & child_classes
+- Change dscp to target_dscp in aci_l3out_logical_node_profile module to avoid future var conflicts
+- Change naming of lagpolicy
+- Change primary_encap --> primaryEncap
+- Change test case for enhanced_lag_policy
+- Changes made to execute aci_epg_to_domain and aci_cloud_cidr modules, also generalised the cloud variables
+- Check WARNINGs and ERRORs in galaxy-importer check (#118)
+- Correcting sanity in aci_static_binding_to_epg.py module
+- Fix broken test parameters for aci_l3out_logical_interface_profile
+- Fix documentation and add example to query all node profiles for L3out
+- Fix feedback
+- Fix indentation causing linting error
+- Fix lag_plicy tDn
+- Fix missed separators '/' in path attribute of ACIModule class
+- Fix module reference and remove unused aliases in aci_l3out_logical_node_profile tests
+- Fixed default values in docs and specs
+- Fixed the behavior when output is specified in aci_rest. (#169)
+- Initial changes to aci_cloud_ctx_profile module to execute only cloud sites from inventory
+- Interface types added for Po's and vPC's using fex-ports and test files
+- L3Out Enhancements
+- L3Out Interface Profile (#134)
+- Made changes in collection version segment
+- Made changes in mso.py to generalize construct_url
+- Made changes to support aci non cloud host >=3.2
+- Made changes with respect to galaxy importer similar to MSO
+- Modified 12 files affected from inventory file changes, by differentiating tasks into cloud and non-cloud specific hosts
+- Move custom_qos_policy to conditional and remove unnecessary custom_qos_policy from monitoring policy in test
+- Move ipv6_l3_unknown_multicast to condition and check version in test
+- Remove uneccessary delegate_to variable for l3out_node_profile cleanup task
+- Separated assert statements for cloud and non-cloud sites and added additional condition statement required for execution of version<=4.1
+- Supports primaryEncap value as unknown (#157)
+- Update aci_l3out_extepg_to_contract.py
+- W291 + boolean correction
+- contract_enhancements (#135)
+- doc-required-mismatch fix
+- interface blacklist test fix
+- interface disable/enable fabricRsOosPath
+- interface disable/enable fex support
+
+cisco.asa
+~~~~~~~~~
+
+- Fixes asa_ogs service object where complete params were not supported and added with the PR ((https://github.com/ansible-collections/cisco.asa/issues/100).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- mail - added the ``ehlohost`` parameter which allows for manual override of the host used in SMTP EHLO (https://github.com/ansible-collections/community.general/pull/3425).
+- nmcli - the option ``routing_rules4`` can now be specified as a list of strings, instead of as a single string (https://github.com/ansible-collections/community.general/issues/3401).
+- open-iscsi - adding support for mutual authentication between target and initiator (https://github.com/ansible-collections/community.general/pull/3422).
+- opentelemetry callback plugin - added option ``enable_from_environment`` to support enabling the plugin only if the given environment variable exists and it is set to true (https://github.com/ansible-collections/community.general/pull/3498).
+- opentelemetry callback plugin - enriched the stacktrace information with the ``message``, ``exception`` and ``stderr`` fields from the failed task (https://github.com/ansible-collections/community.general/pull/3496).
+- pkgng - packages being installed (or upgraded) are acted on in one command (per action) (https://github.com/ansible-collections/community.general/issues/2265).
+- pkgng - status message specifies number of packages installed and/or upgraded separately. Previously, all changes were reported as one count of packages "added" (https://github.com/ansible-collections/community.general/pull/3393).
+- terraform - add ``parallelism`` parameter (https://github.com/ansible-collections/community.general/pull/3540).
+- ufw - if ``delete=true`` and ``insert`` option is present, then ``insert`` is now ignored rather than failing with a syntax error (https://github.com/ansible-collections/community.general/pull/3514).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api - make validation of ``WHERE`` for ``query`` more strict (https://github.com/ansible-collections/community.routeros/pull/53).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vm_device_helper - move NIC device types from vmware_guest module to vm_device_helper (https://github.com/ansible-collections/community.vmware/pull/998).
+
+netapp.cloudmanager
+~~~~~~~~~~~~~~~~~~~
+
+- Add CVO modification unit tests
+- Adding new parameter ``capacity_package_name`` for all CVOs creation with capacity based ``license_type`` capacity-paygo or ha-capacity-paygo for HA.
+- all modules - better error reporting if refresh_token is not valid.
+- na_cloudmanager_connector_gcp - automatically fetch client_id for delete.
+- na_cloudmanager_connector_gcp - make the module idempotent for create and delete.
+- na_cloudmanager_connector_gcp - report client_id if connector already exists.
+- na_cloudmanager_cvo_aws - Add unit tests for capacity based license support.
+- na_cloudmanager_cvo_azure - Add unit tests for capacity based license support.
+- na_cloudmanager_cvo_gcp - Add unit tests for capacity based license support and delete cvo.
+- netapp.py - improve error handling with error content.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_cluster - Added REST support to the cluster module.
+- na_ontap_firewall_policy - added ``none`` as a choice for ``service`` which is supported from 9.8 ONTAP onwards.
+- na_ontap_svm - new option ``max_volumes``.
+- na_ontap_svm - support ``allowed protocols`` with REST for ONTAP 9.6 and later.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Add connected-devices to nb_lookup [#540](https://github.com/netbox-community/ansible_modules/pull/540)
+- Add location and power panel as lookup keys to nb_lookup [#599](https://github.com/netbox-community/ansible_modules/pull/599)
+- netbox_device_interface and netbox_vm_interface - Add parent interface to modules [#604](https://github.com/netbox-community/ansible_modules/pull/604)
+- netbox_virtual_machine - Change vCPU to float from int (to reflect NetBox 3.0) [#605](https://github.com/netbox-community/ansible_modules/pull/605)
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api - splitting commands no longer uses a naive split by whitespace, but a more RouterOS CLI compatible splitting algorithm (https://github.com/ansible-collections/community.routeros/pull/45).
+- command - the module now always indicates that a change happens. If this is not correct, please use ``changed_when`` to determine the correct changed status for a task (https://github.com/ansible-collections/community.routeros/pull/50).
+
+Deprecated Features
+-------------------
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_guest_vnc -  Sphere 7.0 removed the built-in VNC server (https://docs.vmware.com/en/VMware-vSphere/7.0/rn/vsphere-esxi-vcenter-server-70-release-notes.html#productsupport).
+
+Security Fixes
+--------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Do not include params in exception when a call to ``set_options`` fails. Additionally, block the exception that is returned from being displayed to stdout. (CVE-2021-3620)
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Fix path to inventory file for ``windows-integration`` and ``network-integration`` commands for collections.
+- ansible-test - Update distribution test containers to version 3.1.0.
+- ansible-test - Use the correct variable to reference the client's SSH key when generating inventory.
+- ansible-test pslint - Fix error when encountering validation results that are highly nested - https://github.com/ansible/ansible/issues/74151
+
+cisco.aci
+~~~~~~~~~
+
+- Fix blacklist bug
+- Fix cleanup of MGMT EPGs
+- Fix module reference for l3out_node_profile cleanup task
+- Fix required variables for absent and present states for l3out_node_profile
+- Fix sanity & importer check errors
+- Fix test and assertion variables and module references for l3out_node_profile tests
+- pylint fix for .format()
+
+cisco.asa
+~~~~~~~~~
+
+- Fixes asa_acls to add the support for service object group under destination option ((https://github.com/ansible-collections/cisco.asa/issues/100).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- get_certificate - fix compatibility with the cryptography 35.0.0 release (https://github.com/ansible-collections/community.crypto/pull/294).
+- openssl_csr_info - fix compatibility with the cryptography 35.0.0 release (https://github.com/ansible-collections/community.crypto/pull/294).
+- openssl_csr_info - fix compatibility with the cryptography 35.0.0 release in PyOpenSSL backend (https://github.com/ansible-collections/community.crypto/pull/300).
+- openssl_pkcs12 - fix compatibility with the cryptography 35.0.0 release (https://github.com/ansible-collections/community.crypto/pull/296).
+- x509_certificate_info - fix compatibility with the cryptography 35.0.0 release (https://github.com/ansible-collections/community.crypto/pull/294).
+- x509_certificate_info - fix compatibility with the cryptography 35.0.0 release in PyOpenSSL backend (https://github.com/ansible-collections/community.crypto/pull/300).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- gitlab_deploy_key - fix idempotency on projects with multiple deploy keys (https://github.com/ansible-collections/community.general/pull/3473).
+- gitlab_group - avoid passing wrong value for ``require_two_factor_authentication`` on creation when the option has not been specified (https://github.com/ansible-collections/community.general/pull/3453).
+- gitlab_group_members - ``get_group_id`` return the group ID by matching ``full_path``, ``path`` or ``name`` (https://github.com/ansible-collections/community.general/pull/3400).
+- jboss - fix the deployment file permission issue when Jboss server is running under non-root user. The deployment file is copied with file content only. The file permission is set to ``440`` and belongs to root user. When the JBoss ``WildFly`` server is running under non-root user, it is unable to read the deployment file (https://github.com/ansible-collections/community.general/pull/3426).
+- keycloak_authentication - fix bug, the requirement was always on ``DISABLED`` when creating a new authentication flow (https://github.com/ansible-collections/community.general/pull/3330).
+- keycloak_identity_provider - fix change detection when updating identity provider mappers (https://github.com/ansible-collections/community.general/pull/3538, https://github.com/ansible-collections/community.general/issues/3537).
+- keycloak_role - quote role name when used in URL path to avoid errors when role names contain special characters (https://github.com/ansible-collections/community.general/issues/3535, https://github.com/ansible-collections/community.general/pull/3536).
+- logstash callback plugin - replace ``_option`` with ``context.CLIARGS`` to fix the plugin on ansible-base and ansible-core (https://github.com/ansible-collections/community.general/issues/2692).
+- macports - add ``stdout`` and ``stderr`` to return values (https://github.com/ansible-collections/community.general/issues/3499).
+- opentelemetry callback plugin - validated the task result exception without crashing. Also simplifying code a bit (https://github.com/ansible-collections/community.general/pull/3450, https://github.com/ansible/ansible/issues/75726).
+- yaml callback plugin - avoid modifying PyYAML so that other plugins using it on the controller, like the ``to_yaml`` filter, do not produce different output (https://github.com/ansible-collections/community.general/issues/3471, https://github.com/ansible-collections/community.general/pull/3478).
+- zypper_repository - when an URL to a .repo file was provided in option ``repo=`` and ``state=present`` only the first run was successful, future runs failed due to missing checks prior starting zypper. Usage of ``state=absent`` in combination with a .repo file was not working either (https://github.com/ansible-collections/community.general/issues/1791, https://github.com/ansible-collections/community.general/issues/3466).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_user - Fix crash reporting ``Invalid privileges specified`` when passing privileges that became aliases (https://github.com/ansible-collections/community.mysql/issues/232).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api - improve splitting of ``WHERE`` queries (https://github.com/ansible-collections/community.routeros/pull/47).
+- api - when converting result lists to dictionaries, no longer removes second ``=`` and text following that if present (https://github.com/ansible-collections/community.routeros/pull/47).
+- routeros cliconf plugin - adjust function signature that was modified in Ansible after creation of this plugin (https://github.com/ansible-collections/community.routeros/pull/43).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- Fix a bug that prevented enabling VSAN on more than one vmk, risking splitting the whole cluster during interface migration scenarios (https://github.com/ansible-collections/community.vmware/issues/891)
+- vmware_deploy_ovf - Fix deploy ovf issue when there are more than one datacenter in VC (https://github.com/ansible-collections/community.vmware/issues/164).
+- vmware_deploy_ovf - fixed to display suitable the error when not exist an ovf file path (https://github.com/ansible-collections/community.vmware/pull/1065).
+- vmware_guest_powerstate - handle 'present' state as 'poweredon' (https://github.com/ansible-collections/community.vmware/pull/1033).
+- vmware_guest_tools_wait - add documentation about datacenter parameter (https://github.com/ansible-collections/community.vmware/pull/870).
+- vmware_object_rename - fixed an issue that an error has occurred when getting than 1,000 objects (https://github.com/ansible-collections/community.vmware/pull/1010).
+- vmware_vcenter_settings_info - fix to return all VCSA settings when setting vsphere to the schema and not specifying the properties (https://github.com/ansible-collections/community.vmware/pull/1050).
+- vmware_vm_inventory - remove erroneous ``ansible_host`` condition (https://github.com/ansible-collections/community.vmware/issues/975).
+
+netapp.cloudmanager
+~~~~~~~~~~~~~~~~~~~
+
+- na_cloudmanager_connector_gcp - typeError when using proxy certificates.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_job_schedule - cannot modify options not present in create when using REST.
+- na_ontap_job_schedule - fix idempotency issue with ZAPI when job_minutes is set to -1.
+- na_ontap_job_schedule - modify error if month is changed from some values to all (-1) when using REST.
+- na_ontap_job_schedule - modify error if month is present but not changed with 0 offset when using REST.
+- na_ontap_vserver_delete role - fix typos for cifs.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Copy interfaces before processing [#556](https://github.com/netbox-community/ansible_modules/pull/556)
+- Make attached_ips subscriptable. [#609](https://github.com/netbox-community/ansible_modules/pull/609)
+
+New Plugins
+-----------
+
+Callback
+~~~~~~~~
+
+- community.general.elastic - Create distributed traces for each Ansible task in Elastic APM
+
+Filter
+~~~~~~
+
+- community.routeros.join - Join a list of arguments to a command
+- community.routeros.list_to_dict - Convert a list of arguments to a list of dictionary
+- community.routeros.quote_argument - Quote an argument
+- community.routeros.quote_argument_value - Quote an argument value
+- community.routeros.split - Split a command into arguments
+
+Inventory
+~~~~~~~~~
+
+- community.general.opennebula - OpenNebula inventory source
+
+New Modules
+-----------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+Cloud
+^^^^^
+
+Misc
+....
+
+- community.general.proxmox_tasks_info - Retrieve information about one or more Proxmox VE tasks
+
+Packaging
+^^^^^^^^^
+
+Language
+........
+
+- community.general.pipx - Manages applications installed with pipx
+
+Web Infrastructure
+^^^^^^^^^^^^^^^^^^
+
+- community.general.rundeck_job_executions_info - Query executions for a Rundeck job
+- community.general.rundeck_job_run - Run a Rundeck job
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- community.vmware.vmware_vm_config_option - Return supported guest ID list and VM recommended config option for specific guest OS
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 2.0.0)
+- ansible.netcommon (still version 2.4.0)
+- ansible.posix (still version 1.3.0)
+- ansible.windows (still version 1.7.3)
+- arista.eos (still version 3.1.0)
+- awx.awx (still version 19.4.0)
+- azure.azcollection (still version 1.9.0)
+- chocolatey.chocolatey (still version 1.1.0)
+- cisco.intersight (still version 1.0.17)
+- cisco.ios (still version 2.5.0)
+- cisco.iosxr (still version 2.5.0)
+- cisco.mso (still version 1.2.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 2.7.0)
+- cisco.ucs (still version 1.6.0)
+- cloudscale_ch.cloud (still version 2.2.0)
+- community.aws (still version 2.0.0)
+- community.azure (still version 1.0.0)
+- community.ciscosmb (still version 1.0.4)
+- community.digitalocean (still version 1.10.0)
+- community.docker (still version 1.10.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.2.3)
+- community.hashi_vault (still version 1.3.2)
+- community.hrobot (still version 1.1.1)
+- community.kubernetes (still version 2.0.0)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.0.2)
+- community.mongodb (still version 1.3.1)
+- community.network (still version 3.0.0)
+- community.okd (still version 2.0.1)
+- community.postgresql (still version 1.5.0)
+- community.proxysql (still version 1.3.0)
+- community.rabbitmq (still version 1.1.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.1.0)
+- community.windows (still version 1.7.0)
+- community.zabbix (still version 1.4.0)
+- containers.podman (still version 1.8.1)
+- cyberark.conjur (still version 1.1.0)
+- cyberark.pas (still version 1.0.7)
+- dellemc.enterprise_sonic (still version 1.1.0)
+- dellemc.openmanage (still version 4.1.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- f5networks.f5_modules (still version 1.11.1)
+- fortinet.fortimanager (still version 2.1.3)
+- fortinet.fortios (still version 2.1.2)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.6.0)
+- hpe.nimble (still version 1.1.3)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.2.4)
+- inspur.sm (still version 1.3.0)
+- junipernetworks.junos (still version 2.6.0)
+- kubernetes.core (still version 2.2.0)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.6.0)
+- netapp.azure (still version 21.9.0)
+- netapp.elementsw (still version 21.6.1)
+- netapp.um_info (still version 21.7.0)
+- netapp_eseries.santricity (still version 1.2.13)
+- ngine_io.cloudstack (still version 2.2.1)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.0)
+- openstack.cloud (still version 1.5.1)
+- openvswitch.openvswitch (still version 2.0.2)
+- ovirt.ovirt (still version 1.6.4)
+- purestorage.flasharray (still version 1.11.0)
+- purestorage.flashblade (still version 1.7.0)
+- sensu.sensu_go (still version 1.12.0)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 1.0.2)
+- t_systems_mms.icinga_director (still version 1.23.0)
+- theforeman.foreman (still version 2.2.0)
+- vyos.vyos (still version 2.6.0)
+- wti.remote (still version 1.0.1)
+
 v5.0.0a1
 ========
 
