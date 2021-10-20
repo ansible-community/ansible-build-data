@@ -18,6 +18,7 @@ cisco.mso
 cisco.nso
 cisco.nxos
 cisco.ucs
+cloud.common
 cloudscale_ch.cloud
 community.aws
 community.azure
@@ -66,7 +67,7 @@ hetzner.hcloud
 hpe.nimble
 ibm.qradar
 infinidat.infinibox
-#infobox.nios_modules # NOT FOR 2.10 https://github.com/infobloxopen/infoblox-ansible/issues/7
+infobox.nios_modules
 inspur.sm
 junipernetworks.junos
 # community.kubernetes shall be renamed to kubernetes.core, they are already the same build artifact
@@ -79,6 +80,7 @@ netapp.cloudmanager
 netapp.elementsw
 netapp_eseries.santricity
 netapp.ontap
+netapp.storagegrid
 netapp.um_info
 netbox.netbox
 ngine_io.cloudstack

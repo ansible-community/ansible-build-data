@@ -56,3 +56,17 @@ collections:
   community.dns:
     maintainers:
       - felixfontein
+  cloud.common:
+    maintainers:
+      - Akasurde
+      - abikouo
+      - goneri
+      - jillr
+  infoblox.nios_modules:
+    maintainers:
+      - anagha-infoblox
+  netapp.storagegrid:
+    maintainers:
+      - carchi8py
+      - jkandati
+      - joshedmonds
