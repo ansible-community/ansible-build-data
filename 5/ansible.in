@@ -67,7 +67,7 @@ hetzner.hcloud
 hpe.nimble
 ibm.qradar
 infinidat.infinibox
-infoblox.nios_modules
+infobox.nios_modules
 inspur.sm
 junipernetworks.junos
 # community.kubernetes shall be renamed to kubernetes.core, they are already the same build artifact
