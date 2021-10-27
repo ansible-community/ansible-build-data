@@ -70,3 +70,8 @@ collections:
       - carchi8py
       - jkandati
       - joshedmonds
+  cisco.ise:
+    maintainers:
+      - wastorga
+      - racampos
+      - jbogarin

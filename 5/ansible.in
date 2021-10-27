@@ -13,6 +13,7 @@ cisco.asa
 cisco.intersight
 cisco.ios
 cisco.iosxr
+cisco.ise
 cisco.meraki
 cisco.mso
 cisco.nso
