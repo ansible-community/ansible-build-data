@@ -8,6 +8,353 @@ This changelog describes changes since Ansible 3.0.0.
   :local:
   :depth: 2
 
+v4.8.0
+======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2021-11-02
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 4.8.0 contains Ansible-core version 2.11.6.
+This is the same version of Ansible-core as in the previous Ansible release.
+
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection             | Ansible 4.7.0 | Ansible 4.8.0 | Notes                                                                                                                        |
++========================+===============+===============+==============================================================================================================================+
+| azure.azcollection     | 1.9.0         | 1.10.0        | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| check_point.mgmt       | 2.1.0         | 2.1.1         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki           | 2.4.2         | 2.5.0         | The collection did not have a changelog in this version.                                                                     |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.azure        | 1.0.0         | 1.1.0         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto       | 1.9.5         | 1.9.6         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.digitalocean | 1.10.0        | 1.11.0        |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general      | 3.8.0         | 3.8.1         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hashi_vault  | 1.3.2         | 1.4.1         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot       | 1.1.1         | 1.2.0         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql        | 2.3.0         | 2.3.1         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.zabbix       | 1.4.0         | 1.5.0         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules  | 1.11.1        | 1.12.0        |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| netbox.netbox          | 3.1.2         | 3.3.0         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| ngine_io.cloudstack    | 2.2.1         | 2.2.2         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+community.digitalocean
+~~~~~~~~~~~~~~~~~~~~~~
+
+- digitalocean inventory script - add support for Droplet tag filtering (https://github.com/ansible-collections/community.digitalocean/issues/7).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- community.hashi_vault collection - add cert auth method (https://github.com/ansible-collections/community.hashi_vault/pull/159).
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- Avoid internal ansible-core module_utils in favor of equivalent public API available since at least Ansible 2.9 (https://github.com/ansible-collections/community.hrobot/pull/18).
+- firewall - rename option ``whitelist_hos`` to ``allowlist_hos``, keep old name as alias (https://github.com/ansible-collections/community.hrobot/pull/15).
+- firewall, firewall_info - add return value ``allowlist_hos``, which contains the same value as ``whitelist_hos``. The old name ``whitelist_hos`` will be removed eventually (https://github.com/ansible-collections/community.hrobot/pull/15).
+- robot module utils - add ``allow_empty_result`` parameter to ``plugin_open_url_json`` and ``fetch_url_json`` (https://github.com/ansible-collections/community.hrobot/pull/16).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- Added requirements.txt to collection root to be used with Ansible Builder. See https://ansible-builder.readthedocs.io/en/latest/collection_metadata.html
+- some roles are now using new naming for API connection parameters (https://github.com/ansible-collections/community.zabbix/pull/492 and https://github.com/ansible-collections/community.zabbix/pull/495).
+- some roles can now utilize an option `zabbix_repo_yum_gpgcheck` to enable/disable GPG check for YUM repository (https://github.com/ansible-collections/community.zabbix/pull/438).
+- zabbix inventory - Enabled the usage of environment variables in zabbix inventory plugin.
+- zabbix inventory plugin - can now use environment variables ZABBIX_SERVER, ZABBIX_USERNAME and ZABBIX_PASSWORD for connection purposes to the Zabbix API.
+- zabbix_agent - `zabbix_agent_loadmodule` can also be configured with a list.
+- zabbix_agent - new `zabbix_api_timeout` option.
+- zabbix_agent - now supports DenyKeys configuration.
+- zabbix_hostmacro - now supports creating macros of type secret and vault.
+- zabbix_proxy (role) - new `zabbix_api_timeout` option.
+- zabbix_proxy_info - new module that allows to retrieve information about configured Zabbix Proxies.
+- zabbix_server - added support for TimescaleDB (https://github.com/ansible-collections/community.zabbix/pull/428).
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Add cipher_groups option to bigip_server_ssl module
+- Add only_create_file option to bigip_ucs_fetch module
+- Add option to overwrite existing conditons with the ones provided by user in bigip_policy_rule
+- Add reverse flag support to bigip_monitor_https
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Add connected-devices to nb_lookup [#540](https://github.com/netbox-community/ansible_modules/pull/540)
+- Add location and power panel as lookup keys to nb_lookup [#599](https://github.com/netbox-community/ansible_modules/pull/599)
+- Improve speed of netbox_cable module on NetBox version 3.0.6 or later [#624](https://github.com/netbox-community/ansible_modules/pull/624)
+- netbox_config_context - add module for handling Config Context [#610](https://github.com/netbox-community/ansible_modules/pull/610)
+- netbox_device_interface and netbox_vm_interface - Add parent interface to modules [#604](https://github.com/netbox-community/ansible_modules/pull/604)
+- netbox_location - add module for handling Location [#543](https://github.com/netbox-community/ansible_modules/pull/543)
+- netbox_site_group - add module for handling Site Group [#547](https://github.com/netbox-community/ansible_modules/pull/547)
+- netbox_virtual_machine - Change vCPU to float from int (to reflect NetBox 3.0) [#605](https://github.com/netbox-community/ansible_modules/pull/605)
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- all roles now reference other roles and modules via their fully qualified collection names, which makes Ansible 2.10 minimum supported version for roles (See https://github.com/ansible-collections/community.zabbix/pull/477).
+
+Deprecated Features
+-------------------
+
+community.azure
+~~~~~~~~~~~~~~~
+
+- All community.azure.azure_rm_<resource>_facts modules are deprecated. Use azure.azcollection.azure_rm_<resource>_info modules instead (https://github.com/ansible-collections/community.azure/pull/24).
+- All community.azure.azure_rm_<resource>_info modules are deprecated. Use azure.azcollection.azure_rm_<resource>_info modules instead (https://github.com/ansible-collections/community.azure/pull/24).
+- community.azure.azure_rm_managed_disk and community.azure.azure_rm_manageddisk are deprecated. Use azure.azcollection.azure_rm_manageddisk instead (https://github.com/ansible-collections/community.azure/pull/24).
+- community.azure.azure_rm_virtualmachine_extension and community.azure.azure_rm_virtualmachineextension are deprecated. Use azure.azcollection.azure_rm_virtualmachineextension instead (https://github.com/ansible-collections/community.azure/pull/24).
+- community.azure.azure_rm_virtualmachine_scaleset and community.azure.azure_rm_virtualmachinescaleset are deprecated. Use azure.azcollection.azure_rm_virtualmachinescaleset instead (https://github.com/ansible-collections/community.azure/pull/24).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- lookup hashi_vault - the ``[lookup_hashi_vault]`` section in the ``ansible.cfg`` file is deprecated and will be removed in collection version ``3.0.0``. Instead, the section ``[hashi_vault_collection]`` can be used, which will apply to all plugins in the collection going forward (https://github.com/ansible-collections/community.hashi_vault/pull/144).
+
+Bugfixes
+--------
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- cryptography backend - improve Unicode handling for Python 2 (https://github.com/ansible-collections/community.crypto/pull/313).
+
+community.digitalocean
+~~~~~~~~~~~~~~~~~~~~~~
+
+- Adding missing status badges for black and unit tests (https://github.com/ansible-collections/community.digitalocean/pull/164).
+- Documentation URLs are fixed for the C(digital_ocean_domain_record) and C(digital_ocean_droplet_info) modules (https://github.com/ansible-collections/community.digitalocean/pull/163).
+- Serializing the cloud integration tests (https://github.com/ansible-collections/community.digitalocean/pull/165).
+- digital_ocean_floating_ip - make floating ip return data idempotent (https://github.com/ansible-collections/community.digitalocean/pull/162).
+- digitalocean inventory - enforce the C(timeout) parameter (https://github.com/ansible-collections/community.digitalocean/issues/168).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- gitlab_deploy_key - fix the SSH Deploy Key being deleted accidentally while running task in check mode (https://github.com/ansible-collections/community.general/issues/3621, https://github.com/ansible-collections/community.general/pull/3622).
+- gitlab_project_members - ``get_project_id`` return the project id by matching ``full_path`` or ``name`` (https://github.com/ansible-collections/community.general/pull/3602).
+- ipa_* modules - fix environment fallback for ``ipa_host`` option (https://github.com/ansible-collections/community.general/issues/3560).
+- nmcli - fixed ``dns6`` option handling so that it is treated as a list internally (https://github.com/ansible-collections/community.general/pull/3563).
+- nmcli - fixed ``ipv4.route-metric`` being in properties of type list (https://github.com/ansible-collections/community.general/pull/3563).
+- one_image - fix error message when renaming an image (https://github.com/ansible-collections/community.general/pull/3626).
+- pipx - ``state=inject`` was failing to parse the list of injected packages (https://github.com/ansible-collections/community.general/pull/3611).
+- pipx - set environment variable ``USE_EMOJI=0`` to prevent errors in platforms that do not support ``UTF-8`` (https://github.com/ansible-collections/community.general/pull/3611).
+- pkgin - Fix exception encountered when all packages are already installed (https://github.com/ansible-collections/community.general/pull/3583).
+- proxmox_group_info - fix module crash if a ``group`` parameter is used (https://github.com/ansible-collections/community.general/pull/3649).
+- redfish_utils module utils - do not attempt to change the boot source override mode if not specified by the user (https://github.com/ansible-collections/community.general/issues/3509/).
+- redfish_utils module utils - if a manager network property is not specified in the service, attempt to change the requested settings (https://github.com/ansible-collections/community.general/issues/3404/).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- aws_iam_login auth - the ``aws_security_token`` option was not used, causing assumed role credentials to fail (https://github.com/ansible-collections/community.hashi_vault/issues/160).
+- aws_iam_login auth method - fix incorrect use of ``boto3``/``botocore`` that prevented proper loading of AWS IAM role credentials (https://github.com/ansible-collections/community.hashi_vault/issues/167).
+- hashi_vault collection - a fallback import supporting the ``retries`` option for ``urllib3`` via ``requests.packages.urllib3`` was not correctly formed (https://github.com/ansible-collections/community.hashi_vault/issues/116).
+- hashi_vault collection - unhandled exception with ``token`` auth when ``token_file`` exists but is a directory (https://github.com/ansible-collections/community.hashi_vault/issues/152).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_user - Fix crash reporting ``Invalid privileges specified`` when passing privileges that became aliases (https://github.com/ansible-collections/community.mysql/issues/232).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- all roles now support installing zabbix 4.0 version on Ubuntu 20.04.
+- all roles now supports installations on Debian 11.
+- zabbix inventory - Change default value for host_zapi_query from list "[]" to dict "{}".
+- zabbix_action - should no longer fail with Zabbix version 5.4.
+- zabbix_agent - `zabbix_win_install_dir` no longer ignored for zabbix_agentd.d and zabbix log directories.
+- zabbix_agent - auto-recovery for Windows installation has been fixed (https://github.com/ansible-collections/community.zabbix/pull/470).
+- zabbix_agent - deploying zabbix_agent2 under Windows should now be possible (Thanks to https://github.com/ansible-collections/community.zabbix/pull/433 and https://github.com/ansible-collections/community.zabbix/pull/453).
+- zabbix_agent - fixed AutoPSK for Windows deployments (https://github.com/ansible-collections/community.zabbix/pull/450).
+- zabbix_host - Fix error when updating hosts caused by Zabbix bug not returning the inventory_mode field for hosts(https://github.com/ansible-collections/community.zabbix/issues/385).
+- zabbix_host - will not break when `tls_psk*` parameters are set with Zabbix version 5.4.
+- zabbix_proxy (module) - now supports configuring `tls_psk*` parameters.
+- zabbix_proxy (role) - TLS config should now properly configure certificates.
+- zabbix_proxy (role) - should no longer fail on permission problems wren configured to use SQLite database and now installs correct package sqlite3 on Debian systems.
+- zabbix_web - `zabbix_nginx_vhost_*` parameters are no longer ignored.
+- zabbix_web - executing role with `--tags` should now correctly include distribution specific variables (https://github.com/ansible-collections/community.zabbix/pull/448).
+- zabbix_web - now correctly restarts php-fpm service (https://github.com/ansible-collections/community.zabbix/pull/427).
+- zabbix_web - permissions for accesing php-fpm socket has been fixed (See https://github.com/ansible-collections/community.zabbix/pull/426).
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Add fix to iapp service update module
+- Add fix to ucs module to cover more scenarios of API instability
+- fix to allow tcp condition with asm_enable action
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Copy interfaces before processing [#556](https://github.com/netbox-community/ansible_modules/pull/556)
+- Make attached_ips subscriptable. [#609](https://github.com/netbox-community/ansible_modules/pull/609)
+
+ngine_io.cloudstack
+~~~~~~~~~~~~~~~~~~~
+
+- cs_instance - Fixed missing project ID to volume query when checking root disk size. (https://github.com/ngine-io/ansible-collection-cloudstack/pull/90).
+
+New Plugins
+-----------
+
+Lookup
+~~~~~~
+
+- community.hashi_vault.vault_read - Perform a read operation against HashiCorp Vault
+
+New Modules
+-----------
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- community.hashi_vault.vault_read - Perform a read operation against HashiCorp Vault
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- community.hrobot.boot - Set boot configuration
+- community.hrobot.reset - Reset a dedicated server
+- community.hrobot.reverse_dns - Set or remove reverse DNS entry for IP
+- community.hrobot.server - Update server information
+- community.hrobot.server_info - Query information on one or more servers
+- community.hrobot.ssh_key - Add, remove or update SSH key
+- community.hrobot.ssh_key_info - Query information on SSH keys
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- community.zabbix.zabbix_proxy_info - Gather information about Zabbix proxy
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- netbox.netbox.netbox_config_context - Create, update or delete Config Context in NetBox
+- netbox.netbox.netbox_location - Create, update or delete Location in NetBox
+- netbox.netbox.netbox_site_group - Create, update or delete Site Group in NetBox
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 1.5.1)
+- ansible.netcommon (still version 2.4.0)
+- ansible.posix (still version 1.3.0)
+- ansible.utils (still version 2.4.2)
+- ansible.windows (still version 1.7.3)
+- arista.eos (still version 2.2.0)
+- awx.awx (still version 19.4.0)
+- chocolatey.chocolatey (still version 1.1.0)
+- cisco.aci (still version 2.1.0)
+- cisco.asa (still version 2.1.0)
+- cisco.intersight (still version 1.0.17)
+- cisco.ios (still version 2.5.0)
+- cisco.iosxr (still version 2.5.0)
+- cisco.mso (still version 1.2.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 2.7.0)
+- cisco.ucs (still version 1.6.0)
+- cloudscale_ch.cloud (still version 2.2.0)
+- community.aws (still version 1.5.0)
+- community.docker (still version 1.10.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.2.3)
+- community.kubernetes (still version 1.2.1)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.0.2)
+- community.mongodb (still version 1.3.1)
+- community.network (still version 3.0.0)
+- community.okd (still version 1.1.2)
+- community.postgresql (still version 1.5.0)
+- community.proxysql (still version 1.3.0)
+- community.rabbitmq (still version 1.1.0)
+- community.routeros (still version 1.2.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.1.0)
+- community.vmware (still version 1.15.0)
+- community.windows (still version 1.7.0)
+- containers.podman (still version 1.8.1)
+- cyberark.conjur (still version 1.1.0)
+- cyberark.pas (still version 1.0.7)
+- dellemc.enterprise_sonic (still version 1.1.0)
+- dellemc.openmanage (still version 3.6.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- fortinet.fortimanager (still version 2.1.3)
+- fortinet.fortios (still version 2.1.2)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.6.0)
+- hpe.nimble (still version 1.1.3)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.2.4)
+- inspur.sm (still version 1.3.0)
+- junipernetworks.junos (still version 2.6.0)
+- kubernetes.core (still version 1.2.1)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.6.0)
+- netapp.azure (still version 21.9.0)
+- netapp.cloudmanager (still version 21.11.0)
+- netapp.elementsw (still version 21.6.1)
+- netapp.ontap (still version 21.12.0)
+- netapp.um_info (still version 21.7.0)
+- netapp_eseries.santricity (still version 1.2.13)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.0)
+- openstack.cloud (still version 1.5.1)
+- openvswitch.openvswitch (still version 2.0.2)
+- ovirt.ovirt (still version 1.6.4)
+- purestorage.flasharray (still version 1.11.0)
+- purestorage.flashblade (still version 1.7.0)
+- sensu.sensu_go (still version 1.12.0)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 1.0.2)
+- t_systems_mms.icinga_director (still version 1.23.0)
+- theforeman.foreman (still version 2.2.0)
+- vyos.vyos (still version 2.6.0)
+- wti.remote (still version 1.0.1)
+
 v4.7.0
 ======
 

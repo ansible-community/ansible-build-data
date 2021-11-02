@@ -105,3 +105,10 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2021-10-13'
+  4.8.0:
+    changes:
+      release_summary: 'Release Date: 2021-11-02
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2021-11-02'
