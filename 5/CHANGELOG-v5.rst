@@ -8,6 +8,384 @@ This changelog describes changes since Ansible 4.0.0.
   :local:
   :depth: 2
 
+v5.0.0b1
+========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2021-11-09
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 5.0.0b1 contains Ansible-core version 2.12.0.
+This is a newer version than version 2.12.0rc1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                    | Ansible 5.0.0a3 | Ansible 5.0.0b1 | Notes                                                                                                                        |
++===============================+=================+=================+==============================================================================================================================+
+| ansible.windows               | 1.7.3           | 1.8.0           |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.digitalocean        | 1.11.0          | 1.12.0          |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general             | 4.0.0           | 4.0.1           |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hashi_vault         | 1.4.1           | 2.0.0           |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.kubernetes          | 2.0.0           | 2.0.1           | There are no changes recorded in the changelog.                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.okd                 | 2.0.1           | 2.1.0           |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware              | 1.15.0          | 1.16.0          |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.windows             | 1.7.0           | 1.8.0           |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman             | 1.8.1           | 1.8.2           |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortimanager         | 2.1.3           | 2.1.4           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.aws                    | 21.6.0          | 21.7.0          |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.azure                  | 21.9.0          | 21.10.0         |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.cloudmanager           | 21.11.0         | 21.12.0         |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.elementsw              | 21.6.1          | 21.7.0          |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap                  | 21.12.0         | 21.13.1         |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.um_info                | 21.7.0          | 21.8.0          |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade        | 1.7.0           | 1.8.0           |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| t_systems_mms.icinga_director | 1.23.0          | 1.24.0          |                                                                                                                              |
++-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- win_updates - Added the ``skip_optional`` module option to skip optional updates
+
+community.digitalocean
+~~~~~~~~~~~~~~~~~~~~~~
+
+- digital_ocean_block_storage - adding Project support (https://github.com/ansible-collections/community.digitalocean/issues/171).
+- digital_ocean_database - adding Project support (https://github.com/ansible-collections/community.digitalocean/issues/171).
+- digital_ocean_domain - adding Project support (https://github.com/ansible-collections/community.digitalocean/issues/171).
+- digital_ocean_droplet - adding Project support (https://github.com/ansible-collections/community.digitalocean/issues/171).
+- digital_ocean_droplet - adding ability to apply and remove firewall by using droplet module (https://github.com/ansible-collections/community.digitalocean/issues/159).
+- digital_ocean_droplet - require unique_name for state=absent to avoid unintentional droplet deletions.
+- digital_ocean_firewall - inbound_rules and outbound_rules are no longer required for firewall removal (https://github.com/ansible-collections/community.digitalocean/issues/181).
+- digital_ocean_floating_ip - adding Project support (https://github.com/ansible-collections/community.digitalocean/issues/171).
+- digital_ocean_floating_ip - adding attach and detach states to floating ip module (https://github.com/ansible-collections/community.digitalocean/issues/170).
+- digital_ocean_load_balancer - adding Project support (https://github.com/ansible-collections/community.digitalocean/issues/171).
+- digitalocean integration tests - adding integration tests for CDN Endpoints (https://github.com/ansible-collections/community.digitalocean/issues/179).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- add the ``community.hashi_vault.vault`` action group (https://github.com/ansible-collections/community.hashi_vault/pull/172).
+- auth methods - Add support for configuring the ``mount_point`` auth method option in plugins via the ``ANSIBLE_HASHI_VAULT_MOUNT_POINT`` environment variable, ``ansible_hashi_vault_mount_point`` ansible variable, or ``mount_point`` INI section (https://github.com/ansible-collections/community.hashi_vault/pull/171).
+
+community.okd
+~~~~~~~~~~~~~
+
+- add support for turbo mode (https://github.com/openshift/community.okd/pull/102).
+- openshift_route - Add support for Route annotations (https://github.com/ansible-collections/community.okd/pull/99).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware - add vTPM information to default gather information (https://github.com/ansible-collections/community.vmware/pull/1082).
+- vmware_guest_cross_vc_clone - Added the is_template option to mark a cloned vm/template as a template (https://github.com/ansible-collections/community.vmware/pull/996).
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- win_nssm - Added ``username`` as an alias for ``user``
+- win_nssm - Remove deprecation for ``state``, ``dependencies``, ``user``, ``password``, ``start_mode``
+- win_nssm - Support gMSA accounts for ``user``
+
+netapp.aws
+~~~~~~~~~~
+
+- PR1 - allow usage of Ansible module group defaults - for Ansible 2.12+.
+
+netapp.azure
+~~~~~~~~~~~~
+
+- PR1 - allow usage of Ansible module group defaults - for Ansible 2.12+.
+
+netapp.cloudmanager
+~~~~~~~~~~~~~~~~~~~
+
+- PR1 - allow usage of Ansible module group defaults - for Ansible 2.12+.
+- na_cloudmanager_cvo_azure - Add extra tag handling on azure_tag maintenance
+- na_cloudmanager_cvo_gcp - Add extra label hendling for HA and only allow add new labels on gcp_labels
+- na_cloudmanager_snapmirror - working environment get information api not working for onprem is fixed
+
+netapp.elementsw
+~~~~~~~~~~~~~~~~
+
+- PR1 - allow usage of Ansible module group defaults - for Ansible 2.12+.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- PR15 - allow usage of Ansible module group defaults - for Ansible 2.12+.
+- na_ontap_cluster - add ``force`` option when deleting a node.
+- na_ontap_interface - Added REST support to the interface module (for IP and FC interfaces).
+- na_ontap_net_vlan - Added REST support to the net vlan module.
+- na_ontap_net_vlan - new REST options ``broadcast_domain``, ``ipspace`` and ``enabled`` added.
+- na_ontap_object_store - new REST options ``owner`` and ``change_password``.
+- na_ontap_object_store - support modifying an object store config with REST.
+
+netapp.um_info
+~~~~~~~~~~~~~~
+
+- PR1 - allow usage of Ansible module group defaults - for Ansible 2.12+.
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb.py - Add check to ensure FlashBlade uses the latest REST version possible for Purity version installed
+- purefb_info - Add object lifecycles rules to bucket subset
+- purefb_lifecycle - Add support for updated object lifecycle rules. See documentation for details of new parameters.
+- purefb_lifecycle - Change `keep_for` parameter to be `keep_previous_for`. `keep_for` is deprecated and will be removed in a later version.
+- purefb_user - Add support for managing user public key and user unlock
+
+t_systems_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- add resolve option to inventory-plugin (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/147)
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- connection options - there is no longer a default value for the ``url`` option (the Vault address), so a value must be supplied (https://github.com/ansible-collections/community.hashi_vault/issues/83).
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- drop support for Python 2 and Python 3.5 (https://github.com/ansible-collections/community.hashi_vault/issues/81).
+- support for the following deprecated environment variables has been removed: ``VAULT_AUTH_METHOD``, ``VAULT_TOKEN_PATH``, ``VAULT_TOKEN_FILE``, ``VAULT_ROLE_ID``, ``VAULT_SECRET_ID`` (https://github.com/ansible-collections/community.hashi_vault/pull/173).
+
+Bugfixes
+--------
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- win_copy - Fix remote dest size calculation logic
+- win_dns_client - Fix method used to read IPv6 DNS settings given by DHCP - https://github.com/ansible-collections/ansible.windows/issues/283
+- win_file - Fix conflicts with existing ``LIB`` environment variable
+- win_find - Fix conflicts with existing ``LIB`` environment variable
+- win_stat - Fix conflicts with existing ``LIB`` environment variable
+- win_updates - Fix conflicts with existing ``LIB`` environment variable
+- win_updates - Ignore named pipes with illegal filenames when checking for the task named pipe during bootstrapping - https://github.com/ansible-collections/ansible.windows/issues/291
+- win_updates - Improve error handling when starting background update task
+- win_user - Fix ``msg`` return value when setting ``state: query``
+- win_whoami - Fix conflicts with existing ``LIB`` environment variable
+
+community.digitalocean
+~~~~~~~~~~~~~~~~~~~~~~
+
+- Update the tests so that they only run once (https://github.com/ansible-collections/community.digitalocean/issues/186).
+- digital_ocean_droplet - fix resizing with C(state: active) does not actually turn Droplet on (https://github.com/ansible-collections/community.digitalocean/issues/140).
+- digital_ocean_kubernetes - fix return value consistency (https://github.com/ansible-collections/community.digitalocean/issues/174).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- a_module test plugin - fix crash when testing a module name that was tombstoned (https://github.com/ansible-collections/community.general/pull/3660).
+- xattr - fix exception caused by ``_run_xattr()`` raising a ``ValueError`` due to a mishandling of base64-encoded value (https://github.com/ansible-collections/community.general/issues/3673).
+
+community.okd
+~~~~~~~~~~~~~
+
+- fix broken links in Automation Hub for redhat.openshift (https://github.com/openshift/community.okd/issues/100).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- update_vswitch - add the possibility to remove nics from vswitch (https://github.com/ansible-collections/community.vmware/issues/536)
+- vmware_guest_serial_port - handle correct serial backing type (https://github.com/ansible-collections/community.vmware/issues/1043).
+- vmware_host_lockdown - Fix an issue when enabling or disabling lockdown mode failes (https://github.com/ansible-collections/community.vmware/issues/1083)
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- win_audit_rule - Fix exception when trying to change a rule on a hidden or protected system file - https://github.com/ansible-collections/community.windows/issues/17
+- win_firewall - Fix GpoBoolean/Boolean comparation(windows versions compatibility increase)
+- win_nssm - Perform better user comparison checks for idempotency
+- win_pssession_configuration - the associated action plugin detects check mode using a method that isn't always accurate (https://github.com/ansible-collections/community.windows/pull/318).
+- win_region - Fix conflicts with existing ``LIB`` environment variable
+- win_scheduled_task - Fix conflicts with existing ``LIB`` environment variable
+- win_scheduled_task_stat - Fix conflicts with existing ``LIB`` environment variable
+- win_scoop_bucket - Ensure no extra data is sent to the controller resulting in a junk output warning
+- win_xml - Do not show warnings for normal operations - https://github.com/ansible-collections/community.windows/issues/205
+- win_xml - Fix removal operation when running with higher verbosities - https://github.com/ansible-collections/community.windows/issues/275
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add option for ansible-core in RPM spec file
+- Add skip option for podman secret
+- Add support for network-alias flag
+- Allow to actually pass a list of string for "mounts"
+- Don't add newlines to secrets
+- Fix issue with podman and exposed ports
+- Fix signal diff for truncated and RT signal names
+- Support empty stings in prefixes
+- Update error message when pull set to false
+
+netapp.cloudmanager
+~~~~~~~~~~~~~~~~~~~
+
+- Fix cannot find working environment if ``working_environment_name`` is provided
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- cluster scoped modules are failing on FSx with 'Vserver API missing vserver parameter' error.
+- na_ontap_cluster - ``single_node_cluster`` was silently ignored with REST.
+- na_ontap_cluster - switch to ZAPI when DELETE is required with ONTAP 9.6.
+- na_ontap_snapmirror - ``source_path`` and ``source_hostname`` parameters are not mandatory to delete snapmirror relationship when source cluster is unknown, if specified it will delete snapmirror at destination and release the same at source side.  if not, it only deletes the snapmirror at destination and will not look for source to perform snapmirror release.
+- na_ontap_snapmirror - modify policy, schedule and other parameter failure are fixed.
+- na_ontap_snapshot - ``expiry_time`` required REST api, will return error if set when using ZAPI.
+- na_ontap_snapshot - ``snapmirror_label`` is supported with REST on ONTAP 9.7 or higher, report error if used on ONTAP 9.6.
+- na_ontap_storage_failover - KeyError on 'ha' if the system is not configured as HA.
+- na_ontap_svm - module will on init if a rest only and zapi only option are used at the same time.
+
+Known Issues
+------------
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_lag - The mac_address field in the response is not populated. This will be fixed in a future FlashBlade update.
+
+New Modules
+-----------
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- community.vmware.vmware_guest_tpm - Add or remove vTPM device for specified VM.
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- community.windows.win_domain_ou - Manage Active Directory Organizational Units
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 2.0.0)
+- ansible.netcommon (still version 2.4.0)
+- ansible.posix (still version 1.3.0)
+- ansible.utils (still version 2.4.2)
+- arista.eos (still version 3.1.0)
+- awx.awx (still version 19.4.0)
+- azure.azcollection (still version 1.10.0)
+- check_point.mgmt (still version 2.1.1)
+- chocolatey.chocolatey (still version 1.1.0)
+- cisco.aci (still version 2.1.0)
+- cisco.asa (still version 2.1.0)
+- cisco.intersight (still version 1.0.17)
+- cisco.ios (still version 2.5.0)
+- cisco.iosxr (still version 2.5.0)
+- cisco.ise (still version 1.2.1)
+- cisco.meraki (still version 2.5.0)
+- cisco.mso (still version 1.2.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 2.7.0)
+- cisco.ucs (still version 1.6.0)
+- cloud.common (still version 2.1.0)
+- cloudscale_ch.cloud (still version 2.2.0)
+- community.aws (still version 2.0.0)
+- community.azure (still version 1.1.0)
+- community.ciscosmb (still version 1.0.4)
+- community.crypto (still version 2.0.0)
+- community.dns (still version 2.0.1)
+- community.docker (still version 2.0.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.2.3)
+- community.hrobot (still version 1.2.0)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.0.2)
+- community.mongodb (still version 1.3.1)
+- community.mysql (still version 2.3.1)
+- community.network (still version 3.0.0)
+- community.postgresql (still version 1.5.0)
+- community.proxysql (still version 1.3.0)
+- community.rabbitmq (still version 1.1.0)
+- community.routeros (still version 2.0.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.1.0)
+- community.zabbix (still version 1.5.0)
+- cyberark.conjur (still version 1.1.0)
+- cyberark.pas (still version 1.0.7)
+- dellemc.enterprise_sonic (still version 1.1.0)
+- dellemc.openmanage (still version 4.2.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- f5networks.f5_modules (still version 1.12.0)
+- fortinet.fortios (still version 2.1.2)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.6.0)
+- hpe.nimble (still version 1.1.3)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.2.4)
+- infoblox.nios_modules (still version 1.1.2)
+- inspur.sm (still version 1.3.0)
+- junipernetworks.junos (still version 2.6.0)
+- kubernetes.core (still version 2.2.1)
+- mellanox.onyx (still version 1.0.0)
+- netapp.storagegrid (still version 21.7.0)
+- netapp_eseries.santricity (still version 1.2.13)
+- netbox.netbox (still version 3.3.0)
+- ngine_io.cloudstack (still version 2.2.2)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.0)
+- openstack.cloud (still version 1.5.1)
+- openvswitch.openvswitch (still version 2.0.2)
+- ovirt.ovirt (still version 1.6.4)
+- purestorage.flasharray (still version 1.11.0)
+- sensu.sensu_go (still version 1.12.0)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 1.0.2)
+- theforeman.foreman (still version 2.2.0)
+- vyos.vyos (still version 2.6.0)
+- wti.remote (still version 1.0.1)
+
 v5.0.0a3
 ========
 
