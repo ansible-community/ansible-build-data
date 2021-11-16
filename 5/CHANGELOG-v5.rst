@@ -8,6 +8,356 @@ This changelog describes changes since Ansible 4.0.0.
   :local:
   :depth: 2
 
+v5.0.0b2
+========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2021-11-16
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 5.0.0b2 contains Ansible-core version 2.12.0.
+This is the same version of Ansible-core as in the previous Ansible release.
+
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection             | Ansible 5.0.0b1 | Ansible 5.0.0b2 | Notes                                                                                                                        |
++========================+=================+=================+==============================================================================================================================+
+| amazon.aws             | 2.0.0           | 2.1.0           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.nxos             | 2.7.0           | 2.7.1           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.aws          | 2.0.0           | 2.1.0           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns          | 2.0.1           | 2.0.2           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker       | 2.0.0           | 2.0.1           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general      | 4.0.1           | 4.0.2           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sops         | 1.1.0           | 1.2.0           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.pas           | 1.0.7           | 1.0.10          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortios       | 2.1.2           | 2.1.3           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| infinidat.infinibox    | 1.2.4           | 1.3.0           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.storagegrid     | 21.7.0          | 21.8.0          | The collection did not have a changelog in this version.                                                                     |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| openstack.cloud        | 1.5.1           | 1.5.3           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade | 1.8.0           | 1.8.1           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| wti.remote             | 1.0.1           | 1.0.3           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Add real-world use cases in the example section for some configuration modules.
+- Collect the current configurations of the modules and convert them into playbooks.
+- Support FortiOS 7.0.1.
+- Support member operation (delete/add extra members) on an object that has a list of members in it.
+- Support selectors feature in ``fortios_monitor_fact`` and ``fortios_log_fact``.
+
+Minor Changes
+-------------
+
+amazon.aws
+~~~~~~~~~~
+
+- aws_service_ip_ranges - add new option ``ipv6_prefixes`` to get only IPV6 addresses and prefixes for Amazon services (https://github.com/ansible-collections/amazon.aws/pull/430)
+- cloudformation - fix detection when there are no changes. Sometimes when there are no changes, the change set will have a status FAILED with StatusReason No updates are to be performed (https://github.com/ansible-collections/amazon.aws/pull/507).
+- ec2_ami - add check_mode support (https://github.com/ansible-collections/amazon.aws/pull/516).
+- ec2_ami - use module_util helper for tagging AMIs (https://github.com/ansible-collections/amazon.aws/pull/520).
+- ec2_ami - when creating an AMI from an instance pass the tagging options at creation time (https://github.com/ansible-collections/amazon.aws/pull/551).
+- ec2_elb_lb - module renamed to ``elb_classic_lb`` (https://github.com/ansible-collections/amazon.aws/pull/377).
+- ec2_eni - add check mode support (https://github.com/ansible-collections/amazon.aws/pull/534).
+- ec2_eni - use module_util helper for tagging ENIs (https://github.com/ansible-collections/amazon.aws/pull/522).
+- ec2_instance - use module_util helpers for tagging (https://github.com/ansible-collections/amazon.aws/pull/527).
+- ec2_key - add support for tagging key pairs (https://github.com/ansible-collections/amazon.aws/pull/548).
+- ec2_snapshot - add check_mode support (https://github.com/ansible-collections/amazon.aws/pull/512).
+- ec2_vol - add check_mode support (https://github.com/ansible-collections/amazon.aws/pull/509).
+- ec2_vpc_dhcp_option - use module_util helpers for tagging (https://github.com/ansible-collections/amazon.aws/pull/531).
+- ec2_vpc_endpoint - added ``vpc_endpoint_security_groups`` parameter to support defining the security group attached to an interface endpoint (https://github.com/ansible-collections/amazon.aws/pull/544).
+- ec2_vpc_endpoint - added ``vpc_endpoint_subnets`` parameter to support defining the subnet attached to an interface or gateway endpoint (https://github.com/ansible-collections/amazon.aws/pull/544).
+- ec2_vpc_endpoint - use module_util helper for tagging (https://github.com/ansible-collections/amazon.aws/pull/525).
+- ec2_vpc_endpoint - use module_util helpers for tagging (https://github.com/ansible-collections/amazon.aws/pull/531).
+- ec2_vpc_igw - use module_util helper for tagging (https://github.com/ansible-collections/amazon.aws/pull/523).
+- ec2_vpc_igw - use module_util helpers for tagging (https://github.com/ansible-collections/amazon.aws/pull/531).
+- ec2_vpc_nat_gateway - use module_util helper for tagging (https://github.com/ansible-collections/amazon.aws/pull/524).
+- ec2_vpc_nat_gateway - use module_util helpers for tagging (https://github.com/ansible-collections/amazon.aws/pull/531).
+- elb_classic_lb - added retries on common AWS temporary API failures (https://github.com/ansible-collections/amazon.aws/pull/377).
+- elb_classic_lb - added support for check_mode (https://github.com/ansible-collections/amazon.aws/pull/377).
+- elb_classic_lb - added support for wait during creation (https://github.com/ansible-collections/amazon.aws/pull/377).
+- elb_classic_lb - added support for wait during instance addition and removal (https://github.com/ansible-collections/amazon.aws/pull/377).
+- elb_classic_lb - migrated to boto3 SDK (https://github.com/ansible-collections/amazon.aws/pull/377).
+- elb_classic_lb - various error messages changed due to refactor (https://github.com/ansible-collections/amazon.aws/pull/377).
+- module_utils.ec2 - moved generic tagging helpers into module_utils.tagging (https://github.com/ansible-collections/amazon.aws/pull/527).
+- module_utils.tagging - add new helper to generate TagSpecification lists (https://github.com/ansible-collections/amazon.aws/pull/527).
+
+community.aws
+~~~~~~~~~~~~~
+
+- aws_config_delivery_channel - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- aws_direct_connect_confirm_connection - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- aws_direct_connect_connection - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- aws_direct_connect_link_aggregation_group - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- aws_direct_connect_virtual_interface - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- aws_inspector_target - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- aws_kms - add support for ``kms_spec`` and ``kms_usage`` parameter (https://github.com/ansible-collections/community.aws/pull/774).
+- aws_kms - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- aws_kms_info - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- cloudformation_stack_set - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- cloudfront_distribution - add ``TLSv1.2_2021`` security policy for viewer connections (https://github.com/ansible-collections/community.aws/pull/707).
+- dms_endpoint - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- dms_replication_subnet_group - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- dynamodb_table - add support for setting the `billing_mode` option (https://github.com/ansible-collections/community.aws/pull/753).
+- dynamodb_table - the module has been updated to use the boto3 AWS SDK (https://github.com/ansible-collections/community.aws/pull/726).
+- ec2_asg - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- ec2_eip - added support for tagging EIPs (https://github.com/ansible-collections/community.aws/pull/332).
+- ec2_eip_info - added automatic retries for common temporary API failures (https://github.com/ansible-collections/community.aws/pull/332).
+- ec2_eip_info - added support for tagging EIPs (https://github.com/ansible-collections/community.aws/pull/332).
+- ec2_elb_info - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- ec2_win_password - module updated to use the boto3 AWS SDK (https://github.com/ansible-collections/community.aws/pull/759).
+- ecs_service - added support for forcing deletion of a service (https://github.com/ansible-collections/community.aws/pull/228).
+- ecs_service_info - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- ecs_taskdefinition - add ``placement_constraints`` option (https://github.com/ansible-collections/community.aws/pull/741).
+- efs - add ``transition_to_ia`` parameter to support specifying the number of days before transitioning data to inactive storage (https://github.com/ansible-collections/community.aws/pull/522).
+- elb_instance - added new ``updated_elbs`` return value (https://github.com/ansible-collections/community.aws/pull/773).
+- elb_instance - the module has been migrated to the boto3 AWS SDK (https://github.com/ansible-collections/community.aws/pull/773).
+- elb_target_group - add ``preserve_client_ip_enabled`` option (https://github.com/ansible-collections/community.aws/pull/670).
+- elb_target_group - add ``proxy_protocol_v2_enabled`` option (https://github.com/ansible-collections/community.aws/pull/670).
+- iam_managed_policy - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- iam_role - Added `wait` option for IAM role creation / updates (https://github.com/ansible-collections/community.aws/pull/767).
+- iam_saml_federation - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- iam_server_certificate - add support for check_mode (https://github.com/ansible-collections/community.aws/pull/737).
+- iam_server_certificate - migrate module to using the boto3 SDK (https://github.com/ansible-collections/community.aws/pull/737).
+- lambda_info - add automatic retries for recoverable errors (https://github.com/ansible-collections/community.aws/pull/777).
+- lambda_info - add support for tags (https://github.com/ansible-collections/community.aws/pull/375).
+- lambda_info - use paginator for list queries (https://github.com/ansible-collections/community.aws/pull/777).
+- rds - replaced use of deprecated backoff decorator (https://github.com/ansible-collections/community.aws/pull/764).
+- redshift_subnet_group - added support for check_mode (https://github.com/ansible-collections/community.aws/pull/724).
+- redshift_subnet_group - the ``group_description`` option has been renamed to ``description`` and is now optional. The old parameter name will continue to work (https://github.com/ansible-collections/community.aws/pull/724).
+- redshift_subnet_group - the ``group_subnets`` option has been renamed to ``subnets`` and is now only required when creating a new group. The old parameter name will continue to work (https://github.com/ansible-collections/community.aws/pull/724).
+- redshift_subnet_group - the module has been migrated to the boto3 AWS SDK (https://github.com/ansible-collections/community.aws/pull/724).
+- route53_health_check - add support for tagging health checks (https://github.com/ansible-collections/community.aws/pull/765).
+- route53_health_check - added support for check_mode (https://github.com/ansible-collections/community.aws/pull/734).
+- route53_health_check - added support for disabling health checks (https://github.com/ansible-collections/community.aws/pull/756).
+- route53_health_check - migrated to boto3 SDK (https://github.com/ansible-collections/community.aws/pull/734).
+- route53_zone - add support for tagging Route 53 zones (https://github.com/ansible-collections/community.aws/pull/565).
+- sqs_queue - Providing a kms_master_key_id will now enable SSE properly (https://github.com/ansible-collections/community.aws/pull/762)
+
+community.sops
+~~~~~~~~~~~~~~
+
+- sops lookup and vars plugin - allow to configure almost all generic options by ansible.cfg entries and environment variables (https://github.com/ansible-collections/community.sops/pull/81).
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb.py - Use latest `pypureclient` SDK with fix for "best fit". No longer requires double login to negotiate best API version.
+
+Deprecated Features
+-------------------
+
+amazon.aws
+~~~~~~~~~~
+
+- ec2_classic_lb - setting of the ``ec2_elb`` fact has been deprecated and will be removed in release 4.0.0 of the collection. The module now returns ``elb`` which can be accessed using the register keyword (https://github.com/ansible-collections/amazon.aws/pull/552).
+
+community.aws
+~~~~~~~~~~~~~
+
+- dynamodb_table - DynamoDB does not support specifying non-key-attributes when creating an ``ALL`` index.  Passing ``includes`` for such indexes is currently ignored but will result in failures after version 3.0.0 (https://github.com/ansible-collections/community.aws/pull/726).
+- dynamodb_table - DynamoDB does not support updating the primary indexes on a table.  Attempts to make such changes are currently ignored but will result in failures after version 3.0.0 (https://github.com/ansible-collections/community.aws/pull/726).
+- elb_instance - setting of the ``ec2_elb`` fact has been deprecated and will be removed in release 4.0.0 of the collection. See the module documentation for an alternative example using the register keyword (https://github.com/ansible-collections/community.aws/pull/773).
+- iam_cert - the iam_cert module has been renamed to iam_server_certificate for consistency with the companion iam_server_certificate_info module. The usage of the module has not changed.  The iam_cert alias will be removed in version 4.0.0 (https://github.com/ansible-collections/community.aws/pull/728).
+- iam_server_certificate - Passing file names to the ``cert``, ``chain_cert`` and ``key`` parameters has been deprecated. We recommend using a lookup plugin to read the files instead, see the documentation for an example (https://github.com/ansible-collections/community.aws/pull/735).
+- iam_server_certificate - the default value for the ``dup_ok`` parameter is currently ``false``, in version 4.0.0 this will be updated to ``true``.  To preserve the current behaviour explicitly set the ``dup_ok`` parameter to ``false`` (https://github.com/ansible-collections/community.aws/pull/737).
+- rds_snapshot - the rds_snapshot module has been renamed to rds_instance_snapshot. The usage of the module has not changed. The rds_snapshot alias will be removed in version 4.0.0 (https://github.com/ansible-collections/community.aws/pull/783).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- Support for Ansible 2.9 and ansible-base 2.10 is deprecated, and will be removed in the next major release (community.general 5.0.0) next spring. While most content will probably still work with ansible-base 2.10, we will remove symbolic links for modules and action plugins, which will make it impossible to use them with Ansible 2.9 anymore. Please use community.general 4.x.y with Ansible 2.9 and ansible-base 2.10, as these releases will continue to support Ansible 2.9 and ansible-base 2.10 even after they are End of Life (https://github.com/ansible-community/community-topics/issues/50, https://github.com/ansible-collections/community.general/pull/3723).
+
+Bugfixes
+--------
+
+amazon.aws
+~~~~~~~~~~
+
+- AWS action group - added missing ``ec2_instance_facts`` entry (https://github.com/ansible-collections/amazon.aws/issues/557)
+- ec2_ami - fix problem when creating an AMI from an instance with ephemeral volumes (https://github.com/ansible-collections/amazon.aws/issues/511).
+- ec2_instance - ensure that ec2_instance falls back to the tag(Name) parameter when no filter and no name parameter is passed (https://github.com/ansible-collections/amazon.aws/issues/526).
+- s3_bucket - update error handling to better support DigitalOcean Space (https://github.com/ansible-collections/amazon.aws/issues/508).
+
+cisco.nxos
+~~~~~~~~~~
+
+- `nxos_acls` - Updating an existing ACE can only be done with states replaced or overridden. Using state merged will result in a failure.
+- `nxos_logging_global` - Fix vlan_mgr not being gathered in facts (https://github.com/ansible-collections/cisco.nxos/issues/380).
+- `nxos_vlans` - Fallback to json when json-pretty is not supported (https://github.com/ansible-collections/cisco.nxos/issues/377).
+
+community.aws
+~~~~~~~~~~~~~
+
+- AWS action group - added missing ``aws_direct_connect_confirm_connection`` and ``efs_tag`` entries (https://github.com/ansible-collections/amazon.aws/issues/557).
+- cloudfront_info - Switch to native boto3 paginators to fix reported bug when over 100 distributions exist (https://github.com/ansible-collections/community.aws/issues/769).
+- ec2_eip - fix bug when allocating an EIP but not associating it to a VPC (https://github.com/ansible-collections/community.aws/pull/731).
+- elb_classic_lb_info - fix empty list returned when names not defined (https://github.com/ansible-collections/community.aws/pull/693).
+- elb_instance - Python 3 compatability fix (https://github.com/ansible-collections/community.aws/issues/384).
+- iam_role_info - switch to jittered backoff to reduce rate limiting failures (https://github.com/ansible-collections/community.aws/pull/748).
+- rds_instance - Fixed issue with enabling enhanced monitoring on a pre-existing RDS instance (https://github.com/ansible-collections/community.aws/pull/747).
+- route53 - add missing set identifier in resource_record_set (https://github.com/ansible-collections/community.aws/pull/595).
+- route53 - fix diff mode when deleting records (https://github.com/ansible-collections/community.aws/pull/802).
+- route53 - return empty result for nonexistent records (https://github.com/ansible-collections/community.aws/pull/799).
+- sns_topic - define suboptions for delivery_policy option (https://github.com/ansible-collections/community.aws/issues/713).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- counter_enabled callback plugin - fix output to correctly display host and task counters in serial mode (https://github.com/ansible-collections/community.general/pull/3709).
+- ldap_search - allow it to be used even in check mode (https://github.com/ansible-collections/community.general/issues/3619).
+- lvol - allows logical volumes to be created with certain size arguments prefixed with ``+`` to preserve behavior of older versions of this module (https://github.com/ansible-collections/community.general/issues/3665).
+- nmcli - fixed falsely reported changed status when ``mtu`` is omitted with ``dummy`` connections (https://github.com/ansible-collections/community.general/issues/3612, https://github.com/ansible-collections/community.general/pull/3625).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- Fix error handling in calls of the ``sops`` binary when negative errors are returned (https://github.com/ansible-collections/community.sops/issues/82, https://github.com/ansible-collections/community.sops/pull/83).
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Fix Github issue
+- Fix the corner cases that response does not have status in it.
+- Fix the filters error when fetching multiple facts with selectors for a configuration module (Github issue
+
+New Modules
+-----------
+
+community.aws
+~~~~~~~~~~~~~
+
+- community.aws.iam_access_key - Manage AWS IAM User access keys
+- community.aws.iam_access_key_info - fetch information about AWS IAM User access keys
+- community.aws.rds_option_group - rds_option_group module
+- community.aws.rds_option_group_info - rds_option_group_info module
+
+Unchanged Collections
+---------------------
+
+- ansible.netcommon (still version 2.4.0)
+- ansible.posix (still version 1.3.0)
+- ansible.utils (still version 2.4.2)
+- ansible.windows (still version 1.8.0)
+- arista.eos (still version 3.1.0)
+- awx.awx (still version 19.4.0)
+- azure.azcollection (still version 1.10.0)
+- check_point.mgmt (still version 2.1.1)
+- chocolatey.chocolatey (still version 1.1.0)
+- cisco.aci (still version 2.1.0)
+- cisco.asa (still version 2.1.0)
+- cisco.intersight (still version 1.0.17)
+- cisco.ios (still version 2.5.0)
+- cisco.iosxr (still version 2.5.0)
+- cisco.ise (still version 1.2.1)
+- cisco.meraki (still version 2.5.0)
+- cisco.mso (still version 1.2.0)
+- cisco.nso (still version 1.0.3)
+- cisco.ucs (still version 1.6.0)
+- cloud.common (still version 2.1.0)
+- cloudscale_ch.cloud (still version 2.2.0)
+- community.azure (still version 1.1.0)
+- community.ciscosmb (still version 1.0.4)
+- community.crypto (still version 2.0.0)
+- community.digitalocean (still version 1.12.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.2.3)
+- community.hashi_vault (still version 2.0.0)
+- community.hrobot (still version 1.2.0)
+- community.kubernetes (still version 2.0.1)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.0.2)
+- community.mongodb (still version 1.3.1)
+- community.mysql (still version 2.3.1)
+- community.network (still version 3.0.0)
+- community.okd (still version 2.1.0)
+- community.postgresql (still version 1.5.0)
+- community.proxysql (still version 1.3.0)
+- community.rabbitmq (still version 1.1.0)
+- community.routeros (still version 2.0.0)
+- community.skydive (still version 1.0.0)
+- community.vmware (still version 1.16.0)
+- community.windows (still version 1.8.0)
+- community.zabbix (still version 1.5.0)
+- containers.podman (still version 1.8.2)
+- cyberark.conjur (still version 1.1.0)
+- dellemc.enterprise_sonic (still version 1.1.0)
+- dellemc.openmanage (still version 4.2.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- f5networks.f5_modules (still version 1.12.0)
+- fortinet.fortimanager (still version 2.1.4)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.6.0)
+- hpe.nimble (still version 1.1.3)
+- ibm.qradar (still version 1.0.3)
+- infoblox.nios_modules (still version 1.1.2)
+- inspur.sm (still version 1.3.0)
+- junipernetworks.junos (still version 2.6.0)
+- kubernetes.core (still version 2.2.1)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.12.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 21.13.1)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.2.13)
+- netbox.netbox (still version 3.3.0)
+- ngine_io.cloudstack (still version 2.2.2)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.0)
+- openvswitch.openvswitch (still version 2.0.2)
+- ovirt.ovirt (still version 1.6.4)
+- purestorage.flasharray (still version 1.11.0)
+- sensu.sensu_go (still version 1.12.0)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 1.0.2)
+- t_systems_mms.icinga_director (still version 1.24.0)
+- theforeman.foreman (still version 2.2.0)
+- vyos.vyos (still version 2.6.0)
+
 v5.0.0b1
 ========
 
