@@ -8,6 +8,180 @@ This changelog describes changes since Ansible 4.0.0.
   :local:
   :depth: 2
 
+v5.0.0rc1
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2021-11-23
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 5.0.0rc1 contains Ansible-core version 2.12.0.
+This is the same version of Ansible-core as in the previous Ansible release.
+
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++--------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection         | Ansible 5.0.0b2 | Ansible 5.0.0rc1 | Notes                                                                                                                        |
++====================+=================+==================+==============================================================================================================================+
+| community.crypto   | 2.0.0           | 2.0.1            |                                                                                                                              |
++--------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns      | 2.0.2           | 2.0.3            |                                                                                                                              |
++--------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot   | 1.2.0           | 1.2.1            |                                                                                                                              |
++--------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mongodb  | 1.3.1           | 1.3.2            | There are no changes recorded in the changelog.                                                                              |
++--------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.pas       | 1.0.10          | 1.0.13           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++--------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.storagegrid | 21.8.0          | 21.7.0           | The collection did not have a changelog in this version.                                                                     |
++--------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| ovirt.ovirt        | 1.6.4           | 1.6.5            |                                                                                                                              |
++--------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme_* modules - fix usage of ``fetch_url`` with changes in latest ansible-core ``devel`` branch (https://github.com/ansible-collections/community.crypto/pull/339).
+
+community.dns
+~~~~~~~~~~~~~
+
+- HTTP API module utils - fix usage of ``fetch_url`` with changes in latest ansible-core ``devel`` branch (https://github.com/ansible-collections/community.dns/pull/73).
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- Generic module HTTP support code - fix usage of ``fetch_url`` with changes in latest ansible-core ``devel`` branch (https://github.com/ansible-collections/community.hrobot/pull/30).
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- repositories - Update host and engine repositories to 4.4.9 (https://github.com/oVirt/ovirt-ansible-collection/pull/363).
+
+Bugfixes
+--------
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme_certificate - avoid passing multiple certificates to ``cryptography``'s X.509 certificate loader when ``fullchain_dest`` is used (https://github.com/ansible-collections/community.crypto/pull/324).
+- get_certificate, openssl_csr_info, x509_certificate_info - add fallback code for extension parsing that works with cryptography 36.0.0 and newer. This code re-serializes de-serialized extensions and thus can return slightly different values if the extension in the original CSR resp. certificate was not canonicalized correctly. This code is currently used as a fallback if the existing code stops working, but we will switch it to be the main code in a future release (https://github.com/ansible-collections/community.crypto/pull/331).
+- luks_device - now also runs a built-in LUKS signature cleaner on ``state=absent`` to make sure that also the secondary LUKS2 header is wiped when older versions of wipefs are used (https://github.com/ansible-collections/community.crypto/issues/326, https://github.com/ansible-collections/community.crypto/pull/327).
+- openssl_pkcs12 - use new PKCS#12 deserialization infrastructure from cryptography 36.0.0 if available (https://github.com/ansible-collections/community.crypto/pull/302).
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 2.1.0)
+- ansible.netcommon (still version 2.4.0)
+- ansible.posix (still version 1.3.0)
+- ansible.utils (still version 2.4.2)
+- ansible.windows (still version 1.8.0)
+- arista.eos (still version 3.1.0)
+- awx.awx (still version 19.4.0)
+- azure.azcollection (still version 1.10.0)
+- check_point.mgmt (still version 2.1.1)
+- chocolatey.chocolatey (still version 1.1.0)
+- cisco.aci (still version 2.1.0)
+- cisco.asa (still version 2.1.0)
+- cisco.intersight (still version 1.0.17)
+- cisco.ios (still version 2.5.0)
+- cisco.iosxr (still version 2.5.0)
+- cisco.ise (still version 1.2.1)
+- cisco.meraki (still version 2.5.0)
+- cisco.mso (still version 1.2.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 2.7.1)
+- cisco.ucs (still version 1.6.0)
+- cloud.common (still version 2.1.0)
+- cloudscale_ch.cloud (still version 2.2.0)
+- community.aws (still version 2.1.0)
+- community.azure (still version 1.1.0)
+- community.ciscosmb (still version 1.0.4)
+- community.digitalocean (still version 1.12.0)
+- community.docker (still version 2.0.1)
+- community.fortios (still version 1.0.0)
+- community.general (still version 4.0.2)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.2.3)
+- community.hashi_vault (still version 2.0.0)
+- community.kubernetes (still version 2.0.1)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.0.2)
+- community.mysql (still version 2.3.1)
+- community.network (still version 3.0.0)
+- community.okd (still version 2.1.0)
+- community.postgresql (still version 1.5.0)
+- community.proxysql (still version 1.3.0)
+- community.rabbitmq (still version 1.1.0)
+- community.routeros (still version 2.0.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.2.0)
+- community.vmware (still version 1.16.0)
+- community.windows (still version 1.8.0)
+- community.zabbix (still version 1.5.0)
+- containers.podman (still version 1.8.2)
+- cyberark.conjur (still version 1.1.0)
+- dellemc.enterprise_sonic (still version 1.1.0)
+- dellemc.openmanage (still version 4.2.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- f5networks.f5_modules (still version 1.12.0)
+- fortinet.fortimanager (still version 2.1.4)
+- fortinet.fortios (still version 2.1.3)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.6.0)
+- hpe.nimble (still version 1.1.3)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.3.0)
+- infoblox.nios_modules (still version 1.1.2)
+- inspur.sm (still version 1.3.0)
+- junipernetworks.junos (still version 2.6.0)
+- kubernetes.core (still version 2.2.1)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.12.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 21.13.1)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.2.13)
+- netbox.netbox (still version 3.3.0)
+- ngine_io.cloudstack (still version 2.2.2)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.0)
+- openstack.cloud (still version 1.5.3)
+- openvswitch.openvswitch (still version 2.0.2)
+- purestorage.flasharray (still version 1.11.0)
+- purestorage.flashblade (still version 1.8.1)
+- sensu.sensu_go (still version 1.12.0)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 1.0.2)
+- t_systems_mms.icinga_director (still version 1.24.0)
+- theforeman.foreman (still version 2.2.0)
+- vyos.vyos (still version 2.6.0)
+- wti.remote (still version 1.0.3)
+
 v5.0.0b2
 ========
 
@@ -2898,7 +3072,6 @@ amazon.aws
 ~~~~~~~~~~
 
 - amazon.aws collection - Due to the AWS SDKs announcing the end of support for Python less than 3.6 (https://boto3.amazonaws.com/v1/documentation/api/1.17.64/guide/migrationpy3.html) this collection now requires Python 3.6+ (https://github.com/ansible-collections/amazon.aws/pull/298).
-- amazon.aws collection - The amazon.aws collection has dropped support for ``botocore<1.16.0`` and ``boto3<1.13.0``. Most modules will continue to work with older versions of the AWS SDK, however compatability with older versions of the SDK is not guaranteed and will not be tested. When using older versions of the SDK a warning will be emitted by Ansible (https://github.com/ansible-collections/amazon.aws/pull/442).
 - amazon.aws collection - The amazon.aws collection has dropped support for ``botocore<1.18.0`` and ``boto3<1.15.0``. Most modules will continue to work with older versions of the AWS SDK, however compatability with older versions of the SDK is not guaranteed and will not be tested. When using older versions of the SDK a warning will be emitted by Ansible (https://github.com/ansible-collections/amazon.aws/pull/502).
 - ec2_instance - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_instance``.
 - ec2_instance_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_instance_info``.

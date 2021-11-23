@@ -794,4 +794,3 @@ vyos.vyos
 ~~~~~~~~~
 
 - The vyos_logging module has been deprecated in favor of the new vyos_logging_global resource module and will be removed in a release after "2023-08-01".
-
