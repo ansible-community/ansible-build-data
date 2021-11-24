@@ -132,6 +132,29 @@ Porting custom scripts
 
 No notable changes
 
+Porting Guide for v4.9.0
+========================
+
+Known Issues
+------------
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_lag - The mac_address field in the response is not populated. This will be fixed in a future FlashBlade update.
+
+Major Changes
+-------------
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Add real-world use cases in the example section for some configuration modules.
+- Collect the current configurations of the modules and convert them into playbooks.
+- Support FortiOS 7.0.1.
+- Support member operation (delete/add extra members) on an object that has a list of members in it.
+- Support selectors feature in ``fortios_monitor_fact`` and ``fortios_log_fact``.
+
 Porting Guide for v4.8.0
 ========================
 
@@ -826,7 +849,7 @@ community.general
 - puppet - deprecated undocumented parameter ``show_diff``, will be removed in 7.0.0. (https://github.com/ansible-collections/community.general/pull/1927).
 - runit - unused parameter ``dist`` marked for deprecation (https://github.com/ansible-collections/community.general/pull/1830).
 - slackpkg - deprecated invalid parameter alias ``update-cache``, will be removed in 5.0.0 (https://github.com/ansible-collections/community.general/pull/1927).
-- urmpi - deprecated invalid parameter aliases ``update-cache`` and ``no-recommends``, will be removed in 5.0.0 (https://github.com/ansible-collections/community.general/pull/1927).
+- urpmi - deprecated invalid parameter aliases ``update-cache`` and ``no-recommends``, will be removed in 5.0.0 (https://github.com/ansible-collections/community.general/pull/1927).
 - xbps - deprecated invalid parameter alias ``update-cache``, will be removed in 5.0.0 (https://github.com/ansible-collections/community.general/pull/1927).
 - xfconf - returning output as facts is deprecated, this will be removed in community.general 4.0.0. Please register the task output in a variable and use it instead. You can already switch to the new behavior now by using the new ``disable_facts`` option (https://github.com/ansible-collections/community.general/pull/1747).
 
