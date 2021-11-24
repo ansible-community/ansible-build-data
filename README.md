@@ -7,21 +7,21 @@ may be referred to by other projects and scripts.
 ::
 
     ansible-build-data
-    └── 2.10
-        ├── acd-2.10.0.deps
-        ├── acd-2.10.1.deps
-        ├── acd-2.10.build
-        └── acd.in
+    └── 3
+        ├── ansible-3.0.0.deps
+        ├── ansible-3.1.0.deps
+        ├── ansible-3.build
+        └── ansible.in
 
 * Each major release of Ansible gets a subdirectory of the repository named
-  according to the X.Y version number of Ansible.  (ex: `2.10`)
+  according to the X.Y version number of Ansible.  (ex: `3`)
 
-* Within each version directory, there is an `acd.in` file which lists the
+* Within each version directory, there is an `ansible.in` file which lists the
   collections that are in this release of Ansible.  The file consists of one
   `namespace.collection` per line.  This file is constructed by the person
   building Ansible for that release.
 
-* There will also be a file, `acd-X.Y.build`.  This file contains lines which
+* There will also be a file, `ansible-X.build`.  This file contains lines which
   consist of `namespace.collection` followed by a version range like::
 
       awx.awx: >=11.0.0,<12.0.0
@@ -30,13 +30,13 @@ may be referred to by other projects and scripts.
   backwards compatible with what was available when the initial Ansible-X.Y.0
   release was frozen.  Only versions of the collections within those ranges
   will be considered for Ansible minor releases.  This file will be created by the
-  ``ansibulled new_acd`` command.
+  ``antsibull-build new-ansible`` command.
 
-* Lastly, there will be multiple, `acd-X.Y.Z.deps` files.  Those files contain
+* Lastly, there will be multiple, `ansible-X.Y.Z.deps` files.  Those files contain
   lines which consist of `namespace.collection` followed by a single version like::
 
       awx.awx: 11.2.5
 
   The version specifies the exact version of the collection that appeared in that
-  release of Ansible.  This file will be created by the ``ansibulled
-  build_single`` command.
+  release of Ansible.  This file will be created by the ``antsibull-build single``
+  command.
