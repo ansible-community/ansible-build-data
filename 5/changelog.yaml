@@ -1,5 +1,7 @@
 ancestor: 4.0.0
 releases:
+  5.0.0:
+    release_date: '2021-11-30'
   5.0.0a1:
     changes:
       release_summary: 'Release Date: 2021-10-05
