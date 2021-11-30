@@ -18,7 +18,7 @@ v5.0.0
 Release Summary
 ---------------
 
-Release Date: 2021-11-23
+Release Date: 2021-11-30
 
 `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
 
