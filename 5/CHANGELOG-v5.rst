@@ -8,6 +8,140 @@ This changelog describes changes since Ansible 4.0.0.
   :local:
   :depth: 2
 
+v5.0.1
+======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2021-12-02
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 5.0.1 contains Ansible-core version 2.12.0.
+This is the same version of Ansible-core as in the previous Ansible release.
+
+
+Major Changes
+-------------
+
+- Raised python requirement of the ansible package from >=2.7 to >=3.8 to match ansible-core
+
+Minor Changes
+-------------
+
+- A galaxy-requirements.yaml file has been added to `ansible-build-data <https://github.com/ansible-community/ansible-build-data/blob/main/5/galaxy-requirements.yaml>`_. This file can be downloaded and used to install the Ansible collections that are otherwise included in the Ansible package with ``ansible-galaxy collection install -r galaxy-requirements.yaml``.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 2.1.0)
+- ansible.netcommon (still version 2.4.0)
+- ansible.posix (still version 1.3.0)
+- ansible.utils (still version 2.4.2)
+- ansible.windows (still version 1.8.0)
+- arista.eos (still version 3.1.0)
+- awx.awx (still version 19.4.0)
+- azure.azcollection (still version 1.10.0)
+- check_point.mgmt (still version 2.1.1)
+- chocolatey.chocolatey (still version 1.1.0)
+- cisco.aci (still version 2.1.0)
+- cisco.asa (still version 2.1.0)
+- cisco.intersight (still version 1.0.17)
+- cisco.ios (still version 2.5.0)
+- cisco.iosxr (still version 2.5.0)
+- cisco.ise (still version 1.2.1)
+- cisco.meraki (still version 2.5.0)
+- cisco.mso (still version 1.2.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 2.7.1)
+- cisco.ucs (still version 1.6.0)
+- cloud.common (still version 2.1.0)
+- cloudscale_ch.cloud (still version 2.2.0)
+- community.aws (still version 2.1.0)
+- community.azure (still version 1.1.0)
+- community.ciscosmb (still version 1.0.4)
+- community.crypto (still version 2.0.1)
+- community.digitalocean (still version 1.12.0)
+- community.dns (still version 2.0.3)
+- community.docker (still version 2.0.1)
+- community.fortios (still version 1.0.0)
+- community.general (still version 4.0.2)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.2.3)
+- community.hashi_vault (still version 2.0.0)
+- community.hrobot (still version 1.2.1)
+- community.kubernetes (still version 2.0.1)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.0.2)
+- community.mongodb (still version 1.3.2)
+- community.mysql (still version 2.3.1)
+- community.network (still version 3.0.0)
+- community.okd (still version 2.1.0)
+- community.postgresql (still version 1.5.0)
+- community.proxysql (still version 1.3.0)
+- community.rabbitmq (still version 1.1.0)
+- community.routeros (still version 2.0.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.2.0)
+- community.vmware (still version 1.16.0)
+- community.windows (still version 1.8.0)
+- community.zabbix (still version 1.5.0)
+- containers.podman (still version 1.8.2)
+- cyberark.conjur (still version 1.1.0)
+- cyberark.pas (still version 1.0.13)
+- dellemc.enterprise_sonic (still version 1.1.0)
+- dellemc.openmanage (still version 4.2.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- f5networks.f5_modules (still version 1.12.0)
+- fortinet.fortimanager (still version 2.1.4)
+- fortinet.fortios (still version 2.1.3)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.6.0)
+- hpe.nimble (still version 1.1.3)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.3.0)
+- infoblox.nios_modules (still version 1.1.2)
+- inspur.sm (still version 1.3.0)
+- junipernetworks.junos (still version 2.6.0)
+- kubernetes.core (still version 2.2.1)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.12.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 21.13.1)
+- netapp.storagegrid (still version 21.7.0)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.2.13)
+- netbox.netbox (still version 3.3.0)
+- ngine_io.cloudstack (still version 2.2.2)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.0)
+- openstack.cloud (still version 1.5.3)
+- openvswitch.openvswitch (still version 2.0.2)
+- ovirt.ovirt (still version 1.6.5)
+- purestorage.flasharray (still version 1.11.0)
+- purestorage.flashblade (still version 1.8.1)
+- sensu.sensu_go (still version 1.12.0)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 1.0.2)
+- t_systems_mms.icinga_director (still version 1.24.0)
+- theforeman.foreman (still version 2.2.0)
+- vyos.vyos (still version 2.6.0)
+- wti.remote (still version 1.0.3)
+
 v5.0.0
 ======
 
