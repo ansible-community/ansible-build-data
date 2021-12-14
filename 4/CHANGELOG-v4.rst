@@ -8,6 +8,466 @@ This changelog describes changes since Ansible 3.0.0.
   :local:
   :depth: 2
 
+v4.10.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2021-12-14
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 4.10.0 contains Ansible-core version 2.11.7.
+This is a newer version than version 2.11.6 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                    | Ansible 4.9.0 | Ansible 4.10.0 | Notes                                                                                                                        |
++===============================+===============+================+==============================================================================================================================+
+| ansible.netcommon             | 2.4.0         | 2.5.0          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.utils                 | 2.4.2         | 2.4.3          | There are no changes recorded in the changelog.                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| check_point.mgmt              | 2.1.1         | 2.2.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight              | 1.0.17        | 1.0.18         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios                     | 2.5.0         | 2.6.0          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.iosxr                   | 2.5.0         | 2.6.0          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.nxos                    | 2.7.1         | 2.8.2          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto              | 1.9.7         | 1.9.8          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.digitalocean        | 1.12.0        | 1.13.0         |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker              | 1.10.1        | 1.10.2         |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general             | 3.8.2         | 3.8.3          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.grafana             | 1.2.3         | 1.3.0          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql               | 2.3.1         | 2.3.2          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware              | 1.16.0        | 1.17.0         |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.zabbix              | 1.5.0         | 1.5.1          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman             | 1.8.2         | 1.9.0          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules         | 1.12.0        | 1.13.0         |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| hpe.nimble                    | 1.1.3         | 1.1.4          | The collection did not have a changelog in this version.                                                                     |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| junipernetworks.junos         | 2.6.0         | 2.8.0          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap                  | 21.13.1       | 21.14.1        |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netbox.netbox                 | 3.3.0         | 3.4.0          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| openvswitch.openvswitch       | 2.0.2         | 2.1.0          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ovirt.ovirt                   | 1.6.5         | 1.6.6          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| t_systems_mms.icinga_director | 1.25.0        | 1.26.0         |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add podman_tag module
+- Add secrets driver and driver opts support
+
+Minor Changes
+-------------
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- Copied the cliconf, httpapi, netconf, and terminal base plugins and NetworkConnectionBase into netcommon. These base plugins may now be imported from netcommmon instead of ansible if a collection depends on netcommon versions newer than this version, allowing features and bugfixes to flow to those collections without upgrading ansible.
+- Make ansible_network_os as optional param for httpapi connection plugin.
+- Support removal of non-config lines from running config while taking backup.
+- `network_cli` - added new option 'become_errors' to determine how privilege escalation failures are handled.
+
+cisco.ios
+~~~~~~~~~
+
+- `ios_acls` - feature: Remarks can be configured for ACLs.
+- `ios_snmp_server` - New Resource module added.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- Add iosxr_snmp_server resource module.
+- Added support for keys net_group, port_group to resolve issue with fact gathering against IOS-XR 6.6.3.
+
+cisco.nxos
+~~~~~~~~~~
+
+- Add nxos_snmp_server resource module.
+
+community.digitalocean
+~~~~~~~~~~~~~~~~~~~~~~
+
+- Set Python 3.9 as the C(python-version) and C(target-python-version) in the integration, sanity, and unit tests for Ansible > 2.9 (3.8 otherwise).
+- digital_ocean_droplet - allow the user to override the Droplet action and status polling interval (https://github.com/ansible-collections/community.digitalocean/issues/194).
+- digital_ocean_kubernetes - adding support for HA control plane (https://github.com/ansible-collections/community.digitalocean/issues/190).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- lxd connection plugin - make sure that ``ansible_lxd_host``, ``ansible_executable``, and ``ansible_lxd_executable`` work (https://github.com/ansible-collections/community.general/pull/3798).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_datastore_info - added show_tag parameters to allow datastore tags to be read in a uniform way across _info modules  (https://github.com/ansible-collections/community.vmware/pull/1085).
+- vmware_guest_disk - Added a new key 'cluster_disk' which allows you to use a filename originating from a VM with an RDM.
+- vmware_guest_disk - Added bus_sharing as an option for SCSI devices.
+- vmware_guest_disk - Enabled the use of up to 64 disks on a paravirtual SCSI controller when the hardware is version 14 or higher.
+- vmware_guest_sendkey - added additional USB scan codes for HOME and END.
+- vmware_host_scanhba - add rescan_vmfs parameter to allow rescaning for new VMFS volumes. Also add rescan_hba parameter with default true to allow for not rescaning HBAs as this might be very slow. (https://github.com/ansible-collections/community.vmware/issues/479)
+- vmware_host_snmp - implement setting syscontact and syslocation (https://github.com/ansible-collections/community.vmware/issues/1044).
+- vmware_rest_client module_util - added function get_tags_for_datastore for convenient tag collection (https://github.com/ansible-collections/community.vmware/pull/1085).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- Enabled usage of environment variables for modules by adding a fallback lookup in the module_utils/helpers.py - zabbix_common_argument_spec
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add a second example to podman_pod_module.html
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- Add junos_routing_options resource module.
+- Add junos_snmp_server resource module.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_aggregate - new option ``encryption`` to enable encryption with ZAPI.
+- na_ontap_fcp -- Added REST support for FCP
+- na_ontap_net_ifgrp - Added REST support to the net ifgrp module.
+- na_ontap_net_ifgrp - new REST only options ``from_lag_ports``, ``broadcast_domain`` and ``ipspace`` added.
+- na_ontap_net_port - Added REST support to the net port module
+- na_ontap_restit - new option ``wait_for_completion`` to support asynchronous operations and wait for job completion.
+- na_ontap_volume - Added REST support to the volume module
+- na_ontap_volume_efficiency - new option ``storage_efficiency_mode`` for AFF only with 9.10.1 or later.
+- na_ontap_vserver_delete role - added set_fact to accept ``netapp_{hostname|username|password}`` or ``hostname,username and password`` variables.
+- na_ontap_vserver_delete role - do not report an error if the vserver does not exist.
+- na_ontap_vserver_peer - Added REST support to the vserver_peer module
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- nb_inventory - Add documentation for use of inventory plugin in Tower/AWX [#648](https://github.com/netbox-community/ansible_modules/pull/648)
+- nb_inventory - Cache OpenAPI locally to speed up inventory [#617](https://github.com/netbox-community/ansible_modules/pull/617)
+- nb_lookup - Add missing endpoints to nb_lookup [#655](https://github.com/netbox-community/ansible_modules/pull/655)
+- netbox_cable - Improve lookup speed on NetBox versions earlier than 3.0.6 [#645](https://github.com/netbox-community/ansible_modules/pull/645)
+- netbox_inventory_item - Add label and custom fields to module [#632](https://github.com/netbox-community/ansible_modules/pull/632)
+- netbox_provider_network - Add module for handling provider networks [#653](https://github.com/netbox-community/ansible_modules/pull/653)
+- netbox_virtual_chassis - Add custom_fields to netbox_virtual_chassis [#657](https://github.com/netbox-community/ansible_modules/pull/657)
+- netbox_vm_interface - Add custom fields to module [#637](https://github.com/netbox-community/ansible_modules/pull/637)
+
+openvswitch.openvswitch
+~~~~~~~~~~~~~~~~~~~~~~~
+
+- Allows read operation in openvswitch_db module(https://github.com/ansible-collections/openvswitch.openvswitch/pull/88)
+- openvswitch modules got support for database socket parameter.
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- info - Enable follow parameter (https://github.com/oVirt/ovirt-ansible-collection/pull/355).
+- info - Rename follows to follow parameter and add alias (https://github.com/oVirt/ovirt-ansible-collection/pull/367).
+- info - bump deprecate version for fetch_nested and nested_attributes (https://github.com/oVirt/ovirt-ansible-collection/pull/378).
+- manageiq - add deprecation info (https://github.com/oVirt/ovirt-ansible-collection/pull/384).
+- ovirt_remove_stale_lun - Allow user to remove multiple LUNs (https://github.com/oVirt/ovirt-ansible-collection/pull/357).
+- ovirt_remove_stale_lun - Retry "multipath -f" while removing the LUNs (https://github.com/oVirt/ovirt-ansible-collection/pull/382).
+
+t_systems_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- add option to append arguments to all modules (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/153)
+
+Deprecated Features
+-------------------
+
+cisco.nxos
+~~~~~~~~~~
+
+- Deprecated nxos_snmp_community module.
+- Deprecated nxos_snmp_contact module.
+- Deprecated nxos_snmp_host module.
+- Deprecated nxos_snmp_location module.
+- Deprecated nxos_snmp_traps module.
+- Deprecated nxos_snmp_user module.
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- 'router_id' options is deprecated from junos_ospf_interfaces, junos_ospfv2 and junos_ospfv3 resuorce module.
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Ansible.ModuleUtils.LinkUtil - Ignore the ``LIB`` environment variable when loading the ``LinkUtil`` code
+- ``action_groups`` - Alias short names in collection action groups to FQCR of the owning collection (https://github.com/ansible/ansible/issues/76164)
+- hostname, fix module example using `strategy` instead of `use`.
+- set ssh host_key_checking defaults to True, restoring original behaviour (https://github.com/ansible/ansible/issues/75168)
+- validate_argument_spec - Skip suboption validation if the top level option is an invalid type (https://github.com/ansible/ansible/issues/75612).
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- network_cli - Provide clearer error message when a prompt regex fails to compile
+- network_cli - fix issue when multiple terminal_initial_(prompt|answer) values are given (https://github.com/ansible-collections/ansible.netcommon/issues/331).
+
+cisco.ios
+~~~~~~~~~
+
+- 'ios_banner' - Bugfix for presence of multiple delimitation chars in the banner's declaration and idempotence improvement.
+- Fix ntp_global - remove no_log for key_id under peer and server attributes.
+- Fix ntp_global - to handle when attribute value is false.
+- `ios_acls` - bugfixes and optimization for ACLs.
+- `ios_l2_interfaces` - fix unable to set switchport mode properly.
+- `ios_logging_global` - fix host ipv6 commands not parsed correctly.
+- `ios_logging_global` - fix wrong ordering of commands fired on replaced state.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- fix issue of local variable 'start_index' referenced before assignment with cisco.iosxr.iosxr_config.
+- iosxr_user - replaced custom paramiko sftp and ssh usage with native "copy_file" and "send_command" functions. Fixed issue when ssh key copying doesn't work with network_cli or netconf plugin by deleting "provider" usage. Fixed improper handling of "No such configuration item" when getting data for username section, without that ansible always tried to delete user "No" when purging if there is no any user in config. Fixed one-line admin mode commands not work anymore for ssh key management on IOS XR Software, Version 7.1.3, and add support of "admin" module property (https://github.com/ansible-collections/cisco.iosxr/pull/15)
+
+cisco.nxos
+~~~~~~~~~~
+
+- `nxos_ntp_global` - In some cases, there is an extra whitespace in the source-interface line. This patch accounts for this behaviour in config (https://github.com/ansible-collections/cisco.nxos/issues/399).
+- nxos_acls - Fix incorrect parsing of remarks if it has 'ip/ipv6 access-list' in it.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_api connection plugin - avoid passing an unnecessary argument to a Docker SDK for Python call that is only supported by version 3.0.0 or later (https://github.com/ansible-collections/community.docker/pull/243).
+- docker_container_exec - ``chdir`` is only supported since Docker SDK for Python 3.0.0. Make sure that this option can only use when 3.0.0 or later is installed, and prevent passing this parameter on when ``chdir`` is not provided to this module (https://github.com/ansible-collections/community.docker/pull/243, https://github.com/ansible-collections/community.docker/issues/242).
+- nsenter connection plugin - ensure the ``nsenter_pid`` option is retrieved in ``_connect`` instead of ``__init__`` to prevent a crasher due to bad initialization order (https://github.com/ansible-collections/community.docker/pull/249).
+- nsenter connection plugin - replace the use of ``--all-namespaces`` with specific namespaces to support compatibility with Busybox nsenter (used on, for example, Alpine containers) (https://github.com/ansible-collections/community.docker/pull/249).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- interfaces_file - fixed the check for existing option in interface (https://github.com/ansible-collections/community.general/issues/3841).
+- nmcli - fix returning "changed" when no mask set for IPv4 or IPv6 addresses on task rerun (https://github.com/ansible-collections/community.general/issues/3768).
+- nmcli - pass ``flags``, ``ingress``, ``egress`` params to ``nmcli`` (https://github.com/ansible-collections/community.general/issues/1086).
+- opentelemetry_plugin - honour ``ignore_errors`` when a task has failed instead of reporting an error (https://github.com/ansible-collections/community.general/pull/3837).
+- pipx - passes the correct command line option ``--include-apps`` (https://github.com/ansible-collections/community.general/issues/3791).
+- proxmox - fixed ``onboot`` parameter causing module failures when undefined (https://github.com/ansible-collections/community.general/issues/3844).
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- Fix issue with datasource names that could not contain slashes (#125)
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_db - Fix mismatch when database name contains a ``%`` character (https://github.com/ansible-collections/community.mysql/pull/227).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_guest - when ``customization.password`` is not defined, the Administrator password is made empty instead of setting it to string 'None' (https://github.com/ansible-collections/community.vmware/issues/1017).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- template - use templateid property when linking templates for ``template.create`` and ``template.update`` API calls.
+- zabbix inventory - Moved ZABBIX_VALIDATE_CERTS to correct option, validate_certs.
+- zabbix_agent - Create the actual configuration file for Windows setups.
+- zabbix_agent - Fix typo for correct using the zabbix_windows_service.exists
+- zabbix_agent - tlspsk_auto to support become on Linux and ignore on windows
+- zabbix_user - fix zabbix_user require password only on internal.
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add documentations for generate_systemd
+- Don't include shared 'net' if network is host in pods
+- Hardcode RT signal numbers
+- Remove default value of log-driver
+- Support --new in generate_systemd
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Add auto_last_hop parameter to bigip_virtual_server module
+- Fix an issue in bigip_virtual_server module that wrongly sets the partition name for profile.
+- Fix issue with teem data collection where device was not ready and was returning 404 error when queried for tmos version
+- fix for displaying src, checksum and other parameters when running ucs_fetch module
+- fix for source capability for bigip_device_auth_ldap module
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- Fix ospf router_id overlap issue.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- fix error where module will fail for ONTAP 9.6 if use_rest was set to auto
+- na_ontap_cifs_local_user_modify - KeyError on ``description`` or ``full_name`` with REST.
+- na_ontap_cifs_local_user_modify - unexpected argument ``name`` error with REST.
+- na_ontap_export_policy - fix error if more than 1 verser matched search name, the wrong uuid could be given
+- na_ontap_net_ifgrp - fix error in modify ports with zapi.
+- na_ontap_net_routes - metric was not always modified with ZAPI.
+- na_ontap_net_routes - support cluster-scoped routes with REST.
+- na_ontap_vserver_delete role - report error if ONTAP version is 9.6 or older.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- nb_lookup - Fix documentation of validate_cert [#629](https://github.com/netbox-community/ansible_modules/pull/629)
+- netbox_site - Ensure idempotency between NetBox version 2.11 and 3.00 [#631](https://github.com/netbox-community/ansible_modules/pull/631)
+- netbox_virtual_chassis - Fix issue with virtual chassis creation [#657](https://github.com/netbox-community/ansible_modules/pull/657)
+- netbox_virtual_machine - Ensure idempotency between NetBox version 2.11 and 3.00 [#633](https://github.com/netbox-community/ansible_modules/pull/633)
+
+New Modules
+-----------
+
+cisco.ios
+~~~~~~~~~
+
+- cisco.ios.ios_snmp_server - snmp_server resource module
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- cisco.iosxr.iosxr_snmp_server - Manages snmp-server resource module
+
+cisco.nxos
+~~~~~~~~~~
+
+- cisco.nxos.nxos_snmp_server - SNMP Server resource module.
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- community.grafana.grafana_organization - Manage Grafana Organization
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- containers.podman.podman_tag - Add an additional name to a local image
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- junipernetworks.junos.junos_routing_options - Manage routing-options configuration on Junos devices.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- netbox.netbox.netbox_provider_network - Create, update or delete Provider Network in NetBox
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 1.5.1)
+- ansible.posix (still version 1.3.0)
+- ansible.windows (still version 1.8.0)
+- arista.eos (still version 2.2.0)
+- awx.awx (still version 19.4.0)
+- azure.azcollection (still version 1.10.0)
+- chocolatey.chocolatey (still version 1.1.0)
+- cisco.aci (still version 2.1.0)
+- cisco.asa (still version 2.1.0)
+- cisco.meraki (still version 2.5.0)
+- cisco.mso (still version 1.2.0)
+- cisco.nso (still version 1.0.3)
+- cisco.ucs (still version 1.6.0)
+- cloudscale_ch.cloud (still version 2.2.0)
+- community.aws (still version 1.5.0)
+- community.azure (still version 1.1.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.hashi_vault (still version 1.5.0)
+- community.hrobot (still version 1.2.1)
+- community.kubernetes (still version 1.2.1)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.0.2)
+- community.mongodb (still version 1.3.2)
+- community.network (still version 3.0.0)
+- community.okd (still version 1.1.2)
+- community.postgresql (still version 1.6.0)
+- community.proxysql (still version 1.3.0)
+- community.rabbitmq (still version 1.1.0)
+- community.routeros (still version 1.2.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.2.0)
+- community.windows (still version 1.8.0)
+- cyberark.conjur (still version 1.1.0)
+- cyberark.pas (still version 1.0.13)
+- dellemc.enterprise_sonic (still version 1.1.0)
+- dellemc.openmanage (still version 3.6.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- fortinet.fortimanager (still version 2.1.4)
+- fortinet.fortios (still version 2.1.3)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.6.0)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.3.0)
+- inspur.sm (still version 1.3.0)
+- kubernetes.core (still version 1.2.1)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.12.1)
+- netapp.elementsw (still version 21.7.0)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.2.13)
+- ngine_io.cloudstack (still version 2.2.2)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.0)
+- openstack.cloud (still version 1.5.3)
+- purestorage.flasharray (still version 1.11.0)
+- purestorage.flashblade (still version 1.8.1)
+- sensu.sensu_go (still version 1.12.0)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 1.0.2)
+- theforeman.foreman (still version 2.2.0)
+- vyos.vyos (still version 2.6.0)
+- wti.remote (still version 1.0.3)
+
 v4.9.0
 ======
 
