@@ -1,5 +1,5 @@
-name: antsibull-build tests
-
+# antsibull/roles/build-release defaults to 5.x for the time being
+name: antsibull-build default (ansible 5.x)
 on:
   push:
     branches: [main]
@@ -40,7 +40,7 @@ jobs:
       - name: Test building a release with the defaults
         working-directory: antsibull
         run: |
-          ansible-playbook -vv playbooks/build-single-release.yaml -e antsibull_ansible_version=6.0.0a1 -e antsibull_data_reset=false
+          ansible-playbook -vv playbooks/build-single-release.yaml -e antsibull_data_reset=false
 
       - name: Combine and upload coverage stats
         working-directory: antsibull
