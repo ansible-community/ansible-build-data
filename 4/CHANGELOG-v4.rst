@@ -5663,6 +5663,15 @@ Release Date: 2021-05-11
 
 `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
 
+Added Collections
+-----------------
+
+- dellemc.enterprise_sonic (version 1.0.3)
+- hpe.nimble (version 1.1.3)
+- netapp.azure (version 21.5.0)
+- netapp.cloudmanager (version 21.5.1)
+- netapp.um_info (version 21.5.0)
+
 Ansible-core
 ------------
 

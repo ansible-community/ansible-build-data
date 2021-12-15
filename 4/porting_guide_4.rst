@@ -516,6 +516,15 @@ inspur.sm
 Porting Guide for v4.0.0
 ========================
 
+Added Collections
+-----------------
+
+- dellemc.enterprise_sonic (version 1.0.3)
+- hpe.nimble (version 1.1.3)
+- netapp.azure (version 21.5.0)
+- netapp.cloudmanager (version 21.5.1)
+- netapp.um_info (version 21.5.0)
+
 Known Issues
 ------------
 
