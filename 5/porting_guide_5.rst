@@ -115,6 +115,68 @@ Networking
 
 No notable changes
 
+Porting Guide for v5.1.0
+========================
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_user - Issue(192043) The module may error out with the message ``unable to perform the import or export operation because there are pending attribute changes or a configuration job is in progress``. Wait for the job to complete and run the task again.
+- ome_application_alerts_smtp - Issue(212310) - The module does not provide a proper error message if the destination_address is more than 255 characters.
+- ome_application_alerts_syslog - Issue(215374) - The module does not provide a proper error message if the destination_address is more than 255 characters.
+- ome_device_network_services - Issue(212681) - The module does not provide a proper error message if unsupported values are provided for the parameters- port_number, community_name, max_sessions, max_auth_retries, and idle_timeout.
+- ome_device_power_settings - Issue(212679) - The module errors out with the following message if the value provided for the parameter ``power_cap`` is not within the supported range of 0 to 32767, ``Unable to complete the request because PowerCap does not  exist or is not applicable for the resource URI.``
+- ome_smart_fabric_uplink - Issue(186024) - The module does not allow the creation of multiple uplinks of the same name even though it is supported by OpenManage Enterprise Modular. If an uplink is created using the same name as an existing uplink, the existing uplink is modified.
+
+Major Changes
+-------------
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add podman_tag module
+- Add secrets driver and driver opts support
+
+Removed Features
+----------------
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- the "legacy" integration test setup has been removed; this does not affect end users and is only relevant to contributors (https://github.com/ansible-collections/community.hashi_vault/pull/191).
+
+Deprecated Features
+-------------------
+
+cisco.nxos
+~~~~~~~~~~
+
+- Deprecated nxos_snmp_community module.
+- Deprecated nxos_snmp_contact module.
+- Deprecated nxos_snmp_host module.
+- Deprecated nxos_snmp_location module.
+- Deprecated nxos_snmp_traps module.
+- Deprecated nxos_snmp_user module.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- module_helper module utils - deprecated the attribute ``ModuleHelper.VarDict`` (https://github.com/ansible-collections/community.general/pull/3801).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- Support for Ansible 2.9 and ansible-base 2.10 is deprecated, and will be removed in the next major release (community.hashi_vault 3.0.0) next spring (https://github.com/ansible-community/community-topics/issues/50, https://github.com/ansible-collections/community.hashi_vault/issues/189).
+- aws_iam_login auth method - the ``aws_iam_login`` method has been renamed to ``aws_iam``. The old name will be removed in collection version ``3.0.0``. Until then both names will work, and a warning will be displayed when using the old name (https://github.com/ansible-collections/community.hashi_vault/pull/193).
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- 'router_id' options is deprecated from junos_ospf_interfaces, junos_ospfv2 and junos_ospfv3 resuorce module.
+
 Porting Guide for v5.0.1
 ========================
 
@@ -125,16 +187,6 @@ Major Changes
 
 Porting Guide for v5.0.0
 ========================
-
-Added Collections
------------------
-
-- cisco.ise (version 1.2.1)
-- cloud.common (version 2.1.0)
-- community.ciscosmb (version 1.0.4)
-- community.dns (version 2.0.3)
-- infoblox.nios_modules (version 1.1.2)
-- netapp.storagegrid (version 21.7.0)
 
 Known Issues
 ------------
