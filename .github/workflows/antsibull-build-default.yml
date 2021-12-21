@@ -40,7 +40,9 @@ jobs:
       - name: Test building a release with the defaults
         working-directory: antsibull
         run: |
-          ansible-playbook -vv playbooks/build-single-release.yaml -e antsibull_data_reset=false
+          ansible-playbook -vv playbooks/build-single-release.yaml \
+          -e 'antsibull_build_command="poetry run coverage run -p --source antsibull -m antsibull.cli.antsibull_build"' \
+          -e antsibull_data_reset=false
 
       - name: Combine and upload coverage stats
         working-directory: antsibull
