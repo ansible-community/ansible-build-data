@@ -188,6 +188,16 @@ Major Changes
 Porting Guide for v5.0.0
 ========================
 
+Added Collections
+-----------------
+
+- cisco.ise (version 1.2.1)
+- cloud.common (version 2.1.0)
+- community.ciscosmb (version 1.0.4)
+- community.dns (version 2.0.3)
+- infoblox.nios_modules (version 1.1.2)
+- netapp.storagegrid (version 21.7.0)
+
 Known Issues
 ------------
 
