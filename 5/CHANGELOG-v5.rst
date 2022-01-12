@@ -8,6 +8,388 @@ This changelog describes changes since Ansible 4.0.0.
   :local:
   :depth: 2
 
+v5.2.0
+======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2022-01-12
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 5.2.0 contains Ansible-core version 2.12.1.
+This is the same version of Ansible-core as in the previous Ansible release.
+
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-------------------------------+---------------+---------------+----------------------------------------------------------+
+| Collection                    | Ansible 5.1.0 | Ansible 5.2.0 | Notes                                                    |
++===============================+===============+===============+==========================================================+
+| cisco.meraki                  | 2.5.0         | 2.6.0         |                                                          |
++-------------------------------+---------------+---------------+----------------------------------------------------------+
+| community.crypto              | 2.0.2         | 2.1.0         |                                                          |
++-------------------------------+---------------+---------------+----------------------------------------------------------+
+| community.dns                 | 2.0.3         | 2.0.4         |                                                          |
++-------------------------------+---------------+---------------+----------------------------------------------------------+
+| community.docker              | 2.0.2         | 2.1.1         |                                                          |
++-------------------------------+---------------+---------------+----------------------------------------------------------+
+| community.general             | 4.2.0         | 4.3.0         |                                                          |
++-------------------------------+---------------+---------------+----------------------------------------------------------+
+| community.hashi_vault         | 2.1.0         | 2.2.0         | The collection did not have a changelog in this version. |
++-------------------------------+---------------+---------------+----------------------------------------------------------+
+| community.hrobot              | 1.2.1         | 1.2.2         |                                                          |
++-------------------------------+---------------+---------------+----------------------------------------------------------+
+| community.proxysql            | 1.3.0         | 1.3.1         |                                                          |
++-------------------------------+---------------+---------------+----------------------------------------------------------+
+| dellemc.openmanage            | 4.3.0         | 4.4.0         |                                                          |
++-------------------------------+---------------+---------------+----------------------------------------------------------+
+| netbox.netbox                 | 3.4.0         | 3.5.0         |                                                          |
++-------------------------------+---------------+---------------+----------------------------------------------------------+
+| purestorage.flasharray        | 1.11.0        | 1.12.0        |                                                          |
++-------------------------------+---------------+---------------+----------------------------------------------------------+
+| t_systems_mms.icinga_director | 1.26.0        | 1.27.0        |                                                          |
++-------------------------------+---------------+---------------+----------------------------------------------------------+
+
+Major Changes
+-------------
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- meraki_mr_radio - New module
+
+Minor Changes
+-------------
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- meraki_mx_l7_firewall - Allow passing an empty ruleset to delete all rules
+- meraki_utils - Add debugging output for failed socket connections
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- Adjust error messages that indicate ``cryptography`` is not installed from ``Can't`` to ``Cannot`` (https://github.com/ansible-collections/community.crypto/pull/374).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_container_exec - add ``detach`` parameter (https://github.com/ansible-collections/community.docker/issues/250, https://github.com/ansible-collections/community.docker/pull/255).
+- docker_container_exec - add ``env`` option (https://github.com/ansible-collections/community.docker/issues/248, https://github.com/ansible-collections/community.docker/pull/254).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- ipa_dnszone - ``dynamicupdate`` is now a boolean parameter, instead of a string parameter accepting ``"true"`` and ``"false"``. Also the module is now idempotent with respect to ``dynamicupdate`` (https://github.com/ansible-collections/community.general/pull/3374).
+- ipa_dnszone - add DNS zone synchronization support (https://github.com/ansible-collections/community.general/pull/3374).
+- ipmi_power - add ``machine`` option to ensure the power state via the remote target address (https://github.com/ansible-collections/community.general/pull/3968).
+- mattermost - add the possibility to send attachments instead of text messages (https://github.com/ansible-collections/community.general/pull/3946).
+- nmcli - add ``wireguard`` connection type (https://github.com/ansible-collections/community.general/pull/3985).
+- proxmox - add ``clone`` parameter (https://github.com/ansible-collections/community.general/pull/3930).
+- puppet - remove deprecation for ``show_diff`` parameter. Its alias ``show-diff`` is still deprecated and will be removed in community.general 7.0.0 (https://github.com/ansible-collections/community.general/pull/3980).
+- scaleway_compute - add possibility to use project identifier (new ``project`` option) instead of deprecated organization identifier (https://github.com/ansible-collections/community.general/pull/3951).
+- scaleway_volume - all volumes are systematically created on par1 (https://github.com/ansible-collections/community.general/pull/3964).
+
+community.proxysql
+~~~~~~~~~~~~~~~~~~
+
+- module_utils - Refactor save_config_to_disk and load_config_to_runtime (https://github.com/ansible-collections/community.proxysql/pull/78).
+- proxysql_mysql_users - Add missing ``no_log`` option to ``encrypt_password`` parameter (https://github.com/ansible-collections/community.proxysql/pull/86).
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- ome_firmware - The module is enhanced to support check mode and idempotency (https://github.com/dell/dellemc-openmanage-ansible-modules/issues/274)
+- ome_template - An example task is added to create a compliance template from reference device (https://github.com/dell/dellemc-openmanage-ansible-modules/issues/339)
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- nb_inventory - Pull extended inventory data for prefixes and site [#646](https://github.com/netbox-community/ansible_modules/pull/646)
+- nb_lookup - Add endpoints for wireless (new in NetBox 3.1) [#673](https://github.com/netbox-community/ansible_modules/pull/673)
+- netbox_circuit_termination - Add mark_connected field to module [#686](https://github.com/netbox-community/ansible_modules/pull/686)
+- netbox_contact, netbox_contact_group, netbox_contact_role - Add modules [#671](https://github.com/netbox-community/ansible_modules/pull/671)
+- netbox_inventory_item - Add parent field to module [#682](https://github.com/netbox-community/ansible_modules/pull/682)
+- netbox_region - Add description, tags, custom_fields to module [#689](https://github.com/netbox-community/ansible_modules/pull/689)
+- netbox_wireless_lan, netbox_wireless_lan_group, netbox_wireless_link - Add modules [#678](https://github.com/netbox-community/ansible_modules/pull/678)
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_admin - New module to set global admin settings, inclusing SSO
+- purefa_dirsnap - Add support to rename directory snapshots not managed by a snapshot policy
+- purefa_info - Add SAML2SSO configutration information
+- purefa_info - Add Safe Mode status
+- purefa_info - Fix Active Directory configuration details
+- purefa_network - Resolve bug stopping management IP address being changed correctly
+- purefa_offload - Add support for multiple, homogeneous, offload targets
+- purefa_saml - Add support for SAML2 SSO IdPs
+- purefa_volume - Provide volume facts in all cases, including when no change has occured.
+
+t_systems_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Add possibility to use Compose and keyed groups in inventory-module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/155)
+
+Deprecated Features
+-------------------
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_sso - Deprecated in favor of M(purefa_admin). Will be removed in Collection 2.0
+
+Bugfixes
+--------
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- meraki_mr_ssid - Fix issue with SSID removal idempotency when ID doesn't exist
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- Various modules and plugins - use vendored version of ``distutils.version`` instead of the deprecated Python standard library ``distutils`` (https://github.com/ansible-collections/community.crypto/pull/353).
+- certificate_complete_chain - do not append root twice if the chain already ends with a root certificate (https://github.com/ansible-collections/community.crypto/pull/360).
+- certificate_complete_chain - do not hang when infinite loop is found (https://github.com/ansible-collections/community.crypto/issues/355, https://github.com/ansible-collections/community.crypto/pull/360).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- Fix unintended breaking change caused by `an earlier fix <https://github.com/ansible-collections/community.docker/pull/258>`_ by vendoring the deprecated Python standard library ``distutils.version`` until this collection stops supporting Ansible 2.9 and ansible-base 2.10 (https://github.com/ansible-collections/community.docker/issues/267, https://github.com/ansible-collections/community.docker/pull/269).
+- Various modules and plugins - use vendored version of ``distutils.version`` included in ansible-core 2.12 if available. This avoids breakage when ``distutils`` is removed from the standard library of Python 3.12. Note that ansible-core 2.11, ansible-base 2.10 and Ansible 2.9 are right now not compatible with Python 3.12, hence this fix does not target these ansible-core/-base/2.9 versions (https://github.com/ansible-collections/community.docker/pull/258).
+- docker connection plugin - replace deprecated ``distutils.spawn.find_executable`` with Ansible's ``get_bin_path`` to find the ``docker`` executable (https://github.com/ansible-collections/community.docker/pull/257).
+- docker_container_exec - disallow using the ``chdir`` option for Docker API before 1.35 (https://github.com/ansible-collections/community.docker/pull/253).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- Various modules and plugins - use vendored version of ``distutils.version`` instead of the deprecated Python standard library ``distutils`` (https://github.com/ansible-collections/community.general/pull/3936).
+- alternatives - fix output parsing for alternatives groups (https://github.com/ansible-collections/community.general/pull/3976).
+- jail connection plugin - replace deprecated ``distutils.spawn.find_executable`` with Ansible's ``get_bin_path`` to find the executable (https://github.com/ansible-collections/community.general/pull/3934).
+- lxd connection plugin - replace deprecated ``distutils.spawn.find_executable`` with Ansible's ``get_bin_path`` to find the ``lxc`` executable (https://github.com/ansible-collections/community.general/pull/3934).
+- passwordstore lookup plugin - replace deprecated ``distutils.util.strtobool`` with Ansible's ``convert_bool.boolean`` to interpret values for the ``create``, ``returnall``, ``overwrite``, 'backup``, and ``nosymbols`` options (https://github.com/ansible-collections/community.general/pull/3934).
+- say callback plugin - replace deprecated ``distutils.spawn.find_executable`` with Ansible's ``get_bin_path`` to find the ``say`` resp. ``espeak`` executables (https://github.com/ansible-collections/community.general/pull/3934).
+- scaleway_user_data - fix double-quote added where no double-quote is needed to user data in scaleway's server (``Content-type`` -> ``Content-Type``) (https://github.com/ansible-collections/community.general/pull/3940).
+- slack - add ``charset`` to HTTP headers to avoid Slack API warning (https://github.com/ansible-collections/community.general/issues/3932).
+- zone connection plugin - replace deprecated ``distutils.spawn.find_executable`` with Ansible's ``get_bin_path`` to find the executable (https://github.com/ansible-collections/community.general/pull/3934).
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- boot - fix incorrect handling of SSH authorized keys (https://github.com/ansible-collections/community.hrobot/issues/32, https://github.com/ansible-collections/community.hrobot/pull/33).
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- ome_device_location - The issue that applies values of the location settings only in lowercase is fixed (https://github.com/dell/dellemc-openmanage-ansible-modules/issues/341)
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Use individual list items when looking for objects  [#570](https://github.com/netbox-community/ansible_modules/pull/570)
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_certs - Allow a certificate to be imported over an existing SSL certificate
+- purefa_eula - Reolve EULA signing issue
+- purefa_network - Fix bug introduced with management of FC ports
+- purefa_policy - Fix issue with SMB Policy creation
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_user - Issue(192043) The module may error out with the message ``unable to perform the import or export operation because there are pending attribute changes or a configuration job is in progress``. Wait for the job to complete and run the task again.
+- ome_application_alerts_smtp - Issue(212310) - The module does not provide a proper error message if the destination_address is more than 255 characters.
+- ome_application_alerts_syslog - Issue(215374) - The module does not provide a proper error message if the destination_address is more than 255 characters.
+- ome_device_local_access_configuration - Issue(215035) - The module reports ``Successfully updated the local access setting`` if an unsupported value is provided for the parameter timeout_limit. However, this value is not actually applied on OpenManage Enterprise Modular.
+- ome_device_local_access_configuration - Issue(217865) - The module does not display a proper error message if an unsupported value is provided for the user_defined and lcd_language parameters.
+- ome_device_network_services - Issue(212681) - The module does not provide a proper error message if unsupported values are provided for the parameters- port_number, community_name, max_sessions, max_auth_retries, and idle_timeout.
+- ome_device_power_settings - Issue(212679) - The module errors out with the following message if the value provided for the parameter ``power_cap`` is not within the supported range of 0 to 32767, ``Unable to complete the request because PowerCap does not  exist or is not applicable for the resource URI.``
+- ome_smart_fabric_uplink - Issue(186024) - The module does not allow the creation of multiple uplinks of the same name even though it is supported by OpenManage Enterprise Modular. If an uplink is created using the same name as an existing uplink, the existing uplink is modified.
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_admin - Once `max_login` and `lockout` have been set there is currently no way to rest these to zero except through the FlashArray GUI
+
+New Plugins
+-----------
+
+Filter
+~~~~~~
+
+- community.general.counter - Counts hashable elements in a sequence
+
+New Modules
+-----------
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- community.crypto.crypto_info - Retrieve cryptographic capabilities
+- community.crypto.openssl_privatekey_convert - Convert OpenSSL private keys
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+Identity
+^^^^^^^^
+
+Keycloak
+........
+
+- community.general.keycloak_realm_info - Allows obtaining Keycloak realm public information via Keycloak API
+
+Packaging
+^^^^^^^^^
+
+Language
+........
+
+- community.general.cargo - Manage Rust packages with cargo
+
+System
+^^^^^^
+
+- community.general.sudoers - Manage sudoers files
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- dellemc.openmanage.ome_application_network_settings - This module allows you to configure the session inactivity timeout settings
+- dellemc.openmanage.ome_application_security_settings - Configure the login security properties
+- dellemc.openmanage.ome_device_local_access_configuration - Configure local access settings on OpenManage Enterprise Modular
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- netbox.netbox.netbox_contact - Create, update or delete Contact objects in NetBox
+- netbox.netbox.netbox_contact_group - Create, update or delete Contact Group objects in NetBox
+- netbox.netbox.netbox_wireless_lan - Create, update or delete Wireless LAN objects in NetBox
+- netbox.netbox.netbox_wireless_lan_group - Create, update or delete Wireless LAN Group objects in NetBox
+- netbox.netbox.netbox_wireless_link - Create, update or delete Wireless Link objects in NetBox
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purestorage.flasharray.purefa_admin - Configure Pure Storage FlashArray Global Admin settings
+- purestorage.flasharray.purefa_saml - Manage FlashArray SAML2 service and identity providers
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 2.1.0)
+- ansible.netcommon (still version 2.5.0)
+- ansible.posix (still version 1.3.0)
+- ansible.utils (still version 2.4.3)
+- ansible.windows (still version 1.9.0)
+- arista.eos (still version 3.1.0)
+- awx.awx (still version 19.4.0)
+- azure.azcollection (still version 1.10.0)
+- check_point.mgmt (still version 2.2.0)
+- chocolatey.chocolatey (still version 1.1.0)
+- cisco.aci (still version 2.1.0)
+- cisco.asa (still version 2.1.0)
+- cisco.intersight (still version 1.0.18)
+- cisco.ios (still version 2.6.0)
+- cisco.iosxr (still version 2.6.0)
+- cisco.ise (still version 1.2.1)
+- cisco.mso (still version 1.3.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 2.8.2)
+- cisco.ucs (still version 1.6.0)
+- cloud.common (still version 2.1.0)
+- cloudscale_ch.cloud (still version 2.2.0)
+- community.aws (still version 2.1.0)
+- community.azure (still version 1.1.0)
+- community.ciscosmb (still version 1.0.4)
+- community.digitalocean (still version 1.14.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.3.0)
+- community.kubernetes (still version 2.0.1)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.0.2)
+- community.mongodb (still version 1.3.2)
+- community.mysql (still version 2.3.2)
+- community.network (still version 3.0.0)
+- community.okd (still version 2.1.0)
+- community.postgresql (still version 1.6.0)
+- community.rabbitmq (still version 1.1.0)
+- community.routeros (still version 2.0.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.2.0)
+- community.vmware (still version 1.17.0)
+- community.windows (still version 1.9.0)
+- community.zabbix (still version 1.5.1)
+- containers.podman (still version 1.9.0)
+- cyberark.conjur (still version 1.1.0)
+- cyberark.pas (still version 1.0.13)
+- dellemc.enterprise_sonic (still version 1.1.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- f5networks.f5_modules (still version 1.13.0)
+- fortinet.fortimanager (still version 2.1.4)
+- fortinet.fortios (still version 2.1.3)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.6.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.3.3)
+- infoblox.nios_modules (still version 1.2.1)
+- inspur.sm (still version 1.3.0)
+- junipernetworks.junos (still version 2.8.0)
+- kubernetes.core (still version 2.2.2)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.12.1)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 21.14.1)
+- netapp.storagegrid (still version 21.9.0)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.2.13)
+- ngine_io.cloudstack (still version 2.2.2)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.0)
+- openstack.cloud (still version 1.5.3)
+- openvswitch.openvswitch (still version 2.1.0)
+- ovirt.ovirt (still version 1.6.6)
+- purestorage.flashblade (still version 1.9.0)
+- sensu.sensu_go (still version 1.12.1)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 1.0.2)
+- theforeman.foreman (still version 2.2.0)
+- vyos.vyos (still version 2.6.0)
+- wti.remote (still version 1.0.3)
+
 v5.1.0
 ======
 
@@ -2079,9 +2461,13 @@ cisco.ise
 cisco.meraki
 ~~~~~~~~~~~~
 
+- meraki_mr_l3_firewall - Return each MR L3 firewall rule's values in lowercase.
+- meraki_mr_ssid - Add support for radius_proxy_enabled SSID setting.
 - meraki_ms_switchport - Adding additional functionality to support the access_policy_types "MAC allow list" and "Sticky MAC allow list" port security configuration options. (https://github.com/CiscoDevNet/ansible-meraki/issues/227).
 - meraki_mx_intrusion_prevention - Rename message to rule_message to avoid conflicts with internal Ansible variables.
+- meraki_mx_l3_firewall - Return each MX L3 firewall rule's values in lowercase.
 - meraki_mx_switchport - Improve documentation for response
+- meraki_mx_vlan - Fix dhcp_boot_options_enabled parameter
 
 cisco.mso
 ~~~~~~~~~
