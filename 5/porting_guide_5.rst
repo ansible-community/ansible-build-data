@@ -12,6 +12,9 @@ Ansible 5 Porting Guide
   :depth: 2
 
 
+Ansible 5 is based on Ansible-core 2.12.
+
+
 We suggest you read this page along with the `Ansible 5 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/5/CHANGELOG-v5.rst>`_ to understand what updates you may need to make.
 
 
