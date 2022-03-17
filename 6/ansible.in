@@ -45,6 +45,7 @@ community.postgresql
 community.proxysql
 community.rabbitmq
 community.routeros
+community.sap
 community.skydive
 community.sops
 community.vmware
