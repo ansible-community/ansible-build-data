@@ -37,12 +37,14 @@ jobs:
           python3 -m pip install --upgrade pip
           python3 -m pip install poetry ansible-core
 
+      # Using ansible_version as 5.10.0 since it is unreleased so new deps are generated
       - name: Test building a release with the defaults
         working-directory: antsibull
         run: |
           ansible-playbook -vv playbooks/build-single-release.yaml \
           -e 'antsibull_build_command="poetry run coverage run -p --source antsibull -m antsibull.cli.antsibull_build"' \
-          -e antsibull_data_reset=false
+          -e antsibull_data_reset=false \
+          -e antsibull_ansible_version=5.10.0
 
       - name: Combine and upload coverage stats
         working-directory: antsibull
