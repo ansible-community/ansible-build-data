@@ -22,7 +22,6 @@ cisco.ucs
 cloud.common
 cloudscale_ch.cloud
 community.aws
-community.azure
 community.ciscosmb
 community.crypto
 community.digitalocean
@@ -30,11 +29,12 @@ community.dns
 community.docker
 community.fortios
 community.general
-community.google
 community.grafana
 community.hashi_vault
 community.hrobot
-community.kubernetes
+# TODO: community.kubevirt depends on community.kubernetes and it is being removed
+# community.kubevirt is not currently maintained, we should consider if we want to remove it
+# or move it's dependency to kubernetes.core (without really knowing if it works)
 community.kubevirt
 community.libvirt
 community.mongodb
@@ -72,8 +72,6 @@ infinidat.infinibox
 infoblox.nios_modules
 inspur.sm
 junipernetworks.junos
-# community.kubernetes shall be renamed to kubernetes.core, they are already the same build artifact
-# https://github.com/ansible-collections/community.kubernetes/issues/221
 kubernetes.core
 mellanox.onyx
 netapp.aws
@@ -94,7 +92,6 @@ ovirt.ovirt
 purestorage.flasharray
 purestorage.flashblade
 sensu.sensu_go
-servicenow.servicenow
 splunk.es
 theforeman.foreman
 t_systems_mms.icinga_director
