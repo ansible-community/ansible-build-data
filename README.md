@@ -45,7 +45,7 @@ may be referred to by other projects and scripts.
 
 ### Next Ansible major release
 
-To add a collection to the next Ansible major release:
+To add a collection to the next Ansible major release that has not reached feature freeze:
 
 * Add the collection to the `ansible.in` file in a sub-directory named with a corresponding number.
 
