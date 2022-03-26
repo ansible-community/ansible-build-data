@@ -40,3 +40,18 @@ may be referred to by other projects and scripts.
   The version specifies the exact version of the collection that appeared in that
   release of Ansible.  This file will be created by the ``antsibull-build single``
   command.
+
+## Adding a new collection
+
+### Next Ansible major release
+
+To add a collection to the next Ansible major release that has not reached feature freeze:
+
+* Add the collection to the `ansible.in` file in a sub-directory named with a corresponding number.
+
+### The current Ansible major release
+
+To add a collection to the next minor release of the current Ansible major version:
+
+* Add the collection to the `ansible.in` file in a sub-directory named with a corresponding number.
+* In the same sub-directory, add the collection and its version range to the `ansible-X.build` file.
