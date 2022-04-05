@@ -99,3 +99,10 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2022-03-15'
+  5.6.0:
+    changes:
+      release_summary: 'Release Date: 2022-04-05
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2022-04-05'
