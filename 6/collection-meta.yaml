@@ -75,3 +75,6 @@ collections:
       - wastorga
       - racampos
       - jbogarin
+  community.sap:
+    maintainers:
+      - rainerleber
