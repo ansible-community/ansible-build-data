@@ -49,8 +49,8 @@ To add a collection to the next Ansible major release that has not reached featu
 
 * Add the collection to the `ansible.in` file in a sub-directory named with a corresponding number.
 * In the same sub-directory, add the collection to the `collection-meta.yaml` file.
-  The maintainer's GitHub user names need to be listed there. If the collection does not provide
-  a changelog in `changelogs/changelog.yaml`, the URL to the actual changelog needs to be added.
+  - The maintainer's GitHub user names need to be listed there.
+  - If the collection does not provide a changelog in `changelogs/changelog.yaml`, the URL to the actual changelog needs to be added.
 
 ### The current Ansible major release
 
@@ -59,5 +59,5 @@ To add a collection to the next minor release of the current Ansible major versi
 * Add the collection to the `ansible.in` file in a sub-directory named with a corresponding number.
 * In the same sub-directory, add the collection and its version range to the `ansible-X.build` file.
 * In the same sub-directory, add the collection to the `collection-meta.yaml` file.
-  The maintainer's GitHub user names need to be listed there. If the collection does not provide
-  a changelog in `changelogs/changelog.yaml`, the URL to the actual changelog needs to be added.
+  - The maintainer's GitHub user names need to be listed there.
+  - If the collection does not provide a changelog in `changelogs/changelog.yaml`, the URL to the actual changelog needs to be added.
