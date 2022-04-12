@@ -63,14 +63,5 @@ jobs:
         working-directory: antsibull
         run: |
           ansible-playbook -vv playbooks/build-single-release.yaml \
-          -e 'antsibull_build_command="poetry run coverage run -p --source antsibull -m antsibull.cli.antsibull_build"' \
           -e antsibull_data_reset=false \
           -e antsibull_ansible_version=5.99.0
-
-      - name: Combine and upload coverage stats
-        working-directory: antsibull
-        run: |
-          poetry run coverage combine .coverage.*
-          poetry run coverage report
-          poetry run coverage xml -i
-          poetry run codecov
