@@ -12,44 +12,56 @@ jobs:
 
     steps:
       - name: Check out antsibull
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: ansible-community/antsibull
           ref: main
           path: antsibull
+
+      - name: Check out antsibull-core
+        uses: actions/checkout@v3
+        with:
+          repository: ansible-community/antsibull-core
+          ref: main
+          path: antsibull-core
+
+      - name: Check out antsibull-changelog
+        uses: actions/checkout@v3
+        with:
+          repository: ansible-community/antsibull-changelog
+          ref: main
+          path: antsibull-changelog
+
+      - name: Check out antsibull-docs
+        uses: actions/checkout@v3
+        with:
+          repository: ansible-community/antsibull-docs
+          ref: main
+          path: antsibull-docs
 
       - name: Pre-create build directory
         run: mkdir -p antsibull/build
 
       # This is where the antsibull build-release role expects it by default
       - name: Check out ansible-build-data under antsibull build directory
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: antsibull/build/ansible-build-data
 
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v2
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
         with:
-          python-version: 3.9
+          python-version: '3.10'
 
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install poetry ansible-core
 
-      # Using ansible_version as 5.10.0 since it is unreleased so new deps are generated
+      # Using ansible_version as 5.99.0 since it is unreleased so new deps are generated
       - name: Test building a release with the defaults
         working-directory: antsibull
         run: |
           ansible-playbook -vv playbooks/build-single-release.yaml \
-          -e 'antsibull_build_command="poetry run coverage run -p --source antsibull -m antsibull.cli.antsibull_build"' \
           -e antsibull_data_reset=false \
-          -e antsibull_ansible_version=5.10.0
-
-      - name: Combine and upload coverage stats
-        working-directory: antsibull
-        run: |
-          poetry run coverage combine .coverage.*
-          poetry run coverage report
-          poetry run coverage xml -i
-          poetry run codecov
+          -e antsibull_ansible_version=5.99.0
