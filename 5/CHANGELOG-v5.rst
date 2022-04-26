@@ -8,6 +8,535 @@ This changelog describes changes since Ansible 4.0.0.
   :local:
   :depth: 2
 
+v5.7.0
+======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2022-04-26
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 5.7.0 contains Ansible-core version 2.12.5.
+This is a newer version than version 2.12.4 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                    | Ansible 5.6.0 | Ansible 5.7.0 | Notes                                                                                                                        |
++===============================+===============+===============+==============================================================================================================================+
+| ansible.utils                 | 2.5.2         | 2.6.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cloud.common                  | 2.1.0         | 2.1.1         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns                 | 2.0.9         | 2.1.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker              | 2.3.0         | 2.4.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general             | 4.7.0         | 4.8.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.grafana             | 1.3.3         | 1.4.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot              | 1.2.3         | 1.3.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.postgresql          | 1.7.1         | 1.7.2         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.proxysql            | 1.3.1         | 1.3.2         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.zabbix              | 1.5.1         | 1.6.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules         | 1.15.0        | 1.16.0        |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortimanager         | 2.1.4         | 2.1.5         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortios              | 2.1.4         | 2.1.5         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.cloudmanager           | 21.15.0       | 21.16.0       |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap                  | 21.17.3       | 21.18.1       |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| netbox.netbox                 | 3.6.0         | 3.7.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| openstack.cloud               | 1.7.2         | 1.8.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| sensu.sensu_go                | 1.13.0        | 1.13.1        |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| t_systems_mms.icinga_director | 1.28.0        | 1.29.0        |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_user - the ``priv`` argument has been deprecated and will be removed in ``community.postgresql 3.0.0``. Please use the ``postgresql_privs`` module to grant/revoke privileges instead (https://github.com/ansible-collections/community.postgresql/issues/212).
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Support FortiOS 7.0.2, 7.0.3, 7.0.4, 7.0.5.
+
+Minor Changes
+-------------
+
+ansible.utils
+~~~~~~~~~~~~~
+
+- 'consolidate' filter plugin added.
+
+cloud.common
+~~~~~~~~~~~~
+
+- Move the content of README_ansible_turbo.module.rst in the main README.md to get visibility on Ansible Galaxy.
+
+community.dns
+~~~~~~~~~~~~~
+
+- Prepare collection for inclusion in an Execution Environment by declaring its dependencies (https://github.com/ansible-collections/community.dns/pull/93).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- Prepare collection for inclusion in an Execution Environment by declaring its dependencies. The ``docker_stack*`` modules are not supported (https://github.com/ansible-collections/community.docker/pull/336).
+- current_container_facts - add detection for GitHub Actions (https://github.com/ansible-collections/community.docker/pull/336).
+- docker_container - support returning Docker container log output when using Docker's ``local`` logging driver, an optimized local logging driver introduced in Docker 18.09 (https://github.com/ansible-collections/community.docker/pull/337).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- alternatives - add ``state`` parameter, which provides control over whether the alternative should be set as the active selection for its alternatives group (https://github.com/ansible-collections/community.general/issues/4543, https://github.com/ansible-collections/community.general/pull/4557).
+- atomic_container - minor refactoring (https://github.com/ansible-collections/community.general/pull/4567).
+- clc_alert_policy - minor refactoring (https://github.com/ansible-collections/community.general/pull/4556).
+- clc_group - minor refactoring (https://github.com/ansible-collections/community.general/pull/4556).
+- clc_loadbalancer - minor refactoring (https://github.com/ansible-collections/community.general/pull/4556).
+- clc_server - minor refactoring (https://github.com/ansible-collections/community.general/pull/4556).
+- cmd_runner module util - reusable command runner with consistent argument formatting and sensible defaults (https://github.com/ansible-collections/community.general/pull/4476).
+- datadog_monitor - support new datadog event monitor of type `event-v2 alert` (https://github.com/ansible-collections/community.general/pull/4457)
+- filesystem - add support for resizing btrfs (https://github.com/ansible-collections/community.general/issues/4465).
+- lxd_container - adds ``project`` option to allow selecting project for LXD instance (https://github.com/ansible-collections/community.general/pull/4479).
+- lxd_profile - adds ``project`` option to allow selecting project for LXD profile (https://github.com/ansible-collections/community.general/pull/4479).
+- nmap inventory plugin - add ``sudo`` option in plugin in order to execute ``sudo nmap`` so that ``nmap`` runs with elevated privileges (https://github.com/ansible-collections/community.general/pull/4506).
+- nomad_job - minor refactoring (https://github.com/ansible-collections/community.general/pull/4567).
+- nomad_job_info - minor refactoring (https://github.com/ansible-collections/community.general/pull/4567).
+- packet_device - minor refactoring (https://github.com/ansible-collections/community.general/pull/4567).
+- packet_sshkey - minor refactoring (https://github.com/ansible-collections/community.general/pull/4567).
+- packet_volume - minor refactoring (https://github.com/ansible-collections/community.general/pull/4567).
+- profitbricks - minor refactoring (https://github.com/ansible-collections/community.general/pull/4567).
+- proxmox - minor refactoring (https://github.com/ansible-collections/community.general/pull/4567).
+- proxmox inventory plugin - add token authentication as an alternative to username/password (https://github.com/ansible-collections/community.general/pull/4540).
+- proxmox inventory plugin - parse LXC configs returned by the proxmox API (https://github.com/ansible-collections/community.general/pull/4472).
+- proxmox_snap - add restore snapshot option (https://github.com/ansible-collections/community.general/pull/4377).
+- proxmox_snap - fixed timeout value to correctly reflect time in seconds. The timeout was off by one second (https://github.com/ansible-collections/community.general/pull/4377).
+- redfish_command - add ``IndicatorLedOn``, ``IndicatorLedOff``, and ``IndicatorLedBlink`` commands to the Systems category for controling system LEDs (https://github.com/ansible-collections/community.general/issues/4084).
+- seport - minor refactoring (https://github.com/ansible-collections/community.general/pull/4471).
+- smartos_image_info - minor refactoring (https://github.com/ansible-collections/community.general/pull/4567).
+- terraform - adds ``terraform_upgrade`` parameter which allows ``terraform init`` to satisfy new provider constraints in an existing Terraform project (https://github.com/ansible-collections/community.general/issues/4333).
+- udm_group - minor refactoring (https://github.com/ansible-collections/community.general/pull/4556).
+- udm_share - minor refactoring (https://github.com/ansible-collections/community.general/pull/4556).
+- vmadm - minor refactoring (https://github.com/ansible-collections/community.general/pull/4567).
+- webfaction_app - minor refactoring (https://github.com/ansible-collections/community.general/pull/4567).
+- webfaction_db - minor refactoring (https://github.com/ansible-collections/community.general/pull/4567).
+- xfconf - added missing value types ``char``, ``uchar``, ``int64`` and ``uint64`` (https://github.com/ansible-collections/community.general/pull/4534).
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- Remove requirement for `ds_type` and `ds_url` parameters when deleting a datasource
+- add `grafana` action group in `meta/runtime.yml` to support for module group defaults
+- refactor grafana_notification_channel module
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- Prepare collection for inclusion in an Execution Environment by declaring its dependencies (https://github.com/ansible-collections/community.hrobot/pull/45).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- all modules - prepare for deprecation of distutils LooseVersion.
+- collection - Add dependencies to other collections. This helps Ansible Galaxy automatically downloading collections that this collection relies on to run.
+- connection.httpapi (plugin) - add initial httpapi connection plugin.
+- httpapi.jsonrpc (plugin) - add initial httpapi for future handling of json-rpc.
+- new module zabbix authentication for configuring global authentication settings in Zabbix Server's Settings section of GUI.
+- new module zabbix_autoregister for configuring global autoregistration settings in Zabbix Server's Settings section of GUI.
+- new module zabbix_housekeeping for configuring global housekeeping settings in Zabbix Server's Settings section of GUI.
+- test_zabbix_host_info - fix Template/Group names for 5.4
+- test_zabbix_screen - disable testing for screen in 5.4 (deprecated)
+- zabbix_action - additional fixes to make module work with Zabbix 6.0 (https://github.com/ansible-collections/community.zabbix/pull/664)
+- zabbix_action - module ported to work with Zabbix 6.0 (https://github.com/ansible-collections/community.zabbix/pull/648, https://github.com/ansible-collections/community.zabbix/pull/653)
+- zabbix_agent - Check if 'firewalld' exist and is running when handler is executed.
+- zabbix_agent - Install the correct Python libxml2 package on SLES15
+- zabbix_agent - Move inclusion of the apache.yml tasks to later stage during execution of role.
+- zabbix_agent - Prepare for Zabbix 6.0.
+- zabbix_agent - Specify a minor version with zabbix_agent_version_minor for RH systems.
+- zabbix_agent - There was no way to configure a specific type for the macro.
+- zabbix_agent - Use multiple aliases in the configuration file with ``zabbix_agent_zabbix_alias`` or ``zabbix_agent2_zabbix_alias``.
+- zabbix_maintenance - added new module parameter `tags`, which allows configuring Problem Tags on maintenances.
+- zabbix_proxy - Prepare for Zabbix 6.0.
+- zabbix_proxy - Specify a minor version with zabbix_proxy_version_minor for RH systems.
+- zabbix_proxy - Support for Sangoma and treat it like a RHEL system.
+- zabbix_server - Check the 'zabbix_server_install_database_client' variable in RedHat tasks.
+- zabbix_server - Prepare for Zabbix 6.0.
+- zabbix_server - Specify a minor version with zabbix_server_version_minor for RH systems.
+- zabbix_user - change alias property to username (changed in 5.4) (alias is now an alias for username)
+- zabbix_user_info - change alias property to username (changed in 5.4) (alias is now an alias for username)
+- zabbix_web - Change format ENCRYPTION, VERIFY_HOST from string to boolean.
+- zabbix_web - Specify a minor version with zabbix_web_version_minor for RH systems.
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_device_info - add UCS creation date to the data gathered
+- bigip_virtual_server - add service_down_immediate_action parameter
+- bigiq_regkey_license - add addon_keys parameter to the module
+
+netapp.cloudmanager
+~~~~~~~~~~~~~~~~~~~
+
+- na_cloudmanager_connector_gcp - when using the user application default credential authentication by running the command gcloud auth application-default login, ``gcp_service_account_path`` is not needed.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_cluster_config role - use na_ontap_login_messages as na_ontap_motd is deprecated.
+- na_ontap_debug - report ansible version and ONTAP collection version.
+- na_ontap_efficiency_policy - Added REST support.
+- na_ontap_export_policy_rule - new option ``ntfs_unix_security`` for NTFS export UNIX security options added.
+- na_ontap_lun - Added REST support.
+- na_ontap_snapmirror -- Added more descriptive error messages for REST
+- na_ontap_snapshot_policy - Added REST support to the na_ontap_snapshot_policy module.
+- na_ontap_svm - add support for web services (ssl modify) - REST only with 9.8 or later.
+- na_ontap_volume - add support for SnapLock - only for REST.
+- na_ontap_volume - allow to modify volume after rename.
+- na_ontap_volume - new option ``max_files`` to increase the inode count value.
+- na_ontap_vserver_create role - support max_volumes option.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Add meta information for use in Execution Environments [#753](https://github.com/netbox-community/ansible_modules/pull/753)
+- Multiple modules - add new parameters added in NetBox 3.2 [#768](https://github.com/netbox-community/ansible_modules/pull/768)
+- nb_inventory - Add site_group as an option [#755](https://github.com/netbox-community/ansible_modules/pull/755)
+- netbox_front_port and netbox_rear_port - Add label as parameter [#766](https://github.com/netbox-community/ansible_modules/pull/766)
+
+sensu.sensu_go
+~~~~~~~~~~~~~~
+
+- Added support for ansible 2.13
+- Removed support for CentOS 8
+
+t_systems_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Add icinga_serviceset module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/163)
+- Test more ansible versions (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/162)
+
+Deprecated Features
+-------------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- nmcli - deprecate default hairpin mode for a bridge. This so we can change it to ``false`` in community.general 7.0.0, as this is also the default in ``nmcli`` (https://github.com/ansible-collections/community.general/pull/4334).
+- proxmox inventory plugin - the current default ``true`` of the ``want_proxmox_nodes_ansible_host`` option has been deprecated. The default will change to ``false`` in community.general 6.0.0. To keep the current behavior, explicitly set ``want_proxmox_nodes_ansible_host`` to ``true`` in your inventory configuration. We suggest to already switch to the new behavior by explicitly setting it to ``false``, and by using ``compose:`` to set ``ansible_host`` to the correct value. See the examples in the plugin documentation for details (https://github.com/ansible-collections/community.general/pull/4466).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Ansible.ModuleUtils.SID - Use user principal name as is for lookup in the ``Convert-ToSID`` function - https://github.com/ansible/ansible/issues/77316
+- Fix traceback when installing a collection from a git repository and git is not installed (https://github.com/ansible/ansible/issues/77479).
+- ansible-test - Correctly detect when running as the ``root`` user (UID 0) on the origin host. The result of the detection was incorrectly being inverted.
+- ansible-test - Fix skipping of tests marked ``needs/python`` on the origin host.
+- ansible-test - Fix skipping of tests marked ``needs/root`` on the origin host.
+- ansible-test compile sanity test - do not crash if a column could not be determined for an error (https://github.com/ansible/ansible/pull/77465).
+- hostname - use ``file_get_content()`` to read the file containing the host name in the ``FileStrategy.get_permanent_hostname()`` method. This prevents a ``TypeError`` from being raised when the strategy is used (https://github.com/ansible/ansible/issues/77025).
+- script - skip in check mode since the plugin cannot determine if a change will occur.
+- shell/command - only skip in check mode if the options `creates` and `removes` are both None.
+- winrm - Ensure ``kinit`` is run with the same ``PATH`` env var as the Ansible process
+
+cloud.common
+~~~~~~~~~~~~
+
+- fix parameters with aliases not being passed through (https://github.com/ansible-collections/cloud.common/issues/91).
+- fix turbo mode loading incorrect module (https://github.com/ansible-collections/cloud.common/pull/102).
+- turbo - Ensure we don't call the module with duplicated aliased parameters.
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker connection plugin - make sure that ``docker_extra_args`` is used for querying the Docker version. Also ensures that the Docker version is only queried when needed. This is currently the case if a remote user is specified (https://github.com/ansible-collections/community.docker/issues/325, https://github.com/ansible-collections/community.docker/pull/327).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- dnsmadeeasy - fix failure on deleting DNS entries when API response does not contain monitor value (https://github.com/ansible-collections/community.general/issues/3620).
+- git_branch - remove deprecated and unnecessary branch ``unprotect`` method (https://github.com/ansible-collections/community.general/pull/4496).
+- gitlab_group - improve searching for projects inside group on deletion (https://github.com/ansible-collections/community.general/pull/4491).
+- gitlab_group_members - handle more than 20 groups when finding a group (https://github.com/ansible-collections/community.general/pull/4491, https://github.com/ansible-collections/community.general/issues/4460, https://github.com/ansible-collections/community.general/issues/3729).
+- gitlab_hook - handle more than 20 hooks when finding a hook (https://github.com/ansible-collections/community.general/pull/4491).
+- gitlab_project - handle more than 20 namespaces when finding a namespace (https://github.com/ansible-collections/community.general/pull/4491).
+- gitlab_project_members - handle more than 20 projects and users when finding a project resp. user (https://github.com/ansible-collections/community.general/pull/4491).
+- gitlab_user - handle more than 20 users and SSH keys when finding a user resp. SSH key (https://github.com/ansible-collections/community.general/pull/4491).
+- keycloak - fix parameters types for ``defaultDefaultClientScopes`` and ``defaultOptionalClientScopes`` from list of dictionaries to list of strings (https://github.com/ansible-collections/community.general/pull/4526).
+- opennebula inventory plugin - complete the implementation of ``constructable`` for opennebula inventory plugin. Now ``keyed_groups``, ``compose``, ``groups`` actually work (https://github.com/ansible-collections/community.general/issues/4497).
+- pacman - fixed bug where ``absent`` state did not work for locally installed packages (https://github.com/ansible-collections/community.general/pull/4464).
+- pritunl - fixed bug where pritunl plugin api add unneeded data in ``auth_string`` parameter (https://github.com/ansible-collections/community.general/issues/4527).
+- proxmox inventory plugin - fix error when parsing container with LXC configs (https://github.com/ansible-collections/community.general/issues/4472, https://github.com/ansible-collections/community.general/pull/4472).
+- proxmox_kvm - fix a bug when getting a state of VM without name will fail (https://github.com/ansible-collections/community.general/pull/4508).
+- xbps - fix error message that is reported when installing packages fails (https://github.com/ansible-collections/community.general/pull/4438).
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- robot inventory plugin - do not crash if a server neither has name or primary IP set. Instead, fall back to using the server's number as the name. This can happen if unnamed rack reservations show up in your server list (https://github.com/ansible-collections/community.hrobot/issues/40, https://github.com/ansible-collections/community.hrobot/pull/47).
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_db - get rid of the deprecated psycopg2 connection alias ``database`` in favor of ``dbname`` when psycopg2 is 2.7+ is used (https://github.com/ansible-collections/community.postgresql/issues/194, https://github.com/ansible-collections/community.postgresql/pull/196).
+
+community.proxysql
+~~~~~~~~~~~~~~~~~~
+
+- module_utils/mysql.py - Proxysql version suffix may not be an integer (https://github.com/ansible-collections/community.proxysql/pull/96).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- Various modules and plugins - use vendored version of ``distutils.version`` instead of the deprecated Python standard library ``distutils`` (https://github.com/ansible-collections/community.zabbix/pull/603). This superseedes #597.
+- ZapiWrapper (module_utils) - fix only partial zabbix version is returned.
+- zabbix_agent - Install Zabbix packages when zabbix_repo == other is used with yum.
+- zabbix_agent - Install the Agent for MacOSX sooner than its configuration.
+- zabbix_agent - The ``Install gpg key`` task for Debian did not work when a http proxy is configured.
+- zabbix_agent - Use the correct URL with correct version.
+- zabbix_agent - Use the correct path to determine Zabbix Agent 2 installation on Windows.
+- zabbix_agent - Using the correct hostgroup as default now.
+- zabbix_agent - fix for the autopsk, incl. tests with Molecule.
+- zabbix_host - Added small notification that an user should have read access to get hostgroups overview.
+- zabbix_host - adapter changed properties for interface comparisson
+- zabbix_maintenance - should now work when creating maintenace on Zabbix 6.0 server
+- zabbix_proxy - 'zcat' the zipped sql files to /tmp before executing it.
+- zabbix_proxy - Check MySQL version before settings mysql_innodb_default_row_format value.
+- zabbix_proxy - Install Zabbix packages when zabbix_repo == other is used with yum.
+- zabbix_server - 'zcat' the zipped sql files to /tmp before executing it.
+- zabbix_server - Check MySQL version before settings mysql_innodb_default_row_format value.
+- zabbix_server - Install Zabbix packages when zabbix_repo == other is used with yum.
+- zabbix_template - setting correct null values to fix unintentional changes
+- zabbix_web - Added some default variables if the geerlingguys apache role is not used.
+- zabbix_web - Specified the correct versions for php.
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_command - fixed a bug that interpreted a pipe symbol inside an input string as pipe used to combine commands
+- bigip_device_certificate - adds missing space to tmsh command
+- bigip_gtm_wide_ip - fixed inability to change persistence setting on existing wide ip objects
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Fix issues in version mismatch logic.
+- Fix status issue in fortios_json_generic().
+- Fix the issue of inconsistent data types in different schemas.
+
+netapp.cloudmanager
+~~~~~~~~~~~~~~~~~~~
+
+- Add check when volume is capacity tiered.
+- na_cloudmanager_connector_azure - Fix string formatting error when deleting the connector.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- Fixed ONTAP minor version ignored in checking minimum ONTAP version.
+- na_ontap_aggregate - Fixed error in delete aggregate if the ``disk_count`` is less than current disk count.
+- na_ontap_autosupport - Fixed `partner_address` not working in REST.
+- na_ontap_command - document that a READONLY user is not supported, even for show commands.
+- na_ontap_disk_options - ONTAP 9.10.1 returns on/off rather than True/False.
+- na_ontap_info - Fixes issue with na_ontap_info failing in 9.1 because of ``job-schedule-cluster``.
+- na_ontap_iscsi - Fixed issue with ``start_state`` always being set to stopped when creating an ISCSI.
+- na_ontap_iscsi - fixed error starting iscsi service on vserver where Service, adapter, or operation already started.
+- na_ontap_lun - Fixed KeyError on options ``force_resize``, ``force_remove`` and ``force_remove_fenced`` in Zapi.
+- na_ontap_lun - Fixed ``force_remove`` option silently ignored in REST.
+- na_ontap_lun_map - TypeError - '>' not supported between instances of 'int' and 'str '.
+- na_ontap_qtree - Fixed issue with ``oplocks`` not being changed during a modify in Zapi.
+- na_ontap_qtree - Fixed issue with ``oplocks`` not warning user about not being supported in REST
+- na_ontap_snapmirror - Added use_rest condition for the REST support to work when use_rest `always`.
+- na_ontap_snapshot - add error message if volume is not found with REST.
+- na_ontap_snapshot - fix key error on volume when using REST.
+- na_ontap_snapshot_policy - Do not validate parameter when state is ``absent`` and fix KeyError on ``comment``.
+- na_ontap_svm - fixed KeyError issue on protocols when vserver is stopped.
+- na_ontap_volume - do not attempt to mount volume if current state is offline.
+- na_ontap_volume - fix idempotency issue with compression settings when using REST.
+- na_ontap_vserver_peer - Added cluster peer accept code in REST.
+- na_ontap_vserver_peer - Fixed AttributeError if ``dest_hostname`` or ``peer_options`` not present.
+- na_ontap_vserver_peer - Fixed ``local_name_for_peer`` and ``local_name_for_source`` options silently ignored in REST.
+- na_ontap_vserver_peer - Get peer cluster name if remote peer exist else use local cluster name.
+- na_ontap_vserver_peer - ignore job entry doesn't exist error with REST to bypass ONTAP issue with FSx.
+- na_ontap_vserver_peer - report error if SVM peer does not see a peering relationship after create.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- netbox_contact_group - Fix field description [#762](https://github.com/netbox-community/ansible_modules/pull/762)
+- netbox_rack - Add location as a query parameter for uniqueness check [#751](https://github.com/netbox-community/ansible_modules/pull/751)
+
+New Plugins
+-----------
+
+Connection
+~~~~~~~~~~
+
+- community.zabbix.httpapi - Use httpapi to run command on network appliances
+
+Httpapi
+~~~~~~~
+
+- community.zabbix.jsonrpc - HttpApi Plugin for Zabbix
+
+New Modules
+-----------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+Cloud
+^^^^^
+
+Lxd
+...
+
+- community.general.lxd_project - Manage LXD projects
+
+Monitoring
+^^^^^^^^^^
+
+- community.general.alerta_customer - Manage customers in Alerta
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- community.zabbix.zabbix_authentication - Update Zabbix authentication
+- community.zabbix.zabbix_autoregister - Update Zabbix autoregistration
+- community.zabbix.zabbix_housekeeping - Update Zabbix housekeeping
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- f5networks.f5_modules.bigip_ltm_global - Manages global LTM settings
+
+t_systems_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- t_systems_mms.icinga_director.icinga_serviceset - Manage servicesets in Icinga2
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 2.2.0)
+- ansible.netcommon (still version 2.6.1)
+- ansible.posix (still version 1.3.0)
+- ansible.windows (still version 1.9.0)
+- arista.eos (still version 3.1.0)
+- awx.awx (still version 19.4.0)
+- azure.azcollection (still version 1.12.0)
+- check_point.mgmt (still version 2.3.0)
+- chocolatey.chocolatey (still version 1.2.0)
+- cisco.aci (still version 2.2.0)
+- cisco.asa (still version 2.1.0)
+- cisco.intersight (still version 1.0.18)
+- cisco.ios (still version 2.8.1)
+- cisco.iosxr (still version 2.9.0)
+- cisco.ise (still version 1.2.1)
+- cisco.meraki (still version 2.6.1)
+- cisco.mso (still version 1.4.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 2.9.1)
+- cisco.ucs (still version 1.8.0)
+- cloudscale_ch.cloud (still version 2.2.1)
+- community.aws (still version 2.4.0)
+- community.azure (still version 1.1.0)
+- community.ciscosmb (still version 1.0.4)
+- community.crypto (still version 2.2.4)
+- community.digitalocean (still version 1.16.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.hashi_vault (still version 2.4.0)
+- community.kubernetes (still version 2.0.1)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.0.2)
+- community.mongodb (still version 1.3.3)
+- community.mysql (still version 2.3.5)
+- community.network (still version 3.1.0)
+- community.okd (still version 2.1.0)
+- community.rabbitmq (still version 1.1.0)
+- community.routeros (still version 2.0.0)
+- community.sap (still version 1.0.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.2.1)
+- community.vmware (still version 1.18.0)
+- community.windows (still version 1.9.0)
+- containers.podman (still version 1.9.3)
+- cyberark.conjur (still version 1.1.0)
+- cyberark.pas (still version 1.0.13)
+- dellemc.enterprise_sonic (still version 1.1.0)
+- dellemc.openmanage (still version 4.4.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- frr.frr (still version 1.0.3)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.6.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.3.3)
+- infoblox.nios_modules (still version 1.2.1)
+- inspur.sm (still version 1.3.0)
+- junipernetworks.junos (still version 2.10.0)
+- kubernetes.core (still version 2.3.0)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.storagegrid (still version 21.10.0)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.3.0)
+- ngine_io.cloudstack (still version 2.2.3)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.1)
+- openvswitch.openvswitch (still version 2.1.0)
+- ovirt.ovirt (still version 1.6.6)
+- purestorage.flasharray (still version 1.12.1)
+- purestorage.flashblade (still version 1.9.0)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 1.0.2)
+- theforeman.foreman (still version 2.2.0)
+- vyos.vyos (still version 2.8.0)
+- wti.remote (still version 1.0.3)
+
 v5.6.0
 ======
 
@@ -882,7 +1411,7 @@ community.postgresql
 ~~~~~~~~~~~~~~~~~~~~
 
 - module core functions - get rid of the deprecated psycopg2 connection alias ``database`` in favor of ``dbname`` when psycopg2 is 2.7+ (https://github.com/ansible-collections/community.postgresql/pull/196).
-- postgresql_query - cannot handle .sql file with \n at end of file (https://github.com/ansible-collections/community.postgresql/issues/180).
+- postgresql_query - cannot handle .sql file with \\n at end of file (https://github.com/ansible-collections/community.postgresql/issues/180).
 
 f5networks.f5_modules
 ~~~~~~~~~~~~~~~~~~~~~
@@ -2353,7 +2882,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +===============================+===============+===============+==============================================================================================================================+
 | ansible.netcommon             | 2.4.0         | 2.5.0         |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
-| ansible.utils                 | 2.4.2         | 2.4.3         | There are no changes recorded in the changelog.                                                                              |
+| ansible.utils                 | 2.4.2         | 2.4.3         |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | ansible.windows               | 1.8.0         | 1.9.0         |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
