@@ -35,7 +35,6 @@ community.grafana
 community.hashi_vault
 community.hrobot
 community.kubernetes
-community.kubevirt
 community.libvirt
 community.mongodb
 community.mysql
