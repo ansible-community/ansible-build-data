@@ -7,3 +7,13 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2022-04-12'
+  6.0.0a2:
+    changes:
+      removed_features:
+        - The community.kubevirt collection has been removed from Ansible 6.
+          It has not been working with the community.kubernetes collection included
+          since Ansible 5.0.0, and unfortunately nobody managed to adjust the
+          collection to work with kubernetes.core >= 2.0.0. If you need to use this
+          collection, you need to manually install community.kubernetes < 2.0.0
+          together with community.kubevirt
+          (https://github.com/ansible-community/community-topics/issues/92).
