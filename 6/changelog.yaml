@@ -15,5 +15,12 @@ releases:
           since Ansible 5.0.0, and unfortunately nobody managed to adjust the
           collection to work with kubernetes.core >= 2.0.0. If you need to use this
           collection, you need to manually install community.kubernetes < 2.0.0
-          together with community.kubevirt
+          together with community.kubevirt with
+          ``ansible-galaxy collection install community.kubevirt 'community.kubernetes:<2.0.0'``
           (https://github.com/ansible-community/community-topics/issues/92).
+        - The community.kubernetes collection has been removed from Ansible 6.
+          It has been deprecated since Ansible 4.2, and version 2.0.0 included since
+          Ansible 5 is only a set of deprecated redirects from community.kubernetes
+          to kubernetes.core. If you still need the redirects, you can manually install
+          community.kubernetes with ``ansible-galaxy collection install community.kubernetes``
+          (https://github.com/ansible-community/community-topics/issues/93).
