@@ -70,8 +70,6 @@ infinidat.infinibox
 infoblox.nios_modules
 inspur.sm
 junipernetworks.junos
-# community.kubernetes shall be renamed to kubernetes.core, they are already the same build artifact
-# https://github.com/ansible-collections/community.kubernetes/issues/221
 kubernetes.core
 mellanox.onyx
 netapp.aws
