@@ -53,14 +53,18 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
+        working-directory: antsibull
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install poetry ansible-core
+          poetry install
+          poetry update
 
       - name: Test building Ansible 6
         working-directory: antsibull
         run: |
           ansible-playbook -vv playbooks/build-single-release.yaml \
+            -e 'antsibull_build_command="poetry run antsibull-build"' \
             -e antsibull_build_file=ansible-6.build \
             -e antsibull_ansible_version=6.99.0 \
             -e antsibull_data_dir="{{ antsibull_data_git_dir }}/6" \
