@@ -113,3 +113,14 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2022-04-26'
+  5.7.1:
+    changes:
+      minor_changes:
+      - The version of fortinet.fortios has been rolled back to 2.1.4 (from 2.1.5)
+        to address a syntax error pending a new release of the collection
+        (https://github.com/fortinet-ansible-dev/ansible-galaxy-fortios-collection/pull/177)
+      release_summary: 'Release Date: 2022-05-04
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2022-05-04'
