@@ -66,6 +66,6 @@ jobs:
         working-directory: antsibull
         run: |
           ansible-playbook -vv playbooks/build-single-release.yaml \
-          -e antsibull_build_command="poetry run antsibull-build" \
+          -e 'antsibull_build_command="poetry run antsibull-build"' \
           -e antsibull_data_reset=false \
           -e antsibull_ansible_version=5.99.0
