@@ -101,5 +101,6 @@ servicenow.servicenow: >=1.0.0,<2.0.0
 splunk.es: >=2.0.0,<3.0.0
 t_systems_mms.icinga_director: >=1.29.0,<2.0.0
 theforeman.foreman: >=3.3.0,<4.0.0
+vmware.vmware_rest: >=2.1.5,<3.0.0
 vyos.vyos: >=3.0.0,<4.0.0
 wti.remote: >=1.0.0,<2.0.0
