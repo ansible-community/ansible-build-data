@@ -94,5 +94,6 @@ servicenow.servicenow
 splunk.es
 theforeman.foreman
 t_systems_mms.icinga_director
+vmware.vmware_rest
 vyos.vyos
 wti.remote
