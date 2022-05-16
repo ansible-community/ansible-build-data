@@ -68,7 +68,7 @@ In some situations, a collection included in Ansible is renamed with its content
 
 For simplicity, assume that the next minor Ansible release is X.Y.0, and that collection `foo.bar` with latest release a.b.c has been renamed to `baz.bam` with latest release A.B.C.
 
-1. `baz.bam` A.B.C must be compatible to `foo.bar` a.b.c up to renaming plugins. No options must be renamed or defaults changed.
+1. `baz.bam` A.B.C must be compatible to `foo.bar` a.b.c up to renaming plugins. No options must be renamed without backwards compatible aliases, and no defaults or semantics changed.
 2. `baz.bam` A.B.C can be added to Ansible X.Y.0.
 3. A deprecation warning is added to Ansible X.Y.0's changelog (`deprecated_features`) that `foo.bar` has been renamed to `baz.bam`, that Ansible (X+1).0.0 will start having deprecated redirects from `foo.bar` to `baz.bam`, and that `foo.bar` will be removed from a later major release of Ansible.
 4. A new release `foo.bar` (a+1).0.0 is made which contains no more content, but only deprecated redirects to `baz.bam`. Ideally it will have a dependency on `baz.bam` so that users that install `foo.bar` will have working deprecated redirects.
