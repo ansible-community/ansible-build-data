@@ -61,7 +61,7 @@ dellemc.os6: 1.0.7
 dellemc.os9: 1.0.4
 f5networks.f5_modules: 1.16.0
 fortinet.fortimanager: 2.1.5
-fortinet.fortios: 2.1.5
+fortinet.fortios: 2.1.4
 frr.frr: 2.0.0
 gluster.gluster: 1.0.2
 google.cloud: 1.0.2

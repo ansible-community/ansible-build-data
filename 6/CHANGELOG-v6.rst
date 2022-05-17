@@ -81,8 +81,6 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +------------------------+-----------------+-----------------+-------------------------------------------------+
 | community.windows      | 1.9.0           | 1.10.0          |                                                 |
 +------------------------+-----------------+-----------------+-------------------------------------------------+
-| fortinet.fortios       | 2.1.4           | 2.1.5           |                                                 |
-+------------------------+-----------------+-----------------+-------------------------------------------------+
 | frr.frr                | 1.0.3           | 2.0.0           |                                                 |
 +------------------------+-----------------+-----------------+-------------------------------------------------+
 | kubernetes.core        | 2.2.3           | 2.3.1           |                                                 |
@@ -109,11 +107,6 @@ community.mysql
 ~~~~~~~~~~~~~~~
 
 - The community.mysql collection no longer supports ``Ansible 2.9`` and ``ansible-base 2.10``. While we take no active measures to prevent usage and there are no plans to introduce incompatible code to the modules, we will stop testing against ``Ansible 2.9`` and ``ansible-base 2.10``. Both will very soon be End of Life and if you are still using them, you should consider upgrading to the ``latest Ansible / ansible-core 2.11 or later`` as soon as possible (https://github.com/ansible-collections/community.mysql/pull/343).
-
-fortinet.fortios
-~~~~~~~~~~~~~~~~
-
-- Support FortiOS 7.0.2, 7.0.3, 7.0.4, 7.0.5.
 
 frr.frr
 ~~~~~~~
@@ -584,13 +577,6 @@ community.windows
 - win_scoop - Fix bootstrapping process to properly work when running as admin
 - win_scoop_bucket - Fix handling of output and errors from each scoop command
 
-fortinet.fortios
-~~~~~~~~~~~~~~~~
-
-- Fix issues in version mismatch logic.
-- Fix status issue in fortios_json_generic().
-- Fix the issue of inconsistent data types in different schemas.
-
 kubernetes.core
 ~~~~~~~~~~~~~~~
 
@@ -878,6 +864,7 @@ Unchanged Collections
 - dellemc.os9 (still version 1.0.4)
 - f5networks.f5_modules (still version 1.16.0)
 - fortinet.fortimanager (still version 2.1.5)
+- fortinet.fortios (still version 2.1.4)
 - gluster.gluster (still version 1.0.2)
 - google.cloud (still version 1.0.2)
 - hetzner.hcloud (still version 1.6.0)
