@@ -137,11 +137,6 @@ community.mysql
 
 - The community.mysql collection no longer supports ``Ansible 2.9`` and ``ansible-base 2.10``. While we take no active measures to prevent usage and there are no plans to introduce incompatible code to the modules, we will stop testing against ``Ansible 2.9`` and ``ansible-base 2.10``. Both will very soon be End of Life and if you are still using them, you should consider upgrading to the ``latest Ansible / ansible-core 2.11 or later`` as soon as possible (https://github.com/ansible-collections/community.mysql/pull/343).
 
-fortinet.fortios
-~~~~~~~~~~~~~~~~
-
-- Support FortiOS 7.0.2, 7.0.3, 7.0.4, 7.0.5.
-
 frr.frr
 ~~~~~~~
 

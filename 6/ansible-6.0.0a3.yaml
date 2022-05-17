@@ -184,7 +184,7 @@ collections:
   version: 2.1.5
 - name: fortinet.fortios
   source: https://galaxy.ansible.com
-  version: 2.1.5
+  version: 2.1.4
 - name: frr.frr
   source: https://galaxy.ansible.com
   version: 2.0.0
