@@ -27,3 +27,10 @@ releases:
         with ``ansible-galaxy collection install community.kubevirt 'community.kubernetes:<2.0.0'``
         (https://github.com/ansible-community/community-topics/issues/92).
     release_date: '2022-05-04'
+  6.0.0a3:
+    changes:
+      release_summary: 'Release Date: 2022-05-17
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2022-05-17'
