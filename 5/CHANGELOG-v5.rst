@@ -8,6 +8,789 @@ This changelog describes changes since Ansible 4.0.0.
   :local:
   :depth: 2
 
+v5.8.0
+======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2022-05-18
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- vmware.vmware_rest (version 2.1.5)
+
+Ansible-core
+------------
+
+Ansible 5.8.0 contains Ansible-core version 2.12.5.
+This is the same version of Ansible-core as in the previous Ansible release.
+
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------+---------------+---------------+-------------------------------------------------+
+| Collection             | Ansible 5.7.1 | Ansible 5.8.0 | Notes                                           |
++========================+===============+===============+=================================================+
+| ansible.utils          | 2.6.0         | 2.6.1         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| ansible.windows        | 1.9.0         | 1.10.0        |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| cisco.meraki           | 2.6.1         | 2.6.2         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.ciscosmb     | 1.0.4         | 1.0.5         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.crypto       | 2.2.4         | 2.3.1         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.digitalocean | 1.16.0        | 1.19.0        |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.dns          | 2.1.0         | 2.1.1         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.docker       | 2.4.0         | 2.5.1         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.general      | 4.8.0         | 4.8.1         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.hashi_vault  | 2.4.0         | 2.5.0         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.libvirt      | 1.0.2         | 1.1.0         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.mongodb      | 1.3.3         | 1.4.0         | There are no changes recorded in the changelog. |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.mysql        | 2.3.5         | 2.3.7         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.network      | 3.1.0         | 3.3.0         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.okd          | 2.1.0         | 2.2.0         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.postgresql   | 1.7.2         | 1.7.4         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.rabbitmq     | 1.1.0         | 1.2.1         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| community.windows      | 1.9.0         | 1.10.0        |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| frr.frr                | 1.0.3         | 1.0.4         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| kubernetes.core        | 2.3.0         | 2.3.1         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| netapp.cloudmanager    | 21.16.0       | 21.17.0       |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| netapp.ontap           | 21.18.1       | 21.19.1       |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| netbox.netbox          | 3.7.0         | 3.7.1         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| purestorage.flasharray | 1.12.1        | 1.13.0        |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+| vmware.vmware_rest     |               | 2.1.5         |                                                 |
++------------------------+---------------+---------------+-------------------------------------------------+
+
+Major Changes
+-------------
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- The community.mysql collection no longer supports ``Ansible 2.9`` and ``ansible-base 2.10``. While we take no active measures to prevent usage and there are no plans to introduce incompatible code to the modules, we will stop testing against ``Ansible 2.9`` and ``ansible-base 2.10``. Both will very soon be End of Life and if you are still using them, you should consider upgrading to the ``latest Ansible / ansible-core 2.11 or later`` as soon as possible (https://github.com/ansible-collections/community.mysql/pull/343).
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- The community.postgresql collection no longer supports ``Ansible 2.9`` and ``ansible-base 2.10``. While we take no active measures to prevent usage and there are no plans to introduce incompatible code to the modules, we will stop testing against ``Ansible 2.9`` and ``ansible-base 2.10``. Both will very soon be End of Life and if you are still using them, you should consider upgrading to the ``latest Ansible / ansible-core 2.11 or later`` as soon as possible (https://github.com/ansible-collections/community.postgresql/pull/245).
+
+Minor Changes
+-------------
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- setup - Added ipv4, ipv6, mtu and speed data to ansible_interfaces
+- win_environment - Trigger ``WM_SETTINGCHANGE`` on a change to notify other host processes of an environment change
+- win_path - Migrate to newer style module parser that adds features like module invocation under ``-vvv``
+- win_path - Trigger ``WM_SETTINGCHANGE`` on a change to notify other host processes of an environment change
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- Add execution-environment.yml in meta as the base to a Meraki ee
+- meraki_network - Add Products to net_type list
+
+community.ciscosmb
+~~~~~~~~~~~~~~~~~~
+
+- CI  change <plugin_type> <name> to name <name> for validate-module
+- CI - add ansible 2.13 to test matrix
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- Prepare collection for inclusion in an Execution Environment by declaring its dependencies. Please note that system packages are used for cryptography and PyOpenSSL, which can be rather limited. If you need features from newer cryptography versions, you will have to manually force a newer version to be installed by pip by specifying something like ``cryptography >= 37.0.0`` in your Execution Environment's Python dependencies file (https://github.com/ansible-collections/community.crypto/pull/440).
+- Support automatic conversion for Internalionalized Domain Names (IDNs). When passing general names, for example Subject Altenative Names to ``community.crypto.openssl_csr``, these will automatically be converted to IDNA. Conversion will be done per label to IDNA2008 if possible, and IDNA2003 if IDNA2008 conversion fails for that label. Note that IDNA conversion requires `the Python idna library <https://pypi.org/project/idna/>`_ to be installed. Please note that depending on which versions of the cryptography library are used, it could try to process the converted IDNA another time with the Python ``idna`` library and reject IDNA2003 encoded values. Using a new enough ``cryptography`` version avoids this (https://github.com/ansible-collections/community.crypto/issues/426, https://github.com/ansible-collections/community.crypto/pull/436).
+- acme_* modules - add parameter ``request_timeout`` to manage HTTP(S) request timeout (https://github.com/ansible-collections/community.crypto/issues/447, https://github.com/ansible-collections/community.crypto/pull/448).
+- luks_devices - added ``perf_same_cpu_crypt``, ``perf_submit_from_crypt_cpus``, ``perf_no_read_workqueue``, ``perf_no_write_workqueue`` for performance tuning when opening LUKS2 containers (https://github.com/ansible-collections/community.crypto/issues/427).
+- luks_devices - added ``persistent`` option when opening LUKS2 containers (https://github.com/ansible-collections/community.crypto/pull/434).
+- openssl_csr_info - add ``name_encoding`` option to control the encoding (IDNA, Unicode) used to return domain names in general names (https://github.com/ansible-collections/community.crypto/pull/436).
+- openssl_pkcs12 - allow to provide the private key as text instead of having to read it from a file. This allows to store the private key in an encrypted form, for example in Ansible Vault (https://github.com/ansible-collections/community.crypto/pull/452).
+- x509_certificate_info - add ``name_encoding`` option to control the encoding (IDNA, Unicode) used to return domain names in general names (https://github.com/ansible-collections/community.crypto/pull/436).
+- x509_crl - add ``name_encoding`` option to control the encoding (IDNA, Unicode) used to return domain names in general names (https://github.com/ansible-collections/community.crypto/pull/436).
+- x509_crl_info - add ``name_encoding`` option to control the encoding (IDNA, Unicode) used to return domain names in general names (https://github.com/ansible-collections/community.crypto/pull/436).
+
+community.digitalocean
+~~~~~~~~~~~~~~~~~~~~~~
+
+- ci - adding stable-2.13 to sanity and unit testing (https://github.com/ansible-collections/community.digitalocean/issues/239).
+- digital_ocean - parameterize the DigitalOcean API base url (https://github.com/ansible-collections/community.digitalocean/issues/237).
+- digital_ocean - reference C(DO_API_TOKEN) consistently in module documentation and examples (https://github.com/ansible-collections/community.digitalocean/issues/248).
+- digital_ocean_spaces - set C(no_log=True) for C(aws_access_key_id) parameter (https://github.com/ansible-collections/community.digitalocean/issues/243).
+- digital_ocean_spaces_info - set C(no_log=True) for C(aws_access_key_id) parameter (https://github.com/ansible-collections/community.digitalocean/issues/243).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_config - add support for ``template_driver`` with one option ``golang`` (https://github.com/ansible-collections/community.docker/issues/332, https://github.com/ansible-collections/community.docker/pull/345).
+- docker_swarm - adds ``data_path_addr`` parameter during swarm initialization or when joining (https://github.com/ansible-collections/community.docker/issues/339).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- vault_login module & lookup - no friendly error message was given when ``hvac`` was missing (https://github.com/ansible-collections/community.hashi_vault/issues/257).
+- vault_pki_certificate - add ``vault_pki_certificate`` to the ``community.hashi_vault.vault`` action group (https://github.com/ansible-collections/community.hashi_vault/issues/251).
+- vault_read module & lookup - no friendly error message was given when ``hvac`` was missing (https://github.com/ansible-collections/community.hashi_vault/issues/257).
+- vault_token_create - add ``vault_token_create`` to the ``community.hashi_vault.vault`` action group (https://github.com/ansible-collections/community.hashi_vault/issues/251).
+- vault_token_create module & lookup - no friendly error message was given when ``hvac`` was missing (https://github.com/ansible-collections/community.hashi_vault/issues/257).
+- vault_write - add ``vault_write`` to the ``community.hashi_vault.vault`` action group (https://github.com/ansible-collections/community.hashi_vault/issues/251).
+
+community.okd
+~~~~~~~~~~~~~
+
+- add action groups to runtime.yml (https://github.com/openshift/community.okd/issues/41).
+
+community.rabbitmq
+~~~~~~~~~~~~~~~~~~
+
+- rabbitmq_user - add support for `topic authorization <https://www.rabbitmq.com/access-control.html#topic-authorisation>`_ (featured in RabbitMQ 3.7.0) (https://github.com/ansible-collections/community.rabbitmq/pull/73).
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- win_domain_user - Add support for managing service prinicpal names via the ``spn`` param and principals allowed to delegate via the ``delegates`` param (https://github.com/ansible-collections/community.windows/pull/365)
+- win_domain_user - Added the ``groups_missing_behaviour`` option that controls the behaviour when a group specified does not exist - https://github.com/ansible-collections/community.windows/pull/375
+- win_hotfix - Added the ``identifiers`` and ``kbs`` return value that is always a list of identifiers and kbs inside a hotfix
+- win_psmodule - Add credential support for through the ``username`` and ``password`` options
+- win_psrepository - Add credential support for through the ``username`` and ``password`` options
+
+netapp.cloudmanager
+~~~~~~~~~~~~~~~~~~~
+
+- na_cloudmanager_aws_fsx - Import AWS FSX to CloudManager by adding new parameters ``import_file_system`` and ``file_system_id``.
+- na_cloudmanager_connector_azure - Support user defined ``storage_account`` name. The ``storage_account`` can be created automatically. When ``storage_account`` is not set, the name is constructed by appending 'sa' to the connector ``name``.
+- na_cloudmanager_cvo_aws - Support license_type update
+- na_cloudmanager_cvo_azure - Support license_type update
+- na_cloudmanager_cvo_gcp - Support license_type update
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_cifs - Added ``unix_symlink`` option in REST.
+- na_ontap_cifs_server - Added ``force`` option for create, delete and rename cifs server when using REST.
+- na_ontap_cifs_server - Added ``from_name`` option to rename cifs server when using REST.
+- na_ontap_igroup_initiator - Added REST support.
+- na_ontap_interface - use REST when ``use_rest`` is set to ``auto``.
+- na_ontap_iscsi - Added REST support.
+- na_ontap_nvme - Added REST support.
+- na_ontap_qos_adaptive_policy_group - warn about deprecation, fall back to ZAPI or fail when REST is desired.
+- na_ontap_qos_policy_group - Added REST only supported option ``adaptive_qos_options`` for configuring adaptive policy.
+- na_ontap_qos_policy_group - Added REST only supported option ``fixed_qos_options`` for configuring max/min throughput policy.
+- na_ontap_qos_policy_group - Added REST support.
+- na_ontap_quotas - support TB as a unit, update doc with size format description.
+- na_ontap_rest_info - new option ``owning_resource`` for REST info that requires an owning resource. For instance volume for a snapshot
+- na_ontap_rest_info - support added for protocols/nfs/export-policies/rules (Requires owning_resource to be set)
+- na_ontap_rest_info - support added for storage/volumes/snapshots (Requires owning_resource to be set)
+- na_ontap_rest_info REST API's with hyphens in the name will now be converted to underscores when ``use_python_keys`` is set to ``True`` so that YAML parsing works correctly.
+- na_ontap_rest_info support added for application/consistency-groups
+- na_ontap_rest_info support added for cluster/fireware/history
+- na_ontap_rest_info support added for cluster/mediators
+- na_ontap_rest_info support added for cluster/metrocluster/dr-groups
+- na_ontap_rest_info support added for cluster/metrocluster/interconnects
+- na_ontap_rest_info support added for cluster/metrocluster/operations
+- na_ontap_rest_info support added for cluster/ntp/keys
+- na_ontap_rest_info support added for cluster/web
+- na_ontap_rest_info support added for name-services/local-hosts
+- na_ontap_rest_info support added for name-services/unix-groups
+- na_ontap_rest_info support added for name-services/unix-users
+- na_ontap_rest_info support added for network/ethernet/switch/ports
+- na_ontap_rest_info support added for network/fc/ports
+- na_ontap_rest_info support added for network/http-proxy
+- na_ontap_rest_info support added for network/ip/bgp/peer-groups
+- na_ontap_rest_info support added for protocols/audit
+- na_ontap_rest_info support added for protocols/cifs/domains
+- na_ontap_rest_info support added for protocols/cifs/local-groups
+- na_ontap_rest_info support added for protocols/cifs/local-users
+- na_ontap_rest_info support added for protocols/cifs/sessions
+- na_ontap_rest_info support added for protocols/cifs/unix-symlink-mapping
+- na_ontap_rest_info support added for protocols/cifs/users-and-groups/privilege
+- na_ontap_rest_info support added for protocols/file-access-tracing/events
+- na_ontap_rest_info support added for protocols/file-access-tracing/filters
+- na_ontap_rest_info support added for protocols/fpolicy
+- na_ontap_rest_info support added for protocols/locks
+- na_ontap_rest_info support added for protocols/ndmp
+- na_ontap_rest_info support added for protocols/ndmp/nodes
+- na_ontap_rest_info support added for protocols/ndmp/sessions
+- na_ontap_rest_info support added for protocols/ndmp/svms
+- na_ontap_rest_info support added for protocols/nfs/connected-clients
+- na_ontap_rest_info support added for protocols/nfs/kerberos/interfaces
+- na_ontap_rest_info support added for protocols/nvme/subsystem-controllers
+- na_ontap_rest_info support added for protocols/nvme/subsystem-maps
+- na_ontap_rest_info support added for protocols/s3/buckets
+- na_ontap_rest_info support added for protocols/s3/services
+- na_ontap_rest_info support added for protocols/san/iscsi/sessions
+- na_ontap_rest_info support added for protocols/san/portsets
+- na_ontap_rest_info support added for protocols/san/vvol-bindings
+- na_ontap_rest_info support added for security/anti-ransomware/suspects
+- na_ontap_rest_info support added for security/audit
+- na_ontap_rest_info support added for security/audit/messages
+- na_ontap_rest_info support added for security/authentication/cluster/ad-proxy
+- na_ontap_rest_info support added for security/authentication/cluster/ldap
+- na_ontap_rest_info support added for security/authentication/cluster/nis
+- na_ontap_rest_info support added for security/authentication/cluster/saml-sp
+- na_ontap_rest_info support added for security/authentication/publickeys
+- na_ontap_rest_info support added for security/azure-key-vaults
+- na_ontap_rest_info support added for security/certificates
+- na_ontap_rest_info support added for security/gcp-kms
+- na_ontap_rest_info support added for security/ipsec
+- na_ontap_rest_info support added for security/ipsec/ca-certificates
+- na_ontap_rest_info support added for security/ipsec/policies
+- na_ontap_rest_info support added for security/ipsec/security-associations
+- na_ontap_rest_info support added for security/key-manager-configs
+- na_ontap_rest_info support added for security/key-managers
+- na_ontap_rest_info support added for security/key-stores
+- na_ontap_rest_info support added for security/login/messages
+- na_ontap_rest_info support added for security/ssh
+- na_ontap_rest_info support added for security/ssh/svms
+- na_ontap_rest_info support added for storage/cluster
+- na_ontap_rest_info support added for storage/file/clone/split-loads
+- na_ontap_rest_info support added for storage/file/clone/split-status
+- na_ontap_rest_info support added for storage/file/clone/tokens
+- na_ontap_rest_info support added for storage/monitored-files
+- na_ontap_rest_info support added for storage/qos/workloads
+- na_ontap_rest_info support added for storage/snaplock/audit-logs
+- na_ontap_rest_info support added for storage/snaplock/compliance-clocks
+- na_ontap_rest_info support added for storage/snaplock/event-retention/operations
+- na_ontap_rest_info support added for storage/snaplock/event-retention/policies
+- na_ontap_rest_info support added for storage/snaplock/file-fingerprints
+- na_ontap_rest_info support added for storage/snaplock/litigations
+- na_ontap_rest_info support added for storage/switches
+- na_ontap_rest_info support added for storage/tape-devices
+- na_ontap_rest_info support added for support/auto-update
+- na_ontap_rest_info support added for support/auto-update/configurations
+- na_ontap_rest_info support added for support/auto-update/updates
+- na_ontap_rest_info support added for support/configuration-backup
+- na_ontap_rest_info support added for support/configuration-backup/backups
+- na_ontap_rest_info support added for support/coredump/coredumps
+- na_ontap_rest_info support added for support/ems/messages
+- na_ontap_rest_info support added for support/snmp
+- na_ontap_rest_info support added for support/snmp/users
+- na_ontap_rest_info support added for svm/migrations
+- na_ontap_volume_autosize - improve error reporting.
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_fs - Add support for replicated file systems
+- purefa_info - Add QoS information for volume groups
+- purefa_info - Add info for protection group safe mode setting (Requires Purity//FA 6.3.0 or higher)
+- purefa_info - Add info for protection group snapshots
+- purefa_info - Add priority adjustment information for volumes and volume groups
+- purefa_info - Split volume groups into live and deleted dicts
+- purefa_pg - Add support for protection group SafeMode. Requires Purity//FA 6.3.0 or higher
+- purefa_policy - Allow directories in snapshot policies to be managed
+- purefa_vg - Add DMM Priority Adjustment support
+- purefa_volume - Add support for DMM Priority Adjustment
+- purefa_volume - Provide volume facts for volume after recovery
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- Add more EXAMPLE blocks in the documenation of the modules.
+- Adjust the release version of the lookup plugins fro, 2.0.1 to 2.1.0.
+- Better documentation
+- Ensure the shellcheck sanity test pass
+- Handle import error with correct exception raised while importing aiohttp
+- The examples uses the FQCN of the built-in modules
+- The format of the output of the Modules is now documented in the RETURN block.
+- The module RETURN sections are now defined.
+- The module_utils/vmware.py is licensed under BSD.
+- ``content_subscribedlibrary`` - use FQCN in the example.
+- ``vcenter_network_info`` - add an example with a Distributed Virtual Switch, a.k.a dvswitch (https://github.com/ansible-collections/vmware.vmware_rest/pull/316).
+- ``vcenter_vm_guest_customization`` - remove the module until vSphere API end-point work properly.
+- add some missing example blocks.
+- bump the default timeout to 600s to give more time to the slow operations.
+- documentation - clarify that we don't have any required parameters.
+- new moid lookup filter plugins to convert a resource path to a MOID.
+- use turbo mode cache for lookup plugins.
+- vcenter_host_connect - remove the module, use ``vcenter_host``
+- vcenter_host_disconnect - remove the module, use ``vcenter_host``
+- vcenter_resourcepool - add example in documentation.
+- vcenter_resourcepool - new module
+- vcenter_resourcepool_info - add example in documentation.
+- vcenter_resourcepool_info - new module
+- vcenter_rest_log_file - this optional parameter can be used to point on the log file where all the HTTP interaction will be record.
+- vcenter_storage_policies - new module
+- vcenter_storage_policies - remove vcenter_storage_policies
+- vcenter_storage_policies_compliance_vm_info - new module
+- vcenter_storage_policies_compliance_vm_info - remove the module
+- vcenter_storage_policies_entities_compliance_info - new module
+- vcenter_storage_policies_entities_compliance_info - remove the module
+- vcenter_storage_policies_info - new module
+- vcenter_storage_policies_vm_info - new module
+- vcenter_storage_policies_vm_info - remove the module
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- The vmware_rest 2.0.0 support vSphere 7.0.2 onwards.
+- vcenter_vm_storage_policy - the format of the ``disks`` parameter has changed.
+- vcenter_vm_storage_policy - the module has a new mandatory paramter: ``vm_home``.
+
+Deprecated Features
+-------------------
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- token_validate options - the shared auth option ``token_validate`` will change its default from ``True`` to ``False`` in community.hashi_vault version 4.0.0. The ``vault_login`` lookup and module will keep the default value of ``True`` (https://github.com/ansible-collections/community.hashi_vault/issues/248).
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- Support for Ansible 2.9 and ansible-base 2.10 is deprecated, and will be removed in the next major release (community.network 4.0.0) this spring. While most content will probably still work with ansible-base 2.10, we will remove symbolic links for modules and action plugins, which will make it impossible to use them with Ansible 2.9 anymore. Please use community.network 3.x.y with Ansible 2.9 and ansible-base 2.10, as these releases will continue to support Ansible 2.9 and ansible-base 2.10 even after they are End of Life (https://github.com/ansible-community/community-topics/issues/50, https://github.com/ansible-collections/community.network/pull/382).
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- vcenter_vm_storage_policy_compliance - drop the module, it returns 404 error.
+- vcenter_vm_tools - remove the ``upgrade`` state.
+- vcenter_vm_tools_installer - remove the module from the collection.
+
+Bugfixes
+--------
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- win_reboot - Always set a minimum of 2 seconds for ``pre_reboot_delay`` to ensure the plugin can read the result
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- meraki_alert - Updates now properly set default destination webhook
+- meraki_syslog -  Fix crash due to incorrect dictionary reference
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- Include ``PSF-license.txt`` file for ``plugins/module_utils/_version.py``.
+- Make collection more robust when PyOpenSSL is used with an incompatible cryptography version (https://github.com/ansible-collections/community.crypto/pull/445).
+- x509_crl - fix crash when ``issuer`` for a revoked certificate is specified (https://github.com/ansible-collections/community.crypto/pull/441).
+
+community.digitalocean
+~~~~~~~~~~~~~~~~~~~~~~
+
+- digital_ocean_cdn_endpoints - remove non-API parameters before posting to the API (https://github.com/ansible-collections/community.digitalocean/issues/252).
+- digital_ocean_cdn_endpoints - use the correct module name in the C(EXAMPLES) (https://github.com/ansible-collections/community.digitalocean/issues/251).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- Include ``PSF-license.txt`` file for ``plugins/module_utils/_version.py``.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- Include ``PSF-license.txt`` file for ``plugins/module_utils/_version.py``.
+- consul - fixed bug where class ``ConsulService`` was overwriting the field ``checks``, preventing the addition of checks to a service (https://github.com/ansible-collections/community.general/pull/4590).
+- gconftool2 - properly escape values when passing them to ``gconftool-2`` (https://github.com/ansible-collections/community.general/pull/4647).
+- onepassword - search all valid configuration locations and use the first found (https://github.com/ansible-collections/community.general/pull/4640).
+- opentelemetry callback plugin - fix task message attribute that is reported failed regardless of the task result (https://github.com/ansible-collections/community.general/pull/4624).
+- opentelemetry callback plugin - fix warning for the include_tasks (https://github.com/ansible-collections/community.general/pull/4623).
+- terraform - fix list initialization to support both Python 2 and Python 3 (https://github.com/ansible-collections/community.general/issues/4531).
+
+community.libvirt
+~~~~~~~~~~~~~~~~~
+
+- replace deprecated ``distutils.spawn.find_executable`` with Ansible's ``get_bin_path`` in ``_search_executable`` function.
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- Include ``PSF-license.txt`` file for ``plugins/module_utils/_version.py``.
+- mysql_role - remove redundant connection closing (https://github.com/ansible-collections/community.mysql/pull/330).
+- mysql_user - fix missing dynamic privileges after revoke and grant privileges to user (https://github.com/ansible-collections/community.mysql/issues/120).
+- mysql_user - fix parsing privs when a user has roles assigned (https://github.com/ansible-collections/community.mysql/issues/231).
+- mysql_user - fix the possibility for a race condition that breaks certain (circular) replication configurations when ``DROP USER`` is executed on multiple nodes in the replica set. Adding ``IF EXISTS`` avoids the need to use ``sql_log_bin: no`` making the statement always replication safe (https://github.com/ansible-collections/community.mysql/pull/287).
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- Collection core functions - use vendored version of ``distutils.version`` instead of the deprecated Python standard library ``distutils``.
+- Include ``PSF-license.txt`` file for ``plugins/module_utils/_version.py``.
+
+community.okd
+~~~~~~~~~~~~~
+
+- fix ocp auth failing against cluster api url with trailing slash (https://github.com/openshift/community.okd/issues/139)
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- Include ``PSF-license.txt`` file for ``plugins/module_utils/_version.py``.
+
+community.rabbitmq
+~~~~~~~~~~~~~~~~~~
+
+- Collection core functions - use vendored version of ``distutils.version`` instead of the deprecated Python standard library ``distutils``.
+- Include ``PSF-license.txt`` file for ``plugins/module_utils/_version.py``.
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- win_hotfix - Supports hotfixes that contain multiple updates inside the supplied update msu - https://github.com/ansible-collections/community.windows/issues/284
+- win_iis_webapplication - Fix physical path check for broken configurations - https://github.com/ansible-collections/community.windows/pull/385
+- win_rds_cap - Fix SID lookup with any account ending with the ``@builtin`` UPN suffix
+- win_rds_rap - Fix SID lookup with any account ending with the ``@builtin`` UPN suffix
+- win_region - Fix junk output when copying settings across users
+- win_scoop - Fix bootstrapping process to properly work when running as admin
+- win_scoop_bucket - Fix handling of output and errors from each scoop command
+
+kubernetes.core
+~~~~~~~~~~~~~~~
+
+- Catch expectation raised when the process is waiting for resources (https://github.com/ansible-collections/kubernetes.core/issues/407).
+- Remove `omit` placeholder when defining resource using template parameter (https://github.com/ansible-collections/kubernetes.core/issues/431).
+- k8s - fix the issue when trying to delete resources using label_selectors options (https://github.com/ansible-collections/kubernetes.core/issues/433).
+- k8s_cp - fix issue when using parameter local_path with file on managed node. (https://github.com/ansible-collections/kubernetes.core/issues/421).
+- k8s_drain - fix error occurring when trying to drain node with disable_eviction set to yes (https://github.com/ansible-collections/kubernetes.core/issues/416).
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_cifs - fixed `symlink_properties` option silently ignored for cifs share creation when using REST.
+- na_ontap_cifs - fixed error in modifying comment if it is not set while creating CIFS share in REST.
+- na_ontap_command - fix typo in example.
+- na_ontap_interface - rename fails with 'inconsistency in rename action' for cluster interface with REST.
+- na_ontap_login_messages - fix typo in examples for username.
+- na_ontap_nfs - fix TypeError on NoneType as ``tcp_max_xfer_size`` is not supported in earlier ONTAP versions.
+- na_ontap_nfs - fix ``Extra input`` error with ZAPI for ``is-nfsv4-enabled``.
+- na_ontap_quotas - fix idempotency issue on ``disk_limit`` and ``soft_disk_limit``.
+- na_ontap_service_policy - fix examples in documentation.
+- na_ontap_volume - QOS policy was not set when using NAS application.
+- na_ontap_volume - correctly warn when attempting to modify NAS application.
+- na_ontap_volume - do not set encrypt on modify, as it is already handled with specialized ZAPI calls.
+- na_ontap_volume - use ``time_out`` value when creating/modifying/deleting volumes with REST rathar than hardcoded value.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- nb_inventory - Ensure inventory works on NetBox versions without the site group model [#781](https://github.com/netbox-community/ansible_modules/pull/781)
+- nb_inventory - Fix netbox_inventory site_group group_by @ryanmerolle in [#780](https://github.com/netbox-community/ansible_modules/pull/780)
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_host - Allow multi-host creation without requiring a suffix string
+- purefa_info - Fix issue where remote arrays are not in a valid connected state
+- purefa_policy - Fix idempotency issue with quota policy rules
+- purefa_policy - Fix issue when creating multiple rules in an NFS policy
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- "remove the following modules vcenter_vm_guest_environment_info vcenter_vm_guest_environment_info " "vcenter_vm_guest_filesystemy vcenter_vm_guest_filesystem_files vcenter_vm_guest_filesystem_files_info " "vcenter_vm_guest_processes vcenter_vm_guest_processes_info because they don't work as expected."
+- Add support for Python 3.10.
+- Address a condition where the subkey item was not properly identified (https://github.com/ansible-collections/vmware_rest_code_generator/pull/181).
+- Adjust the cloud.common dependency to require 2.0.4 or greater (https://github.com/ansible-collections/vmware.vmware_rest/pull/315).
+- Fix logic in vmware_cis_category_info module.
+- Improve the documentation of the modules
+- Properly handle ``validate_certs`` as a boolean and accept all the standard Ansible values (``yes``, ``true``, ``y``, ``no``, etc).
+- ``appliance_networking_dns_servers`` - returns error on failure.
+- minor_changes - drop vcenter_vm_compute_policies_info because the API is flagged as Technology Preview
+- minor_changes - drop vcenter_vm_console_tickets because the API is flagged as Technology Preview
+- minor_changes - drop vcenter_vm_guest_power and keep vcenter_vm_power which provides the same features
+- vcenter_datacenter - Ensure pass stat=absent on a non-existing item won't raise an error (https://github.com/ansible-collections/vmware_rest_code_generator/pull/182).
+- vcenter_ovf_libraryitem - properly catch errors.
+- vcenter_vm_guest_customize - Add examples.
+- vcenter_vm_hardware_ethernet - Ensure we can attach a NIC to another network (https://github.com/ansible-collections/vmware.vmware_rest/issues/267).
+
+New Plugins
+-----------
+
+Lookup
+~~~~~~
+
+- community.hashi_vault.vault_ansible_settings - Returns plugin settings (options)
+- community.hashi_vault.vault_kv1_get - Get a secret from HashiCorp Vault's KV version 1 secret store
+- community.hashi_vault.vault_kv2_get - Get a secret from HashiCorp Vault's KV version 2 secret store
+
+New Modules
+-----------
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- community.hashi_vault.vault_kv1_get - Get a secret from HashiCorp Vault's KV version 1 secret store
+- community.hashi_vault.vault_kv2_get - Get a secret from HashiCorp Vault's KV version 2 secret store
+
+community.okd
+~~~~~~~~~~~~~
+
+- community.okd.openshift_adm_migrate_template_instances - Update TemplateInstances to point to the latest group-version-kinds
+- community.okd.openshift_adm_prune_auth - Removes references to the specified roles, clusterroles, users, and groups
+- community.okd.openshift_adm_prune_deployments - Remove old completed and failed deployment configs
+- community.okd.openshift_adm_prune_images - Remove unreferenced images
+- community.okd.openshift_import_image - Import the latest image information from a tag in a container image registry.
+- community.okd.openshift_registry_info - Display information about the integrated registry.
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- community.windows.win_listen_ports_facts - Recopilates the facts of the listening ports of the machine
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- netapp.ontap.na_ontap_s3_buckets - NetApp ONTAP S3 Buckets
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- vmware.vmware_rest.appliance_access_consolecli - Set enabled state of the console-based controlled CLI (TTY1).
+- vmware.vmware_rest.appliance_access_consolecli_info - Get enabled state of the console-based controlled CLI (TTY1).
+- vmware.vmware_rest.appliance_access_dcui - Set enabled state of Direct Console User Interface (DCUI TTY2).
+- vmware.vmware_rest.appliance_access_dcui_info - Get enabled state of Direct Console User Interface (DCUI TTY2).
+- vmware.vmware_rest.appliance_access_shell - Set enabled state of BASH, that is, access to BASH from within the controlled CLI.
+- vmware.vmware_rest.appliance_access_shell_info - Get enabled state of BASH, that is, access to BASH from within the controlled CLI.
+- vmware.vmware_rest.appliance_access_ssh - Set enabled state of the SSH-based controlled CLI.
+- vmware.vmware_rest.appliance_access_ssh_info - Get enabled state of the SSH-based controlled CLI.
+- vmware.vmware_rest.appliance_health_applmgmt_info - Get health status of applmgmt services.
+- vmware.vmware_rest.appliance_health_database_info - Returns the health status of the database.
+- vmware.vmware_rest.appliance_health_databasestorage_info - Get database storage health.
+- vmware.vmware_rest.appliance_health_load_info - Get load health.
+- vmware.vmware_rest.appliance_health_mem_info - Get memory health.
+- vmware.vmware_rest.appliance_health_softwarepackages_info - Get information on available software updates available in the remote vSphere Update Manager repository
+- vmware.vmware_rest.appliance_health_storage_info - Get storage health.
+- vmware.vmware_rest.appliance_health_swap_info - Get swap health.
+- vmware.vmware_rest.appliance_health_system_info - Get overall health of system.
+- vmware.vmware_rest.appliance_infraprofile_configs - Exports the desired profile specification.
+- vmware.vmware_rest.appliance_infraprofile_configs_info - List all the profiles which are registered.
+- vmware.vmware_rest.appliance_localaccounts - Create a new local user account.
+- vmware.vmware_rest.appliance_localaccounts_globalpolicy - Set the global password policy.
+- vmware.vmware_rest.appliance_localaccounts_globalpolicy_info - Get the global password policy.
+- vmware.vmware_rest.appliance_localaccounts_info - Get the local user account information.
+- vmware.vmware_rest.appliance_monitoring_info - Get monitored item info
+- vmware.vmware_rest.appliance_monitoring_query - Get monitoring data.
+- vmware.vmware_rest.appliance_networking - Reset and restarts network configuration on all interfaces, also this will renew the DHCP lease for DHCP IP address.
+- vmware.vmware_rest.appliance_networking_dns_domains - Set DNS search domains.
+- vmware.vmware_rest.appliance_networking_dns_domains_info - Get list of DNS search domains.
+- vmware.vmware_rest.appliance_networking_dns_hostname - Set the Fully Qualified Domain Name.
+- vmware.vmware_rest.appliance_networking_dns_hostname_info - Get the Fully Qualified Doman Name.
+- vmware.vmware_rest.appliance_networking_dns_servers - Set the DNS server configuration
+- vmware.vmware_rest.appliance_networking_dns_servers_info - Get DNS server configuration.
+- vmware.vmware_rest.appliance_networking_firewall_inbound - Set the ordered list of firewall rules to allow or deny traffic from one or more incoming IP addresses
+- vmware.vmware_rest.appliance_networking_firewall_inbound_info - Get the ordered list of firewall rules
+- vmware.vmware_rest.appliance_networking_info - Get Networking information for all configured interfaces.
+- vmware.vmware_rest.appliance_networking_interfaces_info - Get information about a particular network interface.
+- vmware.vmware_rest.appliance_networking_interfaces_ipv4 - Set IPv4 network configuration for specific network interface.
+- vmware.vmware_rest.appliance_networking_interfaces_ipv4_info - Get IPv4 network configuration for specific NIC.
+- vmware.vmware_rest.appliance_networking_interfaces_ipv6 - Set IPv6 network configuration for specific interface.
+- vmware.vmware_rest.appliance_networking_interfaces_ipv6_info - Get IPv6 network configuration for specific interface.
+- vmware.vmware_rest.appliance_networking_noproxy - Sets servers for which no proxy configuration should be applied
+- vmware.vmware_rest.appliance_networking_noproxy_info - Returns servers for which no proxy configuration will be applied.
+- vmware.vmware_rest.appliance_networking_proxy - Configures which proxy server to use for the specified protocol
+- vmware.vmware_rest.appliance_networking_proxy_info - Gets the proxy configuration for a specific protocol.
+- vmware.vmware_rest.appliance_ntp - Set NTP servers
+- vmware.vmware_rest.appliance_ntp_info - Get the NTP configuration status
+- vmware.vmware_rest.appliance_services - Restarts a service
+- vmware.vmware_rest.appliance_services_info - Returns the state of a service.
+- vmware.vmware_rest.appliance_shutdown - Cancel pending shutdown action.
+- vmware.vmware_rest.appliance_shutdown_info - Get details about the pending shutdown action.
+- vmware.vmware_rest.appliance_system_globalfips - Enable/Disable Global FIPS mode for the appliance
+- vmware.vmware_rest.appliance_system_globalfips_info - Get current appliance FIPS settings.
+- vmware.vmware_rest.appliance_system_storage - Resize all partitions to 100 percent of disk size.
+- vmware.vmware_rest.appliance_system_storage_info - Get disk to partition mapping.
+- vmware.vmware_rest.appliance_system_time_info - Get system time.
+- vmware.vmware_rest.appliance_system_time_timezone - Set time zone.
+- vmware.vmware_rest.appliance_system_time_timezone_info - Get time zone.
+- vmware.vmware_rest.appliance_system_version_info - Get the version.
+- vmware.vmware_rest.appliance_timesync - Set time synchronization mode.
+- vmware.vmware_rest.appliance_timesync_info - Get time synchronization mode.
+- vmware.vmware_rest.appliance_update_info - Gets the current status of the appliance update.
+- vmware.vmware_rest.appliance_vmon_service - Lists details of services managed by vMon.
+- vmware.vmware_rest.appliance_vmon_service_info - Returns the state of a service.
+- vmware.vmware_rest.content_configuration - Updates the configuration
+- vmware.vmware_rest.content_configuration_info - Retrieves the current configuration values.
+- vmware.vmware_rest.content_library_item_info - Returns the {@link ItemModel} with the given identifier.
+- vmware.vmware_rest.content_locallibrary - Creates a new local library.
+- vmware.vmware_rest.content_locallibrary_info - Returns a given local library.
+- vmware.vmware_rest.content_subscribedlibrary - Creates a new subscribed library
+- vmware.vmware_rest.content_subscribedlibrary_info - Returns a given subscribed library.
+- vmware.vmware_rest.vcenter_cluster_info - Collect the information associated with the vCenter clusters
+- vmware.vmware_rest.vcenter_datacenter - Manage the datacenter of a vCenter
+- vmware.vmware_rest.vcenter_datacenter_info - Collect the information associated with the vCenter datacenters
+- vmware.vmware_rest.vcenter_datastore_info - Collect the information associated with the vCenter datastores
+- vmware.vmware_rest.vcenter_folder_info - Collect the information associated with the vCenter folders
+- vmware.vmware_rest.vcenter_host - Manage the host of a vCenter
+- vmware.vmware_rest.vcenter_host_info - Collect the information associated with the vCenter hosts
+- vmware.vmware_rest.vcenter_network_info - Collect the information associated with the vCenter networks
+- vmware.vmware_rest.vcenter_ovf_libraryitem - Creates a library item in content library from a virtual machine or virtual appliance
+- vmware.vmware_rest.vcenter_resourcepool - Manage the resourcepool of a vCenter
+- vmware.vmware_rest.vcenter_resourcepool_info - Collect the information associated with the vCenter resourcepools
+- vmware.vmware_rest.vcenter_storage_policies_info - Collect the information associated with the vCenter storage policiess
+- vmware.vmware_rest.vcenter_vm - Manage the vm of a vCenter
+- vmware.vmware_rest.vcenter_vm_guest_environment_info - Reads a single environment variable from the guest operating system
+- vmware.vmware_rest.vcenter_vm_guest_filesystem - Initiates an operation to transfer a file to or from the guest
+- vmware.vmware_rest.vcenter_vm_guest_filesystem_directories - Creates a directory in the guest operating system
+- vmware.vmware_rest.vcenter_vm_guest_filesystem_files - Creates a temporary file
+- vmware.vmware_rest.vcenter_vm_guest_filesystem_files_info - Returns information about a file or directory in the guest
+- vmware.vmware_rest.vcenter_vm_guest_identity_info - Collect the guest identity information
+- vmware.vmware_rest.vcenter_vm_guest_localfilesystem_info - Collect the guest localfilesystem information
+- vmware.vmware_rest.vcenter_vm_guest_networking_info - Collect the guest networking information
+- vmware.vmware_rest.vcenter_vm_guest_networking_interfaces_info - Collect the guest networking interfaces information
+- vmware.vmware_rest.vcenter_vm_guest_networking_routes_info - Collect the guest networking routes information
+- vmware.vmware_rest.vcenter_vm_guest_operations_info - Get information about the guest operation status.
+- vmware.vmware_rest.vcenter_vm_guest_processes - Starts a program in the guest operating system
+- vmware.vmware_rest.vcenter_vm_guest_processes_info - Returns the status of a process running in the guest operating system, including those started by {@link Processes#create} that may have recently completed
+- vmware.vmware_rest.vcenter_vm_hardware - Manage the hardware of a VM
+- vmware.vmware_rest.vcenter_vm_hardware_adapter_sata - Manage the SATA adapter of a VM
+- vmware.vmware_rest.vcenter_vm_hardware_adapter_sata_info - Collect the SATA adapter information from a VM
+- vmware.vmware_rest.vcenter_vm_hardware_adapter_scsi - Manage the SCSI adapter of a VM
+- vmware.vmware_rest.vcenter_vm_hardware_adapter_scsi_info - Collect the SCSI adapter information from a VM
+- vmware.vmware_rest.vcenter_vm_hardware_boot - Manage the boot of a VM
+- vmware.vmware_rest.vcenter_vm_hardware_boot_device - Manage the boot device of a VM
+- vmware.vmware_rest.vcenter_vm_hardware_boot_device_info - Collect the boot device information from a VM
+- vmware.vmware_rest.vcenter_vm_hardware_boot_info - Collect the boot information from a VM
+- vmware.vmware_rest.vcenter_vm_hardware_cdrom - Manage the cdrom of a VM
+- vmware.vmware_rest.vcenter_vm_hardware_cdrom_info - Collect the cdrom information from a VM
+- vmware.vmware_rest.vcenter_vm_hardware_cpu - Manage the cpu of a VM
+- vmware.vmware_rest.vcenter_vm_hardware_cpu_info - Collect the cpu information from a VM
+- vmware.vmware_rest.vcenter_vm_hardware_disk - Manage the disk of a VM
+- vmware.vmware_rest.vcenter_vm_hardware_disk_info - Collect the disk information from a VM
+- vmware.vmware_rest.vcenter_vm_hardware_ethernet - Manage the ethernet of a VM
+- vmware.vmware_rest.vcenter_vm_hardware_ethernet_info - Collect the ethernet information from a VM
+- vmware.vmware_rest.vcenter_vm_hardware_floppy - Manage the floppy of a VM
+- vmware.vmware_rest.vcenter_vm_hardware_floppy_info - Collect the floppy information from a VM
+- vmware.vmware_rest.vcenter_vm_hardware_info - Manage the info of a VM
+- vmware.vmware_rest.vcenter_vm_hardware_memory - Manage the memory of a VM
+- vmware.vmware_rest.vcenter_vm_hardware_memory_info - Collect the memory information from a VM
+- vmware.vmware_rest.vcenter_vm_hardware_parallel - Manage the parallel of a VM
+- vmware.vmware_rest.vcenter_vm_hardware_parallel_info - Collect the parallel information from a VM
+- vmware.vmware_rest.vcenter_vm_hardware_serial - Manage the serial of a VM
+- vmware.vmware_rest.vcenter_vm_hardware_serial_info - Collect the serial information from a VM
+- vmware.vmware_rest.vcenter_vm_info - Collect the  information from a VM
+- vmware.vmware_rest.vcenter_vm_libraryitem_info - Collect the libraryitem  information from a VM
+- vmware.vmware_rest.vcenter_vm_power - Manage the power of a VM
+- vmware.vmware_rest.vcenter_vm_power_info - Collect the power  information from a VM
+- vmware.vmware_rest.vcenter_vm_storage_policy - Manage the storage policy of a VM
+- vmware.vmware_rest.vcenter_vm_storage_policy_compliance_info - Collect the storage policy compliance  information from a VM
+- vmware.vmware_rest.vcenter_vm_storage_policy_info - Collect the storage policy  information from a VM
+- vmware.vmware_rest.vcenter_vm_tools - Manage the tools of a VM
+- vmware.vmware_rest.vcenter_vm_tools_info - Collect the tools  information from a VM
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 2.2.0)
+- ansible.netcommon (still version 2.6.1)
+- ansible.posix (still version 1.3.0)
+- arista.eos (still version 3.1.0)
+- awx.awx (still version 19.4.0)
+- azure.azcollection (still version 1.12.0)
+- check_point.mgmt (still version 2.3.0)
+- chocolatey.chocolatey (still version 1.2.0)
+- cisco.aci (still version 2.2.0)
+- cisco.asa (still version 2.1.0)
+- cisco.intersight (still version 1.0.18)
+- cisco.ios (still version 2.8.1)
+- cisco.iosxr (still version 2.9.0)
+- cisco.ise (still version 1.2.1)
+- cisco.mso (still version 1.4.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 2.9.1)
+- cisco.ucs (still version 1.8.0)
+- cloud.common (still version 2.1.1)
+- cloudscale_ch.cloud (still version 2.2.1)
+- community.aws (still version 2.4.0)
+- community.azure (still version 1.1.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.4.0)
+- community.hrobot (still version 1.3.0)
+- community.kubernetes (still version 2.0.1)
+- community.kubevirt (still version 1.0.0)
+- community.proxysql (still version 1.3.2)
+- community.routeros (still version 2.0.0)
+- community.sap (still version 1.0.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.2.1)
+- community.vmware (still version 1.18.0)
+- community.zabbix (still version 1.6.0)
+- containers.podman (still version 1.9.3)
+- cyberark.conjur (still version 1.1.0)
+- cyberark.pas (still version 1.0.13)
+- dellemc.enterprise_sonic (still version 1.1.0)
+- dellemc.openmanage (still version 4.4.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- f5networks.f5_modules (still version 1.16.0)
+- fortinet.fortimanager (still version 2.1.5)
+- fortinet.fortios (still version 2.1.4)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.6.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.3.3)
+- infoblox.nios_modules (still version 1.2.1)
+- inspur.sm (still version 1.3.0)
+- junipernetworks.junos (still version 2.10.0)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.storagegrid (still version 21.10.0)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.3.0)
+- ngine_io.cloudstack (still version 2.2.3)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.1)
+- openstack.cloud (still version 1.8.0)
+- openvswitch.openvswitch (still version 2.1.0)
+- ovirt.ovirt (still version 1.6.6)
+- purestorage.flashblade (still version 1.9.0)
+- sensu.sensu_go (still version 1.13.1)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 1.0.2)
+- t_systems_mms.icinga_director (still version 1.29.0)
+- theforeman.foreman (still version 2.2.0)
+- vyos.vyos (still version 2.8.0)
+- wti.remote (still version 1.0.3)
+
 v5.7.1
 ======
 
