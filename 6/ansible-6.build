@@ -12,6 +12,7 @@ check_point.mgmt: >=2.3.0,<3.0.0
 chocolatey.chocolatey: >=1.2.0,<2.0.0
 cisco.aci: >=2.2.0,<3.0.0
 cisco.asa: >=3.0.0,<4.0.0
+cisco.dnac: >=6.4.0,<7.0.0
 cisco.intersight: >=1.0.0,<2.0.0
 cisco.ios: >=3.0.0,<4.0.0
 cisco.iosxr: >=3.0.0,<4.0.0
