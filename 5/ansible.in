@@ -10,6 +10,7 @@ check_point.mgmt
 chocolatey.chocolatey
 cisco.aci
 cisco.asa
+cisco.dnac
 cisco.intersight
 cisco.ios
 cisco.iosxr
