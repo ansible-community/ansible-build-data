@@ -78,6 +78,9 @@ collections:
   community.sap:
     maintainers:
       - rainerleber
+  community.sap_libs:
+    maintainers:
+      - rainerleber
   vmware.vmware_rest:
     maintainers:
       - goneri

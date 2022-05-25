@@ -47,6 +47,7 @@ community.proxysql: >=1.3.0,<2.0.0
 community.rabbitmq: >=1.2.0,<2.0.0
 community.routeros: >=2.0.0,<3.0.0
 community.sap: >=1.0.0,<2.0.0
+community.sap_libs: >=1.1.0,<2.0.0
 community.skydive: >=1.0.0,<2.0.0
 community.sops: >=1.2.0,<2.0.0
 community.vmware: >=2.4.0,<3.0.0
