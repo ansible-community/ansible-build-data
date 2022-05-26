@@ -84,6 +84,11 @@ collections:
   vmware.vmware_rest:
     maintainers:
       - goneri
+  vultr.cloud:
+    maintainers:
+      - resmo
+      - ddymko
+      - Oogy
   cisco.dnac:
     maintainers:
       - racampos
