@@ -55,7 +55,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
 | community.hashi_vault | 2.5.0           | 3.0.0           |                                                                                                                              |
 +-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
-| community.network     | 3.3.0           | 4.0.0           | The collection did not have a changelog in this version.                                                                     |
+| community.network     | 3.3.0           | 4.0.1           |                                                                                                                              |
 +-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
 | community.proxysql    | 1.3.2           | 1.4.0           |                                                                                                                              |
 +-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -169,6 +169,11 @@ cisco.dnac
 - snmpv2_read_community_credential - remove `id` and `instanceTenantId` parameter.
 - snmpv2_write_community_credential - remove `id` and `instanceTenantId` parameter.
 
+community.network
+~~~~~~~~~~~~~~~~~
+
+- The community.network collection no longer supports Ansible 2.9 and ansible-base 2.10. While we take no active measures to prevent usage, we will remove compatibility code and other compatility measures that will effectively prevent using most content from this collection with Ansible 2.9, and some content of this collection with ansible-base 2.10. Both Ansible 2.9 and ansible-base 2.10 will very soon be End of Life and if you are still using them, you should consider upgrading to ansible-core 2.11 or later as soon as possible (https://github.com/ansible-collections/community.network/pull/426).
+
 dellemc.openmanage
 ~~~~~~~~~~~~~~~~~~
 
@@ -263,6 +268,12 @@ community.docker
 
 - docker_container - added ``image_label_mismatch`` parameter (https://github.com/ansible-collections/community.docker/issues/314, https://github.com/ansible-collections/community.docker/pull/370).
 
+community.network
+~~~~~~~~~~~~~~~~~
+
+- community.network.ce_switchport - add support of decode a few stdout values from bitmap to human readable format(https://github.com/ansible-collections/community.network/issues/315)
+- community.network.edgeos_config - append save command into result (https://github.com/ansible-collections/community.network/pull/189)
+
 community.routeros
 ~~~~~~~~~~~~~~~~~~
 
@@ -331,6 +342,22 @@ community.hashi_vault
 - aws_iam auth - the deprecated alias ``aws_iam_login`` for the ``aws_iam`` value of the ``auth_method`` option has been removed (https://github.com/ansible-collections/community.hashi_vault/issues/194).
 - community.hashi_vault collection - support for Ansible 2.9 and ansible-base 2.10 has been removed (https://github.com/ansible-collections/community.hashi_vault/issues/189).
 - hashi_vault lookup - the deprecated ``[lookup_hashi_vault]`` INI config section has been removed in favor of the collection-wide ``[hashi_vault_collection]`` section (https://github.com/ansible-collections/community.hashi_vault/issues/179).
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- aireos modules - removed deprecated ``connection: local`` support. Use ``connection: network_cli`` instead (https://github.com/ansible-collections/community.network/pull/440).
+- aireos modules - removed deprecated ``provider`` option. Use ``connection: network_cli`` instead (https://github.com/ansible-collections/community.network/pull/440).
+- aruba modules - removed deprecated ``connection: local`` support. Use ``connection: network_cli`` instead (https://github.com/ansible-collections/community.network/pull/440).
+- aruba modules - removed deprecated ``provider`` option. Use ``connection: network_cli`` instead (https://github.com/ansible-collections/community.network/pull/440).
+- ce modules - removed deprecated ``connection: local`` support. Use ``connection: network_cli`` instead (https://github.com/ansible-collections/community.network/pull/440).
+- ce modules - removed deprecated ``provider`` option. Use ``connection: network_cli`` instead (https://github.com/ansible-collections/community.network/pull/440).
+- enos modules - removed deprecated ``connection: local`` support. Use ``connection: network_cli`` instead (https://github.com/ansible-collections/community.network/pull/440).
+- enos modules - removed deprecated ``provider`` option. Use ``connection: network_cli`` instead (https://github.com/ansible-collections/community.network/pull/440).
+- ironware modules - removed deprecated ``connection: local`` support. Use ``connection: network_cli`` instead (https://github.com/ansible-collections/community.network/pull/440).
+- ironware modules - removed deprecated ``provider`` option. Use ``connection: network_cli`` instead (https://github.com/ansible-collections/community.network/pull/440).
+- sros modules - removed deprecated ``connection: local`` support. Use ``connection: network_cli`` instead (https://github.com/ansible-collections/community.network/pull/440).
+- sros modules - removed deprecated ``provider`` option. Use ``connection: network_cli`` instead (https://github.com/ansible-collections/community.network/pull/440).
 
 Bugfixes
 --------
@@ -491,6 +518,16 @@ community.docker
 
 - docker_container - fail with a meaningful message instead of crashing if a port is specified with more than three colon-separated parts (https://github.com/ansible-collections/community.docker/pull/367, https://github.com/ansible-collections/community.docker/issues/365).
 - docker_container - remove unused code that will cause problems with Python 3.13 (https://github.com/ansible-collections/community.docker/pull/354).
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- Collection core functions - use vendored version of ``distutils.version`` instead of the deprecated Python standard library ``distutils``.
+- Include ``PSF-license.txt`` file for ``plugins/module_utils/_version.py``.
+- ce - Modify the bug in the query configuration method (https://github.com/ansible-collections/community.network/pull/56).
+- community.network.ce_switchport - fix error causing by ``KeyError:`` ``host`` due to properties aren't used anywhere (https://github.com/ansible-collections/community.network/issues/313)
+- exos_config - fix a hang due to an unexpected prompt during save_when (https://github.com/ansible-collections/community.network/pull/110).
+- weos4 cliconf plugin - fix linting errors in documentation data (https://github.com/ansible-collections/community.network/pull/368).
 
 community.proxysql
 ~~~~~~~~~~~~~~~~~~
