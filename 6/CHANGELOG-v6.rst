@@ -8,6 +8,688 @@ This changelog describes changes since Ansible 5.0.0.
   :local:
   :depth: 2
 
+v6.0.0b1
+========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2022-05-27
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- cisco.dnac (version 6.4.0)
+- community.sap_libs (version 1.1.0)
+
+Ansible-core
+------------
+
+Ansible 6.0.0b1 contains Ansible-core version 2.13.0.
+This is the same version of Ansible-core as in the previous Ansible release.
+
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection            | Ansible 6.0.0a3 | Ansible 6.0.0b1 | Notes                                                                                                                        |
++=======================+=================+=================+==============================================================================================================================+
+| ansible.posix         | 1.3.0           | 1.4.0           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.dnac            |                 | 6.4.0           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ise             | 2.4.0           | 2.4.1           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cloudscale_ch.cloud   | 2.2.1           | 2.2.2           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker      | 2.5.1           | 2.6.0           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hashi_vault | 2.5.0           | 3.0.0           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.network     | 3.3.0           | 4.0.0           | The collection did not have a changelog in this version.                                                                     |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.proxysql    | 1.3.2           | 1.4.0           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros    | 2.0.0           | 2.1.0           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sap_libs    |                 | 1.1.0           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware      | 2.4.0           | 2.5.0           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.zabbix      | 1.6.0           | 1.7.0           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.pas          | 1.0.13          | 1.0.14          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.openmanage    | 5.3.0           | 5.4.0           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules | 1.16.0          | 1.17.0          |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortios      | 2.1.4           | 2.1.6           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| infoblox.nios_modules | 1.2.1           | 1.2.2           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ngine_io.cloudstack   | 2.2.3           | 2.2.4           |                                                                                                                              |
++-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+cisco.dnac
+~~~~~~~~~~
+
+- Adds _info plugins to query information from database.
+- Adds new plugins related to DNA version 2.2.2.3.
+- Adds plugins for resource's operations that have different structure in request/response bodies (ie. _create, _update, _delete plugins).
+- Adds plugins without state that perform special operation on DNA Center.
+- Adds resources for modules to manage CRUD operations.
+- Moves the module parameters out of the inventory and places them inside the tasks themselves.
+- Update dnacentersdk requirement from 2.4.4 to 2.4.5
+- Update dnacentersdk requirement from 2.4.5 to 2.4.6
+- Updates previous plugins to follow DNA version 2.2.2.3 specification.
+- applications_health_info - new `applicationName` parameter.
+- business_sda_wireless_controller_create - Removed 'deviceIPAddress' arguments.
+- business_sda_wireless_controller_delete - Removed 'deviceName' and 'siteNameHierarchy' arguments.
+- network_device - Removed 'managementIpAddress' arguments.
+- network_device - change `isForceDelete` parameter to `cleanConfig` parameter.
+- network_device - new `cleanConfig` parameter.
+- network_device_lexicographically_sorted_info - change `limit` param type from str to int
+- network_device_lexicographically_sorted_info - change `offset` param type from str to int
+- reserve_ip_subpool - new `ipv4GateWay` parameter.
+- reserve_ip_subpool_update - Removed 'type', 'ipv4GlobalPool', 'ipv4Prefix', 'ipv4PrefixLength', 'ipv4Subnet' and 'ipv4TotalHost' arguments.
+- sda_device_info - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
+- sda_fabric - remove `payload` parameter.
+- sda_fabric_authentication_profile - add `authenticateTemplateName` parameter.
+- sda_fabric_authentication_profile - add `authenticationOrder` parameter.
+- sda_fabric_authentication_profile - add `dot1xToMabFallbackTimeout` parameter.
+- sda_fabric_authentication_profile - add `numberOfHosts` parameter.
+- sda_fabric_authentication_profile - add `wakeOnLan` parameter.
+- sda_fabric_authentication_profile - remove `payload` parameter.
+- sda_fabric_authentication_profile_info - add `authenticateTemplateName` parameter.
+- sda_fabric_border_device - add `borderSessionType` parameter.
+- sda_fabric_border_device - add `connectedToInternet` parameter.
+- sda_fabric_border_device - add `deviceManagementIpAddress` parameter.
+- sda_fabric_border_device - add `externalAutonomouSystemNumber` parameter.
+- sda_fabric_border_device - add `externalConnectivityIpPoolName` parameter.
+- sda_fabric_border_device - add `externalConnectivitySettings` parameter.
+- sda_fabric_border_device - add `externalDomainRoutingProtocolName` parameter.
+- sda_fabric_border_device - add `interfaceName` parameter.
+- sda_fabric_border_device - add `internalAutonomouSystemNumber` parameter.
+- sda_fabric_border_device - add `l3Handoff` parameter.
+- sda_fabric_border_device - add `siteNameHierarchy` parameter.
+- sda_fabric_border_device - add `virtualNetworkName` parameter.
+- sda_fabric_border_device - add `virtualNetwork` parameter.
+- sda_fabric_border_device - add `vlanId parameter.`
+- sda_fabric_border_device - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
+- sda_fabric_border_device - changes in externalConnectivitySettings from object to list.
+- sda_fabric_border_device - remove `payload` parameter.
+- sda_fabric_border_device_info - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
+- sda_fabric_control_plane_device - add `siteNameHierarchy` parameter.
+- sda_fabric_control_plane_device - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
+- sda_fabric_control_plane_device - remove `payload` parameter.
+- sda_fabric_control_plane_device_info - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
+- sda_fabric_edge_device - add `siteNameHierarchy` parameter.
+- sda_fabric_edge_device - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
+- sda_fabric_edge_device - remove `payload` parameter.
+- sda_fabric_edge_device_info - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
+- sda_fabric_site - add `fabricName` parameter.
+- sda_fabric_site - remove `payload` parameter.
+- sda_multicast - change `fabricSiteNameHierarchy` to `siteNameHierarchy` parameter.
+- sda_multicast_info - change `fabricSiteNameHierarchy` to `siteNameHierarchy` parameter.
+- sda_port_assignment_for_access_point - add `authenticateTemplateName` parameter.
+- sda_port_assignment_for_access_point - add `dataIpAddressPoolName` parameter.
+- sda_port_assignment_for_access_point - add `deviceManagementIpAddress` parameter.
+- sda_port_assignment_for_access_point - add `interfaceDescription` parameter.
+- sda_port_assignment_for_access_point - add `siteNameHierarchy` parameter.
+- sda_port_assignment_for_access_point - change `device_ip` to `deviceManagementIpAddress` parameter.
+- sda_port_assignment_for_access_point - remove `payload` parameter.
+- sda_port_assignment_for_access_point_info - change `device_ip` to `deviceManagementIpAddress` parameter.
+- sda_port_assignment_for_user_device - add `authenticateTemplateName` parameter.
+- sda_port_assignment_for_user_device - add `dataIpAddressPoolName` parameter.
+- sda_port_assignment_for_user_device - add `interfaceDescription` parameter.
+- sda_port_assignment_for_user_device - add `scalableGroupName` parameter.
+- sda_port_assignment_for_user_device - add `siteNameHierarchy` parameter.
+- sda_port_assignment_for_user_device - add `voiceIpAddressPoolName` parameter.
+- sda_port_assignment_for_user_device - change `device_ip` to `deviceManagementIpAddress` parameter.
+- sda_port_assignment_for_user_device - remove `payload` parameter.
+- sda_port_assignment_for_user_device_info - change `device_ip` to `deviceManagementIpAddress` parameter.
+- sda_virtual_network - remove `payload` parameter.
+- sda_virtual_network_ip_pool - add `siteNameHierarchy`, `ipPoolName`, `trafficType`, `authenticationPolicyName`, `scalableGroupName`, `isL2FloodingEnabled`, `isThisCriticalPool`, `poolType`, `vlanName`, `isWirelessPool` parameters.
+- sda_virtual_network_ip_pool - remove `payload` and `ipPoolName` parameter.
+- service_provider_profile_delete - Rename argument from 'sp_profile_name' to 'spProfileName'.
+- site_health_info - add `siteType`, `offset`, `limit` parameters
+- snmpv2_read_community_credential - remove `id` and `instanceTenantId` parameter.
+- snmpv2_write_community_credential - remove `id` and `instanceTenantId` parameter.
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_server_config_profile - The module is enhanced to support export, import, and preview the SCP configuration using Redfish and added support for check mode.
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Support FortiOS 7.0.2, 7.0.3, 7.0.4, 7.0.5.
+
+Minor Changes
+-------------
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- firewalld - Show warning message that variable type of ``masquerade`` and ``icmp_block_inversion`` will be changed from ``str`` to ``boolean`` in the future release (https://github.com/ansible-collections/ansible.posix/pull/254).
+- selinux - optionally update kernel boot params when disabling/re-enabling SELinux (https://github.com/ansible-collections/ansible.posix/pull/142).
+
+cisco.dnac
+~~~~~~~~~~
+
+- Adds ``headers`` parameter to info modules.
+- Adds ``headers`` parameter to wireless provision device update.
+- Adds following ``parameters`` to pnp_device_claim_to_site, gateway, imageId, ipInterfaceName, staticIP, subnetMask, vlanId
+- Adds sanity ignores for ansible-2.9.
+- Changes the minimum supported version from Ansible v.2.10.5 to v2.9.10.
+- Update README
+- Update dnacentersdk requirement from 2.4.0 to 2.4.4
+- Update dnacentersdk requirement from 2.4.6 to 2.4.7
+- Updated test/sanity and remove duplicates
+- app_policy_default_info - new module.
+- app_policy_info - new module.
+- app_policy_intent_create - new module.
+- app_policy_queuing_profile - new module.
+- app_policy_queuing_profile_count_info - new module.
+- app_policy_queuing_profile_info - new module.
+- associate_site_to_network_profile - new module.
+- business_sda_hostonboarding_ssid_ippool - new module.
+- business_sda_hostonboarding_ssid_ippool_info - new module.
+- business_sda_wireless_controller_create - new module.
+- business_sda_wireless_controller_delete - new module.
+- device_family_identifiers_details_info - new module.
+- disassociate_site_to_network_profile - new module.
+- disasterrecovery_system_operationstatus_info - new module.
+- disasterrecovery_system_status_info - new module.
+- dnacaap_management_execution_status_info - new module.
+- endpoint_analytics_profiling_rules - new module.
+- endpoint_analytics_profiling_rules_info - new module.
+- file_info - Instead of returning the data string, it now returns a dictionary. The dictionary has property data with the previous string value.
+- file_info - add parameter filename.
+- golden_image_create - new module.
+- golden_tag_image_delete - new module.
+- golden_tag_image_details_info - new module.
+- pnp_device_claim_to_site - Add hostname, imageInfo and configInfo parameters to module.
+- pnp_device_claim_to_site - add parameter rfProfile.
+- profiling_rules_count_info - new module.
+- profiling_rules_in_bulk_create - new module.
+- projects_details_info - new module.
+- qos_device_interface - new module.
+- qos_device_interface_info - new module.
+- qos_device_interface_info_count_info - new module.
+- reports - `tag` and `deliveries` now support empty format
+- reports_executions_info - Instead of returning the data string, it now returns a dictionary. The dictionary has property data with the previous string value.
+- reports_executions_info - add parameter filename.
+- reserve_ip_subpool_create - new module.
+- reserve_ip_subpool_delete - new module.
+- reserve_ip_subpool_update - new module.
+- sda_virtual_network_ip_pool - update example documentation to include siteNameHierarchy option.
+- sda_virtual_network_ip_pool_info - add siteNameHierarchy option.
+- site_design_floormap_info - Add get_all to module
+- sync with Ansible Galaxy release number
+- tag_membership - Fixes module documentation
+- tag_membership - changes in memberToTags from list to object in the way the value is obtained.
+- templates_details_info - new module.
+- update documentation link in galaxy
+
+cisco.ise
+~~~~~~~~~
+
+- repository - change path parameter from name to repositoryName
+- repository_files_info - change path parameter from name to repositoryName
+- repository_info - change path parameter from name to repositoryName
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- Fixed inventory documentation.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_container - added ``image_label_mismatch`` parameter (https://github.com/ansible-collections/community.docker/issues/314, https://github.com/ansible-collections/community.docker/pull/370).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- Added a ``community.routeros.api`` module defaults group. Use with ``group/community.routeros.api`` to provide options for all API-based modules (https://github.com/ansible-collections/community.routeros/pull/89).
+- Prepare collection for inclusion in an Execution Environment by declaring its dependencies (https://github.com/ansible-collections/community.routeros/pull/83).
+- api - add new option ``extended query`` more complex queries against RouterOS API (https://github.com/ansible-collections/community.routeros/pull/63).
+- api - update ``query`` to accept symbolic parameters (https://github.com/ansible-collections/community.routeros/pull/63).
+- api* modules - allow to set an encoding other than the default ASCII for communicating with the API (https://github.com/ansible-collections/community.routeros/pull/95).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_vm_info - Add the feature to get the output of allocated storage, cpu und memory. (https://github.com/ansible-collections/community.vmware/pull/1283)
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- helpers.helper_compare_lists() changed logic to not consider the order of elements in lists. (https://github.com/ansible-collections/community.zabbix/pull/683)
+- zabbix_action, zabbix_maintenance, zabbix_mediatype, zabbix_proxy, zabbix_service - updated to work with Zabbix 6.0. (https://github.com/ansible-collections/community.zabbix/pull/683)
+- zabbix_script module added (https://github.com/ansible-collections/community.zabbix/issues/634)
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_device_info - add fqdn related parameters to be gathered on nodes
+- bigip_device_info - add parent to the data gathered for ServerSSL Profiles
+
+infoblox.nios_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Allow specifying a template when creating a network `#105 <https://github.com/infobloxopen/infoblox-ansible/pull/105>`_
+- Expanding for disable value `#119 <https://github.com/infobloxopen/infoblox-ansible/pull/119>`_
+- Fix to create PTR record in different network views `#103 <https://github.com/infobloxopen/infoblox-ansible/pull/103>`_
+- Fix unit and sanity test issues `#117 <https://github.com/infobloxopen/infoblox-ansible/pull/117>`_
+- Remove use_option for DHCP option 60 `#104 <https://github.com/infobloxopen/infoblox-ansible/pull/104>`_
+
+ngine_io.cloudstack
+~~~~~~~~~~~~~~~~~~~
+
+- Various documentation fixes and code improvements to address ansible sanity tests failure.
+
+Deprecated Features
+-------------------
+
+- The collection ``community.sap`` has been renamed to ``community.sap_libs``. For now both collections are included in Ansible. The content in ``community.sap`` will be replaced with deprecated redirects to the new collection in Ansible 7.0.0, and these redirects will eventually be removed from Ansible. Please update your FQCNs for ``community.sap``.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- Support for Ansible 2.9 and ansible-base 2.10 is deprecated, and will be removed in the next major release (community.docker 3.0.0). Some modules might still work with these versions afterwards, but we will no longer keep compatibility code that was needed to support them (https://github.com/ansible-collections/community.docker/pull/361).
+- The dependency on docker-compose for Execution Environments is deprecated and will be removed in community.docker 3.0.0. The `Python docker-compose library <https://pypi.org/project/docker-compose/>`__ is unmaintained and can cause dependency issues. You can manually still install it in an Execution Environment when needed (https://github.com/ansible-collections/community.docker/pull/373).
+- Various modules - the default of ``tls_hostname`` that was supposed to be removed in community.docker 2.0.0 will now be removed in version 3.0.0 (https://github.com/ansible-collections/community.docker/pull/362).
+- docker_stack - the return values ``out`` and ``err`` that were supposed to be removed in community.docker 2.0.0 will now be removed in version 3.0.0 (https://github.com/ansible-collections/community.docker/pull/362).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- token_validate options - the shared auth option ``token_validate`` will change its default from ``true`` to ``false`` in community.hashi_vault version 4.0.0. The ``vault_login`` lookup and module will keep the default value of ``true`` (https://github.com/ansible-collections/community.hashi_vault/issues/248).
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- aws_iam auth - the deprecated alias ``aws_iam_login`` for the ``aws_iam`` value of the ``auth_method`` option has been removed (https://github.com/ansible-collections/community.hashi_vault/issues/194).
+- community.hashi_vault collection - support for Ansible 2.9 and ansible-base 2.10 has been removed (https://github.com/ansible-collections/community.hashi_vault/issues/189).
+- hashi_vault lookup - the deprecated ``[lookup_hashi_vault]`` INI config section has been removed in favor of the collection-wide ``[hashi_vault_collection]`` section (https://github.com/ansible-collections/community.hashi_vault/issues/179).
+
+Bugfixes
+--------
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- Fix for whitespace in source full path causing error ```code 23) at main.c(1330) [sender=3.2.3]``` (https://github.com/ansible-collections/ansible.posix/pull/278)
+- Include ``PSF-license.txt`` file for ``plugins/module_utils/_version.py``.
+- Use vendored version of ``distutils.version`` instead of the deprecated Python standard library to address PEP 632 (https://github.com/ansible-collections/ansible.posix/issues/303).
+- firewalld - Correct usage of queryForwardPort (https://github.com/ansible-collections/ansible.posix/issues/247).
+- firewalld - Refine the handling of exclusive options (https://github.com/ansible-collections/ansible.posix/issues/255).
+- mount - add a newline at the end of line in ``fstab`` (https://github.com/ansible-collections/ansible.posix/issues/210).
+- profile_tasks - Correctly calculate task execution time with serial execution (https://github.com/ansible-collections/ansible.posix/issues/83).
+- seboolean - add ``python3-libsemanage`` package dependency for RHEL8+ systems.
+
+cisco.dnac
+~~~~~~~~~~
+
+- Add try catch/except to dnac execution
+- Adds changelog
+- Adds code of conduct
+- Adds code specific to idempotent module definitions
+- Adds dnacentersdk to requirements.
+- Adds entries to the sanity check ignore file
+- Adds missing boilerplate code
+- Adds param payload to site_design_floormap module
+- Adds policy about releasing, versioning and deprecation to the README.
+- Adds try/except clauses to gracefully handle missing SDK and ansible.utils dependencies per ansible-core-2.11 requirements
+- Changes the comparison from value to keys
+- Documents the dependency on ansible.utils
+- Documents the minimum version of Python supported by the collection.
+- Documents the non-standard return values of all modules in the collection
+- Fixed module documentation to have elements.
+- Fixed the type of dnac_port in the documentation from string to int.
+- Fixes *delete modules that were calling update operation
+- Fixes *update modules that were calling create operation
+- Fixes *update modules that were calling delete operation
+- Fixes a bug in the 'site' and 'tag' modules, which are the only two idempotent modules.
+- Fixes a bug that caused the task execution to fail if the optional parameters like port, dnac version and SSL verification were missing from the hosts.yml file.
+- Fixes a problem with the overlapping 'state' param in four plugins.
+- Fixes check_mode behavior for non-info modules.
+- Fixes linting problems with the DOCUMENTATION.
+- Fixes pylint issues
+- Fixes return syntax errors
+- Fixes yamllint issues
+- Improve the documentation.
+- Improves the changelog.
+- Improves the documentation of modules.
+- It changes payload from dict to list of dict
+- It only accepts not None keys to dictionary item
+- On info modules comparison was removed, because info modules should always run.
+- On regular modules additional comparison of check_mode was removed as Ansible already handles it.
+- Removes ANSIBLE_METADATA section from all modules
+- Removes blank spaces from DOCUMENTATION
+- Removes colon characters from DOCUMENTATION
+- Removes duplicate keys from DOCUMENTATION
+- Removes the RETURN section from all modules
+- Update README, update Compatibility matrix.
+- Update get for wireless_dynamic_interface, change key that has name
+- Update get for wireless_enterprise_ssid, obtain item.ssidDetails from items
+- Updated internal code for credential and discovery
+- Updates the README to map versions (dnacentersdk and Cisco DNA Center with the ansible collection)
+- Updates the README to reflect latest API changes.
+- app_policy_queuing_profile - fix get_object_by_id (issue 32), which helps deletion.
+- application_sets - fix get_object_by_id (issue 32), which helps deletion.
+- applications - fix get_object_by_id (issue 32), which helps deletion.
+- business_sda_hostonboarding_ssid_ippool - fix exists check (issue 31).
+- business_sda_hostonboarding_ssid_ippool - fix get_object_by_id (issue 32), which helps deletion.
+- configuration_template - update module logic.
+- configuration_template_project - update module logic.
+- device_replacement - fix get_object_by_id (issue 32), which helps deletion.
+- event_subscription - fix get_object_by_id (issue 32), which helps deletion.
+- event_subscription_email - fix get_object_by_id (issue 32), which helps deletion.
+- event_subscription_rest - fix get_object_by_id (issue 32), which helps deletion.
+- event_subscription_syslog - fix get_object_by_id (issue 32), which helps deletion.
+- global_pool - includes request param as an alternative to id
+- network_create - update module DOCUMENTATION block.
+- network_device - includes request param as an alternative to id
+- network_device_lexicographically_sorted_info - update module RETURN block.
+- network_update - update module DOCUMENTATION block.
+- path_trace - update module logic.
+- plugin/modules/* - Update plugin module documentation
+- pnp_device - includes request param as an alternative to id
+- pnp_device - update module logic.
+- pnp_global_settings - fix get_object_by_id (issue 32), which helps deletion.
+- qos_device_interface - fix get_object_by_id (issue 32), which helps deletion.
+- reports - update module logic.
+- reserve_ip_subpool - fix get_object_by_id (issue 32), which helps deletion.
+- sda_fabric - add early check of 'status' for module when state is absent.
+- sda_fabric - add early check of 'status' for module.
+- sda_fabric - fix get_object_by_id (issue 32), which helps deletion.
+- sda_fabric_authentication_profile - add early check of 'status' for module when state is absent.
+- sda_fabric_authentication_profile - add early check of 'status' for module.
+- sda_fabric_authentication_profile - fix exists check (issue 31).
+- sda_fabric_authentication_profile - fix get_object_by_id (issue 32), which helps deletion.
+- sda_fabric_border_device - add early check of 'status' for module when state is absent.
+- sda_fabric_border_device - add early check of 'status' for module.
+- sda_fabric_border_device - fix exists check (issue 31).
+- sda_fabric_border_device - fix get_object_by_id (issue 32), which helps deletion.
+- sda_fabric_control_plane_device - add early check of 'status' for module when state is absent.
+- sda_fabric_control_plane_device - add early check of 'status' for module.
+- sda_fabric_control_plane_device - fix exists check (issue 31).
+- sda_fabric_control_plane_device - fix get_object_by_id (issue 32), which helps deletion.
+- sda_fabric_edge_device - add early check of 'status' for module when state is absent.
+- sda_fabric_edge_device - add early check of 'status' for module.
+- sda_fabric_edge_device - fix exists check (issue 31).
+- sda_fabric_edge_device - fix get_object_by_id (issue 32), which helps deletion.
+- sda_fabric_site - add early check of 'status' for module when state is absent.
+- sda_fabric_site - add early check of 'status' for module.
+- sda_fabric_site - add playbook
+- sda_fabric_site - fix exists check (issue 31).
+- sda_fabric_site - fix get_object_by_id (issue 32), which helps deletion.
+- sda_multicast - add early check of 'status' for module when state is absent.
+- sda_multicast - add early check of 'status' for module.
+- sda_multicast - fix exists check (issue 31).
+- sda_multicast - fix get_object_by_id (issue 32), which helps deletion.
+- sda_port_assignment_for_access_point - add early check of 'status' for module when state is absent.
+- sda_port_assignment_for_access_point - add early check of 'status' for module.
+- sda_port_assignment_for_access_point - fix exists check (issue 31).
+- sda_port_assignment_for_access_point - fix get_object_by_id (issue 32), which helps deletion.
+- sda_port_assignment_for_user_device - add early check of 'status' for module when state is absent.
+- sda_port_assignment_for_user_device - add early check of 'status' for module.
+- sda_port_assignment_for_user_device - fix exists check (issue 31).
+- sda_port_assignment_for_user_device - fix get_object_by_id (issue 32), which helps deletion.
+- sda_provision_device - add 'update' capability to module.
+- sda_provision_device - add early check of 'status' for module when state is absent.
+- sda_provision_device - add early check of 'status' for module.
+- sda_provision_device - fix exists check (issue 31).
+- sda_provision_device - fix get_object_by_id (issue 32), which helps deletion.
+- sda_provision_device - update module description and EXAMPLES block.
+- sda_virtual_network - add early check of 'status' for module when state is absent.
+- sda_virtual_network - add early check of 'status' for module.
+- sda_virtual_network - add playbook
+- sda_virtual_network - fix exists check (issue 31).
+- sda_virtual_network - fix get_object_by_id (issue 32), which helps deletion.
+- sda_virtual_network_ip_pool - add early check of 'status' for module when state is absent.
+- sda_virtual_network_ip_pool - add early check of 'status' for module.
+- sda_virtual_network_ip_pool - fix exists check (issue 31).
+- sda_virtual_network_ip_pool - fix get_object_by_id (issue 32), which helps deletion.
+- sda_virtual_network_ip_pool_info - add early check of 'status' for module when state is absent.
+- sda_virtual_network_v2 - add early check of 'status' for module when state is absent.
+- sda_virtual_network_v2 - add early check of 'status' for module.
+- sda_virtual_network_v2 - fix exists check (issue 31).
+- sda_virtual_network_v2 - fix get_object_by_id (issue 32), which helps deletion.
+- sensor - fix get_object_by_id (issue 32), which helps deletion.
+- snmp_properties - fix get_object_by_id (issue 32), which helps deletion.
+- tag_member - change object param to use payload.
+- tag_member - update module documentation.
+- wireless_dynamic_interface - fix get_object_by_id (issue 32), which helps deletion.
+- wireless_enterprise_ssid - fix get_object_by_id (issue 32), which helps deletion.
+- wireless_profile - fix get_object_by_id (issue 32), which helps deletion.
+- wireless_profile - update module logic.
+- wireless_rf_profile - fix get_object_by_id (issue 32), which helps deletion.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_container - fail with a meaningful message instead of crashing if a port is specified with more than three colon-separated parts (https://github.com/ansible-collections/community.docker/pull/367, https://github.com/ansible-collections/community.docker/issues/365).
+- docker_container - remove unused code that will cause problems with Python 3.13 (https://github.com/ansible-collections/community.docker/pull/354).
+
+community.proxysql
+~~~~~~~~~~~~~~~~~~
+
+- roles/proxysql - As of ProxySQL 2.4.0, `client_found_rows` mysql variable has been removed (https://github.com/ansible-collections/community.proxysql/pull/101).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- query - fix query function check for ``.id`` vs. ``id`` arguments to not conflict with routeros arguments like ``identity`` (https://github.com/ansible-collections/community.routeros/pull/68, https://github.com/ansible-collections/community.routeros/issues/67).
+- quoting and unquoting filter plugins, api module - handle the escape sequence ``\_`` correctly as escaping a space and not an underscore (https://github.com/ansible-collections/community.routeros/pull/89).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- Include ``PSF-license.txt`` file for ``plugins/module_utils/_version.py``.
+- zabbix_action - will no longer wipe `esc_step_to` and `esc_step_from` (https://github.com/ansible-collections/community.zabbix/issues/692)
+- zabbix_agent - added support for zabbix-agent on Ubuntu 22.04 (https://github.com/ansible-collections/community.zabbix/pull/681)
+- zabbix_agent - now properly creates webroot for issuing LE certificates (https://github.com/ansible-collections/community.zabbix/pull/677, https://github.com/ansible-collections/community.zabbix/pull/682)
+- zabbix_proxy (module) - passive proxy should be now correctly created in Zabbix 6.0 (https://github.com/ansible-collections/community.zabbix/pull/697)
+- zabbix_proxy (role) - fixed accidental regression of TLS psk file being generated for passive agent (#528) caused in (#663) (https://github.com/ansible-collections/community.zabbix/issues/680)
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_gtm_wide_ip - fix idempotency bugs encountered when adding/removing irules, pools and last_resort_pool
+- bigip_gtm_wide_ip - irules can be added to existing gtm wide ips
+- bigip_monitor_http - fixed extraction of ip from the destination value
+- bigip_monitor_https - fixed extraction of ip from the destination value
+- bigip_node - the fqdn_autopopulate is now only enabled when fqdn is specified.
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Add defaut value for enable_log param.
+- Fix import issues in sanity-test and improve unit tests.
+- Fix issues in version mismatch logic.
+- Fix parameter-list-no-elements error in sanity-test.
+- Fix status issue in fortios_json_generic().
+- Fix syntax issue in python2.7.
+- Fix the issue of inconsistent data types in different schemas.
+- Fix the syntax error in the three wireless_controller_hotspot20 modules.
+- Relicense the FortiOS Collection under GPLv3+.
+- Update the logic in check_legacy_fortiosapi.
+- Use collection version number in the doc.
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_user - Issue(192043) The module may error out with the message ``unable to perform the import or export operation because there are pending attribute changes or a configuration job is in progress``. Wait for the job to complete and run the task again.
+- ome_application_alerts_smtp - Issue(212310) - The module does not provide a proper error message if the destination_address is more than 255 characters.
+- ome_application_alerts_syslog - Issue(215374) - The module does not provide a proper error message if the destination_address is more than 255 characters.
+- ome_application_console_preferences - Issue(224690) - The module does not display a proper error message when an unsupported value is provided for the parameters report_row_limit, email_sender_settings, and metric_collection_settings, and the value is applied on OpenManage Enterprise.
+- ome_device_local_access_configuration - Issue(215035) - The module reports ``Successfully updated the local access setting`` if an unsupported value is provided for the parameter timeout_limit. However, this value is not actually applied on OpenManage Enterprise Modular.
+- ome_device_local_access_configuration - Issue(217865) - The module does not display a proper error message if an unsupported value is provided for the user_defined and lcd_language parameters.
+- ome_device_network_services - Issue(212681) - The module does not provide a proper error message if unsupported values are provided for the parameters- port_number, community_name, max_sessions, max_auth_retries, and idle_timeout.
+- ome_device_power_settings - Issue(212679) - The module displays the following message if the value provided for the parameter ``power_cap`` is not within the supported range of 0 to 32767, ``Unable to complete the request because PowerCap does not exist or is not applicable for the resource URI.``
+- ome_device_quick_deploy - Issue(216352) - The module does not display a proper error message if an unsupported value is provided for the ipv6_prefix_length and vlan_id parameters.
+- ome_smart_fabric_uplink - Issue(186024) - The module does not allow the creation of multiple uplinks of the same name even though it is supported by OpenManage Enterprise Modular. If an uplink is created using the same name as an existing uplink, the existing uplink is modified.
+
+New Modules
+-----------
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- community.routeros.api_facts - Collect facts from remote devices running MikroTik RouterOS using the API
+- community.routeros.api_find_and_modify - Find and modify information using the API
+
+community.sap_libs
+~~~~~~~~~~~~~~~~~~
+
+Database
+^^^^^^^^
+
+Saphana
+.......
+
+- community.sap_libs.hana_query - Execute SQL on HANA
+
+Files
+^^^^^
+
+- community.sap_libs.sapcar_extract - Manages SAP SAPCAR archives
+
+Identity
+^^^^^^^^
+
+- community.sap_libs.sap_company - This module will manage a company entities in a SAP S4HANA environment
+- community.sap_libs.sap_user - This module will manage a user entities in a SAP S4/HANA environment
+
+System
+^^^^^^
+
+- community.sap_libs.sap_snote - This module will upload and (de)implements C(SNOTES) in a SAP S4HANA environment.
+- community.sap_libs.sap_system_facts - Gathers SAP facts in a host
+- community.sap_libs.sap_task_list_execute - Perform SAP Task list execution
+- community.sap_libs.sapcontrol - Manages SAPCONTROL
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- community.vmware.vmware_guest_vgpu - Modify vGPU video card profile of the specified virtual machine in the given vCenter infrastructure
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- community.zabbix.zabbix_script - Create/update/delete Zabbix scripts
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 3.2.0)
+- ansible.netcommon (still version 3.0.0)
+- ansible.utils (still version 2.6.1)
+- ansible.windows (still version 1.10.0)
+- arista.eos (still version 5.0.0)
+- awx.awx (still version 21.0.0)
+- azure.azcollection (still version 1.12.0)
+- check_point.mgmt (still version 2.3.0)
+- chocolatey.chocolatey (still version 1.2.0)
+- cisco.aci (still version 2.2.0)
+- cisco.asa (still version 3.0.0)
+- cisco.intersight (still version 1.0.18)
+- cisco.ios (still version 3.0.0)
+- cisco.iosxr (still version 3.0.0)
+- cisco.meraki (still version 2.6.2)
+- cisco.mso (still version 2.0.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 3.0.0)
+- cisco.ucs (still version 1.8.0)
+- cloud.common (still version 2.1.1)
+- community.aws (still version 3.2.1)
+- community.azure (still version 1.1.0)
+- community.ciscosmb (still version 1.0.5)
+- community.crypto (still version 2.3.1)
+- community.digitalocean (still version 1.19.0)
+- community.dns (still version 2.1.1)
+- community.fortios (still version 1.0.0)
+- community.general (still version 5.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.4.0)
+- community.hrobot (still version 1.3.0)
+- community.libvirt (still version 1.1.0)
+- community.mongodb (still version 1.4.0)
+- community.mysql (still version 3.2.1)
+- community.okd (still version 2.2.0)
+- community.postgresql (still version 2.1.5)
+- community.rabbitmq (still version 1.2.1)
+- community.sap (still version 1.0.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.2.1)
+- community.windows (still version 1.10.0)
+- containers.podman (still version 1.9.3)
+- cyberark.conjur (still version 1.1.0)
+- dellemc.enterprise_sonic (still version 1.1.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- fortinet.fortimanager (still version 2.1.5)
+- frr.frr (still version 2.0.0)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.6.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.0.0)
+- infinidat.infinibox (still version 1.3.3)
+- inspur.sm (still version 2.0.0)
+- junipernetworks.junos (still version 3.0.0)
+- kubernetes.core (still version 2.3.1)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.17.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 21.19.1)
+- netapp.storagegrid (still version 21.10.0)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.3.0)
+- netbox.netbox (still version 3.7.1)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.1)
+- openstack.cloud (still version 1.8.0)
+- openvswitch.openvswitch (still version 2.1.0)
+- ovirt.ovirt (still version 2.0.3)
+- purestorage.flasharray (still version 1.13.0)
+- purestorage.flashblade (still version 1.9.0)
+- sensu.sensu_go (still version 1.13.1)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 2.0.0)
+- t_systems_mms.icinga_director (still version 1.29.0)
+- theforeman.foreman (still version 3.4.0)
+- vmware.vmware_rest (still version 2.1.5)
+- vyos.vyos (still version 3.0.0)
+- wti.remote (still version 1.0.3)
+
 v6.0.0a3
 ========
 
@@ -1291,7 +1973,9 @@ community.zabbix
 - test_zabbix_screen - disable testing for screen in 5.4 (deprecated)
 - zabbix_action - additional fixes to make module work with Zabbix 6.0 (https://github.com/ansible-collections/community.zabbix/pull/664)
 - zabbix_action - module ported to work with Zabbix 6.0 (https://github.com/ansible-collections/community.zabbix/pull/648, https://github.com/ansible-collections/community.zabbix/pull/653)
+- zabbix_action - should now correctly actions with maintenance_status conditions (https://github.com/ansible-collections/community.zabbix/pull/667)
 - zabbix_agent - Check if 'firewalld' exist and is running when handler is executed.
+- zabbix_agent - Fixed use of bare variables in conditions (https://github.com/ansible-collections/community.zabbix/pull/663)
 - zabbix_agent - Install the correct Python libxml2 package on SLES15
 - zabbix_agent - Move inclusion of the apache.yml tasks to later stage during execution of role.
 - zabbix_agent - Prepare for Zabbix 6.0.
@@ -1299,6 +1983,7 @@ community.zabbix
 - zabbix_agent - There was no way to configure a specific type for the macro.
 - zabbix_agent - Use multiple aliases in the configuration file with ``zabbix_agent_zabbix_alias`` or ``zabbix_agent2_zabbix_alias``.
 - zabbix_maintenance - added new module parameter `tags`, which allows configuring Problem Tags on maintenances.
+- zabbix_maintenance - fixed to work with Zabbix 6.0+ and Python 3.9+ (https://github.com/ansible-collections/community.zabbix/pull/665)
 - zabbix_proxy - Prepare for Zabbix 6.0.
 - zabbix_proxy - Specify a minor version with zabbix_proxy_version_minor for RH systems.
 - zabbix_proxy - Support for Sangoma and treat it like a RHEL system.
