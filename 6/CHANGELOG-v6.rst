@@ -45,7 +45,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +=======================+=================+=================+==============================================================================================================================+
 | ansible.posix         | 1.3.0           | 1.4.0           |                                                                                                                              |
 +-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
-| cisco.dnac            |                 | 6.4.0           |                                                                                                                              |
+| cisco.dnac            |                 | 6.4.0           | The collection was added to Ansible                                                                                          |
 +-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
 | cisco.ise             | 2.4.0           | 2.4.1           |                                                                                                                              |
 +-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -61,7 +61,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
 | community.routeros    | 2.0.0           | 2.1.0           |                                                                                                                              |
 +-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
-| community.sap_libs    |                 | 1.1.0           |                                                                                                                              |
+| community.sap_libs    |                 | 1.1.0           | The collection was added to Ansible                                                                                          |
 +-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
 | community.vmware      | 2.4.0           | 2.5.0           |                                                                                                                              |
 +-----------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -82,92 +82,6 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 
 Major Changes
 -------------
-
-cisco.dnac
-~~~~~~~~~~
-
-- Adds _info plugins to query information from database.
-- Adds new plugins related to DNA version 2.2.2.3.
-- Adds plugins for resource's operations that have different structure in request/response bodies (ie. _create, _update, _delete plugins).
-- Adds plugins without state that perform special operation on DNA Center.
-- Adds resources for modules to manage CRUD operations.
-- Moves the module parameters out of the inventory and places them inside the tasks themselves.
-- Update dnacentersdk requirement from 2.4.4 to 2.4.5
-- Update dnacentersdk requirement from 2.4.5 to 2.4.6
-- Updates previous plugins to follow DNA version 2.2.2.3 specification.
-- applications_health_info - new `applicationName` parameter.
-- business_sda_wireless_controller_create - Removed 'deviceIPAddress' arguments.
-- business_sda_wireless_controller_delete - Removed 'deviceName' and 'siteNameHierarchy' arguments.
-- network_device - Removed 'managementIpAddress' arguments.
-- network_device - change `isForceDelete` parameter to `cleanConfig` parameter.
-- network_device - new `cleanConfig` parameter.
-- network_device_lexicographically_sorted_info - change `limit` param type from str to int
-- network_device_lexicographically_sorted_info - change `offset` param type from str to int
-- reserve_ip_subpool - new `ipv4GateWay` parameter.
-- reserve_ip_subpool_update - Removed 'type', 'ipv4GlobalPool', 'ipv4Prefix', 'ipv4PrefixLength', 'ipv4Subnet' and 'ipv4TotalHost' arguments.
-- sda_device_info - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
-- sda_fabric - remove `payload` parameter.
-- sda_fabric_authentication_profile - add `authenticateTemplateName` parameter.
-- sda_fabric_authentication_profile - add `authenticationOrder` parameter.
-- sda_fabric_authentication_profile - add `dot1xToMabFallbackTimeout` parameter.
-- sda_fabric_authentication_profile - add `numberOfHosts` parameter.
-- sda_fabric_authentication_profile - add `wakeOnLan` parameter.
-- sda_fabric_authentication_profile - remove `payload` parameter.
-- sda_fabric_authentication_profile_info - add `authenticateTemplateName` parameter.
-- sda_fabric_border_device - add `borderSessionType` parameter.
-- sda_fabric_border_device - add `connectedToInternet` parameter.
-- sda_fabric_border_device - add `deviceManagementIpAddress` parameter.
-- sda_fabric_border_device - add `externalAutonomouSystemNumber` parameter.
-- sda_fabric_border_device - add `externalConnectivityIpPoolName` parameter.
-- sda_fabric_border_device - add `externalConnectivitySettings` parameter.
-- sda_fabric_border_device - add `externalDomainRoutingProtocolName` parameter.
-- sda_fabric_border_device - add `interfaceName` parameter.
-- sda_fabric_border_device - add `internalAutonomouSystemNumber` parameter.
-- sda_fabric_border_device - add `l3Handoff` parameter.
-- sda_fabric_border_device - add `siteNameHierarchy` parameter.
-- sda_fabric_border_device - add `virtualNetworkName` parameter.
-- sda_fabric_border_device - add `virtualNetwork` parameter.
-- sda_fabric_border_device - add `vlanId parameter.`
-- sda_fabric_border_device - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
-- sda_fabric_border_device - changes in externalConnectivitySettings from object to list.
-- sda_fabric_border_device - remove `payload` parameter.
-- sda_fabric_border_device_info - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
-- sda_fabric_control_plane_device - add `siteNameHierarchy` parameter.
-- sda_fabric_control_plane_device - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
-- sda_fabric_control_plane_device - remove `payload` parameter.
-- sda_fabric_control_plane_device_info - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
-- sda_fabric_edge_device - add `siteNameHierarchy` parameter.
-- sda_fabric_edge_device - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
-- sda_fabric_edge_device - remove `payload` parameter.
-- sda_fabric_edge_device_info - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
-- sda_fabric_site - add `fabricName` parameter.
-- sda_fabric_site - remove `payload` parameter.
-- sda_multicast - change `fabricSiteNameHierarchy` to `siteNameHierarchy` parameter.
-- sda_multicast_info - change `fabricSiteNameHierarchy` to `siteNameHierarchy` parameter.
-- sda_port_assignment_for_access_point - add `authenticateTemplateName` parameter.
-- sda_port_assignment_for_access_point - add `dataIpAddressPoolName` parameter.
-- sda_port_assignment_for_access_point - add `deviceManagementIpAddress` parameter.
-- sda_port_assignment_for_access_point - add `interfaceDescription` parameter.
-- sda_port_assignment_for_access_point - add `siteNameHierarchy` parameter.
-- sda_port_assignment_for_access_point - change `device_ip` to `deviceManagementIpAddress` parameter.
-- sda_port_assignment_for_access_point - remove `payload` parameter.
-- sda_port_assignment_for_access_point_info - change `device_ip` to `deviceManagementIpAddress` parameter.
-- sda_port_assignment_for_user_device - add `authenticateTemplateName` parameter.
-- sda_port_assignment_for_user_device - add `dataIpAddressPoolName` parameter.
-- sda_port_assignment_for_user_device - add `interfaceDescription` parameter.
-- sda_port_assignment_for_user_device - add `scalableGroupName` parameter.
-- sda_port_assignment_for_user_device - add `siteNameHierarchy` parameter.
-- sda_port_assignment_for_user_device - add `voiceIpAddressPoolName` parameter.
-- sda_port_assignment_for_user_device - change `device_ip` to `deviceManagementIpAddress` parameter.
-- sda_port_assignment_for_user_device - remove `payload` parameter.
-- sda_port_assignment_for_user_device_info - change `device_ip` to `deviceManagementIpAddress` parameter.
-- sda_virtual_network - remove `payload` parameter.
-- sda_virtual_network_ip_pool - add `siteNameHierarchy`, `ipPoolName`, `trafficType`, `authenticationPolicyName`, `scalableGroupName`, `isL2FloodingEnabled`, `isThisCriticalPool`, `poolType`, `vlanName`, `isWirelessPool` parameters.
-- sda_virtual_network_ip_pool - remove `payload` and `ipPoolName` parameter.
-- service_provider_profile_delete - Rename argument from 'sp_profile_name' to 'spProfileName'.
-- site_health_info - add `siteType`, `offset`, `limit` parameters
-- snmpv2_read_community_credential - remove `id` and `instanceTenantId` parameter.
-- snmpv2_write_community_credential - remove `id` and `instanceTenantId` parameter.
 
 community.network
 ~~~~~~~~~~~~~~~~~
@@ -192,64 +106,6 @@ ansible.posix
 
 - firewalld - Show warning message that variable type of ``masquerade`` and ``icmp_block_inversion`` will be changed from ``str`` to ``boolean`` in the future release (https://github.com/ansible-collections/ansible.posix/pull/254).
 - selinux - optionally update kernel boot params when disabling/re-enabling SELinux (https://github.com/ansible-collections/ansible.posix/pull/142).
-
-cisco.dnac
-~~~~~~~~~~
-
-- Adds ``headers`` parameter to info modules.
-- Adds ``headers`` parameter to wireless provision device update.
-- Adds following ``parameters`` to pnp_device_claim_to_site, gateway, imageId, ipInterfaceName, staticIP, subnetMask, vlanId
-- Adds sanity ignores for ansible-2.9.
-- Changes the minimum supported version from Ansible v.2.10.5 to v2.9.10.
-- Update README
-- Update dnacentersdk requirement from 2.4.0 to 2.4.4
-- Update dnacentersdk requirement from 2.4.6 to 2.4.7
-- Updated test/sanity and remove duplicates
-- app_policy_default_info - new module.
-- app_policy_info - new module.
-- app_policy_intent_create - new module.
-- app_policy_queuing_profile - new module.
-- app_policy_queuing_profile_count_info - new module.
-- app_policy_queuing_profile_info - new module.
-- associate_site_to_network_profile - new module.
-- business_sda_hostonboarding_ssid_ippool - new module.
-- business_sda_hostonboarding_ssid_ippool_info - new module.
-- business_sda_wireless_controller_create - new module.
-- business_sda_wireless_controller_delete - new module.
-- device_family_identifiers_details_info - new module.
-- disassociate_site_to_network_profile - new module.
-- disasterrecovery_system_operationstatus_info - new module.
-- disasterrecovery_system_status_info - new module.
-- dnacaap_management_execution_status_info - new module.
-- endpoint_analytics_profiling_rules - new module.
-- endpoint_analytics_profiling_rules_info - new module.
-- file_info - Instead of returning the data string, it now returns a dictionary. The dictionary has property data with the previous string value.
-- file_info - add parameter filename.
-- golden_image_create - new module.
-- golden_tag_image_delete - new module.
-- golden_tag_image_details_info - new module.
-- pnp_device_claim_to_site - Add hostname, imageInfo and configInfo parameters to module.
-- pnp_device_claim_to_site - add parameter rfProfile.
-- profiling_rules_count_info - new module.
-- profiling_rules_in_bulk_create - new module.
-- projects_details_info - new module.
-- qos_device_interface - new module.
-- qos_device_interface_info - new module.
-- qos_device_interface_info_count_info - new module.
-- reports - `tag` and `deliveries` now support empty format
-- reports_executions_info - Instead of returning the data string, it now returns a dictionary. The dictionary has property data with the previous string value.
-- reports_executions_info - add parameter filename.
-- reserve_ip_subpool_create - new module.
-- reserve_ip_subpool_delete - new module.
-- reserve_ip_subpool_update - new module.
-- sda_virtual_network_ip_pool - update example documentation to include siteNameHierarchy option.
-- sda_virtual_network_ip_pool_info - add siteNameHierarchy option.
-- site_design_floormap_info - Add get_all to module
-- sync with Ansible Galaxy release number
-- tag_membership - Fixes module documentation
-- tag_membership - changes in memberToTags from list to object in the way the value is obtained.
-- templates_details_info - new module.
-- update documentation link in galaxy
 
 cisco.ise
 ~~~~~~~~~
@@ -374,145 +230,6 @@ ansible.posix
 - profile_tasks - Correctly calculate task execution time with serial execution (https://github.com/ansible-collections/ansible.posix/issues/83).
 - seboolean - add ``python3-libsemanage`` package dependency for RHEL8+ systems.
 
-cisco.dnac
-~~~~~~~~~~
-
-- Add try catch/except to dnac execution
-- Adds changelog
-- Adds code of conduct
-- Adds code specific to idempotent module definitions
-- Adds dnacentersdk to requirements.
-- Adds entries to the sanity check ignore file
-- Adds missing boilerplate code
-- Adds param payload to site_design_floormap module
-- Adds policy about releasing, versioning and deprecation to the README.
-- Adds try/except clauses to gracefully handle missing SDK and ansible.utils dependencies per ansible-core-2.11 requirements
-- Changes the comparison from value to keys
-- Documents the dependency on ansible.utils
-- Documents the minimum version of Python supported by the collection.
-- Documents the non-standard return values of all modules in the collection
-- Fixed module documentation to have elements.
-- Fixed the type of dnac_port in the documentation from string to int.
-- Fixes *delete modules that were calling update operation
-- Fixes *update modules that were calling create operation
-- Fixes *update modules that were calling delete operation
-- Fixes a bug in the 'site' and 'tag' modules, which are the only two idempotent modules.
-- Fixes a bug that caused the task execution to fail if the optional parameters like port, dnac version and SSL verification were missing from the hosts.yml file.
-- Fixes a problem with the overlapping 'state' param in four plugins.
-- Fixes check_mode behavior for non-info modules.
-- Fixes linting problems with the DOCUMENTATION.
-- Fixes pylint issues
-- Fixes return syntax errors
-- Fixes yamllint issues
-- Improve the documentation.
-- Improves the changelog.
-- Improves the documentation of modules.
-- It changes payload from dict to list of dict
-- It only accepts not None keys to dictionary item
-- On info modules comparison was removed, because info modules should always run.
-- On regular modules additional comparison of check_mode was removed as Ansible already handles it.
-- Removes ANSIBLE_METADATA section from all modules
-- Removes blank spaces from DOCUMENTATION
-- Removes colon characters from DOCUMENTATION
-- Removes duplicate keys from DOCUMENTATION
-- Removes the RETURN section from all modules
-- Update README, update Compatibility matrix.
-- Update get for wireless_dynamic_interface, change key that has name
-- Update get for wireless_enterprise_ssid, obtain item.ssidDetails from items
-- Updated internal code for credential and discovery
-- Updates the README to map versions (dnacentersdk and Cisco DNA Center with the ansible collection)
-- Updates the README to reflect latest API changes.
-- app_policy_queuing_profile - fix get_object_by_id (issue 32), which helps deletion.
-- application_sets - fix get_object_by_id (issue 32), which helps deletion.
-- applications - fix get_object_by_id (issue 32), which helps deletion.
-- business_sda_hostonboarding_ssid_ippool - fix exists check (issue 31).
-- business_sda_hostonboarding_ssid_ippool - fix get_object_by_id (issue 32), which helps deletion.
-- configuration_template - update module logic.
-- configuration_template_project - update module logic.
-- device_replacement - fix get_object_by_id (issue 32), which helps deletion.
-- event_subscription - fix get_object_by_id (issue 32), which helps deletion.
-- event_subscription_email - fix get_object_by_id (issue 32), which helps deletion.
-- event_subscription_rest - fix get_object_by_id (issue 32), which helps deletion.
-- event_subscription_syslog - fix get_object_by_id (issue 32), which helps deletion.
-- global_pool - includes request param as an alternative to id
-- network_create - update module DOCUMENTATION block.
-- network_device - includes request param as an alternative to id
-- network_device_lexicographically_sorted_info - update module RETURN block.
-- network_update - update module DOCUMENTATION block.
-- path_trace - update module logic.
-- plugin/modules/* - Update plugin module documentation
-- pnp_device - includes request param as an alternative to id
-- pnp_device - update module logic.
-- pnp_global_settings - fix get_object_by_id (issue 32), which helps deletion.
-- qos_device_interface - fix get_object_by_id (issue 32), which helps deletion.
-- reports - update module logic.
-- reserve_ip_subpool - fix get_object_by_id (issue 32), which helps deletion.
-- sda_fabric - add early check of 'status' for module when state is absent.
-- sda_fabric - add early check of 'status' for module.
-- sda_fabric - fix get_object_by_id (issue 32), which helps deletion.
-- sda_fabric_authentication_profile - add early check of 'status' for module when state is absent.
-- sda_fabric_authentication_profile - add early check of 'status' for module.
-- sda_fabric_authentication_profile - fix exists check (issue 31).
-- sda_fabric_authentication_profile - fix get_object_by_id (issue 32), which helps deletion.
-- sda_fabric_border_device - add early check of 'status' for module when state is absent.
-- sda_fabric_border_device - add early check of 'status' for module.
-- sda_fabric_border_device - fix exists check (issue 31).
-- sda_fabric_border_device - fix get_object_by_id (issue 32), which helps deletion.
-- sda_fabric_control_plane_device - add early check of 'status' for module when state is absent.
-- sda_fabric_control_plane_device - add early check of 'status' for module.
-- sda_fabric_control_plane_device - fix exists check (issue 31).
-- sda_fabric_control_plane_device - fix get_object_by_id (issue 32), which helps deletion.
-- sda_fabric_edge_device - add early check of 'status' for module when state is absent.
-- sda_fabric_edge_device - add early check of 'status' for module.
-- sda_fabric_edge_device - fix exists check (issue 31).
-- sda_fabric_edge_device - fix get_object_by_id (issue 32), which helps deletion.
-- sda_fabric_site - add early check of 'status' for module when state is absent.
-- sda_fabric_site - add early check of 'status' for module.
-- sda_fabric_site - add playbook
-- sda_fabric_site - fix exists check (issue 31).
-- sda_fabric_site - fix get_object_by_id (issue 32), which helps deletion.
-- sda_multicast - add early check of 'status' for module when state is absent.
-- sda_multicast - add early check of 'status' for module.
-- sda_multicast - fix exists check (issue 31).
-- sda_multicast - fix get_object_by_id (issue 32), which helps deletion.
-- sda_port_assignment_for_access_point - add early check of 'status' for module when state is absent.
-- sda_port_assignment_for_access_point - add early check of 'status' for module.
-- sda_port_assignment_for_access_point - fix exists check (issue 31).
-- sda_port_assignment_for_access_point - fix get_object_by_id (issue 32), which helps deletion.
-- sda_port_assignment_for_user_device - add early check of 'status' for module when state is absent.
-- sda_port_assignment_for_user_device - add early check of 'status' for module.
-- sda_port_assignment_for_user_device - fix exists check (issue 31).
-- sda_port_assignment_for_user_device - fix get_object_by_id (issue 32), which helps deletion.
-- sda_provision_device - add 'update' capability to module.
-- sda_provision_device - add early check of 'status' for module when state is absent.
-- sda_provision_device - add early check of 'status' for module.
-- sda_provision_device - fix exists check (issue 31).
-- sda_provision_device - fix get_object_by_id (issue 32), which helps deletion.
-- sda_provision_device - update module description and EXAMPLES block.
-- sda_virtual_network - add early check of 'status' for module when state is absent.
-- sda_virtual_network - add early check of 'status' for module.
-- sda_virtual_network - add playbook
-- sda_virtual_network - fix exists check (issue 31).
-- sda_virtual_network - fix get_object_by_id (issue 32), which helps deletion.
-- sda_virtual_network_ip_pool - add early check of 'status' for module when state is absent.
-- sda_virtual_network_ip_pool - add early check of 'status' for module.
-- sda_virtual_network_ip_pool - fix exists check (issue 31).
-- sda_virtual_network_ip_pool - fix get_object_by_id (issue 32), which helps deletion.
-- sda_virtual_network_ip_pool_info - add early check of 'status' for module when state is absent.
-- sda_virtual_network_v2 - add early check of 'status' for module when state is absent.
-- sda_virtual_network_v2 - add early check of 'status' for module.
-- sda_virtual_network_v2 - fix exists check (issue 31).
-- sda_virtual_network_v2 - fix get_object_by_id (issue 32), which helps deletion.
-- sensor - fix get_object_by_id (issue 32), which helps deletion.
-- snmp_properties - fix get_object_by_id (issue 32), which helps deletion.
-- tag_member - change object param to use payload.
-- tag_member - update module documentation.
-- wireless_dynamic_interface - fix get_object_by_id (issue 32), which helps deletion.
-- wireless_enterprise_ssid - fix get_object_by_id (issue 32), which helps deletion.
-- wireless_profile - fix get_object_by_id (issue 32), which helps deletion.
-- wireless_profile - update module logic.
-- wireless_rf_profile - fix get_object_by_id (issue 32), which helps deletion.
-
 community.docker
 ~~~~~~~~~~~~~~~~
 
@@ -599,36 +316,6 @@ community.routeros
 
 - community.routeros.api_facts - Collect facts from remote devices running MikroTik RouterOS using the API
 - community.routeros.api_find_and_modify - Find and modify information using the API
-
-community.sap_libs
-~~~~~~~~~~~~~~~~~~
-
-Database
-^^^^^^^^
-
-Saphana
-.......
-
-- community.sap_libs.hana_query - Execute SQL on HANA
-
-Files
-^^^^^
-
-- community.sap_libs.sapcar_extract - Manages SAP SAPCAR archives
-
-Identity
-^^^^^^^^
-
-- community.sap_libs.sap_company - This module will manage a company entities in a SAP S4HANA environment
-- community.sap_libs.sap_user - This module will manage a user entities in a SAP S4/HANA environment
-
-System
-^^^^^^
-
-- community.sap_libs.sap_snote - This module will upload and (de)implements C(SNOTES) in a SAP S4HANA environment.
-- community.sap_libs.sap_system_facts - Gathers SAP facts in a host
-- community.sap_libs.sap_task_list_execute - Perform SAP Task list execution
-- community.sap_libs.sapcontrol - Manages SAPCONTROL
 
 community.vmware
 ~~~~~~~~~~~~~~~~
@@ -810,7 +497,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +------------------------+-----------------+-----------------+-------------------------------------------------+
 | theforeman.foreman     | 3.3.0           | 3.4.0           |                                                 |
 +------------------------+-----------------+-----------------+-------------------------------------------------+
-| vmware.vmware_rest     |                 | 2.1.5           |                                                 |
+| vmware.vmware_rest     |                 | 2.1.5           | The collection was added to Ansible             |
 +------------------------+-----------------+-----------------+-------------------------------------------------+
 
 Major Changes
@@ -1089,43 +776,6 @@ theforeman.foreman
 - repository - add ``rhel-9`` to os version filter choices
 - repository - add support for ``mirroring_policy`` for Katello 4.4+ (https://github.com/theforeman/foreman-ansible-modules/issues/1388)
 
-vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
-
-- Add more EXAMPLE blocks in the documenation of the modules.
-- Adjust the release version of the lookup plugins fro, 2.0.1 to 2.1.0.
-- Better documentation
-- Ensure the shellcheck sanity test pass
-- Handle import error with correct exception raised while importing aiohttp
-- The examples uses the FQCN of the built-in modules
-- The format of the output of the Modules is now documented in the RETURN block.
-- The module RETURN sections are now defined.
-- The module_utils/vmware.py is licensed under BSD.
-- ``content_subscribedlibrary`` - use FQCN in the example.
-- ``vcenter_network_info`` - add an example with a Distributed Virtual Switch, a.k.a dvswitch (https://github.com/ansible-collections/vmware.vmware_rest/pull/316).
-- ``vcenter_vm_guest_customization`` - remove the module until vSphere API end-point work properly.
-- add some missing example blocks.
-- bump the default timeout to 600s to give more time to the slow operations.
-- documentation - clarify that we don't have any required parameters.
-- new moid lookup filter plugins to convert a resource path to a MOID.
-- use turbo mode cache for lookup plugins.
-- vcenter_host_connect - remove the module, use ``vcenter_host``
-- vcenter_host_disconnect - remove the module, use ``vcenter_host``
-- vcenter_resourcepool - add example in documentation.
-- vcenter_resourcepool - new module
-- vcenter_resourcepool_info - add example in documentation.
-- vcenter_resourcepool_info - new module
-- vcenter_rest_log_file - this optional parameter can be used to point on the log file where all the HTTP interaction will be record.
-- vcenter_storage_policies - new module
-- vcenter_storage_policies - remove vcenter_storage_policies
-- vcenter_storage_policies_compliance_vm_info - new module
-- vcenter_storage_policies_compliance_vm_info - remove the module
-- vcenter_storage_policies_entities_compliance_info - new module
-- vcenter_storage_policies_entities_compliance_info - remove the module
-- vcenter_storage_policies_info - new module
-- vcenter_storage_policies_vm_info - new module
-- vcenter_storage_policies_vm_info - remove the module
-
 Breaking Changes / Porting Guide
 --------------------------------
 
@@ -1134,13 +784,6 @@ community.general
 
 - lists_mergeby and groupby_as_dict filter plugins - adjust filter plugin filename. This change is not visible to end-users, it only affects possible other collections importing Python paths (https://github.com/ansible-collections/community.general/pull/4625).
 - yarn - remove unsupported and unnecessary ``--no-emoji`` flag (https://github.com/ansible-collections/community.general/pull/4662).
-
-vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
-
-- The vmware_rest 2.0.0 support vSphere 7.0.2 onwards.
-- vcenter_vm_storage_policy - the format of the ``disks`` parameter has changed.
-- vcenter_vm_storage_policy - the module has a new mandatory paramter: ``vm_home``.
 
 Deprecated Features
 -------------------
@@ -1160,13 +803,6 @@ community.network
 ~~~~~~~~~~~~~~~~~
 
 - Support for Ansible 2.9 and ansible-base 2.10 is deprecated, and will be removed in the next major release (community.network 4.0.0) this spring. While most content will probably still work with ansible-base 2.10, we will remove symbolic links for modules and action plugins, which will make it impossible to use them with Ansible 2.9 anymore. Please use community.network 3.x.y with Ansible 2.9 and ansible-base 2.10, as these releases will continue to support Ansible 2.9 and ansible-base 2.10 even after they are End of Life (https://github.com/ansible-community/community-topics/issues/50, https://github.com/ansible-collections/community.network/pull/382).
-
-vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
-
-- vcenter_vm_storage_policy_compliance - drop the module, it returns 404 error.
-- vcenter_vm_tools - remove the ``upgrade`` state.
-- vcenter_vm_tools_installer - remove the module from the collection.
 
 Bugfixes
 --------
@@ -1340,25 +976,6 @@ theforeman.foreman
 - operatingsystem - find operatingsystems by title or full (name,major,minor) tuple (https://github.com/theforeman/foreman-ansible-modules/issues/1401)
 - os_default_template, provisioning_template - don't document invalid template kind ``ptable`` (https://bugzilla.redhat.com/show_bug.cgi?id=1970132)
 
-vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
-
-- "remove the following modules vcenter_vm_guest_environment_info vcenter_vm_guest_environment_info " "vcenter_vm_guest_filesystemy vcenter_vm_guest_filesystem_files vcenter_vm_guest_filesystem_files_info " "vcenter_vm_guest_processes vcenter_vm_guest_processes_info because they don't work as expected."
-- Add support for Python 3.10.
-- Address a condition where the subkey item was not properly identified (https://github.com/ansible-collections/vmware_rest_code_generator/pull/181).
-- Adjust the cloud.common dependency to require 2.0.4 or greater (https://github.com/ansible-collections/vmware.vmware_rest/pull/315).
-- Fix logic in vmware_cis_category_info module.
-- Improve the documentation of the modules
-- Properly handle ``validate_certs`` as a boolean and accept all the standard Ansible values (``yes``, ``true``, ``y``, ``no``, etc).
-- ``appliance_networking_dns_servers`` - returns error on failure.
-- minor_changes - drop vcenter_vm_compute_policies_info because the API is flagged as Technology Preview
-- minor_changes - drop vcenter_vm_console_tickets because the API is flagged as Technology Preview
-- minor_changes - drop vcenter_vm_guest_power and keep vcenter_vm_power which provides the same features
-- vcenter_datacenter - Ensure pass stat=absent on a non-existing item won't raise an error (https://github.com/ansible-collections/vmware_rest_code_generator/pull/182).
-- vcenter_ovf_libraryitem - properly catch errors.
-- vcenter_vm_guest_customize - Add examples.
-- vcenter_vm_hardware_ethernet - Ensure we can attach a NIC to another network (https://github.com/ansible-collections/vmware.vmware_rest/issues/267).
-
 New Plugins
 -----------
 
@@ -1402,141 +1019,6 @@ netapp.ontap
 ~~~~~~~~~~~~
 
 - netapp.ontap.na_ontap_s3_buckets - NetApp ONTAP S3 Buckets
-
-vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
-
-- vmware.vmware_rest.appliance_access_consolecli - Set enabled state of the console-based controlled CLI (TTY1).
-- vmware.vmware_rest.appliance_access_consolecli_info - Get enabled state of the console-based controlled CLI (TTY1).
-- vmware.vmware_rest.appliance_access_dcui - Set enabled state of Direct Console User Interface (DCUI TTY2).
-- vmware.vmware_rest.appliance_access_dcui_info - Get enabled state of Direct Console User Interface (DCUI TTY2).
-- vmware.vmware_rest.appliance_access_shell - Set enabled state of BASH, that is, access to BASH from within the controlled CLI.
-- vmware.vmware_rest.appliance_access_shell_info - Get enabled state of BASH, that is, access to BASH from within the controlled CLI.
-- vmware.vmware_rest.appliance_access_ssh - Set enabled state of the SSH-based controlled CLI.
-- vmware.vmware_rest.appliance_access_ssh_info - Get enabled state of the SSH-based controlled CLI.
-- vmware.vmware_rest.appliance_health_applmgmt_info - Get health status of applmgmt services.
-- vmware.vmware_rest.appliance_health_database_info - Returns the health status of the database.
-- vmware.vmware_rest.appliance_health_databasestorage_info - Get database storage health.
-- vmware.vmware_rest.appliance_health_load_info - Get load health.
-- vmware.vmware_rest.appliance_health_mem_info - Get memory health.
-- vmware.vmware_rest.appliance_health_softwarepackages_info - Get information on available software updates available in the remote vSphere Update Manager repository
-- vmware.vmware_rest.appliance_health_storage_info - Get storage health.
-- vmware.vmware_rest.appliance_health_swap_info - Get swap health.
-- vmware.vmware_rest.appliance_health_system_info - Get overall health of system.
-- vmware.vmware_rest.appliance_infraprofile_configs - Exports the desired profile specification.
-- vmware.vmware_rest.appliance_infraprofile_configs_info - List all the profiles which are registered.
-- vmware.vmware_rest.appliance_localaccounts - Create a new local user account.
-- vmware.vmware_rest.appliance_localaccounts_globalpolicy - Set the global password policy.
-- vmware.vmware_rest.appliance_localaccounts_globalpolicy_info - Get the global password policy.
-- vmware.vmware_rest.appliance_localaccounts_info - Get the local user account information.
-- vmware.vmware_rest.appliance_monitoring_info - Get monitored item info
-- vmware.vmware_rest.appliance_monitoring_query - Get monitoring data.
-- vmware.vmware_rest.appliance_networking - Reset and restarts network configuration on all interfaces, also this will renew the DHCP lease for DHCP IP address.
-- vmware.vmware_rest.appliance_networking_dns_domains - Set DNS search domains.
-- vmware.vmware_rest.appliance_networking_dns_domains_info - Get list of DNS search domains.
-- vmware.vmware_rest.appliance_networking_dns_hostname - Set the Fully Qualified Domain Name.
-- vmware.vmware_rest.appliance_networking_dns_hostname_info - Get the Fully Qualified Doman Name.
-- vmware.vmware_rest.appliance_networking_dns_servers - Set the DNS server configuration
-- vmware.vmware_rest.appliance_networking_dns_servers_info - Get DNS server configuration.
-- vmware.vmware_rest.appliance_networking_firewall_inbound - Set the ordered list of firewall rules to allow or deny traffic from one or more incoming IP addresses
-- vmware.vmware_rest.appliance_networking_firewall_inbound_info - Get the ordered list of firewall rules
-- vmware.vmware_rest.appliance_networking_info - Get Networking information for all configured interfaces.
-- vmware.vmware_rest.appliance_networking_interfaces_info - Get information about a particular network interface.
-- vmware.vmware_rest.appliance_networking_interfaces_ipv4 - Set IPv4 network configuration for specific network interface.
-- vmware.vmware_rest.appliance_networking_interfaces_ipv4_info - Get IPv4 network configuration for specific NIC.
-- vmware.vmware_rest.appliance_networking_interfaces_ipv6 - Set IPv6 network configuration for specific interface.
-- vmware.vmware_rest.appliance_networking_interfaces_ipv6_info - Get IPv6 network configuration for specific interface.
-- vmware.vmware_rest.appliance_networking_noproxy - Sets servers for which no proxy configuration should be applied
-- vmware.vmware_rest.appliance_networking_noproxy_info - Returns servers for which no proxy configuration will be applied.
-- vmware.vmware_rest.appliance_networking_proxy - Configures which proxy server to use for the specified protocol
-- vmware.vmware_rest.appliance_networking_proxy_info - Gets the proxy configuration for a specific protocol.
-- vmware.vmware_rest.appliance_ntp - Set NTP servers
-- vmware.vmware_rest.appliance_ntp_info - Get the NTP configuration status
-- vmware.vmware_rest.appliance_services - Restarts a service
-- vmware.vmware_rest.appliance_services_info - Returns the state of a service.
-- vmware.vmware_rest.appliance_shutdown - Cancel pending shutdown action.
-- vmware.vmware_rest.appliance_shutdown_info - Get details about the pending shutdown action.
-- vmware.vmware_rest.appliance_system_globalfips - Enable/Disable Global FIPS mode for the appliance
-- vmware.vmware_rest.appliance_system_globalfips_info - Get current appliance FIPS settings.
-- vmware.vmware_rest.appliance_system_storage - Resize all partitions to 100 percent of disk size.
-- vmware.vmware_rest.appliance_system_storage_info - Get disk to partition mapping.
-- vmware.vmware_rest.appliance_system_time_info - Get system time.
-- vmware.vmware_rest.appliance_system_time_timezone - Set time zone.
-- vmware.vmware_rest.appliance_system_time_timezone_info - Get time zone.
-- vmware.vmware_rest.appliance_system_version_info - Get the version.
-- vmware.vmware_rest.appliance_timesync - Set time synchronization mode.
-- vmware.vmware_rest.appliance_timesync_info - Get time synchronization mode.
-- vmware.vmware_rest.appliance_update_info - Gets the current status of the appliance update.
-- vmware.vmware_rest.appliance_vmon_service - Lists details of services managed by vMon.
-- vmware.vmware_rest.appliance_vmon_service_info - Returns the state of a service.
-- vmware.vmware_rest.content_configuration - Updates the configuration
-- vmware.vmware_rest.content_configuration_info - Retrieves the current configuration values.
-- vmware.vmware_rest.content_library_item_info - Returns the {@link ItemModel} with the given identifier.
-- vmware.vmware_rest.content_locallibrary - Creates a new local library.
-- vmware.vmware_rest.content_locallibrary_info - Returns a given local library.
-- vmware.vmware_rest.content_subscribedlibrary - Creates a new subscribed library
-- vmware.vmware_rest.content_subscribedlibrary_info - Returns a given subscribed library.
-- vmware.vmware_rest.vcenter_cluster_info - Collect the information associated with the vCenter clusters
-- vmware.vmware_rest.vcenter_datacenter - Manage the datacenter of a vCenter
-- vmware.vmware_rest.vcenter_datacenter_info - Collect the information associated with the vCenter datacenters
-- vmware.vmware_rest.vcenter_datastore_info - Collect the information associated with the vCenter datastores
-- vmware.vmware_rest.vcenter_folder_info - Collect the information associated with the vCenter folders
-- vmware.vmware_rest.vcenter_host - Manage the host of a vCenter
-- vmware.vmware_rest.vcenter_host_info - Collect the information associated with the vCenter hosts
-- vmware.vmware_rest.vcenter_network_info - Collect the information associated with the vCenter networks
-- vmware.vmware_rest.vcenter_ovf_libraryitem - Creates a library item in content library from a virtual machine or virtual appliance
-- vmware.vmware_rest.vcenter_resourcepool - Manage the resourcepool of a vCenter
-- vmware.vmware_rest.vcenter_resourcepool_info - Collect the information associated with the vCenter resourcepools
-- vmware.vmware_rest.vcenter_storage_policies_info - Collect the information associated with the vCenter storage policiess
-- vmware.vmware_rest.vcenter_vm - Manage the vm of a vCenter
-- vmware.vmware_rest.vcenter_vm_guest_environment_info - Reads a single environment variable from the guest operating system
-- vmware.vmware_rest.vcenter_vm_guest_filesystem - Initiates an operation to transfer a file to or from the guest
-- vmware.vmware_rest.vcenter_vm_guest_filesystem_directories - Creates a directory in the guest operating system
-- vmware.vmware_rest.vcenter_vm_guest_filesystem_files - Creates a temporary file
-- vmware.vmware_rest.vcenter_vm_guest_filesystem_files_info - Returns information about a file or directory in the guest
-- vmware.vmware_rest.vcenter_vm_guest_identity_info - Collect the guest identity information
-- vmware.vmware_rest.vcenter_vm_guest_localfilesystem_info - Collect the guest localfilesystem information
-- vmware.vmware_rest.vcenter_vm_guest_networking_info - Collect the guest networking information
-- vmware.vmware_rest.vcenter_vm_guest_networking_interfaces_info - Collect the guest networking interfaces information
-- vmware.vmware_rest.vcenter_vm_guest_networking_routes_info - Collect the guest networking routes information
-- vmware.vmware_rest.vcenter_vm_guest_operations_info - Get information about the guest operation status.
-- vmware.vmware_rest.vcenter_vm_guest_processes - Starts a program in the guest operating system
-- vmware.vmware_rest.vcenter_vm_guest_processes_info - Returns the status of a process running in the guest operating system, including those started by {@link Processes#create} that may have recently completed
-- vmware.vmware_rest.vcenter_vm_hardware - Manage the hardware of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_adapter_sata - Manage the SATA adapter of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_adapter_sata_info - Collect the SATA adapter information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_adapter_scsi - Manage the SCSI adapter of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_adapter_scsi_info - Collect the SCSI adapter information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_boot - Manage the boot of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_boot_device - Manage the boot device of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_boot_device_info - Collect the boot device information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_boot_info - Collect the boot information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_cdrom - Manage the cdrom of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_cdrom_info - Collect the cdrom information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_cpu - Manage the cpu of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_cpu_info - Collect the cpu information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_disk - Manage the disk of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_disk_info - Collect the disk information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_ethernet - Manage the ethernet of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_ethernet_info - Collect the ethernet information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_floppy - Manage the floppy of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_floppy_info - Collect the floppy information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_info - Manage the info of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_memory - Manage the memory of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_memory_info - Collect the memory information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_parallel - Manage the parallel of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_parallel_info - Collect the parallel information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_serial - Manage the serial of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_serial_info - Collect the serial information from a VM
-- vmware.vmware_rest.vcenter_vm_info - Collect the  information from a VM
-- vmware.vmware_rest.vcenter_vm_libraryitem_info - Collect the libraryitem  information from a VM
-- vmware.vmware_rest.vcenter_vm_power - Manage the power of a VM
-- vmware.vmware_rest.vcenter_vm_power_info - Collect the power  information from a VM
-- vmware.vmware_rest.vcenter_vm_storage_policy - Manage the storage policy of a VM
-- vmware.vmware_rest.vcenter_vm_storage_policy_compliance_info - Collect the storage policy compliance  information from a VM
-- vmware.vmware_rest.vcenter_vm_storage_policy_info - Collect the storage policy  information from a VM
-- vmware.vmware_rest.vcenter_vm_tools - Manage the tools of a VM
-- vmware.vmware_rest.vcenter_vm_tools_info - Collect the tools  information from a VM
 
 Unchanged Collections
 ---------------------
@@ -2666,7 +2148,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +-------------------------------+---------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
 | community.proxysql            | 1.3.0         | 1.3.1           |                                                                                                                              |
 +-------------------------------+---------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
-| community.sap                 |               | 1.0.0           |                                                                                                                              |
+| community.sap                 |               | 1.0.0           | The collection was added to Ansible                                                                                          |
 +-------------------------------+---------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
 | community.sops                | 1.2.0         | 1.2.1           |                                                                                                                              |
 +-------------------------------+---------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -3343,11 +2825,6 @@ community.proxysql
 
 - module_utils - Refactor save_config_to_disk and load_config_to_runtime (https://github.com/ansible-collections/community.proxysql/pull/78).
 - proxysql_mysql_users - Add missing ``no_log`` option to ``encrypt_password`` parameter (https://github.com/ansible-collections/community.proxysql/pull/86).
-
-community.sap
-~~~~~~~~~~~~~
-
-- sapcar_extract.py - more strict logic for filenames
 
 community.vmware
 ~~~~~~~~~~~~~~~~
@@ -4767,35 +4244,6 @@ community.postgresql
 ~~~~~~~~~~~~~~~~~~~~
 
 - community.postgresql.postgresql_script - Run PostgreSQL statements from a file
-
-community.sap
-~~~~~~~~~~~~~
-
-Database
-^^^^^^^^
-
-Saphana
-.......
-
-- community.sap.hana_query - Execute SQL on HANA
-
-Files
-^^^^^
-
-- community.sap.sapcar_extract - Manages SAP SAPCAR archives
-
-Identity
-^^^^^^^^
-
-- community.sap.sap_company - This module will manage a company entities in a SAP S4HANA environment
-- community.sap.sap_user - This module will manage a user entities in a SAP S4/HANA environment
-
-System
-^^^^^^
-
-- community.sap.sap_snote - This module will upload and (de)implements C(SNOTES) in a SAP S4HANA environment.
-- community.sap.sap_system_facts - Gathers SAP facts in a host
-- community.sap.sap_task_list_execute - Perform SAP Task list execution
 
 community.vmware
 ~~~~~~~~~~~~~~~~

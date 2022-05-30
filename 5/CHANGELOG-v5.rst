@@ -90,7 +90,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +------------------------+---------------+---------------+-------------------------------------------------+
 | purestorage.flasharray | 1.12.1        | 1.13.0        |                                                 |
 +------------------------+---------------+---------------+-------------------------------------------------+
-| vmware.vmware_rest     |               | 2.1.5         |                                                 |
+| vmware.vmware_rest     |               | 2.1.5         | The collection was added to Ansible             |
 +------------------------+---------------+---------------+-------------------------------------------------+
 
 Major Changes
@@ -316,53 +316,6 @@ purestorage.flasharray
 - purefa_volume - Add support for DMM Priority Adjustment
 - purefa_volume - Provide volume facts for volume after recovery
 
-vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
-
-- Add more EXAMPLE blocks in the documenation of the modules.
-- Adjust the release version of the lookup plugins fro, 2.0.1 to 2.1.0.
-- Better documentation
-- Ensure the shellcheck sanity test pass
-- Handle import error with correct exception raised while importing aiohttp
-- The examples uses the FQCN of the built-in modules
-- The format of the output of the Modules is now documented in the RETURN block.
-- The module RETURN sections are now defined.
-- The module_utils/vmware.py is licensed under BSD.
-- ``content_subscribedlibrary`` - use FQCN in the example.
-- ``vcenter_network_info`` - add an example with a Distributed Virtual Switch, a.k.a dvswitch (https://github.com/ansible-collections/vmware.vmware_rest/pull/316).
-- ``vcenter_vm_guest_customization`` - remove the module until vSphere API end-point work properly.
-- add some missing example blocks.
-- bump the default timeout to 600s to give more time to the slow operations.
-- documentation - clarify that we don't have any required parameters.
-- new moid lookup filter plugins to convert a resource path to a MOID.
-- use turbo mode cache for lookup plugins.
-- vcenter_host_connect - remove the module, use ``vcenter_host``
-- vcenter_host_disconnect - remove the module, use ``vcenter_host``
-- vcenter_resourcepool - add example in documentation.
-- vcenter_resourcepool - new module
-- vcenter_resourcepool_info - add example in documentation.
-- vcenter_resourcepool_info - new module
-- vcenter_rest_log_file - this optional parameter can be used to point on the log file where all the HTTP interaction will be record.
-- vcenter_storage_policies - new module
-- vcenter_storage_policies - remove vcenter_storage_policies
-- vcenter_storage_policies_compliance_vm_info - new module
-- vcenter_storage_policies_compliance_vm_info - remove the module
-- vcenter_storage_policies_entities_compliance_info - new module
-- vcenter_storage_policies_entities_compliance_info - remove the module
-- vcenter_storage_policies_info - new module
-- vcenter_storage_policies_vm_info - new module
-- vcenter_storage_policies_vm_info - remove the module
-
-Breaking Changes / Porting Guide
---------------------------------
-
-vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
-
-- The vmware_rest 2.0.0 support vSphere 7.0.2 onwards.
-- vcenter_vm_storage_policy - the format of the ``disks`` parameter has changed.
-- vcenter_vm_storage_policy - the module has a new mandatory paramter: ``vm_home``.
-
 Deprecated Features
 -------------------
 
@@ -375,13 +328,6 @@ community.network
 ~~~~~~~~~~~~~~~~~
 
 - Support for Ansible 2.9 and ansible-base 2.10 is deprecated, and will be removed in the next major release (community.network 4.0.0) this spring. While most content will probably still work with ansible-base 2.10, we will remove symbolic links for modules and action plugins, which will make it impossible to use them with Ansible 2.9 anymore. Please use community.network 3.x.y with Ansible 2.9 and ansible-base 2.10, as these releases will continue to support Ansible 2.9 and ansible-base 2.10 even after they are End of Life (https://github.com/ansible-community/community-topics/issues/50, https://github.com/ansible-collections/community.network/pull/382).
-
-vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
-
-- vcenter_vm_storage_policy_compliance - drop the module, it returns 404 error.
-- vcenter_vm_tools - remove the ``upgrade`` state.
-- vcenter_vm_tools_installer - remove the module from the collection.
 
 Bugfixes
 --------
@@ -518,25 +464,6 @@ purestorage.flasharray
 - purefa_policy - Fix idempotency issue with quota policy rules
 - purefa_policy - Fix issue when creating multiple rules in an NFS policy
 
-vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
-
-- "remove the following modules vcenter_vm_guest_environment_info vcenter_vm_guest_environment_info " "vcenter_vm_guest_filesystemy vcenter_vm_guest_filesystem_files vcenter_vm_guest_filesystem_files_info " "vcenter_vm_guest_processes vcenter_vm_guest_processes_info because they don't work as expected."
-- Add support for Python 3.10.
-- Address a condition where the subkey item was not properly identified (https://github.com/ansible-collections/vmware_rest_code_generator/pull/181).
-- Adjust the cloud.common dependency to require 2.0.4 or greater (https://github.com/ansible-collections/vmware.vmware_rest/pull/315).
-- Fix logic in vmware_cis_category_info module.
-- Improve the documentation of the modules
-- Properly handle ``validate_certs`` as a boolean and accept all the standard Ansible values (``yes``, ``true``, ``y``, ``no``, etc).
-- ``appliance_networking_dns_servers`` - returns error on failure.
-- minor_changes - drop vcenter_vm_compute_policies_info because the API is flagged as Technology Preview
-- minor_changes - drop vcenter_vm_console_tickets because the API is flagged as Technology Preview
-- minor_changes - drop vcenter_vm_guest_power and keep vcenter_vm_power which provides the same features
-- vcenter_datacenter - Ensure pass stat=absent on a non-existing item won't raise an error (https://github.com/ansible-collections/vmware_rest_code_generator/pull/182).
-- vcenter_ovf_libraryitem - properly catch errors.
-- vcenter_vm_guest_customize - Add examples.
-- vcenter_vm_hardware_ethernet - Ensure we can attach a NIC to another network (https://github.com/ansible-collections/vmware.vmware_rest/issues/267).
-
 New Plugins
 -----------
 
@@ -575,141 +502,6 @@ netapp.ontap
 ~~~~~~~~~~~~
 
 - netapp.ontap.na_ontap_s3_buckets - NetApp ONTAP S3 Buckets
-
-vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
-
-- vmware.vmware_rest.appliance_access_consolecli - Set enabled state of the console-based controlled CLI (TTY1).
-- vmware.vmware_rest.appliance_access_consolecli_info - Get enabled state of the console-based controlled CLI (TTY1).
-- vmware.vmware_rest.appliance_access_dcui - Set enabled state of Direct Console User Interface (DCUI TTY2).
-- vmware.vmware_rest.appliance_access_dcui_info - Get enabled state of Direct Console User Interface (DCUI TTY2).
-- vmware.vmware_rest.appliance_access_shell - Set enabled state of BASH, that is, access to BASH from within the controlled CLI.
-- vmware.vmware_rest.appliance_access_shell_info - Get enabled state of BASH, that is, access to BASH from within the controlled CLI.
-- vmware.vmware_rest.appliance_access_ssh - Set enabled state of the SSH-based controlled CLI.
-- vmware.vmware_rest.appliance_access_ssh_info - Get enabled state of the SSH-based controlled CLI.
-- vmware.vmware_rest.appliance_health_applmgmt_info - Get health status of applmgmt services.
-- vmware.vmware_rest.appliance_health_database_info - Returns the health status of the database.
-- vmware.vmware_rest.appliance_health_databasestorage_info - Get database storage health.
-- vmware.vmware_rest.appliance_health_load_info - Get load health.
-- vmware.vmware_rest.appliance_health_mem_info - Get memory health.
-- vmware.vmware_rest.appliance_health_softwarepackages_info - Get information on available software updates available in the remote vSphere Update Manager repository
-- vmware.vmware_rest.appliance_health_storage_info - Get storage health.
-- vmware.vmware_rest.appliance_health_swap_info - Get swap health.
-- vmware.vmware_rest.appliance_health_system_info - Get overall health of system.
-- vmware.vmware_rest.appliance_infraprofile_configs - Exports the desired profile specification.
-- vmware.vmware_rest.appliance_infraprofile_configs_info - List all the profiles which are registered.
-- vmware.vmware_rest.appliance_localaccounts - Create a new local user account.
-- vmware.vmware_rest.appliance_localaccounts_globalpolicy - Set the global password policy.
-- vmware.vmware_rest.appliance_localaccounts_globalpolicy_info - Get the global password policy.
-- vmware.vmware_rest.appliance_localaccounts_info - Get the local user account information.
-- vmware.vmware_rest.appliance_monitoring_info - Get monitored item info
-- vmware.vmware_rest.appliance_monitoring_query - Get monitoring data.
-- vmware.vmware_rest.appliance_networking - Reset and restarts network configuration on all interfaces, also this will renew the DHCP lease for DHCP IP address.
-- vmware.vmware_rest.appliance_networking_dns_domains - Set DNS search domains.
-- vmware.vmware_rest.appliance_networking_dns_domains_info - Get list of DNS search domains.
-- vmware.vmware_rest.appliance_networking_dns_hostname - Set the Fully Qualified Domain Name.
-- vmware.vmware_rest.appliance_networking_dns_hostname_info - Get the Fully Qualified Doman Name.
-- vmware.vmware_rest.appliance_networking_dns_servers - Set the DNS server configuration
-- vmware.vmware_rest.appliance_networking_dns_servers_info - Get DNS server configuration.
-- vmware.vmware_rest.appliance_networking_firewall_inbound - Set the ordered list of firewall rules to allow or deny traffic from one or more incoming IP addresses
-- vmware.vmware_rest.appliance_networking_firewall_inbound_info - Get the ordered list of firewall rules
-- vmware.vmware_rest.appliance_networking_info - Get Networking information for all configured interfaces.
-- vmware.vmware_rest.appliance_networking_interfaces_info - Get information about a particular network interface.
-- vmware.vmware_rest.appliance_networking_interfaces_ipv4 - Set IPv4 network configuration for specific network interface.
-- vmware.vmware_rest.appliance_networking_interfaces_ipv4_info - Get IPv4 network configuration for specific NIC.
-- vmware.vmware_rest.appliance_networking_interfaces_ipv6 - Set IPv6 network configuration for specific interface.
-- vmware.vmware_rest.appliance_networking_interfaces_ipv6_info - Get IPv6 network configuration for specific interface.
-- vmware.vmware_rest.appliance_networking_noproxy - Sets servers for which no proxy configuration should be applied
-- vmware.vmware_rest.appliance_networking_noproxy_info - Returns servers for which no proxy configuration will be applied.
-- vmware.vmware_rest.appliance_networking_proxy - Configures which proxy server to use for the specified protocol
-- vmware.vmware_rest.appliance_networking_proxy_info - Gets the proxy configuration for a specific protocol.
-- vmware.vmware_rest.appliance_ntp - Set NTP servers
-- vmware.vmware_rest.appliance_ntp_info - Get the NTP configuration status
-- vmware.vmware_rest.appliance_services - Restarts a service
-- vmware.vmware_rest.appliance_services_info - Returns the state of a service.
-- vmware.vmware_rest.appliance_shutdown - Cancel pending shutdown action.
-- vmware.vmware_rest.appliance_shutdown_info - Get details about the pending shutdown action.
-- vmware.vmware_rest.appliance_system_globalfips - Enable/Disable Global FIPS mode for the appliance
-- vmware.vmware_rest.appliance_system_globalfips_info - Get current appliance FIPS settings.
-- vmware.vmware_rest.appliance_system_storage - Resize all partitions to 100 percent of disk size.
-- vmware.vmware_rest.appliance_system_storage_info - Get disk to partition mapping.
-- vmware.vmware_rest.appliance_system_time_info - Get system time.
-- vmware.vmware_rest.appliance_system_time_timezone - Set time zone.
-- vmware.vmware_rest.appliance_system_time_timezone_info - Get time zone.
-- vmware.vmware_rest.appliance_system_version_info - Get the version.
-- vmware.vmware_rest.appliance_timesync - Set time synchronization mode.
-- vmware.vmware_rest.appliance_timesync_info - Get time synchronization mode.
-- vmware.vmware_rest.appliance_update_info - Gets the current status of the appliance update.
-- vmware.vmware_rest.appliance_vmon_service - Lists details of services managed by vMon.
-- vmware.vmware_rest.appliance_vmon_service_info - Returns the state of a service.
-- vmware.vmware_rest.content_configuration - Updates the configuration
-- vmware.vmware_rest.content_configuration_info - Retrieves the current configuration values.
-- vmware.vmware_rest.content_library_item_info - Returns the {@link ItemModel} with the given identifier.
-- vmware.vmware_rest.content_locallibrary - Creates a new local library.
-- vmware.vmware_rest.content_locallibrary_info - Returns a given local library.
-- vmware.vmware_rest.content_subscribedlibrary - Creates a new subscribed library
-- vmware.vmware_rest.content_subscribedlibrary_info - Returns a given subscribed library.
-- vmware.vmware_rest.vcenter_cluster_info - Collect the information associated with the vCenter clusters
-- vmware.vmware_rest.vcenter_datacenter - Manage the datacenter of a vCenter
-- vmware.vmware_rest.vcenter_datacenter_info - Collect the information associated with the vCenter datacenters
-- vmware.vmware_rest.vcenter_datastore_info - Collect the information associated with the vCenter datastores
-- vmware.vmware_rest.vcenter_folder_info - Collect the information associated with the vCenter folders
-- vmware.vmware_rest.vcenter_host - Manage the host of a vCenter
-- vmware.vmware_rest.vcenter_host_info - Collect the information associated with the vCenter hosts
-- vmware.vmware_rest.vcenter_network_info - Collect the information associated with the vCenter networks
-- vmware.vmware_rest.vcenter_ovf_libraryitem - Creates a library item in content library from a virtual machine or virtual appliance
-- vmware.vmware_rest.vcenter_resourcepool - Manage the resourcepool of a vCenter
-- vmware.vmware_rest.vcenter_resourcepool_info - Collect the information associated with the vCenter resourcepools
-- vmware.vmware_rest.vcenter_storage_policies_info - Collect the information associated with the vCenter storage policiess
-- vmware.vmware_rest.vcenter_vm - Manage the vm of a vCenter
-- vmware.vmware_rest.vcenter_vm_guest_environment_info - Reads a single environment variable from the guest operating system
-- vmware.vmware_rest.vcenter_vm_guest_filesystem - Initiates an operation to transfer a file to or from the guest
-- vmware.vmware_rest.vcenter_vm_guest_filesystem_directories - Creates a directory in the guest operating system
-- vmware.vmware_rest.vcenter_vm_guest_filesystem_files - Creates a temporary file
-- vmware.vmware_rest.vcenter_vm_guest_filesystem_files_info - Returns information about a file or directory in the guest
-- vmware.vmware_rest.vcenter_vm_guest_identity_info - Collect the guest identity information
-- vmware.vmware_rest.vcenter_vm_guest_localfilesystem_info - Collect the guest localfilesystem information
-- vmware.vmware_rest.vcenter_vm_guest_networking_info - Collect the guest networking information
-- vmware.vmware_rest.vcenter_vm_guest_networking_interfaces_info - Collect the guest networking interfaces information
-- vmware.vmware_rest.vcenter_vm_guest_networking_routes_info - Collect the guest networking routes information
-- vmware.vmware_rest.vcenter_vm_guest_operations_info - Get information about the guest operation status.
-- vmware.vmware_rest.vcenter_vm_guest_processes - Starts a program in the guest operating system
-- vmware.vmware_rest.vcenter_vm_guest_processes_info - Returns the status of a process running in the guest operating system, including those started by {@link Processes#create} that may have recently completed
-- vmware.vmware_rest.vcenter_vm_hardware - Manage the hardware of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_adapter_sata - Manage the SATA adapter of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_adapter_sata_info - Collect the SATA adapter information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_adapter_scsi - Manage the SCSI adapter of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_adapter_scsi_info - Collect the SCSI adapter information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_boot - Manage the boot of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_boot_device - Manage the boot device of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_boot_device_info - Collect the boot device information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_boot_info - Collect the boot information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_cdrom - Manage the cdrom of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_cdrom_info - Collect the cdrom information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_cpu - Manage the cpu of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_cpu_info - Collect the cpu information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_disk - Manage the disk of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_disk_info - Collect the disk information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_ethernet - Manage the ethernet of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_ethernet_info - Collect the ethernet information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_floppy - Manage the floppy of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_floppy_info - Collect the floppy information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_info - Manage the info of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_memory - Manage the memory of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_memory_info - Collect the memory information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_parallel - Manage the parallel of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_parallel_info - Collect the parallel information from a VM
-- vmware.vmware_rest.vcenter_vm_hardware_serial - Manage the serial of a VM
-- vmware.vmware_rest.vcenter_vm_hardware_serial_info - Collect the serial information from a VM
-- vmware.vmware_rest.vcenter_vm_info - Collect the  information from a VM
-- vmware.vmware_rest.vcenter_vm_libraryitem_info - Collect the libraryitem  information from a VM
-- vmware.vmware_rest.vcenter_vm_power - Manage the power of a VM
-- vmware.vmware_rest.vcenter_vm_power_info - Collect the power  information from a VM
-- vmware.vmware_rest.vcenter_vm_storage_policy - Manage the storage policy of a VM
-- vmware.vmware_rest.vcenter_vm_storage_policy_compliance_info - Collect the storage policy compliance  information from a VM
-- vmware.vmware_rest.vcenter_vm_storage_policy_info - Collect the storage policy  information from a VM
-- vmware.vmware_rest.vcenter_vm_tools - Manage the tools of a VM
-- vmware.vmware_rest.vcenter_vm_tools_info - Collect the tools  information from a VM
 
 Unchanged Collections
 ---------------------
@@ -1535,7 +1327,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | community.mongodb             | 1.3.2         | 1.3.3         | There are no changes recorded in the changelog.                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
-| community.sap                 |               | 1.0.0         |                                                                                                                              |
+| community.sap                 |               | 1.0.0         | The collection was added to Ansible                                                                                          |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | community.sops                | 1.2.0         | 1.2.1         |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -1641,11 +1433,6 @@ community.general
 - keycloak_client - add ``default_client_scopes`` and ``optional_client_scopes`` parameters. (https://github.com/ansible-collections/community.general/pull/4385).
 - proxmox inventory plugin - add support for templating the ``url``, ``user``, and ``password`` options (https://github.com/ansible-collections/community.general/pull/4418).
 - sudoers - add support for ``runas`` parameter (https://github.com/ansible-collections/community.general/issues/4379).
-
-community.sap
-~~~~~~~~~~~~~
-
-- sapcar_extract.py - more strict logic for filenames
 
 community.vmware
 ~~~~~~~~~~~~~~~~
@@ -1919,35 +1706,6 @@ community.hashi_vault
 ~~~~~~~~~~~~~~~~~~~~~
 
 - community.hashi_vault.vault_write - Perform a write operation against HashiCorp Vault
-
-community.sap
-~~~~~~~~~~~~~
-
-Database
-^^^^^^^^
-
-Saphana
-.......
-
-- community.sap.hana_query - Execute SQL on HANA
-
-Files
-^^^^^
-
-- community.sap.sapcar_extract - Manages SAP SAPCAR archives
-
-Identity
-^^^^^^^^
-
-- community.sap.sap_company - This module will manage a company entities in a SAP S4HANA environment
-- community.sap.sap_user - This module will manage a user entities in a SAP S4/HANA environment
-
-System
-^^^^^^
-
-- community.sap.sap_snote - This module will upload and (de)implements C(SNOTES) in a SAP S4HANA environment.
-- community.sap.sap_system_facts - Gathers SAP facts in a host
-- community.sap.sap_task_list_execute - Perform SAP Task list execution
 
 junipernetworks.junos
 ~~~~~~~~~~~~~~~~~~~~~
@@ -4721,7 +4479,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | cisco.iosxr                   | 2.1.0         | 2.5.0         |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
-| cisco.ise                     |               | 1.2.1         |                                                                                                                              |
+| cisco.ise                     |               | 1.2.1         | The collection was added to Ansible                                                                                          |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | cisco.meraki                  | 2.2.1         | 2.5.0         |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -4729,7 +4487,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | cisco.nxos                    | 2.2.0         | 2.7.1         |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
-| cloud.common                  |               | 2.1.0         |                                                                                                                              |
+| cloud.common                  |               | 2.1.0         | The collection was added to Ansible                                                                                          |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | cloudscale_ch.cloud           | 2.1.0         | 2.2.0         |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -4737,13 +4495,13 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | community.azure               | 1.0.0         | 1.1.0         |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
-| community.ciscosmb            |               | 1.0.4         |                                                                                                                              |
+| community.ciscosmb            |               | 1.0.4         | The collection was added to Ansible                                                                                          |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | community.crypto              | 1.6.2         | 2.0.1         |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | community.digitalocean        | 1.1.1         | 1.12.0        |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
-| community.dns                 |               | 2.0.3         |                                                                                                                              |
+| community.dns                 |               | 2.0.3         | The collection was added to Ansible                                                                                          |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | community.docker              | 1.5.0         | 2.0.1         |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -4801,7 +4559,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | infinidat.infinibox           | 1.2.4         | 1.3.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
-| infoblox.nios_modules         |               | 1.1.2         |                                                                                                                              |
+| infoblox.nios_modules         |               | 1.1.2         | The collection was added to Ansible                                                                                          |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | inspur.sm                     | 1.1.4         | 1.3.0         |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -4819,7 +4577,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | netapp.ontap                  | 21.5.0        | 21.13.1       |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
-| netapp.storagegrid            |               | 21.7.0        |                                                                                                                              |
+| netapp.storagegrid            |               | 21.7.0        | The collection was added to Ansible                                                                                          |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | netapp.um_info                | 21.5.0        | 21.8.0        |                                                                                                                              |
 +-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -4897,43 +4655,6 @@ amazon.aws
 - ec2_vpc_route_table_facts - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_route_table_facts``.
 - ec2_vpc_route_table_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_route_table_info``.
 
-cisco.ise
-~~~~~~~~~
-
-- Adds ``ise_uses_api_gateway`` to module options.
-- Adds a 'aws_deployment' role that allows the deployment of an arbitrary large ISE cluster to AWS.
-- Adds ise_responses to return values of info modules.
-- Adds ise_update_response to return values of non-info modules.
-- Fixes inner logic of modules that have no get by name and have not working filter.
-- Renamed module device_administration_authorization_exception_rules to device_administration_local_exception_rules.
-- Renamed module device_administration_authorization_global_exception_rules to device_administration_global_exception_rules.
-- Renamed module network_access_authorization_exception_rules to network_access_local_exception_rules.
-- Renamed module network_access_authorization_global_exception_rules to network_access_global_exception_rules.
-- Updates options required for modules.
-- Updates sdk parameters for previous modules
-- device_administration_authorization_exception_rules - removed module.
-- device_administration_authorization_exception_rules_info - removed module.
-- device_administration_authorization_global_exception_rules - removed module.
-- device_administration_authorization_global_exception_rules_info - removed module.
-- guest_user_reinstante - removed module.
-- import_trust_cert - removed module.
-- network_access_authorization_exception_rules - removed module.
-- network_access_authorization_exception_rules_info - removed module.
-- network_access_authorization_global_exception_rules - removed module.
-- network_access_authorization_global_exception_rules_info - removed module.
-- personas_check_standalone - Adds module for the deployment of personas to existing nodes in an ISE cluster.
-- personas_export_certs - Adds module for the deployment of personas to existing nodes in an ISE cluster.
-- personas_promote_primary - Adds module for the deployment of personas to existing nodes in an ISE cluster.
-- personas_update_roles - Adds module for the deployment of personas to existing nodes in an ISE cluster.
-- service_info - removed module.
-- system_certificate_export - removed module.
-- telemetry_info_info - removed module.
-
-cloud.common
-~~~~~~~~~~~~
-
-- turbo - enable turbo mode for lookup plugins
-
 cloudscale_ch.cloud
 ~~~~~~~~~~~~~~~~~~~
 
@@ -4943,26 +4664,6 @@ community.aws
 ~~~~~~~~~~~~~
 
 - community.aws collection - The community.aws collection has dropped support for ``botocore<1.18.0`` and ``boto3<1.15.0`` (https://github.com/ansible-collections/community.aws/pull/711). Most modules will continue to work with older versions of the AWS SDK, however compatability with older versions of the SDK is not guaranteed and will not be tested. When using older versions of the SDK a warning will be emitted by Ansible (https://github.com/ansible-collections/amazon.aws/pull/442).
-
-community.ciscosmb
-~~~~~~~~~~~~~~~~~~
-
-- Python 2.6, 2.7, 3.5 is required
-- add CBS350 support
-- add antsibull-changelog support
-- add ciscosmb_command
-- added facts subset "interfaces"
-- ciscosmb_facts with default subset and unit tests
-- interface name canonicalization
-- transform collection qaxi.ciscosmb to community.ciscosmb
-- transform community.ciscosmb.ciscosmb_command to community.ciscosmb.command
-- transform community.ciscosmb.ciscosmb_facts to community.ciscosmb.facts
-- unit tests for CBS350
-
-community.dns
-~~~~~~~~~~~~~
-
-- hosttech_* modules - support the new JSON API at https://api.ns1.hosttech.eu/api/documentation/ (https://github.com/ansible-collections/community.dns/pull/4).
 
 community.general
 ~~~~~~~~~~~~~~~~~
@@ -5492,355 +5193,6 @@ cisco.iosxr
 - Added iosxr ntp_global resource module.
 - Fix integration tests for iosxr_config, iosxr_smoke,iosxr_facts,iosxr_l2_interfaces,iosxr_lag_interfaces, iosxr_logging,iosxr_user.
 
-cisco.ise
-~~~~~~~~~
-
-- Added backup_create sample playbook.
-- Added backup_restore sample playbook.
-- Added backup_schedule sample playbook.
-- Added certificate_management sample playbook.
-- Added ise_debug parameter
-- Improve the documentation for MacOS users.
-- Migrated the Personas Deployment playbooks to a role.
-- Update requirements.
-- aci_bindings_info - new module.
-- aci_settings - new module.
-- aci_settings_info - new module.
-- aci_test_connectivity - new module.
-- active_directory - new module.
-- active_directory_add_groups - new module.
-- active_directory_groups_by_domain_info - new module.
-- active_directory_info - new module.
-- active_directory_is_user_member_of_group_info - new module.
-- active_directory_join_domain - new module.
-- active_directory_join_domain_with_all_nodes - new module.
-- active_directory_leave_domain - new module.
-- active_directory_leave_domain_with_all_nodes - new module.
-- active_directory_trusted_domains_info - new module.
-- active_directory_user_groups_info - new module.
-- admin_user_info - new module.
-- allowed_protocols - new module.
-- allowed_protocols_info - new module.
-- anc_endpoint_apply - new module.
-- anc_endpoint_bulk_monitor_status_info - new module.
-- anc_endpoint_bulk_request - new module.
-- anc_endpoint_clear - new module.
-- anc_endpoint_info - new module.
-- anc_policy - new module.
-- anc_policy_bulk_monitor_status_info - new module.
-- anc_policy_bulk_request - new module.
-- anc_policy_info - new module.
-- authorization_profile - new module.
-- authorization_profile_info - new module.
-- backup_cancel - new module.
-- backup_config - new module.
-- backup_last_status_info - new module.
-- backup_restore - new module.
-- backup_schedule_config - new module.
-- bind_signed_certificate - new module.
-- byod_portal - new module.
-- byod_portal_info - new module.
-- certificate_profile - new module.
-- certificate_profile_info - new module.
-- certificate_template_info - new module.
-- csr_delete - new module.
-- csr_export_info - new module.
-- csr_generate - new module.
-- csr_generate_intermediate_ca - new module.
-- csr_info - new module.
-- deployment_info - new module.
-- device_administration_authentication_reset_hitcount - new module.
-- device_administration_authentication_rules - new module.
-- device_administration_authentication_rules_info - new module.
-- device_administration_authorization_exception_rules - new module.
-- device_administration_authorization_exception_rules_info - new module.
-- device_administration_authorization_global_exception_rules - new module.
-- device_administration_authorization_global_exception_rules_info - new module.
-- device_administration_authorization_reset_hitcount - new module.
-- device_administration_authorization_rules - new module.
-- device_administration_authorization_rules_info - new module.
-- device_administration_command_set_info - new module.
-- device_administration_conditions - new module.
-- device_administration_conditions_for_authentication_rule_info - new module.
-- device_administration_conditions_for_authorization_rule_info - new module.
-- device_administration_conditions_for_policy_set_info - new module.
-- device_administration_conditions_info - new module.
-- device_administration_dictionary_attributes_authentication_info - new module.
-- device_administration_dictionary_attributes_authorization_info - new module.
-- device_administration_dictionary_attributes_policy_set_info - new module.
-- device_administration_global_exception_rules - new module.
-- device_administration_global_exception_rules_info - new module.
-- device_administration_global_exception_rules_reset_hitcount - new module.
-- device_administration_identity_stores_info - new module.
-- device_administration_local_exception_rules - new module.
-- device_administration_local_exception_rules_info - new module.
-- device_administration_local_exception_rules_reset_hitcount - new module.
-- device_administration_network_conditions - new module.
-- device_administration_network_conditions_info - new module.
-- device_administration_policy_set - new module.
-- device_administration_policy_set_info - new module.
-- device_administration_policy_set_reset_hitcount - new module.
-- device_administration_profiles_info - new module.
-- device_administration_service_names_info - new module.
-- device_administration_time_date_conditions - new module.
-- device_administration_time_date_conditions_info - new module.
-- downloadable_acl - new module.
-- downloadable_acl_info - new module.
-- egress_matrix_cell - new module.
-- egress_matrix_cell_bulk_monitor_status_info - new module.
-- egress_matrix_cell_bulk_request - new module.
-- egress_matrix_cell_clear_all - new module.
-- egress_matrix_cell_clone - new module.
-- egress_matrix_cell_info - new module.
-- egress_matrix_cell_set_all_status - new module.
-- endpoint - new module.
-- endpoint_bulk_monitor_status_info - new module.
-- endpoint_bulk_request - new module.
-- endpoint_certificate - new module.
-- endpoint_deregister - new module.
-- endpoint_get_rejected_endpoints_info - new module.
-- endpoint_group - new module.
-- endpoint_group_info - new module.
-- endpoint_info - new module.
-- endpoint_register - new module.
-- endpoint_release_rejected_endpoint - new module.
-- external_radius_server - new module.
-- external_radius_server_info - new module.
-- filter_policy - new module.
-- filter_policy_info - new module.
-- guest_location_info - new module.
-- guest_smtp_notification_settings - new module.
-- guest_smtp_notification_settings_info - new module.
-- guest_ssid - new module.
-- guest_ssid_info - new module.
-- guest_type - new module.
-- guest_type_email - new module.
-- guest_type_info - new module.
-- guest_type_sms - new module.
-- guest_user - new module.
-- guest_user_approve - new module.
-- guest_user_bulk_monitor_status_info - new module.
-- guest_user_bulk_request - new module.
-- guest_user_change_sponsor_password - new module.
-- guest_user_deny - new module.
-- guest_user_email - new module.
-- guest_user_info - new module.
-- guest_user_reinstante - new module.
-- guest_user_reinstate - new module.
-- guest_user_reset_password - new module.
-- guest_user_sms - new module.
-- guest_user_suspend - new module.
-- hotspot_portal - new module.
-- hotspot_portal_info - new module.
-- id_store_sequence - new module.
-- id_store_sequence_info - new module.
-- identity_group - new module.
-- identity_group_info - new module.
-- import_trust_cert - new module.
-- internal_user - new module.
-- internal_user_info - new module.
-- ise_root_ca_regenerate - new module.
-- mnt_account_status_info - new module.
-- mnt_athentication_status_info - new module.
-- mnt_authentication_status_info - new module.
-- mnt_failure_reasons_info - new module.
-- mnt_session_active_count_info - new module.
-- mnt_session_active_list_info - new module.
-- mnt_session_auth_list_info - new module.
-- mnt_session_by_ip_info - new module.
-- mnt_session_by_mac_info - new module.
-- mnt_session_by_nas_ip_info - new module.
-- mnt_session_by_username_info - new module.
-- mnt_session_delete_all - new module.
-- mnt_session_disconnect_info - new module.
-- mnt_session_posture_count_info - new module.
-- mnt_session_profiler_count_info - new module.
-- mnt_session_reauthentication_info - new module.
-- mnt_sessions_by_session_id_info - new module.
-- mnt_version_info - new module.
-- my_device_portal - new module.
-- my_device_portal_info - new module.
-- native_supplicant_profile - new module.
-- native_supplicant_profile_info - new module.
-- network_access_authentication_rules - new module.
-- network_access_authentication_rules_info - new module.
-- network_access_authentication_rules_reset_hitcount - new module.
-- network_access_authorization_exception_rules - new module.
-- network_access_authorization_exception_rules_info - new module.
-- network_access_authorization_global_exception_rules - new module.
-- network_access_authorization_global_exception_rules_info - new module.
-- network_access_authorization_rules - new module.
-- network_access_authorization_rules_info - new module.
-- network_access_authorization_rules_reset_hitcount - new module.
-- network_access_conditions - new module.
-- network_access_conditions_for_authentication_rule_info - new module.
-- network_access_conditions_for_authorization_rule_info - new module.
-- network_access_conditions_for_policy_set_info - new module.
-- network_access_conditions_info - new module.
-- network_access_dictionary - new module.
-- network_access_dictionary_attribute - new module.
-- network_access_dictionary_attribute_info - new module.
-- network_access_dictionary_attributes_authentication_info - new module.
-- network_access_dictionary_attributes_authorization_info - new module.
-- network_access_dictionary_attributes_policy_set_info - new module.
-- network_access_dictionary_info - new module.
-- network_access_global_exception_rules - new module.
-- network_access_global_exception_rules_info - new module.
-- network_access_global_exception_rules_reset_hitcount - new module.
-- network_access_identity_stores_info - new module.
-- network_access_local_exception_rules - new module.
-- network_access_local_exception_rules_info - new module.
-- network_access_local_exception_rules_reset_hitcounts - new module.
-- network_access_network_condition - new module.
-- network_access_network_condition_info - new module.
-- network_access_policy_set - new module.
-- network_access_policy_set_info - new module.
-- network_access_policy_set_reset_hitcount - new module.
-- network_access_profiles_info - new module.
-- network_access_security_groups_info - new module.
-- network_access_service_name_info - new module.
-- network_access_time_date_conditions - new module.
-- network_access_time_date_conditions_info - new module.
-- network_device - new module.
-- network_device_bulk_monitor_status_info - new module.
-- network_device_bulk_request - new module.
-- network_device_group - new module.
-- network_device_group_info - new module.
-- network_device_info - new module.
-- node_deployment - new module.
-- node_deployment_info - new module.
-- node_group - new module.
-- node_group_info - new module.
-- node_info - new module.
-- node_promotion - new module.
-- node_replication_status_info - new module.
-- node_sync - new module.
-- pan_ha - new module.
-- pan_ha_info - new module.
-- portal_global_setting - new module.
-- portal_global_setting_info - new module.
-- portal_info - new module.
-- portal_theme - new module.
-- portal_theme_info - new module.
-- profiler_profile_info - new module.
-- px_grid_node_approve - new module.
-- px_grid_node_delete - new module.
-- px_grid_node_info - new module.
-- px_grid_settings_auto_approve - new module.
-- pxgrid_access_secret - new module.
-- pxgrid_account_activate - new module.
-- pxgrid_account_create - new module.
-- pxgrid_authorization - new module.
-- pxgrid_bindings_info - new module.
-- pxgrid_egress_matrices_info - new module.
-- pxgrid_egress_policies_info - new module.
-- pxgrid_endpoint_by_mac_info - new module.
-- pxgrid_endpoints_by_os_type_info - new module.
-- pxgrid_endpoints_by_type_info - new module.
-- pxgrid_endpoints_info - new module.
-- pxgrid_failures_info - new module.
-- pxgrid_healths_info - new module.
-- pxgrid_performances_info - new module.
-- pxgrid_profiles_info - new module.
-- pxgrid_security_group_acls_info - new module.
-- pxgrid_security_groups_info - new module.
-- pxgrid_service_lookup - new module.
-- pxgrid_service_register - new module.
-- pxgrid_service_reregister - new module.
-- pxgrid_service_unregister - new module.
-- pxgrid_session_by_ip_info - new module.
-- pxgrid_session_by_mac_info - new module.
-- pxgrid_session_for_recovery_info - new module.
-- pxgrid_sessions_info - new module.
-- pxgrid_user_group_by_username_info - new module.
-- pxgrid_user_groups_info - new module.
-- radius_server_sequence - new module.
-- radius_server_sequence_info - new module.
-- renew_certificate - new module.
-- repository - new module.
-- repository_files_info - new module.
-- repository_info - new module.
-- resource_version_info - new module.
-- rest_id_store - new module.
-- rest_id_store_info - new module.
-- self_registered_portal - new module.
-- self_registered_portal_info - new module.
-- service_info - new module.
-- session_service_node_info - new module.
-- sg_acl - new module.
-- sg_acl_bulk_monitor_status_info - new module.
-- sg_acl_bulk_request - new module.
-- sg_acl_info - new module.
-- sg_mapping - new module.
-- sg_mapping_bulk_monitor_status_info - new module.
-- sg_mapping_bulk_request - new module.
-- sg_mapping_deploy - new module.
-- sg_mapping_deploy_all - new module.
-- sg_mapping_deploy_status_info - new module.
-- sg_mapping_group - new module.
-- sg_mapping_group_bulk_monitor_status_info - new module.
-- sg_mapping_group_bulk_request - new module.
-- sg_mapping_group_deploy - new module.
-- sg_mapping_group_deploy_all - new module.
-- sg_mapping_group_deploy_status_info - new module.
-- sg_mapping_group_info - new module.
-- sg_mapping_info - new module.
-- sg_to_vn_to_vlan - new module.
-- sg_to_vn_to_vlan_bulk_monitor_status_info - new module.
-- sg_to_vn_to_vlan_bulk_request - new module.
-- sg_to_vn_to_vlan_info - new module.
-- sgt - new module.
-- sgt_bulk_monitor_status_info - new module.
-- sgt_bulk_request - new module.
-- sgt_info - new module.
-- sms_provider_info - new module.
-- sponsor_group - new module.
-- sponsor_group_info - new module.
-- sponsor_group_member_info - new module.
-- sponsor_portal - new module.
-- sponsor_portal_info - new module.
-- sponsored_guest_portal - new module.
-- sponsored_guest_portal_info - new module.
-- support_bundle - new module.
-- support_bundle_download - new module.
-- support_bundle_status_info - new module.
-- sxp_connections - new module.
-- sxp_connections_bulk_monitor_status_info - new module.
-- sxp_connections_bulk_request - new module.
-- sxp_connections_info - new module.
-- sxp_local_bindings - new module.
-- sxp_local_bindings_bulk_monitor_status_info - new module.
-- sxp_local_bindings_bulk_request - new module.
-- sxp_local_bindings_info - new module.
-- sxp_vpns - new module.
-- sxp_vpns_bulk_monitor_status_info - new module.
-- sxp_vpns_bulk_request - new module.
-- sxp_vpns_info - new module.
-- system_certificate - new module.
-- system_certificate_create - new module.
-- system_certificate_export - new module.
-- system_certificate_export_info - new module.
-- system_certificate_import - new module.
-- system_certificate_info - new module.
-- system_config_version_info - new module.
-- tacacs_command_sets - new module.
-- tacacs_command_sets_info - new module.
-- tacacs_external_servers - new module.
-- tacacs_external_servers_info - new module.
-- tacacs_profile - new module.
-- tacacs_profile_info - new module.
-- tacacs_server_sequence - new module.
-- tacacs_server_sequence_info - new module.
-- tasks_info - new module.
-- telemetry_info - fixes EXAMPLES documentation.
-- telemetry_info - new module.
-- telemetry_info_info - new module.
-- threat_vulnerabilities_clear - new module.
-- trusted_certificate - new module.
-- trusted_certificate_export_info - new module.
-- trusted_certificate_import - new module.
-- trusted_certificate_info - new module.
-
 cisco.meraki
 ~~~~~~~~~~~~
 
@@ -5874,23 +5226,6 @@ cisco.nxos
 - Add nxos_logging_global resource module.
 - Add nxos_ntp_global module.
 - `nxos_telemetry` - Add support for state gathered
-
-cloud.common
-~~~~~~~~~~~~
-
-- Cosmetic changes in the documentation for the inclusion in the Ansible collection.
-- The ``EmbeddedModuleFailure`` and ``EmbeddedModuleUnexpectedFailure`` exceptions now handle the ``__repr__`` and ``__str__`` method. This means Python is able to print a meaningful output.
-- The modules must now set the ``collection_name`` of the ``AnsibleTurboModule`` class. The content of this attribute is used to build the path of the UNIX socket.
-- When the background service is started in a console without the ``--daemon`` flag, it now prints information what it runs.
-- ``argument_spec`` is now evaluated server-side.
-- ansible_module.turbo - the cache is now associated with the collection, if two collections use a cache, two background services will be started.
-- fail_json now accept and collect extra named arguments.
-- raise an exception if the output of module execution cannot be parsed.
-- the ``turbo_demo`` module now return the value of counter.
-- the user get an error now an error if a module don't raise ``exit_json()`` or ``fail_json()``.
-- turbo - Extend the unit-test coverage.
-- turbo - Use a BSD license for the module_utils and plugin_utils files.
-- turbo - add support for coroutine for lookup plugins (https://github.com/ansible-collections/cloud.common/pull/75).
 
 cloudscale_ch.cloud
 ~~~~~~~~~~~~~~~~~~~
@@ -6009,35 +5344,6 @@ community.aws
 - wafv2_resources_info - ensure module runs in check_mode (https://github.com/ansible-collections/community.aws/issues/659).
 - wafv2_web_acl_info - ensure module runs in check_mode (https://github.com/ansible-collections/community.aws/issues/659).
 
-community.ciscosmb
-~~~~~~~~~~~~~~~~~~
-
-- Add Py 3.6 to supported python versions (https://github.com/ansible-collections/community.ciscosmb/pull/44)
-- Added Releasing, CoC and Contributing to README.md
-- Added author
-- Added license header
-- Fix link to issue tracker in galaxy.yml (https://github.com/ansible-collections/community.ciscosmb/pull/42)
-- Misc doc fixes for collection inclusion (https://github.com/ansible-collections/community.ciscosmb/pull/41)
-- Python 2.6, 2.7, 3.5 compatibility
-- Release policy, versioning, deprecation
-- Updated CoC, added email address
-- add Code of conduct
-- add Contribution
-- add required files for community inclusion
-- added ansible dev-guide manual test
-- better tests requirements
-- check tags and add tag switch
-- cluter removed
-- code cleaning
-- correct version bumping
-- doc update
-- more descriptiove Release section on README.md
-- remove mock warning
-- remove unnecersary parameters on function re.sub()
-- setup standard Ansible CI
-- update my tests
-- uptime in seconds
-
 community.crypto
 ~~~~~~~~~~~~~~~~
 
@@ -6101,34 +5407,6 @@ community.digitalocean
 - digitalocean - Support templates in API tokens when using the dynamic inventory plugin (https://github.com/ansible-collections/community.digitalocean/pull/98).
 - digitalocean integration tests - adding integration tests for CDN Endpoints (https://github.com/ansible-collections/community.digitalocean/issues/179).
 - digitalocean inventory script - add support for Droplet tag filtering (https://github.com/ansible-collections/community.digitalocean/issues/7).
-
-community.dns
-~~~~~~~~~~~~~
-
-- Add support for Hetzner DNS (https://github.com/ansible-collections/community.dns/pull/27).
-- Added a ``txt_transformation`` option to all modules and plugins working with DNS records (https://github.com/ansible-collections/community.dns/issues/48, https://github.com/ansible-collections/community.dns/pull/57, https://github.com/ansible-collections/community.dns/pull/60).
-- Avoid internal ansible-core module_utils in favor of equivalent public API available since at least Ansible 2.9 (https://github.com/ansible-collections/community.dns/pull/24).
-- HTTP API module utils - fix usage of ``fetch_url`` with changes in latest ansible-core ``devel`` branch (https://github.com/ansible-collections/community.dns/pull/73).
-- The hosttech_dns_records module has been renamed to hosttech_dns_record_sets (https://github.com/ansible-collections/community.dns/pull/31).
-- The internal API now supports bulk DNS record changes, if supported by the API (https://github.com/ansible-collections/community.dns/pull/39).
-- The internal record API allows to manage extra data (https://github.com/ansible-collections/community.dns/pull/63).
-- Use HTTP helper class to make API implementations work for both plugins and modules. Make WSDL API use ``fetch_url`` instead of ``open_url`` for modules (https://github.com/ansible-collections/community.dns/pull/36).
-- hetzner_dns_record and hosttech_dns_record - when not using check mode, use actual return data for diff, instead of input data, so that extra data can be shown (https://github.com/ansible-collections/community.dns/pull/63).
-- hetzner_dns_zone_info - the ``legacy_ns`` return value is now sorted, since its order is unstable (https://github.com/ansible-collections/community.dns/pull/46).
-- hosttech modules - add ``api_token`` alias for ``hosttech_token`` (https://github.com/ansible-collections/community.dns/pull/26).
-- hosttech_dns_* - handle ``419 Too Many Requests`` with proper rate limiting for JSON API (https://github.com/ansible-collections/community.dns/pull/14).
-- hosttech_dns_* modules - rename ``zone`` parameter to ``zone_name``. The old name ``zone`` can still be used as an alias (https://github.com/ansible-collections/community.dns/pull/32).
-- hosttech_dns_record - in ``diff`` mode, also return ``diff`` data structure when ``changed`` is ``false`` (https://github.com/ansible-collections/community.dns/pull/28).
-- hosttech_dns_record* modules - allow to specify ``prefix`` instead of ``record`` (https://github.com/ansible-collections/community.dns/pull/8).
-- hosttech_dns_record* modules - allow to specify zone by ID with the ``zone_id`` parameter, alternatively to the ``zone`` parameter (https://github.com/ansible-collections/community.dns/pull/7).
-- hosttech_dns_record* modules - return ``zone_id`` on success (https://github.com/ansible-collections/community.dns/pull/7).
-- hosttech_dns_record* modules - support IDN domain names and prefixes (https://github.com/ansible-collections/community.dns/pull/9).
-- hosttech_dns_record_info - also return ``prefix`` for a record set (https://github.com/ansible-collections/community.dns/pull/8).
-- hosttech_dns_record_set - ``value`` is no longer required when ``state=absent`` and ``overwrite=true`` (https://github.com/ansible-collections/community.dns/pull/31).
-- hosttech_dns_record_sets - ``records`` has been renamed to ``record_sets``. The old name ``records`` can still be used as an alias (https://github.com/ansible-collections/community.dns/pull/31).
-- hosttech_dns_zone_info - return extra information as ``zone_info`` (https://github.com/ansible-collections/community.dns/pull/38).
-- hosttech_record - allow to delete records without querying their content first by specifying ``overwrite=true`` (https://github.com/ansible-collections/community.dns/pull/4).
-- module utils - add default implementation for some zone/record API functions, and move common JSON API code to helper class (https://github.com/ansible-collections/community.dns/pull/26).
 
 community.docker
 ~~~~~~~~~~~~~~~~
@@ -6536,15 +5814,6 @@ hetzner.hcloud
 - hcloud_firewall Add description field to firewall rules
 - hcloud_rdns Add support for load balancer
 
-infoblox.nios_modules
-~~~~~~~~~~~~~~~~~~~~~
-
-- Changes in inventory and lookup plugins documentation `#85 <https://github.com/infobloxopen/infoblox-ansible/pull/85>`_
-- Directory restructure and added integration & unit tests `#87 <https://github.com/infobloxopen/infoblox-ansible/pull/87>`_
-- Fixed the ignored sanity errors required for Ansible 3.0.0 collection
-- Made it compatible for Ansible v3.0.0
-- The modules are standardized as per Ansible guidelines
-
 inspur.sm
 ~~~~~~~~~
 
@@ -6709,17 +5978,6 @@ netapp.ontap
 - na_ontap_vserver_create role - add ``nfsv3``, ``nfsv4``, ``nfsv41`` options.
 - na_ontap_vserver_peer - new option ``peer_options`` to use different credentials on peer.
 - na_ontap_vserver_peer - new options ``local_name_for_source`` and ``local_name_for_peer`` added.
-
-netapp.storagegrid
-~~~~~~~~~~~~~~~~~~
-
-- Fixed documentation issue in README.md
-- Updated documentation - added RETURN block for each module
-- na_sg_grid_account - New option ``root_access_account`` for granting initial root access permissions for the tenant to an existing federated group
-- na_sg_grid_account - new option ``update_password`` for managing Tenant Account root password changes.
-- na_sg_grid_user - new option ``password`` and ``update_password`` for setting or updating Grid Admin User passwords.
-- na_sg_org_container - supports deletion of buckets when ``state`` is set to ``absent``.
-- na_sg_org_user - new option ``password`` and ``update_password`` for setting or updating Tenant User passwords.
 
 netapp.um_info
 ~~~~~~~~~~~~~~
@@ -6967,21 +6225,6 @@ community.crypto
 - openssl_privatekey_info - by default consistency checks are not run; they need to be explicitly requested by passing ``check_consistency=true`` (https://github.com/ansible-collections/community.crypto/pull/309).
 - x509_crl - for idempotency checks, the ``issuer`` order is ignored. If order is important, use the new ``issuer_ordered`` option (https://github.com/ansible-collections/community.crypto/pull/316).
 
-community.dns
-~~~~~~~~~~~~~
-
-- All Hetzner modules and plugins which handle DNS records now work with unquoted TXT values by default. The old behavior can be obtained by setting ``txt_transformation=api`` (https://github.com/ansible-collections/community.dns/issues/48, https://github.com/ansible-collections/community.dns/pull/57, https://github.com/ansible-collections/community.dns/pull/60).
-- Hosttech API creation - now requires a ``ModuleOptionProvider`` object instead of an ``AnsibleModule`` object. Alternatively an Ansible plugin instance can be passed (https://github.com/ansible-collections/community.dns/pull/37).
-- The hetzner_dns_record_info and hosttech_dns_record_info modules have been renamed to hetzner_dns_record_set_info and hosttech_dns_record_set_info, respectively (https://github.com/ansible-collections/community.dns/pull/54).
-- The hosttech_dns_record module has been renamed to hosttech_dns_record_set (https://github.com/ansible-collections/community.dns/pull/31).
-- The internal bulk record updating helper (``bulk_apply_changes``) now also returns the records that were deleted, created or updated (https://github.com/ansible-collections/community.dns/pull/63).
-- The internal record API no longer allows to manage comments explicitly (https://github.com/ansible-collections/community.dns/pull/63).
-- When using the internal modules API, now a zone ID type and a provider information object must be passed (https://github.com/ansible-collections/community.dns/pull/27).
-- hetzner_dns_record* modules - implement correct handling of default TTL. The value ``none`` is now accepted and returned in this case (https://github.com/ansible-collections/community.dns/pull/52, https://github.com/ansible-collections/community.dns/issues/50).
-- hetzner_dns_record, hetzner_dns_record_set, hetzner_dns_record_sets - the default TTL is now 300 and no longer 3600, which equals the default in the web console (https://github.com/ansible-collections/community.dns/pull/43).
-- hosttech_* module_utils - completely rewrite and refactor to support new JSON API and allow to re-use provider-independent module logic (https://github.com/ansible-collections/community.dns/pull/4).
-- hosttech_dns_record_set - the option ``overwrite`` was replaced by a new option ``on_existing``. Specifying ``overwrite=true`` is equivalent to ``on_existing=replace`` (the new default). Specifying ``overwrite=false`` with ``state=present`` is equivalent to ``on_existing=keep_and_fail``, and specifying ``overwrite=false`` with ``state=absent`` is equivalent to ``on_existing=keep`` (https://github.com/ansible-collections/community.dns/pull/31).
-
 community.docker
 ~~~~~~~~~~~~~~~~
 
@@ -7024,13 +6267,6 @@ kubernetes.core
 - helm_plugin_info - remove unused ``release_namespace`` parameter (https://github.com/ansible-collections/kubernetes.core/pull/85).
 - k8s_cluster_info - returned apis as list to avoid being overwritten in case of multiple version (https://github.com/ansible-collections/kubernetes.core/pull/41).
 - k8s_facts - remove the deprecated alias from k8s_facts to k8s_info (https://github.com/ansible-collections/kubernetes.core/pull/125).
-
-netapp.storagegrid
-~~~~~~~~~~~~~~~~~~
-
-- This version introduces a breaking change.
-  All modules have been renamed from ``nac_sg_*`` to ``na_sg_*``.
-  Playbooks and Roles must be updated to match.
 
 Deprecated Features
 -------------------
@@ -7116,11 +6352,6 @@ community.crypto
 ~~~~~~~~~~~~~~~~
 
 - acme_* modules - ACME version 1 is now deprecated and support for it will be removed in community.crypto 2.0.0 (https://github.com/ansible-collections/community.crypto/pull/288).
-
-community.dns
-~~~~~~~~~~~~~
-
-- The hosttech_dns_records module has been renamed to hosttech_dns_record_sets. The old name will stop working in community.dns 3.0.0 (https://github.com/ansible-collections/community.dns/pull/31).
 
 community.docker
 ~~~~~~~~~~~~~~~~
@@ -7648,22 +6879,6 @@ cisco.iosxr
 - fix issue in prefix-lists facts code when prefix-lists facts are empty. (https://github.com/ansible-collections/cisco.iosxr/pull/161)
 - fix static routes interface parsing issue.
 
-cisco.ise
-~~~~~~~~~
-
-- Changes sortdec to sortdsc query param for _info modules.
-- Fixes Identity Group parameters.
-- Fixes Identity Group response recollection.
-- Fixes check_mode behavior for non-info modules.
-- Improve the documentation of the modules.
-- Improves the changelog.
-- Improves the documentation of modules.
-- Introduces comparison to see if it requires an update.
-- On info modules comparison was removed, because info modules should always run.
-- On regular modules additional comparison of check_mode was removed as Ansible already handles it.
-- Removes unneeded imports.
-- Updates the `params` dictionary values on sdk call execution.
-
 cisco.meraki
 ~~~~~~~~~~~~
 
@@ -7704,23 +6919,6 @@ cisco.nxos
 - `nxos_vlans` - switching to `| json-pretty` instead of `| json` as a workaround for the timeout issue with `libssh` (https://github.com/ansible/pylibssh/issues/208)
 - `nxos_zone_zoneset` - zone member addition with smart zoning in an already existing zone should be a no-op (https://github.com/ansible-collections/cisco.nxos/issues/339).
 
-cloud.common
-~~~~~~~~~~~~
-
-- Ensure the background service starts properly on MacOS (https://github.com/ansible-collections/cloud.common/pull/16)
-- Introduces a fix for the future Python 3.10 (#53)
-- The profiler is now properly initialized.
-- Use the argument_spec values to determine which option should actually be used.
-- add exception handler to main async loop (https://github.com/ansible-collections/cloud.common/pull/67).
-- do not silently skip parameters when the value is ``False``
-- fail_json method should honor kwargs now when running embedded in server.
-- fix exception messages containing extra single quotes (https://github.com/ansible-collections/cloud.common/pull/46).
-- pass current task's environment through to execution (https://github.com/ansible-collections/cloud.common/pull/69).
-- the debug mode now work as expected. The ``_ansible_*`` variables are properly passed to the module.
-- turbo - AnsibleTurboModule was missing some _ansible_facts variable like _diff, _ansible_tmpdir. (https://github.com/ansible-collections/cloud.common/issues/65)
-- turbo - honor the ``remote_tmp`` configuration key.
-- turbo - make sure socket doesn't close prematurely, preventing issues with large amounts of data passed as module parameters (https://github.com/ansible-collections/cloud.common/issues/61)
-
 community.aws
 ~~~~~~~~~~~~~
 
@@ -7746,12 +6944,6 @@ community.aws
 - s3_sync - fix handling individual file path to upload a individual file to s3 bucket (https://github.com/ansible-collections/community.aws/pull/692).
 - sns_topic - define suboptions for delivery_policy option (https://github.com/ansible-collections/community.aws/issues/713).
 - sqs_queue - fix queue attribute comparison to make module idempotent (https://github.com/ansible-collections/community.aws/pull/592).
-
-community.ciscosmb
-~~~~~~~~~~~~~~~~~~
-
-- Module command does not support check_mode - https://github.com/ansible-collections/community.ciscosmb/pull/45
-- solves issue
 
 community.crypto
 ~~~~~~~~~~~~~~~~
@@ -7832,21 +7024,6 @@ community.digitalocean
 - digitalocean inventory plugin - Wire up advertised caching functionality (https://github.com/ansible-collections/community.digitalocean/pull/97).
 - digitalocean inventory plugin - attributes available to filters are limited to explicitly required attributes and are prefixed with ``var_prefix`` (https://github.com/ansible-collections/community.digitalocean/pull/102).
 - info modules - adding missing check mode support (https://github.com/ansible-collections/community.digitalocean/issues/139).
-
-community.dns
-~~~~~~~~~~~~~
-
-- Avoid converting ASCII labels which contain underscores or other printable ASCII characters outside ``[a-zA-Z0-9-]`` to alabels during normalization (https://github.com/ansible-collections/community.dns/pull/13).
-- Hetzner API - interpret missing TTL as 300, which is what the web console also does (https://github.com/ansible-collections/community.dns/pull/42).
-- Update Public Suffix List.
-- Updated Public Suffix List.
-- hetzner API code - make sure to also handle errors returned by the API if the HTTP status code indicates success. This sometimes happens for 500 Internal Server Error (https://github.com/ansible-collections/community.dns/pull/58).
-- hosttech_dns_record - correctly handle quoting in CAA records for JSON API (https://github.com/ansible-collections/community.dns/pull/30).
-- hosttech_dns_zone_info - make sure that full information is returned both when requesting a zone by ID or by name (https://github.com/ansible-collections/community.dns/pull/56).
-- hosttech_record - fix diff mode for ``state=absent`` (https://github.com/ansible-collections/community.dns/pull/4).
-- hosttech_record_info - fix authentication error handling (https://github.com/ansible-collections/community.dns/pull/4).
-- wait_for_txt - fix handling of too long TXT values (https://github.com/ansible-collections/community.dns/pull/65).
-- wait_for_txt - resolving nameservers sometimes resulted in an empty list, yielding wrong results (https://github.com/ansible-collections/community.dns/pull/64).
 
 community.docker
 ~~~~~~~~~~~~~~~~
@@ -8329,23 +7506,6 @@ hetzner.hcloud
 - hcloud_server backups property defaults to None now instead of False
 - hcloud_volume Force detaching of volumes on servers before deletion
 
-infoblox.nios_modules
-~~~~~~~~~~~~~~~~~~~~~
-
-- Check all dhcp options, not just first one `#83 <https://github.com/infobloxopen/infoblox-ansible/pull/83>`_
-- GitHub issue fix - Error - Dictionary Issues `#68 <https://github.com/infobloxopen/infoblox-ansible/issues/68>`_
-- GitHub issue fix - Examples for lookups don't work as written `#72 <https://github.com/infobloxopen/infoblox-ansible/issues/72>`_
-- GitHub issue fix - Getting an error, running every module `#67 <https://github.com/infobloxopen/infoblox-ansible/issues/67>`_
-- GitHub issue fix - Lookup module for next available IPV6 `#31 <https://github.com/infobloxopen/infoblox-ansible/issues/31>`_
-- GitHub issue fix - [nios_zone] changing a nios_zone does not work `#60 <https://github.com/infobloxopen/infoblox-ansible/issues/60>`_
-- Handle NoneType parsing in nios_inventory.py `#81 <https://github.com/infobloxopen/infoblox-ansible/pull/81>`_
-- Implemented the bugfixes provided by Ansible `community.general`
-- PTR Record failed to update and raises KeyError for view field `#70 <https://github.com/infobloxopen/infoblox-ansible/pull/70>`_
-- Sanity fixes as per Ansible guidelines to all modules
-- Update comment field and delete an existing Fixed Address `#73 <https://github.com/infobloxopen/infoblox-ansible/pull/73>`_
-- Update of comment field of SRV, PTR and NAPTR records failing with the following error `#70 <https://github.com/infobloxopen/infoblox-ansible/pull/70>`_
-- Update the name of existing A and AAAA records `#70 <https://github.com/infobloxopen/infoblox-ansible/pull/70>`_
-
 junipernetworks.junos
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -8471,16 +7631,6 @@ netapp.ontap
 - na_ontap_vserver_delete role - delete iSCSI igroups and CIFS server before deleting vserver.
 - na_ontap_vserver_delete role - fix typos for cifs.
 - na_ontap_vserver_peer - KeyError on username when using certicate.
-
-netapp.storagegrid
-~~~~~~~~~~~~~~~~~~
-
-- na_sg_grid_account - added ``no_log`` flag to password fields.
-- na_sg_grid_account - fixed documentation issue.
-- na_sg_grid_group - fixed group name parsing.
-- na_sg_org_container - fix issue with applying compliance settings on buckets.
-- na_sg_org_group - fixed group name parsing.
-- nac_sg_org_container - fixed documentation issue.
 
 netapp.um_info
 ~~~~~~~~~~~~~~
@@ -8637,10 +7787,6 @@ Connection
 Filter
 ~~~~~~
 
-- community.dns.get_public_suffix - Returns the public suffix of a DNS name
-- community.dns.get_registrable_domain - Returns the registrable domain name of a DNS name
-- community.dns.remove_public_suffix - Removes the public suffix from a DNS name
-- community.dns.remove_registrable_domain - Removes the registrable domain name from a DNS name
 - community.general.groupby_as_dict - Transform a sequence of dictionaries to a dictionary where the dictionaries are indexed by an attribute
 - community.general.unicode_normalize - Normalizes unicode strings to facilitate comparison of characters with normalized forms
 - community.routeros.join - Join a list of arguments to a command
@@ -8658,8 +7804,6 @@ Httpapi
 Inventory
 ~~~~~~~~~
 
-- community.dns.hetzner_dns_records - Create inventory from Hetzner DNS records
-- community.dns.hosttech_dns_records - Create inventory from Hosttech DNS records
 - community.general.icinga2 - Icinga2 inventory source
 - community.general.opennebula - OpenNebula inventory source
 - community.vmware.vmware_host_inventory - VMware ESXi hostsystem inventory source
@@ -8674,9 +7818,6 @@ Lookup
 - community.general.random_string - Generates random string
 - community.general.random_words - Return a number of random words
 - community.hashi_vault.vault_read - Perform a read operation against HashiCorp Vault
-- infoblox.nios_modules.nios - Query Infoblox NIOS objects
-- infoblox.nios_modules.nios_next_ip - Return the next available IP address for a network
-- infoblox.nios_modules.nios_next_network - Return the next available network range for a network-container
 - kubernetes.core.kustomize - Build a set of kubernetes resources using a 'kustomization.yaml' file.
 
 Netconf
@@ -8771,23 +7912,6 @@ community.digitalocean
 - community.digitalocean.digital_ocean_snapshot - Create and delete DigitalOcean snapshots
 - community.digitalocean.digital_ocean_vpc - Create and delete DigitalOcean VPCs
 - community.digitalocean.digital_ocean_vpc_info - Gather information about DigitalOcean VPCs
-
-community.dns
-~~~~~~~~~~~~~
-
-- community.dns.hetzner_dns_record - Add or delete a single record in Hetzner DNS service
-- community.dns.hetzner_dns_record_info - Retrieve records in Hetzner DNS service
-- community.dns.hetzner_dns_record_set - Add or delete record sets in Hetzner DNS service
-- community.dns.hetzner_dns_record_set_info - Retrieve record sets in Hetzner DNS service
-- community.dns.hetzner_dns_record_sets - Bulk synchronize DNS record sets in Hetzner DNS service
-- community.dns.hetzner_dns_zone_info - Retrieve zone information in Hetzner DNS service
-- community.dns.hosttech_dns_record - Add or delete a single record in Hosttech DNS service
-- community.dns.hosttech_dns_record_info - Retrieve records in Hosttech DNS service
-- community.dns.hosttech_dns_record_set - Add or delete record sets in Hosttech DNS service
-- community.dns.hosttech_dns_record_sets - Bulk synchronize DNS record sets in Hosttech DNS service
-- community.dns.hosttech_dns_records - Bulk synchronize DNS records in Hosttech DNS service
-- community.dns.hosttech_dns_zone_info - Retrieve zone information in Hosttech DNS service
-- community.dns.wait_for_txt - Wait for TXT entries to be available on all authoritative nameservers
 
 community.general
 ~~~~~~~~~~~~~~~~~
@@ -8977,30 +8101,6 @@ dellemc.openmanage
 - dellemc.openmanage.ome_groups - Manages static device groups on OpenManage Enterprise
 - dellemc.openmanage.redfish_event_subscription - Manage Redfish Subscriptions
 
-infoblox.nios_modules
-~~~~~~~~~~~~~~~~~~~~~
-
-- infoblox.nios_modules.nios_a_record - Configure Infoblox NIOS A records
-- infoblox.nios_modules.nios_aaaa_record - Configure Infoblox NIOS AAAA records
-- infoblox.nios_modules.nios_cname_record - Configure Infoblox NIOS CNAME records
-- infoblox.nios_modules.nios_dns_view - Configure Infoblox NIOS DNS views
-- infoblox.nios_modules.nios_dtc_lbdn - Configure Infoblox NIOS DTC LBDN
-- infoblox.nios_modules.nios_dtc_pool - Configure Infoblox NIOS DTC Pool
-- infoblox.nios_modules.nios_dtc_server - Configure Infoblox NIOS DTC Server
-- infoblox.nios_modules.nios_fixed_address - Configure Infoblox NIOS DHCP Fixed Address
-- infoblox.nios_modules.nios_host_record - Configure Infoblox NIOS host records
-- infoblox.nios_modules.nios_member - Configure Infoblox NIOS members
-- infoblox.nios_modules.nios_mx_record - Configure Infoblox NIOS MX records
-- infoblox.nios_modules.nios_naptr_record - Configure Infoblox NIOS NAPTR records
-- infoblox.nios_modules.nios_network - Configure Infoblox NIOS network object
-- infoblox.nios_modules.nios_network_view - Configure Infoblox NIOS network views
-- infoblox.nios_modules.nios_nsgroup - Configure Infoblox NIOS Nameserver Groups
-- infoblox.nios_modules.nios_ptr_record - Configure Infoblox NIOS PTR records
-- infoblox.nios_modules.nios_restartservices - Restart grid services.
-- infoblox.nios_modules.nios_srv_record - Configure Infoblox NIOS SRV records
-- infoblox.nios_modules.nios_txt_record - Configure Infoblox NIOS txt records
-- infoblox.nios_modules.nios_zone - Configure Infoblox NIOS DNS zones
-
 junipernetworks.junos
 ~~~~~~~~~~~~~~~~~~~~~
 
@@ -9030,26 +8130,6 @@ netapp.ontap
 - netapp.ontap.na_ontap_partitions - NetApp ONTAP Assign partitions and disks to nodes.
 - netapp.ontap.na_ontap_publickey - NetApp ONTAP publickey configuration
 - netapp.ontap.na_ontap_service_policy - NetApp ONTAP service policy configuration
-
-netapp.storagegrid
-~~~~~~~~~~~~~~~~~~
-
-- netapp.storagegrid.na_sg_grid_certificate - Manage the Storage API and Grid Management certificates on StorageGRID.
-- netapp.storagegrid.na_sg_grid_gateway - Manage Load balancer (gateway) endpoints on StorageGRID.
-- netapp.storagegrid.na_sg_grid_identity_federation - NetApp StorageGRID manage Grid identity federation.
-- netapp.storagegrid.na_sg_grid_info - NetApp StorageGRID Grid information gatherer
-- netapp.storagegrid.na_sg_org_identity_federation - NetApp StorageGRID manage Tenant identity federation.
-- netapp.storagegrid.na_sg_org_info - NetApp StorageGRID Org information gatherer
-- netapp.storagegrid.nac_sg_grid_account - NetApp StorageGRID Manage Tenant account.
-- netapp.storagegrid.nac_sg_grid_dns - NetApp StorageGRID Manage Grid DNS servers.
-- netapp.storagegrid.nac_sg_grid_group - NetApp StorageGRID Manage Grid admin group.
-- netapp.storagegrid.nac_sg_grid_ntp - NetApp StorageGRID Manage Grid NTP servers.
-- netapp.storagegrid.nac_sg_grid_regions - NetApp StorageGRID Manage Grid Regions.
-- netapp.storagegrid.nac_sg_grid_user - NetApp StorageGRID Manage Grid admin user.
-- netapp.storagegrid.nac_sg_org_container - NetApp StorageGRID Manage S3 bucket.
-- netapp.storagegrid.nac_sg_org_group - NetApp StorageGRID Manage Tenant group.
-- netapp.storagegrid.nac_sg_org_user - NetApp StorageGRID Manage Tenant user.
-- netapp.storagegrid.nac_sg_org_user_s3_key - NetApp StorageGRID Manage S3 key.
 
 netbox.netbox
 ~~~~~~~~~~~~~

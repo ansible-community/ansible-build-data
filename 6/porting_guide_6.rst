@@ -128,92 +128,6 @@ dellemc.openmanage
 Major Changes
 -------------
 
-cisco.dnac
-~~~~~~~~~~
-
-- Adds _info plugins to query information from database.
-- Adds new plugins related to DNA version 2.2.2.3.
-- Adds plugins for resource's operations that have different structure in request/response bodies (ie. _create, _update, _delete plugins).
-- Adds plugins without state that perform special operation on DNA Center.
-- Adds resources for modules to manage CRUD operations.
-- Moves the module parameters out of the inventory and places them inside the tasks themselves.
-- Update dnacentersdk requirement from 2.4.4 to 2.4.5
-- Update dnacentersdk requirement from 2.4.5 to 2.4.6
-- Updates previous plugins to follow DNA version 2.2.2.3 specification.
-- applications_health_info - new `applicationName` parameter.
-- business_sda_wireless_controller_create - Removed 'deviceIPAddress' arguments.
-- business_sda_wireless_controller_delete - Removed 'deviceName' and 'siteNameHierarchy' arguments.
-- network_device - Removed 'managementIpAddress' arguments.
-- network_device - change `isForceDelete` parameter to `cleanConfig` parameter.
-- network_device - new `cleanConfig` parameter.
-- network_device_lexicographically_sorted_info - change `limit` param type from str to int
-- network_device_lexicographically_sorted_info - change `offset` param type from str to int
-- reserve_ip_subpool - new `ipv4GateWay` parameter.
-- reserve_ip_subpool_update - Removed 'type', 'ipv4GlobalPool', 'ipv4Prefix', 'ipv4PrefixLength', 'ipv4Subnet' and 'ipv4TotalHost' arguments.
-- sda_device_info - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
-- sda_fabric - remove `payload` parameter.
-- sda_fabric_authentication_profile - add `authenticateTemplateName` parameter.
-- sda_fabric_authentication_profile - add `authenticationOrder` parameter.
-- sda_fabric_authentication_profile - add `dot1xToMabFallbackTimeout` parameter.
-- sda_fabric_authentication_profile - add `numberOfHosts` parameter.
-- sda_fabric_authentication_profile - add `wakeOnLan` parameter.
-- sda_fabric_authentication_profile - remove `payload` parameter.
-- sda_fabric_authentication_profile_info - add `authenticateTemplateName` parameter.
-- sda_fabric_border_device - add `borderSessionType` parameter.
-- sda_fabric_border_device - add `connectedToInternet` parameter.
-- sda_fabric_border_device - add `deviceManagementIpAddress` parameter.
-- sda_fabric_border_device - add `externalAutonomouSystemNumber` parameter.
-- sda_fabric_border_device - add `externalConnectivityIpPoolName` parameter.
-- sda_fabric_border_device - add `externalConnectivitySettings` parameter.
-- sda_fabric_border_device - add `externalDomainRoutingProtocolName` parameter.
-- sda_fabric_border_device - add `interfaceName` parameter.
-- sda_fabric_border_device - add `internalAutonomouSystemNumber` parameter.
-- sda_fabric_border_device - add `l3Handoff` parameter.
-- sda_fabric_border_device - add `siteNameHierarchy` parameter.
-- sda_fabric_border_device - add `virtualNetworkName` parameter.
-- sda_fabric_border_device - add `virtualNetwork` parameter.
-- sda_fabric_border_device - add `vlanId parameter.`
-- sda_fabric_border_device - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
-- sda_fabric_border_device - changes in externalConnectivitySettings from object to list.
-- sda_fabric_border_device - remove `payload` parameter.
-- sda_fabric_border_device_info - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
-- sda_fabric_control_plane_device - add `siteNameHierarchy` parameter.
-- sda_fabric_control_plane_device - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
-- sda_fabric_control_plane_device - remove `payload` parameter.
-- sda_fabric_control_plane_device_info - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
-- sda_fabric_edge_device - add `siteNameHierarchy` parameter.
-- sda_fabric_edge_device - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
-- sda_fabric_edge_device - remove `payload` parameter.
-- sda_fabric_edge_device_info - change `deviceIPAddress` to `deviceManagementIpAddress` parameter.
-- sda_fabric_site - add `fabricName` parameter.
-- sda_fabric_site - remove `payload` parameter.
-- sda_multicast - change `fabricSiteNameHierarchy` to `siteNameHierarchy` parameter.
-- sda_multicast_info - change `fabricSiteNameHierarchy` to `siteNameHierarchy` parameter.
-- sda_port_assignment_for_access_point - add `authenticateTemplateName` parameter.
-- sda_port_assignment_for_access_point - add `dataIpAddressPoolName` parameter.
-- sda_port_assignment_for_access_point - add `deviceManagementIpAddress` parameter.
-- sda_port_assignment_for_access_point - add `interfaceDescription` parameter.
-- sda_port_assignment_for_access_point - add `siteNameHierarchy` parameter.
-- sda_port_assignment_for_access_point - change `device_ip` to `deviceManagementIpAddress` parameter.
-- sda_port_assignment_for_access_point - remove `payload` parameter.
-- sda_port_assignment_for_access_point_info - change `device_ip` to `deviceManagementIpAddress` parameter.
-- sda_port_assignment_for_user_device - add `authenticateTemplateName` parameter.
-- sda_port_assignment_for_user_device - add `dataIpAddressPoolName` parameter.
-- sda_port_assignment_for_user_device - add `interfaceDescription` parameter.
-- sda_port_assignment_for_user_device - add `scalableGroupName` parameter.
-- sda_port_assignment_for_user_device - add `siteNameHierarchy` parameter.
-- sda_port_assignment_for_user_device - add `voiceIpAddressPoolName` parameter.
-- sda_port_assignment_for_user_device - change `device_ip` to `deviceManagementIpAddress` parameter.
-- sda_port_assignment_for_user_device - remove `payload` parameter.
-- sda_port_assignment_for_user_device_info - change `device_ip` to `deviceManagementIpAddress` parameter.
-- sda_virtual_network - remove `payload` parameter.
-- sda_virtual_network_ip_pool - add `siteNameHierarchy`, `ipPoolName`, `trafficType`, `authenticationPolicyName`, `scalableGroupName`, `isL2FloodingEnabled`, `isThisCriticalPool`, `poolType`, `vlanName`, `isWirelessPool` parameters.
-- sda_virtual_network_ip_pool - remove `payload` and `ipPoolName` parameter.
-- service_provider_profile_delete - Rename argument from 'sp_profile_name' to 'spProfileName'.
-- site_health_info - add `siteType`, `offset`, `limit` parameters
-- snmpv2_read_community_credential - remove `id` and `instanceTenantId` parameter.
-- snmpv2_write_community_credential - remove `id` and `instanceTenantId` parameter.
-
 community.network
 ~~~~~~~~~~~~~~~~~
 
@@ -290,13 +204,6 @@ community.general
 - lists_mergeby and groupby_as_dict filter plugins - adjust filter plugin filename. This change is not visible to end-users, it only affects possible other collections importing Python paths (https://github.com/ansible-collections/community.general/pull/4625).
 - yarn - remove unsupported and unnecessary ``--no-emoji`` flag (https://github.com/ansible-collections/community.general/pull/4662).
 
-vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
-
-- The vmware_rest 2.0.0 support vSphere 7.0.2 onwards.
-- vcenter_vm_storage_policy - the format of the ``disks`` parameter has changed.
-- vcenter_vm_storage_policy - the module has a new mandatory paramter: ``vm_home``.
-
 Major Changes
 -------------
 
@@ -335,13 +242,6 @@ community.network
 ~~~~~~~~~~~~~~~~~
 
 - Support for Ansible 2.9 and ansible-base 2.10 is deprecated, and will be removed in the next major release (community.network 4.0.0) this spring. While most content will probably still work with ansible-base 2.10, we will remove symbolic links for modules and action plugins, which will make it impossible to use them with Ansible 2.9 anymore. Please use community.network 3.x.y with Ansible 2.9 and ansible-base 2.10, as these releases will continue to support Ansible 2.9 and ansible-base 2.10 even after they are End of Life (https://github.com/ansible-community/community-topics/issues/50, https://github.com/ansible-collections/community.network/pull/382).
-
-vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
-
-- vcenter_vm_storage_policy_compliance - drop the module, it returns 404 error.
-- vcenter_vm_tools - remove the ``upgrade`` state.
-- vcenter_vm_tools_installer - remove the module from the collection.
 
 Porting Guide for v6.0.0a2
 ==========================
