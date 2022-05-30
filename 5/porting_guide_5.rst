@@ -135,16 +135,6 @@ Added Collections
 
 - vmware.vmware_rest (version 2.1.5)
 
-Breaking Changes
-----------------
-
-vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
-
-- The vmware_rest 2.0.0 support vSphere 7.0.2 onwards.
-- vcenter_vm_storage_policy - the format of the ``disks`` parameter has changed.
-- vcenter_vm_storage_policy - the module has a new mandatory paramter: ``vm_home``.
-
 Major Changes
 -------------
 
@@ -170,13 +160,6 @@ community.network
 ~~~~~~~~~~~~~~~~~
 
 - Support for Ansible 2.9 and ansible-base 2.10 is deprecated, and will be removed in the next major release (community.network 4.0.0) this spring. While most content will probably still work with ansible-base 2.10, we will remove symbolic links for modules and action plugins, which will make it impossible to use them with Ansible 2.9 anymore. Please use community.network 3.x.y with Ansible 2.9 and ansible-base 2.10, as these releases will continue to support Ansible 2.9 and ansible-base 2.10 even after they are End of Life (https://github.com/ansible-community/community-topics/issues/50, https://github.com/ansible-collections/community.network/pull/382).
-
-vmware.vmware_rest
-~~~~~~~~~~~~~~~~~~
-
-- vcenter_vm_storage_policy_compliance - drop the module, it returns 404 error.
-- vcenter_vm_tools - remove the ``upgrade`` state.
-- vcenter_vm_tools_installer - remove the module from the collection.
 
 Porting Guide for v5.7.0
 ========================
@@ -495,21 +478,6 @@ community.crypto
 - openssl_privatekey_info - by default consistency checks are not run; they need to be explicitly requested by passing ``check_consistency=true`` (https://github.com/ansible-collections/community.crypto/pull/309).
 - x509_crl - for idempotency checks, the ``issuer`` order is ignored. If order is important, use the new ``issuer_ordered`` option (https://github.com/ansible-collections/community.crypto/pull/316).
 
-community.dns
-~~~~~~~~~~~~~
-
-- All Hetzner modules and plugins which handle DNS records now work with unquoted TXT values by default. The old behavior can be obtained by setting ``txt_transformation=api`` (https://github.com/ansible-collections/community.dns/issues/48, https://github.com/ansible-collections/community.dns/pull/57, https://github.com/ansible-collections/community.dns/pull/60).
-- Hosttech API creation - now requires a ``ModuleOptionProvider`` object instead of an ``AnsibleModule`` object. Alternatively an Ansible plugin instance can be passed (https://github.com/ansible-collections/community.dns/pull/37).
-- The hetzner_dns_record_info and hosttech_dns_record_info modules have been renamed to hetzner_dns_record_set_info and hosttech_dns_record_set_info, respectively (https://github.com/ansible-collections/community.dns/pull/54).
-- The hosttech_dns_record module has been renamed to hosttech_dns_record_set (https://github.com/ansible-collections/community.dns/pull/31).
-- The internal bulk record updating helper (``bulk_apply_changes``) now also returns the records that were deleted, created or updated (https://github.com/ansible-collections/community.dns/pull/63).
-- The internal record API no longer allows to manage comments explicitly (https://github.com/ansible-collections/community.dns/pull/63).
-- When using the internal modules API, now a zone ID type and a provider information object must be passed (https://github.com/ansible-collections/community.dns/pull/27).
-- hetzner_dns_record* modules - implement correct handling of default TTL. The value ``none`` is now accepted and returned in this case (https://github.com/ansible-collections/community.dns/pull/52, https://github.com/ansible-collections/community.dns/issues/50).
-- hetzner_dns_record, hetzner_dns_record_set, hetzner_dns_record_sets - the default TTL is now 300 and no longer 3600, which equals the default in the web console (https://github.com/ansible-collections/community.dns/pull/43).
-- hosttech_* module_utils - completely rewrite and refactor to support new JSON API and allow to re-use provider-independent module logic (https://github.com/ansible-collections/community.dns/pull/4).
-- hosttech_dns_record_set - the option ``overwrite`` was replaced by a new option ``on_existing``. Specifying ``overwrite=true`` is equivalent to ``on_existing=replace`` (the new default). Specifying ``overwrite=false`` with ``state=present`` is equivalent to ``on_existing=keep_and_fail``, and specifying ``overwrite=false`` with ``state=absent`` is equivalent to ``on_existing=keep`` (https://github.com/ansible-collections/community.dns/pull/31).
-
 community.docker
 ~~~~~~~~~~~~~~~~
 
@@ -552,13 +520,6 @@ kubernetes.core
 - helm_plugin_info - remove unused ``release_namespace`` parameter (https://github.com/ansible-collections/kubernetes.core/pull/85).
 - k8s_cluster_info - returned apis as list to avoid being overwritten in case of multiple version (https://github.com/ansible-collections/kubernetes.core/pull/41).
 - k8s_facts - remove the deprecated alias from k8s_facts to k8s_info (https://github.com/ansible-collections/kubernetes.core/pull/125).
-
-netapp.storagegrid
-~~~~~~~~~~~~~~~~~~
-
-- This version introduces a breaking change.
-  All modules have been renamed from ``nac_sg_*`` to ``na_sg_*``.
-  Playbooks and Roles must be updated to match.
 
 Major Changes
 -------------
@@ -605,43 +566,6 @@ amazon.aws
 - ec2_vpc_route_table_facts - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_route_table_facts``.
 - ec2_vpc_route_table_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_vpc_route_table_info``.
 
-cisco.ise
-~~~~~~~~~
-
-- Adds ``ise_uses_api_gateway`` to module options.
-- Adds a 'aws_deployment' role that allows the deployment of an arbitrary large ISE cluster to AWS.
-- Adds ise_responses to return values of info modules.
-- Adds ise_update_response to return values of non-info modules.
-- Fixes inner logic of modules that have no get by name and have not working filter.
-- Renamed module device_administration_authorization_exception_rules to device_administration_local_exception_rules.
-- Renamed module device_administration_authorization_global_exception_rules to device_administration_global_exception_rules.
-- Renamed module network_access_authorization_exception_rules to network_access_local_exception_rules.
-- Renamed module network_access_authorization_global_exception_rules to network_access_global_exception_rules.
-- Updates options required for modules.
-- Updates sdk parameters for previous modules
-- device_administration_authorization_exception_rules - removed module.
-- device_administration_authorization_exception_rules_info - removed module.
-- device_administration_authorization_global_exception_rules - removed module.
-- device_administration_authorization_global_exception_rules_info - removed module.
-- guest_user_reinstante - removed module.
-- import_trust_cert - removed module.
-- network_access_authorization_exception_rules - removed module.
-- network_access_authorization_exception_rules_info - removed module.
-- network_access_authorization_global_exception_rules - removed module.
-- network_access_authorization_global_exception_rules_info - removed module.
-- personas_check_standalone - Adds module for the deployment of personas to existing nodes in an ISE cluster.
-- personas_export_certs - Adds module for the deployment of personas to existing nodes in an ISE cluster.
-- personas_promote_primary - Adds module for the deployment of personas to existing nodes in an ISE cluster.
-- personas_update_roles - Adds module for the deployment of personas to existing nodes in an ISE cluster.
-- service_info - removed module.
-- system_certificate_export - removed module.
-- telemetry_info_info - removed module.
-
-cloud.common
-~~~~~~~~~~~~
-
-- turbo - enable turbo mode for lookup plugins
-
 cloudscale_ch.cloud
 ~~~~~~~~~~~~~~~~~~~
 
@@ -651,26 +575,6 @@ community.aws
 ~~~~~~~~~~~~~
 
 - community.aws collection - The community.aws collection has dropped support for ``botocore<1.18.0`` and ``boto3<1.15.0`` (https://github.com/ansible-collections/community.aws/pull/711). Most modules will continue to work with older versions of the AWS SDK, however compatability with older versions of the SDK is not guaranteed and will not be tested. When using older versions of the SDK a warning will be emitted by Ansible (https://github.com/ansible-collections/amazon.aws/pull/442).
-
-community.ciscosmb
-~~~~~~~~~~~~~~~~~~
-
-- Python 2.6, 2.7, 3.5 is required
-- add CBS350 support
-- add antsibull-changelog support
-- add ciscosmb_command
-- added facts subset "interfaces"
-- ciscosmb_facts with default subset and unit tests
-- interface name canonicalization
-- transform collection qaxi.ciscosmb to community.ciscosmb
-- transform community.ciscosmb.ciscosmb_command to community.ciscosmb.command
-- transform community.ciscosmb.ciscosmb_facts to community.ciscosmb.facts
-- unit tests for CBS350
-
-community.dns
-~~~~~~~~~~~~~
-
-- hosttech_* modules - support the new JSON API at https://api.ns1.hosttech.eu/api/documentation/ (https://github.com/ansible-collections/community.dns/pull/4).
 
 community.general
 ~~~~~~~~~~~~~~~~~
@@ -922,11 +826,6 @@ community.crypto
 ~~~~~~~~~~~~~~~~
 
 - acme_* modules - ACME version 1 is now deprecated and support for it will be removed in community.crypto 2.0.0 (https://github.com/ansible-collections/community.crypto/pull/288).
-
-community.dns
-~~~~~~~~~~~~~
-
-- The hosttech_dns_records module has been renamed to hosttech_dns_record_sets. The old name will stop working in community.dns 3.0.0 (https://github.com/ansible-collections/community.dns/pull/31).
 
 community.docker
 ~~~~~~~~~~~~~~~~
