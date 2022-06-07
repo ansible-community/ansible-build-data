@@ -8,6 +8,439 @@ This changelog describes changes since Ansible 4.0.0.
   :local:
   :depth: 2
 
+v5.9.0
+======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2022-06-07
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- cisco.dnac (version 6.4.0)
+- community.sap_libs (version 1.1.0)
+
+Ansible-core
+------------
+
+Ansible 5.9.0 contains Ansible-core version 2.12.0.
+This is a newer version than version 2.12.5 contained in the previous Ansible release.
+
+Ansible-core did not have a changelog in this version.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection               | Ansible 5.8.0 | Ansible 5.9.0 | Notes                                                                                                                        |
++==========================+===============+===============+==============================================================================================================================+
+| amazon.aws               | 2.2.0         | 2.3.0         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.posix            | 1.3.0         | 1.4.0         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| azure.azcollection       | 1.12.0        | 1.13.0        | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.dnac               |               | 6.4.0         | The collection was added to Ansible                                                                                          |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight         | 1.0.18        | 1.0.19        | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cloudscale_ch.cloud      | 2.2.1         | 2.2.2         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.aws            | 2.4.0         | 2.5.0         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto         | 2.3.1         | 2.3.2         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns            | 2.1.1         | 2.2.0         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker         | 2.5.1         | 2.6.0         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general        | 4.8.1         | 4.8.2         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot         | 1.3.0         | 1.4.0         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql          | 2.3.7         | 2.3.8         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.proxysql       | 1.3.2         | 1.4.0         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros       | 2.0.0         | 2.1.0         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sap_libs       |               | 1.1.0         | The collection was added to Ansible                                                                                          |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sops           | 1.2.1         | 1.2.2         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.zabbix         | 1.6.0         | 1.7.0         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.pas             | 1.0.13        | 1.0.14        | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.enterprise_sonic | 1.1.0         | 1.1.1         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules    | 1.16.0        | 1.17.0        |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortios         | 2.1.4         | 2.1.6         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| infoblox.nios_modules    | 1.2.1         | 1.2.2         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| ngine_io.cloudstack      | 2.2.3         | 2.2.4         |                                                                                                                              |
++--------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Support FortiOS 7.0.2, 7.0.3, 7.0.4, 7.0.5.
+
+Minor Changes
+-------------
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- firewalld - Show warning message that variable type of ``masquerade`` and ``icmp_block_inversion`` will be changed from ``str`` to ``boolean`` in the future release (https://github.com/ansible-collections/ansible.posix/pull/254).
+- selinux - optionally update kernel boot params when disabling/re-enabling SELinux (https://github.com/ansible-collections/ansible.posix/pull/142).
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- Fixed inventory documentation.
+
+community.aws
+~~~~~~~~~~~~~
+
+- iam_policy - update broken examples and add RETURN section to documentation; add extra integration tests for idempotency check mode runs (https://github.com/ansible-collections/community.aws/pull/1093).
+- iam_role - delete inline policies prior to deleting role (https://github.com/ansible-collections/community.aws/pull/1054).
+- iam_role - remove global vars and refactor accordingly (https://github.com/ansible-collections/community.aws/pull/1054).
+
+community.dns
+~~~~~~~~~~~~~
+
+- hetzner_dns_records and hosttech_dns_records inventory plugins - allow to template provider-specific credentials and the ``zone_name``, ``zone_id`` options (https://github.com/ansible-collections/community.dns/pull/106).
+- wait_for_txt - improve error messages so that in case of SERVFAILs or other DNS errors it is clear which record was queried from which DNS server (https://github.com/ansible-collections/community.dns/pull/105).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_container - added ``image_label_mismatch`` parameter (https://github.com/ansible-collections/community.docker/issues/314, https://github.com/ansible-collections/community.docker/pull/370).
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- robot inventory plugin - allow to template ``hetzner_user`` and ``hetzner_password`` (https://github.com/ansible-collections/community.hrobot/pull/49).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- Added a ``community.routeros.api`` module defaults group. Use with ``group/community.routeros.api`` to provide options for all API-based modules (https://github.com/ansible-collections/community.routeros/pull/89).
+- Prepare collection for inclusion in an Execution Environment by declaring its dependencies (https://github.com/ansible-collections/community.routeros/pull/83).
+- api - add new option ``extended query`` more complex queries against RouterOS API (https://github.com/ansible-collections/community.routeros/pull/63).
+- api - update ``query`` to accept symbolic parameters (https://github.com/ansible-collections/community.routeros/pull/63).
+- api* modules - allow to set an encoding other than the default ASCII for communicating with the API (https://github.com/ansible-collections/community.routeros/pull/95).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- helpers.helper_compare_lists() changed logic to not consider the order of elements in lists. (https://github.com/ansible-collections/community.zabbix/pull/683)
+- zabbix_action, zabbix_maintenance, zabbix_mediatype, zabbix_proxy, zabbix_service - updated to work with Zabbix 6.0. (https://github.com/ansible-collections/community.zabbix/pull/683)
+- zabbix_script module added (https://github.com/ansible-collections/community.zabbix/issues/634)
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- README - describe branch naming conventions for the "main" and "1.x" branches (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/54).
+- README - describe the mapping of SONiC release versions to the corresponding branch and release names in the Dell SONiC Enterprise Ansible collection. (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/84).
+- bgp_as_paths - Add a 'permit/deny' attribute (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/52).
+- bgp_neighbors - add 'password' and 'description' attributes (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/69).
+- meta - add the newly required execution_environment.yml file to the 'meta' directory (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/89).
+- port_breakout - modify port numbers to match commonly available breakout ports (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/89).
+- workflows - add stable-2.12 to the CI test matrix (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/51).
+- workflows - add stable-2.13 to the CI test matrix (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/91).
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_device_info - add fqdn related parameters to be gathered on nodes
+- bigip_device_info - add parent to the data gathered for ServerSSL Profiles
+
+infoblox.nios_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Allow specifying a template when creating a network `#105 <https://github.com/infobloxopen/infoblox-ansible/pull/105>`_
+- Expanding for disable value `#119 <https://github.com/infobloxopen/infoblox-ansible/pull/119>`_
+- Fix to create PTR record in different network views `#103 <https://github.com/infobloxopen/infoblox-ansible/pull/103>`_
+- Fix unit and sanity test issues `#117 <https://github.com/infobloxopen/infoblox-ansible/pull/117>`_
+- Remove use_option for DHCP option 60 `#104 <https://github.com/infobloxopen/infoblox-ansible/pull/104>`_
+
+ngine_io.cloudstack
+~~~~~~~~~~~~~~~~~~~
+
+- Various documentation fixes and code improvements to address ansible sanity tests failure.
+
+Deprecated Features
+-------------------
+
+- The collection ``community.sap`` has been renamed to ``community.sap_libs``. For now both collections are included in Ansible. The content in ``community.sap`` will be replaced with deprecated redirects to the new collection in Ansible 7.0.0, and these redirects will eventually be removed from Ansible. Please update your FQCNs for ``community.sap``.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- Support for Ansible 2.9 and ansible-base 2.10 is deprecated, and will be removed in the next major release (community.docker 3.0.0). Some modules might still work with these versions afterwards, but we will no longer keep compatibility code that was needed to support them (https://github.com/ansible-collections/community.docker/pull/361).
+- The dependency on docker-compose for Execution Environments is deprecated and will be removed in community.docker 3.0.0. The `Python docker-compose library <https://pypi.org/project/docker-compose/>`__ is unmaintained and can cause dependency issues. You can manually still install it in an Execution Environment when needed (https://github.com/ansible-collections/community.docker/pull/373).
+- Various modules - the default of ``tls_hostname`` that was supposed to be removed in community.docker 2.0.0 will now be removed in version 3.0.0 (https://github.com/ansible-collections/community.docker/pull/362).
+- docker_stack - the return values ``out`` and ``err`` that were supposed to be removed in community.docker 2.0.0 will now be removed in version 3.0.0 (https://github.com/ansible-collections/community.docker/pull/362).
+
+Bugfixes
+--------
+
+amazon.aws
+~~~~~~~~~~
+
+- aws_account_attribute lookup plugin - fix linting errors in documentation data (https://github.com/ansible-collections/amazon.aws/pull/701).
+- aws_ec2 inventory plugin - fix linting errors in documentation data (https://github.com/ansible-collections/amazon.aws/pull/701).
+- aws_rds inventory plugin - fix linting errors in documentation data (https://github.com/ansible-collections/amazon.aws/pull/701).
+- aws_resource_actions callback plugin - fix linting errors in documentation data (https://github.com/ansible-collections/amazon.aws/pull/701).
+- aws_secret lookup plugin - fix linting errors in documentation data (https://github.com/ansible-collections/amazon.aws/pull/701).
+- aws_service_ip_ranges lookup plugin - fix linting errors in documentation data (https://github.com/ansible-collections/amazon.aws/pull/701).
+- aws_ssm lookup plugin - fix linting errors in documentation data (https://github.com/ansible-collections/amazon.aws/pull/701).
+- ec2_instance - ec2_instance module broken in Python 3.8 - dict keys modified during iteration (https://github.com/ansible-collections/amazon.aws/issues/709).
+- module.utils.s3 - Update validate_bucket_name minimum length to 3 (https://github.com/ansible-collections/amazon.aws/pull/802).
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- Fix for whitespace in source full path causing error ```code 23) at main.c(1330) [sender=3.2.3]``` (https://github.com/ansible-collections/ansible.posix/pull/278)
+- Include ``PSF-license.txt`` file for ``plugins/module_utils/_version.py``.
+- Use vendored version of ``distutils.version`` instead of the deprecated Python standard library to address PEP 632 (https://github.com/ansible-collections/ansible.posix/issues/303).
+- firewalld - Correct usage of queryForwardPort (https://github.com/ansible-collections/ansible.posix/issues/247).
+- firewalld - Refine the handling of exclusive options (https://github.com/ansible-collections/ansible.posix/issues/255).
+- mount - add a newline at the end of line in ``fstab`` (https://github.com/ansible-collections/ansible.posix/issues/210).
+- profile_tasks - Correctly calculate task execution time with serial execution (https://github.com/ansible-collections/ansible.posix/issues/83).
+- seboolean - add ``python3-libsemanage`` package dependency for RHEL8+ systems.
+
+community.aws
+~~~~~~~~~~~~~
+
+- ecs_service - add missing change detect of ``health_check_grace_period_seconds`` parameter (https://github.com/ansible-collections/community.aws/pull/1145).
+- ecs_service - fix broken compare of ``task_definition`` that results always in a changed task (https://github.com/ansible-collections/community.aws/pull/1145).
+- ecs_service - fix validation for ``placement_constraints``. It's possible to use ``distinctInstance`` placement constraint now (https://github.com/ansible-collections/community.aws/issues/1058)
+- ecs_taskdefinition - fix broken change detect of ``launch_type`` parameter (https://github.com/ansible-collections/community.aws/pull/1145).
+- execute_lambda - fix check mode and update RETURN documentation (https://github.com/ansible-collections/community.aws/pull/1115).
+- iam_policy - require one of `policy_document` and `policy_json` when state is present to prevent MalformedPolicyDocumentException from being thrown (https://github.com/ansible-collections/community.aws/pull/1093).
+- s3_lifecycle - add support of value *0* for ``transition_days`` (https://github.com/ansible-collections/community.aws/pull/1077).
+- s3_lifecycle - check that configuration is complete before returning (https://github.com/ansible-collections/community.aws/pull/1085).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- Include ``simplified_bsd.txt`` license file for the ECS module utils.
+- certificate_complete_chain - do not stop execution if an unsupported signature algorithm is encountered; warn instead (https://github.com/ansible-collections/community.crypto/pull/457).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_container - fail with a meaningful message instead of crashing if a port is specified with more than three colon-separated parts (https://github.com/ansible-collections/community.docker/pull/367, https://github.com/ansible-collections/community.docker/issues/365).
+- docker_container - remove unused code that will cause problems with Python 3.13 (https://github.com/ansible-collections/community.docker/pull/354).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- Include ``simplified_bsd.txt`` license file for various module utils, the ``lxca_common`` docs fragment, and the ``utm_utils`` unit tests.
+- consul - fixed bug introduced in PR 4590 (https://github.com/ansible-collections/community.general/issues/4680).
+- filesystem - handle ``fatresize --info`` output lines without ``:`` (https://github.com/ansible-collections/community.general/pull/4700).
+- filesystem - improve error messages when output cannot be parsed by including newlines in escaped form (https://github.com/ansible-collections/community.general/pull/4700).
+- gitlab_hook - avoid errors during idempotency check when an attribute does not exist (https://github.com/ansible-collections/community.general/pull/4668).
+- keycloak_realm - fix default groups and roles (https://github.com/ansible-collections/community.general/issues/4241).
+- redis* modules - fix call to ``module.fail_json`` when failing because of missing Python libraries (https://github.com/ansible-collections/community.general/pull/4733).
+- xcc_redfish_command - for compatibility due to Redfish spec changes the virtualMedia resource location changed from Manager to System (https://github.com/ansible-collections/community.general/pull/4682).
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- Include ``simplified_bsd.txt`` license file for the ``robot`` and ``failover`` module utils.
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_query - fix false change reports when ``IF EXISTS/IF NOT EXISTS`` clause is used (https://github.com/ansible-collections/community.mysql/issues/268).
+- mysql_role - don't add members to a role when creating the role and ``detach_members: true`` is set (https://github.com/ansible-collections/community.mysql/pull/367).
+- mysql_role - in some cases (when "SHOW GRANTS" did not use backticks for quotes), no unwanted members were detached from the role (and redundant "GRANT" statements were executed for wanted members). This is fixed by querying the existing role members from the mysql.role_edges (MySQL) or mysql.roles_mapping (MariaDB) tables instead of parsing the "SHOW GRANTS" output (https://github.com/ansible-collections/community.mysql/pull/368).
+- mysql_user - fix logic when ``update_password`` is set to ``on_create`` for users using ``plugin*`` arguments (https://github.com/ansible-collections/community.mysql/issues/334). The ``on_create`` sets ``password`` to None for old mysql_native_authentication but not for authentiation methods which uses the ``plugin*`` arguments. This PR changes this so ``on_create`` also exchange ``plugin``, ``plugin_hash_string``, ``plugin_auth_string`` to None in the list of arguments to change
+
+community.proxysql
+~~~~~~~~~~~~~~~~~~
+
+- roles/proxysql - As of ProxySQL 2.4.0, `client_found_rows` mysql variable has been removed (https://github.com/ansible-collections/community.proxysql/pull/101).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- query - fix query function check for ``.id`` vs. ``id`` arguments to not conflict with routeros arguments like ``identity`` (https://github.com/ansible-collections/community.routeros/pull/68, https://github.com/ansible-collections/community.routeros/issues/67).
+- quoting and unquoting filter plugins, api module - handle the escape sequence ``\_`` correctly as escaping a space and not an underscore (https://github.com/ansible-collections/community.routeros/pull/89).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- Include ``simplified_bsd.txt`` license file for the ``sops`` module utils.
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- Include ``PSF-license.txt`` file for ``plugins/module_utils/_version.py``.
+- zabbix_action - will no longer wipe `esc_step_to` and `esc_step_from` (https://github.com/ansible-collections/community.zabbix/issues/692)
+- zabbix_agent - added support for zabbix-agent on Ubuntu 22.04 (https://github.com/ansible-collections/community.zabbix/pull/681)
+- zabbix_agent - now properly creates webroot for issuing LE certificates (https://github.com/ansible-collections/community.zabbix/pull/677, https://github.com/ansible-collections/community.zabbix/pull/682)
+- zabbix_proxy (module) - passive proxy should be now correctly created in Zabbix 6.0 (https://github.com/ansible-collections/community.zabbix/pull/697)
+- zabbix_proxy (role) - fixed accidental regression of TLS psk file being generated for passive agent (#528) caused in (#663) (https://github.com/ansible-collections/community.zabbix/issues/680)
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Fixes incorrect grouping of parameters to be used for invocation of the "send_command" API for sending commands to a device. (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/71).
+- aaa - fix a logic mistake in validating authentication data (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/52).
+- aaa - modify a 'delete' test case to eliminate a subsequent idempotency failure for a 'merge' test case restoring the deleted attribute. The attribute that was being used for the test case had a non-idempotent effect in the SONiC switch functional code. This did not allow verification of the correct idempotency logic in the Ansible handling of the attribute 'delete' and 'restore' functionality. (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/80).
+- bgp - removed unnecessary brackets in a configuration handling instruction (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/52).
+- bgp_neighbors - add a 'maxsplit' value in facts handling (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/52).
+- bgp_neighbors - removed unnecessary brackets in configuration handling instructions (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/52).
+- radius_server - add a missing 'get' in configuration handling (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/52).
+- system - delete an initial test case requiring 'changed' state for deletion of final configuration attributes assuming 'leftover' configuration from previous execution. Replace this initial test case with cleanup of any residual state with no assumption of leftover residual state. Do the final deletion of configuration at the end of the test instead of at the beginning to retain verification that the deletion works correctly (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/87).
+- tacacs_server - correct an argument spelling error in facts handling (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/52).
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_gtm_wide_ip - fix idempotency bugs encountered when adding/removing irules, pools and last_resort_pool
+- bigip_gtm_wide_ip - irules can be added to existing gtm wide ips
+- bigip_monitor_http - fixed extraction of ip from the destination value
+- bigip_monitor_https - fixed extraction of ip from the destination value
+- bigip_node - the fqdn_autopopulate is now only enabled when fqdn is specified.
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Add defaut value for enable_log param.
+- Fix import issues in sanity-test and improve unit tests.
+- Fix issues in version mismatch logic.
+- Fix parameter-list-no-elements error in sanity-test.
+- Fix status issue in fortios_json_generic().
+- Fix syntax issue in python2.7.
+- Fix the issue of inconsistent data types in different schemas.
+- Fix the syntax error in the three wireless_controller_hotspot20 modules.
+- Relicense the FortiOS Collection under GPLv3+.
+- Update the logic in check_legacy_fortiosapi.
+- Use collection version number in the doc.
+
+New Modules
+-----------
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- community.routeros.api_facts - Collect facts from remote devices running MikroTik RouterOS using the API
+- community.routeros.api_find_and_modify - Find and modify information using the API
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- community.zabbix.zabbix_script - Create/update/delete Zabbix scripts
+
+Unchanged Collections
+---------------------
+
+- ansible.netcommon (still version 2.6.1)
+- ansible.utils (still version 2.6.1)
+- ansible.windows (still version 1.10.0)
+- arista.eos (still version 3.1.0)
+- awx.awx (still version 19.4.0)
+- check_point.mgmt (still version 2.3.0)
+- chocolatey.chocolatey (still version 1.2.0)
+- cisco.aci (still version 2.2.0)
+- cisco.asa (still version 2.1.0)
+- cisco.ios (still version 2.8.1)
+- cisco.iosxr (still version 2.9.0)
+- cisco.ise (still version 1.2.1)
+- cisco.meraki (still version 2.6.2)
+- cisco.mso (still version 1.4.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 2.9.1)
+- cisco.ucs (still version 1.8.0)
+- cloud.common (still version 2.1.1)
+- community.azure (still version 1.1.0)
+- community.ciscosmb (still version 1.0.5)
+- community.digitalocean (still version 1.19.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.4.0)
+- community.hashi_vault (still version 2.5.0)
+- community.kubernetes (still version 2.0.1)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.1.0)
+- community.mongodb (still version 1.4.0)
+- community.network (still version 3.3.0)
+- community.okd (still version 2.2.0)
+- community.postgresql (still version 1.7.4)
+- community.rabbitmq (still version 1.2.1)
+- community.sap (still version 1.0.0)
+- community.skydive (still version 1.0.0)
+- community.vmware (still version 1.18.0)
+- community.windows (still version 1.10.0)
+- containers.podman (still version 1.9.3)
+- cyberark.conjur (still version 1.1.0)
+- dellemc.openmanage (still version 4.4.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- fortinet.fortimanager (still version 2.1.5)
+- frr.frr (still version 1.0.4)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.6.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.3.3)
+- inspur.sm (still version 1.3.0)
+- junipernetworks.junos (still version 2.10.0)
+- kubernetes.core (still version 2.3.1)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.17.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 21.19.1)
+- netapp.storagegrid (still version 21.10.0)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.3.0)
+- netbox.netbox (still version 3.7.1)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.1)
+- openstack.cloud (still version 1.8.0)
+- openvswitch.openvswitch (still version 2.1.0)
+- ovirt.ovirt (still version 1.6.6)
+- purestorage.flasharray (still version 1.13.0)
+- purestorage.flashblade (still version 1.9.0)
+- sensu.sensu_go (still version 1.13.1)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 1.0.2)
+- t_systems_mms.icinga_director (still version 1.29.0)
+- theforeman.foreman (still version 2.2.0)
+- vmware.vmware_rest (still version 2.1.5)
+- vyos.vyos (still version 2.8.0)
+- wti.remote (still version 1.0.3)
+
 v5.8.0
 ======
 
@@ -893,7 +1326,9 @@ community.zabbix
 - test_zabbix_screen - disable testing for screen in 5.4 (deprecated)
 - zabbix_action - additional fixes to make module work with Zabbix 6.0 (https://github.com/ansible-collections/community.zabbix/pull/664)
 - zabbix_action - module ported to work with Zabbix 6.0 (https://github.com/ansible-collections/community.zabbix/pull/648, https://github.com/ansible-collections/community.zabbix/pull/653)
+- zabbix_action - should now correctly actions with maintenance_status conditions (https://github.com/ansible-collections/community.zabbix/pull/667)
 - zabbix_agent - Check if 'firewalld' exist and is running when handler is executed.
+- zabbix_agent - Fixed use of bare variables in conditions (https://github.com/ansible-collections/community.zabbix/pull/663)
 - zabbix_agent - Install the correct Python libxml2 package on SLES15
 - zabbix_agent - Move inclusion of the apache.yml tasks to later stage during execution of role.
 - zabbix_agent - Prepare for Zabbix 6.0.
@@ -901,6 +1336,7 @@ community.zabbix
 - zabbix_agent - There was no way to configure a specific type for the macro.
 - zabbix_agent - Use multiple aliases in the configuration file with ``zabbix_agent_zabbix_alias`` or ``zabbix_agent2_zabbix_alias``.
 - zabbix_maintenance - added new module parameter `tags`, which allows configuring Problem Tags on maintenances.
+- zabbix_maintenance - fixed to work with Zabbix 6.0+ and Python 3.9+ (https://github.com/ansible-collections/community.zabbix/pull/665)
 - zabbix_proxy - Prepare for Zabbix 6.0.
 - zabbix_proxy - Specify a minor version with zabbix_proxy_version_minor for RH systems.
 - zabbix_proxy - Support for Sangoma and treat it like a RHEL system.
