@@ -8,6 +8,225 @@ This changelog describes changes since Ansible 5.0.0.
   :local:
   :depth: 2
 
+v6.0.0rc1
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2022-06-07
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 6.0.0rc1 contains Ansible-core version 2.13.0.
+This is the same version of Ansible-core as in the previous Ansible release.
+
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++--------------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection               | Ansible 6.0.0b2 | Ansible 6.0.0rc1 | Notes                                                                                                                        |
++==========================+=================+==================+==============================================================================================================================+
+| cisco.intersight         | 1.0.18          | 1.0.19           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++--------------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto         | 2.3.1           | 2.3.2            |                                                                                                                              |
++--------------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general        | 5.0.1           | 5.0.2            |                                                                                                                              |
++--------------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot         | 1.3.0           | 1.3.1            |                                                                                                                              |
++--------------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sops           | 1.2.1           | 1.2.2            |                                                                                                                              |
++--------------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.enterprise_sonic | 1.1.0           | 1.1.1            |                                                                                                                              |
++--------------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| junipernetworks.junos    | 3.0.0           | 3.0.1            |                                                                                                                              |
++--------------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| ovirt.ovirt              | 2.0.3           | 2.0.4            |                                                                                                                              |
++--------------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+- Add a ``ansible-community`` CLI tool that allows to print the version of the Ansible community distribution. Use ``ansible-community --version`` to print this version.
+
+Minor Changes
+-------------
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- README - describe branch naming conventions for the "main" and "1.x" branches (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/54).
+- README - describe the mapping of SONiC release versions to the corresponding branch and release names in the Dell SONiC Enterprise Ansible collection. (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/84).
+- bgp_as_paths - Add a 'permit/deny' attribute (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/52).
+- bgp_neighbors - add 'password' and 'description' attributes (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/69).
+- meta - add the newly required execution_environment.yml file to the 'meta' directory (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/89).
+- port_breakout - modify port numbers to match commonly available breakout ports (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/89).
+- workflows - add stable-2.12 to the CI test matrix (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/51).
+- workflows - add stable-2.13 to the CI test matrix (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/91).
+
+Bugfixes
+--------
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- Include ``simplified_bsd.txt`` license file for the ECS module utils.
+- certificate_complete_chain - do not stop execution if an unsupported signature algorithm is encountered; warn instead (https://github.com/ansible-collections/community.crypto/pull/457).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- Include ``simplified_bsd.txt`` license file for various module utils, the ``lxca_common`` docs fragment, and the ``utm_utils`` unit tests.
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- Include ``simplified_bsd.txt`` license file for the ``robot`` and ``failover`` module utils.
+
+community.sops
+~~~~~~~~~~~~~~
+
+- Include ``simplified_bsd.txt`` license file for the ``sops`` module utils.
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Fixes incorrect grouping of parameters to be used for invocation of the "send_command" API for sending commands to a device. (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/71).
+- aaa - fix a logic mistake in validating authentication data (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/52).
+- aaa - modify a 'delete' test case to eliminate a subsequent idempotency failure for a 'merge' test case restoring the deleted attribute. The attribute that was being used for the test case had a non-idempotent effect in the SONiC switch functional code. This did not allow verification of the correct idempotency logic in the Ansible handling of the attribute 'delete' and 'restore' functionality. (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/80).
+- bgp - removed unnecessary brackets in a configuration handling instruction (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/52).
+- bgp_neighbors - add a 'maxsplit' value in facts handling (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/52).
+- bgp_neighbors - removed unnecessary brackets in configuration handling instructions (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/52).
+- radius_server - add a missing 'get' in configuration handling (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/52).
+- system - delete an initial test case requiring 'changed' state for deletion of final configuration attributes assuming 'leftover' configuration from previous execution. Replace this initial test case with cleanup of any residual state with no assumption of leftover residual state. Do the final deletion of configuration at the end of the test instead of at the beginning to retain verification that the deletion works correctly (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/87).
+- tacacs_server - correct an argument spelling error in facts handling (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/52).
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- Fix incorrect param pass to to_text.
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- Fix the admin user name when using keycloak (https://github.com/oVirt/ovirt-ansible-collection/pull/488).
+- Use cryptography < 37.0.0, as 37.0.0 emits a warning that fails testing. (https://github.com/oVirt/ovirt-ansible-collection/pull/492).
+- Use rstcheck < 3.5.0, as 3.5.0 emits a warning that fails testing. (https://github.com/oVirt/ovirt-ansible-collection/pull/490).
+- cluster_upgrade - fix wait_condition (https://github.com/oVirt/ovirt-ansible-collection/pull/510).
+- hosted_engine_setup - Allocate 128MiB instead of 1GiB for he_metadata (https://github.com/oVirt/ovirt-ansible-collection/pull/489).
+- hosted_engine_setup - Collect logs also on failures in 03_hosted_engine_final_tasks.yml (https://github.com/oVirt/ovirt-ansible-collection/pull/504).
+- hosted_engine_setup - Fix keycloak activation/checking (https://github.com/oVirt/ovirt-ansible-collection/pull/509).
+- hosted_engine_setup - Require 'detail' to be 'Up' (https://github.com/oVirt/ovirt-ansible-collection/pull/498).
+- hosted_engine_setup - fix archive ownership (https://github.com/oVirt/ovirt-ansible-collection/pull/501).
+- infra - add warning for multiple storage connections (https://github.com/oVirt/ovirt-ansible-collection/pull/500).
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 3.2.0)
+- ansible.netcommon (still version 3.0.1)
+- ansible.posix (still version 1.4.0)
+- ansible.utils (still version 2.6.1)
+- ansible.windows (still version 1.10.0)
+- arista.eos (still version 5.0.1)
+- awx.awx (still version 21.0.0)
+- azure.azcollection (still version 1.12.0)
+- check_point.mgmt (still version 2.3.0)
+- chocolatey.chocolatey (still version 1.2.0)
+- cisco.aci (still version 2.2.0)
+- cisco.asa (still version 3.0.0)
+- cisco.dnac (still version 6.4.0)
+- cisco.ios (still version 3.0.0)
+- cisco.iosxr (still version 3.0.0)
+- cisco.ise (still version 2.4.1)
+- cisco.meraki (still version 2.6.2)
+- cisco.mso (still version 2.0.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 3.0.0)
+- cisco.ucs (still version 1.8.0)
+- cloud.common (still version 2.1.1)
+- cloudscale_ch.cloud (still version 2.2.2)
+- community.aws (still version 3.2.1)
+- community.azure (still version 1.1.0)
+- community.ciscosmb (still version 1.0.5)
+- community.digitalocean (still version 1.19.0)
+- community.dns (still version 2.1.1)
+- community.docker (still version 2.6.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.4.0)
+- community.hashi_vault (still version 3.0.0)
+- community.libvirt (still version 1.1.0)
+- community.mongodb (still version 1.4.0)
+- community.mysql (still version 3.2.1)
+- community.network (still version 4.0.1)
+- community.okd (still version 2.2.0)
+- community.postgresql (still version 2.1.5)
+- community.proxysql (still version 1.4.0)
+- community.rabbitmq (still version 1.2.1)
+- community.routeros (still version 2.1.0)
+- community.sap (still version 1.0.0)
+- community.sap_libs (still version 1.1.0)
+- community.skydive (still version 1.0.0)
+- community.vmware (still version 2.5.0)
+- community.windows (still version 1.10.0)
+- community.zabbix (still version 1.7.0)
+- containers.podman (still version 1.9.3)
+- cyberark.conjur (still version 1.1.0)
+- cyberark.pas (still version 1.0.14)
+- dellemc.openmanage (still version 5.4.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- f5networks.f5_modules (still version 1.17.0)
+- fortinet.fortimanager (still version 2.1.5)
+- fortinet.fortios (still version 2.1.6)
+- frr.frr (still version 2.0.0)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.6.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.0.0)
+- infinidat.infinibox (still version 1.3.3)
+- infoblox.nios_modules (still version 1.2.2)
+- inspur.sm (still version 2.0.0)
+- kubernetes.core (still version 2.3.1)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.17.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 21.19.1)
+- netapp.storagegrid (still version 21.10.0)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.3.0)
+- netbox.netbox (still version 3.7.1)
+- ngine_io.cloudstack (still version 2.2.4)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.1)
+- openstack.cloud (still version 1.8.0)
+- openvswitch.openvswitch (still version 2.1.0)
+- purestorage.flasharray (still version 1.13.0)
+- purestorage.flashblade (still version 1.9.0)
+- sensu.sensu_go (still version 1.13.1)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 2.0.0)
+- t_systems_mms.icinga_director (still version 1.29.0)
+- theforeman.foreman (still version 3.4.0)
+- vmware.vmware_rest (still version 2.1.5)
+- vyos.vyos (still version 3.0.1)
+- wti.remote (still version 1.0.3)
+
 v6.0.0b2
 ========
 

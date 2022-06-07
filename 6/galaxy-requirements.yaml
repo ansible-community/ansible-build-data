@@ -1,4 +1,4 @@
-# Collections included in Ansible 6.0.0b2
+# Collections included in Ansible 6.0.0rc1
 collections:
 - name: amazon.aws
   source: https://galaxy.ansible.com
@@ -41,7 +41,7 @@ collections:
   version: 6.4.0
 - name: cisco.intersight
   source: https://galaxy.ansible.com
-  version: 1.0.18
+  version: 1.0.19
 - name: cisco.ios
   source: https://galaxy.ansible.com
   version: 3.0.0
@@ -83,7 +83,7 @@ collections:
   version: 1.0.5
 - name: community.crypto
   source: https://galaxy.ansible.com
-  version: 2.3.1
+  version: 2.3.2
 - name: community.digitalocean
   source: https://galaxy.ansible.com
   version: 1.19.0
@@ -98,7 +98,7 @@ collections:
   version: 1.0.0
 - name: community.general
   source: https://galaxy.ansible.com
-  version: 5.0.1
+  version: 5.0.2
 - name: community.google
   source: https://galaxy.ansible.com
   version: 1.0.0
@@ -110,7 +110,7 @@ collections:
   version: 3.0.0
 - name: community.hrobot
   source: https://galaxy.ansible.com
-  version: 1.3.0
+  version: 1.3.1
 - name: community.libvirt
   source: https://galaxy.ansible.com
   version: 1.1.0
@@ -149,7 +149,7 @@ collections:
   version: 1.0.0
 - name: community.sops
   source: https://galaxy.ansible.com
-  version: 1.2.1
+  version: 1.2.2
 - name: community.vmware
   source: https://galaxy.ansible.com
   version: 2.5.0
@@ -170,7 +170,7 @@ collections:
   version: 1.0.14
 - name: dellemc.enterprise_sonic
   source: https://galaxy.ansible.com
-  version: 1.1.0
+  version: 1.1.1
 - name: dellemc.openmanage
   source: https://galaxy.ansible.com
   version: 5.4.0
@@ -221,7 +221,7 @@ collections:
   version: 2.0.0
 - name: junipernetworks.junos
   source: https://galaxy.ansible.com
-  version: 3.0.0
+  version: 3.0.1
 - name: kubernetes.core
   source: https://galaxy.ansible.com
   version: 2.3.1
@@ -272,7 +272,7 @@ collections:
   version: 2.1.0
 - name: ovirt.ovirt
   source: https://galaxy.ansible.com
-  version: 2.0.3
+  version: 2.0.4
 - name: purestorage.flasharray
   source: https://galaxy.ansible.com
   version: 1.13.0
