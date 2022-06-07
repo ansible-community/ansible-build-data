@@ -1,4 +1,3 @@
-# Collections included in Ansible 5.9.0
 collections:
 - name: amazon.aws
   source: https://galaxy.ansible.com
