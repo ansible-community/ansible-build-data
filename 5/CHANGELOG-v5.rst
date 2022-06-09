@@ -31,7 +31,7 @@ Added Collections
 Ansible-core
 ------------
 
-Ansible 5.9.0 contains Ansible-core version 2.12.0.
+Ansible 5.9.0 contains Ansible-core version 2.12.6.
 This is a newer version than version 2.12.5 contained in the previous Ansible release.
 
 Ansible-core did not have a changelog in this version.
