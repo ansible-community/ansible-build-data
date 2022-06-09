@@ -31,10 +31,10 @@ Added Collections
 Ansible-core
 ------------
 
-Ansible 5.9.0 contains Ansible-core version 2.12.0.
+Ansible 5.9.0 contains Ansible-core version 2.12.6.
 This is a newer version than version 2.12.5 contained in the previous Ansible release.
 
-Ansible-core did not have a changelog in this version.
+The changes are reported in the combined changelog below.
 
 Changed Collections
 -------------------
@@ -201,6 +201,14 @@ community.docker
 
 Bugfixes
 --------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Prevent losing unsafe on results returned from lookups (https://github.com/ansible/ansible/issues/77535)
+- arg_spec - Fix incorrect ``no_log`` warning when a parameter alias is used (https://github.com/ansible/ansible/pull/77576)
+- plugin loader will now load config data for plugin by name instead of by file to avoid issues with the same file being loaded under different names (fqcn + short name).
+- variablemanager, more efficient read of vars files
 
 amazon.aws
 ~~~~~~~~~~
