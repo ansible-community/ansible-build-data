@@ -1,5 +1,4 @@
-# antsibull/roles/build-release defaults to 5.x for the time being
-name: antsibull-build default (ansible 5.x)
+name: antsibull-build
 on:
   push:
     branches: [main]
