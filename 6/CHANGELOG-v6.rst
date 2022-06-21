@@ -18,7 +18,7 @@ v6.0.0
 Release Summary
 ---------------
 
-Release Date: 2022-06-07
+Release Date: 2022-06-21
 
 `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
 
