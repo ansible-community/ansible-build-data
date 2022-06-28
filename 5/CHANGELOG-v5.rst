@@ -8,6 +8,439 @@ This changelog describes changes since Ansible 4.0.0.
   :local:
   :depth: 2
 
+v5.10.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2022-06-28
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 5.10.0 contains Ansible-core version 2.12.7.
+This is a newer version than version 2.12.6 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                    | Ansible 5.9.0 | Ansible 5.10.0 | Notes                                                                                                                        |
++===============================+===============+================+==============================================================================================================================+
+| cisco.dnac                    | 6.4.0         | 6.5.0          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki                  | 2.6.2         | 2.8.0          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cloud.common                  | 2.1.1         | 2.1.2          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.aws                 | 2.5.0         | 2.6.1          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto              | 2.3.2         | 2.3.4          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.digitalocean        | 1.19.0        | 1.20.0         |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general             | 4.8.2         | 4.8.3          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.grafana             | 1.4.0         | 1.5.0          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mongodb             | 1.4.0         | 1.4.1          | There are no changes recorded in the changelog.                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware              | 1.18.0        | 1.18.2         |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| kubernetes.core               | 2.3.1         | 2.3.2          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.cloudmanager           | 21.17.0       | 21.18.0        |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap                  | 21.19.1       | 21.20.0        |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ngine_io.vultr                | 1.1.1         | 1.1.2          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| t_systems_mms.icinga_director | 1.29.0        | 1.30.0         |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware_rest            | 2.1.5         | 2.2.0          |                                                                                                                              |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| wti.remote                    | 1.0.3         | 1.0.4          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Add an 'action_plugin' field for modules in runtime.yml plugin_routing.
+
+  This fixes module_defaults by supporting modules-as-redirected-actions
+  without redirecting module_defaults entries to the common action.
+
+  .. code: yaml
+
+     plugin_routing:
+       action:
+         facts:
+           redirect: ns.coll.eos
+         command:
+           redirect: ns.coll.eos
+       modules:
+         facts:
+           redirect: ns.coll.eos_facts
+         command:
+           redirect: ns.coll.eos_command
+
+  With the runtime.yml above for ns.coll, a task such as
+
+  .. code: yaml
+
+     - hosts: all
+       module_defaults:
+         ns.coll.eos_facts: {'valid_for_eos_facts': 'value'}
+         ns.coll.eos_command: {'not_valid_for_eos_facts': 'value'}
+       tasks:
+         - ns.coll.facts:
+
+  will end up with defaults for eos_facts and eos_command
+  since both modules redirect to the same action.
+
+  To select an action plugin for a module without merging
+  module_defaults, define an action_plugin field for the resolved
+  module in the runtime.yml.
+
+  .. code: yaml
+
+     plugin_routing:
+       modules:
+         facts:
+           redirect: ns.coll.eos_facts
+           action_plugin: ns.coll.eos
+         command:
+           redirect: ns.coll.eos_command
+           action_plugin: ns.coll.eos
+
+  The action_plugin field can be a redirected action plugin, as
+  it is resolved normally.
+
+  Using the modified runtime.yml, the example task will only use
+  the ns.coll.eos_facts defaults.
+- ansible-test - Avoid using the ``mock_use_standalone_module`` setting for unit tests running on Python 3.8 or later.
+
+cisco.dnac
+~~~~~~~~~~
+
+- Update dnacentersdk requirement from 2.4.7 to 2.5.0
+- assign_device_to_site - new module.
+- buildings_planned_access_points_info - new module.
+- business_sda_virtual_network_summary_info - new module.
+- event_config_connector_types_info - new module.
+- event_email_config_create - new module.
+- event_email_config_update - new module.
+- event_webhook_create - new module.
+- event_webhook_update - new module.
+- file_import - new module.
+- interface_info - new module.
+- interface_operation_create - new module.
+- interface_update - new module.
+- lan_automation_count_info - new module.
+- lan_automation_create - new module.
+- lan_automation_delete - new module.
+- lan_automation_log_info - new module.
+- lan_automation_status_info - new module.
+- network_device_custom_prompt - new module.
+- network_device_custom_prompt_info - new module.
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- meraki_action_batch - New module for CRUD operations on Meraki Action Batches
+- meraki_mx_network_vlan_settings - New module to enable or disable VLANs on a network
+- meraki_mx_third_party_vpn_peers - New module for managing third party VPM peers
+- meraki_switchport - Add support for flexible stacking
+
+community.aws
+~~~~~~~~~~~~~
+
+- ecs_service - ``deployment_circuit_breaker`` has been added as a supported feature (https://github.com/ansible-collections/community.aws/pull/1215).
+- ecs_service - add ``service`` alias to address the ecs service name with the same parameter as the ecs_service_info module is doing (https://github.com/ansible-collections/community.aws/pull/1187).
+- ecs_service_info - add ``name`` alias to address the ecs service name with the same parameter as the ecs_service module is doing (https://github.com/ansible-collections/community.aws/pull/1187).
+
+community.digitalocean
+~~~~~~~~~~~~~~~~~~~~~~
+
+- digital_ocean_cdn_endpoints - update Spaces endpoint and add a few delays to the integration test (https://github.com/ansible-collections/community.digitalocean/issues/267).
+- digital_ocean_load_balancer - Allow creating a load balancer and associating droplets by tag as an alternative to ``droplet_ids``.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- ModuleHelper module utils - improved ``ModuleHelperException``, using ``to_native()`` for the exception message (https://github.com/ansible-collections/community.general/pull/4755).
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- community.grafana.grafana_datasource supports grafana-azure-monitor-datasource.
+
+kubernetes.core
+~~~~~~~~~~~~~~~
+
+- helm_repository - mark `pass_credentials` as no_log=True to silence false warning (https://github.com/ansible-collections/kubernetes.core/issues/412).
+- kubectl.py - replace distutils.spawn.find_executable with shutil.which in the kubectl connection plugin (https://github.com/ansible-collections/kubernetes.core/pull/456).
+
+netapp.cloudmanager
+~~~~~~~~~~~~~~~~~~~
+
+- na_cloudmanager_connector_azure - Support full ``subnet_id`` and ``vnet_id``.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_aggregate - updated ``disk_types`` in documentation.
+- na_ontap_cifs_server - Added ``security`` options in REST.
+- na_ontap_export_policy_rule - Add ``from_rule_index`` for both REST and ZAPI. Change ``rule_index`` to required.
+- na_ontap_nvme_namespace - Added REST support.
+- na_ontap_nvme_subsystem - Added REST support.
+- na_ontap_portset - Added REST support.
+- na_ontap_snapmirror - new option ``peer_options`` to define source connection parameters.
+- na_ontap_snapmirror - new option ``transferring_time_out`` to define how long to wait for transfer to complete on create or initialize.
+- na_ontap_snapmirror - rewrite update for REST using POST to initiate transfer.
+- na_ontap_snapmirror - when deleting, attempt to delete even when the relationship cannot be broken.
+- na_ontap_software_update - added REST support.
+- na_ontap_svm - Added documentation for ``allowed_protocol``, ndmp is default in REST.
+- na_ontap_user - add support for SAML authentication_method.
+- na_ontap_vscan_on_access_policy - Added REST support.
+- na_ontap_vscan_on_access_policy - new REST options ``scan_readonly_volumes`` and ``only_execute_access`` added.
+- na_ontap_vscan_on_demand_task - Added REST support.
+- na_ontap_vserver_cifs_security - Added ``use_ldaps_for_ad_ldap`` and ``use_start_tls_for_ad_ldap`` as mutually exclusive in ZAPI.
+- na_ontap_vserver_cifs_security - Added option ``encryption_required_for_dc_connections`` and ``use_ldaps_for_ad_ldap`` in ZAPI.
+- na_ontap_vserver_cifs_security - fall back to ZAPI when ``use_rest`` is set to ``auto`` or fail when REST is desired.
+
+ngine_io.vultr
+~~~~~~~~~~~~~~
+
+- Documentation fixes.
+
+t_systems_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Add action_group to enable module default groups (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/175)
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- Add news example for clone, instant clone and template on Content Library.
+- documentation - clarify that the VMware vCenter API doesn't allow the cloning of template if there are not if Library.
+- vcenter_vm - Add new examples (clone and instant clone).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- pip - fix cases where resolution of pip Python module fails when importlib.util has not already been imported
+- plugin loader - Sort results when fuzzy matching plugin names (https://github.com/ansible/ansible/issues/77966).
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- meraki_mx_static_route - Add support for gateway_vlan_id otherwise requests could error
+
+cloud.common
+~~~~~~~~~~~~
+
+- Ensure we don't shutdown the server when we've still got some ongoing tasks (https://github.com/ansible-collections/cloud.common/pull/109).
+
+community.aws
+~~~~~~~~~~~~~
+
+- ecs_service - fix broken change detect of ``health_check_grace_period_seconds`` parameter when not specified (https://github.com/ansible-collections/community.aws/pull/1212).
+- ecs_service - use default cluster name of ``default`` when not input (https://github.com/ansible-collections/community.aws/pull/1212).
+- ecs_task - dont require ``cluster`` and use name of ``default`` when not input (https://github.com/ansible-collections/community.aws/pull/1212).
+- wafv2_ip_set - fix bug where incorrect changed state was returned when only changing the description (https://github.com/ansible-collections/community.aws/pull/1211).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- Include ``Apache-2.0.txt`` file for ``plugins/module_utils/crypto/_obj2txt.py`` and ``plugins/module_utils/crypto/_objects_data.py``.
+- openssl_csr - the module no longer crashes with 'permitted_subtrees/excluded_subtrees must be a non-empty list or None' if only one of ``name_constraints_permitted`` and ``name_constraints_excluded`` is provided (https://github.com/ansible-collections/community.crypto/issues/481).
+- x509_crl - do not crash when signing CRL with Ed25519 or Ed448 keys (https://github.com/ansible-collections/community.crypto/issues/473, https://github.com/ansible-collections/community.crypto/pull/474).
+
+community.digitalocean
+~~~~~~~~~~~~~~~~~~~~~~
+
+- digital_ocean_droplet - fix regression in droplet deletion where ``name`` and ``unique_name`` (set to true) are required and ``id`` alone is insufficient (though ``id`` is sufficient to uniquely identify a droplet for deletion). (https://github.com/ansible-collections/community.digitalocean/issues/260)
+- digital_ocean_droplet - fix regression where droplet info (for example networking) doesn't update when waiting during creation unless ``unique_name`` is set to true (https://github.com/ansible-collections/community.digitalocean/issues/220).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- nmcli - fix error caused by adding undefined module arguments for list options (https://github.com/ansible-collections/community.general/issues/4373, https://github.com/ansible-collections/community.general/pull/4813).
+- redhat_subscription - fix unsubscribing on RHEL 9 (https://github.com/ansible-collections/community.general/issues/4741).
+- sudoers - ensure sudoers config files are created with the permissions requested by sudoers (0440) (https://github.com/ansible-collections/community.general/pull/4814).
+- sudoers - fix incorrect handling of ``state: absent`` (https://github.com/ansible-collections/community.general/issues/4852).
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- Fix a bug that causes a fatal error when using `url` parameter in `grafana_dashboard` and `grafana_notification_channel` modules.
+- Fix a bug that causes an update error when using the `grafana_datasource` module on Grafana >=9.0.0 (https://github.com/ansible-collections/community.grafana/issues/248).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_cfg_backup - Fix a bug that failed the module when port 80 is blocked (https://github.com/ansible-collections/community.vmware/issues/1270).
+- vmware_content_deploy_ovf_template - Fixed a bug that ignored `resource_pool` in some cases. (https://github.com/ansible-collections/community.vmware/issues/1290).
+- vmware_content_deploy_template - Fixed a bug that ignored `resource_pool` in some cases. (https://github.com/ansible-collections/community.vmware/issues/1290).
+- vmware_guest_disk - Ignore datastores in maintenance mode (https://github.com/ansible-collections/community.vmware/pull/1321).
+- vmware_host_facts - Fix a bug that crashes the module when a host is disconnected (https://github.com/ansible-collections/vmware/issues/184).
+- vmware_host_vmnic_info - Fix a bug that crashes the module when a host is disconnected (https://github.com/ansible-collections/community.vmware/pull/1337).
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_autosupport - TypeError on ``ondemand_enabled`` field with ONTAP 9.11.
+- na_ontap_autosupport - TypeError on ``support`` field with ONTAP 9.11.
+- na_ontap_autosupport - fix idempotency issue on ``state`` field with ONTAP 9.11.
+- na_ontap_cluster_config - fix the role to be able to create intercluster LIFs with REST (ipspace is required).
+- na_ontap_interface - ignore ``vserver`` when using REST if role is one of 'cluster', 'node-mgmt', 'intercluster', 'cluster-mgmt'.
+- na_ontap_net_subnet - delete fails if ipspace is different than Default.
+- na_ontap_nvme - fixed ``status_admin`` option is ignored if set to False when creating nvme service in REST.
+- na_ontap_nvme - fixed invalid boolean value error for ``status_admin`` when creating nvme service in ZAPI.
+- na_ontap_portset - fixed error when trying to remove partial ports from portset if igroups are bound to it.
+- na_ontap_portset - fixed idempotency issue when ``ports`` has identical values.
+- na_ontap_quotas - fix another quota operation is currently in progress issue.
+- na_ontap_quotas - fix idempotency issue on ``threshold`` option.
+- na_ontap_service_policy - fixed error in modify by changing resulting json of an existing record in REST.
+- na_ontap_snapmirror - fix error in snapmirror restore by changing option ``clean_up_failure`` as optional when using ZAPI.
+- na_ontap_snapmirror - fix issues where there was no wait on quiesce before aborting.
+- na_ontap_snapmirror - fix issues where there was no wait on the relationship to end transferring.
+- na_ontap_snapmirror - support for SSL certificate authentication for both sides when using ONTAP.
+- na_ontap_snapmirror - when using REST with a policy, fix AttributeError - 'str' object has no attribute 'get'.
+- na_ontap_snapmirror - when using ZAPI, wait for the relationship to be quiesced before breaking.
+- na_ontap_software_update - now reports changed=False when the package is already present.
+- na_ontap_user - fix idempotency issue with SSH with second_authentication_method.
+- na_ontap_vscan_on_access_policy - fixed options ``filters``, ``file_ext_to_exclude`` and ``paths_to_exclude`` cannot be reset to empty values in ZAPI.
+- na_ontap_zapit - fix failure in precluster mode.
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- vcenter_datacenter - Ensure the idempotency works as expected.
+
+New Modules
+-----------
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- netapp.ontap.na_ontap_s3_services - NetApp ONTAP S3 services
+- netapp.ontap.na_ontap_s3_users - NetApp ONTAP S3 users
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- vmware.vmware_rest.vcenter_vmtemplate_libraryitems - Creates a library item in content library from a virtual machine
+- vmware.vmware_rest.vcenter_vmtemplate_libraryitems_info - Returns information about a virtual machine template contained in the library item specified by {@param.name templateLibraryItem}
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 2.3.0)
+- ansible.netcommon (still version 2.6.1)
+- ansible.posix (still version 1.4.0)
+- ansible.utils (still version 2.6.1)
+- ansible.windows (still version 1.10.0)
+- arista.eos (still version 3.1.0)
+- awx.awx (still version 19.4.0)
+- azure.azcollection (still version 1.13.0)
+- check_point.mgmt (still version 2.3.0)
+- chocolatey.chocolatey (still version 1.2.0)
+- cisco.aci (still version 2.2.0)
+- cisco.asa (still version 2.1.0)
+- cisco.intersight (still version 1.0.19)
+- cisco.ios (still version 2.8.1)
+- cisco.iosxr (still version 2.9.0)
+- cisco.ise (still version 1.2.1)
+- cisco.mso (still version 1.4.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 2.9.1)
+- cisco.ucs (still version 1.8.0)
+- cloudscale_ch.cloud (still version 2.2.2)
+- community.azure (still version 1.1.0)
+- community.ciscosmb (still version 1.0.5)
+- community.dns (still version 2.2.0)
+- community.docker (still version 2.6.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.hashi_vault (still version 2.5.0)
+- community.hrobot (still version 1.4.0)
+- community.kubernetes (still version 2.0.1)
+- community.kubevirt (still version 1.0.0)
+- community.libvirt (still version 1.1.0)
+- community.mysql (still version 2.3.8)
+- community.network (still version 3.3.0)
+- community.okd (still version 2.2.0)
+- community.postgresql (still version 1.7.4)
+- community.proxysql (still version 1.4.0)
+- community.rabbitmq (still version 1.2.1)
+- community.routeros (still version 2.1.0)
+- community.sap (still version 1.0.0)
+- community.sap_libs (still version 1.1.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.2.2)
+- community.windows (still version 1.10.0)
+- community.zabbix (still version 1.7.0)
+- containers.podman (still version 1.9.3)
+- cyberark.conjur (still version 1.1.0)
+- cyberark.pas (still version 1.0.14)
+- dellemc.enterprise_sonic (still version 1.1.1)
+- dellemc.openmanage (still version 4.4.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- f5networks.f5_modules (still version 1.17.0)
+- fortinet.fortimanager (still version 2.1.5)
+- fortinet.fortios (still version 2.1.6)
+- frr.frr (still version 1.0.4)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.6.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 1.0.3)
+- infinidat.infinibox (still version 1.3.3)
+- infoblox.nios_modules (still version 1.2.2)
+- inspur.sm (still version 1.3.0)
+- junipernetworks.junos (still version 2.10.0)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.storagegrid (still version 21.10.0)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.3.0)
+- netbox.netbox (still version 3.7.1)
+- ngine_io.cloudstack (still version 2.2.4)
+- ngine_io.exoscale (still version 1.0.0)
+- openstack.cloud (still version 1.8.0)
+- openvswitch.openvswitch (still version 2.1.0)
+- ovirt.ovirt (still version 1.6.6)
+- purestorage.flasharray (still version 1.13.0)
+- purestorage.flashblade (still version 1.9.0)
+- sensu.sensu_go (still version 1.13.1)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 1.0.2)
+- theforeman.foreman (still version 2.2.0)
+- vyos.vyos (still version 2.8.0)
+
 v5.9.0
 ======
 
@@ -879,13 +1312,20 @@ netapp.ontap
 
 - na_ontap_cifs - fixed `symlink_properties` option silently ignored for cifs share creation when using REST.
 - na_ontap_cifs - fixed error in modifying comment if it is not set while creating CIFS share in REST.
+- na_ontap_cluster_config - fix the role to be able to create intercluster LIFs with REST (ipspace is required).
 - na_ontap_command - fix typo in example.
+- na_ontap_interface - ignore ``vserver`` when using REST if role is one of 'cluster', 'node-mgmt', 'intercluster', 'cluster-mgmt'.
 - na_ontap_interface - rename fails with 'inconsistency in rename action' for cluster interface with REST.
 - na_ontap_login_messages - fix typo in examples for username.
 - na_ontap_nfs - fix TypeError on NoneType as ``tcp_max_xfer_size`` is not supported in earlier ONTAP versions.
 - na_ontap_nfs - fix ``Extra input`` error with ZAPI for ``is-nfsv4-enabled``.
+- na_ontap_nvme - fixed ``status_admin`` option is ignored if set to False when creating nvme service in REST.
+- na_ontap_nvme - fixed invalid boolean value error for ``status_admin`` when creating nvme service in ZAPI.
 - na_ontap_quotas - fix idempotency issue on ``disk_limit`` and ``soft_disk_limit``.
 - na_ontap_service_policy - fix examples in documentation.
+- na_ontap_service_policy - fixed error in modify by changing resulting json of an existing record in REST.
+- na_ontap_snapmirror - when using REST with a policy, fix AttributeError - 'str' object has no attribute 'get'.
+- na_ontap_snapmirror - when using ZAPI, wait for the relationship to be quiesced before breaking.
 - na_ontap_volume - QOS policy was not set when using NAS application.
 - na_ontap_volume - correctly warn when attempting to modify NAS application.
 - na_ontap_volume - do not set encrypt on modify, as it is already handled with specialized ZAPI calls.
