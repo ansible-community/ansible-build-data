@@ -88,3 +88,6 @@ collections:
     maintainers:
       - racampos
       - wastorga
+  purestorage.fusion:
+    maintainers:
+      - sdodsley

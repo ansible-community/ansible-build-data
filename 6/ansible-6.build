@@ -93,6 +93,7 @@ openvswitch.openvswitch: >=2.1.0,<3.0.0
 ovirt.ovirt: >=2.0.0,<3.0.0
 purestorage.flasharray: >=1.13.0,<2.0.0
 purestorage.flashblade: >=1.9.0,<2.0.0
+purestorage.fusion: >=1.0.0,<2.0.0
 sensu.sensu_go: >=1.13.0,<2.0.0
 servicenow.servicenow: >=1.0.0,<2.0.0
 splunk.es: >=2.0.0,<3.0.0
