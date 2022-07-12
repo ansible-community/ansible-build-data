@@ -30,7 +30,7 @@ Added Collections
 Ansible-core
 ------------
 
-Ansible 6.1.0 contains Ansible-core version 2.13.2rc1.
+Ansible 6.1.0 contains Ansible-core version 2.13.1.
 This is a newer version than version 2.13.0 contained in the previous Ansible release.
 
 The changes are reported in the combined changelog below.
@@ -202,7 +202,6 @@ Ansible-core
 - ansible-test - Add support for exporting inventory with ``ansible-test shell --export {path}``.
 - ansible-test - Add support for multi-arch remotes.
 - ansible-test - Add support for running non-interactive commands with ``ansible-test shell``.
-- ansible-test - An improved error message is shown when the download of a pip bootstrap script fails. The download now uses ``urllib2`` instead of ``urllib`` on Python 2.
 - ansible-test - Avoid using the ``mock_use_standalone_module`` setting for unit tests running on Python 3.8 or later.
 - ansible-test - Blocking mode is now enforced for stdin, stdout and stderr. If any of these are non-blocking then ansible-test will exit during startup with an error.
 - ansible-test - Improve consistency of output messages by using stdout or stderr for most output, but not both.
@@ -506,11 +505,7 @@ Ansible-core
 ~~~~~~~~~~~~
 
 - Add PyYAML >= 5.1 as a dependency of ansible-core to be compatible with Python 3.8+.
-- Move undefined check from concat to finalize (https://github.com/ansible/ansible/issues/78156)
 - ansible-config dump - Only display plugin type headers when plugin options are changed if --only-changed is specified.
-- ansible-doc - no longer list module and plugin aliases that are created with symlinks (https://github.com/ansible/ansible/pull/78137).
-- ansible-doc - when listing modules in collections, proceed recursively. This fixes module listing for community.general 5.x.y and community.network 4.x.y (https://github.com/ansible/ansible/pull/78137).
-- ansible-doc will not add 'website for' in ":ref:" substitutions as it made them confusing.
 - ansible-galaxy - handle unsupported versions of resolvelib gracefully.
 - ansible-test - Fix internal validation of remote completion configuration.
 - ansible-test - Prevent ``--target-`` prefixed options for the ``shell`` command from being combined with legacy environment options.
@@ -518,14 +513,11 @@ Ansible-core
 - ansible-test - Subprocesses are now isolated from the stdin, stdout and stderr of ansible-test. This avoids issues with subprocesses tampering with the file descriptors, such as SSH making them non-blocking. As a result of this change, subprocess output from unit and integration tests on stderr now go to stdout.
 - ansible-test - Subprocesses no longer have access to the TTY ansible-test is connected to, if any. This maintains consistent behavior between local testing and CI systems, which typically do not provide a TTY. Tests which require a TTY should use pexpect or another mechanism to create a PTY.
 - apt module now correctly handles virtual packages.
-- file backed cache plugins now handle concurrent access by making atomic updates to the files.
 - lookup plugin - catch KeyError when lookup returns dictionary (https://github.com/ansible/ansible/pull/77789).
-- password lookup does not ignore k=v arguments anymore.
 - pip - fix cases where resolution of pip Python module fails when importlib.util has not already been imported
 - plugin loader - Sort results when fuzzy matching plugin names (https://github.com/ansible/ansible/issues/77966).
 - plugin loader will now load config data for plugin by name instead of by file to avoid issues with the same file being loaded under different names (fqcn + short name).
 - psrp connection now handles default to inventory_hostname correctly.
-- user - Fix error "Permission denied" in user module while generating SSH keys (https://github.com/ansible/ansible/issues/78017).
 - winrm connection now handles default to inventory_hostname correctly.
 
 amazon.aws
