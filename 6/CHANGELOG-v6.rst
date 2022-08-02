@@ -8,6 +8,459 @@ This changelog describes changes since Ansible 5.0.0.
   :local:
   :depth: 2
 
+v6.2.0
+======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2022-08-02
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- ibm.spectrum_virtualize (version 1.9.0)
+
+Ansible-core
+------------
+
+Ansible 6.2.0 contains Ansible-core version 2.13.2.
+This is a newer version than version 2.13.1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                    | Ansible 6.1.0 | Ansible 6.2.0 | Notes                                                                                                                        |
++===============================+===============+===============+==============================================================================================================================+
+| awx.awx                       | 21.2.0        | 21.4.0        | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.dnac                    | 6.5.0         | 6.5.2         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki                  | 2.10.0        | 2.10.1        |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns                 | 2.2.1         | 2.3.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general             | 5.3.0         | 5.4.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.grafana             | 1.5.0         | 1.5.1         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hashi_vault         | 3.0.0         | 3.1.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot              | 1.4.0         | 1.5.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mongodb             | 1.4.1         | 1.4.2         | There are no changes recorded in the changelog.                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.postgresql          | 2.1.5         | 2.2.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.rabbitmq            | 1.2.1         | 1.2.2         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros            | 2.1.0         | 2.2.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sap_libs            | 1.1.0         | 1.2.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| ibm.spectrum_virtualize       |               | 1.9.0         | The collection was added to Ansible                                                                                          |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap                  | 21.20.0       | 21.21.0       |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| ovirt.ovirt                   | 2.1.0         | 2.2.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| t_systems_mms.icinga_director | 1.30.0        | 1.30.1        |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_user - the ``groups`` argument has been deprecated and will be removed in ``community.postgresql 3.0.0``. Please use the ``postgresql_membership`` module to specify group/role memberships instead (https://github.com/ansible-collections/community.postgresql/issues/277).
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - An improved error message is shown when the download of a pip bootstrap script fails. The download now uses ``urllib2`` instead of ``urllib`` on Python 2.
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- Change shebang in Sublime utils to point to env instead of direct to the path
+
+community.dns
+~~~~~~~~~~~~~
+
+- All software licenses are now in the ``LICENSES/`` directory of the collection root. Moreover, ``SPDX-License-Identifier:`` is used to declare the applicable license for every file that is not automatically generated (https://github.com/ansible-collections/community.dns/pull/109).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- ModuleHelper module utils - added property ``verbosity`` to base class (https://github.com/ansible-collections/community.general/pull/5035).
+- apk - add ``world`` parameter for supporting a custom world file (https://github.com/ansible-collections/community.general/pull/4976).
+- consul - adds ``ttl`` parameter for session  (https://github.com/ansible-collections/community.general/pull/4996).
+- dig lookup plugin - add option ``fail_on_error`` to allow stopping execution on lookup failures (https://github.com/ansible-collections/community.general/pull/4973).
+- keycloak_* modules - add ``http_agent`` parameter with default value ``Ansible`` (https://github.com/ansible-collections/community.general/issues/5023).
+- lastpass - use config manager for handling plugin options (https://github.com/ansible-collections/community.general/pull/5022).
+- listen_ports_facts - add new ``include_non_listening`` option which adds ``-a`` option to ``netstat`` and ``ss``. This shows both listening and non-listening (for TCP this means established connections) sockets, and returns ``state`` and ``foreign_address`` (https://github.com/ansible-collections/community.general/issues/4762, https://github.com/ansible-collections/community.general/pull/4953).
+- maven_artifact - add a new ``unredirected_headers`` option that can be used with ansible-core 2.12 and above. The default value is to not use ``Authorization`` and ``Cookie`` headers on redirects for security reasons. With ansible-core 2.11, all headers are still passed on for redirects (https://github.com/ansible-collections/community.general/pull/4812).
+- pacman - added parameters ``reason`` and ``reason_for`` to set/change the install reason of packages (https://github.com/ansible-collections/community.general/pull/4956).
+- xfconf - add ``stdout``, ``stderr`` and ``cmd`` to the module results (https://github.com/ansible-collections/community.general/pull/5037).
+- xfconf - use ``do_raise()`` instead of defining custom exception class (https://github.com/ansible-collections/community.general/pull/4975).
+- xfconf_info - use ``do_raise()`` instead of defining custom exception class (https://github.com/ansible-collections/community.general/pull/4975).
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- Export dashboard with pretty printed JSON so that it becomes easier to compare changes with the previous version (#257)
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- All software licenses are now in the ``LICENSES/`` directory of the collection root. Moreover, ``SPDX-License-Identifier:`` is used to declare the applicable license for every file that is not automatically generated (https://github.com/ansible-collections/community.hrobot/pull/52).
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_membership - add the ``exact`` state value to be able to specify a list of only groups a user must be a member of (https://github.com/ansible-collections/community.postgresql/issues/277).
+- postgresql_pg_hba - add argument ``overwrite`` (bool, default: false) to remove unmanaged rules (https://github.com/ansible-collections/community.postgresql/issues/297).
+- postgresql_pg_hba - add argument ``rules_behavior`` (choices: conflict (default), combine) to fail when ``rules`` and normal rule-specific arguments are given or, when ``combine``, use them as defaults for the ``rules`` items (https://github.com/ansible-collections/community.postgresql/issues/297).
+- postgresql_pg_hba - add argument ``rules`` to specify a list of rules using the normal rule-specific argument in each item (https://github.com/ansible-collections/community.postgresql/issues/297).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- All software licenses are now in the ``LICENSES/`` directory of the collection root. Moreover, ``SPDX-License-Identifier:`` is used to declare the applicable license for every file that is not automatically generated (https://github.com/ansible-collections/community.routeros/pull/101).
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_cluster_config role - support ``broadcast_domain`` and ``service_policy`` with REST.
+- na_ontap_info - add computed serial_hex and naa_id for lun_info.
+- na_ontap_info - add quota-policy-info.
+- na_ontap_interface - support ``broadcast_domain`` with REST.
+- na_ontap_login_messages - support cluster scope when using REST.
+- na_ontap_lun - support ``qos_adaptive_policy_group`` with REST.
+- na_ontap_motd - deprecated in favor of ``na_ontap_login_messages``.  Fail when use_rest is set to ``always`` as REST is not supported.
+- na_ontap_ntp - new option ``key_id`` added.
+- na_ontap_qtree - Added ``unix_user`` and ``unix_group`` options in REST.
+- na_ontap_rest_info - add computed serial_hex and naa_id for storage/luns when serial_number is present.
+- na_ontap_s3_users - ``secret_key`` and ``access_token`` are now returned when creating a user.
+- na_ontap_service_processor_network - Added REST support.
+- na_ontap_snapmirror - improve errror messages to be more specific and consistent.
+- na_ontap_snapmirror - new option ``validate_source_path`` to disable this validation.
+- na_ontap_snapmirror - validate source endpoint for ZAPI and REST, accounting for vserver local name.
+- na_ontap_snapmirror - wait for the relationship to come back to idle after a resync.
+- na_ontap_unix_group - added REST support.
+- na_ontap_unix_user - Added REST support.
+- na_ontap_unix_user - Added new option ``primary_gid`` aliased to ``group_id``.
+- na_ontap_user - accept ``service_processor`` as an alias for ``service-processor`` with ZAPI, to be consistent with REST.
+- na_ontap_volume - now defaults to REST with ``use_rest`` set to ``auto``, like every other module.  ZAPI can be forced with ``use_rest`` set to ``never``.
+- na_ontap_vserver_create role - support ``broadcast_domain``, ``ipspace``, and ``service_policy`` with REST.
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- During he_setup, configure ovn with he_host_name for correct operation of ovn (https://github.com/oVirt/ovirt-ansible-collection/pull/563).
+- Fix "ansible-lint" version 6.0.0 "yaml" violations for "disaster_recovery" role (https://github.com/oVirt/ovirt-ansible-collection/pull/543).
+- Fix "ansible-lint" version 6.0.0 violations for "disaster_recovery" & "remove_stale_lun" roles (https://github.com/oVirt/ovirt-ansible-collection/pull/554).
+- Fix ansible-lint for basic roles (https://github.com/oVirt/ovirt-ansible-collection/pull/280).
+- Updating the documentation - "vm_name" / "vm_id" and/or disk "id" parameter(s) are required when extending disk with non-unique name (https://github.com/oVirt/ovirt-ansible-collection/pull/559).
+- gluster_heal_info - Replacing gluster module to CLI to support RHV automation hub (https://github.com/oVirt/ovirt-ansible-collection/pull/340).
+- ovirt_disk - Add warning for disk attachments (https://github.com/oVirt/ovirt-ansible-collection/pull/347).
+- ovirt_disk - Fix disk attachment to VM (https://github.com/oVirt/ovirt-ansible-collection/pull/361).
+- ovirt_qos, ovirt_disk_profile, ovirt_disk - Add modules to allow for creation and updating of disk_profiles (https://github.com/oVirt/ovirt-ansible-collection/pull/422).
+- ovirt_snapshot - Add vm_id to select VM (https://github.com/oVirt/ovirt-ansible-collection/pull/550).
+- ovirt_vm - Add reset of VM (https://github.com/oVirt/ovirt-ansible-collection/pull/538).
+- ovirt_vm - Add virtio_scsi_enabled and multi_queues_enabled (https://github.com/oVirt/ovirt-ansible-collection/pull/348).
+- ovirt_vm - add volatile (https://github.com/oVirt/ovirt-ansible-collection/pull/539).
+- repositories - Add ovirt_repositories_rhsm_environment and FIPS fix (https://github.com/oVirt/ovirt-ansible-collection/pull/483).
+- repositories - Replace redhat_subscription and rhsm_repository with command (https://github.com/oVirt/ovirt-ansible-collection/pull/346).
+
+Deprecated Features
+-------------------
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- vault_kv2_get lookup - the ``engine_mount_point option`` in the ``vault_kv2_get`` lookup only will change its default from ``kv`` to ``secret`` in community.hashi_vault version 4.0.0 (https://github.com/ansible-collections/community.hashi_vault/issues/279).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Move undefined check from concat to finalize (https://github.com/ansible/ansible/issues/78156)
+- ansible-doc - no longer list module and plugin aliases that are created with symlinks (https://github.com/ansible/ansible/pull/78137).
+- ansible-doc - when listing modules in collections, proceed recursively. This fixes module listing for community.general 5.x.y and community.network 4.x.y (https://github.com/ansible/ansible/pull/78137).
+- ansible-doc will not add 'website for' in ":ref:" substitutions as it made them confusing.
+- file backed cache plugins now handle concurrent access by making atomic updates to the files.
+- password lookup does not ignore k=v arguments anymore.
+- user - Fix error "Permission denied" in user module while generating SSH keys (https://github.com/ansible/ansible/issues/78017).
+
+cisco.dnac
+~~~~~~~~~~
+
+- application_sets - delete function fixed.
+- applications - delete function fixed.
+- event_subscription - delete function fixed.
+- file_info - Improve the module documentation.
+- sda_fabric_authentication_profile - delete function fixed.
+- sda_fabric_border_device - delete function fixed.
+- sda_fabric_control_plane_device - delete function fixed.
+- sda_fabric_edge_device - Change required payload parameter to deviceManagementIpAddress
+- sda_fabric_edge_device - delete function fixed.
+- sda_virtual_network - delete function fixed.
+- transit_peer_network - Added status check
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- keyring_info - fix the result from the keyring library never getting returned (https://github.com/ansible-collections/community.general/pull/4964).
+- pacman - fixed name resolution of URL packages (https://github.com/ansible-collections/community.general/pull/4959).
+- passwordstore lookup plugin - fix ``returnall`` for gopass (https://github.com/ansible-collections/community.general/pull/5027).
+- passwordstore lookup plugin - fix password store path detection for gopass (https://github.com/ansible-collections/community.general/pull/4955).
+- proxmox - fix error handling when getting VM by name when ``state=absent`` (https://github.com/ansible-collections/community.general/pull/4945).
+- proxmox_kvm - fix error handling when getting VM by name when ``state=absent`` (https://github.com/ansible-collections/community.general/pull/4945).
+- slack - fix incorrect channel prefix ``#`` caused by incomplete pattern detection by adding ``G0`` and ``GF`` as channel ID patterns (https://github.com/ansible-collections/community.general/pull/5019).
+- xfconf - fix setting of boolean values (https://github.com/ansible-collections/community.general/issues/4999, https://github.com/ansible-collections/community.general/pull/5007).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- Add SPDX license headers to individual files (https://github.com/ansible-collections/community.hashi_vault/pull/282).
+- Add missing ``BSD-2-Clause.txt`` file for BSD licensed content (https://github.com/ansible-collections/community.hashi_vault/issues/275).
+- Use the correct GPL license for plugin_utils (https://github.com/ansible-collections/community.hashi_vault/issues/276).
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- Include ``simplified_bsd.txt`` license file for various module utils.
+- postgresql_info - fix pg version parsing (https://github.com/ansible-collections/community.postgresql/issues/315).
+- postgresql_ping - fix pg version parsing (https://github.com/ansible-collections/community.postgresql/issues/315).
+- postgresql_privs.py - add functionality when the PostgreSQL version is 9.0.0 or greater to incorporate ``ALL x IN SCHEMA`` syntax (https://github.com/ansible-collections/community.postgresql/pull/282). Please see the official documentation for details regarding grants (https://www.postgresql.org/docs/9.0/sql-grant.html).
+- postgresql_subscription - fix idempotence by casting the ``connparams`` dict variable (https://github.com/ansible-collections/community.postgresql/issues/280).
+- postgresql_user - add ``alter user``-statements in the return value ``queries`` (https://github.com/ansible-collections/community.postgresql/issues/307).
+
+community.rabbitmq
+~~~~~~~~~~~~~~~~~~
+
+- user module - set supports_check_mode flag to False, as the module does not actually support check mode.
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- Include ``LICENSES/BSD-2-Clause.txt`` file for the ``routeros`` module utils (https://github.com/ansible-collections/community.routeros/pull/101).
+
+community.sap_libs
+~~~~~~~~~~~~~~~~~~
+
+- syp_system_facts - fix a typo in the usage example which lead to an error if it used as supposed.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_interface - FC interfaces - home_node should not be sent as location.home_node.
+- na_ontap_interface - FC interfaces - home_port is not supported for ONTAP 9.7 or earlier.
+- na_ontap_interface - FC interfaces - scope is not supported.
+- na_ontap_interface - FC interfaces - service_policy is not supported.
+- na_ontap_interface - enforce requirement for address/netmask for interfaces other than FC.
+- na_ontap_interface - fix idempotency issue for cluster scoped interfaces when using REST.
+- na_ontap_interface - fix potential node and uuid issues with LIF migration.
+- na_ontap_interface - ignore 'none' when using REST rather than reporting unexpected protocol.
+- na_ontap_lun - catch ZAPI error on get LUN.
+- na_ontap_lun - ignore resize error if no change was required.
+- na_ontap_lun - report error if flexvol_name is missing when using ZAPI.
+- na_ontap_net_subnet - fixed ``ipspace`` option ignored in getting net subnet.
+- na_ontap_qtree - fix idempotency issue on ``unix_permissions`` option.
+- na_ontap_s3_buckets - Module will not fail on create if no ``policy`` is given.
+- na_ontap_s3_buckets - Module will set ``enabled`` during create.
+- na_ontap_s3_buckets - Module work currently when ``sid`` is a number.
+- na_ontap_snapmirror - fix potential issue when destination is using REST but source is using ZAPI.
+- na_ontap_snapmirror - relax check for source when using REST.
+- na_ontap_svm - KeyError on CIFS when using REST with ONTAP 9.8 or lower.
+- na_ontap_volume - ``volume_security_style`` was not modified if other security options were present with ZAPI.
+- na_ontap_volume - fix idempotency issue on ``unix_permissions`` option.
+- na_ontap_vserver_create role - add rule index as it is now required.
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- HE - Handle migration to hosts that use systemd-coredump (https://github.com/oVirt/ovirt-ansible-collection/pull/557).
+- cluster_upgrade - Fix starting up pinned vms (https://github.com/oVirt/ovirt-ansible-collection/pull/532).
+- he - Align role with ansible-lint-6.0 (https://github.com/oVirt/ovirt-ansible-collection/pull/545).
+- hosted_engine - Specify fqcn for ovirt_system_option_info (https://github.com/oVirt/ovirt-ansible-collection/pull/536).
+- hosted_engine_setup - Fix cleanup on el9 (https://github.com/oVirt/ovirt-ansible-collection/pull/533).
+- image_template - Remove static (https://github.com/oVirt/ovirt-ansible-collection/pull/537).
+- image_template - Remove static no - unsupported in ansible 2.12 (https://github.com/oVirt/ovirt-ansible-collection/pull/341).
+- ovirt_host - Fix host wait (https://github.com/oVirt/ovirt-ansible-collection/pull/531).
+- ovirt_host - Fix restarted wait condition (https://github.com/oVirt/ovirt-ansible-collection/pull/551).
+- ovirt_storage_domain - Fix inaccessible exception (https://github.com/oVirt/ovirt-ansible-collection/pull/534).
+- ovirt_vm - check if user inputed graphical protocol (https://github.com/oVirt/ovirt-ansible-collection/pull/542).
+- repositories - Move fips check to satellite CA install block (https://github.com/oVirt/ovirt-ansible-collection/pull/553).
+- shutdown_env - Align role with ansible-lint-6.0 (https://github.com/oVirt/ovirt-ansible-collection/pull/544).
+
+t_systems_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Add exception handling to diff and exist functions (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/176)
+
+Known Issues
+------------
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_snapshot - added documentation to use UTC format for ``expiry_time``.
+
+New Plugins
+-----------
+
+Lookup
+~~~~~~
+
+- community.general.bitwarden - Retrieve secrets from Bitwarden
+
+New Modules
+-----------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+Remote Management
+^^^^^^^^^^^^^^^^^
+
+Redfish
+.......
+
+- community.general.wdc_redfish_command - Manages WDC UltraStar Data102 Out-Of-Band controllers using Redfish APIs
+- community.general.wdc_redfish_info - Manages WDC UltraStar Data102 Out-Of-Band controllers using Redfish APIs
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- community.routeros.api_info - Retrieve information from API
+- community.routeros.api_modify - Modify data at paths with API
+
+community.sap_libs
+~~~~~~~~~~~~~~~~~~
+
+- community.sap_libs.sap_pyrfc - This module executes rfc functions.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- netapp.ontap.na_ontap_ntp_key - NetApp ONTAP NTP key
+- netapp.ontap.na_ontap_s3_groups - NetApp ONTAP S3 groups
+- netapp.ontap.na_ontap_s3_policies - NetApp ONTAP S3 Policies
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 3.3.1)
+- ansible.netcommon (still version 3.0.1)
+- ansible.posix (still version 1.4.0)
+- ansible.utils (still version 2.6.1)
+- ansible.windows (still version 1.10.0)
+- arista.eos (still version 5.0.1)
+- azure.azcollection (still version 1.13.0)
+- check_point.mgmt (still version 2.3.0)
+- chocolatey.chocolatey (still version 1.3.0)
+- cisco.aci (still version 2.2.0)
+- cisco.asa (still version 3.1.0)
+- cisco.intersight (still version 1.0.19)
+- cisco.ios (still version 3.2.0)
+- cisco.iosxr (still version 3.2.0)
+- cisco.ise (still version 2.5.0)
+- cisco.mso (still version 2.0.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 3.1.0)
+- cisco.ucs (still version 1.8.0)
+- cloud.common (still version 2.1.2)
+- cloudscale_ch.cloud (still version 2.2.2)
+- community.aws (still version 3.4.0)
+- community.azure (still version 1.1.0)
+- community.ciscosmb (still version 1.0.5)
+- community.crypto (still version 2.4.0)
+- community.digitalocean (still version 1.21.0)
+- community.docker (still version 2.7.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.libvirt (still version 1.1.0)
+- community.mysql (still version 3.3.0)
+- community.network (still version 4.0.1)
+- community.okd (still version 2.2.0)
+- community.proxysql (still version 1.4.0)
+- community.sap (still version 1.0.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.2.3)
+- community.vmware (still version 2.7.0)
+- community.windows (still version 1.10.0)
+- community.zabbix (still version 1.7.0)
+- containers.podman (still version 1.9.4)
+- cyberark.conjur (still version 1.1.0)
+- cyberark.pas (still version 1.0.14)
+- dellemc.enterprise_sonic (still version 1.1.1)
+- dellemc.openmanage (still version 5.5.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- f5networks.f5_modules (still version 1.18.0)
+- fortinet.fortimanager (still version 2.1.5)
+- fortinet.fortios (still version 2.1.6)
+- frr.frr (still version 2.0.0)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.8.1)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.0.0)
+- infinidat.infinibox (still version 1.3.3)
+- infoblox.nios_modules (still version 1.3.0)
+- inspur.sm (still version 2.0.0)
+- junipernetworks.junos (still version 3.1.0)
+- kubernetes.core (still version 2.3.2)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.18.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.storagegrid (still version 21.10.0)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.3.0)
+- netbox.netbox (still version 3.7.1)
+- ngine_io.cloudstack (still version 2.2.4)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.2)
+- openstack.cloud (still version 1.8.0)
+- openvswitch.openvswitch (still version 2.1.0)
+- purestorage.flasharray (still version 1.13.0)
+- purestorage.flashblade (still version 1.9.0)
+- purestorage.fusion (still version 1.0.2)
+- sensu.sensu_go (still version 1.13.1)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 2.0.0)
+- theforeman.foreman (still version 3.4.0)
+- vmware.vmware_rest (still version 2.2.0)
+- vyos.vyos (still version 3.0.1)
+- wti.remote (still version 1.0.4)
+
 v6.1.0
 ======
 
