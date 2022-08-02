@@ -91,3 +91,6 @@ collections:
   purestorage.fusion:
     maintainers:
       - sdodsley
+  ibm.spectrum_virtualize:
+    maintainers:
+      - Shilpi-J

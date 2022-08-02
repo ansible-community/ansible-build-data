@@ -68,6 +68,7 @@ google.cloud
 hetzner.hcloud
 hpe.nimble
 ibm.qradar
+ibm.spectrum_virtualize
 infinidat.infinibox
 infoblox.nios_modules
 inspur.sm
