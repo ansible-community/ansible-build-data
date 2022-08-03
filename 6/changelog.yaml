@@ -90,5 +90,5 @@ releases:
     changes:
       deprecated_features:
       - The google.cloud collection is considered unmaintained and will be
-        removed from Ansible 8.
+        removed from Ansible 8
         (https://github.com/ansible-community/community-topics/issues/105).
