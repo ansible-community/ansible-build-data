@@ -1,6 +1,8 @@
 # ansible-build-data
-Holds generated but persistent results from building ansible.  This information
+Holds generated but persistent results from building the `ansible` community package.  This information
 may be referred to by other projects and scripts.
+
+Release engineers check the [milestones](https://github.com/ansible-community/ansible-build-data/milestones) for corresponding releases some time before releasing the package sufficient to solve all related issues.
 
 ## Structure of data
 
