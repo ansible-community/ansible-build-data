@@ -94,3 +94,8 @@ releases:
         See `the removal process for details on how this works
         <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
         (https://github.com/ansible-community/community-topics/issues/105).
+      - The servicenow.servicenow collection has been deprecated by its maintainers (ServiceNowITOM/servicenow-ansible#69)
+        and will be removed from Ansible 7 if no one starts maintaining it again before Ansible 7.
+        See `the removal process for details on how this works
+        <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+        (https://github.com/ansible-community/community-topics/issues/124).
