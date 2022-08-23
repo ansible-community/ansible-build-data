@@ -89,12 +89,17 @@ releases:
   6.3.0:
     changes:
       deprecated_features:
-      - The google.cloud collection is considered unmaintained and will be
-        removed from Ansible 8 if no one starts maintaining it again before Ansible 8.
-        See `the removal process for details on how this works
-        <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+      - The google.cloud collection is considered unmaintained and will be removed
+        from Ansible 8 if no one starts maintaining it again before Ansible 8. See
+        `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
         (https://github.com/ansible-community/community-topics/issues/105).
-      - The servicenow.servicenow collection has been deprecated by its maintainers (https://github.com/ServiceNowITOM/servicenow-ansible/pull/69)
-        and will be removed from Ansible 7. It can still be installed manually, but it is suggested
-        to swich to `servicenow.itsm <https://galaxy.ansible.com/servicenow/itsm>`__ instead
-        (https://github.com/ansible-community/community-topics/issues/124).
+      - The servicenow.servicenow collection has been deprecated by its maintainers
+        (https://github.com/ServiceNowITOM/servicenow-ansible/pull/69) and will be
+        removed from Ansible 7. It can still be installed manually, but it is suggested
+        to swich to `servicenow.itsm <https://galaxy.ansible.com/servicenow/itsm>`__
+        instead (https://github.com/ansible-community/community-topics/issues/124).
+      release_summary: 'Release Date: 2022-08-23
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2022-08-23'
