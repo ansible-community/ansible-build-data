@@ -14,6 +14,9 @@ collections:
     changelog-url: https://github.com/dell/dellemc-openmanage-ansible-modules/blob/collections/CHANGELOG.rst
     maintainers:
       - rajeevarakkal
+  inspur.ispim:
+    maintainers:
+      - ispim
   inspur.sm:
     maintainers:
       - ISIB-Group

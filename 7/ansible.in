@@ -71,6 +71,7 @@ ibm.qradar
 ibm.spectrum_virtualize
 infinidat.infinibox
 infoblox.nios_modules
+inspur.ispim
 inspur.sm
 junipernetworks.junos
 kubernetes.core
