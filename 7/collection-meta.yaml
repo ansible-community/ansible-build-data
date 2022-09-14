@@ -97,3 +97,7 @@ collections:
   ibm.spectrum_virtualize:
     maintainers:
       - Shilpi-J
+  vultr.cloud:
+    maintainers:
+      - resmo
+      - Oogy
