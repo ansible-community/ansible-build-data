@@ -8,6 +8,555 @@ This changelog describes changes since Ansible 5.0.0.
   :local:
   :depth: 2
 
+v6.4.0
+======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2022-09-15
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- inspur.ispim (version 1.0.1)
+- vultr.cloud (version 1.1.0)
+
+Ansible-core
+------------
+
+Ansible 6.4.0 contains Ansible-core version 2.13.4.
+This is a newer version than version 2.13.3 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Collection               | Ansible 6.3.0 | Ansible 6.4.0 | Notes                                                                                                                                                                                                          |
++==========================+===============+===============+================================================================================================================================================================================================================+
+| ansible.netcommon        | 3.1.0         | 3.1.1         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ansible.windows          | 1.11.0        | 1.11.1        |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| awx.awx                  | 21.4.0        | 21.5.0        | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.dnac               | 6.5.3         | 6.6.0         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios                | 3.3.0         | 3.3.1         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.iosxr              | 3.3.0         | 3.3.1         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ise                | 2.5.0         | 2.5.3         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki             | 2.10.1        | 2.11.0        |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.nxos               | 3.1.0         | 3.1.1         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.dns            | 2.3.1         | 2.3.2         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.general        | 5.5.0         | 5.6.0         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql          | 3.4.0         | 3.5.1         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros       | 2.2.1         | 2.3.0         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.sap_libs       | 1.2.0         | 1.3.0         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.sops           | 1.3.0         | 1.4.0         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware         | 2.8.0         | 2.9.1         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.conjur          | 1.1.0         | 1.2.0         | You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`_. |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.enterprise_sonic | 1.1.1         | 1.1.2         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| hetzner.hcloud           | 1.8.1         | 1.8.2         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ibm.qradar               | 2.0.0         | 2.1.0         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| inspur.ispim             |               | 1.0.1         | The collection was added to Ansible                                                                                                                                                                            |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap             | 21.22.0       | 21.23.0       |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| netapp.storagegrid       | 21.10.0       | 21.11.0       |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| openstack.cloud          | 1.8.0         | 1.9.1         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade   | 1.9.0         | 1.10.0        |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.fusion       | 1.0.2         | 1.1.0         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| splunk.es                | 2.0.0         | 2.1.0         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman       | 3.4.0         | 3.6.0         |                                                                                                                                                                                                                |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| vultr.cloud              |               | 1.1.0         | The collection was added to Ansible                                                                                                                                                                            |
++--------------------------+---------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+cisco.dnac
+~~~~~~~~~~
+
+- pnp_intent - new module.
+- site_intent - new module.
+- swim_intent - new module.
+- template_intent - new module.
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- Add GPLv3 license. Always was GPLv3, but didn't have the file.
+- Change shebang in Sublime utils to point to env instead of direct to the path
+- meraki_alert - Change type for opbject to alert_type in examples
+- meraki_ms_access_policies - New module to create, delete, update Access Policies in the Switch settings
+- meraki_ssid - Add support for `ap_availability_tags`.
+- meraki_ssid - Add support for `available_on_all_aps`
+- meraki_ssid - Add support for `lan_isolation_enabled`.
+- meraki_ssid - Add support for `visible`.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- ali_instance - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5240).
+- ali_instance_info - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5240).
+- consul_session - adds ``token`` parameter for session (https://github.com/ansible-collections/community.general/pull/5193).
+- gitlab module util - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5259).
+- gitlab_branch - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5259).
+- gitlab_deploy_key - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5259).
+- gitlab_group - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5259).
+- gitlab_group_members - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5259).
+- gitlab_group_variable - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5259).
+- gitlab_hook - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5259).
+- gitlab_hook - minor refactoring (https://github.com/ansible-collections/community.general/pull/5271).
+- gitlab_project - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5259).
+- gitlab_project_members - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5259).
+- gitlab_project_variable - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5259).
+- gitlab_protected_branch - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5259).
+- gitlab_runner - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5259).
+- gitlab_user - minor refactor when checking for installed dependency (https://github.com/ansible-collections/community.general/pull/5259).
+- homebrew, homebrew_tap - added Homebrew on Linux path to defaults (https://github.com/ansible-collections/community.general/pull/5241).
+- nagios - minor refactoring on parameter validation for different actions (https://github.com/ansible-collections/community.general/pull/5239).
+- nmcli - add bond option ``xmit_hash_policy`` to bond options (https://github.com/ansible-collections/community.general/issues/5148).
+- nmcli - honor IP options for VPNs (https://github.com/ansible-collections/community.general/pull/5228).
+- redfish - added new command GetVirtualMedia, VirtualMediaInsert and VirtualMediaEject to Systems category due to Redfish spec changes the virtualMedia resource location from Manager to System (https://github.com/ansible-collections/community.general/pull/5124).
+- seport - added new argument ``local`` (https://github.com/ansible-collections/community.general/pull/5203)
+- wdc_redfish_command - add ``PowerModeLow`` and ``PowerModeNormal`` commands for ``Chassis`` category (https://github.com/ansible-collections/community.general/pull/5145).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_replication - add a new option: ``primary_ssl_verify_server_cert`` (https://github.com//pull/435).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- The collection repository conforms to the `REUSE specification <https://reuse.software/spec/>`__ except for the changelog fragments (https://github.com/ansible-collections/community.routeros/pull/108).
+- api* modules - added ``timeout`` parameter (https://github.com/ansible-collections/community.routeros/pull/109).
+- api_modify, api_info - support API path ``ip firewall mangle`` (https://github.com/ansible-collections/community.routeros/pull/110).
+
+community.sap_libs
+~~~~~~~~~~~~~~~~~~
+
+- License requirements are updated.
+- The modules purposes are described clearer.
+- The namespaces of the modules are removed to provide a flatter design.
+- hana_query - module is moved to sap_hdbsql.
+- sapcontrol - module is moved to sap_control_exec to have a clearer separation to other roles and references.
+
+community.sops
+~~~~~~~~~~~~~~
+
+- Allow to specify age keys as ``age_key``, or age keyfiles as ``age_keyfile`` (https://github.com/ansible-collections/community.sops/issues/116, https://github.com/ansible-collections/community.sops/pull/117).
+- sops_encrypt - allow to specify age recipients (https://github.com/ansible-collections/community.sops/issues/116, https://github.com/ansible-collections/community.sops/pull/117).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_cluster_ha - Add APD settings (https://github.com/ansible-collections/community.vmware/pull/1420).
+- vmware_content_library_info - Add Subscribed Libraries (https://github.com/ansible-collections/community.vmware/issues/1430).
+- vmware_drs_group_manager - Improve error handling (https://github.com/ansible-collections/community.vmware/pull/1448).
+
+ibm.qradar
+~~~~~~~~~~
+
+- Add Qradar Analytics rules resource module.
+- Add Qradar Log Sources Management resource module.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- all REST modules - new option ``force_ontap_version`` to bypass permission issues with custom vsadmin roles.
+- na_ontap_cifs_local_user_set_password - Added REST support.
+- na_ontap_cluster_ha - added REST support.
+- na_ontap_export_policy_rule - ``rule_index`` is now optional for create and delete.
+- na_ontap_export_policy_rule - new option ``force_delete_on_first_match`` to support duplicate entries on delete.
+- na_ontap_interface - improved validations for unsupported options with FC interfaces.
+- na_ontap_kerberos_realm - added REST support.
+- na_ontap_kerberos_realm - change ``kdc_port`` option type to int.
+- na_ontap_lun_copy - added REST support.
+- na_ontap_lun_map_reporting_nodes - added REST support.
+- na_ontap_ntp - for ONTAP version 9.6 or below fall back to ZAPI when ``use_rest`` is set to ``auto`` or fail when REST is desired.
+- na_ontap_ntp_key - fail for ONTAP version 9.6 or below when ``use_rest`` is set to ``auto`` or when REST is desired.
+- na_ontap_rest_info - new option ``ignore_api_errors`` to report error in subset rather than breaking execution.
+- na_ontap_rest_info - support added for protocols/vscan/on-access-policies.
+- na_ontap_rest_info - support added for protocols/vscan/on-demand-policies.
+- na_ontap_rest_info - support added for protocols/vscan/scanner-pools.
+- na_ontap_security_key_manager - added REST support.
+- na_ontap_security_key_manager - new REST option ``onboard`` for onboard key manager.
+- na_ontap_security_key_manager - new REST options ``external`` and ``vserver`` for external key manager.
+- na_ontap_ucadapter - added REST support.
+- na_ontap_user_role -- added REST support.
+- na_ontap_volume - attempt to delete volume even when unmounting or offlining failed.
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- na_sg_org_container - supports versioning configuration for S3 buckets available in StorageGRID 11.6+.
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- All - Update documentation examples with FQCNs
+- purefb_ad - Allow service to be a list
+- purefb_bucket - Allow setting of bucket type to support VSO - requires Purity//FB 3.3.3 or higher
+- purefb_certs - Fix several misspellings of certificate
+- purefb_info - Added filesystem default, user and group quotas where available
+- purefb_info - Expose object store bucket type from Purity//FB 3.3.3
+- purefb_info - Show information for current timezone
+- purefb_policy - Allow rename of NFS Export Policies from Purity//FB 3.3.3
+- purefb_tz - Add support for FlashBlade timezone management
+
+purestorage.fusion
+~~~~~~~~~~~~~~~~~~
+
+- fusion_az - Add delete AZ option
+- fusion_az - Allow any region to be specificed instead of limited to a known list
+- fusion_pp - Add delete PP option
+- fusion_sc - Add delete SC option
+- fusion_ss - Add delete SS option
+
+splunk.es
+~~~~~~~~~
+
+- Added adaptive_response_notable_events resource module
+- Added correlation_searches resource module
+- Added data_inputs_monitors resource module
+- Added data_inputs_networks resource module
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- add execution environment metadata
+- installation_medium, operatingsystem, partition_table - add ``Fcos``, ``Rhcos``, ``VRP`` OS families
+- job_template - add ``hidden_value`` to ``template_inputs`` parameters
+- job_template - allow ``value_type`` to be ``resource``
+- operatingsystems role - make ``provisioning_template`` parameter optional
+- repositories role - add ``ansible_collection_requirements``
+- repositories role - add ``arch`` and ``os_versions`` parameters
+- repositories role - support ``mirroring_policy``
+- repository, smart_proxy - document deprecation/removal status of ``download_policy=background``
+- setting - the ``foreman_setting`` return entry is deprecated and kept for backwards compatibility, please use ``entity`` as with any other module
+- smart_proxy - add ``inherit`` to possible values of ``download_policy`` (https://github.com/theforeman/foreman-ansible-modules/issues/1438)
+- smart_proxy - add ``streamed`` download policy
+- snapshot - add include_ram option when creating VMWare snapshot
+
+Deprecated Features
+-------------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- proxmox - deprecated the current ``unprivileged`` default value, will be changed to ``true`` in community.general 7.0.0 (https://github.com/pull/5224).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Fix for network_cli not getting all relevant connection options
+- ansible-galaxy - Fix detection of ``--role-file`` in arguments for implicit role invocation (https://github.com/ansible/ansible/issues/78204)
+- ansible-galaxy - Fix exit codes for role search and delete (https://github.com/ansible/ansible/issues/78516)
+- ansible-test - Fix change detection for ansible-test's own integration tests.
+- ansible-test - ansible-doc sanity test - Correctly determine the fully-qualified collection name for plugins in subdirectories, resolving https://github.com/ansible/ansible/issues/78490.
+- apt - don't actually update the cache in check mode with update_cache=true.
+- apt - don't mark existing packages as manually installed in check mode (https://github.com/ansible/ansible/issues/66413).
+- apt - fix package selection to include /etc/apt/preferences(.d) (https://github.com/ansible/ansible/issues/77969)
+- urls - Guard imports of ``urllib3`` by catching ``Exception`` instead of ``ImportError`` to prevent exceptions in the import process of optional dependencies from preventing use of ``urls.py`` (https://github.com/ansible/ansible/issues/78648)
+- wait_for - Read file and perform comparisons using bytes to avoid decode errors (https://github.com/ansible/ansible/issues/78214)
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- Fix a small number of potential use-before-assignment issues.
+- Fix to set connection plugin options correctly.
+- libssh - Removed the wording "Tech preview". From version 3.0.0 the default if installed.
+- libssh - add ssh_args, ssh_common_args, and ssh_extra_args options. These options are exclusively for collecting proxy information from as an alternative to the proxy_command option.
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- win_command - Fix bug that stopped win_command from finding executables that are located more than once in ``PATH`` - https://github.com/ansible-collections/ansible.windows/issues/403
+- win_copy - Fix error message when failing to find ``src`` on the controller filesystem
+
+cisco.ios
+~~~~~~~~~
+
+- `l2_interfaces` - vlan_tag options fix.
+- `snmp_server` - add envmon options for traps.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- Fixing TenGigE Interface recognition for resource modules. (https://github.com/ansible-collections/cisco.iosxr/issues/270)
+
+cisco.ise
+~~~~~~~~~
+
+- An error was corrected in galaxy publication
+- downloadable_acl - update EXAMPLES block of module documentation.
+- endpoint - an unnecessary parameter name has been removed because it is automatically generated by the api.
+- personas_update_roles_services - fixed ansible status msg.
+- sgt - added new validation when updating a stg auto generated.
+
+cisco.nxos
+~~~~~~~~~~
+
+- Fix issue with modules related to OSPF interfaces failing when the target NXOS device has subinterfaces.
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- listen_ports_facts - removed leftover ``EnvironmentError`` . The ``else`` clause had a wrong indentation. The check is now handled in the ``split_pid_name`` function (https://github.com/ansible-collections/community.general/pull/5202).
+- nmcli - avoid changed status for most cases with VPN connections (https://github.com/ansible-collections/community.general/pull/5126).
+- osx_defaults - no longer expand ``~`` in ``value`` to the user's home directory, or expand environment variables (https://github.com/ansible-collections/community.general/issues/5234, https://github.com/ansible-collections/community.general/pull/5243).
+- proxmox_kvm - fix exception when no ``agent`` argument is specified (https://github.com/ansible-collections/community.general/pull/5194).
+- proxmox_kvm - replace new condition with proper condition to allow for using ``vmid`` on update (https://github.com/ansible-collections/community.general/pull/5206).
+- slack - fix message update for channels which start with ``CP``. When ``message-id`` was passed it failed for channels which started with ``CP`` because the ``#`` symbol was added before the ``channel_id`` (https://github.com/ansible-collections/community.general/pull/5249).
+- tss lookup plugin - adding support for updated Delinea library (https://github.com/DelineaXPM/python-tss-sdk/issues/9, https://github.com/ansible-collections/community.general/pull/5151).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_user - grant option was revoked accidentally when modifying users. This fix revokes grant option only when privs are setup to do that (https://github.com/ansible-collections/community.mysql/issues/77#issuecomment-1209693807).
+- mysql_user, mysql_role - mysql/mariadb recent versions translate 'ALL PRIVILEGES' to a list of specific privileges. That caused a change every time we modified user privileges. This fix compares privs before and after user modification to avoid this infinite change (https://github.com/ansible-collections/community.mysql/issues/77).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_modify, api_info - make API path ``ip dhcp-server`` support ``script``, and ``ip firewall nat`` support ``in-interface`` and ``in-interface-list`` (https://github.com/ansible-collections/community.routeros/pull/110).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- 2.9.0 wasn't released correctly, some changes are missing from the package. Releasing 2.9.1 to fix this.
+- vmware_cfg_backup - Fix a bug that failed the restore when port 80 is blocked (https://github.com/ansible-collections/community.vmware/issues/1440).
+- vmware_vswitch - Fix broken logic of `failback` parameter (https://github.com/ansible-collections/community.vmware/issues/1431).
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- utils - Fixed regex expression in sonic.py to handle standard interface naming in port breakout mode  (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/110).
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- dynamic inventory - fix crash when having servers without IPs (flexible networks)
+- hcloud_server - When state stopped and server is created, do not start the server
+- hcloud_server_info - fix crash when having servers without IPs (flexible networks)
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_cifs_acl - use ``type`` if present when fetching existing ACL with ZAPI.
+- na_ontap_cifs_local_user_set_password - when using ZAPI, do not require cluster admin privileges.
+- na_ontap_cluster_config Role - incorrect license was shown - updated to GNU General Public License v3.0
+- na_ontap_flexcache - properly use ``origin_cluster`` in GET but not in POST when using REST.
+- na_ontap_kerberos_realm - fix cannot modify ``comment`` option in ZAPI.
+- na_ontap_lun_copy - fix key error on ``source_vserver`` option.
+- na_ontap_ntp - fixed typeError on ``key_id`` field with ZAPI.
+- na_ontap_s3_buckets - fix TypeError if ``conditions`` not present in policy statements.
+- na_ontap_s3_buckets - fix options that cannot be modified if not set in creating s3 buckets.
+- na_ontap_s3_buckets - updated correct choices in options ``audit_event_selector.access`` and ``audit_event_selector.permission``.
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_connect - Resolve connection issues between two FBs that are throttling capable
+- purefb_policy - Fix incorrect API call for NFS export policy rule creation
+
+purestorage.fusion
+~~~~~~~~~~~~~~~~~~
+
+- Allow correct use of environmental variables for App ID and private file file
+
+New Modules
+-----------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+Packaging
+^^^^^^^^^
+
+Language
+........
+
+- community.general.pipx_info - Rretrieves information about applications installed with pipx
+
+ibm.qradar
+~~~~~~~~~~
+
+Private
+^^^^^^^
+
+Var.Folders. 0.M716S5Gx1G3D5J1Dw S2W1Ph0000Gn.T.Antsibull-Changelog9Yvlq4Ax.Collections.Ansible Collections.Ibm.Qradar.Plugins.Modules
+......................................................................................................................................
+
+- ibm.qradar.qradar_analytics_rules - Qradar Analytics Rules Management resource module
+- ibm.qradar.qradar_log_sources_management - Qradar Log Sources Management resource module
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- netapp.ontap.na_ontap_ems_destination - NetApp ONTAP configuration for EMS event destination
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- netapp.storagegrid.na_sg_grid_client_certificate - Manage Client Certificates on StorageGRID.
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purestorage.flashblade.purefb_messages - List FlashBlade Alert Messages
+- purestorage.flashblade.purefb_tz - Configure Pure Storage FlashBlade timezone
+
+purestorage.fusion
+~~~~~~~~~~~~~~~~~~
+
+- purestorage.fusion.fusion_region - Manage Regions in Pure Storage Fusion
+
+splunk.es
+~~~~~~~~~
+
+Ansible Collections
+^^^^^^^^^^^^^^^^^^^
+
+Splunk.Es.Plugins.Modules
+.........................
+
+- splunk.es.splunk_adaptive_response_notable_events - Manage Adaptive Responses notable events resource module
+- splunk.es.splunk_correlation_searches - Splunk Enterprise Security Correlation searches resource module
+- splunk.es.splunk_data_inputs_monitor - Splunk Data Inputs of type Monitor resource module
+- splunk.es.splunk_data_inputs_network - Manage Splunk Data Inputs of type TCP or UDP resource module
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- theforeman.foreman.content_export_info - List pulp3 content exports
+- theforeman.foreman.content_export_library - Manage content exports
+- theforeman.foreman.content_export_repository - Manage repository content exports
+- theforeman.foreman.content_export_version - Manage content view version content exports
+- theforeman.foreman.discovery_rule - Manage Host Discovery Rules
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 3.4.0)
+- ansible.posix (still version 1.4.0)
+- ansible.utils (still version 2.6.1)
+- arista.eos (still version 5.0.1)
+- azure.azcollection (still version 1.13.0)
+- check_point.mgmt (still version 2.3.0)
+- chocolatey.chocolatey (still version 1.3.0)
+- cisco.aci (still version 2.2.0)
+- cisco.asa (still version 3.1.0)
+- cisco.intersight (still version 1.0.19)
+- cisco.mso (still version 2.0.0)
+- cisco.nso (still version 1.0.3)
+- cisco.ucs (still version 1.8.0)
+- cloud.common (still version 2.1.2)
+- cloudscale_ch.cloud (still version 2.2.2)
+- community.aws (still version 3.5.0)
+- community.azure (still version 1.1.0)
+- community.ciscosmb (still version 1.0.5)
+- community.crypto (still version 2.5.0)
+- community.digitalocean (still version 1.21.0)
+- community.docker (still version 2.7.1)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.5.2)
+- community.hashi_vault (still version 3.2.0)
+- community.hrobot (still version 1.5.2)
+- community.libvirt (still version 1.2.0)
+- community.mongodb (still version 1.4.2)
+- community.network (still version 4.0.1)
+- community.okd (still version 2.2.0)
+- community.postgresql (still version 2.2.0)
+- community.proxysql (still version 1.4.0)
+- community.rabbitmq (still version 1.2.2)
+- community.sap (still version 1.0.0)
+- community.skydive (still version 1.0.0)
+- community.windows (still version 1.11.0)
+- community.zabbix (still version 1.8.0)
+- containers.podman (still version 1.9.4)
+- cyberark.pas (still version 1.0.14)
+- dellemc.openmanage (still version 5.5.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- f5networks.f5_modules (still version 1.19.0)
+- fortinet.fortimanager (still version 2.1.5)
+- fortinet.fortios (still version 2.1.7)
+- frr.frr (still version 2.0.0)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hpe.nimble (still version 1.1.4)
+- ibm.spectrum_virtualize (still version 1.9.0)
+- infinidat.infinibox (still version 1.3.3)
+- infoblox.nios_modules (still version 1.3.0)
+- inspur.sm (still version 2.0.0)
+- junipernetworks.junos (still version 3.1.0)
+- kubernetes.core (still version 2.3.2)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.19.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.3.1)
+- netbox.netbox (still version 3.7.1)
+- ngine_io.cloudstack (still version 2.2.4)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.2)
+- openvswitch.openvswitch (still version 2.1.0)
+- ovirt.ovirt (still version 2.2.3)
+- purestorage.flasharray (still version 1.13.0)
+- sensu.sensu_go (still version 1.13.1)
+- servicenow.servicenow (still version 1.0.6)
+- t_systems_mms.icinga_director (still version 1.31.0)
+- vmware.vmware_rest (still version 2.2.0)
+- vyos.vyos (still version 3.0.1)
+- wti.remote (still version 1.0.4)
+
 v6.3.0
 ======
 
@@ -952,7 +1501,7 @@ community.routeros
 community.sap_libs
 ~~~~~~~~~~~~~~~~~~
 
-- community.sap_libs.sap_pyrfc - This module executes rfc functions.
+- community.sap_libs.sap_pyrfc - Ansible Module for use of SAP PyRFC to execute SAP RFCs (Remote Function Calls) to SAP remote-enabled function modules
 
 netapp.ontap
 ~~~~~~~~~~~~

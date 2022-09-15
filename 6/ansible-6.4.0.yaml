@@ -1,4 +1,3 @@
-# Collections included in Ansible 6.4.0
 collections:
 - name: amazon.aws
   source: https://galaxy.ansible.com
