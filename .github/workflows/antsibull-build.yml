@@ -26,8 +26,8 @@ jobs:
       - name: Check out antsibull
         uses: actions/checkout@v3
         with:
-          repository: ansible-community/antsibull
-          ref: main
+          repository: felixfontein/antsibull
+          ref: ci-fixes
           path: antsibull
 
       - name: Check out antsibull-core
