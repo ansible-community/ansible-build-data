@@ -8,3 +8,5 @@ releases:
         See `the removal process for details on how this works
         <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
         (https://github.com/ansible-community/community-topics/issues/105).
+      breaking_changes:
+      - Ansible 7 requires Python 3.9 on the controller, same as ansible-core 2.14.
