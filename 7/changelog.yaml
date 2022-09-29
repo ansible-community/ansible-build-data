@@ -2,11 +2,15 @@ ancestor: 6.0.0
 releases:
   7.0.0a1:
     changes:
-      deprecated_features:
-      - The google.cloud collection is considered unmaintained and will be
-        removed from Ansible 8 if no one starts maintaining it again before Ansible 8.
-        See `the removal process for details on how this works
-        <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
-        (https://github.com/ansible-community/community-topics/issues/105).
       breaking_changes:
       - Ansible 7 requires Python 3.9 on the controller, same as ansible-core 2.14.
+      deprecated_features:
+      - The google.cloud collection is considered unmaintained and will be removed
+        from Ansible 8 if no one starts maintaining it again before Ansible 8. See
+        `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+        (https://github.com/ansible-community/community-topics/issues/105).
+      release_summary: 'Release Date: 2022-09-29
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2022-09-29'
