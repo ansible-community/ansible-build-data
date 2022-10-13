@@ -130,3 +130,10 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2022-10-12'
+  6.6.0:
+    changes:
+      deprecated_features:
+      - The mellanox.onyx collection is considered unmaintained and will be removed
+        from Ansible 8 if no one starts maintaining it again before Ansible 8. See
+        `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+        (https://github.com/ansible-community/community-topics/issues/136).
