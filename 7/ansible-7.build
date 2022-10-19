@@ -77,6 +77,7 @@ inspur.ispim: >=1.0.0,<2.0.0
 inspur.sm: >=2.0.0,<3.0.0
 junipernetworks.junos: >=3.1.0,<4.0.0
 kubernetes.core: >=2.3.0,<3.0.0
+lowlydba.sqlserver: >=1.0.0,<2.0.0
 mellanox.onyx: >=1.0.0,<2.0.0
 netapp.aws: >=21.7.0,<22.0.0
 netapp.azure: >=21.10.0,<22.0.0
