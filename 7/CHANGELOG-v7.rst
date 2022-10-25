@@ -8,6 +8,1150 @@ This changelog describes changes since Ansible 6.0.0.
   :local:
   :depth: 2
 
+v7.0.0a2
+========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2022-10-25
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- lowlydba.sqlserver (version 1.0.3)
+
+Ansible-core
+------------
+
+Ansible 7.0.0a2 contains Ansible-core version 2.14.0rc1.
+This is a newer version than version 2.14.0b1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection              | Ansible 7.0.0a1 | Ansible 7.0.0a2 | Notes                                                                                                                        |
++=========================+=================+=================+==============================================================================================================================+
+| amazon.aws              | 4.2.0           | 5.0.2           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.netcommon       | 3.1.1           | 4.0.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| arista.eos              | 5.0.1           | 6.0.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| awx.awx                 | 21.6.0          | 21.7.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| chocolatey.chocolatey   | 1.3.0           | 1.3.1           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.aci               | 2.2.0           | 2.3.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.asa               | 3.1.0           | 4.0.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight        | 1.0.19          | 1.0.20          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios               | 3.3.2           | 4.0.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.iosxr             | 3.3.1           | 4.0.1           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ise               | 2.5.3           | 2.5.6           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.mso               | 2.0.0           | 2.1.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.nxos              | 3.1.2           | 4.0.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.aws           | 4.2.0           | 5.0.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto        | 2.7.0           | 2.7.1           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.digitalocean  | 1.21.0          | 1.22.0          |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns           | 2.3.2           | 2.3.4           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general       | 5.6.0           | 5.8.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.grafana       | 1.5.2           | 1.5.3           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware        | 2.9.1           | 3.0.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.openmanage      | 6.1.0           | 6.2.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules   | 1.19.0          | 1.20.0          |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ibm.spectrum_virtualize | 1.9.0           | 1.10.0          |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| infinidat.infinibox     | 1.3.3           | 1.3.7           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| infoblox.nios_modules   | 1.3.0           | 1.4.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| inspur.ispim            | 1.0.1           | 1.1.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| inspur.sm               | 2.0.0           | 2.2.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| junipernetworks.junos   | 3.1.0           | 4.0.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| lowlydba.sqlserver      |                 | 1.0.3           | The collection was added to Ansible                                                                                          |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.cloudmanager     | 21.19.0         | 21.20.1         |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap            | 21.23.0         | 21.24.1         |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netbox.netbox           | 3.8.0           | 3.8.1           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| openstack.cloud         | 1.9.1           | 1.10.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ovirt.ovirt             | 2.2.3           | 2.3.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman      | 3.6.0           | 3.7.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| vultr.cloud             | 1.1.0           | 1.2.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| vyos.vyos               | 3.0.1           | 4.0.0           |                                                                                                                              |
++-------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+amazon.aws
+~~~~~~~~~~
+
+- autoscaling_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.autoscaling_group``.
+- autoscaling_group_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.autoscaling_group_info``.
+- cloudtrail - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.cloudtrail``.
+- cloudwatch_metric_alarm - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.cloudwatch_metric_alarm``.
+- cloudwatchevent_rule - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.cloudwatchevent_rule``.
+- cloudwatchlogs_log_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.cloudwatchlogs_log_group``.
+- cloudwatchlogs_log_group_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.cloudwatchlogs_log_group_info``.
+- cloudwatchlogs_log_group_metric_filter - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.cloudwatchlogs_log_group_metric_filter``.
+- ec2_eip - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_eip``.
+- ec2_eip_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_eip_info``.
+- elb_application_lb - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.elb_application_lb``.
+- elb_application_lb_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.elb_application_lb_info``.
+- execute_lambda - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.execute_lambda``.
+- iam_policy - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_policy``.
+- iam_policy_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_policy_info``.
+- iam_user - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_user``.
+- iam_user_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_user_info``.
+- kms_key - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.kms_key``.
+- kms_key_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.kms_key_info``.
+- lambda - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.lambda``.
+- lambda_alias - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.lambda_alias``.
+- lambda_event - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.lambda_event``.
+- lambda_execute - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.lambda_execute``.
+- lambda_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.lambda_info``.
+- lambda_policy - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.lambda_policy``.
+- rds_cluster - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_cluster``.
+- rds_cluster_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_cluster_info``.
+- rds_cluster_snapshot - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_cluster_snapshot``.
+- rds_instance - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_instance``.
+- rds_instance_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_instance_info``.
+- rds_instance_snapshot - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_instance_snapshot``.
+- rds_option_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_option_group``.
+- rds_option_group_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_option_group_info``.
+- rds_param_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_param_group``.
+- rds_snapshot_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_snapshot_info``.
+- rds_subnet_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_subnet_group``.
+- route53 - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.route53``.
+- route53_health_check - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.route53_health_check``.
+- route53_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.route53_info``.
+- route53_zone - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.route53_zone``.
+
+arista.eos
+~~~~~~~~~~
+
+- Remove following EOS dprecated modules
+- Use of connection: local and the provider option are no longer valid on any modules in this collection.
+- eos_interface
+- eos_l2_interface
+- eos_l3_interface
+- eos_linkagg
+- eos_static_route
+- eos_vlan
+
+cisco.asa
+~~~~~~~~~
+
+- Please use either of the following connection types - network_cli, httpapi or netconf.
+- This includes the following modules:
+- This release drops support for `connection: local` and provider dictionary.
+- This release removes all deprecated plugins that have reached their end-of-life.
+- Use of connection: local and the provider option are no longer valid on any modules in this collection.
+- asa_acl
+- asa_og
+
+cisco.ios
+~~~~~~~~~
+
+- Only valid connection types for this collection is network_cli.
+- This release drops support for `connection: local` and provider dictionary.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- Only valid connection types for this collection are network_cli and netconf.
+- This release drops support for `connection: local` and provider dictionary.
+
+cisco.nxos
+~~~~~~~~~~
+
+- Please use either of the following connection types - network_cli, httpapi or netconf.
+- This release drops support for `connection: local` and provider dictionary.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- newrelic_deployment - removed New Relic v1 API, added support for v2 API (https://github.com/ansible-collections/community.general/pull/5341).
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_bios - The module is enhanced to support clear pending BIOS attributes, reset BIOS to default settings, and configure BIOS attribute using Redfish.
+
+infoblox.nios_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Feature for extra layer security , with `cert` and `key` parameters in playbooks for authenticating using certificate and key *.pem file absolute path `#154 <https://github.com/infobloxopen/infoblox-ansible/pull/154>`_
+- Fix to remove issue causing due to template attr in deleting network using Ansible module nios network `#147 <https://github.com/infobloxopen/infoblox-ansible/pull/147>`_
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- Use of connection: local and the provider option are no longer valid on any modules in this collection.
+
+vyos.vyos
+~~~~~~~~~
+
+- Use of connection: local and the provider option are no longer valid on any modules in this collection.
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test validate-modules - Added support for validating module documentation stored in a sidecar file alongside the module (``{module}.yml`` or ``{module}.yaml``). Previously these files were ignored and documentation had to be placed in ``{module}.py``.
+- apt_repository will use the trust repo directories in order of preference (more appropriate to less) as they exist on the target.
+
+amazon.aws
+~~~~~~~~~~
+
+- Ability to record and replay the API interaction of a module for testing purpose. Show case the feature with an example (https://github.com/ansible-collections/amazon.aws/pull/998).
+- Remove the empty __init__.py file from the distribution, they were not required anymore (https://github.com/ansible-collections/amazon.aws/pull/1018).
+- amazon.aws modules - the ``ec2_url`` parameter has been renamed to ``endpoint_url`` for consistency, ``ec2_url`` remains as an alias (https://github.com/ansible-collections/amazon.aws/pull/992).
+- aws_caller_info - minor linting fixes (https://github.com/ansible-collections/amazon.aws/pull/968).
+- aws_ec2 - introduce the ``allow_duplicated_hosts`` configuration key (https://github.com/ansible-collections/amazon.aws/pull/1026).
+- cloudformation - avoid catching ``Exception``, catch more specific errors instead (https://github.com/ansible-collections/amazon.aws/pull/968).
+- cloudwatch_metric_alarm_info - Added a new module that describes the cloudwatch metric alarms (https://github.com/ansible-collections/amazon.aws/pull/988).
+- ec2_group - The ``ec2_group`` module has been renamed to ``ec2_security_group``, ``ec2_group`` remains as an alias (https://github.com/ansible-collections/amazon.aws/pull/897).
+- ec2_group_info - The ``ec2_group_info`` module has been renamed to ``ec2_security_group_info``, ``ec2_group_info`` remains as an alias (https://github.com/ansible-collections/amazon.aws/pull/897).
+- ec2_instance - Add hibernation_options and volumes->ebs->encrypted keys to support stop-hibernate instance (https://github.com/ansible-collections/amazon.aws/pull/972).
+- ec2_instance - expanded the use of the automatic retries to ``InsuffienctInstanceCapacity`` (https://github.com/ansible-collections/amazon.aws/issues/1038).
+- ec2_metadata_facts - avoid catching ``Exception``, catch more specific errors instead (https://github.com/ansible-collections/amazon.aws/pull/968).
+- ec2_security_group - minor linting fixes (https://github.com/ansible-collections/amazon.aws/pull/968).
+- ec2_vpc_endpoint - avoid catching ``Exception``, catch more specific errors instead (https://github.com/ansible-collections/amazon.aws/pull/968).
+- ec2_vpc_nat_gateway - minor linting fixes (https://github.com/ansible-collections/amazon.aws/pull/968).
+- ec2_vpc_net_info - handle classic link check for shared VPCs by throwing a warning instead of an error (https://github.com/ansible-collections/amazon.aws/pull/984).
+- module_utils/acm - Move to jittered backoff (https://github.com/ansible-collections/amazon.aws/pull/946).
+- module_utils/elbv2 - ensures that ``ip_address_type`` is set on creation rather than re-setting it after creation (https://github.com/ansible-collections/amazon.aws/pull/940).
+- module_utils/elbv2 - uses new waiters with retries for temporary failures (https://github.com/ansible-collections/amazon.aws/pull/940).
+- module_utils/waf - Move to jittered backoff (https://github.com/ansible-collections/amazon.aws/pull/946).
+- module_utils/waiters - Add waiters to manage eks_nodegroup module (https://github.com/ansible-collections/community.aws/pull/1415).
+- s3_bucket - ``rgw`` was added as an alias for the ``ceph`` parameter for consistency with the ``s3_object`` module (https://github.com/ansible-collections/amazon.aws/pull/994).
+- s3_bucket - the ``s3_url`` parameter was merged into the ``endpoint_url`` parameter, ``s3_url`` remains as an alias (https://github.com/ansible-collections/amazon.aws/pull/994).
+- s3_object - added the ``sig_v4`` paramater, enbling the user to opt in to signature version 4 for download/get operations. (https://github.com/ansible-collections/amazon.aws/pull/1014)
+- s3_object - minor linting fixes (https://github.com/ansible-collections/amazon.aws/pull/968).
+- s3_object - the ``rgw`` parameter was renamed to ``ceph`` for consistency with the ``s3_bucket`` module, ``rgw`` remains as an alias (https://github.com/ansible-collections/amazon.aws/pull/994).
+- s3_object - the ``s3_url`` parameter was merged into the ``endpoint_url`` parameter, ``s3_url`` remains as an alias (https://github.com/ansible-collections/amazon.aws/pull/994).
+- s3_object - updated module to add support for handling file upload to a bucket with ACL disabled (https://github.com/ansible-collections/amazon.aws/pull/921).
+- s3_object_info - Added a new module that describes S3 Objects (https://github.com/ansible-collections/amazon.aws/pull/977).
+
+arista.eos
+~~~~~~~~~~
+
+- Add support for setting encryption_password for BGP neighbors in bgp_global module
+- Add validate_config option to diff_against in eos_config
+
+cisco.aci
+~~~~~~~~~
+
+- Add aci_bulk_static_binding_to_epg module to bind multiple interfaces to an EPG in one API call
+- Add aci_l3out_logical_interface_profile_ospf_policy module to apply ospfIfP policy to L3out logical interface profile (#301)
+- Add aci_ntp_policy and aci_ntp_server modules (#229)
+- Add cisco.aci.interface_range lookup plugin for interface range handling (#302)
+- Add new aci_aaa_ssh_auth, aci_aaa_user_domain and aci_aaa_user_role modules (#223)
+- Add support for active/stanby vmm uplinks in aci_epg_to_domain
+- Add support for aggregate attribute, scope default and "import-rtctrl" to scope choices in aci_l3out_extsubnet module (#260)
+- Added fex_port_channel and fex_vpc interface types to aci_access_port_to_interface_policy_leaf_profile (#241)
+- Adding missing options to aci_epg_to_domain
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- iosxr_bgp_neighbor_address_family - add extra supported values l2vpn, link-state, vpnv4, vpnv6 to afi attribute.
+
+cisco.mso
+~~~~~~~~~
+
+- Add aci_remote_location module (#259)
+- Add mso_backup_schedule module (#250)
+- Add mso_chema_template_contract_service_graph module (#257)
+- Add mso_schema_template_service_graph, mso_schema_site_service_graph and mso_service_node_type modules (#243)
+- Add primary attribute to mso_schema_site_bd_subnet (#254)
+
+cisco.nxos
+~~~~~~~~~~
+
+- `nxos_l3_interfaces` - Add support for toggling ipv6 redirects (https://github.com/ansible-collections/cisco.nxos/issues/569).
+
+community.aws
+~~~~~~~~~~~~~
+
+- acm_certificate - Move to jittered backoff (https://github.com/ansible-collections/amazon.aws/pull/946).
+- acm_certificate_info - Move to jittered backoff (https://github.com/ansible-collections/amazon.aws/pull/946).
+- api_gateway_domain - Move to jittered backoff (https://github.com/ansible-collections/community.aws/pull/1386).
+- autoscaling_group_info - minor sanity test fixes (https://github.com/ansible-collections/community.aws/pull/1410).
+- aws_acm - the ``aws_acm`` module has been renamed to ``acm_certificate``, ``aws_acm`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1263).
+- aws_acm_info - the ``aws_acm_info`` module has been renamed to ``acm_certificate_info``, ``aws_acm_info`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1263).
+- aws_api_gateway - the ``aws_api_gateway`` module has been renamed to ``api_gateway``, ``aws_api_gateway`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1288).
+- aws_api_gateway_domain - the ``aws_api_gateway_domain`` module has been renamed to ``api_gateway_domain``, ``aws_api_gateway_domain`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1288).
+- aws_application_scaling_policy - the ``aws_application_scaling_policy`` module has been renamed to ``application_autoscaling_policy``, ``aws_application_scaling_policy`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1314).
+- aws_batch_compute_environment - the ``aws_batch_compute_environment`` module has been renamed to ``batch_compute_environment``, ``aws_batch_compute_environment`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1272).
+- aws_batch_job_definition - the ``aws_batch_job_definition`` module has been renamed to ``batch_job_definition``, ``aws_batch_job_definition`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1272).
+- aws_batch_job_queue - the ``aws_batch_job_queue`` module has been renamed to ``batch_job_queue``, ``aws_batch_job_queue`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1272).
+- aws_codebuild - the ``aws_codebuild`` module has been renamed to ``codebuild_project``, ``aws_codebuild`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1308).
+- aws_codecommit - the ``aws_codecommit`` module has been renamed to ``codecommit_repository``, ``aws_codecommit`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1308).
+- aws_codepipeline - the ``aws_codepipeline`` module has been renamed to ``codepipeline``, ``aws_codepipeline`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1308).
+- aws_config_aggregation_authorization - the ``aws_config_aggregation_authorization`` module has been renamed to ``config_aggregation_authorization``, ``aws_config_aggregation_authorization`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1305).
+- aws_config_aggregator - the ``aws_config_aggregator`` module has been renamed to ``config_aggregator``, ``aws_config_aggregator`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1305).
+- aws_config_delivery_channel - the ``aws_config_delivery_channel`` module has been renamed to ``config_delivery_channel``, ``aws_config_delivery_channel`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1305).
+- aws_config_recorder - the ``aws_config_recorder`` module has been renamed to ``config_recorder``, ``aws_config_recorder`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1305).
+- aws_config_rule - the ``aws_config_rule`` module has been renamed to ``config_rule``, ``aws_config_rule`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1305).
+- aws_direct_connect_confirm_connection - the ``aws_direct_connect_confirm_connection`` module has been renamed to ``directconnect_confirm_connection``, ``aws_direct_connect_confirm_connection`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1286).
+- aws_direct_connect_connection - the ``aws_direct_connect_connection`` module has been renamed to ``directconnect_connection``, ``aws_direct_connect_connection`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1286).
+- aws_direct_connect_gateway - the ``aws_direct_connect_gateway`` module has been renamed to ``directconnect_gateway``, ``aws_direct_connect_gateway`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1286).
+- aws_direct_connect_link_aggregation_group - the ``aws_direct_connect_link_aggregation_group`` module has been renamed to ``directconnect_link_aggregation_group``, ``aws_direct_connect_link_aggregation_group`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1286).
+- aws_direct_connect_virtual_interface - the ``aws_direct_connect_virtual_interface`` module has been renamed to ``directconnect_virtual_interface``, ``aws_direct_connect_virtual_interface`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1286).
+- aws_eks_cluster - the ``aws_eks_cluster`` module has been renamed to ``eks_cluster``, ``aws_eks_cluster`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1269).
+- aws_glue_connection - the ``aws_glue_connection`` module has been renamed to ``glue_connection``, ``aws_glue_connection`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1300).
+- aws_glue_crawler - the ``aws_glue_crawler`` module has been renamed to ``glue_crawler``, ``aws_glue_crawler`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1300).
+- aws_glue_job - the ``aws_glue_job`` module has been renamed to ``glue_job``, ``aws_glue_job`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1300).
+- aws_inspector_target - the ``aws_inspector_target`` module has been renamed to ``inspector_target``, ``aws_inspector_target`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1318).
+- aws_kms - the ``aws_kms`` module has been renamed to ``kms_key``, ``aws_kms`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1284).
+- aws_kms_info - the ``aws_kms_info`` module has been renamed to ``kms_key_info``, ``aws_kms_info`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1284).
+- aws_msk_cluster - the ``aws_msk_cluster`` module has been renamed to ``msk_cluster``, ``aws_msk_cluster`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1311).
+- aws_msk_config - the ``aws_msk_config`` module has been renamed to ``msk_config``, ``aws_msk_config`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1311).
+- aws_s3_bucket_info - the ``aws_s3_bucket_info`` module has been renamed to ``s3_bucket_info``, ``aws_s3_bucket_info`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1271).
+- aws_s3_cors - the ``aws_s3_cors`` module has been renamed to ``s3_cors``, ``aws_s3_cors`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1271).
+- aws_secret - the ``aws_secret`` module has been renamed to ``secretsmanager_secret``, ``aws_secret`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1315).
+- aws_ses_identity - the ``aws_ses_identity`` module has been renamed to ``ses_identity``, ``aws_ses_identity`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1264).
+- aws_ses_identity_policy - the ``aws_ses_identity_policy`` module has been renamed to ``ses_identity_policy``, ``aws_ses_identity_policy`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1264).
+- aws_ses_rule_set - the ``aws_ses_rule_set`` module has been renamed to ``ses_rule_set``, ``aws_ses_rule_set`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1264).
+- aws_sgw_info - the ``aws_sgw_info`` module has been renamed to ``storagegateway_info``, ``aws_sgw_info`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1301).
+- aws_ssm_parameter_store - the ``aws_ssm_parameter_store`` module has been renamed to ``ssm_parameter``, ``aws_ssm_parameter_store`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1313).
+- aws_step_functions_state_machine - the ``aws_step_functions_state_machine`` module has been renamed to ``stepfunctions_state_machine``, ``aws_step_functions_state_machine`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1310).
+- aws_step_functions_state_machine_execution - the ``aws_step_functions_state_machine_execution`` module has been renamed to ``stepfunctions_state_machine_execution``, ``aws_step_functions_state_machine_execution`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1310).
+- aws_waf_condition - the ``aws_waf_condition`` module has been renamed to ``waf_condition``, ``aws_waf_condition`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1299).
+- aws_waf_info - the ``aws_waf_info`` module has been renamed to ``waf_info``, ``aws_waf_info`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1299).
+- aws_waf_rule - the ``aws_waf_rule`` module has been renamed to ``waf_rule``, ``aws_waf_rule`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1299).
+- aws_waf_web_acl - the ``aws_waf_web_acl`` module has been renamed to ``waf_web_acl``, ``aws_waf_web_acl`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1299).
+- cloudfront_distribution - minor sanity test fixes (https://github.com/ansible-collections/community.aws/pull/1410).
+- cloudfront_info - the ``cloudfront_info`` module has been renamed to ``cloudfront_distribution_info``, ``cloudfront_info`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1352).
+- cloudfront_origin_access_identity - minor sanity test fixes (https://github.com/ansible-collections/community.aws/pull/1410).
+- cloudtrail - minor sanity test fixes (https://github.com/ansible-collections/community.aws/pull/1410).
+- community.aws modules - the ``ec2_url`` parameter has been renamed to ``endpoint_url`` for consistency, ``ec2_url`` remains as an alias (https://github.com/ansible-collections/amazon.aws/pull/992).
+- ec2_asg - the ``ec2_asg`` module has been renamed to ``autoscaling_group``, ``ec2_asg`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1294).
+- ec2_asg_info - the ``ec2_asg_info`` module has been renamed to ``autoscaling_group_info``, ``ec2_asg_info`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1294).
+- ec2_asg_instance_refresh - the ``ec2_asg_instance_refresh`` module has been renamed to ``autoscaling_instance_refresh``, ``ec2_asg_instance_refresh`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1294).
+- ec2_asg_instance_refresh_info - the ``ec2_asg_instance_refresh_info`` module has been renamed to ``autoscaling_instance_refresh_info``, ``ec2_asg_instance_refresh_info`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1294).
+- ec2_asg_lifecycle_hook - the ``ec2_asg_lifecycle_hook`` module has been renamed to ``autoscaling_lifecycle_hool``, ``ec2_asg_lifecycle_hook`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1294).
+- ec2_asg_scheduled_action - the ``ec2_asg_scheduled_action`` module has been renamed to ``autoscaling_scheduled_action``, ``ec2_asg_scheduled_action`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1294).
+- ec2_lc - the ``ec2_lc`` module has been renamed to ``autoscaling_launch_config``, ``ec2_lc`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1294).
+- ec2_lc_find - the ``ec2_lc_find`` module has been renamed to ``autoscaling_launch_config_find``, ``ec2_lc_find`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1294).
+- ec2_lc_info - the ``ec2_lc_info`` module has been renamed to ``autoscaling_launch_config_info``, ``ec2_lc_info`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1294).
+- ec2_metric_alarm - the ``ec2_metric_alarm`` module has been renamed to ``cloudwatch_metric_alarm``, ``ec2_metric_alarm`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1304).
+- ec2_scaling_policy - the ``ec2_scaling_policy`` module has been renamed to ``autoscaling_policy``, ``ec2_scaling_policy`` remains as an alias (https://github.com/ansible-collections/community.aws/pull/1294).
+- ec2_vpc_nacl - minor sanity test fixes (https://github.com/ansible-collections/community.aws/pull/1410).
+- ec2_vpc_vpn - minor tweak to ``VPNConnectionException`` to pass message through to the superclass (https://github.com/ansible-collections/community.aws/pull/1407).
+- eks_fargate_profile - minor sanity test fixes (https://github.com/ansible-collections/community.aws/pull/1410).
+- elb_target_group - instead of completely ignoring ``health_check_path`` and ``successful_response_codes`` if ``health_check_protocol`` is not supplied, now raises an error (https://github.com/ansible-collections/community.aws/issues/29).
+- redshift - minor sanity test fixes (https://github.com/ansible-collections/community.aws/pull/1410).
+- s3_bucket_info - minor sanity test fixes (https://github.com/ansible-collections/community.aws/pull/1410).
+- waf_condition - Move to jittered backoff (https://github.com/ansible-collections/amazon.aws/pull/946).
+- waf_info - Move to jittered backoff (https://github.com/ansible-collections/amazon.aws/pull/946).
+- waf_rule - Move to jittered backoff (https://github.com/ansible-collections/amazon.aws/pull/946).
+- waf_web_acl - Move to jittered backoff (https://github.com/ansible-collections/amazon.aws/pull/946).
+
+community.digitalocean
+~~~~~~~~~~~~~~~~~~~~~~
+
+- collection - added an action group C(community.digitalocean.all) for use with module defaults (https://docs.ansible.com/ansible/latest/user_guide/playbooks_module_defaults.html) (https://github.com/ansible-collections/community.digitalocean/issues/281).
+- digital_ocean_vpc - add C(vpc) key to returned VPC data on create (https://github.com/ansible-collections/community.digitalocean/issues/276).
+- integration tests - perform integration testing on all modules for changes in C(plugins/module_utils) or by changed module in C(plugins/modules) (https://github.com/ansible-collections/community.digitalocean/issues/286).
+- integration tests - split the integration tests by module and run them serially (https://github.com/ansible-collections/community.digitalocean/issues/280).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- bitwarden lookup plugin - add option ``search`` to search for other attributes than name (https://github.com/ansible-collections/community.general/pull/5297).
+- consul - minor refactoring (https://github.com/ansible-collections/community.general/pull/5367).
+- lxc_container - minor refactoring (https://github.com/ansible-collections/community.general/pull/5358).
+- machinectl become plugin - combine the success command when building the become command to be consistent with other become plugins (https://github.com/ansible-collections/community.general/pull/5287).
+- netcup_dnsapi - add ``timeout`` parameter (https://github.com/ansible-collections/community.general/pull/5301).
+- nmcli - add ``transport_mode`` configuration for Infiniband devices (https://github.com/ansible-collections/community.general/pull/5361).
+- opentelemetry callback plugin - send logs. This can be disabled by setting ``disable_logs=false`` (https://github.com/ansible-collections/community.general/pull/4175).
+- portage - add knobs for Portage's ``--backtrack`` and ``--with-bdeps`` options (https://github.com/ansible-collections/community.general/pull/5349).
+- portage - use Portage's python module instead of calling gentoolkit-provided program in shell (https://github.com/ansible-collections/community.general/pull/5349).
+- proxmox module utils, the proxmox* modules - add ``api_task_ok`` helper to standardize API task status checks across all proxmox modules (https://github.com/ansible-collections/community.general/pull/5274).
+- proxmox_snap - add ``unbind`` param to support snapshotting containers with configured mountpoints (https://github.com/ansible-collections/community.general/pull/5274).
+- redfish_config - add ``SetSessionService`` to set default session timeout policy (https://github.com/ansible-collections/community.general/issues/5008).
+- terraform - adds capability to handle complex variable structures for ``variables`` parameter in the module. This must be enabled with the new ``complex_vars`` parameter (https://github.com/ansible-collections/community.general/pull/4797).
+- terraform - run ``terraform init`` with ``-no-color`` not to mess up the stdout of the task (https://github.com/ansible-collections/community.general/pull/5147).
+- znode - possibility to use ZooKeeper ACL authentication (https://github.com/ansible-collections/community.general/pull/5306).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_guest_disk - Adding `iolimit` modifications of an existing disk without changing size (https://github.com/ansible-collections/community.vmware/pull/1466).
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_qkview - added a new parameter, only_create_file
+
+inspur.ispim
+~~~~~~~~~~~~
+
+- Edit_dns adds new field to M6 model.
+- Modify the authors and tags fields in Galaxy.yml.
+
+inspur.sm
+~~~~~~~~~
+
+- Edit_dns adds new field to M6 model.
+- Modify ansible-test to add asnible 2.13,2.14 version.
+- Modify the authors and tags fields in Galaxy.yml.
+- Update the document.
+
+netapp.cloudmanager
+~~~~~~~~~~~~~~~~~~~
+
+- Add ``availability_zone`` option in CVO Azure on the location configuration.
+- Add ``subnet_path`` option in CVO GCP.
+- na_cloudmanager_cvo_aws - Add new parameter ``cluster_key_pair_name`` to support SSH authentication method key pair.
+- na_cloudmanager_volume - Support AWS FsxN working environment.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- All REST GET's up to and including 9.11.1 that do not require a UUID/KEY to be past in are now supported
+- na_ontap_cluster - ``timezone.name`` to modify cluster timezone. REST only.
+- na_ontap_ems_destination - improve error messages - augment UT coverage (thanks to bielawb).
+- na_ontap_interface - ``dns_domain_name`` is now supported from ONTAP 9.9 or later in REST.
+- na_ontap_interface - ``is_dns_update_enabled`` is now supported from ONTAP 9.9.1 or later in REST.
+- na_ontap_interface - attempt to set interface_type to ``ip`` when ``protocols`` is set to "none".
+- na_ontap_net_subnet - added REST support.
+- na_ontap_quotas - Added REST support.
+- na_ontap_rest_info - Allowed the support of multiple subsets and warn when using ``**`` in fields.
+- na_ontap_rest_info - added support for ``network/ip/subnets``.
+- na_ontap_rest_info - support added for cluster.
+- na_ontap_rest_info - support added for cluster/counter/tables.
+- na_ontap_rest_info - support added for cluster/licensing/capacity-pools.
+- na_ontap_rest_info - support added for cluster/licensing/license-managers.
+- na_ontap_rest_info - support added for cluster/metrocluster/svms.
+- na_ontap_rest_info - support added for cluster/sensors.
+- na_ontap_rest_info - support added for name-services/cache/group-membership/settings.
+- na_ontap_rest_info - support added for name-services/cache/host/settings.
+- na_ontap_rest_info - support added for name-services/cache/netgroup/settings.
+- na_ontap_rest_info - support added for name-services/cache/setting.
+- na_ontap_rest_info - support added for name-services/cache/unix-group/settings.
+- na_ontap_rest_info - support added for name-services/ldap-schemas.
+- na_ontap_rest_info - support added for network/fc/fabrics.
+- na_ontap_rest_info - support added for network/fc/interfaces.
+- na_ontap_rest_info - support added for network/ip/subnets.
+- na_ontap_rest_info - support added for protocols/cifs/connections.
+- na_ontap_rest_info - support added for protocols/cifs/netbios.
+- na_ontap_rest_info - support added for protocols/cifs/session/files.
+- na_ontap_rest_info - support added for protocols/cifs/shadow-copies.
+- na_ontap_rest_info - support added for protocols/cifs/shadowcopy-sets.
+- na_ontap_rest_info - support added for protocols/nfs/connected-client-maps.
+- na_ontap_rest_info - support added for security.
+- na_ontap_rest_info - support added for security/multi-admin-verify.
+- na_ontap_rest_info - support added for security/multi-admin-verify/approval-groups.
+- na_ontap_rest_info - support added for security/multi-admin-verify/requests.
+- na_ontap_rest_info - support added for security/multi-admin-verify/rules.
+- na_ontap_rest_info - support added for storage/file/moves.
+- na_ontap_rest_info - support added for storage/pools.
+- na_ontap_restit - support multipart/form-data for read and write.
+- na_ontap_security_ssh - Updates the SSH server configuration for the specified SVM - REST only.
+- na_ontap_snmp_traphosts - Added ``host`` option in REST.
+- na_ontap_svm - Added ``ndmp`` option to services in REST.
+- na_ontap_vserver_create - ``firewall_policy`` is not set when ``service_policy`` is present, as ``service_policy`` is preferred.
+- na_ontap_vserver_create - ``protocol`` is now optional.  ``role`` is not set when protocol is absent.
+- na_ontap_vserver_create - added ``interface_type``.  Only a value of ``ip`` is currently supported.
+- na_ontap_vserver_create - added support for vserver management interface when using REST.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- nb_inventory - Allow for jinja templating [#834](https://github.com/netbox-community/ansible_modules/pull/834)
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- filters - Add documentation to all filters (https://github.com/oVirt/ovirt-ansible-collection/pull/603).
+- ovirt_disk - Add read_only param for disk attachments (https://github.com/oVirt/ovirt-ansible-collection/pull/597).
+- ovirt_disk - Fix disk attachment to VM (https://github.com/oVirt/ovirt-ansible-collection/pull/361).
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- repository - add support for ``include_tags`` and ``exclude_tags`` parameters for Katello 4.4+
+- subscription_manifest - increase the import timeout to 10 minutes (https://github.com/theforeman/foreman-ansible-modules/issues/1474)
+- sync_plans role - document the ``enabled`` parameter (https://github.com/theforeman/foreman-ansible-modules/issues/1477)
+- sync_plans role - expose the ``state`` parameter of the underlying module, thus allowing to delete plans (https://github.com/theforeman/foreman-ansible-modules/issues/1477)
+
+vultr.cloud
+~~~~~~~~~~~
+
+- block_storage - Added the parameter ``block_type`` to configure block types, default value is ``high_perf``.
+- dns_record - Removed the default value ``0`` for the optional parameter ``priority``.
+
+vyos.vyos
+~~~~~~~~~
+
+- Update fact gathering to support v1.3 show version output
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test validate-modules - Removed the ``missing-python-doc`` error code in validate modules, ``missing-documentation`` is used instead for missing PowerShell module documentation.
+
+amazon.aws
+~~~~~~~~~~
+
+- amazon.aws collection - Support for ansible-core < 2.11 has been dropped (https://github.com/ansible-collections/amazon.aws/pull/1087).
+- amazon.aws collection - The amazon.aws collection has dropped support for ``botocore<1.21.0`` and ``boto3<1.18.0``. Most modules will continue to work with older versions of the AWS SDK, however compatability with older versions of the SDK is not guaranteed and will not be tested. When using older versions of the SDK a warning will be emitted by Ansible (https://github.com/ansible-collections/amazon.aws/pull/934).
+- doc_fragments - remove minimum collection requirements from doc_fragments/aws.py and allow pulling those from doc_fragments/aws_boto3.py instead (https://github.com/ansible-collections/amazon.aws/pull/985).
+- ec2_ami - the default value for ``purge_tags`` has been changed from ``False`` to ``True`` (https://github.com/ansible-collections/amazon.aws/pull/916).
+- ec2_ami - the parameter aliases ``DeviceName``, ``VirtualName`` and ``NoDevice`` were previously deprecated and have been removed, please use ``device_name``, ``virtual_name`` and ``no_device`` instead (https://github.com/ansible-collections/amazon.aws/pull/913).
+- ec2_eni_info - the mutual exclusivity of the ``eni_id`` and ``filters`` parameters is now enforced, previously ``filters`` would be ignored if ``eni_id`` was set (https://github.com/ansible-collections/amazon.aws/pull/954).
+- ec2_instance - the default value for ``purge_tags`` has been changed from ``False`` to ``True`` (https://github.com/ansible-collections/amazon.aws/pull/916).
+- ec2_key - the default value for ``purge_tags`` has been changed from ``False`` to ``True`` (https://github.com/ansible-collections/amazon.aws/pull/916).
+- ec2_vol - the default value for ``purge_tags`` has been changed from ``False`` to ``True`` (https://github.com/ansible-collections/amazon.aws/pull/916).
+- ec2_vpc_dhcp_option_info - the parameter aliases ``DhcpOptionIds`` and ``DryRun`` were previously deprecated and have been removed, please use ``dhcp_options_ids`` and ``no_device`` instead (https://github.com/ansible-collections/amazon.aws/pull/913).
+- ec2_vpc_endpoint - the default value for ``purge_tags`` has been changed from ``False`` to ``True`` (https://github.com/ansible-collections/amazon.aws/pull/916).
+- ec2_vpc_net - the default value for ``purge_tags`` has been changed from ``False`` to ``True`` (https://github.com/ansible-collections/amazon.aws/pull/916).
+- ec2_vpc_route_table - the default value for ``purge_tags`` has been changed from ``False`` to ``True`` (https://github.com/ansible-collections/amazon.aws/pull/916).
+- s3_bucket - the previously deprecated alias ``S3_URL`` for the ``s3_url`` parameter has been removed.  Playbooks shuold be updated to use ``s3_url`` (https://github.com/ansible-collections/amazon.aws/pull/908).
+- s3_object - the previously deprecated alias ``S3_URL`` for the ``s3_url`` parameter has been removed.  Playbooks should be updated to use ``s3_url`` (https://github.com/ansible-collections/amazon.aws/pull/908).
+
+community.aws
+~~~~~~~~~~~~~
+
+- acm_certificate - the previously deprecated default value of ``purge_tags=False`` has been updated to ``purge_tags=True`` (https://github.com/ansible-collections/community.aws/pull/1343).
+- autoscaling_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.autoscaling_group``.
+- autoscaling_group_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.autoscaling_group_info``.
+- cloudfront_distribution - the previously deprecated default value of ``purge_tags=False`` has been updated to ``purge_tags=True`` (https://github.com/ansible-collections/community.aws/pull/1343).
+- cloudtrail - The module has been migrated to the ``amazon.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.cloudtrail``.
+- cloudwatch_metric_alarm - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.cloudwatch_metric_alarm``.
+- cloudwatchevent_rule - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.cloudwatchevent_rule``.
+- cloudwatchlogs_log_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.cloudwatchlogs_log_group``.
+- cloudwatchlogs_log_group_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.cloudwatchlogs_log_group_info``.
+- cloudwatchlogs_log_group_metric_filter - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.cloudwatchlogs_log_group_metric_filter``.
+- community.aws collection - Support for ansible-core < 2.11 has been dropped (https://github.com/ansible-collections/community.aws/pull/1541).
+- community.aws collection - The community.aws collection has dropped support for ``botocore<1.21.0`` and ``boto3<1.18.0``. Most modules will continue to work with older versions of the AWS SDK, however compatability with older versions of the SDK is not guaranteed and will not be tested. When using older versions of the SDK a warning will be emitted by Ansible (https://github.com/ansible-collections/community.aws/pull/1362).
+- ec2_eip - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_eip``.
+- ec2_eip_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.ec2_eip_info``.
+- ec2_vpc_vpn - the previously deprecated default value of ``purge_tags=False`` has been updated to ``purge_tags=True`` (https://github.com/ansible-collections/community.aws/pull/1343).
+- elb_application_lb - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.elb_application_lb``.
+- elb_application_lb_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.elb_application_lb_info``.
+- execute_lambda - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.execute_lambda``.
+- iam_policy - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_policy``.
+- iam_policy_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_policy_info``.
+- iam_server_certificate - Passing file names to the ``cert``, ``chain_cert`` and ``key`` parameters has been removed. We recommend using a lookup plugin to read the files instead, see the documentation for an example (https://github.com/ansible-collections/community.aws/pull/1265).
+- iam_server_certificate - the default value for the ``dup_ok`` parameter has been changed to ``true``. To preserve the original behaviour explicitly set the ``dup_ok`` parameter to ``false`` (https://github.com/ansible-collections/community.aws/pull/1265).
+- iam_user - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_user``.
+- iam_user_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.iam_user_info``.
+- kms_key - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.kms_key``.
+- kms_key - managing the KMS IAM Policy via ``policy_mode`` and ``policy_grant_types`` was previously deprecated and has been removed in favor of the ``policy`` option (https://github.com/ansible-collections/community.aws/pull/1344).
+- kms_key - the previously deprecated default value of ``purge_tags=False`` has been updated to ``purge_tags=True`` (https://github.com/ansible-collections/community.aws/pull/1343).
+- kms_key_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.kms_key_info``.
+- lambda - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.lambda``.
+- lambda_alias - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.lambda_alias``.
+- lambda_event - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.lambda_event``.
+- lambda_execute - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.lambda_execute``.
+- lambda_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.lambda_info``.
+- lambda_policy - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.lambda_policy``.
+- rds_cluster - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_cluster``.
+- rds_cluster_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_cluster_info``.
+- rds_cluster_snapshot - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_cluster_snapshot``.
+- rds_instance - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_instance``.
+- rds_instance_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_instance_info``.
+- rds_instance_snapshot - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_instance_snapshot``.
+- rds_option_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_option_group``.
+- rds_option_group_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_option_group_info``.
+- rds_param_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_param_group``.
+- rds_param_group - the previously deprecated default value of ``purge_tags=False`` has been updated to ``purge_tags=True`` (https://github.com/ansible-collections/community.aws/pull/1343).
+- rds_snapshot_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_snapshot_info``.
+- rds_subnet_group - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.rds_subnet_group``.
+- route53 - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.route53``.
+- route53_health_check - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.route53_health_check``.
+- route53_health_check - the previously deprecated default value of ``purge_tags=False`` has been updated to ``purge_tags=True`` (https://github.com/ansible-collections/community.aws/pull/1343).
+- route53_info - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.route53_info``.
+- route53_zone - The module has been migrated from the ``community.aws`` collection. Playbooks using the Fully Qualified Collection Name for this module should be updated to use ``amazon.aws.route53_zone``.
+- route53_zone - the previously deprecated default value of ``purge_tags=False`` has been updated to ``purge_tags=True`` (https://github.com/ansible-collections/community.aws/pull/1343).
+- sqs_queue - the previously deprecated default value of ``purge_tags=False`` has been updated to ``purge_tags=True`` (https://github.com/ansible-collections/community.aws/pull/1343).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- newrelic_deployment - ``revision`` is required for v2 API (https://github.com/ansible-collections/community.general/pull/5341).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- Removed support for ansible-core version < 2.13.0.
+- vmware_dvs_portgroup - Add a new sub-option `inherited` to the `in_traffic_shaping` parameter. This means you can keep the setting as-is by not defining the parameter, but also that you have to define the setting as not `inherited` if you want to override it at the PG level (https://github.com/ansible-collections/community.vmware/pull/1483).
+- vmware_dvs_portgroup - Add a new sub-option `inherited` to the `out_traffic_shaping` parameter. This means you can keep the setting as-is by not defining the parameter, but also that you have to define the setting as not `inherited` if you want to override it at the PG level (https://github.com/ansible-collections/community.vmware/pull/1483).
+- vmware_dvs_portgroup - Change the type of `net_flow` to string to allow setting it implicitly to inherited or to keep the value as-is. This means you can keep the setting as-is by not defining the parameter, but also that while `true` or `no` still work, `True` or `Off` (uppercase) won't (https://github.com/ansible-collections/community.vmware/pull/1483).
+- vmware_dvs_portgroup - Remove support for vSphere API less than 6.7.
+- vmware_dvs_portgroup - Remove the default for `network_policy` and add a new sub-option `inherited`. This means you can keep the setting as-is by not defining the parameter, but also that you have to define the setting as not `inherited` if you want to override it at the PG level (https://github.com/ansible-collections/community.vmware/pull/1483).
+- vmware_dvs_portgroup_info - Remove support for vSphere API less than 6.7.
+- vmware_dvswitch - Remove support for vSphere API less than 6.7.
+- vmware_dvswitch_uplink_pg - Remove support for vSphere API less than 6.7.
+- vmware_guest_boot_manager - Remove default for ``secure_boot_enabled`` parameter (https://github.com/ansible-collections/community.vmware/issues/1461).
+- vmware_vm_config_option - Dict item names in result are changed from strings joined with spaces to strings joined with underlines, e.g. `Guest fullname` is changed to `guest_fullname` (https://github.com/ansible-collections/community.vmware/issues/1268).
+- vmware_vspan_session - Remove support for vSphere API less than 6.7.
+
+Deprecated Features
+-------------------
+
+- The dellemc.os10 collection is considered unmaintained and will be removed from Ansible 8 if no one starts maintaining it again before Ansible 8. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/134).
+- The dellemc.os6 collection is considered unmaintained and will be removed from Ansible 8 if no one starts maintaining it again before Ansible 8. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/132).
+- The dellemc.os9 collection is considered unmaintained and will be removed from Ansible 8 if no one starts maintaining it again before Ansible 8. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/133).
+- The mellanox.onyx collection is considered unmaintained and will be removed from Ansible 8 if no one starts maintaining it again before Ansible 8. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/136).
+
+amazon.aws
+~~~~~~~~~~
+
+- amazon.aws collection - due to the AWS SDKs announcing the end of support for Python less than 3.7 (https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/) support for Python less than 3.7 by this collection has been deprecated and will be removed in a release after 2023-05-31 (https://github.com/ansible-collections/amazon.aws/pull/935).
+- inventory/aws_ec2 - the ``include_extra_api_calls`` is now deprecated, its value is silently ignored (https://github.com/ansible-collections/amazon.aws/pull/1097).
+
+cisco.mso
+~~~~~~~~~
+
+- The mso_schema_template_contract_filter contract_filter_type attribute is deprecated. The value is now deduced from filter_type.
+
+community.aws
+~~~~~~~~~~~~~
+
+- community.aws collection - due to the AWS SDKs announcing the end of support for Python less than 3.7 (https://aws.amazon.com/blogs/developer/python-support-policy-updates-for-aws-sdks-and-tools/) support for Python less than 3.7 by this collection has been deprecated and will be removed in a release after 2023-05-31 (https://github.com/ansible-collections/community.aws/pull/1361).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- ArgFormat module utils - deprecated along ``CmdMixin``, in favor of the ``cmd_runner_fmt`` module util (https://github.com/ansible-collections/community.general/pull/5370).
+- CmdMixin module utils - deprecated in favor of the ``CmdRunner`` module util (https://github.com/ansible-collections/community.general/pull/5370).
+- CmdModuleHelper module utils - deprecated in favor of the ``CmdRunner`` module util (https://github.com/ansible-collections/community.general/pull/5370).
+- CmdStateModuleHelper module utils - deprecated in favor of the ``CmdRunner`` module util (https://github.com/ansible-collections/community.general/pull/5370).
+- django_manage - support for Django releases older than 4.1 has been deprecated and will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/5400).
+- django_manage - support for the commands ``cleanup``, ``syncdb`` and ``validate`` that have been deprecated in Django long time ago will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/5400).
+- django_manage - the behavior of "creating the virtual environment when missing" is being deprecated and will be removed in community.general version 9.0.0 (https://github.com/ansible-collections/community.general/pull/5405).
+- lxc_container - the module will no longer make any effort to support Python 2 (https://github.com/ansible-collections/community.general/pull/5304).
+- newrelic_deployment - ``appname`` and ``environment`` are no longer valid options in the v2 API. They will be removed in community.general 7.0.0 (https://github.com/ansible-collections/community.general/pull/5341).
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- napalm - Removed unused connection plugin.
+- net_banner - Use <network_os>_banner instead.
+- net_interface - Use <network_os>_interfaces instead.
+- net_l2_interface - Use <network_os>_l2_interfaces instead.
+- net_l3_interface - Use <network_os>_l3_interfaces instead.
+- net_linkagg - Use <network_os>_lag_interfaces instead.
+- net_lldp - Use <network_os>_lldp_global instead.
+- net_lldp_interface - Use <network_os>_lldp_interfaces instead.
+- net_logging - Use <network_os>_logging_global instead.
+- net_static_route - Use <network_os>_static_routes instead.
+- net_system - Use <network_os>_system instead.
+- net_user - Use <network_os>_user instead.
+- net_vlan - Use <network_os>_vlans instead.
+- net_vrf - Use <network_os>_vrf instead.
+
+cisco.ios
+~~~~~~~~~
+
+- ios_interface - use ios_interfaces instead.
+- ios_l2_interface - use ios_l2_interfaces instead.
+- ios_l3_interface - use ios_l3_interfaces instead.
+- ios_static_route - use ios_static_routes instead.
+- ios_vlan - use ios_vlans instead.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- iosxr_interface - use iosxr_interfaces instead.
+
+cisco.nxos
+~~~~~~~~~~
+
+- This release removes the following deprecated plugins that have reached their end-of-life.
+- nxos_acl
+- nxos_acl_interface
+- nxos_interface
+- nxos_interface_ospf
+- nxos_l2_interface
+- nxos_l3_interface
+- nxos_linkagg
+- nxos_lldp
+- nxos_ospf
+- nxos_ospf_vrf
+- nxos_smu
+- nxos_static_route
+- nxos_vlan
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vca_fw - The deprecated module ``vca_fw`` has been removed.
+- vca_nat - The deprecated module ``vca_nat`` has been removed.
+- vca_vapp - The deprecated module ``vca_vapp`` has been removed.
+- vmware_dns_config - The deprecated module ``vmware_dns_config`` has been removed, you can use ``vmware_host_dns`` instead.
+- vmware_guest_network - The deprecated parameter ``networks`` has been removed, use loops to handle multiple interfaces (https://github.com/ansible-collections/community.vmware/pull/1459).
+- vmware_guest_vnc - The deprecated module ``vmware_guest_vnc`` has been removed. The VNC support has been dropped with vSphere 7 and later (https://github.com/ansible-collections/community.vmware/pull/1454).
+- vmware_host_firewall_manager - The module doesn't accept a list for ``allowed_hosts`` anymore, use a dict instead. Additionally, ``all_ip`` is now a required sub-option of ``allowed_hosts`` (https://github.com/ansible-collections/community.vmware/pull/1463).
+- vsphere_copy - The deprecated parameters ``host`` and ``login`` have been removed. Use ``hostname`` and ``username`` instead (https://github.com/ansible-collections/community.vmware/pull/1456).
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- Remove following deprecated Junos Modules.
+- junos_interface
+- junos_l2_interface
+- junos_l3_interface
+- junos_linkagg
+- junos_lldp
+- junos_lldp_interface
+- junos_static_route
+- junos_vlan
+
+vyos.vyos
+~~~~~~~~~
+
+- vyos_interface - use vyos_interfaces instead.
+- vyos_l3_interface - use vyos_l3_interfaces instead.
+- vyos_linkagg - use vyos_lag_interfaces instead.
+- vyos_lldp - use vyos_lldp_global instead.
+- vyos_lldp_interface - use vyos_lldp_interfaces instead.
+- vyos_static_route - use vyos_static_routes instead.
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- BSD network facts - Do not assume column indexes, look for ``netmask`` and ``broadcast`` for determining the correct columns when parsing ``inet`` line (https://github.com/ansible/ansible/issues/79117)
+- Do not crash when templating an expression with a test or filter that is not a valid Ansible filter name (https://github.com/ansible/ansible/issues/78912, https://github.com/ansible/ansible/pull/78913).
+- Fix reusing a connection in a task loop that uses a redirected or aliased name - https://github.com/ansible/ansible/issues/78425
+- Fix setting become activation in a task loop - https://github.com/ansible/ansible/issues/78425
+- ansible-config limit shorthand format to assigned values
+- ansible-test - Update the ``pylint`` sanity test to use version 2.15.4.
+- apt module should not traceback on invalid type given as package. issue 78663.
+- handlers - fix an issue where the ``flush_handlers`` meta task could not be used with FQCN: ``ansible.builtin.meta`` (https://github.com/ansible/ansible/issues/79023)
+- keyword inheritance - Ensure that we do not squash keywords in validate (https://github.com/ansible/ansible/issues/79021)
+- known_hosts - do not return changed status when a non-existing key is removed (https://github.com/ansible/ansible/issues/78598)
+- omit on keywords was resetting to default value, ignoring inheritance.
+- plugin loader, fix detection for existing configuration before initializing for a plugin
+- service_facts - Use python re to parse service output instead of grep (https://github.com/ansible/ansible/issues/78541)
+
+amazon.aws
+~~~~~~~~~~
+
+- aws_ec2 - address a regression introduced in 4.1.0 (https://github.com/ansible-collections/amazon.aws/pull/862) that cause the presnse of duplicated hosts in the inventory.
+- cloudtrail - Fix key error TagList to TagsList (https://github.com/ansible-collections/amazon.aws/issues/1088).
+- ec2_instance - Only show the deprecation warning for the default value of ``instance_type`` when ``count`` or ``exact_count`` are specified (https://github.com//issues/980).
+- ec2_metadata_facts - fix ``'NoneType' object is not callable`` exception when using Ansible 2.13+ (https://github.com/ansible-collections/amazon.aws/issues/942).
+- ec2_metadata_facts - fixed ``AttributeError`` (https://github.com/ansible-collections/amazon.aws/issues/1134).
+- ec2_vpc_net_info - fix KeyError (https://github.com/ansible-collections/amazon.aws/pull/1109).
+- ec2_vpc_net_info - remove hardcoded ``ClassicLinkEnabled`` parameter when request for ``ClassicLinkDnsSupported`` failed (https://github.com/ansible-collections/amazon.aws/pull/1109).
+- module_utils/botocore - fix ``object has no attribute 'fail'`` error in error handling (https://github.com/ansible-collections/amazon.aws/pull/1045).
+- module_utils/elbv2 - fixes ``KeyError`` when using ``UseExistingClientSecret`` rather than ``ClientSecret`` (https://github.com/ansible-collections/amazon.aws/pull/940).
+- module_utils/elbv2 - improvements to idempotency when comparing listeners (https://github.com/ansible-collections/community.aws/issues/604).
+- s3_object - also use ``ignore_nonexistent_bucket`` when listing a bucket (https://github.com/ansible-collections/amazon.aws/issues/966).
+- s3_object - be more defensive when checking the results of ``s3.get_bucket_ownership_controls`` (https://github.com/ansible-collections/amazon.aws/issues/1115).
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- libssh - check for minimum ansible-pylibssh version before using password_prompt option. (https://github.com/ansible-collections/ansible.netcommon/pull/467)
+
+chocolatey.chocolatey
+~~~~~~~~~~~~~~~~~~~~~
+
+- win_chocolatey - Collection version 1.3.0 fails to install packages with explicit version number and state set to present.
+
+cisco.aci
+~~~~~~~~~
+
+- Fix HTTP status returned by aci_rest (#279)
+- Fix aci_aep_to_epg absent issue to only delete the correct binding (#263)
+- Fix aci_interface_description query interface filtering (#238)
+- Fix aci_interface_selector_to_switch_policy_leaf_profile error when querying interface_selector without specifying a switch policy leaf profile (#318)
+- Fix aci_rest output_path issues when content is not JSON
+
+cisco.ios
+~~~~~~~~~
+
+- facts - fix operstatus having a white space after value.
+- ios_static_routes - fix vrf for ipv6 static routes (https://github.com/ansible-collections/cisco.ios/issues/660).
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- Fixing model/version facts gathering (https://github.com/ansible-collections/cisco.iosxr/issues/282)
+- iosxr_bgp_neighbor_address_family - Added alias to render as_overrride under vrfs as as_override.
+
+cisco.ise
+~~~~~~~~~
+
+- aci_settings - A validation has been added to the update method.
+- allowed_protocols - A validation has been added to the update method.
+- anc_policy - A validation has been added to the update method.
+- authorization_profile - A validation has been added to the update method.
+- byod_portal - A validation has been added to the update method.
+- certificate_profile - A validation has been added to the update method.
+- downloadable_acl - A validation has been added to the update method.
+- egress_matrix_cell - A validation has been added to the update method.
+- endpoint - A validation has been added to the update method.
+- endpoint_group - A validation has been added to the update method.
+- external_radius_server - A validation has been added to the update method.
+- filter_policy - A validation has been added to the update method.
+- filter_policy - removed the required id when it is a post method.
+- guest_smtp_notification_settings - A validation has been added to the update method.
+- guest_smtp_notification_settings - removed the required id when it is a post method.
+- guest_ssid - A validation has been added to the update method.
+- guest_type - A validation has been added to the update method.
+- guest_user - A validation has been added to the update method.
+- hotspot_portal - A validation has been added to the update method.
+- id_store_sequence - A validation has been added to the update method.
+- identity_group - A validation has been added to the update method.
+- my_device_portal - A validation has been added to the update method.
+- native_supplicant_profile - A validation has been added to the update method.
+- network_access_network_condition -  fixed a request body of the post and put method.
+- network_device - A validation has been added to the update method.
+- network_device_group - A validation has been added to the update method.
+- personas_utils - Warning message removed.
+- portal_global_setting - A validation has been added to the update method.
+- portal_theme - A validation has been added to the update method.
+- radius_server_sequence - A validation has been added to the update method.
+- rest_id_store - A validation has been added to the update method.
+- self_registered_portal - A validation has been added to the update method.
+- sg_acl - A validation has been added to the update method.
+- sg_mapping - A validation has been added to the update method.
+- sg_mapping_group - A validation has been added to the update method.
+- sg_to_vn_to_vlan - A validation has been added to the update method.
+- sgt - A validation has been added to the update method.
+- sponsor_group - A validation has been added to the update method.
+- sponsor_portal - A validation has been added to the update method.
+- sponsored_guest_portal - A validation has been added to the update method.
+- sxp_connections - A validation has been added to the update method.
+- sxp_connections - removed the required id when it is a post method.
+- sxp_local_bindings - A validation has been added to the update method.
+- sxp_vpns - removed the required id when it is a post method.
+- tacacs_command_sets - A validation has been added to the update method.
+- tacacs_external_servers - A validation has been added to the update method.
+- tacacs_profile - A validation has been added to the update method.
+- tacacs_server_sequence - A validation has been added to the update method.
+
+cisco.mso
+~~~~~~~~~
+
+- Fix time issue when host running ansible is in a different timezone then NDO
+- Remove mso_guide from notes
+
+cisco.nxos
+~~~~~~~~~~
+
+- `nxos_telemetry` - Allow destination-group & sensor-group id to be strings.
+- `nxos_telemetry` - Allow sensor-group paths to be generated without additional properties.
+
+community.aws
+~~~~~~~~~~~~~
+
+- ec2_placement_group - Handle a potential race creation during the creation of a new Placement Group (https://github.com/ansible-collections/community.aws/pull/1477).
+- elb_network_lb - fixes bug where ``ip_address_type`` in return value was not updated (https://github.com/ansible-collections/community.aws/pull/1365).
+- rds_cluster - fixes bug where specifiying an rds cluster parameter group raises a `KeyError` (https://github.com/ansible-collections/community.aws/pull/1417).
+- s3_sync - fix etag generation when running in FIPS mode (https://github.com/ansible-collections/community.aws/issues/757).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme_* modules - improve feedback when importing ``cryptography`` does not work (https://github.com/ansible-collections/community.crypto/issues/518, https://github.com/ansible-collections/community.crypto/pull/519).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- archive - avoid crash when ``lzma`` is not present and ``format`` is not ``xz`` (https://github.com/ansible-collections/community.general/pull/5393).
+- ini_file - minor refactor fixing a python lint error (https://github.com/ansible-collections/community.general/pull/5307).
+- ldap_attrs - fix ordering issue by ignoring the ``{x}`` prefix on attribute values (https://github.com/ansible-collections/community.general/issues/977, https://github.com/ansible-collections/community.general/pull/5385).
+- locale_gen - fix support for Ubuntu (https://github.com/ansible-collections/community.general/issues/5281).
+- lxc_container - the module has been updated to support Python 3 (https://github.com/ansible-collections/community.general/pull/5304).
+- nmcli - fix error when setting previously unset MAC address, ``gsm.apn`` or ``vpn.data``: current values were being normalized without checking if they might be ``None`` (https://github.com/ansible-collections/community.general/pull/5291).
+- opentelemetry callback plugin - support opentelemetry-api 1.13.0 that removed support for ``_time_ns`` (https://github.com/ansible-collections/community.general/pull/5342).
+- pfexec become plugin - remove superflous quotes preventing exe wrap from working as expected (https://github.com/ansible-collections/community.general/issues/3671, https://github.com/ansible-collections/community.general/pull/3889).
+- pkgng - fix case when ``pkg`` fails when trying to upgrade all packages (https://github.com/ansible-collections/community.general/issues/5363).
+- proxmox_kvm - fix ``agent`` parameter when boolean value is specified (https://github.com/ansible-collections/community.general/pull/5198).
+- redhat_subscription - make module idempotent when ``pool_ids`` are used (https://github.com/ansible-collections/community.general/issues/5313).
+- virtualbox inventory plugin - skip parsing values with keys that have both a value and nested data. Skip parsing values that are nested more than two keys deep (https://github.com/ansible-collections/community.general/issues/5332, https://github.com/ansible-collections/community.general/pull/5348).
+- xenserver_facts - fix broken ``AnsibleModule`` call that prevented the module from working at all (https://github.com/ansible-collections/community.general/pull/5383).
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- Add support for more elasticsearch version as datasource (#263)
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_dvs_portgroup - Fix update of NetFlow Setting (https://github.com/ansible-collections/community.vmware/pull/1443).
+- vmware_tag_manager - Fix idempotency for state `set` (https://github.com/ansible-collections/community.vmware/issues/1265).
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_asm_policy_server_technology - fix issue with naming during discovery
+- bigip_asm_policy_signature_set - fix issue with naming during discovery
+- bigip_data_group - fixed bug discovered while updating records in internal data group
+- bigip_software_install - fixed bug related to installing hotfix image on vcmp guest
+
+netapp.cloudmanager
+~~~~~~~~~~~~~~~~~~~
+
+- na_cloudmanager_connector_gcp - Fix default machine_type value on the GCP connector.
+- new meta/execution-environment.yml is failing ansible-builder sanitize step.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_cifs - fix KeyError on ``unix_symlink`` field when using REST.
+- na_ontap_cifs_acl - use ``type`` when deleting unix-user or unix-group from ACL in ZAPI.
+- na_ontap_command - do not run command in check_mode (thanks to darksoul42).
+- na_ontap_ems_destination - fix idempotency issue when ``type`` value is rest_api.
+- na_ontap_interface - improve error message when interface type is required with REST.
+- na_ontap_qtree - fix KeyError on unix_permissions.
+- na_ontap_rest_cli - do not run command in check_mode (thanks to darksoul42).
+- na_ontap_s3_groups - if `policies` is None module should no longer fail
+- na_ontap_user - fix idempotency issue with 9.11 because of new is_ldap_fastbind field.
+- na_ontap_volume_efficiency - Missing fields in REST get should return None and not crash module.
+- new meta/execution-environment.yml is failing ansible-builder sanitize step.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Fix idempotency with custom_fields [#839](https://github.com/netbox-community/ansible_modules/pull/839)
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- Fix ovirtvmipsv4 when using attribute (https://github.com/oVirt/ovirt-ansible-collection/pull/596).
+- he-setup - fix static ipv6 ifcfg setup (https://github.com/oVirt/ovirt-ansible-collection/pull/592).
+- ovirt_host - Honor activate and reboot_after_installation when they are set to false with reinstalled host state (https://github.com/oVirt/ovirt-ansible-collection/pull/587).
+- repositories - RHV 4.4 SP1 is supported only on RHEL 8.6 EUS (https://github.com/oVirt/ovirt-ansible-collection/pull/576).
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- Properly use FQCN notation when redirecting the old ``foreman_*`` and ``katello_*`` module names. (https://github.com/theforeman/foreman-ansible-modules/issues/1484)
+- convert2rhel role - Content views for activation keys (https://bugzilla.redhat.com/2118790)
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_user - Issue(192043) The module may error out with the message ``unable to perform the import or export operation because there are pending attribute changes or a configuration job is in progress``. Wait for the job to complete and run the task again.
+- ome_application_alerts_syslog - Issue(215374) - The module does not provide a proper error message if the destination_address is more than 255 characters.
+- ome_device_network_services - Issue(212681) - The module does not provide a proper error message if unsupported values are provided for the parameters- port_number, community_name, max_sessions, max_auth_retries, and idle_timeout.
+- ome_device_power_settings - Issue(212679) - The module displays the following message if the value provided for the parameter ``power_cap`` is not within the supported range of 0 to 32767, ``Unable to complete the request because PowerCap does not exist or is not applicable for the resource URI.``
+- ome_smart_fabric_uplink - Issue(186024) - The module does not allow the creation of multiple uplinks of the same name even though it is supported by OpenManage Enterprise Modular. If an uplink is created using the same name as an existing uplink, the existing uplink is modified.
+
+New Plugins
+-----------
+
+Test
+~~~~
+
+- ansible.builtin.uri - is the string a valid URI
+- ansible.builtin.url - is the string a valid URL
+- ansible.builtin.urn - is the string a valid URN
+
+New Modules
+-----------
+
+amazon.aws
+~~~~~~~~~~
+
+- amazon.aws.cloudtrail_info - Gather information about trails in AWS Cloud Trail.
+- amazon.aws.cloudwatch_metric_alarm_info - Gather information about the alarms for the specified metric
+- amazon.aws.s3_object_info - Gather information about objects in S3
+
+community.aws
+~~~~~~~~~~~~~
+
+- community.aws.accessanalyzer_validate_policy_info - Performs validation of IAM policies
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+Cloud
+^^^^^
+
+Misc
+....
+
+- community.general.proxmox_disk - Management of a disk of a Qemu(KVM) VM in a Proxmox VE cluster.
+
+Scaleway
+........
+
+- community.general.scaleway_container_registry - Scaleway Container registry management module
+- community.general.scaleway_container_registry_info - Scaleway Container registry info module
+
+Files
+^^^^^
+
+- community.general.iso_customize - Add/remove/change files in ISO file
+
+Identity
+^^^^^^^^
+
+Keycloak
+........
+
+- community.general.keycloak_user_rolemapping - Allows administration of Keycloak user_rolemapping with the Keycloak API
+
+Remote Management
+^^^^^^^^^^^^^^^^^
+
+Manageiq
+........
+
+- community.general.manageiq_policies_info - Listing of resource policy_profiles in ManageIQ
+- community.general.manageiq_tags_info - Retrieve resource tags in ManageIQ
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- community.vmware.vmware_datastore - Configure Datastores
+
+ibm.spectrum_virtualize
+~~~~~~~~~~~~~~~~~~~~~~~
+
+- ibm.spectrum_virtualize.ibm_sv_manage_provisioning_policy - Manages provisioning policy on Spectrum Virtualize systems
+- ibm.spectrum_virtualize.ibm_sv_manage_replication_policy - Manages policy based replication on Spectrum Virtualize systems
+- ibm.spectrum_virtualize.ibm_sv_manage_ssl_certificate - Allows user to export an existing system certificate on Spectrum Virtualize storage systems
+- ibm.spectrum_virtualize.ibm_sv_manage_truststore_for_replication - Manages the certificates trust store on Spectrum Virtualize storage systems
+- ibm.spectrum_virtualize.ibm_sv_switch_replication_direction - Allows user to switch replication direction in case of DR on Spectrum Virtualize storage systems
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- netapp.ontap.na_ontap_security_ssh - NetApp ONTAP security ssh
+
+Unchanged Collections
+---------------------
+
+- ansible.posix (still version 1.4.0)
+- ansible.utils (still version 2.6.1)
+- ansible.windows (still version 1.11.1)
+- azure.azcollection (still version 1.13.0)
+- check_point.mgmt (still version 4.0.0)
+- cisco.dnac (still version 6.6.0)
+- cisco.meraki (still version 2.11.0)
+- cisco.nso (still version 1.0.3)
+- cisco.ucs (still version 1.8.0)
+- cloud.common (still version 2.1.2)
+- cloudscale_ch.cloud (still version 2.2.2)
+- community.azure (still version 2.0.0)
+- community.ciscosmb (still version 1.0.5)
+- community.docker (still version 3.1.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.hashi_vault (still version 3.3.1)
+- community.hrobot (still version 1.5.2)
+- community.libvirt (still version 1.2.0)
+- community.mongodb (still version 1.4.2)
+- community.mysql (still version 3.5.1)
+- community.network (still version 4.0.1)
+- community.okd (still version 2.2.0)
+- community.postgresql (still version 2.2.0)
+- community.proxysql (still version 1.4.0)
+- community.rabbitmq (still version 1.2.2)
+- community.routeros (still version 2.3.0)
+- community.sap (still version 1.0.0)
+- community.sap_libs (still version 1.3.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.4.1)
+- community.windows (still version 1.11.0)
+- community.zabbix (still version 1.8.0)
+- containers.podman (still version 1.9.4)
+- cyberark.conjur (still version 1.2.0)
+- cyberark.pas (still version 1.0.14)
+- dellemc.enterprise_sonic (still version 2.0.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- fortinet.fortimanager (still version 2.1.5)
+- fortinet.fortios (still version 2.1.7)
+- frr.frr (still version 2.0.0)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.8.2)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.1.0)
+- kubernetes.core (still version 2.3.2)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.storagegrid (still version 21.11.1)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.3.1)
+- ngine_io.cloudstack (still version 2.2.4)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.2)
+- openvswitch.openvswitch (still version 2.1.0)
+- purestorage.flasharray (still version 1.14.0)
+- purestorage.flashblade (still version 1.10.0)
+- purestorage.fusion (still version 1.1.1)
+- sensu.sensu_go (still version 1.13.1)
+- splunk.es (still version 2.1.0)
+- t_systems_mms.icinga_director (still version 1.31.0)
+- vmware.vmware_rest (still version 2.2.0)
+- wti.remote (still version 1.0.4)
+
 v7.0.0a1
 ========
 
@@ -436,7 +1580,7 @@ amazon.aws
 - aws_s3 - The ``aws_s3`` module has been renamed to ``s3_object`` (https://github.com/ansible-collections/amazon.aws/pull/869).
 - aws_s3 - ``resource_tags`` has been added as an alias for the ``tags`` parameter (https://github.com/ansible-collections/amazon.aws/pull/845).
 - aws_ssm - Add support for ``endpoint`` parameter (https://github.com/ansible-collections/amazon.aws/pull/837).
-- ec2_eni - Change parameter ``device_index`` data type to string when passing to `describe_network_inter` api call (https://github.com/ansible-collections/amazon.aws/pull/877).
+- ec2_eni - Change parameter ``device_index`` data type to string when passing to ``describe_network_inter`` api call (https://github.com/ansible-collections/amazon.aws/pull/877).
 - ec2_eni - ``resource_tags`` has been added as an alias for the ``tags`` parameter (https://github.com/ansible-collections/amazon.aws/pull/845).
 - ec2_group - add ``egress_rules`` as an alias for ``rules_egress`` (https://github.com/ansible-collections/amazon.aws/pull/878).
 - ec2_group - add ``purge_egress_rules`` as an alias for ``purge_rules_egress`` (https://github.com/ansible-collections/amazon.aws/pull/878).
@@ -617,7 +1761,7 @@ community.aws
 - ec2_vpc_vpn - ``resource_tags`` has been added as an alias for the ``tags`` parameter (https://github.com/ansible-collections/community.aws/pull/1185).
 - ec2_vpc_vpn - the default value for ``tags`` has been updated, to remove all tags the ``tags`` parameter must be explicitly set to the empty dict ``{}`` and ``purge_tags`` to ``True`` (https://github.com/ansible-collections/community.aws/pull/1183).
 - ecs_ecr - Will now return repository permission policy if it exists, even if we did not create or modify it. (https://github.com/ansible-collections/community.aws/pull/1171).
-- ecs_ecr - add `force_absent` parameter for removing repositories that contain images (https://github.com/ansible-collections/community.aws/pull/1316).
+- ecs_ecr - add ``force_absent`` parameter for removing repositories that contain images (https://github.com/ansible-collections/community.aws/pull/1316).
 - ecs_service - Now allows for a ``capacity_provider_strategy`` to be utilized when creating/updating a service (https://github.com/ansible-collections/community.aws/pull/1181).
 - ecs_service - ``deployment_circuit_breaker`` has been added as a supported feature (https://github.com/ansible-collections/community.aws/pull/1215).
 - ecs_service - add ``service`` alias to address the ecs service name with the same parameter as the ecs_service_info module is doing (https://github.com/ansible-collections/community.aws/pull/1187).
@@ -645,7 +1789,6 @@ community.aws
 - iam_server_certificate - the deprecations for ``cert_chain``, ``cert``, ``key`` and ``dup_ok`` have been extended from release 4.0.0 to release 5.0.0 (https://github.com/ansible-collections/community.aws/pull/1256).
 - iam_user - ``resource_tags`` has been added as an alias for the ``tags`` parameter (https://github.com/ansible-collections/community.aws/pull/1182).
 - iam_user - add ``user`` value to return data structure to deprecate old ``iam_user`` (https://github.com/ansible-collections/community.aws/pull/1059).
-- iam_user - add `user` value to return data structure to deprecate old `iam_user` (https://github.com/ansible-collections/community.aws/pull/1059).
 - lambda - ``resource_tags`` has been added as an alias for the ``tags`` parameter (https://github.com/ansible-collections/community.aws/pull/1202).
 - lambda - add kms_key_arn parameter (https://github.com/ansible-collections/community.aws/pull/1108).
 - lambda - the behavior for ``tags`` has been updated, to remove all tags the ``tags`` parameter must be explicitly set to the empty dict ``{}`` and ``purge_tags`` to ``True`` (https://github.com/ansible-collections/community.aws/pull/1202).
@@ -654,7 +1797,6 @@ community.aws
 - rds_cluster - ``resource_tags`` has been added as an alias for the ``tags`` parameter (https://github.com/ansible-collections/community.aws/pull/1182).
 - rds_instance - ``resource_tags`` has been added as an alias for the ``tags`` parameter (https://github.com/ansible-collections/community.aws/pull/1182).
 - rds_instance - add ``deletion_protection`` parameter (https://github.com/ansible-collections/community.aws/pull/1105).
-- rds_instance - add `deletion_protection` parameter (https://github.com/ansible-collections/community.aws/pull/1105).
 - rds_instance - add snapshot tests to test suite to test restoring db from snapshot (https://github.com/ansible-collections/community.aws/pull/1081).
 - rds_instance - add support for addition/removal of iam roles to db instance (https://github.com/ansible-collections/community.aws/pull/1002).
 - rds_instance_info - add retries on common AWS failures (https://github.com/ansible-collections/community.aws/pull/1026).
@@ -1777,14 +2919,14 @@ community.aws
 
 - aws_api_gateway_domain - added the ``aws_api_gateway_domain`` module to the aws module_defaults group (https://github.com/ansible-collections/community.aws/pull/1283).
 - aws_codebuild - fix bug where the result may be spuriously flagged as ``changed`` when multiple tags were set on the project (https://github.com/ansible-collections/community.aws/pull/1221).
-- aws_config_aggregator - Fix `KeyError` when updating existing aggregator (https://github.com/ansible-collections/community.aws/pull/645).
+- aws_config_aggregator - Fix ``KeyError`` when updating existing aggregator (https://github.com/ansible-collections/community.aws/pull/645).
 - aws_config_aggregator - Fix idempotency when ``account_sources`` parameter is not specified (https://github.com/ansible-collections/community.aws/pull/645).
 - aws_ssm - pull S3 bucket region for session generated for file transfer during playbooks (https://github.com/ansible-collections/community.aws/issues/1190).
 - aws_ssm connection plugin - fix linting errors in documentation data (https://github.com/ansible-collections/community.aws/pull/965).
 - aws_ssm_parameter_store - fix exception when description was set without value (https://github.com/ansible-collections/community.aws/pull/1241).
 - aws_ssm_parameter_store - fixed bug where module wasn't consistently idempotent (https://github.com/ansible-collections/community.aws/pull/1309).
 - cloudfront_response_headers_policy - added the ``cloudfront_response_headers_policy`` module to the aws module_defaults group (https://github.com/ansible-collections/community.aws/pull/1283).
-- don't require `db_instance_identifier` on state = present (https://github.com/ansible-collections/community.aws/pull/1078).
+- don't require ``db_instance_identifier`` on state = present (https://github.com/ansible-collections/community.aws/pull/1078).
 - dynamodb_table - fix an issue when creating secondary indexes with global_keys_only (https://github.com/ansible-collections/community.aws/issues/967).
 - ec2_asg - Change the default value of ``purge_tags`` to ``false``. Restores previous behaviour (https://github.com/ansible-collections/community.aws/pull/1064).
 - ec2_vpc_peer - fix idempotency when requester/accepter is reversed (https://github.com/ansible-collections/community.aws/issues/580).
@@ -1803,7 +2945,6 @@ community.aws
 - execute_lambda - add waiter for function_updated (https://github.com/ansible-collections/community.aws/pull/1108).
 - execute_lambda - fix check mode and update RETURN documentation (https://github.com/ansible-collections/community.aws/pull/1115).
 - iam_policy - require one of ``policy_document`` and ``policy_json`` when state is present to prevent MalformedPolicyDocumentException from being thrown (https://github.com/ansible-collections/community.aws/pull/1093).
-- iam_policy - require one of `policy_document` and `policy_json` when state is present to prevent MalformedPolicyDocumentException from being thrown (https://github.com/ansible-collections/community.aws/pull/1093).
 - iam_user - don't delete user login profile on check mode (https://github.com/ansible-collections/community.aws/pull/1059).
 - iam_user_info - gracefully handle when no users are found (https://github.com/ansible-collections/community.aws/pull/1059).
 - kms_key_info - handle access denied errors more liberally (https://github.com/ansible-collections/community.aws/issues/206).
@@ -2271,13 +3412,6 @@ Lookup
 ~~~~~~
 
 - community.general.bitwarden - Retrieve secrets from Bitwarden
-
-Test
-~~~~
-
-- ansible.builtin.uri - is the string a valid URI
-- ansible.builtin.url - is the string a valid URL
-- ansible.builtin.urn - is the string a valid URN
 
 New Modules
 -----------
