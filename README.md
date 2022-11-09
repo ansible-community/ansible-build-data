@@ -49,10 +49,44 @@ Release engineers check the [milestones](https://github.com/ansible-community/an
 
 To add a collection to the next Ansible major release that has not reached feature freeze:
 
-* Add the collection to the `ansible.in` file in a sub-directory named with a corresponding number.
-* In the same sub-directory, add the collection to the `collection-meta.yaml` file.
-  - The maintainer's GitHub user names need to be listed there.
-  - If the collection does not provide a changelog in `changelogs/changelog.yaml`, the URL to the actual changelog needs to be added.
+* Add the collection to the `ansible.in` file in a sub-directory named with a
+  corresponding number.
+* In the same sub-directory, add the collection to the `collection-meta.yaml`
+  file, as shown below.
+  - `maintainers` (list): The Github usernames of the collection's maintainers.
+  - `repository` (string): The URL of the collection's git repository.
+  - `collection-directory` (string): The collection's top level directory
+    relative to the Git repository root. The top level directory is where
+    `galaxy.yml` is located. For most collections, this should be set to `.`.
+    However, some collections, such as `awx.awx`, store the collection in a
+    subdirectory. In that case, `collection-directory` should be set to
+    `./SUBDIRECTORY` (`SUBDIRECTORY` is a placeholder for the actual
+    directory).
+  - `changelog-url` (string): If the collection does not provide a changelog in
+    `changelogs/changelog.yaml`, the URL to the actual changelog needs to be
+    added. Otherwise, this field should be ommitted.
+
+``` yaml
+collections:
+  # NAMESPACE.NAME
+  community.example:
+    # The Github usernames of this collection's maintainers
+    maintainers:
+      - person1
+      - person2
+    # The URL to the collection's SCM repository.
+    repository: https://github.com/ansible-collections/community.example
+    # This is the directory where galaxy.yml is stored relative to the
+    # repository root.
+    #
+    # For collections stored in the repository root:
+    collection-directory: "."
+    # For collections stored in a subdirectory:
+    collection-directory: "./SUBDIRECTORY"
+    # This is an optional field that should only be populated if the
+    # doesn't include a changelogs/changelog.yaml file.
+    # changelog-url: ...
+```
 
 ### The current Ansible major release
 
