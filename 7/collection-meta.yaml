@@ -144,6 +144,7 @@ collections:
     repository: https://github.com/ansible-collections/arista.eos
   awx.awx:
     repository: https://github.com/ansible/awx
+    collection-directory: "./awx_collection"
   azure.azcollection:
     repository: https://github.com/ansible-collections/azure
   check_point.mgmt:
@@ -286,3 +287,4 @@ collections:
     repository: https://github.com/ansible-collections/vyos.vyos
   wti.remote:
     repository: https://github.com/wtinetworkgear/wti-collection
+    collection-directory: "./wti/remote"
