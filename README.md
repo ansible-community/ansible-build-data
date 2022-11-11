@@ -83,7 +83,7 @@ collections:
     collection-directory: "."
     # For collections stored in a subdirectory:
     collection-directory: "./SUBDIRECTORY"
-    # This is an optional field that should only be populated if the
+    # This is an optional field that should only be populated if the collection
     # doesn't include a changelogs/changelog.yaml file.
     # changelog-url: ...
 ```
