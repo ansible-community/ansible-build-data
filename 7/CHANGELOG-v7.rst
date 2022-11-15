@@ -8,6 +8,192 @@ This changelog describes changes since Ansible 6.0.0.
   :local:
   :depth: 2
 
+v7.0.0rc1
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2022-11-15
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 7.0.0rc1 contains Ansible-core version 2.14.0.
+This is the same version of Ansible-core as in the previous Ansible release.
+
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------+-----------------+------------------+----------------------------------------------------------+
+| Collection            | Ansible 7.0.0b1 | Ansible 7.0.0rc1 | Notes                                                    |
++=======================+=================+==================+==========================================================+
+| cisco.ise             | 2.5.8           | 2.5.9            |                                                          |
++-----------------------+-----------------+------------------+----------------------------------------------------------+
+| community.dns         | 2.4.0           | 2.4.1            |                                                          |
++-----------------------+-----------------+------------------+----------------------------------------------------------+
+| community.general     | 6.0.0           | 6.0.1            |                                                          |
++-----------------------+-----------------+------------------+----------------------------------------------------------+
+| fortinet.fortimanager | 2.1.6           | 2.1.7            |                                                          |
++-----------------------+-----------------+------------------+----------------------------------------------------------+
+| netapp.ontap          | 22.0.0          | 22.0.1           | The collection did not have a changelog in this version. |
++-----------------------+-----------------+------------------+----------------------------------------------------------+
+| vultr.cloud           | 1.3.0           | 1.3.1            |                                                          |
++-----------------------+-----------------+------------------+----------------------------------------------------------+
+
+Major Changes
+-------------
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Fix compatibility issue for ansible 2.9.x and ansible-base 2.10.x.
+- support Ansible changelogs.
+
+Bugfixes
+--------
+
+cisco.ise
+~~~~~~~~~
+
+- licensing_eval_license_info - corrected the response
+- node_primary_to_standalone - fixed ansible changed response
+- node_secondary_to_primary - fixed ansible changed response
+- node_standalone_to_primary - fixed ansible changed response
+- system_certificate - a missing parameter was added allowWildcardDelete
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+- wait_for_txt - also retrieve IPv6 addresses of nameservers. Prevents failures with IPv6 only nameservers (https://github.com/ansible-collections/community.dns/issues/120, https://github.com/ansible-collections/community.dns/pull/121).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- dependent lookup plugin - avoid warning on deprecated parameter for ``Templar.template()`` (https://github.com/ansible-collections/community.general/pull/5543).
+- jenkins_build - fix the logical flaw when deleting a Jenkins build (https://github.com/ansible-collections/community.general/pull/5514).
+- one_vm - avoid splitting labels that are ``None`` (https://github.com/ansible-collections/community.general/pull/5489).
+- onepassword_raw - add missing parameter to plugin documentation (https://github.com/ansible-collections/community.general/issues/5506).
+- proxmox_disk - avoid duplicate ``vmid`` reference (https://github.com/ansible-collections/community.general/issues/5492, https://github.com/ansible-collections/community.general/pull/5493).
+
+vultr.cloud
+~~~~~~~~~~~
+
+- instance - Fixed an issue with ssh keys being ignored when deploying an new instance.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 5.1.0)
+- ansible.netcommon (still version 4.1.0)
+- ansible.posix (still version 1.4.0)
+- ansible.utils (still version 2.7.0)
+- ansible.windows (still version 1.12.0)
+- arista.eos (still version 6.0.0)
+- awx.awx (still version 21.8.0)
+- azure.azcollection (still version 1.14.0)
+- check_point.mgmt (still version 4.0.0)
+- chocolatey.chocolatey (still version 1.3.1)
+- cisco.aci (still version 2.3.0)
+- cisco.asa (still version 4.0.0)
+- cisco.dnac (still version 6.6.0)
+- cisco.intersight (still version 1.0.20)
+- cisco.ios (still version 4.0.0)
+- cisco.iosxr (still version 4.0.2)
+- cisco.meraki (still version 2.11.0)
+- cisco.mso (still version 2.1.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 4.0.0)
+- cisco.ucs (still version 1.8.0)
+- cloud.common (still version 2.1.2)
+- cloudscale_ch.cloud (still version 2.2.2)
+- community.aws (still version 5.0.0)
+- community.azure (still version 2.0.0)
+- community.ciscosmb (still version 1.0.5)
+- community.crypto (still version 2.8.1)
+- community.digitalocean (still version 1.22.0)
+- community.docker (still version 3.2.1)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.5.3)
+- community.hashi_vault (still version 4.0.0)
+- community.hrobot (still version 1.6.0)
+- community.libvirt (still version 1.2.0)
+- community.mongodb (still version 1.4.2)
+- community.mysql (still version 3.5.1)
+- community.network (still version 5.0.0)
+- community.okd (still version 2.2.0)
+- community.postgresql (still version 2.3.0)
+- community.proxysql (still version 1.4.0)
+- community.rabbitmq (still version 1.2.3)
+- community.routeros (still version 2.3.1)
+- community.sap (still version 1.0.0)
+- community.sap_libs (still version 1.3.0)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.4.1)
+- community.vmware (still version 3.1.0)
+- community.windows (still version 1.11.1)
+- community.zabbix (still version 1.8.0)
+- containers.podman (still version 1.9.4)
+- cyberark.conjur (still version 1.2.0)
+- cyberark.pas (still version 1.0.14)
+- dellemc.enterprise_sonic (still version 2.0.0)
+- dellemc.openmanage (still version 6.3.0)
+- dellemc.os10 (still version 1.1.1)
+- dellemc.os6 (still version 1.0.7)
+- dellemc.os9 (still version 1.0.4)
+- f5networks.f5_modules (still version 1.20.0)
+- fortinet.fortios (still version 2.1.7)
+- frr.frr (still version 2.0.0)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.0.2)
+- hetzner.hcloud (still version 1.8.2)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.1.0)
+- ibm.spectrum_virtualize (still version 1.10.0)
+- infinidat.infinibox (still version 1.3.7)
+- infoblox.nios_modules (still version 1.4.0)
+- inspur.ispim (still version 1.2.0)
+- inspur.sm (still version 2.3.0)
+- junipernetworks.junos (still version 4.0.0)
+- kubernetes.core (still version 2.3.2)
+- lowlydba.sqlserver (still version 1.0.4)
+- mellanox.onyx (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.21.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.storagegrid (still version 21.11.1)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.3.1)
+- netbox.netbox (still version 3.8.1)
+- ngine_io.cloudstack (still version 2.2.4)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.2)
+- openstack.cloud (still version 1.10.0)
+- openvswitch.openvswitch (still version 2.1.0)
+- ovirt.ovirt (still version 2.3.1)
+- purestorage.flasharray (still version 1.14.0)
+- purestorage.flashblade (still version 1.10.0)
+- purestorage.fusion (still version 1.1.1)
+- sensu.sensu_go (still version 1.13.1)
+- splunk.es (still version 2.1.0)
+- t_systems_mms.icinga_director (still version 1.31.4)
+- theforeman.foreman (still version 3.7.0)
+- vmware.vmware_rest (still version 2.2.0)
+- vyos.vyos (still version 4.0.0)
+- wti.remote (still version 1.0.4)
+
 v7.0.0b1
 ========
 
@@ -80,7 +266,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
 | dellemc.openmanage            | 6.2.0           | 6.3.0           |                                                                                                                              |
 +-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
-| fortinet.fortimanager         | 2.1.5           | 2.1.6           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
+| fortinet.fortimanager         | 2.1.5           | 2.1.6           |                                                                                                                              |
 +-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
 | inspur.ispim                  | 1.1.0           | 1.2.0           |                                                                                                                              |
 +-------------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -119,6 +305,12 @@ dellemc.openmanage
 
 - idrac_redfish_storage_controller - This module is enhanced to support LockVirtualDisk operation.
 - idrac_virtual_media - This module allows to configure Remote File Share settings.
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Many fixes for Ansible sanity test warnings & errors.
+- Support FortiManager Schema 7.2.0 , 98 new modules
 
 Minor Changes
 -------------
@@ -330,6 +522,11 @@ community.vmware
 - vmware_host_lockdown - Add the ability to enable ``strict`` lockdown mode (https://github.com/ansible-collections/community.vmware/pull/1514).
 - vmware_host_lockdown - Add two new choices for ``state``, ``disabled`` and ``normal``, to replace ``absent`` and ``present``. Please note that ``absent`` and ``present`` will be removed in the next major release (https://github.com/ansible-collections/community.vmware/pull/1514).
 - vmware_host_lockdown - Replace deprecated vSphere API calls (https://github.com/ansible-collections/community.vmware/pull/1514).
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Best Practice Notes
 
 inspur.ispim
 ~~~~~~~~~~~~
