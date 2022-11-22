@@ -18,7 +18,7 @@ v7.0.0
 Release Summary
 ---------------
 
-Release Date: 2022-11-15
+Release Date: 2022-11-22
 
 `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
 
