@@ -1,5 +1,12 @@
 ancestor: 6.0.0
 releases:
+  7.0.0:
+    changes:
+      release_summary: 'Release Date: 2022-11-22
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2022-11-22'
   7.0.0a1:
     changes:
       breaking_changes:
