@@ -1,0 +1,106 @@
+---
+collections:
+  ansible.utils:
+    maintainers:
+      - cidrblock
+      - ganeshrn
+      - pabelanger
+  community.sops:
+    maintainers:
+      - endorama
+  cyberark.conjur:
+    changelog-url: https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md
+  dellemc.openmanage:
+    changelog-url: https://github.com/dell/dellemc-openmanage-ansible-modules/blob/collections/CHANGELOG.rst
+    maintainers:
+      - rajeevarakkal
+  inspur.ispim:
+    maintainers:
+      - ispim
+  inspur.sm:
+    maintainers:
+      - ISIB-Group
+  kubernetes.core:
+    maintainers:
+      - jillr
+      - akasurde
+      - gravesm
+  sensu.sensu_go:
+    maintainers:
+      - tadeboro
+      - mancabizjak
+  t_systems_mms.icinga_director:
+    changelog-url: https://github.com/T-Systems-MMS/ansible-collection-icinga-director/blob/master/CHANGELOG.md
+    maintainers:
+      - rndmh3ro
+      - schurzi
+  dellemc.enterprise_sonic:
+    maintainers:
+      - javeedf
+  hpe.nimble:
+    maintainers:
+      - ar-india
+      - datamattsson
+  netapp.azure:
+    maintainers:
+      - carchi8py
+      - lonico
+  netapp.cloudmanager:
+    maintainers:
+      - carchi8py
+      - lonico
+  netapp.um_info:
+    maintainers:
+      - carchi8py
+      - lonico
+  community.ciscosmb:
+    maintainers:
+      - qaxi
+  community.dns:
+    maintainers:
+      - felixfontein
+  cloud.common:
+    maintainers:
+      - Akasurde
+      - abikouo
+      - goneri
+      - jillr
+  infoblox.nios_modules:
+    maintainers:
+      - anagha-infoblox
+  netapp.storagegrid:
+    maintainers:
+      - carchi8py
+      - jkandati
+      - joshedmonds
+  cisco.ise:
+    maintainers:
+      - wastorga
+      - racampos
+      - jbogarin
+  community.sap:
+    maintainers:
+      - rainerleber
+  community.sap_libs:
+    maintainers:
+      - rainerleber
+  vmware.vmware_rest:
+    maintainers:
+      - goneri
+  cisco.dnac:
+    maintainers:
+      - racampos
+      - wastorga
+  purestorage.fusion:
+    maintainers:
+      - sdodsley
+  ibm.spectrum_virtualize:
+    maintainers:
+      - Shilpi-J
+  vultr.cloud:
+    maintainers:
+      - resmo
+      - optik-aper
+  lowlydba.sqlserver:
+    maintainers:
+      - lowlydba
