@@ -52,6 +52,7 @@ collections:
       - ar-india
       - datamattsson
     repository: https://github.com/hpe-storage/nimble-ansible-modules
+    collection-directory: "./ansible_collection/hpe/nimble"
   netapp.azure:
     maintainers:
       - carchi8py
