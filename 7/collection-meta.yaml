@@ -52,6 +52,7 @@ collections:
       - ar-india
       - datamattsson
     repository: https://github.com/hpe-storage/nimble-ansible-modules
+    collection-directory: "./ansible_collection/hpe/nimble"
   netapp.azure:
     maintainers:
       - carchi8py
@@ -232,7 +233,8 @@ collections:
   dellemc.os9:
     repository: https://github.com/ansible-collections/dellemc.os9
   f5networks.f5_modules:
-    repository: https://github.com/F5Networks/f5-ansible
+    repository: https://github.com/F5Networks/f5-ansible-f5modules
+    collection-directory: "./ansible_collections/f5networks/f5_modules"
   fortinet.fortimanager:
     repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortimanager-collection
   fortinet.fortios:
@@ -275,6 +277,7 @@ collections:
     repository: https://github.com/ansible-collections/openvswitch.openvswitch
   ovirt.ovirt:
     repository: https://github.com/ovirt/ovirt-ansible-collection
+    tag_version_regex: "^(.*)-1$"
   purestorage.flasharray:
     repository: https://github.com/Pure-Storage-Ansible/FlashArray-Collection
   purestorage.flashblade:
