@@ -232,7 +232,8 @@ collections:
   dellemc.os9:
     repository: https://github.com/ansible-collections/dellemc.os9
   f5networks.f5_modules:
-    repository: https://github.com/F5Networks/f5-ansible
+    repository: https://github.com/F5Networks/f5-ansible-f5modules
+    collection-directory: "./ansible_collections/f5networks/f5_modules"
   fortinet.fortimanager:
     repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortimanager-collection
   fortinet.fortios:
