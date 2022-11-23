@@ -20,6 +20,10 @@ jobs:
           - name: Ansible 7
             ansible_version: 7.99.0
             ansible_major_version: 7
+            ansible_core_branch: stable-2.14
+          - name: Ansible 8
+            ansible_version: 8.99.0
+            ansible_major_version: 8
             ansible_core_branch: devel
 
     steps:
