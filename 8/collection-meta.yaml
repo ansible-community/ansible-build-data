@@ -251,8 +251,6 @@ collections:
     repository: https://github.com/infinidat/ansible-infinidat-collection
   junipernetworks.junos:
     repository: https://github.com/ansible-collections/junipernetworks.junos
-  mellanox.onyx:
-    repository: https://github.com/ansible-collections/mellanox.onyx
   netapp.aws:
     repository: https://github.com/ansible-collections/netapp.aws
   netapp.elementsw:
