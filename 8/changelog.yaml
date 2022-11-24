@@ -6,3 +6,6 @@ releases:
         - "``google.cloud`` was considered unmaintained and removed from Ansible 8 as per the
           `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
           Users can still install this collection with ``ansible-galaxy collection install google.cloud``."
+        - "``mellanox.onyx`` was considered unmaintained and removed from Ansible 8 as per the
+          `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
+          Users can still install this collection with ``ansible-galaxy collection install mellanox.onyx``."
