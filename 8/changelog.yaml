@@ -9,3 +9,12 @@ releases:
         - "``mellanox.onyx`` was considered unmaintained and removed from Ansible 8 as per the
           `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
           Users can still install this collection with ``ansible-galaxy collection install mellanox.onyx``."
+        - "``dellemc.os6`` was considered unmaintained and removed from Ansible 8 as per the
+          `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
+          Users can still install this collection with ``ansible-galaxy collection install dellemc.os6``."
+        - "``dellemc.os9`` was considered unmaintained and removed from Ansible 8 as per the
+          `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
+          Users can still install this collection with ``ansible-galaxy collection install dellemc.os9``."
+        - "``dellemc.os10`` was considered unmaintained and removed from Ansible 8 as per the
+          `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
+          Users can still install this collection with ``ansible-galaxy collection install dellemc.os10``."
