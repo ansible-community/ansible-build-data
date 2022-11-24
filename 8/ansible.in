@@ -56,9 +56,6 @@ cyberark.conjur
 cyberark.pas
 dellemc.enterprise_sonic
 dellemc.openmanage
-dellemc.os10
-dellemc.os6
-dellemc.os9
 f5networks.f5_modules
 fortinet.fortimanager
 fortinet.fortios

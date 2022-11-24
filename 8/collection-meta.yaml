@@ -226,12 +226,6 @@ collections:
     repository: https://github.com/containers/ansible-podman-collections
   cyberark.pas:
     repository: https://github.com/cyberark/ansible-security-automation-collection
-  dellemc.os10:
-    repository: https://github.com/ansible-collections/dellemc.os10
-  dellemc.os6:
-    repository: https://github.com/ansible-collections/dellemc.os6
-  dellemc.os9:
-    repository: https://github.com/ansible-collections/dellemc.os9
   f5networks.f5_modules:
     repository: https://github.com/F5Networks/f5-ansible-f5modules
     collection-directory: "./ansible_collections/f5networks/f5_modules"
