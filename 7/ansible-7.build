@@ -68,6 +68,7 @@ fortinet.fortios: >=2.1.0,<3.0.0
 frr.frr: >=2.0.0,<3.0.0
 gluster.gluster: >=1.0.0,<2.0.0
 google.cloud: >=1.0.0,<2.0.0
+grafana.grafana: >=1.1.0,<2.0.0
 hetzner.hcloud: >=1.8.0,<2.0.0
 hpe.nimble: >=1.1.0,<2.0.0
 ibm.qradar: >=2.1.0,<3.0.0

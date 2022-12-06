@@ -133,6 +133,10 @@ collections:
     maintainers:
       - lowlydba
     repository: https://github.com/LowlyDBA/lowlydba.sqlserver
+  grafana.grafana:
+    maintainers:
+      - ishanjainn
+    repository: https://github.com/grafana/grafana-ansible-collection
   amazon.aws:
     repository: https://github.com/ansible-collections/amazon.aws
   ansible.netcommon:
