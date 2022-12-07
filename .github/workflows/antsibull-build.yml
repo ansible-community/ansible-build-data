@@ -74,6 +74,7 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install poetry ansible-core
+          sed -i -e 's/^python = .*/python = "^3.9"/' pyproject.toml
           poetry install
           poetry update
           ansible-galaxy collection install 'git+https://github.com/ansible-collections/community.general.git'
