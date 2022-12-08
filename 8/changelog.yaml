@@ -18,3 +18,8 @@ releases:
         - "``dellemc.os10`` was considered unmaintained and removed from Ansible 8 as per the
           `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
           Users can still install this collection with ``ansible-galaxy collection install dellemc.os10``."
+      deprecated_features:
+        - The cisco.nso collection is considered unmaintained and will be removed
+          from Ansible 9 if no one starts maintaining it again before Ansible 9. See
+          `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+          (https://github.com/ansible-community/community-topics/issues/155).
