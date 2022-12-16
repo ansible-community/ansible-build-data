@@ -236,6 +236,16 @@ collections:
     repository: https://github.com/ansible-collections/dellemc.os6
   dellemc.os9:
     repository: https://github.com/ansible-collections/dellemc.os9
+  dellemc.unity:
+    maintainers:
+      - kuttattz
+      - Bhavneet-Sharma
+      - Jennifer-John
+      - meenakshidembi691
+      - Pavan-Mudunuri
+      - Previnkumar-G
+      - trisha-dell
+    repository: https://github.com/dell/ansible-unity
   f5networks.f5_modules:
     repository: https://github.com/F5Networks/f5-ansible-f5modules
     collection-directory: "./ansible_collections/f5networks/f5_modules"
