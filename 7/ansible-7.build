@@ -62,6 +62,7 @@ dellemc.openmanage: >=6.3.0,<7.0.0
 dellemc.os10: >=1.1.0,<2.0.0
 dellemc.os6: >=1.0.0,<2.0.0
 dellemc.os9: >=1.0.0,<2.0.0
+dellemc.unity: >=1.5.0,<2.0.0
 f5networks.f5_modules: >=1.20.0,<2.0.0
 fortinet.fortimanager: >=2.1.0,<3.0.0
 fortinet.fortios: >=2.1.0,<3.0.0

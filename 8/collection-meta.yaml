@@ -230,6 +230,16 @@ collections:
     repository: https://github.com/containers/ansible-podman-collections
   cyberark.pas:
     repository: https://github.com/cyberark/ansible-security-automation-collection
+  dellemc.unity:
+    maintainers:
+      - kuttattz
+      - Bhavneet-Sharma
+      - Jennifer-John
+      - meenakshidembi691
+      - Pavan-Mudunuri
+      - Previnkumar-G
+      - trisha-dell
+    repository: https://github.com/dell/ansible-unity
   f5networks.f5_modules:
     repository: https://github.com/F5Networks/f5-ansible-f5modules
     collection-directory: "./ansible_collections/f5networks/f5_modules"
