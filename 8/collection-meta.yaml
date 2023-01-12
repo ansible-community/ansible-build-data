@@ -230,6 +230,16 @@ collections:
     repository: https://github.com/containers/ansible-podman-collections
   cyberark.pas:
     repository: https://github.com/cyberark/ansible-security-automation-collection
+  dellemc.powerflex:
+    maintainers:
+      - kuttattz
+      - Bhavneet-Sharma
+      - Jennifer-John
+      - meenakshidembi691
+      - Pavan-Mudunuri
+      - Previnkumar-G
+      - trisha-dell
+    repository: https://github.com/dell/ansible-powerflex
   dellemc.unity:
     maintainers:
       - kuttattz

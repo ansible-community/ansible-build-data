@@ -59,6 +59,7 @@ dellemc.openmanage
 dellemc.os10
 dellemc.os6
 dellemc.os9
+dellemc.powerflex
 dellemc.unity
 f5networks.f5_modules
 fortinet.fortimanager
