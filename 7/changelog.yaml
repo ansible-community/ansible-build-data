@@ -73,3 +73,7 @@ releases:
           from Ansible 9 if no one starts maintaining it again before Ansible 9. See
           `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
           (https://github.com/ansible-community/community-topics/issues/155).
+        - The community.fortios collection is considered unmaintained and will be removed
+          from Ansible 9 if no one starts maintaining it again before Ansible 9. See
+          `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+          (https://github.com/ansible-community/community-topics/issues/162).
