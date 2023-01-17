@@ -13,7 +13,7 @@ It might come with a new ``ansible-core`` release and affect many of the include
 Severity of the impact is determined by the [Steering Committee](https://docs.ansible.com/ansible/devel/community/steering/community_steering_committee.html) in each particular case.
 The release blocker must be resolved before the release can proceed.
 
-In case a release blocker, the following actions need to be done:
+In case of a potential release blocker, the following actions need to be done:
 
 * Create a [community topic](https://github.com/ansible-community/community-topics/issues) describing the potential blocker.
 * If the [Steering Committee](https://docs.ansible.com/ansible/devel/community/steering/community_steering_committee.html) considers the circumstances a release blocker, create an [issue](https://github.com/ansible-community/ansible-build-data/issues/new) in this repository.
