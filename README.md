@@ -2,7 +2,23 @@
 Holds generated but persistent results from building the `ansible` community package.  This information
 may be referred to by other projects and scripts.
 
+## Milestones
+
 Release engineers check the [milestones](https://github.com/ansible-community/ansible-build-data/milestones) for corresponding releases some time before releasing the package sufficient to solve all related issues.
+
+## Blockers
+
+In the context of the Ansible Community package release workflow, a **release blocker** is a situation which does not allow the package to be released.
+It might come with a new ``ansible-core`` release and affect many of the included collections or in any other way might severely affect consistent work with the ``ansible`` package.
+Severity of the impact is determined by the [Steering Committee](https://docs.ansible.com/ansible/devel/community/steering/community_steering_committee.html) in each particular case.
+The release blocker must be resolved before the release can proceed.
+
+In case of a potential release blocker, the following actions need to be done:
+
+* Create a [community topic](https://github.com/ansible-community/community-topics/issues) describing the potential blocker.
+* If the [Steering Committee](https://docs.ansible.com/ansible/devel/community/steering/community_steering_committee.html) considers the circumstances a release blocker, create an [issue](https://github.com/ansible-community/ansible-build-data/issues/new) in this repository.
+* Put the ``blocker`` label on the issue.
+* Add the issue to a milestone for the [affected release](https://github.com/ansible-community/ansible-build-data/milestones).
 
 ## Structure of data
 
@@ -64,7 +80,7 @@ To add a collection to the next Ansible major release that has not reached featu
     directory).
   - `changelog-url` (string): If the collection does not provide a changelog in
     `changelogs/changelog.yaml`, the URL to the actual changelog needs to be
-    added. Otherwise, this field should be ommitted.
+    added. Otherwise, this field should be omitted.
 
 ``` yaml
 collections:
