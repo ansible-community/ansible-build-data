@@ -9,7 +9,7 @@ Release engineers check the [milestones](https://github.com/ansible-community/an
 ## Blockers
 
 In the context of the Ansible Community package release workflow, a **release blocker** is a situation which does not allow the package to be released.
-It might come with a new ``ansible-core`` release and affect many of the included collections or in any other way severe affect consistent work of the ``ansible`` package.
+It might come with a new ``ansible-core`` release and affect many of the included collections or in any other way severely affects consistent work with the ``ansible`` package.
 Severity of the impact is determined by the [Steering Committee](https://docs.ansible.com/ansible/devel/community/steering/community_steering_committee.html) in each particular case.
 The release blocker must be resolved before the release can proceed.
 
