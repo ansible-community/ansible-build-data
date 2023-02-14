@@ -261,6 +261,8 @@ collections:
     repository: https://github.com/ansible-collections/frr.frr
   gluster.gluster:
     repository: https://github.com/gluster/gluster-ansible-collection
+  google.cloud:
+    repository: https://github.com/ansible-collections/google.cloud
   hetzner.hcloud:
     repository: https://github.com/ansible-collections/hetzner.hcloud
   ibm.qradar:
