@@ -63,6 +63,7 @@ fortinet.fortimanager
 fortinet.fortios
 frr.frr
 gluster.gluster
+google.cloud
 grafana.grafana
 hetzner.hcloud
 hpe.nimble
