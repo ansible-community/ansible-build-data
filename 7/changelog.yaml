@@ -93,7 +93,12 @@ releases:
   7.3.0:
     changes:
       deprecated_features:
-      - Since the google.cloud collection seems to be maintained again, we
-        `cancelled the removal process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__.
-        So contrary to an earlier announcement, this collection is NOT deprecated and will NOT be removed from Ansible 8
-        (https://github.com/ansible-community/community-topics/issues/105).
+      - Since the google.cloud collection seems to be maintained again, we `cancelled
+        the removal process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__.
+        So contrary to an earlier announcement, this collection is NOT deprecated
+        and will NOT be removed from Ansible 8 (https://github.com/ansible-community/community-topics/issues/105).
+      release_summary: 'Release Date: 2023-02-28
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2023-02-28'
