@@ -83,6 +83,7 @@ junipernetworks.junos: >=4.0.0,<5.0.0
 kubernetes.core: >=2.3.0,<3.0.0
 lowlydba.sqlserver: >=1.0.0,<2.0.0
 mellanox.onyx: >=1.0.0,<2.0.0
+microsoft.ad: >=1.0.0,<2.0.0
 netapp.aws: >=21.7.0,<22.0.0
 netapp.azure: >=21.10.0,<22.0.0
 netapp.cloudmanager: >=21.21.0,<22.0.0

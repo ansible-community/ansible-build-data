@@ -53,6 +53,8 @@ collections:
       - datamattsson
     repository: https://github.com/hpe-storage/nimble-ansible-modules
     collection-directory: "./ansible_collection/hpe/nimble"
+  microsoft.ad:
+    repository: https://github.com/ansible-collections/microsoft.ad
   netapp.azure:
     maintainers:
       - carchi8py

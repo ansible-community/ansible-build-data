@@ -80,6 +80,7 @@ junipernetworks.junos
 kubernetes.core
 lowlydba.sqlserver
 mellanox.onyx
+microsoft.ad
 netapp.aws
 netapp.azure
 netapp.cloudmanager

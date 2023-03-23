@@ -76,6 +76,7 @@ inspur.sm
 junipernetworks.junos
 kubernetes.core
 lowlydba.sqlserver
+microsoft.ad
 netapp.aws
 netapp.azure
 netapp.cloudmanager
