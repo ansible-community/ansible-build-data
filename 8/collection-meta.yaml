@@ -88,6 +88,8 @@ collections:
       - anagha-infoblox
     repository: https://github.com/infobloxopen/infoblox-ansible
   microsoft.ad:
+    maintainers:
+      - jborean93
     repository: https://github.com/ansible-collections/microsoft.ad
   netapp.storagegrid:
     maintainers:
