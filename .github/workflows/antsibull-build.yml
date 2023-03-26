@@ -44,13 +44,6 @@ jobs:
           ref: main
           path: antsibull-changelog
 
-      - name: Check out antsibull-docs
-        uses: actions/checkout@v3
-        with:
-          repository: ansible-community/antsibull-docs
-          ref: main
-          path: antsibull-docs
-
       - name: Pre-create build directory
         run: mkdir -p antsibull/build
 
@@ -69,7 +62,7 @@ jobs:
         working-directory: antsibull
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install ansible-core . ../antsibull-changelog ../antsibull-docs
+          python3 -m pip install ansible-core . ../antsibull-core ../antsibull-changelog
           ansible-galaxy collection install 'git+https://github.com/ansible-collections/community.general.git'
 
       - name: Test building a release with the defaults
