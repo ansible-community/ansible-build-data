@@ -69,17 +69,13 @@ jobs:
         working-directory: antsibull
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install poetry ansible-core
-          sed -i -e 's/^python = .*/python = "^3.9"/' pyproject.toml
-          poetry install
-          poetry update
+          python3 -m pip install ansible-core . ../antsibull-changelog ../antsibull-docs
           ansible-galaxy collection install 'git+https://github.com/ansible-collections/community.general.git'
 
       - name: Test building a release with the defaults
         working-directory: antsibull
         run: |
           ansible-playbook -vv playbooks/build-single-release.yaml \
-          -e 'antsibull_build_command="poetry run antsibull-build"' \
           -e antsibull_data_reset=false \
           -e 'antsibull_ansible_version="${{ matrix.ansible_version }}"' \
           -e 'antsibull_data_dir="{{ antsibull_data_git_dir }}/${{ matrix.ansible_major_version }}"' \
