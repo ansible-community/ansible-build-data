@@ -1,0 +1,56 @@
+name: community-release.yml
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Ansible community version. Example: 7.4.0'
+        required: true
+        default: ''
+      ansible_core_version: 'Ansible core version'
+        description: 'Ansible Core version. Example: 2.14.0'
+        required: true
+        default: ''
+      confirm:
+        description: 'Are you sure? Set this to yes.'
+        required: true
+        default: 'no'
+
+jobs:
+  build:
+    name: 'Release Ansible community distribution'
+    runs-on: python:3.10  # Change to Fedora? or python:3.10? (was ubuntu-latest)
+
+    steps:
+      - name: Check out antsibull
+        uses: actions/checkout@v3
+        with:
+          repository: ansible-community/antsibull
+          ref: main
+          path: antsibull
+
+      - name: Check out ansible
+        uses: actions/checkout@v3
+        with:
+          repository: ansible/ansible
+          ref: stable-2.14      # later: ${{ github.event.inputs.version }} minus patch/z
+          path: ansible
+
+
+
+      # # This is where the antsibull build-release role expects it by default
+      # - name: Check out ansible-build-data under antsibull build directory
+      #   uses: actions/checkout@v3
+      #   with:
+      #     path: antsibull/build/ansible-build-data
+      # 
+      # - name: Set up Python 3.10
+      #   uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.10'
+      # 
+      # - name: Install dependencies
+      #   working-directory: antsibull
+      #   run: |
+      #     python3 -m pip install --upgrade pip
+      #     python3 -m pip install ansible-core . ../antsibull-core ../antsibull-changelog
+      #     ansible-galaxy collection install 'git+https://github.com/ansible-collections/community.general.git'
