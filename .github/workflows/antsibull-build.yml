@@ -74,3 +74,6 @@ jobs:
           -e 'antsibull_data_dir="{{ antsibull_data_git_dir }}/${{ matrix.ansible_major_version }}"' \
           -e 'antsibull_build_file="ansible-${{ matrix.ansible_major_version }}.build"' \
           -e 'antsibull_ansible_git_version="${{ matrix.ansible_core_branch }}"'
+        env:
+          # Make result better readable
+          ANSIBLE_CALLBACK_RESULT_FORMAT: yaml
