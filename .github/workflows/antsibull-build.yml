@@ -16,11 +16,9 @@ jobs:
           - name: Ansible 7
             ansible_version: 7.99.0
             ansible_major_version: 7
-            ansible_core_branch: stable-2.14
           - name: Ansible 8
             ansible_version: 8.99.0
             ansible_major_version: 8
-            ansible_core_branch: devel
 
     steps:
       - name: Check out antsibull
@@ -72,8 +70,7 @@ jobs:
           -e antsibull_data_reset=false \
           -e 'antsibull_ansible_version="${{ matrix.ansible_version }}"' \
           -e 'antsibull_data_dir="{{ antsibull_data_git_dir }}/${{ matrix.ansible_major_version }}"' \
-          -e 'antsibull_build_file="ansible-${{ matrix.ansible_major_version }}.build"' \
-          -e 'antsibull_ansible_git_version="${{ matrix.ansible_core_branch }}"'
+          -e 'antsibull_build_file="ansible-${{ matrix.ansible_major_version }}.build"'
         env:
           # Make result better readable
           ANSIBLE_CALLBACK_RESULT_FORMAT: yaml
