@@ -1,0 +1,6 @@
+# https://github.com/ansible-community/ansible-build-data/issues/190
+# This will be removed in Ansible 9
+cisco.nso
+# https://github.com/hpe-storage/nimble-ansible-modules/issues/59
+# Awaiting response from the maintainer
+hpe.nimble
