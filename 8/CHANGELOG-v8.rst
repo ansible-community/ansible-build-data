@@ -8,6 +8,455 @@ This changelog describes changes since Ansible 7.0.0.
   :local:
   :depth: 2
 
+v8.0.0a2
+========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2023-04-26
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 8.0.0a2 contains Ansible-core version 2.15.0rc1.
+This is a newer version than version 2.15.0b2 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection             | Ansible 8.0.0a1 | Ansible 8.0.0a2 | Notes                                                                                                                        |
++========================+=================+=================+==============================================================================================================================+
+| awx.awx                | 22.0.0          | 22.1.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| check_point.mgmt       | 4.0.0           | 5.0.0           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.aci              | 2.5.0           | 2.6.0           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.dnac             | 6.7.0           | 6.7.1           | The collection did not have a changelog in this version.                                                                     |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight       | 1.0.24          | 1.0.27          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios              | 4.4.1           | 4.5.0           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.mso              | 2.3.0           | 2.4.0           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto       | 2.11.1          | 2.12.0          |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns          | 2.5.2           | 2.5.3           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general      | 6.5.0           | 6.6.0           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.openmanage     | 7.4.0           | 7.5.0           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules  | 1.23.0          | 1.24.0          |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| frr.frr                | 2.0.0           | 2.0.2           |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| openstack.cloud        | 2.0.0           | 2.1.0           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade | 1.10.0          | 1.11.0          |                                                                                                                              |
++------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+cisco.aci
+~~~~~~~~~
+
+- Add aci_access_span_dst_group module for fabric access policies span destination group support (#405)
+- Add aci_access_span_filter_group and aci_access_span_filter_group_entry modules for access span filter group support (#407)
+- Add aci_config_export_policy module (#380)
+- Add aci_igmp_interface_policy module (#381)
+
+cisco.ios
+~~~~~~~~~
+
+- ios_bgp_address_family - add option redistribute.ospf.include_connected when redistributing OSPF in IPv6 AFI
+- ios_bgp_address_family - add option redistribute.ospf.match.externals.type_1 to allow
+- ios_bgp_address_family - add option redistribute.ospf.match.externals.type_2 to allow
+- specification of OSPF E1 routes
+- specification of OSPF E2 routes
+
+cisco.mso
+~~~~~~~~~
+
+- Add ip_data_plane_learning and preferred_group arguments to mso_schema_template_vrf module (#358)
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- get_certificate - add ``asn1_base64`` option to control whether the ASN.1 included in the ``extensions`` return value is binary data or Base64 encoded (https://github.com/ansible-collections/community.crypto/pull/592).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- cpanm - minor change, use feature from ``ModuleHelper`` (https://github.com/ansible-collections/community.general/pull/6385).
+- dconf - be forgiving about boolean values: convert them to GVariant booleans automatically (https://github.com/ansible-collections/community.general/pull/6206).
+- dconf - minor refactoring improving parameters and dependencies validation (https://github.com/ansible-collections/community.general/pull/6336).
+- deps module utils - add function ``failed()`` providing the ability to check the dependency check result without triggering an exception (https://github.com/ansible-collections/community.general/pull/6383).
+- dig lookup plugin - Support multiple domains to be queried as indicated in docs (https://github.com/ansible-collections/community.general/pull/6334).
+- gitlab_project - add new option ``topics`` for adding topics to GitLab projects (https://github.com/ansible-collections/community.general/pull/6278).
+- homebrew_cask - allows passing ``--greedy`` option to ``upgrade_all`` (https://github.com/ansible-collections/community.general/pull/6267).
+- idrac_redfish_command - add ``job_id`` to ``CreateBiosConfigJob`` response (https://github.com/ansible-collections/community.general/issues/5603).
+- ipa_hostgroup - add ``append`` parameter for adding a new hosts to existing hostgroups without changing existing hostgroup members (https://github.com/ansible-collections/community.general/pull/6203).
+- keycloak_authentication - add flow type option to sub flows to allow the creation of 'form-flow' sub flows like in Keycloak's built-in registration flow (https://github.com/ansible-collections/community.general/pull/6318).
+- mksysb - improved the output of the module in case of errors (https://github.com/ansible-collections/community.general/issues/6263).
+- nmap inventory plugin - added environment variables for configure ``address`` and ``exclude`` (https://github.com/ansible-collections/community.general/issues/6351).
+- nmcli - add ``macvlan`` connection type (https://github.com/ansible-collections/community.general/pull/6312).
+- pipx - add ``system_site_packages`` parameter to give application access to system-wide packages (https://github.com/ansible-collections/community.general/pull/6308).
+- pipx - ensure ``include_injected`` parameter works with ``state=upgrade`` and ``state=latest`` (https://github.com/ansible-collections/community.general/pull/6212).
+- puppet - add new options ``skip_tags`` to exclude certain tagged resources during a puppet agent or apply (https://github.com/ansible-collections/community.general/pull/6293).
+- terraform - remove state file check condition and error block, because in the native implementation of terraform will not cause errors due to the non-existent file (https://github.com/ansible-collections/community.general/pull/6296).
+- udm_dns_record - minor refactor to the code (https://github.com/ansible-collections/community.general/pull/6382).
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_ssl_certificate - added an option to prevent adding .crt extension to cert names
+- bigip_ssl_key - added an option to prevent adding .key extension to key names
+- bigip_ssl_key_cert - added an option to prevent adding .key and .crt extensions to key and cert names respectively
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_info - Added `encryption` and `support_keys` information.
+- purefb_info - Added bucket quota and safemode information per bucket
+- purefb_info - Added security update version for Purity//FB 4.0.2, or higher
+- purefb_info - Updated object store account information
+- purefb_inventory - Added `part_number` to hardware item information.
+- purefb_policy - Added support for multiple rules in snapshot policies
+- purefb_proxy - Added new boolean parameter `secure`. Default of true (for backwards compatability) sets the protocol to be `https://`. False sets `http://`
+- purefb_s3acc - Added support for default bucket quotas and hard limits
+- purefb_s3acc - Added support for object account quota and hard limit
+
+Deprecated Features
+-------------------
+
+check_point.mgmt
+~~~~~~~~~~~~~~~~
+
+- add/set/delete nat-rule modules - will be replaced by the single cp_mgmt_nat_rule module.
+- cp_mgmt_show_task/s modules - will be replaced by the by the single cp_mgmt_task_facts module.
+
+cisco.ios
+~~~~~~~~~
+
+- ios_bgp_address_family - deprecate redistribute.ospf.match.external with redistribute.ospf.match.externals which enables attributes for OSPF type E1 and E2 routes
+- ios_bgp_address_family - deprecate redistribute.ospf.match.nssa_external with redistribute.ospf.match.nssa_externals which enables attributes for OSPF type N1 and N2 routes
+- ios_bgp_address_family - deprecate redistribute.ospf.match.type_1 with redistribute.ospf.match.nssa_externals.type_1
+- ios_bgp_address_family - deprecate redistribute.ospf.match.type_2 with redistribute.ospf.match.nssa_externals.type_2
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Display - Defensively configure writing to stdout and stderr with a custom encoding error handler that will replace invalid characters while providing a deprecation warning that non-utf8 text will result in an error in a future version.
+- Fix post-validating looped task fields so the strategy uses the correct values after task execution.
+- Prevent running same handler multiple times when included via ``include_role`` (https://github.com/ansible/ansible/issues/73643)
+- ``pkg_mgr`` - fix the default dnf version detection
+- ansible-galaxy - fix installing collections from directories that have a trailing path separator (https://github.com/ansible/ansible/issues/77803).
+- ansible-test - Add support for ``argcomplete`` version 3.
+- ansible-test - Update ``pylint`` to 2.17.2 to resolve several possible false positives.
+- ansible-test - Update ``pylint`` to 2.17.3 to resolve several possible false positives.
+- ansible-test - When bootstrapping remote FreeBSD instances, use the OS packaged ``setuptools`` instead of installing the latest version from PyPI.
+- dnf5 - Use ``transaction.check_gpg_signatures`` API call to check package signatures AND possibly to recover from when keys are missing.
+- handlers - fix ``v2_playbook_on_notify`` callback not being called when notifying handlers
+- module responses - Ensure that module responses are utf-8 adhereing to JSON RFC and expectations of the core code.
+- module/role argument spec - validate the type for options that are None when the option is required or has a non-None default (https://github.com/ansible/ansible/issues/79656).
+- pep517 build backend - Use the documented ``import_module`` import from ``importlib``.
+- syntax check - Limit ``--syntax-check`` to ``ansible-playbook`` only, as that is the only CLI affected by this argument (https://github.com/ansible/ansible/issues/80506)
+
+cisco.ios
+~~~~~~~~~
+
+- ios_bgp_address_family - fix issue where no commands are generated when redistributing OSPFv2 and OSPFv3
+- ios_bgp_address_family - fix missing negations in overridden and replaced states when redistributing OSPF
+- ios_bgp_address_family - fix option and syntax for OSPF E1 and E2 routes
+- ios_bgp_address_family - fix option and syntax for OSPF N1 and N2 routes
+- ios_bgp_address_family - fix order of generated OSPF redistribution command options to achieve idempotency
+- ios_bgp_global - fix configuration of timers under neighbor. (https://github.com/ansible-collections/cisco.ios/issues/794)
+- ios_l3_interfaces - prevent configuration line generation when enable is false.
+- ios_logging_global - logging history configuration command fixed for supported appliance versions.
+
+cisco.mso
+~~~~~~~~~
+
+- Add attributes to payload for changed schema behaviour of deploymentImmediacy (deployImmediacy) and vmmDomainProperties (properties at domain level in payload) (#362)
+- Fix mso_backup for NDO and ND-based MSO v3.2+ (#333)
+- Fix validation condition for path in mso_schema_site_anp_epg_bulk_staticport module (#360)
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- archive - reduce RAM usage by generating CRC32 checksum over chunks (https://github.com/ansible-collections/community.general/pull/6274).
+- flatpak - fixes idempotency detection issues. In some cases the module could fail to properly detect already existing Flatpaks because of a parameter witch only checks the installed apps (https://github.com/ansible-collections/community.general/pull/6289).
+- icinga2_host - fix the data structure sent to Icinga to make use of host templates and template vars (https://github.com/ansible-collections/community.general/pull/6286).
+- idrac_redfish_command - allow user to specify ``resource_id`` for ``CreateBiosConfigJob`` to specify an exact manager (https://github.com/ansible-collections/community.general/issues/2090).
+- ini_file - make ``section`` parameter not required so it is possible to pass ``null`` as a value. This only was possible in the past due to a bug in ansible-core that now has been fixed (https://github.com/ansible-collections/community.general/pull/6404).
+- keycloak - improve error messages (https://github.com/ansible-collections/community.general/pull/6318).
+- one_vm - fix syntax error when creating VMs with a more complex template (https://github.com/ansible-collections/community.general/issues/6225).
+- pipx - fixed handling of ``install_deps=true`` with ``state=latest`` and ``state=upgrade`` (https://github.com/ansible-collections/community.general/pull/6303).
+- redhat_subscription - do not use D-Bus for registering when ``environment`` is specified, so it possible to specify again the environment names for registering, as the D-Bus APIs work only with IDs (https://github.com/ansible-collections/community.general/pull/6319).
+- redhat_subscription - try to unregister only when already registered when ``force_register`` is specified (https://github.com/ansible-collections/community.general/issues/6258, https://github.com/ansible-collections/community.general/pull/6259).
+- redhat_subscription - use the right D-Bus options for environments when registering a CentOS Stream 8 system and using ``environment`` (https://github.com/ansible-collections/community.general/pull/6275).
+- rhsm_release - make ``release`` parameter not required so it is possible to pass ``null`` as a value. This only was possible in the past due to a bug in ansible-core that now has been fixed (https://github.com/ansible-collections/community.general/pull/6401).
+- rundeck module utils - fix errors caused by the API empty responses (https://github.com/ansible-collections/community.general/pull/6300)
+- rundeck_acl_policy - fix ``TypeError - byte indices must be integers or slices, not str`` error caused by empty API response. Update the module to use ``module_utils.rundeck`` functions (https://github.com/ansible-collections/community.general/pull/5887, https://github.com/ansible-collections/community.general/pull/6300).
+- rundeck_project - update the module to use ``module_utils.rundeck`` functions (https://github.com/ansible-collections/community.general/issues/5742) (https://github.com/ansible-collections/community.general/pull/6300)
+- snap_alias - module would only recognize snap names containing letter, numbers or the underscore character, failing to identify valid snap names such as ``lxd.lxc`` (https://github.com/ansible-collections/community.general/pull/6361).
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_device_info - fix fqdn_up_interval and fqdn_down_interval to no longer cause string values not castable to int to raise an error
+- bigip_device_info - fixed flaw in code to ignore fields that do not exist in the response for license info
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_info - Fixed issue when more than 10 buckets have lifecycle rules.
+- purefb_s3user - Fix incorrect response when bad key/secret pair provided for new user
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_os_deployment- Issue(260496) - OS installation will support only NFS and CIFS share to store the custom ISO in the destination_path, HTTP/HTTPS/FTP not supported
+- idrac_redfish_storage_contoller - Issue(256164) - If incorrect value is provided for one of the attributes in the provided attribute list for controller configuration, then this module does not exit with error.
+- idrac_user - Issue(192043) The module may error out with the message ``Unable to perform the import or export operation because there are pending attribute changes or a configuration job is in progress``. Wait for the job to complete and run the task again.
+- ome_application_alerts_syslog - Issue(215374) - The module does not provide a proper error message if the destination_address is more than 255 characters.
+- ome_device_network_services - Issue(212681) - The module does not provide a proper error message if unsupported values are provided for the following parameters- port_number, community_name, max_sessions, max_auth_retries, and idle_timeout.
+- ome_device_power_settings - Issue(212679) - The module displays the following message if the value provided for the parameter ``power_cap`` is not within the supported range of 0 to 32767, ``Unable to complete the request because PowerCap does not exist or is not applicable for the resource URI.``
+- ome_smart_fabric_uplink - Issue(186024) - Despite the module supported by OpenManage Enterprise Modular, it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, the existing uplink is modified.
+
+New Modules
+-----------
+
+check_point.mgmt
+~~~~~~~~~~~~~~~~
+
+- check_point.mgmt.cp_mgmt_abort_get_interfaces - Attempt to abort an on-going "get-interfaces" operation.
+- check_point.mgmt.cp_mgmt_access_layers - Manages ACCESS LAYERS resource module
+- check_point.mgmt.cp_mgmt_access_point_name - Manages access-point-name objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_access_point_name_facts - Get access-point-name objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_add_repository_package - Add the software package to the central repository.
+- check_point.mgmt.cp_mgmt_add_updatable_object - Import an updatable object from the repository to the management server.
+- check_point.mgmt.cp_mgmt_checkpoint_host - Manages checkpoint-host objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_checkpoint_host_facts - Get checkpoint-host objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_delete_repository_package - Delete the repository software package from the central repository.
+- check_point.mgmt.cp_mgmt_delete_updatable_object - Delete existing object using object name or uid.
+- check_point.mgmt.cp_mgmt_dynamic_global_network_object - Manages dynamic-global-network-object objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_dynamic_global_network_object_facts - Get dynamic-global-network-object objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_export_management - Export the primary Security Management Server database or the primary Multi-Domain Server database or the single Domain database and the applicable Check Point configuration.
+- check_point.mgmt.cp_mgmt_export_smart_task - Export SmartTask to a file.
+- check_point.mgmt.cp_mgmt_get_attachment - Retrieves a packet capture or blob data, according to the attributes of a log record.
+- check_point.mgmt.cp_mgmt_get_interfaces - Get physical interfaces with or without their topology from a Gaia Security Gateway or Cluster.
+- check_point.mgmt.cp_mgmt_gsn_handover_group - Manages gsn-handover-group objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_gsn_handover_group_facts - Get gsn-handover-group objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_ha_full_sync - Perform full sync from active server to standby peer.
+- check_point.mgmt.cp_mgmt_hosts - Manages HOSTS resource module
+- check_point.mgmt.cp_mgmt_https_layer - Manages https-layer objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_https_layer_facts - Get https-layer objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_import_management - Import the primary Security Management Server database or the primary Multi-Domain Server database or the single Domain database and the applicable Check Point configuration.
+- check_point.mgmt.cp_mgmt_import_smart_task - Import SmartTask from a file.
+- check_point.mgmt.cp_mgmt_ips_protection_extended_attribute_facts - Get ips-protection-extended-attribute objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_lock_object - Lock object using uid or {name and type}.
+- check_point.mgmt.cp_mgmt_lsv_profile - Manages lsv-profile objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_lsv_profile_facts - Get lsv-profile objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_nat_rule - Manages nat-rule objects on Checkpoint over Web Services API.
+- check_point.mgmt.cp_mgmt_radius_group - Manages radius-group objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_radius_group_facts - Get radius-group objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_radius_server - Manages radius-server objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_radius_server_facts - Get radius-server objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_repository_package_facts - Get repository-package objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_service_citrix_tcp - Manages service-citrix-tcp objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_service_citrix_tcp_facts - Get service-citrix-tcp objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_service_compound_tcp - Manages service-compound-tcp objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_service_compound_tcp_facts - Get service-compound-tcp objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_set_api_settings - Edit API settings, the changes will be applied after publish followed by running 'api restart' command.
+- check_point.mgmt.cp_mgmt_set_cloud_services - Set the connection settings between the Management Server and Check Point's Infinity Portal.
+- check_point.mgmt.cp_mgmt_set_global_domain - Edit Global domain object using domain name or UID.
+- check_point.mgmt.cp_mgmt_set_ha_state - Switch domain server high availability state.
+- check_point.mgmt.cp_mgmt_set_ips_update_schedule - Edit IPS Update Schedule.
+- check_point.mgmt.cp_mgmt_set_login_message - Edit Login message.
+- check_point.mgmt.cp_mgmt_set_policy_settings - Edit Policy settings, the changes will be applied after publish.
+- check_point.mgmt.cp_mgmt_set_vpn_community_remote_access - Edit existing Remote Access object. Using object name or uid is optional.
+- check_point.mgmt.cp_mgmt_show_api_settings - Retrieve API Settings.
+- check_point.mgmt.cp_mgmt_show_api_versions - Shows all supported API versions and current API version (the latest one).
+- check_point.mgmt.cp_mgmt_show_azure_ad_content - Retrieve AzureAD Objects from Azure AD Server.
+- check_point.mgmt.cp_mgmt_show_changes - Show changes between two sessions.
+- check_point.mgmt.cp_mgmt_show_commands - Retrieve all of the supported Management API commands with their description.
+- check_point.mgmt.cp_mgmt_show_gateways_and_servers - Shows list of Gateways & Servers sorted by name.
+- check_point.mgmt.cp_mgmt_show_global_domain - Retrieve existing object using object name or uid.
+- check_point.mgmt.cp_mgmt_show_ha_state - Retrieve domain high availability state.
+- check_point.mgmt.cp_mgmt_show_ips_status - show ips status on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_show_ips_update_schedule - Retrieve IPS Update Schedule.
+- check_point.mgmt.cp_mgmt_show_layer_structure - Shows the entire layer structure.
+- check_point.mgmt.cp_mgmt_show_login_message - Retrieve Login message.
+- check_point.mgmt.cp_mgmt_show_place_holder - Retrieve existing object using object uid.
+- check_point.mgmt.cp_mgmt_show_policy_settings - Show Policy settings.
+- check_point.mgmt.cp_mgmt_show_software_packages_per_targets - Shows software packages on targets.
+- check_point.mgmt.cp_mgmt_show_unused_objects - Retrieve all unused objects.
+- check_point.mgmt.cp_mgmt_show_updatable_objects_repository_content - Shows the content of the available updatable objects from the Check Point User Center.
+- check_point.mgmt.cp_mgmt_show_validations - Show all validation incidents limited to 500.
+- check_point.mgmt.cp_mgmt_smart_task - Manages smart-task objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_smart_task_facts - Get smart-task objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_smart_task_trigger_facts - Get smart-task-trigger objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_tacacs_group - Manages tacacs-group objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_tacacs_group_facts - Get tacacs-group objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_tacacs_server - Manages tacacs-server objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_tacacs_server_facts - Get tacacs-server objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_task_facts - Get task objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_threat_layers - Manages THREAT LAYERS resource module
+- check_point.mgmt.cp_mgmt_time_group - Manages time-group objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_time_group_facts - Get time-group objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_unlock_administrator - Unlock administrator.
+- check_point.mgmt.cp_mgmt_unlock_object - Unlock object using uid or {name and type}.
+- check_point.mgmt.cp_mgmt_updatable_object_facts - Get updatable-object objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_update_updatable_objects_repository_content - Updates the content of the Updatable Objects repository from the Check Point User Center.
+- check_point.mgmt.cp_mgmt_user_group - Manages user-group objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_user_group_facts - Get user-group objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_vpn_community_remote_access_facts - Get vpn-community-remote-access objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_vsx_run_operation - Run the VSX operation by its name and parameters.
+- check_point.mgmt.cp_mgmt_where_used - Searches for usage of the target object in other objects and rules.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- community.general.btrfs_info - Query btrfs filesystem info
+- community.general.btrfs_subvolume - Manage btrfs subvolumes
+- community.general.ilo_redfish_command - Manages Out-Of-Band controllers using Redfish APIs
+- community.general.keycloak_authz_authorization_scope - Allows administration of Keycloak client authorization scopes via Keycloak API
+- community.general.keycloak_clientscope_type - Set the type of aclientscope in realm or client via Keycloak API
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purestorage.flashblade.purefb_pingtrace - Employ the internal FlashBlade ping and trace mechanisms
+
+New Roles
+---------
+
+- dellemc.openmanage.idrac_firmware - Firmware update from a repository on a network share (CIFS, NFS, HTTP, HTTPS, FTP).
+- dellemc.openmanage.redfish_firmware - To perform a component firmware update using the image file available on the local or remote system.
+- dellemc.openmanage.redfish_storage_volume - Role to manage the storage volume configuration.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 5.4.0)
+- ansible.netcommon (still version 5.1.0)
+- ansible.posix (still version 1.5.2)
+- ansible.utils (still version 2.9.0)
+- ansible.windows (still version 1.13.0)
+- arista.eos (still version 6.0.1)
+- azure.azcollection (still version 1.15.0)
+- chocolatey.chocolatey (still version 1.4.0)
+- cisco.asa (still version 4.0.0)
+- cisco.iosxr (still version 5.0.1)
+- cisco.ise (still version 2.5.12)
+- cisco.meraki (still version 2.15.1)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 4.3.0)
+- cisco.ucs (still version 1.8.0)
+- cloud.common (still version 2.1.3)
+- cloudscale_ch.cloud (still version 2.2.4)
+- community.aws (still version 5.4.0)
+- community.azure (still version 2.0.0)
+- community.ciscosmb (still version 1.0.5)
+- community.digitalocean (still version 1.23.0)
+- community.docker (still version 3.4.3)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.5.4)
+- community.hashi_vault (still version 4.2.0)
+- community.hrobot (still version 1.8.0)
+- community.libvirt (still version 1.2.0)
+- community.mongodb (still version 1.5.2)
+- community.mysql (still version 3.6.0)
+- community.network (still version 5.0.0)
+- community.okd (still version 2.3.0)
+- community.postgresql (still version 2.3.2)
+- community.proxysql (still version 1.5.1)
+- community.rabbitmq (still version 1.2.3)
+- community.routeros (still version 2.8.0)
+- community.sap (still version 1.0.0)
+- community.sap_libs (still version 1.4.1)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.6.1)
+- community.vmware (still version 3.5.0)
+- community.windows (still version 1.12.0)
+- community.zabbix (still version 1.9.3)
+- containers.podman (still version 1.10.1)
+- cyberark.conjur (still version 1.2.0)
+- cyberark.pas (still version 1.0.17)
+- dellemc.enterprise_sonic (still version 2.0.0)
+- dellemc.powerflex (still version 1.6.0)
+- dellemc.unity (still version 1.6.0)
+- fortinet.fortimanager (still version 2.1.7)
+- fortinet.fortios (still version 2.2.3)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.1.3)
+- grafana.grafana (still version 2.0.0)
+- hetzner.hcloud (still version 1.11.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.1.0)
+- ibm.spectrum_virtualize (still version 1.11.0)
+- infinidat.infinibox (still version 1.3.12)
+- infoblox.nios_modules (still version 1.4.1)
+- inspur.ispim (still version 1.3.0)
+- inspur.sm (still version 2.3.0)
+- junipernetworks.junos (still version 5.0.0)
+- kubernetes.core (still version 2.4.0)
+- lowlydba.sqlserver (still version 1.3.1)
+- microsoft.ad (still version 1.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.22.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 22.5.0)
+- netapp.storagegrid (still version 21.11.1)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.4.0)
+- netbox.netbox (still version 3.12.0)
+- ngine_io.cloudstack (still version 2.3.0)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.3)
+- openvswitch.openvswitch (still version 2.1.0)
+- ovirt.ovirt (still version 3.1.2)
+- purestorage.flasharray (still version 1.17.2)
+- purestorage.fusion (still version 1.4.2)
+- sensu.sensu_go (still version 1.13.2)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 2.1.0)
+- t_systems_mms.icinga_director (still version 1.32.2)
+- theforeman.foreman (still version 3.10.0)
+- vmware.vmware_rest (still version 2.3.1)
+- vultr.cloud (still version 1.7.0)
+- vyos.vyos (still version 4.0.2)
+- wti.remote (still version 1.0.4)
+
 v8.0.0a1
 ========
 
@@ -75,7 +524,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +-------------------------------+---------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
 | cisco.aci                     | 2.3.0         | 2.5.0           |                                                                                                                              |
 +-------------------------------+---------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
-| cisco.dnac                    | 6.6.0         | 6.7.0           | The collection did not have a changelog in this version.                                                                     |
+| cisco.dnac                    | 6.6.0         | 6.7.0           |                                                                                                                              |
 +-------------------------------+---------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
 | cisco.intersight              | 1.0.20        | 1.0.24          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
 +-------------------------------+---------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -386,6 +835,7 @@ Ansible-core
 - ansible-test - Update the NIOS test plugin to use a newer multi-arch test container.
 - ansible-test - Update the ``ansible-bad-import-from`` rule in the ``pylint`` sanity test to recommend ``ansible.module_utils.six.moves.collections_abc`` instead of ``ansible.module_utils.common._collections_compat``.
 - ansible-test - Update the ``base`` and ``default`` test containers with the latest requirements.
+- ansible-test - Update the ``default`` containers to include the ``pylint`` requirements update.
 - ansible-test - Updated the Azure Pipelines CI plugin to work with newer versions of git.
 - ansible-test - Use ``stop --time 0`` followed by ``rm`` to remove ephemeral containers instead of ``rm -f``. This speeds up teardown of ephemeral containers.
 - ansible-test - Warnings are now shown when using containers that were built with VOLUME instructions.
@@ -479,6 +929,52 @@ cisco.aci
 - Add action_groups for module_defaults (#316)
 - Add support for filter direction in aci_contract_subject and aci_contract_subject_to_filter (#306)
 - Update modules to assign roles and permissions to a user (#225)
+
+cisco.dnac
+~~~~~~~~~~
+
+- accesspoint_configuration_details_by_task_id_info - new module
+- authentication_policy_servers_info - new module
+- credential_to_site_by_siteid_create_v2 - new module
+- device_interface_info - attributes `lastInputTime` and `lastOutputTime` were added.
+- device_reboot_apreboot_info - new module
+- dnac_packages_info - new module
+- eox_status_device_info - new module
+- eox_status_summary_info - new module
+- event_email_config - new module
+- event_email_config_info - new module
+- event_snmp_config_info - new module
+- event_syslog_config - new module
+- event_syslog_config_info - new module
+- execute_suggested_actions_commands - new module
+- global_credential_v2 - new module
+- global_credential_v2_info - new module
+- integration_settings_instances_itsm - new module
+- integration_settings_instances_itsm_info - new module
+- lan_automation_log_by_serial_number_info - new module
+- network_device_user_defined_field - new module
+- network_device_user_defined_field_info - new module
+- network_v2 - new module
+- network_v2_info - new module
+- pnp_device_claim_to_site - attributes `removeInactive` and `hostname` were removed.
+- role_permissions_info - new module
+- roles_info - new module
+- sda_fabric_border_device - attributes `routeDistributionProtocol` and `borderPriority` were added.
+- sda_fabric_control_plane_device attribute `routeDistributionProtocol` was added.
+- sda_fabric_edge_device - attribute `siteNameHierarchy` was added.
+- sda_fabric_site - attribute `fabricType` was added.
+- sda_port_assignment_for_user_device - attribute `interfaceNames` was added.
+- sda_virtual_network - attribute `vManageVpnId` was added.
+- sda_virtual_network_ip_pool - attribute `isBridgeModeVm` was added.
+- sda_virtual_network_v2 - attribute `isBridgeModeVm` was added.
+- service_provider_v2 - new module
+- service_provider_v2_info - new module
+- sp_profile_delete_v2 - new module
+- user - new module
+- user_info - new module
+- users_external_servers_info - new module
+- wireless_accespoint_configuration - new module
+- wireless_accesspoint_configuration_summary_info - new module
 
 cisco.ios
 ~~~~~~~~~
@@ -1130,7 +1626,7 @@ Breaking Changes / Porting Guide
 Ansible-core
 ~~~~~~~~~~~~
 
-- ansible-doc - no longer treat plugins in collections whose name starts with ``_`` as deprecated (https://github.com/ansible/ansible/pull/79217).
+- ansible-doc - no longer treat plugins in collections whose name starts with ``_`` as deprecated (https://github.com/ansible/ansible/pull/79362).
 - ansible-test - Integration tests which depend on specific file permissions when running in an ansible-test managed host environment may require changes. Tests that require permissions other than ``755`` or ``644`` may need to be updated to set the necessary permissions as part of the test run.
 - ansible-test - The ``vcenter`` test plugin now defaults to using a user-provided static configuration instead of the ``govcsim`` simulator for collections. Set the ``ANSIBLE_VCSIM_CONTAINER`` environment variable to ``govcsim`` to use the simulator. Keep in mind that the simulator is deprecated and will be removed in a future release.
 - ansible-test sanity - previously plugins and modules in collections whose name started with ``_`` were treated as deprecated, even when they were not marked as deprecated in ``meta/runtime.yml``. This is no longer the case (https://github.com/ansible/ansible/pull/79362).
@@ -1484,6 +1980,20 @@ cisco.aci
 - Fix missing annotation field in aci_ntp_policy and aci_ntp_server (#392)
 - Fix query of all blacklisted interfaces using aci_interface_blacklist (#367)
 - Forced unicode encoding for lxml XML fragment validation output  to fix issue with Certificate authentication and aci_rest with XML payload (#341)
+
+cisco.dnac
+~~~~~~~~~~
+
+- A new method to compare changes for specific cases has been added.
+- DNA Center credentials can now be exported and used as env vars.
+- netconf_credential - Removed to search by username.
+- network_device - Used a new method to compare changes.
+- sda_fabric_border_device - fix Create example at EXAMPLES block
+- sda_virtual_network_ip_pool - Now pass the site_name_hierarchy correctly in get method.
+- site_intent - fix Case_1 return example at RETURN block
+- snmpv2_read_community_credential - Removed to search by username.
+- snmpv2_write_community_credential - Removed to search by username.
+- swim_intent - fix functionality and tests
 
 cisco.ios
 ~~~~~~~~~
