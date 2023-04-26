@@ -41,3 +41,10 @@ releases:
         Users can still install this collection with ``ansible-galaxy collection install
         mellanox.onyx``.'
     release_date: '2023-04-12'
+  8.0.0a2:
+    changes:
+      release_summary: 'Release Date: 2023-04-26
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2023-04-26'
