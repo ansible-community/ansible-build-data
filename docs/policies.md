@@ -17,9 +17,9 @@ data file in this repository.
 This file contains a mapping of collections to their git repositories and the
 git tag that corresponds to the version of a collection included in the ansible release.
 
-The [Ansible release playbook][3] generates these files during the
+The [Ansible release playbook][3] generates this tags data file during the
 `antsibull-build prepare` step and later runs
-the `antsibull-build validate-tags-file` command to validate them.
+the `antsibull-build validate-tags-file` command to validate it.
 
 It is also possible to separately run `antsibull-build validate-tags-file`.
 For example, to validate [the tags file for ansible 7.5.0][4], run
@@ -33,8 +33,8 @@ $ echo $?
 1
 ```
 
-Since these collections were not properly tagged prior to formalizing this policy,
-they are listed in the `7/validate-tags-ignores` file.
+Since these collections were not properly tagged prior to this policy's
+formalization, they are listed in [`7/validate-tags-ignores`][4a].
 The release playbook passes that file to
 `antsibull-build validate-tags-file`'s `--ignores-file` flag to ignore errors
 for those collections.
@@ -51,9 +51,10 @@ When building future ansible versions, any untagged collections will cause
 
 ### Enforcement
 
-Prior to ansible 9.0.0a1, validation errors are treated as warnings.
-In ansible 9.0.0a1 and onwards, these validation errors will be considered
-release blockers.
+Prior to ansible 9.0.0a1,
+the release playbook treats validation errors as warnings.
+In ansible 9.0.0a1 and onwards,
+these validation errors constitute release blockers.
 The playbook will fail if any new collection releases are not properly tagged.
 
 > **Note**
@@ -126,7 +127,7 @@ In case of violations, the release manager must preform the following steps:
     [2]: https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#collections-not-satisfying-the-collection-requirements
 
    ```
-6. Post a comment in https://github.com/ansible-community/ansible-build-data/issues/223
+6. Post a comment in <https://github.com/ansible-community/ansible-build-data/issues/223>
    with a link to the issue.
 
 
@@ -134,4 +135,5 @@ In case of violations, the release manager must preform the following steps:
 [2]: https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html#repository-management
 [3]: https://github.com/ansible-community/antsibull/blob/main/playbooks/build-single-release.yaml
 [4]: https://github.com/ansible-community/ansible-build-data/blob/main/7/ansible-7.5.0-tags.yaml
+[4a]: https://github.com/ansible-community/ansible-build-data/blob/main/7/validate-tags-ignores
 [5]: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/default_callback.html#parameter-result_format
