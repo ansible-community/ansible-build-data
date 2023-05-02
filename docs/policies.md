@@ -21,7 +21,7 @@ The [Ansible release playbook][3] generates these files during the
 `antsibull-build prepare` step and later runs
 the `antsibull-build validate-tags-file` command to validate them.
 
-It's also possible to separately run `antsibull-build validate-tags-file`.
+It is also possible to separately run `antsibull-build validate-tags-file`.
 For example, to validate [the tags file for ansible 7.5.0][4], run
 
 ``` console
@@ -33,7 +33,7 @@ $ echo $?
 1
 ```
 
-Since these collections weren't properly tagged prior to formalizing this policy,
+Since these collections were not properly tagged prior to formalizing this policy,
 they are listed in the `7/validate-tags-ignores` file.
 The release playbook passes that file to
 `antsibull-build validate-tags-file`'s `--ignores-file` flag to ignore errors
@@ -58,7 +58,7 @@ The playbook will fail if any new collection releases are not properly tagged.
 
 > **Note**
 >
-> It's recommended to run the release playbook with
+> It is recommended to run the release playbook with
 > [`ANSIBLE_CALLBACK_RESULT_FORMAT=yaml`][5] so error messages and any other
 > playbook output are more legible.
 
