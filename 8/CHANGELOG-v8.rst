@@ -8,6 +8,318 @@ This changelog describes changes since Ansible 7.0.0.
   :local:
   :depth: 2
 
+v8.0.0a3
+========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2023-05-02
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 8.0.0a3 contains Ansible-core version 2.15.0rc2.
+This is a newer version than version 2.15.0rc1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-------------------------+-----------------+-----------------+-------+
+| Collection              | Ansible 8.0.0a2 | Ansible 8.0.0a3 | Notes |
++=========================+=================+=================+=======+
+| ansible.windows         | 1.13.0          | 1.14.0          |       |
++-------------------------+-----------------+-----------------+-------+
+| cisco.iosxr             | 5.0.1           | 5.0.2           |       |
++-------------------------+-----------------+-----------------+-------+
+| community.crypto        | 2.12.0          | 2.13.0          |       |
++-------------------------+-----------------+-----------------+-------+
+| community.docker        | 3.4.3           | 3.4.4           |       |
++-------------------------+-----------------+-----------------+-------+
+| community.hashi_vault   | 4.2.0           | 4.2.1           |       |
++-------------------------+-----------------+-----------------+-------+
+| community.windows       | 1.12.0          | 1.13.0          |       |
++-------------------------+-----------------+-----------------+-------+
+| ibm.spectrum_virtualize | 1.11.0          | 1.12.0          |       |
++-------------------------+-----------------+-----------------+-------+
+| junipernetworks.junos   | 5.0.0           | 5.1.0           |       |
++-------------------------+-----------------+-----------------+-------+
+| lowlydba.sqlserver      | 1.3.1           | 2.0.0           |       |
++-------------------------+-----------------+-----------------+-------+
+| microsoft.ad            | 1.0.0           | 1.1.0           |       |
++-------------------------+-----------------+-----------------+-------+
+| openvswitch.openvswitch | 2.1.0           | 2.1.1           |       |
++-------------------------+-----------------+-----------------+-------+
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- The minimum required ``setuptools`` version is now 45.2.0, as it is the oldest version to support Python 3.10.
+- Use ``package_data`` instead of ``include_package_data`` for ``setup.cfg`` to avoid ``setuptools`` warnings.
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- Process - Add support for starting a process with a custom parent
+- win_updates - Added the ``rebooted`` return value to document if a host was rebooted - https://github.com/ansible-collections/ansible.windows/issues/485
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- x509_crl - the ``crl_mode`` option has been added to replace the existing ``mode`` option (https://github.com/ansible-collections/community.crypto/issues/596).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- Restrict requests to versions before 2.29.0, and urllib3 to versions before 2.0.0. This is necessary until the vendored code from Docker SDK for Python has been fully adjusted to work with a feature of urllib3 that is used since requests 2.29.0 (https://github.com/ansible-collections/community.docker/issues/611, https://github.com/ansible-collections/community.docker/pull/612).
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- Raise minimum Ansible version to ``2.12`` or newer
+- win_dns_record - Add parameter ``aging`` for creating non-static DNS records.
+- win_domain_computer - Add ActiveDirectory module import
+- win_domain_object_info - Add ActiveDirectory module import
+- win_psmodule - add ``force`` option to allow overwriting/updating existing module dependency only if requested
+- win_pssession_configuration - Add diff mode support
+
+ibm.spectrum_virtualize
+~~~~~~~~~~~~~~~~~~~~~~~
+
+- ibm_svc_host - Added support for NVMe ROCE host.
+- ibm_svc_info - Added new options for gather_subset parameter.
+- ibm_svc_manage_portset - Added support for FC portset and rename functionality.
+- ibm_svc_mdiskgrp - Added more parameters for storage pool configuration.
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- Adding unlink option to junos package installation.
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+lowlydba.sqlserver
+~~~~~~~~~~~~~~~~~~
+
+- Updating minimum DBATools version to v2.0.0 to allow for pwsh 7.3+ compatibility. There may also be breaking change behavior in DBATools, see https://blog.netnerds.net/2023/03/whats-new-dbatools-2.0/. (https://github.com/lowlydba/lowlydba.sqlserver/pull/181)
+
+Deprecated Features
+-------------------
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- x509_crl - the ``mode`` option is deprecated; use ``crl_mode`` instead. The ``mode`` option will change its meaning in community.crypto 3.0.0, and will refer to the CRL file's mode instead (https://github.com/ansible-collections/community.crypto/issues/596).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-galaxy - fix installing signed collections (https://github.com/ansible/ansible/issues/80648).
+- ansible-galaxy collection verify - fix verifying signed collections when the keyring is not configured.
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- setup - Be more resilient when parsing the BIOS release date - https://github.com/ansible-collections/ansible.windows/pull/496
+- win_package - Fix ``product_id`` check and skip downloaded requested file if the package is already installed - https://github.com/ansible-collections/ansible.windows/issues/479
+- win_updates - Add better handling for the polling output for connection plugins that might drop newlines on the output - https://github.com/ansible-collections/ansible.windows/issues/477
+- win_updates - Ensure failure condition doesn't lock the polling file - https://github.com/ansible-collections/ansible.windows/issues/490
+- win_updates - Improve batch task runner reliability and attempt to return more info on failures - https://github.com/ansible-collections/ansible.windows/issues/448
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- interfaces - Fix issue in ``overridden`` state of interfaces RM. (https://github.com/ansible-collections/cisco.iosxr/issues/377)
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- openssh_keypair - always generate a new key pair if the private key does not exist. Previously, the module would fail when ``regenerate=fail`` without an existing key, contradicting the documentation (https://github.com/ansible-collections/community.crypto/pull/598).
+- x509_crl - remove problem with ansible-core 2.16 due to ``AnsibleModule`` is now validating the ``mode`` parameter's values (https://github.com/ansible-collections/community.crypto/issues/596).
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- win_disk_facts - Fix issue when enumerating non-physical disks or disks without numbers - https://github.com/ansible-collections/community.windows/issues/474
+- win_firewall_rule - fix program cannot be set to any on existing rules.
+- win_psmodule - Fix missing AcceptLicense parameter that occurs when the pre-reqs have been installed - https://github.com/ansible-collections/community.windows/issues/487
+- win_pssession_configuration - Fix parser error (Invalid JSON primitive: icrosoft.WSMan.Management.WSManConfigContainerElement)
+- win_xml - Fixes the issue when no childnode is defined and will allow adding a new element to an empty element.
+- win_zip - fix source appears to use backslashes as path separators issue when extracting Zip archve in non-Windows environment - https://github.com/ansible-collections/community.windows/issues/442
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- Fix enabled attribute implementation.
+- Fix lldp_global_assertion.
+- Fix sanity issues.
+- Fix the snmp view and traps configuration.
+- fix the implementation of disabling interface.
+- module should return with failure when rollback is 0 and device is not reachable.
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- microsoft.ad.user - Fix setting ``password_expired`` when creating a new user - https://github.com/ansible-collections/microsoft.ad/issues/25
+
+openvswitch.openvswitch
+~~~~~~~~~~~~~~~~~~~~~~~
+
+- Fix galaxy version issue when installing this collection.
+
+Known Issues
+------------
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- The modules and plugins using the vendored code from Docker SDK for Python currently do not work with requests 2.29.0 and/or urllib3 2.0.0. The same is currently true for the latest version of Docker SDK for Python itself (https://github.com/ansible-collections/community.docker/issues/611, https://github.com/ansible-collections/community.docker/pull/612).
+
+New Plugins
+-----------
+
+Filter
+~~~~~~
+
+- microsoft.ad.as_datetime - Converts an LDAP value to a datetime string
+- microsoft.ad.as_guid - Converts an LDAP value to a GUID string
+- microsoft.ad.as_sid - Converts an LDAP value to a Security Identifier string
+
+Inventory
+~~~~~~~~~
+
+- microsoft.ad.ldap - Inventory plugin for Active Directory
+
+New Modules
+-----------
+
+ibm.spectrum_virtualize
+~~~~~~~~~~~~~~~~~~~~~~~
+
+- ibm.spectrum_virtualize.ibm_sv_manage_fc_partnership - Manages FC partnership on Spectrum Virtualize systems
+- ibm.spectrum_virtualize.ibm_sv_manage_fcportsetmember - Manages addition or removal of ports from the Fibre Channel (FC) portsets on Spectrum Virtualize storage systems
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- microsoft.ad.debug_ldap_client - Get host information for debugging LDAP connections
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 5.4.0)
+- ansible.netcommon (still version 5.1.0)
+- ansible.posix (still version 1.5.2)
+- ansible.utils (still version 2.9.0)
+- arista.eos (still version 6.0.1)
+- awx.awx (still version 22.1.0)
+- azure.azcollection (still version 1.15.0)
+- check_point.mgmt (still version 5.0.0)
+- chocolatey.chocolatey (still version 1.4.0)
+- cisco.aci (still version 2.6.0)
+- cisco.asa (still version 4.0.0)
+- cisco.dnac (still version 6.7.1)
+- cisco.intersight (still version 1.0.27)
+- cisco.ios (still version 4.5.0)
+- cisco.ise (still version 2.5.12)
+- cisco.meraki (still version 2.15.1)
+- cisco.mso (still version 2.4.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 4.3.0)
+- cisco.ucs (still version 1.8.0)
+- cloud.common (still version 2.1.3)
+- cloudscale_ch.cloud (still version 2.2.4)
+- community.aws (still version 5.4.0)
+- community.azure (still version 2.0.0)
+- community.ciscosmb (still version 1.0.5)
+- community.digitalocean (still version 1.23.0)
+- community.dns (still version 2.5.3)
+- community.fortios (still version 1.0.0)
+- community.general (still version 6.6.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.5.4)
+- community.hrobot (still version 1.8.0)
+- community.libvirt (still version 1.2.0)
+- community.mongodb (still version 1.5.2)
+- community.mysql (still version 3.6.0)
+- community.network (still version 5.0.0)
+- community.okd (still version 2.3.0)
+- community.postgresql (still version 2.3.2)
+- community.proxysql (still version 1.5.1)
+- community.rabbitmq (still version 1.2.3)
+- community.routeros (still version 2.8.0)
+- community.sap (still version 1.0.0)
+- community.sap_libs (still version 1.4.1)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.6.1)
+- community.vmware (still version 3.5.0)
+- community.zabbix (still version 1.9.3)
+- containers.podman (still version 1.10.1)
+- cyberark.conjur (still version 1.2.0)
+- cyberark.pas (still version 1.0.17)
+- dellemc.enterprise_sonic (still version 2.0.0)
+- dellemc.openmanage (still version 7.5.0)
+- dellemc.powerflex (still version 1.6.0)
+- dellemc.unity (still version 1.6.0)
+- f5networks.f5_modules (still version 1.24.0)
+- fortinet.fortimanager (still version 2.1.7)
+- fortinet.fortios (still version 2.2.3)
+- frr.frr (still version 2.0.2)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.1.3)
+- grafana.grafana (still version 2.0.0)
+- hetzner.hcloud (still version 1.11.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.1.0)
+- infinidat.infinibox (still version 1.3.12)
+- infoblox.nios_modules (still version 1.4.1)
+- inspur.ispim (still version 1.3.0)
+- inspur.sm (still version 2.3.0)
+- kubernetes.core (still version 2.4.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.22.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 22.5.0)
+- netapp.storagegrid (still version 21.11.1)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.4.0)
+- netbox.netbox (still version 3.12.0)
+- ngine_io.cloudstack (still version 2.3.0)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.3)
+- openstack.cloud (still version 2.1.0)
+- ovirt.ovirt (still version 3.1.2)
+- purestorage.flasharray (still version 1.17.2)
+- purestorage.flashblade (still version 1.11.0)
+- purestorage.fusion (still version 1.4.2)
+- sensu.sensu_go (still version 1.13.2)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 2.1.0)
+- t_systems_mms.icinga_director (still version 1.32.2)
+- theforeman.foreman (still version 3.10.0)
+- vmware.vmware_rest (still version 2.3.1)
+- vultr.cloud (still version 1.7.0)
+- vyos.vyos (still version 4.0.2)
+- wti.remote (still version 1.0.4)
+
 v8.0.0a2
 ========
 
@@ -835,6 +1147,7 @@ Ansible-core
 - ansible-test - Update the NIOS test plugin to use a newer multi-arch test container.
 - ansible-test - Update the ``ansible-bad-import-from`` rule in the ``pylint`` sanity test to recommend ``ansible.module_utils.six.moves.collections_abc`` instead of ``ansible.module_utils.common._collections_compat``.
 - ansible-test - Update the ``base`` and ``default`` test containers with the latest requirements.
+- ansible-test - Update the ``default`` containers to include the ``package-data`` requirements update.
 - ansible-test - Update the ``default`` containers to include the ``pylint`` requirements update.
 - ansible-test - Updated the Azure Pipelines CI plugin to work with newer versions of git.
 - ansible-test - Use ``stop --time 0`` followed by ``rm`` to remove ephemeral containers instead of ``rm -f``. This speeds up teardown of ephemeral containers.
