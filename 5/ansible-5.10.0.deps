@@ -1,5 +1,5 @@
 _ansible_version: 5.10.0
-_ansible_base_version: 2.12.7
+_ansible_core_version: 2.12.7
 amazon.aws: 2.3.0
 ansible.netcommon: 2.6.1
 ansible.posix: 1.4.0
