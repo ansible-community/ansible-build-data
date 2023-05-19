@@ -10,6 +10,19 @@ This document describes the ansible community package release process.
 > `{PLACEHOLDER}` where `PLACEHOLDER` describes the value to fill in.
 
 
+## Set up container
+
+Release managers may choose to preform the following steps inside a podman or
+docker container created from the [`docker.io/library/python:3.10`][container]
+image.
+Make sure to mount your working directory as a volume so you don't have to set
+up new repository clones every time.
+
+```
+podman run --name ansible-release -v {PERSISTENT DIRECTORY}:/pwd:z -w /pwd -ti docker.io/library/python:3.10 bash
+```
+
+
 ## Set up repository clones
 
 First, you need to set up ansible-build-data and antsibull repository clones.
@@ -43,7 +56,7 @@ This only needs to be done once.
    git fetch {USERNAME} -v
    ```
 
-## Release
+## Preform release process
 
 1. Change into the antsibull checkout.
    Make sure you have the `main` branch checked out
@@ -135,6 +148,7 @@ This only needs to be done once.
    Make sure to change the version numbers and sha256sum in the announcement
    text.
 
+[container]: https://hub.docker.com/_/python
 [abd-fork]: https://github.com/ansible-community/ansible-build-data/fork
 [ansible-build-data]: https://github.com/ansible-community/ansible-build-data
 [release-playbook]: https://github.com/ansible-community/antsibull/blob/main/playbooks/build-single-release.yaml
