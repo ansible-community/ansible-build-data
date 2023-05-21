@@ -1,2 +1,8 @@
 ancestor: 8.0.0
-releases: {}
+releases:
+  9.0.0a1:
+    changes:
+      removed_features:
+        - "``cisco.nso`` was considered unmaintained and removed from Ansible 9 as per the
+          `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
+          Users can still install this collection with ``ansible-galaxy collection install cisco.nso``."
