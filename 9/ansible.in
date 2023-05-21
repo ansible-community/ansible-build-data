@@ -17,7 +17,6 @@ cisco.iosxr
 cisco.ise
 cisco.meraki
 cisco.mso
-cisco.nso
 cisco.nxos
 cisco.ucs
 cloud.common

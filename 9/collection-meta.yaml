@@ -174,8 +174,6 @@ collections:
     repository: https://github.com/CiscoDevNet/ansible-meraki
   cisco.mso:
     repository: https://github.com/CiscoDevNet/ansible-mso
-  cisco.nso:
-    repository: https://github.com/CiscoDevNet/ansible-nso
   cisco.nxos:
     repository: https://github.com/ansible-collections/cisco.nxos
   cisco.ucs:
