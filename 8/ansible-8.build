@@ -57,7 +57,9 @@ community.zabbix: >=2.0.0,<3.0.0
 containers.podman: >=1.10.0,<2.0.0
 cyberark.conjur: >=1.2.0,<2.0.0
 cyberark.pas: >=1.0.0,<2.0.0
-dellemc.enterprise_sonic: >=2.0.0,<3.0.0
+# 2.1.0 has depclosure errors
+# https://github.com/ansible-community/ansible-build-data/issues/233
+dellemc.enterprise_sonic: ==2.0.0
 dellemc.openmanage: >=7.5.0,<8.0.0
 dellemc.powerflex: >=1.6.0,<2.0.0
 dellemc.unity: >=1.6.0,<2.0.0
