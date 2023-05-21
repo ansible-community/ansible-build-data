@@ -190,8 +190,6 @@ collections:
     repository: https://github.com/ansible-collections/community.digitalocean
   community.docker:
     repository: https://github.com/ansible-collections/community.docker
-  community.fortios:
-    repository: https://github.com/ansible-collections/community.fortios
   community.general:
     repository: https://github.com/ansible-collections/community.general
   community.google:
