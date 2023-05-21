@@ -43,7 +43,6 @@ community.rabbitmq
 community.routeros
 community.sap
 community.sap_libs
-community.skydive
 community.sops
 community.vmware
 community.windows

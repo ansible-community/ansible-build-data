@@ -216,8 +216,6 @@ collections:
     repository: https://github.com/ansible-collections/community.rabbitmq
   community.routeros:
     repository: https://github.com/ansible-collections/community.routeros
-  community.skydive:
-    repository: https://github.com/ansible-collections/skydive
   community.vmware:
     repository: https://github.com/ansible-collections/community.vmware
   community.windows:
