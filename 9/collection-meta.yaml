@@ -192,8 +192,6 @@ collections:
     repository: https://github.com/ansible-collections/community.docker
   community.general:
     repository: https://github.com/ansible-collections/community.general
-  community.google:
-    repository: https://github.com/ansible-collections/community.google
   community.grafana:
     repository: https://github.com/ansible-collections/grafana
   community.hashi_vault:
