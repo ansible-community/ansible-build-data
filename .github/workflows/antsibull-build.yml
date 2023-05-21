@@ -19,6 +19,9 @@ jobs:
           - name: Ansible 8
             ansible_version: 8.99.0
             ansible_major_version: 8
+          - name: Ansible 9
+            ansible_version: 9.99.0
+            ansible_major_version: 9
 
     steps:
       - name: Check out antsibull
