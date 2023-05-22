@@ -56,7 +56,7 @@ community.windows: >=1.11.0,<2.0.0
 community.zabbix: >=1.8.0,<2.0.0
 containers.podman: >=1.9.0,<2.0.0
 cyberark.conjur: >=1.2.0,<2.0.0
-cyberark.pas: >=1.0.0,<2.0.0
+cyberark.pas: >=1.0.0,<=1.0.17
 dellemc.enterprise_sonic: >=2.0.0,<3.0.0
 dellemc.openmanage: >=6.3.0,<7.0.0
 dellemc.os10: >=1.1.0,<2.0.0
