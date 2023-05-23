@@ -8,6 +8,205 @@ This changelog describes changes since Ansible 7.0.0.
   :local:
   :depth: 2
 
+v8.0.0rc1
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2023-05-23
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 8.0.0rc1 contains Ansible-core version 2.15.0.
+This is the same version of Ansible-core as in the previous Ansible release.
+
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection        | Ansible 8.0.0b1 | Ansible 8.0.0rc1 | Notes                                                                                                                        |
++===================+=================+==================+==============================================================================================================================+
+| amazon.aws        | 6.0.0           | 6.0.1            |                                                                                                                              |
++-------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.utils     | 2.10.2          | 2.10.3           | There are no changes recorded in the changelog.                                                                              |
++-------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto  | 2.13.0          | 2.13.1           |                                                                                                                              |
++-------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns     | 2.5.3           | 2.5.4            |                                                                                                                              |
++-------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker  | 3.4.5           | 3.4.6            |                                                                                                                              |
++-------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general | 7.0.0           | 7.0.1            |                                                                                                                              |
++-------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql   | 3.7.0           | 3.7.1            |                                                                                                                              |
++-------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.pas      | 1.0.17          | 1.0.19           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------+-----------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Bugfixes
+--------
+
+amazon.aws
+~~~~~~~~~~
+
+- aws_ec2 inventory plugin - fix ``NoRegionError`` when no regions are provided and region isn't specified (https://github.com/ansible-collections/amazon.aws/issues/1551).
+- s3_bucket - fixes issue when deleting a bucket with unversioned objects (https://github.com/ansible-collections/amazon.aws/issues/1533).
+- s3_object - fixes regression related to objects with a leading ``/`` (https://github.com/ansible-collections/amazon.aws/issues/1548).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- execution environment definition - fix installation of ``python3-pyOpenSSL`` package on CentOS and RHEL (https://github.com/ansible-collections/community.crypto/pull/606).
+- execution environment definition - fix source of ``python3-pyOpenSSL`` package for Rocky Linux 9+ (https://github.com/ansible-collections/community.crypto/pull/606).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- socket_handler module utils - make sure this fully works when Docker SDK for Python is not available (https://github.com/ansible-collections/community.docker/pull/620).
+- vendored Docker SDK for Python code - fix for errors on pipe close in Windows (https://github.com/ansible-collections/community.docker/pull/619).
+- vendored Docker SDK for Python code - respect timeouts on Windows named pipes (https://github.com/ansible-collections/community.docker/pull/619).
+- vendored Docker SDK for Python code - use ``poll()`` instead of ``select()`` except on Windows (https://github.com/ansible-collections/community.docker/pull/619).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- nmcli - fix bond option ``xmit_hash_policy`` (https://github.com/ansible-collections/community.general/pull/6527).
+- portage - fix ``changed_use`` and ``newuse`` not triggering rebuilds (https://github.com/ansible-collections/community.general/issues/6008, https://github.com/ansible-collections/community.general/pull/6548).
+- proxmox_tasks_info - remove ``api_user`` + ``api_password`` constraint from ``required_together`` as it causes to require ``api_password`` even when API token param is used (https://github.com/ansible-collections/community.general/issues/6201).
+- zypper - added handling of zypper exitcode 102. Changed state is set correctly now and rc 102 is still preserved to be evaluated by the playbook (https://github.com/ansible-collections/community.general/pull/6534).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql module utils - use the connection arguments ``db`` instead of ``database`` and ``passwd`` instead of ``password`` when running with older mysql drivers (MySQLdb < 2.1.0 or PyMySQL < 1.0.0) (https://github.com/ansible-collections/community.mysql/pull/551).
+
+Known Issues
+------------
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_api connection plugin - does **not work with TCP TLS sockets**! This is caused by the inability to send an ``close_notify`` TLS alert without closing the connection with Python's ``SSLSocket`` (https://github.com/ansible-collections/community.docker/issues/605, https://github.com/ansible-collections/community.docker/pull/621).
+- docker_container_exec - does **not work with TCP TLS sockets** when the ``stdin`` option is used! This is caused by the inability to send an ``close_notify`` TLS alert without closing the connection with Python's ``SSLSocket`` (https://github.com/ansible-collections/community.docker/issues/605, https://github.com/ansible-collections/community.docker/pull/621).
+
+Unchanged Collections
+---------------------
+
+- ansible.netcommon (still version 5.1.1)
+- ansible.posix (still version 1.5.4)
+- ansible.windows (still version 1.14.0)
+- arista.eos (still version 6.0.1)
+- awx.awx (still version 22.2.0)
+- azure.azcollection (still version 1.15.0)
+- check_point.mgmt (still version 5.0.0)
+- chocolatey.chocolatey (still version 1.4.0)
+- cisco.aci (still version 2.6.0)
+- cisco.asa (still version 4.0.0)
+- cisco.dnac (still version 6.7.2)
+- cisco.intersight (still version 1.0.27)
+- cisco.ios (still version 4.5.0)
+- cisco.iosxr (still version 5.0.2)
+- cisco.ise (still version 2.5.12)
+- cisco.meraki (still version 2.15.1)
+- cisco.mso (still version 2.4.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 4.3.0)
+- cisco.ucs (still version 1.8.0)
+- cloud.common (still version 2.1.3)
+- cloudscale_ch.cloud (still version 2.2.4)
+- community.aws (still version 6.0.0)
+- community.azure (still version 2.0.0)
+- community.ciscosmb (still version 1.0.5)
+- community.digitalocean (still version 1.23.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.5.4)
+- community.hashi_vault (still version 5.0.0)
+- community.hrobot (still version 1.8.0)
+- community.libvirt (still version 1.2.0)
+- community.mongodb (still version 1.5.2)
+- community.network (still version 5.0.0)
+- community.okd (still version 2.3.0)
+- community.postgresql (still version 2.4.1)
+- community.proxysql (still version 1.5.1)
+- community.rabbitmq (still version 1.2.3)
+- community.routeros (still version 2.8.0)
+- community.sap (still version 1.0.0)
+- community.sap_libs (still version 1.4.1)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.6.1)
+- community.vmware (still version 3.6.0)
+- community.windows (still version 1.13.0)
+- community.zabbix (still version 2.0.0)
+- containers.podman (still version 1.10.1)
+- cyberark.conjur (still version 1.2.0)
+- dellemc.enterprise_sonic (still version 2.0.0)
+- dellemc.openmanage (still version 7.5.0)
+- dellemc.powerflex (still version 1.6.0)
+- dellemc.unity (still version 1.6.0)
+- f5networks.f5_modules (still version 1.24.0)
+- fortinet.fortimanager (still version 2.1.7)
+- fortinet.fortios (still version 2.2.3)
+- frr.frr (still version 2.0.2)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.1.3)
+- grafana.grafana (still version 2.0.0)
+- hetzner.hcloud (still version 1.11.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.1.0)
+- ibm.spectrum_virtualize (still version 1.12.0)
+- infinidat.infinibox (still version 1.3.12)
+- infoblox.nios_modules (still version 1.5.0)
+- inspur.ispim (still version 1.3.0)
+- inspur.sm (still version 2.3.0)
+- junipernetworks.junos (still version 5.1.0)
+- kubernetes.core (still version 2.4.0)
+- lowlydba.sqlserver (still version 2.0.0)
+- microsoft.ad (still version 1.1.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.22.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 22.6.0)
+- netapp.storagegrid (still version 21.11.1)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.4.0)
+- netbox.netbox (still version 3.13.0)
+- ngine_io.cloudstack (still version 2.3.0)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.3)
+- openstack.cloud (still version 2.1.0)
+- openvswitch.openvswitch (still version 2.1.1)
+- ovirt.ovirt (still version 3.1.2)
+- purestorage.flasharray (still version 1.18.0)
+- purestorage.flashblade (still version 1.11.0)
+- purestorage.fusion (still version 1.4.2)
+- sensu.sensu_go (still version 1.13.2)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 2.1.0)
+- t_systems_mms.icinga_director (still version 1.32.2)
+- theforeman.foreman (still version 3.10.0)
+- vmware.vmware_rest (still version 2.3.1)
+- vultr.cloud (still version 1.7.1)
+- vyos.vyos (still version 4.0.2)
+- wti.remote (still version 1.0.4)
+
 v8.0.0b1
 ========
 
@@ -44,7 +243,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
 | ansible.posix          | 1.5.2           | 1.5.4           |                                                                                                                              |
 +------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
-| ansible.utils          | 2.9.0           | 2.10.2          | The collection did not have a changelog in this version.                                                                     |
+| ansible.utils          | 2.9.0           | 2.10.2          |                                                                                                                              |
 +------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
 | awx.awx                | 22.1.0          | 22.2.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
 +------------------------+-----------------+-----------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -147,10 +346,10 @@ amazon.aws
 - ec2_snapshot_info - Add unit-tests coverage (https://github.com/ansible-collections/amazon.aws/pull/1211).
 - ec2_vpc_route_table - add support for Carrier Gateway entry (https://github.com/ansible-collections/amazon.aws/pull/926).
 - ec2_vpc_subnet - retry fetching subnet details after creation if the first attempt fails (https://github.com/ansible-collections/amazon.aws/pull/1526).
-- inventory aws ec2 - add parameter `use_ssm_inventory` allowing to query ssm inventory information for configured EC2 instances and populate hostvars (https://github.com/ansible-collections/amazon.aws/issues/704).
+- inventory aws ec2 - add parameter ``use_ssm_inventory`` allowing to query ssm inventory information for configured EC2 instances and populate hostvars (https://github.com/ansible-collections/amazon.aws/issues/704).
 - inventory plugins - refactor cache handling (https://github.com/ansible-collections/amazon.aws/pull/1285).
 - inventory plugins - refactor file verification handling (https://github.com/ansible-collections/amazon.aws/pull/1285).
-- inventory_aws_ec2 integration tests - replace local module `test_get_ssm_inventory` by `community.aws.ssm_inventory_info` (https://github.com/ansible-collections/amazon.aws/pull/1416).
+- inventory_aws_ec2 integration tests - replace local module ``test_get_ssm_inventory`` by ``community.aws.ssm_inventory_info`` (https://github.com/ansible-collections/amazon.aws/pull/1416).
 - kms_key - Add multi_region option to create_key (https://github.com/ansible-collections/amazon.aws/pull/1290).
 - kms_key_info - minor linting fixes (https://github.com/ansible-collections/amazon.aws/pull/1181).
 - lambda -  add support for function layers when creating or updating lambda function (https://github.com/ansible-collections/amazon.aws/pull/1118).
@@ -201,6 +400,12 @@ ansible.posix
 
 - json and jsonl - Add the ``ANSIBLE_JSON_INDENT`` parameter
 - json and jsonl - Add the ``path`` attribute into the play and task output
+
+ansible.utils
+~~~~~~~~~~~~~
+
+- validate - Add option `check_format` for the jsonschema engine to disable JSON Schema format checking.
+- validate - Add support for JSON Schema draft 2019-09 and 2020-12 as well as automatically choosing the draft from the `$schema` field of the criteria.
 
 community.aws
 ~~~~~~~~~~~~~
@@ -574,7 +779,7 @@ amazon.aws
 - module_utils - fixes ``TypeError: deciding_wrapper() got multiple values for argument 'aws_retry'`` when passing positional arguments to functions wrapped by AnsibleAWSModule.client (https://github.com/ansible-collections/amazon.aws/pull/1230).
 - rds_instance - fix type of ``promotion_tier`` as passed to the APIs (https://github.com/ansible-collections/amazon.aws/pull/1475).
 - rds_param_group - added a check to fail the task while modifying/updating rds_param_group if trying to change DB parameter group family. (https://github.com/ansible-collections/amazon.aws/pull/1169).
-- route53_health_check - Fix "Name" tag key removal idempotentcy issue when creating health_check with `use_unique_names` and `tags` set (https://github.com/ansible-collections/amazon.aws/pull/1253).
+- route53_health_check - Fix ``Name`` tag key removal idempotentcy issue when creating health_check with ``use_unique_names`` and ``tags`` set (https://github.com/ansible-collections/amazon.aws/pull/1253).
 - s3_bucket - Handle setting of permissions while acl is disabled.(https://github.com/ansible-collections/amazon.aws/pull/1168).
 
 ansible.netcommon
