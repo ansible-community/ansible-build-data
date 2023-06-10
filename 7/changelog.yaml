@@ -123,3 +123,10 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2023-05-23'
+  7.7.0:
+    changes:
+      deprecated_features:
+      - The netapp.aws collection is considered unmaintained and will be removed
+        from Ansible 10 if no one starts maintaining it again before Ansible 10. See
+        `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+        (https://github.com/ansible-community/community-topics/issues/223).
