@@ -1,0 +1,427 @@
+# This is a mapping of collections to their git repositories and the git tag
+# that corresponds to the version included in this ansible release. A null
+# 'tag' field means that a collection's release wasn't tagged.
+amazon.aws:
+  repository: https://github.com/ansible-collections/amazon.aws
+  tag: 6.1.0
+  version: 6.1.0
+ansible.netcommon:
+  repository: https://github.com/ansible-collections/ansible.netcommon
+  tag: 5.1.1
+  version: 5.1.1
+ansible.posix:
+  repository: https://github.com/ansible-collections/ansible.posix
+  tag: 1.5.4
+  version: 1.5.4
+ansible.utils:
+  repository: https://github.com/ansible-collections/ansible.utils
+  tag: v2.10.3
+  version: 2.10.3
+ansible.windows:
+  repository: https://github.com/ansible-collections/ansible.windows
+  tag: 1.14.0
+  version: 1.14.0
+arista.eos:
+  repository: https://github.com/ansible-collections/arista.eos
+  tag: 6.0.1
+  version: 6.0.1
+awx.awx:
+  collection_directory: ./awx_collection
+  repository: https://github.com/ansible/awx
+  tag: 22.3.0
+  version: 22.3.0
+azure.azcollection:
+  repository: https://github.com/ansible-collections/azure
+  tag: v1.16.0
+  version: 1.16.0
+check_point.mgmt:
+  repository: https://github.com/CheckPointSW/CheckPointAnsibleMgmtCollection
+  tag: v5.1.1
+  version: 5.1.1
+chocolatey.chocolatey:
+  repository: https://github.com/chocolatey/chocolatey-ansible
+  tag: 1.4.0
+  version: 1.4.0
+cisco.aci:
+  repository: https://github.com/CiscoDevNet/ansible-aci
+  tag: v2.6.0
+  version: 2.6.0
+cisco.asa:
+  repository: https://github.com/ansible-collections/cisco.asa
+  tag: 4.0.1
+  version: 4.0.1
+cisco.dnac:
+  repository: https://github.com/cisco-en-programmability/dnacenter-ansible
+  tag: v6.7.2
+  version: 6.7.2
+cisco.intersight:
+  repository: https://github.com/CiscoDevNet/intersight-ansible
+  tag: 1.0.27
+  version: 1.0.27
+cisco.ios:
+  repository: https://github.com/ansible-collections/cisco.ios
+  tag: v4.6.1
+  version: 4.6.1
+cisco.iosxr:
+  repository: https://github.com/ansible-collections/cisco.iosxr
+  tag: 5.0.3
+  version: 5.0.3
+cisco.ise:
+  repository: https://github.com/CiscoISE/ansible-ise
+  tag: v2.5.12
+  version: 2.5.12
+cisco.meraki:
+  repository: https://github.com/CiscoDevNet/ansible-meraki
+  tag: v2.15.1
+  version: 2.15.1
+cisco.mso:
+  repository: https://github.com/CiscoDevNet/ansible-mso
+  tag: v2.4.0
+  version: 2.4.0
+cisco.nso:
+  repository: https://github.com/CiscoDevNet/ansible-nso
+  tag: null
+  version: 1.0.3
+cisco.nxos:
+  repository: https://github.com/ansible-collections/cisco.nxos
+  tag: 4.4.0
+  version: 4.4.0
+cisco.ucs:
+  repository: https://github.com/CiscoDevNet/ansible-ucs
+  tag: v1.8.0
+  version: 1.8.0
+cloud.common:
+  repository: https://github.com/ansible-collections/cloud.common
+  tag: 2.1.3
+  version: 2.1.3
+cloudscale_ch.cloud:
+  repository: https://github.com/cloudscale-ch/ansible-collection-cloudscale
+  tag: v2.3.1
+  version: 2.3.1
+community.aws:
+  repository: https://github.com/ansible-collections/community.aws
+  tag: 6.0.0
+  version: 6.0.0
+community.azure:
+  repository: https://github.com/ansible-collections/community.azure
+  tag: 2.0.0
+  version: 2.0.0
+community.ciscosmb:
+  repository: https://github.com/ansible-collections/community.ciscosmb
+  tag: 1.0.6
+  version: 1.0.6
+community.crypto:
+  repository: https://github.com/ansible-collections/community.crypto
+  tag: 2.14.0
+  version: 2.14.0
+community.digitalocean:
+  repository: https://github.com/ansible-collections/community.digitalocean
+  tag: 1.23.0
+  version: 1.23.0
+community.dns:
+  repository: https://github.com/ansible-collections/community.dns
+  tag: 2.5.6
+  version: 2.5.6
+community.docker:
+  repository: https://github.com/ansible-collections/community.docker
+  tag: 3.4.8
+  version: 3.4.8
+community.fortios:
+  repository: https://github.com/ansible-collections/community.fortios
+  tag: 1.0.0
+  version: 1.0.0
+community.general:
+  repository: https://github.com/ansible-collections/community.general
+  tag: 7.1.0
+  version: 7.1.0
+community.google:
+  repository: https://github.com/ansible-collections/community.google
+  tag: 1.0.0
+  version: 1.0.0
+community.grafana:
+  repository: https://github.com/ansible-collections/grafana
+  tag: 1.5.4
+  version: 1.5.4
+community.hashi_vault:
+  repository: https://github.com/ansible-collections/community.hashi_vault
+  tag: 5.0.0
+  version: 5.0.0
+community.hrobot:
+  repository: https://github.com/ansible-collections/community.hrobot
+  tag: 1.8.0
+  version: 1.8.0
+community.libvirt:
+  repository: https://github.com/ansible-collections/community.libvirt
+  tag: 1.2.0
+  version: 1.2.0
+community.mongodb:
+  repository: https://github.com/ansible-collections/community.mongodb
+  tag: 1.6.0
+  version: 1.6.0
+community.mysql:
+  repository: https://github.com/ansible-collections/community.mysql
+  tag: 3.7.2
+  version: 3.7.2
+community.network:
+  repository: https://github.com/ansible-collections/community.network
+  tag: 5.0.0
+  version: 5.0.0
+community.okd:
+  repository: https://github.com/openshift/community.okd
+  tag: 2.3.0
+  version: 2.3.0
+community.postgresql:
+  repository: https://github.com/ansible-collections/community.postgresql
+  tag: 2.4.2
+  version: 2.4.2
+community.proxysql:
+  repository: https://github.com/ansible-collections/community.proxysql
+  tag: 1.5.1
+  version: 1.5.1
+community.rabbitmq:
+  repository: https://github.com/ansible-collections/community.rabbitmq
+  tag: 1.2.3
+  version: 1.2.3
+community.routeros:
+  repository: https://github.com/ansible-collections/community.routeros
+  tag: 2.8.2
+  version: 2.8.2
+community.sap:
+  repository: https://github.com/ansible-collections/community.sap
+  tag: 1.0.0
+  version: 1.0.0
+community.sap_libs:
+  repository: https://github.com/sap-linuxlab/community.sap_libs
+  tag: 1.4.1
+  version: 1.4.1
+community.skydive:
+  repository: https://github.com/ansible-collections/skydive
+  tag: 1.0.0
+  version: 1.0.0
+community.sops:
+  repository: https://github.com/ansible-collections/community.sops
+  tag: 1.6.2
+  version: 1.6.2
+community.vmware:
+  repository: https://github.com/ansible-collections/community.vmware
+  tag: 3.7.0
+  version: 3.7.0
+community.windows:
+  repository: https://github.com/ansible-collections/community.windows
+  tag: 1.13.0
+  version: 1.13.0
+community.zabbix:
+  repository: https://github.com/ansible-collections/community.zabbix
+  tag: 2.0.1
+  version: 2.0.1
+containers.podman:
+  repository: https://github.com/containers/ansible-podman-collections
+  tag: 1.10.2
+  version: 1.10.2
+cyberark.conjur:
+  repository: https://github.com/cyberark/ansible-conjur-collection
+  tag: v1.2.0
+  version: 1.2.0
+cyberark.pas:
+  repository: https://github.com/cyberark/ansible-security-automation-collection
+  tag: 1.0.19
+  version: 1.0.19
+dellemc.enterprise_sonic:
+  repository: https://github.com/ansible-collections/dellemc.enterprise_sonic
+  tag: 2.2.0
+  version: 2.2.0
+dellemc.openmanage:
+  repository: https://github.com/dell/dellemc-openmanage-ansible-modules
+  tag: v7.6.1
+  version: 7.6.1
+dellemc.powerflex:
+  repository: https://github.com/dell/ansible-powerflex
+  tag: 1.6.0
+  version: 1.6.0
+dellemc.unity:
+  repository: https://github.com/dell/ansible-unity
+  tag: 1.6.0
+  version: 1.6.0
+f5networks.f5_modules:
+  collection_directory: ./ansible_collections/f5networks/f5_modules
+  repository: https://github.com/F5Networks/f5-ansible-f5modules
+  tag: 1.25.0
+  version: 1.25.0
+fortinet.fortimanager:
+  repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortimanager-collection
+  tag: 2.2.0
+  version: 2.2.0
+fortinet.fortios:
+  repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortios-collection
+  tag: 2.3.0
+  version: 2.3.0
+frr.frr:
+  repository: https://github.com/ansible-collections/frr.frr
+  tag: 2.0.2
+  version: 2.0.2
+gluster.gluster:
+  repository: https://github.com/gluster/gluster-ansible-collection
+  tag: 1.0.2
+  version: 1.0.2
+google.cloud:
+  repository: https://github.com/ansible-collections/google.cloud
+  tag: v1.1.3
+  version: 1.1.3
+grafana.grafana:
+  repository: https://github.com/grafana/grafana-ansible-collection
+  tag: 2.0.0
+  version: 2.0.0
+hetzner.hcloud:
+  repository: https://github.com/ansible-collections/hetzner.hcloud
+  tag: 1.11.0
+  version: 1.11.0
+hpe.nimble:
+  collection_directory: ./ansible_collection/hpe/nimble
+  repository: https://github.com/hpe-storage/nimble-ansible-modules
+  tag: v1.1.4
+  version: 1.1.4
+ibm.qradar:
+  repository: https://github.com/ansible-collections/ibm.qradar
+  tag: 2.1.0
+  version: 2.1.0
+ibm.spectrum_virtualize:
+  repository: https://github.com/ansible-collections/ibm.spectrum_virtualize
+  tag: 1.12.0
+  version: 1.12.0
+infinidat.infinibox:
+  repository: https://github.com/infinidat/ansible-infinidat-collection
+  tag: v1.3.12
+  version: 1.3.12
+infoblox.nios_modules:
+  repository: https://github.com/infobloxopen/infoblox-ansible
+  tag: v1.5.0
+  version: 1.5.0
+inspur.ispim:
+  repository: https://github.com/ispim/inspur.ispim
+  tag: 1.3.0
+  version: 1.3.0
+inspur.sm:
+  repository: https://github.com/ISIB-Group/inspur.sm
+  tag: 2.3.0
+  version: 2.3.0
+junipernetworks.junos:
+  repository: https://github.com/ansible-collections/junipernetworks.junos
+  tag: 5.1.0
+  version: 5.1.0
+kubernetes.core:
+  repository: https://github.com/ansible-collections/kubernetes.core
+  tag: 2.4.0
+  version: 2.4.0
+lowlydba.sqlserver:
+  repository: https://github.com/LowlyDBA/lowlydba.sqlserver
+  tag: 2.0.0
+  version: 2.0.0
+microsoft.ad:
+  repository: https://github.com/ansible-collections/microsoft.ad
+  tag: 1.2.0
+  version: 1.2.0
+netapp.aws:
+  repository: https://github.com/ansible-collections/netapp.aws
+  tag: 21.7.0
+  version: 21.7.0
+netapp.azure:
+  repository: https://github.com/ansible-collections/netapp.azure
+  tag: 21.10.0
+  version: 21.10.0
+netapp.cloudmanager:
+  repository: https://github.com/ansible-collections/netapp.cloudmanager
+  tag: 21.22.0
+  version: 21.22.0
+netapp.elementsw:
+  repository: https://github.com/ansible-collections/netapp.elementsw
+  tag: 21.7.0
+  version: 21.7.0
+netapp.ontap:
+  repository: https://github.com/ansible-collections/netapp.ontap
+  tag: 22.7.0
+  version: 22.7.0
+netapp.storagegrid:
+  repository: https://github.com/ansible-collections/netapp.storagegrid
+  tag: 21.11.1
+  version: 21.11.1
+netapp.um_info:
+  repository: https://github.com/ansible-collections/netapp.um_info
+  tag: 21.8.0
+  version: 21.8.0
+netapp_eseries.santricity:
+  repository: https://github.com/netapp-eseries/santricity
+  tag: v1.4.0
+  version: 1.4.0
+netbox.netbox:
+  repository: https://github.com/netbox-community/ansible_modules
+  tag: v3.13.0
+  version: 3.13.0
+ngine_io.cloudstack:
+  repository: https://github.com/ngine-io/ansible-collection-cloudstack
+  tag: v2.3.0
+  version: 2.3.0
+ngine_io.exoscale:
+  repository: https://github.com/ngine-io/ansible-collection-exoscale
+  tag: v1.0.0
+  version: 1.0.0
+ngine_io.vultr:
+  repository: https://github.com/ngine-io/ansible-collection-vultr
+  tag: v1.1.3
+  version: 1.1.3
+openstack.cloud:
+  repository: https://opendev.org/openstack/ansible-collections-openstack
+  tag: 2.1.0
+  version: 2.1.0
+openvswitch.openvswitch:
+  repository: https://github.com/ansible-collections/openvswitch.openvswitch
+  tag: 2.1.1
+  version: 2.1.1
+ovirt.ovirt:
+  repository: https://github.com/ovirt/ovirt-ansible-collection
+  tag: 3.1.2-1
+  version: 3.1.2
+purestorage.flasharray:
+  repository: https://github.com/Pure-Storage-Ansible/FlashArray-Collection
+  tag: 1.19.1
+  version: 1.19.1
+purestorage.flashblade:
+  repository: https://github.com/Pure-Storage-Ansible/FlashBlade-Collection
+  tag: 1.11.0
+  version: 1.11.0
+purestorage.fusion:
+  repository: https://github.com/Pure-Storage-Ansible/Fusion-Collection
+  tag: 1.5.0
+  version: 1.5.0
+sensu.sensu_go:
+  repository: https://github.com/sensu/sensu-go-ansible
+  tag: v1.13.2
+  version: 1.13.2
+splunk.es:
+  repository: https://github.com/ansible-collections/splunk.es
+  tag: 2.1.0
+  version: 2.1.0
+t_systems_mms.icinga_director:
+  repository: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
+  tag: 1.33.1
+  version: 1.33.1
+theforeman.foreman:
+  repository: https://github.com/theforeman/foreman-ansible-modules
+  tag: v3.11.0
+  version: 3.11.0
+vmware.vmware_rest:
+  repository: https://github.com/ansible-collections/vmware.vmware_rest
+  tag: 2.3.1
+  version: 2.3.1
+vultr.cloud:
+  repository: https://github.com/vultr/ansible-collection-vultr
+  tag: v1.8.0
+  version: 1.8.0
+vyos.vyos:
+  repository: https://github.com/ansible-collections/vyos.vyos
+  tag: 4.1.0
+  version: 4.1.0
+wti.remote:
+  collection_directory: ./wti/remote
+  repository: https://github.com/wtinetworkgear/wti-collection
+  tag: v1.0.5
+  version: 1.0.5
