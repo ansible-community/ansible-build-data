@@ -1,5 +1,14 @@
 ancestor: 7.0.0
 releases:
+  8.0.0:
+    changes:
+      deprecated_features:
+      - The netapp.aws collection is considered unmaintained and will be removed from
+        Ansible 10 if no one starts maintaining it again before Ansible 10. See `the
+        removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+        (https://github.com/ansible-community/community-topics/issues/223).
+      release_summary: 'Release Date: 2023-05-30 `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2023-05-30'
   8.0.0a1:
     changes:
       deprecated_features:
@@ -69,25 +78,20 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2023-05-23'
-  8.0.0:
-    changes:
-      deprecated_features:
-      - The netapp.aws collection is considered unmaintained and will be removed
-        from Ansible 10 if no one starts maintaining it again before Ansible 10. See
-        `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
-        (https://github.com/ansible-community/community-topics/issues/223).
-      release_summary: 'Release Date: 2023-05-30
-        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
-    release_date: '2023-05-30'
   8.1.0:
     changes:
       breaking_changes:
       - Please note that the breaking change announced in the dellemc.enterprise_sonic
         changelog below is from dellemc.enterprise_sonic 2.1.0 and was reverted in
-        dellemc.enterprise_sonic 2.2.0, so it is not contained in Ansible 8.
-        For technical reasons, this entry is still shown here.
+        dellemc.enterprise_sonic 2.2.0, so it is not contained in Ansible 8. For technical
+        reasons, this entry is still shown here.
       deprecated_features:
       - The gluster.gluster collection is considered unmaintained and will be removed
         from Ansible 10 if no one starts maintaining it again before Ansible 10. See
         `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
         (https://github.com/ansible-community/community-topics/issues/225).
+      release_summary: 'Release Date: 2023-06-22
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2023-06-22'

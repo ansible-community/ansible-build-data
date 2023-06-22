@@ -8,6 +8,1048 @@ This changelog describes changes since Ansible 7.0.0.
   :local:
   :depth: 2
 
+v8.1.0
+======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2023-06-22
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 8.1.0 contains Ansible-core version 2.15.1.
+This is a newer version than version 2.15.0 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                    | Ansible 8.0.0 | Ansible 8.1.0 | Notes                                                                                                                        |
++===============================+===============+===============+==============================================================================================================================+
+| amazon.aws                    | 6.0.1         | 6.1.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| awx.awx                       | 22.2.0        | 22.3.0        | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| azure.azcollection            | 1.15.0        | 1.16.0        | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| check_point.mgmt              | 5.0.0         | 5.1.1         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.asa                     | 4.0.0         | 4.0.1         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios                     | 4.5.0         | 4.6.1         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.iosxr                   | 5.0.2         | 5.0.3         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.nxos                    | 4.3.0         | 4.4.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cloudscale_ch.cloud           | 2.2.4         | 2.3.1         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.ciscosmb            | 1.0.5         | 1.0.6         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto              | 2.13.1        | 2.14.0        |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns                 | 2.5.4         | 2.5.6         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker              | 3.4.6         | 3.4.8         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general             | 7.0.1         | 7.1.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mongodb             | 1.5.2         | 1.6.0         | There are no changes recorded in the changelog.                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql               | 3.7.1         | 3.7.2         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.postgresql          | 2.4.1         | 2.4.2         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros            | 2.8.0         | 2.8.2         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sops                | 1.6.1         | 1.6.2         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware              | 3.6.0         | 3.7.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.zabbix              | 2.0.0         | 2.0.1         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman             | 1.10.1        | 1.10.2        |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.enterprise_sonic      | 2.0.0         | 2.2.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.openmanage            | 7.5.0         | 7.6.1         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules         | 1.24.0        | 1.25.0        |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortimanager         | 2.1.7         | 2.2.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortios              | 2.2.3         | 2.3.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| microsoft.ad                  | 1.1.0         | 1.2.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap                  | 22.6.0        | 22.7.0        |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flasharray        | 1.18.0        | 1.19.1        |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.fusion            | 1.4.2         | 1.5.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| t_systems_mms.icinga_director | 1.32.2        | 1.33.1        |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman            | 3.10.0        | 3.11.0        |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| vultr.cloud                   | 1.7.1         | 1.8.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| vyos.vyos                     | 4.0.2         | 4.1.0         |                                                                                                                              |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| wti.remote                    | 1.0.4         | 1.0.5         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-------------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- Bump minimum required Ansible version to 2.13.0
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Support all FortiManager versions in 6.2, 6.4, 7.0, 7.2 and 7.4. 139 new modules.
+- Support token based authentication.
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Improve the `no_log` feature in some modules;
+- Improve the documentation and example for `seq_num` in `fortios_router_static`;
+- Improve the documentation for `member_path` in all the modules;
+- Support new FOS versions.
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Allow float values for the ``--timeout`` option to the ``env`` command. This simplifies testing.
+- ansible-test - Refactored ``env`` command logic and timeout handling.
+- ansible-test - Use ``datetime.datetime.now`` with ``tz`` specified instead of ``datetime.datetime.utcnow``.
+
+amazon.aws
+~~~~~~~~~~
+
+- ec2_snapshot - Add support for modifying createVolumePermission (https://github.com/ansible-collections/amazon.aws/pull/1464).
+- ec2_snapshot_info - Add createVolumePermission to output result (https://github.com/ansible-collections/amazon.aws/pull/1464).
+
+check_point.mgmt
+~~~~~~~~~~~~~~~~
+
+- cp_mgmt_vpn_community_star - new fields added.
+- show command modules  - no longer return result of changed=True.
+
+cisco.ios
+~~~~~~~~~
+
+- ios_interfaces - Add template attribute to provide support for cisco ios templates.
+- ios_service - Create module to manage service configuration on IOS switches
+
+cisco.nxos
+~~~~~~~~~~
+
+- nxos_user - Add support for hashed passwords. (https://github.com/ansible-collections/cisco.nxos/issues/370).
+
+community.ciscosmb
+~~~~~~~~~~~~~~~~~~
+
+- added Ansible playbook examples ``cismosmb_inventory_template.yml``, ``cismosmb_gather_facts.yml``, ``cismosmb_commands.yml``
+- no longer testing for ansible 2.9 and for Python 2.6 / 2.7
+- removed unused portion of code in cliconf/ciscosmb.yml
+- test Ansible 2.14
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme_certificate - allow to use no challenge by providing ``no challenge`` for the ``challenge`` option. This is needed for ACME servers where validation is done without challenges (https://github.com/ansible-collections/community.crypto/issues/613, https://github.com/ansible-collections/community.crypto/pull/615).
+- acme_certificate - validate and wait for challenges in parallel instead handling them one after another (https://github.com/ansible-collections/community.crypto/pull/617).
+- x509_certificate_info - added support for certificates in DER format when using ``path`` parameter (https://github.com/ansible-collections/community.crypto/issues/603).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- The collection will start using semantic markup (https://github.com/ansible-collections/community.general/pull/6539).
+- VarDict module utils - add method ``VarDict.as_dict()`` to convert to a plain ``dict`` object (https://github.com/ansible-collections/community.general/pull/6602).
+- cobbler inventory plugin - add ``inventory_hostname`` option to allow using the system name for the inventory hostname (https://github.com/ansible-collections/community.general/pull/6502).
+- cobbler inventory plugin - add ``want_ip_addresses`` option to collect all interface DNS name to IP address mapping (https://github.com/ansible-collections/community.general/pull/6711).
+- cobbler inventory plugin - add primary IP addess to ``cobbler_ipv4_address`` and IPv6 address to ``cobbler_ipv6_address`` host variable (https://github.com/ansible-collections/community.general/pull/6711).
+- cobbler inventory plugin - add warning for systems with empty profiles (https://github.com/ansible-collections/community.general/pull/6502).
+- copr - respawn module to use the system python interpreter when the ``dnf`` python module is not available in ``ansible_python_interpreter`` (https://github.com/ansible-collections/community.general/pull/6522).
+- datadog_monitor - adds ``notification_preset_name``, ``renotify_occurrences`` and ``renotify_statuses`` parameters (https://github.com/ansible-collections/community.general/issues/6521,https://github.com/ansible-collections/community.general/issues/5823).
+- filesystem - add ``uuid`` parameter for UUID change feature (https://github.com/ansible-collections/community.general/pull/6680).
+- keycloak_client_rolemapping - adds support for subgroups with additional parameter ``parents`` (https://github.com/ansible-collections/community.general/pull/6687).
+- keycloak_role - add composite roles support for realm and client roles (https://github.com/ansible-collections/community.general/pull/6469).
+- ldap_* - add new arguments ``client_cert`` and ``client_key`` to the LDAP modules in order to allow certificate authentication (https://github.com/ansible-collections/community.general/pull/6668).
+- ldap_search - add a new ``page_size`` option to enable paged searches (https://github.com/ansible-collections/community.general/pull/6648).
+- lvg - add ``active`` and ``inactive`` values to the ``state`` option for active state management feature (https://github.com/ansible-collections/community.general/pull/6682).
+- lvg - add ``reset_vg_uuid``, ``reset_pv_uuid`` options for UUID reset feature (https://github.com/ansible-collections/community.general/pull/6682).
+- mas - disable sign-in check for macOS 12+ as ``mas account`` is non-functional (https://github.com/ansible-collections/community.general/pull/6520).
+- onepassword lookup plugin - add service account support (https://github.com/ansible-collections/community.general/issues/6635, https://github.com/ansible-collections/community.general/pull/6660).
+- onepassword_raw lookup plugin - add service account support (https://github.com/ansible-collections/community.general/issues/6635, https://github.com/ansible-collections/community.general/pull/6660).
+- opentelemetry callback plugin - add span attributes in the span event (https://github.com/ansible-collections/community.general/pull/6531).
+- opkg - remove default value ``""`` for parameter ``force`` as it causes the same behaviour of not having that parameter (https://github.com/ansible-collections/community.general/pull/6513).
+- proxmox - support ``timezone`` parameter at container creation (https://github.com/ansible-collections/community.general/pull/6510).
+- proxmox inventory plugin - add composite variables support for Proxmox nodes (https://github.com/ansible-collections/community.general/issues/6640).
+- proxmox_kvm - added support for ``tpmstate0`` parameter to configure TPM (Trusted Platform Module) disk. TPM is required for Windows 11 installations (https://github.com/ansible-collections/community.general/pull/6533).
+- proxmox_kvm - re-use ``timeout`` module param to forcefully shutdown a virtual machine when ``state`` is ``stopped`` (https://github.com/ansible-collections/community.general/issues/6257).
+- proxmox_snap - add ``retention`` parameter to delete old snapshots (https://github.com/ansible-collections/community.general/pull/6576).
+- redfish_command - add ``MultipartHTTPPushUpdate`` command (https://github.com/ansible-collections/community.general/issues/6471, https://github.com/ansible-collections/community.general/pull/6612).
+- redhat_subscription - the internal ``RegistrationBase`` class was folded
+  into the other internal ``Rhsm`` class, as the separation had no purpose
+  anymore
+  (https://github.com/ansible-collections/community.general/pull/6658).
+- rhsm_release - improve/harden the way ``subscription-manager`` is run;
+  no behaviour change is expected
+  (https://github.com/ansible-collections/community.general/pull/6669).
+- snap - module is now aware of channel when deciding whether to install or refresh the snap (https://github.com/ansible-collections/community.general/pull/6435, https://github.com/ansible-collections/community.general/issues/1606).
+- sorcery - minor refactor (https://github.com/ansible-collections/community.general/pull/6525).
+- tss lookup plugin - allow to fetch secret IDs which are in a folder based on folder ID. Previously, we could not fetch secrets based on folder ID but now use ``fetch_secret_ids_from_folder`` option to indicate to fetch secret IDs based on folder ID (https://github.com/ansible-collections/community.general/issues/6223).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_cluster_drs_recommendations - Add the Module to apply the drs recommendations (https://github.com/ansible-collections/community.vmware/pull/1736)
+- vmware_guest_serial_port - add support for proxyURI parameter to enable use of a virtual serial port concentrator (https://github.com/ansible-collections/community.vmware/issues/1742)
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- galaxy_yml - Enable installation of Ansible Netcomon versions after 5.0.0 and update the enterprise_sonic release version (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/270).
+- module_utils - Change the location for importing remove_empties from the obsolete Netcommon location to the offically required Ansible library location to fix sanity errors (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/172).
+- sonic_aaa - Add replaced and overridden states support for AAA resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/237).
+- sonic_aaa - Add unit tests for AAA resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/198).
+- sonic_aaa - Revert breaking changes for AAA nodule (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/269).
+- sonic_api - Add unit tests for api resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/218).
+- sonic_bfd, sonic_copp - Update replaced methods (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/254).
+- sonic_bgp - Add rt_delay attribute to module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/244).
+- sonic_bgp - Add support for replaced and overridden states (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/240).
+- sonic_bgp - Add unit tests for BGP resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/182).
+- sonic_bgp_af - Add several attributes to support configuration of route distinguisher and route target (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/141).
+- sonic_bgp_af - Add support for replaced and overridden states (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/246).
+- sonic_bgp_af - Add unit tests for BGP AF resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/183).
+- sonic_bgp_af - Modify BGP AF resource module unit tests to adjust for changes in the resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/191).
+- sonic_bgp_as_paths - Add unit tests for BGP AS paths resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/184).
+- sonic_bgp_communities - Add unit tests for BGP communities resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/185).
+- sonic_bgp_ext_communities - Add unit tests for BGP ext communities resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/186).
+- sonic_bgp_neighbors - Add unit tests for BGP neighbors resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/187).
+- sonic_bgp_neighbors - Enhance unit tests for BGP Neighbors resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/245).
+- sonic_bgp_neighbors_af - Add unit tests for BGP neighbors AF resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/188).
+- sonic_command - Add unit tests for command resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/219).
+- sonic_config - Add unit tests for config resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/220).
+- sonic_dhcp_relay - Add a common unit tests module and unit tests for dhcp relay module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/148).
+- sonic_dhcp_relay - Add support for replaced and overridden states (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/249).
+- sonic_facts - Add unit tests for facts resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/222).
+- sonic_interfaces - Add speed, auto-negotiate, advertised-speed and FEC to interface resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/128).
+- sonic_interfaces - Add unit tests for interfaces resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/197).
+- sonic_ip_neighbor - Add unit tests for IP neighbor resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/225).
+- sonic_ip_neighbor - Change the replaced function in ip_neighbor resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/253).
+- sonic_l2_interfaces - Add support for parsing configuration containing the OC Yang vlan range syntax (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/124).
+- sonic_l2_interfaces - Add support for replaced and overridden states (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/221).
+- sonic_l2_interfaces - Add support for specifying vlan trunk ranges in Ansible playbooks (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/149).
+- sonic_l2_interfaces - Add unit tests for l2_interfaces resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/200).
+- sonic_l3_interfaces - Add unit tests for l3_interfaces resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/202).
+- sonic_lag_interface - Add replaced and overridden states support for LAG interface resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/196).
+- sonic_lag_interfaces - Add unit tests for lag_interfaces resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/203).
+- sonic_logging - Add replaced and overridden states support for logging resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/150).
+- sonic_logging - Add unit tests for logging resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/226).
+- sonic_logging - Change logging get facts for source_interface naming (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/258).
+- sonic_mclag - Add delay_restore, gateway_mac, and peer_gateway attributes to module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/145).
+- sonic_ntp - Add prefer attribute to NTP resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/118).
+- sonic_ntp - Add replaced and overridden states support for NTP resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/151).
+- sonic_ntp - Add unit tests for NTP resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/207).
+- sonic_ntp - Change NTP get facts to get default parameters (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/106).
+- sonic_ntp - Change NTP key values in NTP regression test script (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/107).
+- sonic_ntp - Change NTP module name (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/113).
+- sonic_ntp - Change NTP module names in NTP regression test script (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/114).
+- sonic_ntp - Change NTP resource module to make minpoll and maxpoll be configured together (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/129).
+- sonic_port_breakout - Add unit tests for port breakout resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/229).
+- sonic_port_group - Add replaced and overridden states support for port group resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/227).
+- sonic_port_group - Add unit tests for port group resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/228).
+- sonic_prefix_lists - Add support for replaced and overridden states (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/255).
+- sonic_prefix_lists - Add unit tests for prefix lists resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/209).
+- sonic_radius_server - Add replaced and overridden states support for RADIUS server resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/239).
+- sonic_radius_server - Add unit tests for RADIUS server resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/210).
+- sonic_static_routes - Add support for replaced and overridden states (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/236).
+- sonic_static_routes - Add unit tests for static routes resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/212).
+- sonic_system - Add replaced and overridden states support for system resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/159).
+- sonic_system - Add unit tests for system resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/223).
+- sonic_tacacs_server - Add replaced and overridden states support for TACACS server resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/235).
+- sonic_tacacs_server - Add unit tests for TACACS server resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/208).
+- sonic_users - Add replaced and overridden states support for users resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/242).
+- sonic_users - Add unit tests for users resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/213).
+- sonic_vlans - Add replaced and overridden states support for VLAN resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/217).
+- sonic_vlans - Add unit tests for Vlans resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/214).
+- sonic_vrfs - Add replaced and overridden states support for VRF resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/156).
+- sonic_vrfs - Add unit tests for VRFS resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/216).
+- sonic_vxlans - Add support for replaced and overridden states (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/247).
+- sonic_vxlans - Add unit tests for VxLans resource module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/215).
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- Updated the idrac_gather_facts role to use jinja template filters.
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_command - Added note to give appropriate timeout value for long running commands
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Corrected the behavior of module fmgr_pkg_firewall_consolidated_policy_sectionvalue and fmgr_pkg_firewall_securitypolicy_sectionvalue.
+- Improve documentation.
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- microsoft.ad.debug_ldap_client - Add ``dpapi_ng`` to list of packages checked
+- microsoft.ad.ldap - Add support for decrypting LAPS encrypted password
+- microsoft.ad.ldap - Allow setting LDAP connection and authentication options through environment variables - https://github.com/ansible-collections/microsoft.ad/issues/34
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_name_mappings - added choices ``s3_win`` and ``s3_unix`` to ``direction``, requires ONTAP 9.12.1 or later.
+- na_ontap_s3_buckets - new option ``nas_path`` added, requires ONTAP 9.12.1 or later.
+
+purestorage.fusion
+~~~~~~~~~~~~~~~~~~
+
+- FUSION_API_HOST && FUSION_HOST - changed logic, now this variables require host name without path
+- Fusion authentication - add 'access_token' module's parameter and 'FUSION_ACCESS_TOKEN' environment variable, as an alternative way of the authentication.
+- fusion - added private key password, which is used to decrypt private key files
+- fusion_info - `array` is None if missing in `volume`
+- fusion_info - `hardware_types` is None if missing in `storage_service`
+- fusion_info - `network_interface_groups` is None if missing in `iscsi_interfaces` in `storage_endpoint`
+- fusion_info - introduce 'availability_zones' subset option
+- fusion_info - introduce 'host_access_policies' subset option
+- fusion_info - introduce 'network_interfaces' subset option
+- fusion_info - introduce 'regions' subset option
+- fusion_info - rename 'appliances' in default dict to 'arrays' for consistency
+- fusion_info - rename 'hosts' dict to 'host_access_policies' for consistency
+- fusion_info - rename 'interfaces' dict to 'network_interfaces' for consistency
+- fusion_info - rename 'placements_groups' in default dict to 'placement_groups' for consistency
+- fusion_info - rename 'zones' dict to 'availability_zones' for consistency
+- fusion_info - rename hardware to hardware_types in response for consistency
+- fusion_info - rename storageclass to storage_classes in response for consistency
+- fusion_pp - duration parsing improved. Supports combination of time units (E.g 5H5M)
+- fusion_ra - added `api_client_key` argument, which can be used instead of `user` and `principal` argument
+- fusion_ra - added `principal` argument, which is an ID of either API client or User and can be used instead of `user` argument
+- fusion_se - add support for CBS Storage Endpoint
+
+t_systems_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Add Icinga Deploy handler and module (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/205)
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- content_view_promote role - also accept all parameters of the `content_view_version` module (https://github.com/theforeman/foreman-ansible-modules/issues/1591)
+- content_view_version - include information about the published version in the return value of the module
+- job-invocation - add ``recurrence purpose`` and ``description_format`` parameters
+- organizations role - accept ``parameters`` and ``ignore_types`` like the module does
+
+vultr.cloud
+~~~~~~~~~~~
+
+- instance - Implemented a new ``state`` equal ``reinstalled`` to reinstall an existing instance (https://github.com/vultr/ansible-collection-vultr/pull/66).
+- inventory - Bare metal support has been implemented (https://github.com/vultr/ansible-collection-vultr/pull/63).
+
+vyos.vyos
+~~~~~~~~~
+
+- vyos-l3_interface_support - Add support for Tunnel, Bridge and Dummy interfaces. (https://github.com/ansible-collections/vyos.vyos/issues/265)
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+- Please note that the breaking change announced in the dellemc.enterprise_sonic changelog below is from dellemc.enterprise_sonic 2.1.0 and was reverted in dellemc.enterprise_sonic 2.2.0, so it is not contained in Ansible 8. For technical reasons, this entry is still shown here.
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- sonic_aaa - Add default_auth attribute to the argspec to replace the deleted group and local attributes. This change allows for ordered login authentication. (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/195).
+
+Deprecated Features
+-------------------
+
+- The gluster.gluster collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/225).
+
+amazon.aws
+~~~~~~~~~~
+
+- s3_object - support for passing object keys with a leading ``/`` has been deprecated and will be removed in a release after 2025-12-01 (https://github.com/ansible-collections/amazon.aws/pull/1549).
+
+community.ciscosmb
+~~~~~~~~~~~~~~~~~~
+
+- support for Python 2.6 nad 2.7
+- support for ansible 2.9
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- CmdRunner module utils - deprecate ``cmd_runner_fmt.as_default_type()`` formatter (https://github.com/ansible-collections/community.general/pull/6601).
+- MH VarsMixin module utils - deprecates ``VarsMixin`` and supporting classes in favor of plain ``vardict`` module util (https://github.com/ansible-collections/community.general/pull/6649).
+- cpanm - value ``compatibility`` is deprecated as default for parameter ``mode`` (https://github.com/ansible-collections/community.general/pull/6512).
+- redhat module utils - the ``module_utils.redhat`` module is deprecated, as
+  effectively unused: the ``Rhsm``, ``RhsmPool``, and ``RhsmPools`` classes
+  will be removed in community.general 9.0.0; the ``RegistrationBase`` class
+  will be removed in community.general 10.0.0 together with the
+  ``rhn_register`` module, as it is the only user of this class; this means
+  that the whole ``module_utils.redhat`` module will be dropped in
+  community.general 10.0.0, so importing it without even using anything of it
+  will fail
+  (https://github.com/ansible-collections/community.general/pull/6663).
+- redhat_subscription - the ``autosubscribe`` alias for the ``auto_attach`` option has been
+  deprecated for many years, although only in the documentation. Officially mark this alias
+  as deprecated, and it will be removed in community.general 9.0.0
+  (https://github.com/ansible-collections/community.general/pull/6646).
+- redhat_subscription - the ``pool`` option is deprecated in favour of the
+  more precise and flexible ``pool_ids`` option
+  (https://github.com/ansible-collections/community.general/pull/6650).
+- rhsm_repository - ``state=present`` has not been working as expected for many years,
+  and it seems it was not noticed so far; also, "presence" is not really a valid concept
+  for subscription repositories, which can only be enabled or disabled. Hence, mark the
+  ``present`` and ``absent`` values of the ``state`` option as deprecated, slating them
+  for removal in community.general 10.0.0
+  (https://github.com/ansible-collections/community.general/pull/6673).
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- Deprecating support for Server 2012 and Server 2012 R2. These OS versions are reaching End of Life status from Microsoft and support for using them in Ansible are nearing its end.
+
+purestorage.fusion
+~~~~~~~~~~~~~~~~~~
+
+- fusion_api_client - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_array - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_az - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_hap - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_hap - parameters `nqn`, `wwns`, `host_password`, `host_user`, `target_password`and `target_user` were deprecated
+- fusion_hw - FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_info - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_info - 'hosts' subset is deprecated in favor of 'host_access_policies' and will be removed in the version 2.0.0
+- fusion_info - 'interfaces' subset is deprecated in favor of 'network_interfaces' and will be removed in the version 2.0.0
+- fusion_info - 'zones' subset is deprecated in favor of 'availability_zones' and will be removed in the version 2.0.0
+- fusion_ni - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_nig - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_pg - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_pp - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_ra - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_region - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_sc - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_se - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_se - `endpoint_type` parameter is now deprecated and will be removed in version 2.0.0
+- fusion_ss - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_tenant - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_tn - FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_ts - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+- fusion_volume - 'app_id' and 'key_file' parameters are deprecated in favor of 'issuer_id' and 'private_key_file' parameters and will be removed in the version 2.0.0, FUSION_APP_ID and FUSION_HOST env variables are deprecated in favor of FUSION_ISSUER_ID and FUSION_HOST and will be removed in the version 2.0.0
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+community.ciscosmb
+~~~~~~~~~~~~~~~~~~
+
+- remove testing for Python 2.6 nad 2.7
+- remove testing for ansible 2.9
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Properly disable ``jinja2_native`` in the template module when jinja2 override is used in the template (https://github.com/ansible/ansible/issues/80605)
+- ansible-galaxy - Fix variable type error when installing subdir collections (https://github.com/ansible/ansible/issues/80943)
+- ansible-test - Fix a traceback that occurs when attempting to test Ansible source using a different ansible-test. A clear error message is now given when this scenario occurs.
+- ansible-test - Fix handling of timeouts exceeding one day.
+- ansible-test - Fix various cases where the test timeout could expire without terminating the tests.
+- ansible-test local change detection - use ``git merge-base <branch> HEAD`` instead of ``git merge-base --fork-point <branch>`` (https://github.com/ansible/ansible/pull/79734).
+- deb822_repository - use http-agent for receiving content (https://github.com/ansible/ansible/issues/80809).
+- dnf5 - Update dnf5 module to handle API change for setting the download directory (https://github.com/ansible/ansible/issues/80887)
+- man page build - Remove the dependency on the ``docs`` directory for building man pages.
+- pep517 build backend - Copy symlinks when copying the source tree. This avoids tracebacks in various scenarios, such as when a venv is present in the source tree.
+- uri - fix search for JSON type to include complex strings containing '+'
+
+amazon.aws
+~~~~~~~~~~
+
+- autoscaling_group - fix ValidationError when describing an autoscaling group that has more than 20 target groups attached to it by breaking the request into chunks (https://github.com/ansible-collections/amazon.aws/pull/1593).
+- autoscaling_group_info - fix ValidationError when describing an autoscaling group that has more than 20 target groups attached to it by breaking the request into chunks (https://github.com/ansible-collections/amazon.aws/pull/1593).
+- ec2_instance - fix check_mode issue when adding network interfaces (https://github.com/ansible-collections/amazon.aws/issues/1403).
+- ec2_metadata_facts - Handle decompression when EC2 instance user-data is gzip compressed. The fetch_url method from ansible.module_utils.urls does not decompress the user-data unless the header explicitly contains ``Content-Encoding: gzip`` (https://github.com/ansible-collections/amazon.aws/pull/1575).
+- elb_application_lb - fix missing attributes on creation of ALB. The ``create_or_update_alb()`` was including ALB-specific attributes when updating an existing ALB but not when creating a new ALB (https://github.com/ansible-collections/amazon.aws/issues/1510).
+- module_utils.acm - fixes list_certificates returning only RSA_2048 certificates (https://github.com/ansible-collections/amazon.aws/issues/1567).
+- rds_instance - add support for CACertificateIdentifier to create/update rds instance (https://github.com/ansible-collections/amazon.aws/pull/1459)."
+
+check_point.mgmt
+~~~~~~~~~~~~~~~~
+
+- cp_mgmt_access_rules - split vpn param that can accept either a String or list of objects to two
+- module_utils/checkpoint.py - fixed compile issue (Syntax Error) on python 2.7
+
+cisco.ios
+~~~~~~~~~
+
+- ios_facts - fix calculation of memory from bytes to megabytes; grab correct output element for free memory (https://github.com/ansible-collections/cisco.ios/issues/763)
+- ios_l3_interfaces - account for secondary/primary when comparing ipv4 addresses. (https://github.com/ansible-collections/cisco.ios/issues/826)
+- ios_lag_interfaces - Fix empty facts to be a list.
+- ios_ospf_interface - Fix configuration rendering for ipv4 and ipv6 configurations.
+- ios_ospf_interface - Fix replaced and overridden state, action to negate superfluous configuration.
+- ios_snmp_server - Add default versions to version 3 users.
+- ospfv2 - Fixed rendering of capability command with vrf_lite.
+- ospfv3 - Fixed rendering of capability command with vrf_lite.
+- snmp_server - update module to get snmp_server user configuration.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- Fixing Bundle-Ether/-POS recognition for resource modules. (https://github.com/ansible-collections/cisco.iosxr/issues/369)
+- acls - Fix issue in ``replaced`` state of not replacing ace entries with remark action. (https://github.com/ansible-collections/cisco.iosxr/issues/332)
+- l3_interfaces - Fix issue in ``gather`` state of not gathering management interface. (https://github.com/ansible-collections/cisco.iosxr/issues/381)
+
+cisco.nxos
+~~~~~~~~~~
+
+- l3_interfaces - Append tag when updating IP address with state replaced (https://github.com/ansible-collections/cisco.nxos/issues/678).
+- ntp_global - Fix incorrect handling of prefer option (https://github.com/ansible-collections/cisco.nxos/issues/670).
+- nxos_banner - Add support for a custom multiline delimiter
+- nxos_facts - Fix missing SVI facts (https://github.com/ansible-collections/cisco.nxos/issues/440).
+- terminal - attempt privilege escalation only when prompt does not end with #
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- Add missing modules to the "cloudscale_ch.cloud.cloudscale" action group.
+- Remove outdated Ansible version requirement from the README.
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_swarm_info - if ``service=true`` is used, do not crash when a service without an endpoint spec is encountered (https://github.com/ansible-collections/community.docker/issues/636, https://github.com/ansible-collections/community.docker/pull/637).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- MH DependencyMixin module utils - deprecation notice was popping up for modules not using dependencies (https://github.com/ansible-collections/community.general/pull/6644, https://github.com/ansible-collections/community.general/issues/6639).
+- csv module utils - detects and remove unicode BOM markers from incoming CSV content (https://github.com/ansible-collections/community.general/pull/6662).
+- gitlab_group - the module passed parameters to the API call even when not set. The module is now filtering out ``None`` values to remediate this (https://github.com/ansible-collections/community.general/pull/6712).
+- icinga2_host - fix a key error when updating an existing host (https://github.com/ansible-collections/community.general/pull/6748).
+- ini_file - add the ``follow`` paramter to follow the symlinks instead of replacing them (https://github.com/ansible-collections/community.general/pull/6546).
+- ini_file - fix a bug where the inactive options were not used when possible (https://github.com/ansible-collections/community.general/pull/6575).
+- keycloak module utils - fix ``is_struct_included`` handling of lists of lists/dictionaries (https://github.com/ansible-collections/community.general/pull/6688).
+- keycloak module utils - the function ``get_user_by_username`` now return the user representation or ``None`` as stated in the documentation (https://github.com/ansible-collections/community.general/pull/6758).
+- proxmox_kvm - allow creation of VM with existing name but new vmid (https://github.com/ansible-collections/community.general/issues/6155, https://github.com/ansible-collections/community.general/pull/6709).
+- rhsm_repository - when using the ``purge`` option, the ``repositories``
+  dictionary element in the returned JSON is now properly updated according
+  to the pruning operation
+  (https://github.com/ansible-collections/community.general/pull/6676).
+- tss lookup plugin - fix multiple issues when using ``fetch_attachments=true`` (https://github.com/ansible-collections/community.general/pull/6720).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql module utils - use the connection arguments ``db`` instead of ``database`` and ``passwd`` instead of ``password`` when running with MySQLdb < 2.0.0 (https://github.com/ansible-collections/community.mysql/pull/553).
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_db - when the task is completed successfully, close the database connection (https://github.com/ansible-collections/community.postgresql/issues/465).
+- postgresql_info - when the task is completed successfully, close the database connection (https://github.com/ansible-collections/community.postgresql/issues/465).
+- postgresql_ping - when the task is completed successfully, close the database connection (https://github.com/ansible-collections/community.postgresql/issues/465).
+- postgresql_privs - when the task is completed successfully, close the database connection (https://github.com/ansible-collections/community.postgresql/issues/465).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_modify, api_info - add missing parameter ``tls`` for the ``tool e-mail`` path (https://github.com/ansible-collections/community.routeros/issues/179, https://github.com/ansible-collections/community.routeros/pull/180).
+- facts - do not crash in CLI output preprocessing in unexpected situations during line unwrapping (https://github.com/ansible-collections/community.routeros/issues/170, https://github.com/ansible-collections/community.routeros/pull/177).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- install role - make sure that the ``pkg_mgr`` fact is definitely available when installing on ``localhost``. This can improve error messages in some cases (https://github.com/ansible-collections/community.sops/issues/145, https://github.com/ansible-collections/community.sops/pull/146).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- Add missing modules to runtime.yml (https://github.com/ansible-collections/community.vmware/pull/1764).
+- vmware_vm_info - Add missing show_folder parameter (https://github.com/ansible-collections/community.vmware/issues/1709).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- Proxy and Agent Roles - Added `zabbix_api_use_ssl` variable to allow secure API connections
+- Web Role - Added defaults and documentation for `zabbix_apache_custom_includes`
+- agent - Handled undefined variable error for Windows default versions
+- all roles - Added option to selectively disable a repo on Redhat installs
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add hooks-dir parameter for containers
+- Add idempotency for restart-policy for containers
+- Add missing options to podman network
+- Add more explanation about cmd_args command usage
+- Add stdout to podman build and push actions
+- Added support for "userns" parameter to "play" module
+- CI - fix pip installation of the collection
+- CI - fix podman play job for 4.4.x versions
+- Change yes/no to true/false in the modules
+- Convert str to json format before evaluating length.
+- Fix CI for newest Ansible branch 2.16
+- Fix idempotency for pods with uidmap and gidmap
+- Fix idempotency lowercase for devices
+- Fix network tests for Podman v4
+- Fix podman logout tests for v4
+- Fix pylint issues for CI ansible-test
+- Fix undesirable splitting of IPv6 host addresses
+- Improved documentation of `podman_generate_systemd` module
+- Prepare CI for Podman v3 backward compatibility
+- Support SHA256 tag for podman images
+- Update podman_image to specify CPU arch when pulling image
+- added podman_prune module
+- become plugin podman_unshare become_user default
+- fix for buildah improper remote target
+- for pod kube recreate
+- pod - Support passing multiple networks with params
+- podman-login - fix FIPS md5 issue and registry requirement
+- podman-pod - Fix idempotency for pods in 4.4.x versions
+- podman_systemd - Ignore header when comparing systemd files content
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Fix regression test bugs in multiple modules (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/180).
+- Fix sanity check errors in the collection caused by Ansible library changes (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/160).
+- install - Update the required ansible.netcommon version (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/176).
+- sonic_bgp_af - Fix issue with vnis and advertise modification for a single BGP AF (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/201).
+- sonic_bgp_as_paths - Fix issues with merged and deleted states (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/250).
+- sonic_interfaces - Fix command timeout issue (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/261).
+- sonic_l3_interfaces - Fix IP address deletion issue (GitHub issue#170) (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/231).
+- sonic_lag_interfaces - Fix port name issue (GitHub issue#153) (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/119).
+- sonic_neighbors - Fix handling of default attributes (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/233).
+- sonic_ntp - Fix the issue (GitHub issue#205) with NTP clear all without config given (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/224).
+- sonic_vlan_mapping - Remove platform checks (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/262).
+- sonic_vrfs - Add tasks as a workaround to mgmt VRF bug (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/146).
+- sonic_vrfs - Fix spacing issue in CLI test case (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/257).
+- sonic_vrfs - Fix the issue (GitHub issue#194) with VRF when deleting interface(https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/230).
+- sonic_vxlans - Remove required_together restriction for evpn_nvo and source_ip attributes (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/130).
+- workflows - Fix dependency installation issue in the code coverage workflow (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/199).
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_provision_async - created module to address scenarios where infinite loops or timeouts happen
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Corrected description of parameters in documentation.
+- Fixed Many sanity test warnings and errors.
+- Fixed a bug where users might not be able to log in.
+- Fixed version_added in the document. The value of this parameter is the version each module first supported in the FortiManager Ansible Collection.
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Fix the error of pure number password.
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- group - Fix idempotency check when ``scope: domainlocal`` is set - https://github.com/ansible-collections/microsoft.ad/issues/31
+- microsoft.ad.group - ensure the ``scope`` and ``category`` values are checked as case insensitive to avoid changes when not needed - https://github.com/ansible-collections/microsoft.ad/issues/31
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_login_messages - fix ``banner`` and ``motd_message`` not idempotent when trailing '\n' is present.
+- na_ontap_login_messages - fix idempotent issue on ``show_cluster_motd`` option when try to set banner or motd_message for the first time in REST.
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_info - Fixed missing arguments for google_offload and pods
+
+purestorage.fusion
+~~~~~~~~~~~~~~~~~~
+
+- fusion_info - fix runtime errors caused when listing `interfaces`, `arrays` and `snapshots` dicts
+- fusion_pg - freshly created placement group is now moved to correct array
+- fusion_pp - 'local_rpo' changed to accept same input as 'local_retention'
+- fusion_pp - updated retention description
+- fusion_ra - 'name' deprecated and aliased to 'role'
+
+t_systems_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- add icinga_deploy_* to action_group and test it (https://github.com/T-Systems-MMS/ansible-collection-icinga-director/pull/214)
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- compute_profile, host - properly support nested VMware clusters (https://bugzilla.redhat.com/show_bug.cgi?id=2211394)
+- content_credential - don't require ``content_type`` and ``content`` parameters when removing credentials (https://github.com/theforeman/foreman-ansible-modules/issues/1588)
+- content_credentials role - don't require ``content_type`` and ``content`` parameters when removing credentials
+- content_view_filter - don't fail when creating a modulemd filter (https://github.com/theforeman/foreman-ansible-modules/issues/1608, https://bugzilla.redhat.com/show_bug.cgi?id=2208557)
+- repositories role - don't log repository information when creating products (https://bugzilla.redhat.com/show_bug.cgi?id=2183357)
+
+vyos.vyos
+~~~~~~~~~
+
+- vyos-l3_interface_facts - fixed error when using no-default-link-local option. (https://github.com/ansible-collections/vyos.vyos/issues/295)
+
+Known Issues
+------------
+
+community.dns
+~~~~~~~~~~~~~
+
+- Ansible markup will show up in raw form on ansible-doc text output for ansible-core before 2.15. If you have trouble deciphering the documentation markup, please upgrade to ansible-core 2.15 (or newer), or read the HTML documentation on https://docs.ansible.com/ansible/devel/collections/community/dns/.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- Ansible markup will show up in raw form on ansible-doc text output for ansible-core before 2.15. If you have trouble deciphering the documentation markup, please upgrade to ansible-core 2.15 (or newer), or read the HTML documentation on https://docs.ansible.com/ansible/devel/collections/community/docker/.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- Ansible markup will show up in raw form on ansible-doc text output for ansible-core before 2.15. If you have trouble deciphering the documentation markup, please upgrade to ansible-core 2.15 (or newer), or read the HTML documentation on https://docs.ansible.com/ansible/devel/collections/community/general/ (https://github.com/ansible-collections/community.general/pull/6539).
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_redfish_storage_contoller - Issue(256164) - If incorrect value is provided for one of the attributes in the provided attribute list for controller configuration, then this module does not exit with error.
+- ome_device_network_services - Issue(212681) - The module does not provide a proper error message if unsupported values are provided for the following parameters- port_number, community_name, max_sessions, max_auth_retries, and idle_timeout.
+- ome_device_power_settings - Issue(212679) - The module displays the following message if the value provided for the parameter ``power_cap`` is not within the supported range of 0 to 32767, ``Unable to complete the request because PowerCap does not exist or is not applicable for the resource URI.``
+- ome_smart_fabric_uplink - Issue(186024) - Despite the module supported by OpenManage Enterprise Modular, it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, the existing uplink is modified.
+
+New Modules
+-----------
+
+cisco.ios
+~~~~~~~~~
+
+- cisco.ios.ios_service - Resource module to configure service.
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- cloudscale_ch.cloud.load_balancer - Manages load balancers on the cloudscale.ch IaaS service
+- cloudscale_ch.cloud.load_balancer_health_monitor - Manages load balancers on the cloudscale.ch IaaS service
+- cloudscale_ch.cloud.load_balancer_listener - Manages load balancer listeners on the cloudscale.ch IaaS service
+- cloudscale_ch.cloud.load_balancer_pool - Manages load balancer pools on the cloudscale.ch IaaS service
+- cloudscale_ch.cloud.load_balancer_pool_member - Manages load balancer pool members on the cloudscale.ch IaaS service
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- community.general.gitlab_instance_variable - Creates, updates, or deletes GitLab instance variables
+- community.general.gitlab_merge_request - Create, update, or delete GitLab merge requests
+- community.general.keycloak_authentication_required_actions - Allows administration of Keycloak authentication required actions
+- community.general.keycloak_user - Create and configure a user in Keycloak
+- community.general.lvg_rename - Renames LVM volume groups
+- community.general.proxmox_pool - Pool management for Proxmox VE cluster
+- community.general.proxmox_pool_member - Add or delete members from Proxmox VE cluster pools
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- community.vmware.vmware_cluster_drs_recommendations - Apply DRS Recommendations
+- community.vmware.vmware_vsan_release_catalog - Uploads the vSAN Release Catalog
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- dellemc.enterprise_sonic.sonic_acl_interfaces - Manage access control list (ACL) to interface binding on SONiC
+- dellemc.enterprise_sonic.sonic_bfd - Manage BFD configuration on SONiC
+- dellemc.enterprise_sonic.sonic_copp - Manage CoPP configuration on SONiC
+- dellemc.enterprise_sonic.sonic_dhcp_relay - Manage DHCP and DHCPv6 relay configurations on SONiC
+- dellemc.enterprise_sonic.sonic_ip_neighbor - Manage IP neighbor global configuration on SONiC
+- dellemc.enterprise_sonic.sonic_l2_acls - Manage Layer 2 access control lists (ACL) configurations on SONiC
+- dellemc.enterprise_sonic.sonic_l3_acls - Manage Layer 3 access control lists (ACL) configurations on SONiC
+- dellemc.enterprise_sonic.sonic_lldp_global - Manage Global LLDP configurations on SONiC
+- dellemc.enterprise_sonic.sonic_logging - Manage logging configuration on SONiC
+- dellemc.enterprise_sonic.sonic_mac - Manage MAC configuration on SONiC
+- dellemc.enterprise_sonic.sonic_port_group - Manages port group configuration on SONiC
+- dellemc.enterprise_sonic.sonic_route_maps - route map configuration handling for SONiC
+- dellemc.enterprise_sonic.sonic_vlan_mapping - Configure vlan mappings on SONiC
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- f5networks.f5_modules.bigip_provision_async - Manage BIG-IP module provisioning
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- fortinet.fortimanager.fmgr_application_casi_profile - Cloud Access Security Inspection.
+- fortinet.fortimanager.fmgr_application_casi_profile_entries - Application entries.
+- fortinet.fortimanager.fmgr_application_internetservice - Show Internet service application.
+- fortinet.fortimanager.fmgr_application_internetservice_entry - Entries in the Internet service database.
+- fortinet.fortimanager.fmgr_application_internetservicecustom - Configure custom Internet service applications.
+- fortinet.fortimanager.fmgr_application_internetservicecustom_disableentry - Disable entries in the Internet service database.
+- fortinet.fortimanager.fmgr_application_internetservicecustom_disableentry_iprange - IP ranges in the disable entry.
+- fortinet.fortimanager.fmgr_application_internetservicecustom_entry - Entries added to the Internet service database and custom database.
+- fortinet.fortimanager.fmgr_application_internetservicecustom_entry_portrange - Port ranges in the custom entry.
+- fortinet.fortimanager.fmgr_cloud_orchestaws - no description
+- fortinet.fortimanager.fmgr_cloud_orchestawsconnector - no description
+- fortinet.fortimanager.fmgr_cloud_orchestawstemplate_autoscaleexistingvpc - no description
+- fortinet.fortimanager.fmgr_cloud_orchestawstemplate_autoscalenewvpc - no description
+- fortinet.fortimanager.fmgr_cloud_orchestawstemplate_autoscaletgwnewvpc - no description
+- fortinet.fortimanager.fmgr_cloud_orchestration - no description
+- fortinet.fortimanager.fmgr_devprof_log_syslogd_filter_excludelist - no description
+- fortinet.fortimanager.fmgr_devprof_log_syslogd_filter_excludelist_fields - no description
+- fortinet.fortimanager.fmgr_devprof_log_syslogd_filter_freestyle - Free style filters.
+- fortinet.fortimanager.fmgr_devprof_log_syslogd_setting_customfieldname - Custom field name for CEF format logging.
+- fortinet.fortimanager.fmgr_dnsfilter_profile_urlfilter - URL filter settings.
+- fortinet.fortimanager.fmgr_dnsfilter_urlfilter - Configure URL filter list.
+- fortinet.fortimanager.fmgr_dnsfilter_urlfilter_entries - DNS URL filter.
+- fortinet.fortimanager.fmgr_emailfilter_profile_yahoomail - Yahoo! Mail.
+- fortinet.fortimanager.fmgr_extensioncontroller_dataplan - FortiExtender dataplan configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile - FortiExtender extender profile configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular - FortiExtender cellular configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_controllerreport - FortiExtender controller report configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_modem1 - Configuration options for modem 1.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_modem1_autoswitch - FortiExtender auto switch configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_modem2 - Configuration options for modem 2.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_modem2_autoswitch - FortiExtender auto switch configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_smsnotification - FortiExtender cellular SMS notification configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_smsnotification_alert - SMS alert list.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_smsnotification_receiver - SMS notification receiver list.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_lanextension - FortiExtender lan extension configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_lanextension_backhaul - LAN extension backhaul tunnel configuration.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6 - Configure IPv6 access proxy.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6_apigateway - Set IPv4 API Gateway.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6_apigateway6 - Set IPv6 API Gateway.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6_apigateway6_realservers - Select the real servers that this Access Proxy will distribute traffic to.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6_apigateway6_sslciphersuites - SSL/TLS cipher suites to offer to a server, ordered by priority.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6_apigateway_realservers - Select the real servers that this Access Proxy will distribute traffic to.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6_apigateway_sslciphersuites - SSL/TLS cipher suites to offer to a server, ordered by priority.
+- fortinet.fortimanager.fmgr_firewall_address6_profilelist - List of NSX service profiles that use this address.
+- fortinet.fortimanager.fmgr_firewall_address_profilelist - List of NSX service profiles that use this address.
+- fortinet.fortimanager.fmgr_firewall_explicitproxyaddress - Explicit web proxy address configuration.
+- fortinet.fortimanager.fmgr_firewall_explicitproxyaddress_headergroup - HTTP header group.
+- fortinet.fortimanager.fmgr_firewall_explicitproxyaddrgrp - Explicit web proxy address group configuration.
+- fortinet.fortimanager.fmgr_firewall_gtp_messagefilter - Message filter.
+- fortinet.fortimanager.fmgr_firewall_ippoolgrp - Configure IPv4 pool groups.
+- fortinet.fortimanager.fmgr_firewall_networkservicedynamic - Configure Dynamic Network Services.
+- fortinet.fortimanager.fmgr_fmg_fabric_authorization_template - no description
+- fortinet.fortimanager.fmgr_fmg_fabric_authorization_template_platforms - no description
+- fortinet.fortimanager.fmgr_fmupdate_fwmsetting_upgradetimeout - Configure the timeout value of image upgrade process.
+- fortinet.fortimanager.fmgr_fsp_vlan_dynamicmapping_interface_vrrp - VRRP configuration.
+- fortinet.fortimanager.fmgr_fsp_vlan_dynamicmapping_interface_vrrp_proxyarp - VRRP Proxy ARP configuration.
+- fortinet.fortimanager.fmgr_fsp_vlan_interface_vrrp_proxyarp - VRRP Proxy ARP configuration.
+- fortinet.fortimanager.fmgr_ips_baseline_sensor - Configure IPS sensor.
+- fortinet.fortimanager.fmgr_ips_baseline_sensor_entries - IPS sensor filter.
+- fortinet.fortimanager.fmgr_ips_baseline_sensor_entries_exemptip - Traffic from selected source or destination IP addresses is exempt from this signature.
+- fortinet.fortimanager.fmgr_ips_baseline_sensor_filter - no description
+- fortinet.fortimanager.fmgr_ips_baseline_sensor_override - no description
+- fortinet.fortimanager.fmgr_ips_baseline_sensor_override_exemptip - no description
+- fortinet.fortimanager.fmgr_log_npuserver - Configure all the log servers and create the server groups.
+- fortinet.fortimanager.fmgr_log_npuserver_servergroup - create server group.
+- fortinet.fortimanager.fmgr_log_npuserver_serverinfo - configure server info.
+- fortinet.fortimanager.fmgr_pkg_firewall_explicitproxypolicy - Configure Explicit proxy policies.
+- fortinet.fortimanager.fmgr_pkg_firewall_explicitproxypolicy_identitybasedpolicy - Identity-based policy.
+- fortinet.fortimanager.fmgr_pkg_firewall_explicitproxypolicy_sectionvalue - Configure Explicit proxy policies.
+- fortinet.fortimanager.fmgr_pkg_firewall_hyperscalepolicy - Configure IPv4/IPv6 policies.
+- fortinet.fortimanager.fmgr_pkg_firewall_hyperscalepolicy46 - Configure IPv4 to IPv6 policies.
+- fortinet.fortimanager.fmgr_pkg_firewall_hyperscalepolicy6 - Configure IPv6 policies.
+- fortinet.fortimanager.fmgr_pkg_firewall_hyperscalepolicy64 - Configure IPv6 to IPv4 policies.
+- fortinet.fortimanager.fmgr_pkg_user_nacpolicy - Configure NAC policy matching pattern to identify matching NAC devices.
+- fortinet.fortimanager.fmgr_pm_config_pblock_firewall_consolidated_policy - Configure consolidated IPv4/IPv6 policies.
+- fortinet.fortimanager.fmgr_pm_config_pblock_firewall_consolidated_policy_sectionvalue - Configure consolidated IPv4/IPv6 policies.
+- fortinet.fortimanager.fmgr_pm_config_pblock_firewall_policy6 - Configure IPv6 policies.
+- fortinet.fortimanager.fmgr_pm_config_pblock_firewall_policy6_sectionvalue - Configure IPv6 policies.
+- fortinet.fortimanager.fmgr_pm_devprof_scopemember - no description
+- fortinet.fortimanager.fmgr_pm_pkg_scopemember - Policy package or folder.
+- fortinet.fortimanager.fmgr_pm_wanprof_scopemember - no description
+- fortinet.fortimanager.fmgr_securityconsole_template_cli_preview - no description
+- fortinet.fortimanager.fmgr_switchcontroller_acl_group - Configure ACL groups to be applied on managed FortiSwitch ports.
+- fortinet.fortimanager.fmgr_switchcontroller_acl_ingress - Configure ingress ACL policies to be applied on managed FortiSwitch ports.
+- fortinet.fortimanager.fmgr_switchcontroller_acl_ingress_action - ACL actions.
+- fortinet.fortimanager.fmgr_switchcontroller_acl_ingress_classifier - ACL classifiers.
+- fortinet.fortimanager.fmgr_switchcontroller_dynamicportpolicy - Configure Dynamic port policy to be applied on the managed FortiSwitch ports through DPP device.
+- fortinet.fortimanager.fmgr_switchcontroller_dynamicportpolicy_policy - Port policies with matching criteria and actions.
+- fortinet.fortimanager.fmgr_switchcontroller_fortilinksettings - Configure integrated FortiLink settings for FortiSwitch.
+- fortinet.fortimanager.fmgr_switchcontroller_fortilinksettings_nacports - NAC specific configuration.
+- fortinet.fortimanager.fmgr_switchcontroller_macpolicy - Configure MAC policy to be applied on the managed FortiSwitch devices through NAC device.
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_dhcpsnoopingstaticclient - Configure FortiSwitch DHCP snooping static clients.
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_ports_dhcpsnoopoption82override - Configure DHCP snooping option 82 override.
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_staticmac - Configuration method to edit FortiSwitch Static and Sticky MAC.
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_stpinstance - Configuration method to edit Spanning Tree Protocol
+- fortinet.fortimanager.fmgr_switchcontroller_switchinterfacetag - Configure switch object tags.
+- fortinet.fortimanager.fmgr_switchcontroller_trafficpolicy - Configure FortiSwitch traffic policy.
+- fortinet.fortimanager.fmgr_switchcontroller_vlanpolicy - Configure VLAN policy to be applied on the managed FortiSwitch ports through dynamic-port-policy.
+- fortinet.fortimanager.fmgr_sys_cloud_orchest - no description
+- fortinet.fortimanager.fmgr_system_npu_backgroundssescan - Configure driver background scan for SSE.
+- fortinet.fortimanager.fmgr_system_npu_dosoptions - NPU DoS configurations.
+- fortinet.fortimanager.fmgr_system_npu_dswdtsprofile - Configure NPU DSW DTS profile.
+- fortinet.fortimanager.fmgr_system_npu_dswqueuedtsprofile - Configure NPU DSW Queue DTS profile.
+- fortinet.fortimanager.fmgr_system_npu_hpe - Host protection engine configuration.
+- fortinet.fortimanager.fmgr_system_npu_ipreassembly - IP reassebmly engine configuration.
+- fortinet.fortimanager.fmgr_system_npu_npqueues - Configure queue assignment on NP7.
+- fortinet.fortimanager.fmgr_system_npu_npqueues_ethernettype - Configure a NP7 QoS Ethernet Type.
+- fortinet.fortimanager.fmgr_system_npu_npqueues_ipprotocol - Configure a NP7 QoS IP Protocol.
+- fortinet.fortimanager.fmgr_system_npu_npqueues_ipservice - Configure a NP7 QoS IP Service.
+- fortinet.fortimanager.fmgr_system_npu_npqueues_profile - Configure a NP7 class profile.
+- fortinet.fortimanager.fmgr_system_npu_npqueues_scheduler - Configure a NP7 QoS Scheduler.
+- fortinet.fortimanager.fmgr_system_npu_portpathoption - Configure port using NPU or Intel-NIC.
+- fortinet.fortimanager.fmgr_system_npu_ssehascan - Configure driver HA scan for SSE.
+- fortinet.fortimanager.fmgr_system_npu_swtrhash - Configure switch traditional hashing.
+- fortinet.fortimanager.fmgr_system_npu_tcptimeoutprofile - Configure TCP timeout profile.
+- fortinet.fortimanager.fmgr_system_npu_udptimeoutprofile - Configure UDP timeout profile.
+- fortinet.fortimanager.fmgr_system_objecttag - Configure object tags.
+- fortinet.fortimanager.fmgr_system_sdnconnector_compartmentlist - Configure OCI compartment list.
+- fortinet.fortimanager.fmgr_system_sdnconnector_ociregionlist - Configure OCI region list.
+- fortinet.fortimanager.fmgr_system_socfabric_trustedlist - Pre-authorized security fabric nodes
+- fortinet.fortimanager.fmgr_um_image_upgrade - The older API for updating the firmware of specific device.
+- fortinet.fortimanager.fmgr_um_image_upgrade_ext - Update the firmware of specific device.
+- fortinet.fortimanager.fmgr_user_certificate - Configure certificate users.
+- fortinet.fortimanager.fmgr_user_deviceaccesslist - Configure device access control lists.
+- fortinet.fortimanager.fmgr_user_deviceaccesslist_devicelist - Device list.
+- fortinet.fortimanager.fmgr_user_flexvm - no description
+- fortinet.fortimanager.fmgr_user_json - no description
+- fortinet.fortimanager.fmgr_user_saml_dynamicmapping - SAML server entry configuration.
+- fortinet.fortimanager.fmgr_vpnsslweb_portal_landingpage - Landing page options.
+- fortinet.fortimanager.fmgr_vpnsslweb_portal_landingpage_formdata - Form data.
+- fortinet.fortimanager.fmgr_vpnsslweb_virtualdesktopapplist - SSL-VPN virtual desktop application list.
+- fortinet.fortimanager.fmgr_vpnsslweb_virtualdesktopapplist_apps - Applications.
+- fortinet.fortimanager.fmgr_wireless_accesscontrollist - Configure WiFi bridge access control list.
+- fortinet.fortimanager.fmgr_wireless_accesscontrollist_layer3ipv4rules - AP ACL layer3 ipv4 rule list.
+- fortinet.fortimanager.fmgr_wireless_accesscontrollist_layer3ipv6rules - AP ACL layer3 ipv6 rule list.
+- fortinet.fortimanager.fmgr_wireless_address - Configure the client with its MAC address.
+- fortinet.fortimanager.fmgr_wireless_addrgrp - Configure the MAC address group.
+- fortinet.fortimanager.fmgr_wireless_ssidpolicy - Configure WiFi SSID policies.
+- fortinet.fortimanager.fmgr_wireless_syslogprofile - Configure Wireless Termination Points
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- netapp.ontap.na_ontap_active_directory_domain_controllers - NetApp ONTAP configure active directory preferred domain controllers
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purestorage.flasharray.purefa_logging - Manage Pure Storage FlashArray Audit and Session logs
+
+t_systems_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- t_systems_mms.icinga_director.icinga_deploy - Trigger deployment in Icinga2
+- t_systems_mms.icinga_director.icinga_deploy_info - Get deployment information through the director API
+
+New Roles
+---------
+
+- dellemc.openmanage.idrac_attributes - Role to configure iDRAC attributes.
+- dellemc.openmanage.idrac_bios - Role to modify BIOS attributes, clear pending BIOS attributes, and reset the BIOS to default settings.
+- dellemc.openmanage.idrac_reset - Role to reset and restart iDRAC (iDRAC8 and iDRAC9 only) for Dell PowerEdge servers.
+- dellemc.openmanage.idrac_storage_controller - Role to configure the physical disk, virtual disk, and storage controller settings on iDRAC9 based PowerEdge servers.
+
+Unchanged Collections
+---------------------
+
+- ansible.netcommon (still version 5.1.1)
+- ansible.posix (still version 1.5.4)
+- ansible.utils (still version 2.10.3)
+- ansible.windows (still version 1.14.0)
+- arista.eos (still version 6.0.1)
+- chocolatey.chocolatey (still version 1.4.0)
+- cisco.aci (still version 2.6.0)
+- cisco.dnac (still version 6.7.2)
+- cisco.intersight (still version 1.0.27)
+- cisco.ise (still version 2.5.12)
+- cisco.meraki (still version 2.15.1)
+- cisco.mso (still version 2.4.0)
+- cisco.nso (still version 1.0.3)
+- cisco.ucs (still version 1.8.0)
+- cloud.common (still version 2.1.3)
+- community.aws (still version 6.0.0)
+- community.azure (still version 2.0.0)
+- community.digitalocean (still version 1.23.0)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.5.4)
+- community.hashi_vault (still version 5.0.0)
+- community.hrobot (still version 1.8.0)
+- community.libvirt (still version 1.2.0)
+- community.network (still version 5.0.0)
+- community.okd (still version 2.3.0)
+- community.proxysql (still version 1.5.1)
+- community.rabbitmq (still version 1.2.3)
+- community.sap (still version 1.0.0)
+- community.sap_libs (still version 1.4.1)
+- community.skydive (still version 1.0.0)
+- community.windows (still version 1.13.0)
+- cyberark.conjur (still version 1.2.0)
+- cyberark.pas (still version 1.0.19)
+- dellemc.powerflex (still version 1.6.0)
+- dellemc.unity (still version 1.6.0)
+- frr.frr (still version 2.0.2)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.1.3)
+- grafana.grafana (still version 2.0.0)
+- hetzner.hcloud (still version 1.11.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.1.0)
+- ibm.spectrum_virtualize (still version 1.12.0)
+- infinidat.infinibox (still version 1.3.12)
+- infoblox.nios_modules (still version 1.5.0)
+- inspur.ispim (still version 1.3.0)
+- inspur.sm (still version 2.3.0)
+- junipernetworks.junos (still version 5.1.0)
+- kubernetes.core (still version 2.4.0)
+- lowlydba.sqlserver (still version 2.0.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.22.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.storagegrid (still version 21.11.1)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.4.0)
+- netbox.netbox (still version 3.13.0)
+- ngine_io.cloudstack (still version 2.3.0)
+- ngine_io.exoscale (still version 1.0.0)
+- ngine_io.vultr (still version 1.1.3)
+- openstack.cloud (still version 2.1.0)
+- openvswitch.openvswitch (still version 2.1.1)
+- ovirt.ovirt (still version 3.1.2)
+- purestorage.flashblade (still version 1.11.0)
+- sensu.sensu_go (still version 1.13.2)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 2.1.0)
+- vmware.vmware_rest (still version 2.3.1)
+
 v8.0.0
 ======
 
