@@ -99,7 +99,6 @@ purestorage.flasharray: >=1.18.0,<2.0.0
 purestorage.flashblade: >=1.11.0,<2.0.0
 purestorage.fusion: >=1.4.0,<2.0.0
 sensu.sensu_go: >=1.13.0,<2.0.0
-servicenow.servicenow: >=1.0.0,<2.0.0
 splunk.es: >=2.1.0,<3.0.0
 t_systems_mms.icinga_director: >=1.32.0,<2.0.0
 theforeman.foreman: >=3.10.0,<4.0.0
