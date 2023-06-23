@@ -96,6 +96,7 @@ purestorage.flasharray
 purestorage.flashblade
 purestorage.fusion
 sensu.sensu_go
+servicenow.servicenow
 splunk.es
 theforeman.foreman
 t_systems_mms.icinga_director

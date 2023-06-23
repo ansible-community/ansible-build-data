@@ -294,6 +294,9 @@ collections:
 - name: sensu.sensu_go
   source: https://galaxy.ansible.com
   version: 1.13.2
+- name: servicenow.servicenow
+  source: https://galaxy.ansible.com
+  version: 1.0.6
 - name: splunk.es
   source: https://galaxy.ansible.com
   version: 2.1.0
