@@ -15,3 +15,5 @@ releases:
         - "``community.skydive`` was considered unmaintained and removed from Ansible 9 as per the
           `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
           Users can still install this collection with ``ansible-galaxy collection install community.skydive``."
+        - The deprecated servicenow.servicenow collection has been removed from Ansible 7, but accidentally re-added to Ansible 8. It has been removed again from Ansible 9
+          (https://github.com/ansible-community/community-topics/issues/246).

@@ -95,3 +95,8 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2023-06-22'
+  8.2.0:
+    changes:
+      deprecated_features:
+      - The deprecated servicenow.servicenow collection has been removed from Ansible 7, but accidentally re-added to Ansible 8. It will be removed again from Ansible 9
+        (https://github.com/ansible-community/community-topics/issues/246).
