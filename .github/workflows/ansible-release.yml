@@ -1,4 +1,4 @@
-name: antsibull-build
+name: ansible-release
 on: workflow_dispatch
 # we want this to be manual
 
