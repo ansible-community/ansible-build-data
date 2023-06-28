@@ -15,8 +15,6 @@ jobs:
     runs-on: ubuntu-latest
 
 
-# user needs to be able to make changes in the version as input
-
     steps:
       - name: Check out antsibull
         uses: actions/checkout@v3
@@ -63,14 +61,17 @@ jobs:
           python3 -m pip install ansible-core . ../antsibull-core ../antsibull-changelog
           ansible-galaxy collection install 'git+https://github.com/ansible-collections/community.general.git'
 
+# Run the playbook according to the current release process
+
       - name: Test building a release with the defaults
         working-directory: antsibull
         run: |
           ansible-playbook -vv playbooks/build-single-release.yaml \
           -e antsibull_data_reset=false \
           -e 'antsibull_ansible_version="${{ inputs.ansible_version }}"' \
-          -e 'antsibull_data_dir="{{ antsibull_data_git_dir }}/${{ inputs.ansible_major_version }}"' \
-          -e 'antsibull_build_file="ansible-${{ inputs.ansible_major_version }}.build"'
+        #  -e 'antsibull_data_dir="{{ antsibull_data_git_dir }}/${{ inputs.ansible_major_version }}"' \
+        #  -e 'antsibull_build_file="ansible-${{ inputs.ansible_major_version }}.build"'
+
         env:
           # Make result better readable
           ANSIBLE_CALLBACK_RESULT_FORMAT: yaml
@@ -78,3 +79,4 @@ jobs:
 # Run the docs build
 # upload to PyPI
 # Create the tag
+# Commit ansible-build-data and push to github
