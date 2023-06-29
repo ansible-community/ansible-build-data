@@ -61,6 +61,13 @@ jobs:
           python3 -m pip install ansible-core . ../antsibull-core ../antsibull-changelog
           ansible-galaxy collection install 'git+https://github.com/ansible-collections/community.general.git'
 
+      - name: Checking out to a new branch & setting the user details
+        run: |
+          cd antsibull/build/ansible-build-data
+          git checkout -b "publish-${{ inputs.ansible_major_version }}"
+          git config --global user.name "${{github.actor}}"
+          git config --global user.email "username@users.noreply.github.com"
+
 # Run the playbook according to the current release process
 
       - name: Test building a release with the defaults
@@ -69,14 +76,26 @@ jobs:
           ansible-playbook -vv playbooks/build-single-release.yaml \
           -e antsibull_data_reset=false \
           -e 'antsibull_ansible_version="${{ inputs.ansible_version }}"' \
-        #  -e 'antsibull_data_dir="{{ antsibull_data_git_dir }}/${{ inputs.ansible_major_version }}"' \
-        #  -e 'antsibull_build_file="ansible-${{ inputs.ansible_major_version }}.build"'
+          -e 'antsibull_data_dir="{{ antsibull_data_git_dir }}/${{ inputs.ansible_major_version }}"' \
+          -e 'antsibull_build_file="ansible-${{ inputs.ansible_major_version }}.build"'
 
         env:
           # Make result better readable
           ANSIBLE_CALLBACK_RESULT_FORMAT: yaml
 
+      - name: Commit ansible-build-data and push the changes to github
+        env:
+          CI_COMMIT_MESSAGE: 'Ansible "${{ inputs.ansible_major_version }}": Dependencies, changelog and porting guide'
+        run: |
+         git config --global user.name "${{github.actor}}"
+         git config --global user.email "username@users.noreply.github.com"
+         git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
+         git push
+
 # Run the docs build
 # upload to PyPI
 # Create the tag
-# Commit ansible-build-data and push to github
+
+
+
+
