@@ -8,6 +8,9 @@ on:
       ansible_major_version:
         description: 'Exmaple 11'
         required: true
+env:
+  CI_COMMIT_MESSAGE: 'Ansible "${{ inputs.ansible_major_version }}": Dependencies, changelog and porting guide'
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   build:
@@ -84,13 +87,17 @@ jobs:
           ANSIBLE_CALLBACK_RESULT_FORMAT: yaml
 
       - name: Commit ansible-build-data and push the changes to github
-        env:
-          CI_COMMIT_MESSAGE: 'Ansible "${{ inputs.ansible_major_version }}": Dependencies, changelog and porting guide'
         run: |
          cd antsibull/build/ansible-build-data
          git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
          git push origin "publish-${{ inputs.ansible_major_version }}"
 
+      - name: Create PR to the ansible-build-data
+        run: |
+          gh pr create -B test -H "publish-${{ inputs.ansible_major_version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_COMMIT_MESSAGE }}"
+
+
+# Create PR
 # Run the docs build
 # upload to PyPI
 # Create the tag
