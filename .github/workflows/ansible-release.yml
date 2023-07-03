@@ -9,7 +9,7 @@ on:
         description: 'Exmaple 11'
         required: true
 env:
-  CI_COMMIT_MESSAGE: 'Ansible "${{ inputs.ansible_major_version }}": Dependencies, changelog and porting guide'
+  CI_COMMIT_MESSAGE: 'Ansible "${{ inputs.ansible_version }}": Dependencies, changelog and porting guide'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
@@ -67,7 +67,7 @@ jobs:
       - name: Checking out to a new branch & setting the user details
         run: |
           cd antsibull/build/ansible-build-data
-          git checkout -b "publish-${{ inputs.ansible_major_version }}"
+          git checkout -b "publish-${{ inputs.ansible_version }}"
           git config --global user.name "${{github.actor}}"
           git config --global user.email "${{github.actor}}@users.noreply.github.com"
 
@@ -90,12 +90,12 @@ jobs:
         run: |
          cd antsibull/build/ansible-build-data
          git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
-         git push origin "publish-${{ inputs.ansible_major_version }}"
+         git push origin "publish-${{ inputs.ansible_version }}"
 
       - name: Create PR to the ansible-build-data
         run: |
           cd antsibull/build/ansible-build-data
-          gh pr create -B test -H "publish-${{ inputs.ansible_major_version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_COMMIT_MESSAGE }}"
+          gh pr create -B test -H "publish-${{ inputs.ansible_version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_COMMIT_MESSAGE }}"
 
 
 # Create PR
