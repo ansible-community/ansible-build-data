@@ -1,0 +1,92 @@
+name: Upload-ansible-tarball-pypi
+on:
+  workflow_dispatch:
+    inputs:
+      ansible_version:
+        description: 'Release Version. Example : 11.1.0'
+        required: true
+      ansible_major_version:
+        description: 'Exmaple 11'
+        required: true
+
+env:
+  BUILD_DATA_DIR: "antsibull/build/ansible-build-data/${{ inputs.ansible_major_version }}"
+  BUILDFILE: "ansible-${{ inputs.ansible_major_version }}.build"
+  DEPSFILE: "ansible-${{ inputs.ansible_version }}.deps"
+
+jobs:
+  publish:
+    name: 'Upload Ansible community distribution (${{ inputs.ansible_version }}) to PyPI'
+    runs-on: ubuntu-latest
+    environment:
+      name: release
+      url: https://test.pypi.org/project/ansible/
+    permissions:
+      id-token: write
+
+    steps:
+      - name: Check out antsibull
+        uses: actions/checkout@v3
+        with:
+          repository: ansible-community/antsibull
+          ref: main
+          path: antsibull
+
+      - name: Check out antsibull-core
+        uses: actions/checkout@v3
+        with:
+          repository: ansible-community/antsibull-core
+          ref: main
+          path: antsibull-core
+
+      - name: Check out antsibull-changelog
+        uses: actions/checkout@v3
+        with:
+          repository: ansible-community/antsibull-changelog
+          ref: main
+          path: antsibull-changelog
+
+      - name: Pre-create sdist directory
+        run: mkdir -p antsibull/build
+
+# We need to checkout the docs repo here
+
+      # This is where the antsibull build-release role expects it by default
+      - name: Check out ansible-build-data under antsibull build directory
+        uses: actions/checkout@v3
+        with:
+          path: antsibull/build/ansible-build-data
+          ref: test
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        working-directory: antsibull
+        run: |
+          python3 -m pip install --upgrade pip
+          python3 -m pip install ansible-core . ../antsibull-core ../antsibull-changelog
+          ansible-galaxy collection install 'git+https://github.com/ansible-collections/community.general.git'
+
+
+      - name: Create sdist dir using the deps file created in the ansible-build-data Release PR
+        run: |
+          antsibull-build rebuild-single "${{ inputs.ansible_version }}" --data-dir "${BUILD_DATA_DIR}" --build-file "${BUILDFILE}" --deps-file "${DEPSFILE}" --sdist-dir antsibull/build --debian
+
+      - name: Upload Ansible sdist to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          packages-dir: antsibull/build
+
+
+# Create PR
+# Run the docs build
+# upload to PyPI
+# Create the tag
+
+
+
+
