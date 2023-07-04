@@ -88,7 +88,8 @@ jobs:
 
       - name: Commit ansible-build-data and push the changes to github
         run: |
-         cd antsibull/build/ansible-build-data
+         cd "antsibull/build/ansible-build-data/${{ inputs.ansible_major_version }}"
+         git add *.rst *.build *.deps *.yaml *.in validate-tags-ignores
          git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
          git push origin "publish-${{ inputs.ansible_version }}"
 
