@@ -47,7 +47,9 @@ jobs:
           path: antsibull-changelog
 
       - name: Pre-create sdist directory
-        run: mkdir -p antsibull/build
+        run: |
+          mkdir -p antsibull/build
+          mkdir -p antsibull/sdist
 
 # We need to checkout the docs repo here
 
@@ -73,13 +75,13 @@ jobs:
 
       - name: Create sdist dir using the deps file created in the ansible-build-data Release PR
         run: |
-          antsibull-build rebuild-single "${{ inputs.ansible_version }}" --data-dir "${BUILD_DATA_DIR}" --build-file "${BUILDFILE}" --deps-file "${DEPSFILE}" --sdist-dir antsibull/build --debian
+          antsibull-build rebuild-single "${{ inputs.ansible_version }}" --data-dir "${BUILD_DATA_DIR}" --build-file "${BUILDFILE}" --deps-file "${DEPSFILE}" --sdist-dir antsibull/sdist --debian
 
       - name: Upload Ansible sdist to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
-          packages-dir: antsibull/build
+          packages-dir: antsibull/sdist
 
 
 # Create PR
