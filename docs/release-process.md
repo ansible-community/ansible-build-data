@@ -68,14 +68,14 @@ This only needs to be done once.
    rm -rf release-venv
    python3 -m venv release-venv
    . ./release-venv/bin/activate
-   pip install -U pip
+   python3 -m pip install -U pip
    ```
 
    Install the `antsibull`, `ansible-core`, and `twine` python packages,
    as well as the community.general collection.
 
    ```
-   pip install antsibull ansible-core twine
+   python3 -m pip install antsibull ansible-core twine
    ansible-galaxy collection install --force community.general
    ```
 
