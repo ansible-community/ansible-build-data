@@ -4,10 +4,12 @@ Hello everyone,
 
 We're happy to announce the release of the Ansible X.0.0 package!
 
-Ansible X.0.0 includes ansible-core a.b as well as a curated set of
-Ansible collections that provide a vast number of modules and plugins.
+Ansible X.0.0 requires latest version of ansible-core a.b and includes a curated set of Ansible collections that provides a vast number of modules and plugins. This is a major release of Ansible.
 
-How to get it
+ansible-core is a required dependency, not contained within the ansible packages. Pip install builds the
+dependency, but it can be built and installed quite independently of the "ansible" distribution.
+
+the "ansible" distribution.
 -------------
 
 This release is available on PyPI and can be installed with pip:
