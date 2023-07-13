@@ -7,20 +7,20 @@
 #ansible-social: (prepended with @newsbot)
 #ansible-packaging
 #ansible-devel
-#ansible: update the topic or ask @sivel to update: /msg ChanServ TOPICSWAP #ansible 6.2.0:6.3.0
+#ansible: update the topic or ask @sivel to update: /msg ChanServ TOPICSWAP #ansible x.y.0:x.y.z
 #ansible: same message, but only required for major versions of ansible community
 
 
 ## Red Hat Ansible Slack #general
 
 ```
-[Ansible 8.1.0 is out](https://groups.google.com/g/ansible-announce/c/iN-qliVQTbU)! ❤️
+[Ansible x.y.z is out](insert link from the google group ansible-announce :  https://groups.google.com/g/ansible-announce)! ❤️
 
-💽You can install it by running the following command or download the release tarball directly from [pypi](https://files.pythonhosted.org/packages/87/d7/322dd9d88261e56862ade2f9b9c125d0de648857e755d7177500272d2e05/ansible-8.1.0.tar.gz):
+💽You can install it by running the following command or download the [release tarball](link relase tarball from PyPI ) directly from [pypi](https://pypi.org/project/ansible/):
 
 ```
-pip install ansible==8.1.0 --user
+pip install ansible==x.y.z --user
 ```
 
-➡️ Check [Release Notes📦️🗒️](https://github.com/ansible-community/ansible-build-data/blob/main/8/CHANGELOG-v8.rst) and [Ansible 8 Porting Guide](https://docs.ansible.com/ansible/devel/porting_guides/porting_guide_8.html) for more details!
+➡️ Check [Release Notes📦️🗒️](https://github.com/ansible-community/ansible-build-data/blob/main/x/CHANGELOG-vx.rst) and [Ansible x Porting Guide](https://docs.ansible.com/ansible/devel/porting_guides/porting_guide_x.html) for more details!
 ```

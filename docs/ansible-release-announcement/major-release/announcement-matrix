@@ -1,0 +1,26 @@
+## Matrix
+
+## Post release announcemnet : Message the following Matrix room after the release
+
+
+#ansible-community
+#ansible-social: (prepended with @newsbot)
+#ansible-packaging
+#ansible-devel
+#ansible: update the topic or ask @sivel to update: /msg ChanServ TOPICSWAP #ansible x.y.z:X.0.0
+#ansible: same message, but only required for major versions of ansible community
+
+
+## Red Hat Ansible Slack #general
+
+```
+[Ansible X.0.0 is out]<insert link from the google group ansible-announce :  https://groups.google.com/g/ansible-announce>! ❤️
+
+💽You can install it by running the following command or download the [release tarball]<link relase tarball from PyPI> directly from [pypi]<https://pypi.org/project/ansible/>:
+
+```
+pip install ansible==X.0.0 --user
+```
+
+➡️ Check [Release Notes📦️🗒️](https://github.com/ansible-community/ansible-build-data/blob/main/X/CHANGELOG-vx.rst) and [Ansible X Porting Guide](https://docs.ansible.com/ansible/devel/porting_guides/porting_guide_X.html) for more details!
+```
