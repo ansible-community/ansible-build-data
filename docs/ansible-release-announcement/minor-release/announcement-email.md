@@ -1,23 +1,18 @@
-Release announcement : Ansible Community Package x.y.z
+Release announcement : Ansible Community Package X.0.0
 
 Hello everyone,
 
-We're happy to announce the release of the Ansible x.y.z package!
+We're happy to announce the release of the Ansible X.0.0 package!
 
-Ansible x.y.z requires latest version of ansible-core a.b and includes a curated set of
-Ansible collections that provides a vast number of modules and plugins.
-
-ansible-core is a required dependency, not
-contained within the ansible packages. Pip install builds the
-dependency, but it can be built and installed quite independently of
-the "ansible" distribution.
+Ansible X.0.0 includes ansible-core a.b.c as well as a curated set of
+Ansible collections that provide a vast number of modules and plugins.
 
 How to get it
 -------------
 
 This release is available on PyPI and can be installed with pip:
 
-`$ python3 -m pip install ansible==x.y.z --user`
+`$ python3 -m pip install ansible==X.0.0 --user`
 
 The sources for this release can be found here:
 
@@ -39,17 +34,17 @@ SHA256:
 Some important details
 -----------------------
 
-Python wheels are now available for both Ansible 8 and ansible-core a.b, resulting in significantly improved installation performance.
+Python wheels are now available for both Ansible 8 and ansible-core a.b resulting in significantly improved installation performance.
 
 In addition, Ansible x no longer installs some unnecessary files from the included Ansible collections such as tests or hidden files and directories to further improve installation performance and reduce the size on disk. These files are still available in the source tarball if necessary.
 
-The changelog for ansible-core x.x installed by this release of Ansible x can be found here: 
+The changelog for ansible-core x.x installed by this release of Ansible x can be found here:
 
 Collections which have opted-in to being a part of the Ansible 8 unified changelog will have an entry on this page:
 
 For collections which have not opted-in to the unified changelog, you may find more information on https://galaxy.ansible.com or the collection source repository. For example, the community.crypto collection is available at https://galaxy.ansible.com/community/crypto and you can find a link to the source repository under the "Repo" button at the top right.
 
-What's the schedule for new Ansible releases after x.y.z?
+What's the schedule for new Ansible releases after X.0.0?
 ---------------------------------------------------------
 
 Subscribe to the Bullhorn for all future release dates, announcements, and Ansible contributor community news.
