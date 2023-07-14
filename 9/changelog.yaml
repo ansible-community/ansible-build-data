@@ -24,3 +24,9 @@ releases:
           Users can still install this collection with ``ansible-galaxy collection install community.skydive``."
         - The deprecated servicenow.servicenow collection has been removed from Ansible 7, but accidentally re-added to Ansible 8. It has been removed again from Ansible 9
           (https://github.com/ansible-community/community-topics/issues/246).
+      deprecated_features:
+        - The collection ``community.sap`` has been renamed to ``community.sap_libs``.
+          For now both collections are included in Ansible. The content in ``community.sap``
+          has deprecated redirects to the new collection in Ansible 9.0.0,
+          and the collection will be removed from Ansible 10 completely. Please update your
+          FQCNs for ``community.sap``.
