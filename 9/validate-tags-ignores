@@ -1,0 +1,4 @@
+# https://github.com/ansible-community/ansible-build-data/pull/261
+# This collection is deprecated (namespace has been renamed) and
+# will be removed eventually.
+t_systems_mms.icinga_director
