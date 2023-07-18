@@ -17,6 +17,83 @@ Ansible 8 is based on Ansible-core 2.15.
 
 We suggest you read this page along with the `Ansible 8 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/8/CHANGELOG-v8.rst>`_ to understand what updates you may need to make.
 
+
+Playbook
+========
+
+No notable changes
+
+
+Command Line
+============
+
+* The return code of ``ansible-galaxy search`` is now 0 instead of 1 and the stdout is empty when results are empty to align with other ``ansible-galaxy`` commands.
+
+
+Deprecated
+==========
+
+* Providing a list of dictionaries to ``vars:`` is deprecated in favor of supplying a dictionary.
+
+  Instead of:
+
+  .. code-block:: yaml
+
+     vars:
+       - var1: foo
+       - var2: bar
+
+  Use:
+
+  .. code-block:: yaml
+
+     vars:
+       var1: foo
+       var2: bar
+
+Modules
+=======
+
+No notable changes
+
+
+Modules removed
+---------------
+
+The following modules no longer exist:
+
+* No notable changes
+
+
+Deprecation notices
+-------------------
+
+No notable changes
+
+
+Noteworthy module changes
+-------------------------
+
+No notable changes
+
+
+Plugins
+=======
+
+No notable changes
+
+
+Porting custom scripts
+======================
+
+No notable changes
+
+
+Networking
+==========
+
+No notable changes
+
 Porting Guide for v8.2.0
 ========================
 
