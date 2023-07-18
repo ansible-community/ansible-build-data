@@ -98,10 +98,16 @@ releases:
   8.2.0:
     changes:
       deprecated_features:
-      - The deprecated servicenow.servicenow collection has been removed from Ansible 7, but accidentally re-added to Ansible 8. It will be removed again from Ansible 9
-        (https://github.com/ansible-community/community-topics/issues/246).
       - The collection ``community.sap`` has been renamed to ``community.sap_libs``.
         For now both collections are included in Ansible. The content in ``community.sap``
-        will be replaced with deprecated redirects to the new collection in Ansible 9.0.0,
-        and the collection will be removed from Ansible 10 completely. Please update your
-        FQCNs for ``community.sap``.
+        will be replaced with deprecated redirects to the new collection in Ansible
+        9.0.0, and the collection will be removed from Ansible 10 completely. Please
+        update your FQCNs for ``community.sap``.
+      - The deprecated servicenow.servicenow collection has been removed from Ansible
+        7, but accidentally re-added to Ansible 8. It will be removed again from Ansible
+        9 (https://github.com/ansible-community/community-topics/issues/246).
+      release_summary: 'Release Date: 2023-07-18
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2023-07-18'

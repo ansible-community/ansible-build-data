@@ -17,82 +17,91 @@ Ansible 8 is based on Ansible-core 2.15.
 
 We suggest you read this page along with the `Ansible 8 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/8/CHANGELOG-v8.rst>`_ to understand what updates you may need to make.
 
+Porting Guide for v8.2.0
+========================
 
-Playbook
-========
+Known Issues
+------------
 
-No notable changes
+Ansible-core
+~~~~~~~~~~~~
 
+- ansible-test - The Fedora 37 remote is known to occasionally hang during boot. It is no longer routinely tested as a result. If possible, use the Fedora 38 remote instead.
 
-Command Line
-============
+community.crypto
+~~~~~~~~~~~~~~~~
 
-* The return code of ``ansible-galaxy search`` is now 0 instead of 1 and the stdout is empty when results are empty to align with other ``ansible-galaxy`` commands.
+- Ansible markup will show up in raw form on ansible-doc text output for ansible-core before 2.15. If you have trouble deciphering the documentation markup, please upgrade to ansible-core 2.15 (or newer), or read the HTML documentation on https://docs.ansible.com/ansible/devel/collections/community/crypto/.
 
+community.hrobot
+~~~~~~~~~~~~~~~~
 
-Deprecated
-==========
+- Ansible markup will show up in raw form on ansible-doc text output for ansible-core before 2.15. If you have trouble deciphering the documentation markup, please upgrade to ansible-core 2.15 (or newer), or read the HTML documentation on https://docs.ansible.com/ansible/devel/collections/community/hrobot/.
 
-* Providing a list of dictionaries to ``vars:`` is deprecated in favor of supplying a dictionary.
+community.routeros
+~~~~~~~~~~~~~~~~~~
 
-  Instead of:
+- Ansible markup will show up in raw form on ansible-doc text output for ansible-core before 2.15. If you have trouble deciphering the documentation markup, please upgrade to ansible-core 2.15 (or newer), or read the HTML documentation on https://docs.ansible.com/ansible/devel/collections/community/routeros/.
 
-  .. code-block:: yaml
+community.sops
+~~~~~~~~~~~~~~
 
-     vars:
-       - var1: foo
-       - var2: bar
+- Ansible markup will show up in raw form on ansible-doc text output for ansible-core before 2.15. If you have trouble deciphering the documentation markup, please upgrade to ansible-core 2.15 (or newer), or read the HTML documentation on https://docs.ansible.com/ansible/devel/collections/community/sops/.
 
-  Use:
+Breaking Changes
+----------------
 
-  .. code-block:: yaml
+hetzner.hcloud
+~~~~~~~~~~~~~~
 
-     vars:
-       var1: foo
-       var2: bar
+- hcloud-python 1.20.0 is now required for full compatibility
 
-Modules
-=======
+Major Changes
+-------------
 
-No notable changes
+chocolatey.chocolatey
+~~~~~~~~~~~~~~~~~~~~~
 
+- win_chocolatey - add options for specifying checksums
+- win_chocolatey_facts - add filter / gather_subset option
 
-Modules removed
----------------
+community.vmware
+~~~~~~~~~~~~~~~~
 
-The following modules no longer exist:
+- vmware_vasa - added a new module to register/unregister a VASA provider
+- vmware_vasa_info - added a new module to gather the information about existing VASA provider(s)
 
-* No notable changes
+grafana.grafana
+~~~~~~~~~~~~~~~
 
+- Addition of Grafana Server role by @gardar
+- Configurable agent user groups by @NormanJS
+- Grafana Plugins support on-prem Grafana installation by @ishanjainn
+- Updated Service for flow mode by @bentonam
 
-Deprecation notices
+Deprecated Features
 -------------------
 
-No notable changes
+- The collection ``community.sap`` has been renamed to ``community.sap_libs``. For now both collections are included in Ansible. The content in ``community.sap`` will be replaced with deprecated redirects to the new collection in Ansible 9.0.0, and the collection will be removed from Ansible 10 completely. Please update your FQCNs for ``community.sap``.
+- The deprecated servicenow.servicenow collection has been removed from Ansible 7, but accidentally re-added to Ansible 8. It will be removed again from Ansible 9 (https://github.com/ansible-community/community-topics/issues/246).
 
+community.general
+~~~~~~~~~~~~~~~~~
 
-Noteworthy module changes
--------------------------
+- flowdock - module relies entirely on no longer responsive API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6930).
+- proxmox - old feature flag ``proxmox_default_behavior`` will be removed in community.general 10.0.0 (https://github.com/ansible-collections/community.general/pull/6836).
+- stackdriver - module relies entirely on no longer existent API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6887).
+- webfaction_app - module relies entirely on no longer existent API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6909).
+- webfaction_db - module relies entirely on no longer existent API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6909).
+- webfaction_domain - module relies entirely on no longer existent API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6909).
+- webfaction_mailbox - module relies entirely on no longer existent API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6909).
+- webfaction_site - module relies entirely on no longer existent API endpoints, and it will be removed in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/6909).
 
-No notable changes
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
 
-
-Plugins
-=======
-
-No notable changes
-
-
-Porting custom scripts
-======================
-
-No notable changes
-
-
-Networking
-==========
-
-No notable changes
+- `junos_ospfv2` - add deprecate warning for area_range.
+- add deprecate warning for junos_acl_interfaces key for junos facts results.
 
 Porting Guide for v8.1.0
 ========================
