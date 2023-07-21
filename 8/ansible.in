@@ -100,6 +100,7 @@ servicenow.servicenow
 splunk.es
 theforeman.foreman
 t_systems_mms.icinga_director
+telekom_mms.icinga_director
 vmware.vmware_rest
 vultr.cloud
 vyos.vyos
