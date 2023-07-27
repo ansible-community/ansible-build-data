@@ -16,7 +16,7 @@
 ```
 [Ansible x.y.z is out](insert link from the google group ansible-announce :  https://groups.google.com/g/ansible-announce)! ❤️
 
-💽You can install it by running the following command or download the [release tarball](link relase tarball from PyPI ) directly from [pypi](https://pypi.org/project/ansible/):
+💽 You can install it by running the following command or download the [release tarball](link to release tarball from PyPI) directly from [pypi](https://pypi.org/project/ansible/):
 
 ```
 pip install ansible==x.y.z --user
