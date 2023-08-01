@@ -39,4 +39,7 @@ releases:
           has been replaced with deprecated redirects to the new collection in Ansible 9.0.0,
           and these redirects will be removed from Ansible 11. Please update your
           FQCNs for ``t_systems_mms.icinga_director``.
-
+        - The netapp.elementsw collection is considered unmaintained and will be removed
+          from Ansible 10 if no one starts maintaining it again before Ansible 10. See
+          `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+          (https://github.com/ansible-community/community-topics/issues/235).
