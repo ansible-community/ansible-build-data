@@ -84,7 +84,6 @@ netapp.um_info
 netbox.netbox
 ngine_io.cloudstack
 ngine_io.exoscale
-ngine_io.vultr
 openstack.cloud
 openvswitch.openvswitch
 ovirt.ovirt
