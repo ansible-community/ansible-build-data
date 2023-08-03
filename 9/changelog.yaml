@@ -24,8 +24,8 @@ releases:
           Users can still install this collection with ``ansible-galaxy collection install community.skydive``."
         - The deprecated servicenow.servicenow collection has been removed from Ansible 7, but accidentally re-added to Ansible 8. It has been removed again from Ansible 9
           (https://github.com/ansible-community/community-topics/issues/246).
-        - The ngine_io.vultr collection has been removed from Ansible 9 because it is officially unmaintained and has been archived.
-          The successor collection vultr.cloud (using the recent v2 Vultr API) covers the same functionality but might not have compatible syntax.
+        - The ngine_io.vultr collection has been removed from Ansible 9, because it is officially unmaintained and has been archived.
+          The successor collection ``vultr.cloud`` (using the recent v2 Vultr API) covers the same functionality but might not have compatible syntax.
       deprecated_features:
         - The collection ``community.sap`` has been renamed to ``community.sap_libs``.
           For now both collections are included in Ansible. The content in ``community.sap``
