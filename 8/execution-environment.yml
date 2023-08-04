@@ -1,0 +1,23 @@
+----
+
+version: 3
+images:
+  base_image:
+    name: quay.io/fedora/fedora:latest
+dependencies:
+  ansible_core:
+    package_pip: ansible-core==2.15.1
+  ansible_runner:
+    package_pip: ansible-runner
+  galaxy:
+    collections:
+    - name: ansible.netcommon
+      version: 5.1.0
+    - name: ansible.posix
+      version: 1.5.0
+    - name: ansible.utils
+      version: 2.10.0
+    - name: ansible.windows
+      version: 1.14.0
+
+
