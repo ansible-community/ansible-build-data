@@ -131,3 +131,7 @@ releases:
         There is already a successor collection ``vultr.cloud`` (using the recent v2 Vultr API) in the community package which
         covers the functionality but might not have compatible syntax
         (https://github.com/ansible-community/community-topics/issues/257).
+      - The netapp.um_info collection is considered unmaintained and will be removed
+        from Ansible 10 if no one starts maintaining it again before Ansible 10. See
+        `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+        (https://github.com/ansible-community/community-topics/issues/244).
