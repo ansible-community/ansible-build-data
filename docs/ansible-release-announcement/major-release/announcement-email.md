@@ -62,7 +62,7 @@ https://docs.ansible.com/ansible/devel/porting_guides/porting_guide_X.html
 Getting collection updates from Ansible X with older releases of ansible-core
 -----------------------------------------------------------------------------
 
-Ansible X includes ansible-core a.b Based on your requirements, you can get collection updates as they ship in the Ansible "batteries included" package while continuing to use older versions of ansible-core.
+Ansible X includes ansible-core a.b. Based on your requirements, you can get collection updates as they ship in the Ansible "batteries included" package while continuing to use older versions of ansible-core.
 
 An ansible-galaxy requirements file based on the collections from Ansible X has been made available for this use case:
 
