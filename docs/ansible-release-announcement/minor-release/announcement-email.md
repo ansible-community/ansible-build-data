@@ -63,7 +63,7 @@ A unified porting guide for collections that have opted-in is available here:
 https://docs.ansible.com/ansible/devel/porting_guides/porting_guide_8.html
 
 Getting collection updates from Ansible X with older releases of ansible-core
---------------------------------------
+-----------------------------------------------------------------------------
 
 Ansible X includes ansible-core a.b. Based on your requirements, you can get collection updates as they ship in the Ansible "batteries included" package while continuing to use older versions of ansible-core.
 
