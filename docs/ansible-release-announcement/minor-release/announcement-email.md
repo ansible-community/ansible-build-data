@@ -33,7 +33,7 @@ SHA256:
 
 
 Some important details
------------------------
+----------------------
 
 Python wheels are now available for both Ansible 8 and ansible-core a.b resulting in significantly improved installation performance.
 
