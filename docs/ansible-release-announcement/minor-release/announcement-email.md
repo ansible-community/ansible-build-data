@@ -36,7 +36,7 @@ SHA256:
 Some important details
 ----------------------
 
-Python wheels are now available for both Ansible 8 and ansible-core a.b resulting in significantly improved installation performance.
+Python wheels are now available for both Ansible X and ansible-core a.b resulting in significantly improved installation performance.
 
 In addition, Ansible x no longer installs some unnecessary files from the included Ansible collections such as tests or hidden files and directories. This further improves installation performance and reduces the size on disk. These files are still available in the source tarball if needed.
 
@@ -44,7 +44,7 @@ Collections which have opted-in to being a part of the Ansible 8 unified changel
 
 For collections which have not opted-in to the unified changelog, you may find more information on https://docs.ansible.com/ansible/latest/collections or the collection source repository. For example, the community.crypto collection is available at https://docs.ansible.com/ansible/latest/collections/community/crypto/index.html and you can find a link to the source repository under the "Repository(Sources)" button.
 
-The changelog for ansible-core x.x installed by this release of Ansible x can be found here:
+The changelog for ansible-core a.b installed by this release of Ansible X can be found here: <changelog of ansible-core>.
 
 
 What's the schedule for new Ansible releases after X.0.0?
