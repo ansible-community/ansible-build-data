@@ -9,8 +9,8 @@ Ansible X.0.0 requires latest version of ansible-core a.b and includes a curated
 ansible-core is a required dependency, not contained within the ansible packages. Pip install builds the
 dependency, but it can be built and installed quite independently of the "ansible" distribution.
 
-the "ansible" distribution.
--------------
+The "ansible" distribution
+--------------------------
 
 This release is available on PyPI and can be installed with pip:
 
