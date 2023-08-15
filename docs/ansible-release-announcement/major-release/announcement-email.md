@@ -37,14 +37,18 @@ Python wheels are now available for both Ansible X and ansible-core a.b resultin
 
 In addition, Ansible x no longer installs some unnecessary files from the included Ansible collections such as tests or hidden files and directories.  This  further improves installation performance and reduces the size on disk. These files are still available in the source tarball if needed.
 
-The changelog for ansible-core a.b installed by this release of Ansible X can be found at <changelog of ansible-core>.
 
 Collections which have opted-in to being a part of the Ansible X unified changelog will have an entry on this page:
 
 For collections which have not opted-in to the unified changelog, you may find more information on https://galaxy.ansible.com or the collection source repository. For example, the community.crypto collection is available at https://galaxy.ansible.com/community/crypto and you can find a link to the source repository under the "Repo" button at the top right.
 
+The changelog for ansible-core a.b installed by this release of Ansible X can be found here: <changelog of ansible-core>.
+
+
 What's the schedule for new Ansible releases after X.0.0?
 ---------------------------------------------------------
+
+The next release roadmap can be found at https://docs.ansible.com/ansible/devel/roadmap/ansible_roadmap_index.html
 
 Subscribe to the Bullhorn for all future release dates, announcements, and Ansible contributor community news.
 
