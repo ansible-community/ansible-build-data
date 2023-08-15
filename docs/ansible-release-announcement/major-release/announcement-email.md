@@ -37,7 +37,7 @@ Python wheels are now available for both Ansible X and ansible-core a.b resultin
 
 In addition, Ansible x no longer installs some unnecessary files from the included Ansible collections such as tests or hidden files and directories.  This  further improves installation performance and reduces the size on disk. These files are still available in the source tarball if needed.
 
-The changelog for ansible-core a.b installed by this release of Ansible X can be found here: <changelog of ansible-core>
+The changelog for ansible-core a.b installed by this release of Ansible X can be found at <changelog of ansible-core>.
 
 Collections which have opted-in to being a part of the Ansible X unified changelog will have an entry on this page:
 
