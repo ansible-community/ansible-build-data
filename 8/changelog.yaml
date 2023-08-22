@@ -144,7 +144,7 @@ releases:
   8.4.0:
     changes:
       deprecated_features:
-      - The community.azure collection is officially unmaintained and has been archived.
+      - The ``community.azure`` collection is officially unmaintained and has been archived.
         Therefore, it will be removed from Ansible 10. There is already a successor
         collection ``azure.azcollection`` in the community package which should cover
         the same functionality
