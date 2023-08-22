@@ -50,7 +50,7 @@ releases:
           from Ansible 10 if no one starts maintaining it again before Ansible 10. See
           `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
           (https://github.com/ansible-community/community-topics/issues/244).
-        - The community.azure collection is officially unmaintained and has been archived.
+        - The ``community.azure`` collection is officially unmaintained and has been archived.
           Therefore, it will be removed from Ansible 10. There is already a successor
           collection ``azure.azcollection`` in the community package which should cover
           the same functionality
