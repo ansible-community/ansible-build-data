@@ -22,21 +22,21 @@ jobs:
 
     steps:
       - name: Check out antsibull
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: ansible-community/antsibull
           ref: main
           path: antsibull
 
       - name: Check out antsibull-core
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: ansible-community/antsibull-core
           ref: main
           path: antsibull-core
 
       - name: Check out antsibull-changelog
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: ansible-community/antsibull-changelog
           ref: main
@@ -47,7 +47,7 @@ jobs:
 
       # This is where the antsibull build-release role expects it by default
       - name: Check out ansible-build-data under antsibull build directory
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: antsibull/build/ansible-build-data
 
