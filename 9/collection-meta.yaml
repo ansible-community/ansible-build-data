@@ -177,7 +177,7 @@ collections:
   cisco.iosxr:
     repository: https://github.com/ansible-collections/cisco.iosxr
   cisco.meraki:
-    repository: https://github.com/CiscoDevNet/ansible-meraki
+    repository: https://github.com/meraki/dashboard-api-ansible
   cisco.mso:
     repository: https://github.com/CiscoDevNet/ansible-mso
   cisco.nxos:
