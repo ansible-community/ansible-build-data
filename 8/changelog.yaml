@@ -144,12 +144,16 @@ releases:
   8.4.0:
     changes:
       deprecated_features:
-      - The ``community.azure`` collection is officially unmaintained and has been archived.
-        Therefore, it will be removed from Ansible 10. There is already a successor
-        collection ``azure.azcollection`` in the community package which should cover
-        the same functionality
-        (https://github.com/ansible-community/community-topics/issues/263).
+      - The ``community.azure`` collection is officially unmaintained and has been
+        archived. Therefore, it will be removed from Ansible 10. There is already
+        a successor collection ``azure.azcollection`` in the community package which
+        should cover the same functionality (https://github.com/ansible-community/community-topics/issues/263).
       - The ``hpe.nimble`` collection is considered unmaintained and will be removed
         from Ansible 10 if no one starts maintaining it again before Ansible 10. See
         `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
         (https://github.com/ansible-community/community-topics/issues/254).
+      release_summary: 'Release Date: 2023-09-12
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2023-09-12'
