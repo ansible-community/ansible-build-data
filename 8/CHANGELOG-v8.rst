@@ -8,6 +8,937 @@ This changelog describes changes since Ansible 7.0.0.
   :local:
   :depth: 2
 
+v8.4.0
+======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2023-09-12
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 8.4.0 contains ansible-core version 2.15.4.
+This is a newer version than version 2.15.3 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection             | Ansible 8.3.0 | Ansible 8.4.0 | Notes                                                                                                                        |
++========================+===============+===============+==============================================================================================================================+
+| amazon.aws             | 6.3.0         | 6.4.0         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.netcommon      | 5.1.2         | 5.2.0         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.utils          | 2.10.3        | 2.11.0        |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| arista.eos             | 6.0.1         | 6.1.0         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| awx.awx                | 22.6.0        | 22.7.0        | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| azure.azcollection     | 1.16.0        | 1.17.0        | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.dnac             | 6.7.3         | 6.7.4         | The collection did not have a changelog in this version.                                                                     |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ise              | 2.5.14        | 2.5.15        |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki           | 2.15.3        | 2.16.0        |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.aws          | 6.2.0         | 6.3.0         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto       | 2.15.0        | 2.15.1        |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns          | 2.6.0         | 2.6.1         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general      | 7.3.0         | 7.4.0         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sops         | 1.6.4         | 1.6.5         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman      | 1.10.2        | 1.10.3        |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.powerflex      | 1.7.0         | 1.8.0         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules  | 1.25.1        | 1.26.0        |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortios       | 2.3.1         | 2.3.2         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| grafana.grafana        | 2.1.5         | 2.1.8         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| junipernetworks.junos  | 5.2.0         | 5.3.0         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| lowlydba.sqlserver     | 2.1.0         | 2.2.1         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| netbox.netbox          | 3.13.0        | 3.14.0        |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| ngine_io.exoscale      | 1.0.0         | 1.1.0         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| ovirt.ovirt            | 3.1.2         | 3.1.3         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flasharray | 1.20.0        | 1.21.0        |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade | 1.12.1        | 1.13.1        |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman     | 3.12.0        | 3.14.0        |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+| vultr.cloud            | 1.8.0         | 1.9.0         |                                                                                                                              |
++------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Improve the document for adding notes and examples in Q&A for modules using Integer number as the mkey.
+
+Minor Changes
+-------------
+
+amazon.aws
+~~~~~~~~~~
+
+- cloudformation - Add support for ``disable_rollback`` to update stack operation (https://github.com/ansible-collections/amazon.aws/issues/1681).
+- ec2_key - add support for new parameter ``file_name`` to save private key in when new key is created by AWS. When this option is provided the generated private key will be removed from the module return (https://github.com/ansible-collections/amazon.aws/pull/1704).
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- Add a new cliconf plugin ``default`` that can be used when no cliconf plugin is found for a given network_os. This plugin only supports ``get()``. (https://github.com/ansible-collections/ansible.netcommon/pull/569)
+- httpapi - Add additional option ``ca_path``, ``client_cert``, ``client_key``, and ``http_agent`` that are available in open_url but not to httpapi. (https://github.com/ansible-collections/ansible.netcommon/issues/528)
+- telnet - add crlf option to send CRLF instead of just LF (https://github.com/ansible-collections/ansible.netcommon/pull/440).
+
+ansible.utils
+~~~~~~~~~~~~~
+
+- Add ipcut filter plugin.(https://github.com/ansible-collections/ansible.utils/issues/251)
+- Add ipv6form filter plugin.(https://github.com/ansible-collections/ansible.utils/issues/230)
+
+arista.eos
+~~~~~~~~~~
+
+- Add support for overridden operation in bgp_global resource module.
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- administered_identities_me_info - new plugin.
+- devices - new plugin.
+- devices_appliance_performance_info - new plugin.
+- devices_appliance_uplinks_settings - new plugin.
+- devices_appliance_uplinks_settings_info - new plugin.
+- devices_appliance_vmx_authentication_token - new plugin.
+- devices_blink_leds - new plugin.
+- devices_camera_analytics_live_info - new plugin.
+- devices_camera_custom_analytics - new plugin.
+- devices_camera_custom_analytics_info - new plugin.
+- devices_camera_generate_snapshot - new plugin.
+- devices_camera_quality_and_retention - new plugin.
+- devices_camera_quality_and_retention_info - new plugin.
+- devices_camera_sense - new plugin.
+- devices_camera_sense_info - new plugin.
+- devices_camera_video_link_info - new plugin.
+- devices_camera_video_settings - new plugin.
+- devices_camera_video_settings_info - new plugin.
+- devices_camera_wireless_profiles - new plugin.
+- devices_camera_wireless_profiles_info - new plugin.
+- devices_cellular_gateway_lan - new plugin.
+- devices_cellular_gateway_lan_info - new plugin.
+- devices_cellular_gateway_port_forwarding_rules - new plugin.
+- devices_cellular_gateway_port_forwarding_rules_info - new plugin.
+- devices_cellular_sims - new plugin.
+- devices_cellular_sims_info - new plugin.
+- devices_info - new plugin.
+- devices_live_tools_ping - new plugin.
+- devices_live_tools_ping_device - new plugin.
+- devices_live_tools_ping_device_info - new plugin.
+- devices_live_tools_ping_info - new plugin.
+- devices_lldp_cdp_info - new plugin.
+- devices_management_interface - new plugin.
+- devices_management_interface_info - new plugin.
+- devices_sensor_relationships - new plugin.
+- devices_sensor_relationships_info - new plugin.
+- devices_switch_ports - new plugin.
+- devices_switch_ports_cycle - new plugin.
+- devices_switch_ports_info - new plugin.
+- devices_switch_ports_statuses_info - new plugin.
+- devices_switch_routing_interfaces - new plugin.
+- devices_switch_routing_interfaces_dhcp - new plugin.
+- devices_switch_routing_interfaces_dhcp_info - new plugin.
+- devices_switch_routing_interfaces_info - new plugin.
+- devices_switch_routing_static_routes - new plugin.
+- devices_switch_routing_static_routes_info - new plugin.
+- devices_switch_warm_spare - new plugin.
+- devices_switch_warm_spare_info - new plugin.
+- devices_wireless_bluetooth_settings - new plugin.
+- devices_wireless_bluetooth_settings_info - new plugin.
+- devices_wireless_connection_stats_info - new plugin.
+- devices_wireless_latency_stats_info - new plugin.
+- devices_wireless_radio_settings - new plugin.
+- devices_wireless_radio_settings_info - new plugin.
+- devices_wireless_status_info - new plugin.
+- networks - new plugin.
+- networks_alerts_history_info - new plugin.
+- networks_alerts_settings - new plugin.
+- networks_alerts_settings_info - new plugin.
+- networks_appliance_connectivity_monitoring_destinations - new plugin.
+- networks_appliance_connectivity_monitoring_destinations_info - new plugin.
+- networks_appliance_content_filtering - new plugin.
+- networks_appliance_content_filtering_categories_info - new plugin.
+- networks_appliance_content_filtering_info - new plugin.
+- networks_appliance_firewall_cellular_firewall_rules - new plugin.
+- networks_appliance_firewall_cellular_firewall_rules_info - new plugin.
+- networks_appliance_firewall_firewalled_services - new plugin.
+- networks_appliance_firewall_firewalled_services_info - new plugin.
+- networks_appliance_firewall_inbound_firewall_rules - new plugin.
+- networks_appliance_firewall_inbound_firewall_rules_info - new plugin.
+- networks_appliance_firewall_l3_firewall_rules - new plugin.
+- networks_appliance_firewall_l3_firewall_rules_info - new plugin.
+- networks_appliance_firewall_l7_firewall_rules - new plugin.
+- networks_appliance_firewall_l7_firewall_rules_application_categories_info - new plugin.
+- networks_appliance_firewall_l7_firewall_rules_info - new plugin.
+- networks_appliance_firewall_one_to_many_nat_rules - new plugin.
+- networks_appliance_firewall_one_to_many_nat_rules_info - new plugin.
+- networks_appliance_firewall_one_to_one_nat_rules - new plugin.
+- networks_appliance_firewall_one_to_one_nat_rules_info - new plugin.
+- networks_appliance_firewall_port_forwarding_rules - new plugin.
+- networks_appliance_firewall_port_forwarding_rules_info - new plugin.
+- networks_appliance_firewall_settings - new plugin.
+- networks_appliance_firewall_settings_info - new plugin.
+- networks_appliance_ports - new plugin.
+- networks_appliance_ports_info - new plugin.
+- networks_appliance_prefixes_delegated_statics - new plugin.
+- networks_appliance_prefixes_delegated_statics_info - new plugin.
+- networks_appliance_security_intrusion - new plugin.
+- networks_appliance_security_intrusion_info - new plugin.
+- networks_appliance_security_malware - new plugin.
+- networks_appliance_security_malware_info - new plugin.
+- networks_appliance_settings - new plugin.
+- networks_appliance_settings_info - new plugin.
+- networks_appliance_single_lan - new plugin.
+- networks_appliance_single_lan_info - new plugin.
+- networks_appliance_ssids - new plugin.
+- networks_appliance_ssids_info - new plugin.
+- networks_appliance_static_routes  - new plugin.
+- networks_appliance_static_routes_info  - new plugin.
+- networks_appliance_traffic_shaping - new plugin.
+- networks_appliance_traffic_shaping_custom_performance_classes - new plugin.
+- networks_appliance_traffic_shaping_info - new plugin.
+- networks_appliance_traffic_shaping_rules - new plugin.
+- networks_appliance_traffic_shaping_rules_info - new plugin.
+- networks_appliance_traffic_shaping_uplink_bandwidth - new plugin.
+- networks_appliance_traffic_shaping_uplink_bandwidth_info - new plugin.
+- networks_appliance_traffic_shaping_uplink_selection - new plugin.
+- networks_appliance_traffic_shaping_uplink_selection_info - new plugin.
+- networks_appliance_vlans - new plugin.
+- networks_appliance_vlans_info - new plugin.
+- networks_appliance_vlans_settings - new plugin.
+- networks_appliance_vlans_settings_info - new plugin.
+- networks_appliance_vpn_bgp - new plugin.
+- networks_appliance_vpn_bgp_info - new plugin.
+- networks_appliance_vpn_site_to_site_vpn - new plugin.
+- networks_appliance_vpn_site_to_site_vpn_info - new plugin.
+- networks_appliance_warm_spare - new plugin.
+- networks_appliance_warm_spare_info - new plugin.
+- networks_appliance_warm_spare_swap - new plugin.
+- networks_bind - new plugin.
+- networks_bluetooth_clients_info - new plugin.
+- networks_camera_quality_retention_profiles - new plugin.
+- networks_camera_quality_retention_profiles_info - new plugin.
+- networks_camera_wireless_profiles - new plugin.
+- networks_camera_wireless_profiles_info - new plugin.
+- networks_cellular_gateway_connectivity_monitoring_destinations - new plugin.
+- networks_cellular_gateway_connectivity_monitoring_destinations_info - new plugin.
+- networks_cellular_gateway_dhcp - new plugin.
+- networks_cellular_gateway_dhcp_info - new plugin.
+- networks_cellular_gateway_subnet_pool - new plugin.
+- networks_cellular_gateway_subnet_pool_info - new plugin.
+- networks_cellular_gateway_uplink - new plugin.
+- networks_cellular_gateway_uplink_info - new plugin.
+- networks_clients_info - new plugin.
+- networks_clients_overview_info - new plugin.
+- networks_clients_policy - new plugin.
+- networks_clients_policy_info - new plugin.
+- networks_clients_provision - new plugin.
+- networks_clients_splash_authorization_status - new plugin.
+- networks_clients_splash_authorization_status_info - new plugin.
+- networks_devices_claim - new plugin.
+- networks_devices_claim_vmx - new plugin.
+- networks_devices_remove - new plugin.
+- networks_events_event_types_info - new plugin.
+- networks_events_info - new plugin.
+- networks_firmware_upgrades - new plugin.
+- networks_firmware_upgrades_info - new plugin.
+- networks_firmware_upgrades_rollbacks - new plugin.
+- networks_firmware_upgrades_staged_events - new plugin.
+- networks_firmware_upgrades_staged_events_defer - new plugin.
+- networks_firmware_upgrades_staged_events_info - new plugin.
+- networks_firmware_upgrades_staged_events_rollbacks - new plugin.
+- networks_firmware_upgrades_staged_groups - new plugin.
+- networks_firmware_upgrades_staged_groups_info - new plugin.
+- networks_firmware_upgrades_staged_stages - new plugin.
+- networks_firmware_upgrades_staged_stages_info - new plugin.
+- networks_floor_plans - new plugin.
+- networks_floor_plans_info - new plugin.
+- networks_group_policies - new plugin.
+- networks_group_policies_info - new plugin.
+- networks_health_alerts_info - new plugin.
+- networks_info - new plugin.
+- networks_insight_applications_health_by_time_info - new plugin.
+- networks_meraki_auth_users - new plugin.
+- networks_meraki_auth_users_info - new plugin.
+- networks_mqtt_brokers - new plugin.
+- networks_netflow - new plugin.
+- networks_netflow_info - new plugin.
+- networks_pii_pii_keys_info - new plugin.
+- networks_pii_requests_delete - new plugin.
+- networks_pii_requests_info - new plugin.
+- networks_pii_sm_devices_for_key_info - new plugin.
+- networks_pii_sm_owners_for_key_info - new plugin.
+- networks_policies_by_client_info - new plugin.
+- networks_sensor_alerts_current_overview_by_metric_info - new plugin.
+- networks_sensor_alerts_overview_by_metric_info - new plugin.
+- networks_sensor_alerts_profiles - new plugin.
+- networks_sensor_alerts_profiles_info - new plugin.
+- networks_sensor_mqtt_brokers - new plugin.
+- networks_sensor_mqtt_brokers_info - new plugin.
+- networks_sensor_relationships_info - new plugin.
+- networks_settings - new plugin.
+- networks_settings_info - new plugin.
+- networks_sm_bypass_activation_lock_attempts - new plugin.
+- networks_sm_bypass_activation_lock_attempts_info - new plugin.
+- networks_sm_devices_cellular_usage_history_info - new plugin.
+- networks_sm_devices_certs_info - new plugin.
+- networks_sm_devices_checkin - new plugin.
+- networks_sm_devices_connectivity_info - new plugin.
+- networks_sm_devices_desktop_logs_info - new plugin.
+- networks_sm_devices_device_command_logs_info - new plugin.
+- networks_sm_devices_device_profiles_info - new plugin.
+- networks_sm_devices_fields - new plugin.
+- networks_sm_devices_info - new plugin.
+- networks_sm_devices_lock - new plugin.
+- networks_sm_devices_modify_tags - new plugin.
+- networks_sm_devices_move - new plugin.
+- networks_sm_devices_network_adapters_info - new plugin.
+- networks_sm_devices_performance_history_info - new plugin.
+- networks_sm_devices_refresh_details - new plugin.
+- networks_sm_devices_security_centers_info - new plugin.
+- networks_sm_devices_unenroll - new plugin.
+- networks_sm_devices_wipe - new plugin.
+- networks_sm_devices_wlan_lists_info - new plugin.
+- networks_sm_profiles_info - new plugin.
+- networks_sm_target_groups - new plugin.
+- networks_sm_target_groups_info - new plugin.
+- networks_sm_trusted_access_configs_info - new plugin.
+- networks_sm_user_access_devices_delete - new plugin.
+- networks_sm_user_access_devices_info - new plugin.
+- networks_sm_users_device_profiles_info - new plugin.
+- networks_sm_users_info - new plugin.
+- networks_sm_users_softwares_info - new plugin.
+- networks_snmp - new plugin.
+- networks_snmp_info - new plugin.
+- networks_split - new plugin.
+- networks_switch_access_control_lists - new plugin.
+- networks_switch_access_control_lists_info - new plugin.
+- networks_switch_access_policies - new plugin.
+- networks_switch_access_policies_info - new plugin.
+- networks_switch_alternate_management_interface - new plugin.
+- networks_switch_alternate_management_interface_info - new plugin.
+- networks_switch_dhcp_server_policy - new plugin.
+- networks_switch_dhcp_server_policy_arp_inspection_trusted_servers - new plugin.
+- networks_switch_dhcp_server_policy_arp_inspection_trusted_servers_info - new plugin.
+- networks_switch_dhcp_server_policy_arp_inspection_warnings_by_device_info - new plugin.
+- networks_switch_dhcp_server_policy_info - new plugin.
+- networks_switch_dhcp_v4_servers_seen_info - new plugin.
+- networks_switch_dscp_to_cos_mappings - new plugin.
+- networks_switch_dscp_to_cos_mappings_info - new plugin.
+- networks_switch_link_aggregations - new plugin.
+- networks_switch_link_aggregations_info - new plugin.
+- networks_switch_mtu - new plugin.
+- networks_switch_mtu_info - new plugin.
+- networks_switch_port_schedules - new plugin.
+- networks_switch_port_schedules_info - new plugin.
+- networks_switch_qos_rules_order - new plugin.
+- networks_switch_qos_rules_order_info - new plugin.
+- networks_switch_routing_multicast - new plugin.
+- networks_switch_routing_multicast_info - new plugin.
+- networks_switch_routing_multicast_rendezvous_points - new plugin.
+- networks_switch_routing_multicast_rendezvous_points_info - new plugin.
+- networks_switch_routing_ospf - new plugin.
+- networks_switch_routing_ospf_info - new plugin.
+- networks_switch_settings - new plugin.
+- networks_switch_settings_info - new plugin.
+- networks_switch_stacks - new plugin.
+- networks_switch_stacks_add - new plugin.
+- networks_switch_stacks_info - new plugin.
+- networks_switch_stacks_remove - new plugin.
+- networks_switch_stacks_routing_interfaces - new plugin.
+- networks_switch_stacks_routing_interfaces_dhcp - new plugin.
+- networks_switch_stacks_routing_interfaces_dhcp_info - new plugin.
+- networks_switch_stacks_routing_interfaces_info - new plugin.
+- networks_switch_stacks_routing_static_routes - new plugin.
+- networks_switch_stacks_routing_static_routes_info - new plugin.
+- networks_switch_storm_control - new plugin.
+- networks_switch_storm_control_info - new plugin.
+- networks_switch_stp - new plugin.
+- networks_switch_stp_info - new plugin.
+- networks_syslog_servers - new plugin.
+- networks_syslog_servers_info - new plugin.
+- networks_topology_link_layer_info - new plugin.
+- networks_traffic_analysis - new plugin.
+- networks_traffic_analysis_info - new plugin.
+- networks_traffic_shaping_application_categories_info - new plugin.
+- networks_traffic_shaping_dscp_tagging_options_info - new plugin.
+- networks_unbind - new plugin.
+- networks_webhooks_http_servers - new plugin.
+- networks_webhooks_http_servers_info - new plugin.
+- networks_webhooks_payload_templates - new plugin.
+- networks_webhooks_payload_templates_info - new plugin.
+- networks_webhooks_webhook_tests_info - new plugin.
+- networks_wireless_alternate_management_interface - new plugin.
+- networks_wireless_alternate_management_interface_info - new plugin.
+- networks_wireless_billing - new plugin.
+- networks_wireless_billing_info - new plugin.
+- networks_wireless_bluetooth_settings - new plugin.
+- networks_wireless_bluetooth_settings_info - new plugin.
+- networks_wireless_channel_utilization_history_info - new plugin.
+- networks_wireless_client_count_history_info - new plugin.
+- networks_wireless_clients_connection_stats_info - new plugin.
+- networks_wireless_clients_latency_stats_info - new plugin.
+- networks_wireless_connection_stats_info - new plugin.
+- networks_wireless_data_rate_history_info - new plugin.
+- networks_wireless_devices_connection_stats_info - new plugin.
+- networks_wireless_failed_connections_info - new plugin.
+- networks_wireless_latency_history_info - new plugin.
+- networks_wireless_latency_stats_info - new plugin.
+- networks_wireless_mesh_statuses_info - new plugin.
+- networks_wireless_rf_profiles - new plugin.
+- networks_wireless_rf_profiles_info - new plugin.
+- networks_wireless_settings - new plugin.
+- networks_wireless_settings_info - new plugin.
+- networks_wireless_signal_quality_history_info - new plugin.
+- networks_wireless_ssids - new plugin.
+- networks_wireless_ssids_bonjour_forwarding - new plugin.
+- networks_wireless_ssids_bonjour_forwarding_info - new plugin.
+- networks_wireless_ssids_device_type_group_policies - new plugin.
+- networks_wireless_ssids_device_type_group_policies_info - new plugin.
+- networks_wireless_ssids_eap_override - new plugin.
+- networks_wireless_ssids_eap_override_info - new plugin.
+- networks_wireless_ssids_firewall_l3_firewall_rules - new plugin.
+- networks_wireless_ssids_firewall_l3_firewall_rules_info - new plugin.
+- networks_wireless_ssids_firewall_l7_firewall_rules - new plugin.
+- networks_wireless_ssids_firewall_l7_firewall_rules_info - new plugin.
+- networks_wireless_ssids_hotspot20 - new plugin.
+- networks_wireless_ssids_hotspot20_info - new plugin.
+- networks_wireless_ssids_identity_psks - new plugin.
+- networks_wireless_ssids_identity_psks_info - new plugin.
+- networks_wireless_ssids_info - new plugin.
+- networks_wireless_ssids_schedules - new plugin.
+- networks_wireless_ssids_schedules_info - new plugin.
+- networks_wireless_ssids_splash_settings - new plugin.
+- networks_wireless_ssids_splash_settings_info - new plugin.
+- networks_wireless_ssids_traffic_shaping_rules - new plugin.
+- networks_wireless_ssids_traffic_shaping_rules_info - new plugin.
+- networks_wireless_ssids_vpn - new plugin.
+- networks_wireless_ssids_vpn_info - new plugin.
+- networks_wireless_usage_history_info - new plugin.
+- organizations - new plugin.
+- organizations_action_batches - new plugin.
+- organizations_action_batches_info - new plugin.
+- organizations_adaptive_policy_acls - new plugin.
+- organizations_adaptive_policy_acls_info - new plugin.
+- organizations_adaptive_policy_groups - new plugin.
+- organizations_adaptive_policy_groups_info - new plugin.
+- organizations_adaptive_policy_overview_info - new plugin.
+- organizations_adaptive_policy_policies - new plugin.
+- organizations_adaptive_policy_policies_info - new plugin.
+- organizations_adaptive_policy_settings - new plugin.
+- organizations_adaptive_policy_settings_info - new plugin.
+- organizations_admins - new plugin.
+- organizations_admins_info - new plugin.
+- organizations_alerts_profiles - new plugin.
+- organizations_api_requests_info - new plugin.
+- organizations_api_requests_overview_info - new plugin.
+- organizations_api_requests_overview_response_codes_by_interval_info - new plugin.
+- organizations_appliance_security_intrusion - new plugin.
+- organizations_appliance_security_intrusion_info - new plugin.
+- organizations_appliance_vpn_third_party_vpnpeers - new plugin.
+- organizations_appliance_vpn_third_party_vpnpeers_info - new plugin.
+- organizations_appliance_vpn_vpn_firewall_rules - new plugin.
+- organizations_appliance_vpn_vpn_firewall_rules_info - new plugin.
+- organizations_branding_policies - new plugin.
+- organizations_branding_policies_info - new plugin.
+- organizations_branding_policies_priorities - new plugin.
+- organizations_branding_policies_priorities_info - new plugin.
+- organizations_camera_custom_analytics_artifacts - new plugin.
+- organizations_camera_custom_analytics_artifacts_info - new plugin.
+- organizations_cellular_gateway_uplink_statuses_info - new plugin.
+- organizations_claim - new plugin.
+- organizations_clients_bandwidth_usage_history_info - new plugin.
+- organizations_clients_overview_info - new plugin.
+- organizations_clients_search_info - new plugin.
+- organizations_clone - new plugin.
+- organizations_config_templates - new plugin.
+- organizations_config_templates_info - new plugin.
+- organizations_config_templates_switch_profiles_info - new plugin.
+- organizations_config_templates_switch_profiles_ports - new plugin.
+- organizations_config_templates_switch_profiles_ports_info - new plugin.
+- organizations_devices_availabilities_info - new plugin.
+- organizations_devices_info - new plugin.
+- organizations_devices_power_modules_statuses_by_device_info - new plugin.
+- organizations_devices_provisioning_statuses_info - new plugin.
+- organizations_devices_statuses_info - new plugin.
+- organizations_devices_statuses_overview_info - new plugin.
+- organizations_devices_uplinks_addresses_by_device_info - new plugin.
+- organizations_devices_uplinks_loss_and_latency_info - new plugin.
+- organizations_early_access_features_info - new plugin.
+- organizations_early_access_features_opt_ins - new plugin.
+- organizations_early_access_features_opt_ins_info - new plugin.
+- organizations_firmware_upgrades_by_device_info - new plugin.
+- organizations_firmware_upgrades_info - new plugin.
+- organizations_info - new plugin.
+- organizations_insight_applications_info - new plugin.
+- organizations_insight_monitored_media_servers - new plugin.
+- organizations_insight_monitored_media_servers_info - new plugin.
+- organizations_inventory_claim - new plugin.
+- organizations_inventory_devices_info - new plugin.
+- organizations_inventory_onboarding_cloud_monitoring_export_events - new plugin.
+- organizations_inventory_onboarding_cloud_monitoring_imports - new plugin.
+- organizations_inventory_onboarding_cloud_monitoring_imports_info - new plugin.
+- organizations_inventory_onboarding_cloud_monitoring_networks_info - new plugin.
+- organizations_inventory_onboarding_cloud_monitoring_prepare - new plugin.
+- organizations_inventory_release - new plugin.
+- organizations_licenses - new plugin.
+- organizations_licenses_assign_seats - new plugin.
+- organizations_licenses_info - new plugin.
+- organizations_licenses_move - new plugin.
+- organizations_licenses_move_seats - new plugin.
+- organizations_licenses_overview_info - new plugin.
+- organizations_licenses_renew_seats - new plugin.
+- organizations_licensing_coterm_licenses_info - new plugin.
+- organizations_licensing_coterm_licenses_move - new plugin.
+- organizations_login_security - new plugin.
+- organizations_login_security_info - new plugin.
+- organizations_networks_combine - new plugin.
+- organizations_openapi_spec_info - new plugin.
+- organizations_policy_objects - new plugin.
+- organizations_policy_objects_groups - new plugin.
+- organizations_policy_objects_groups_info - new plugin.
+- organizations_policy_objects_info - new plugin.
+- organizations_saml - new plugin.
+- organizations_saml_idps - new plugin.
+- organizations_saml_idps_info - new plugin.
+- organizations_saml_info - new plugin.
+- organizations_saml_roles - new plugin.
+- organizations_saml_roles_info - new plugin.
+- organizations_sensor_readings_history_info - new plugin.
+- organizations_sensor_readings_latest_info - new plugin.
+- organizations_sm_apns_cert_info - new plugin.
+- organizations_sm_vpp_accounts_info - new plugin.
+- organizations_snmp - new plugin.
+- organizations_snmp_info - new plugin.
+- organizations_summary_top_appliances_by_utilization_info - new plugin.
+- organizations_summary_top_clients_by_usage_info - new plugin.
+- organizations_summary_top_clients_manufacturers_by_usage_info - new plugin.
+- organizations_summary_top_devices_by_usage_info - new plugin.
+- organizations_summary_top_devices_models_by_usage_info - new plugin.
+- organizations_summary_top_ssids_by_usage_info - new plugin.
+- organizations_summary_top_switches_by_energy_usage_info - new plugin.
+- organizations_switch_devices_clone - new plugin.
+- organizations_switch_ports_by_switch_info - new plugin.
+- organizations_uplinks_statuses_info - new plugin.
+- organizations_users - new plugin.
+- organizations_webhooks_logs_info - new plugin.
+- organizations_wireless_devices_ethernet_statuses_info - new plugin.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- cobbler inventory plugin - add ``exclude_mgmt_classes`` and ``include_mgmt_classes`` options to exclude or include hosts based on management classes (https://github.com/ansible-collections/community.general/pull/7184).
+- cpanm - minor refactor when creating the ``CmdRunner`` object (https://github.com/ansible-collections/community.general/pull/7231).
+- gitlab_group_variable - add support for ``raw`` variables suboption (https://github.com/ansible-collections/community.general/pull/7132).
+- gitlab_project_variable - add support for ``raw`` variables suboption (https://github.com/ansible-collections/community.general/pull/7132).
+- jenkins_build - add new ``detach`` option, which allows the module to exit successfully as long as the build is created (default functionality is still waiting for the build to end before exiting) (https://github.com/ansible-collections/community.general/pull/7204).
+- jenkins_build - add new ``time_between_checks`` option, which allows to configure the wait time between requests to the Jenkins server (https://github.com/ansible-collections/community.general/pull/7204).
+- make - allows ``params`` to be used without value (https://github.com/ansible-collections/community.general/pull/7180).
+- nmap inventory plugin - now has a ``use_arp_ping`` option to allow the user to disable the default ARP ping query for a more reliable form (https://github.com/ansible-collections/community.general/pull/7119).
+- pagerduty - adds in option to use v2 API for creating pagerduty incidents (https://github.com/ansible-collections/community.general/issues/6151)
+- pritunl module utils - ensure ``validate_certs`` parameter is honoured in all methods (https://github.com/ansible-collections/community.general/pull/7156).
+- redfish_info - report ``Id`` in the output of ``GetManagerInventory`` (https://github.com/ansible-collections/community.general/pull/7140).
+- redfish_utils module utils - support ``Volumes`` in response for ``GetDiskInventory`` (https://github.com/ansible-collections/community.general/pull/6819).
+- unixy callback plugin - add support for ``check_mode_markers`` option (https://github.com/ansible-collections/community.general/pull/7179).
+
+dellemc.powerflex
+~~~~~~~~~~~~~~~~~
+
+- Added Ansible role to support installation and uninstallation of LIA.
+- Added Ansible role to support installation and uninstallation of MDM.
+- Added Ansible role to support installation and uninstallation of SDS.
+- Added Ansible role to support installation and uninstallation of TB.
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Add overrides.conf with CAP_NET_BIND_SERVICE for grafana-server unit
+- Fix Grafana Dashboard Import for Grafana Role
+- Fix grafana dashboard import in Grafana Role
+- Make grafana_agent Idempotent
+- Provisioning errors in YAML
+- Use new standard to configure Grafana APT source for Grafana Role
+- YAML Fixes
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- add overridden state opperation support.
+
+lowlydba.sqlserver
+~~~~~~~~~~~~~~~~~~
+
+- Added only_accessible as an optional parameter to the database module (https://github.com/lowlydba/lowlydba.sqlserver/pull/198)
+- Fixes error handling for Remove-DbaDatabase when joined to AvailabilityGroup, exception was not being thrown so we have to parse Status
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- API - Add possibility to use Bearer token [#1023](https://github.com/netbox-community/ansible_modules/pull/1023)
+- custom fields - Add datetime as an custom field option [#1019](https://github.com/netbox-community/ansible_modules/pull/1019)
+- netbox_cable - Add tenant [#1027](https://github.com/netbox-community/ansible_modules/pull/1027)
+- netbox_circuit_type, netbox_device_interface - Add missing options [#1025](https://github.com/netbox-community/ansible_modules/pull/1025)
+- netbox_custom_field - Add hidden-ifunset option [#1048](https://github.com/netbox-community/ansible_modules/pull/1048)
+- netbox_inventory_item - Add role to module [#1050](https://github.com/netbox-community/ansible_modules/pull/1050)
+- netbox_power_port - Add missing power port option [#1049](https://github.com/netbox-community/ansible_modules/pull/1049)
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_info - Add `hosts_balance` subset
+- purefa_info - Add `port_connectivity` information for hosts
+- purefa_info - Add promotion status information for volumes
+- purefa_offload - Added a new profile parameter.
+- purefa_pgsnap - Added new parameter to support snapshot throttling
+- purefa_snap - Added new parameter to support snapshot throttling
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_policy - Add new and updated policy access rights
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- compute_resource - add support for OpenStack
+- repositories role - allow disabling/removing of repositories by setting the ``state`` parameter
+
+Deprecated Features
+-------------------
+
+- The ``community.azure`` collection is officially unmaintained and has been archived. Therefore, it will be removed from Ansible 10. There is already a successor collection ``azure.azcollection`` in the community package which should cover the same functionality (https://github.com/ansible-community/community-topics/issues/263).
+- The ``hpe.nimble`` collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__ (https://github.com/ansible-community/community-topics/issues/254).
+
+Ansible-core
+~~~~~~~~~~~~
+
+- vault and unfault filters - the undocumented ``vaultid`` parameter is deprecated and will be removed in ansible-core 2.20. Use ``vault_id`` instead.
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- libssh - the ssh_*_args options are now marked that they will be removed after 2026-01-01.
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- PowerShell - Remove some code which is no longer valid for dotnet 5+
+- Prompting - add a short sleep between polling for user input to reduce CPU consumption (https://github.com/ansible/ansible/issues/81516).
+- ansible-galaxy - Enabled the ``data`` tarfile filter during role installation for Python versions that support it. A probing mechanism is used to avoid Python versions with a broken implementation.
+- ansible-test - Always use ansible-test managed entry points for ansible-core CLI tools when not running from source. This fixes issues where CLI entry points created during install are not compatible with ansible-test.
+- first found lookup has been updated to use the normalized argument parsing (pythonic) matching the documented examples.
+- handlers - the ``listen`` keyword can affect only one handler with the same name, the last one defined as it is a case with the ``notify`` keyword (https://github.com/ansible/ansible/issues/81013)
+- include_role - expose variables from parent roles to role's handlers (https://github.com/ansible/ansible/issues/80459)
+- tarfile - handle data filter deprecation warning message for extract and extractall (https://github.com/ansible/ansible/issues/80832).
+- vault and unvault filters now properly take ``vault_id`` parameter.
+
+amazon.aws
+~~~~~~~~~~
+
+- backup_selection - ensures that updating an existing selection will add new ``Conditions`` if there previously were not any (https://github.com/ansible-collections/amazon.aws/pull/1701).
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- Ensure that all connection plugin options that should be strings are actually strings (https://github.com/ansible-collections/ansible.netcommon/pull/549).
+- Vendor telnetlib from cpython (https://github.com/ansible-collections/ansible.netcommon/pull/546)
+
+ansible.utils
+~~~~~~~~~~~~~
+
+- Validate input for ipv4_hex(https://github.com/ansible-collections/ansible.utils/issues/281)
+
+cisco.ise
+~~~~~~~~~
+
+- system_certificate - fixed get_object_by_id response.
+
+community.aws
+~~~~~~~~~~~~~
+
+- opensearch - Don't try to read a non existing key from the domain config (https://github.com/ansible-collections/community.aws/pull/1910).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme_* modules - correctly handle error documents without ``type`` (https://github.com/ansible-collections/community.crypto/issues/651, https://github.com/ansible-collections/community.crypto/pull/652).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- CmdRunner module utils - does not attempt to resolve path if executable is a relative or absolute path (https://github.com/ansible-collections/community.general/pull/7200).
+- nmap inventory plugin - now uses ``get_option`` in all cases to get its configuration information (https://github.com/ansible-collections/community.general/pull/7119).
+- nsupdate - fix a possible ``list index out of range`` exception (https://github.com/ansible-collections/community.general/issues/836).
+- oci_utils module util - fix inappropriate logical comparison expressions and makes them simpler. The previous checks had logical short circuits (https://github.com/ansible-collections/community.general/pull/7125).
+- pritunl module utils - fix incorrect URL parameter for orgnization add method (https://github.com/ansible-collections/community.general/pull/7161).
+- snap - an exception was being raised when snap list was empty (https://github.com/ansible-collections/community.general/pull/7124, https://github.com/ansible-collections/community.general/issues/7120).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- Avoid pre-releases when picking the latest version when using the GitHub API method (https://github.com/ansible-collections/community.sops/pull/159).
+- Fix changed DEB and RPM URLs for 3.8.0 and its prerelease(s) (https://github.com/ansible-collections/community.sops/pull/159).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- podman_container - Add diff and change detection to systemd generation
+- podman_container - Add example with quotes in command to docs
+- podman_container - Fix healthcheck issue where defined in image
+- podman_container - Fix idempoency issue with PID of container
+- podman_container - Fix idempotency for RestartPolicy when MaximumRetryCount
+- podman_container - Fix idempotency for devices
+- podman_container - Fixed idempotency with cpus parameter
+- podman_container - Improve docs about container env_file on remote machine
+- podman_container - added cpu_quota parameter to podman_container
+- podman_export,podman_import - Adding volume import and export option
+- podman_generate_systemd - Add a force field to podman_generate_systemd
+- podman_image - Add restart-sec and other options to systemd generation
+- podman_image - Fix pulling short image name
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_ssl_key_cert - fixed flaw in code to make module work with same key and cert name when true_names set to true
+- bigip_virtual_server - fixed an idempotency bug where the module send asm policy profile for update even when not specified explicitly by the user
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Fix the hyperlink issue for the supported FOS versions in USER's GUIDE.
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- fix `no_advertise_adjacency_segment` config implementation.
+- fix `no_eligible_backup` config implementation.
+- fix `no_eligible_remote_backup` config implementation.
+- fix `no_interface_state_traps` config implementation.
+- fix `no_neighbor_down_notification` config implementation.
+- fix `node_link_protection` implementation.
+- fix md5 authentication which allows list of keys to be configured.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Fix schema caching [#1053](https://github.com/netbox-community/ansible_modules/pull/1053)
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- HE - add back dependency on python3-jmespath (https://github.com/oVirt/ovirt-ansible-collection/pull/701)
+- HE - drop remaining filters using netaddr (https://github.com/oVirt/ovirt-ansible-collection/pull/702)
+- HE - drop usage of ipaddr filters and remove dependency on python-netaddr (https://github.com/oVirt/ovirt-ansible-collection/pull/696)
+- HE - fix ipv4 and ipv6 check after dropping netaddr (https://github.com/oVirt/ovirt-ansible-collection/pull/704)
+- hosted_engine_setup -  Update README (https://github.com/oVirt/ovirt-ansible-collection/pull/706)
+- ovirt_disk -  Fix issue in detaching the direct LUN (https://github.com/oVirt/ovirt-ansible-collection/pull/700)
+- ovirt_quota - Convert storage size to integer (https://github.com/oVirt/ovirt-ansible-collection/pull/712)
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_certs - Resolved CSR issue and require export_file for state sign.
+- purefa_info - Fix serial number generation issue for vVols
+- purefa_snap - Fixed issue with remote snapshot retrieve. Mainly a workaround to an issue with Purity REST 1.x when remote snapshots are searched.
+- purefa_volume - Fixed bug with NULL suffix for multiple volume creation.
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_info - Fixed missing atributes for SMB client policy rules
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- content_view_publish role - correctly pass ``version`` not ``description`` to the module (https://bugzilla.redhat.com/show_bug.cgi?id=2234444)
+- repository - don't fail when removing a content credential from a repository (https://bugzilla.redhat.com/show_bug.cgi?id=2224122)
+- smart_class_parameter - correctly allow setting ``override`` to ``false`` (https://github.com/theforeman/foreman-ansible-modules/issues/1644)
+
+vultr.cloud
+~~~~~~~~~~~
+
+- firewall_rule - Fixed an idempotency issue if parameter ``port`` is set on protocols other than TCP/UDP (https://github.com/vultr/ansible-collection-vultr/issues/76).
+
+New Plugins
+-----------
+
+Cliconf
+~~~~~~~
+
+- ansible.netcommon.default - General purpose cliconf plugin for new platforms
+
+Filter
+~~~~~~
+
+- ansible.utils.ipcut - This filter is designed to get 1st or last few bits of IP address.
+- ansible.utils.ipv6form - This filter is designed to convert ipv6 address in different formats. For example expand, compressetc.
+
+New Modules
+-----------
+
+amazon.aws
+~~~~~~~~~~
+
+- amazon.aws.ec2_key_info - Gather information about EC2 key pairs in AWS
+
+community.aws
+~~~~~~~~~~~~~
+
+- community.aws.route53_wait - wait for changes in Amazons Route 53 DNS service to propagate
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- community.general.jenkins_build_info - Get information about Jenkins builds
+- community.general.pnpm - Manage node.js packages with pnpm
+
+ngine_io.exoscale
+~~~~~~~~~~~~~~~~~
+
+- ngine_io.exoscale.instance_rdns_record - Manages reverse DNS records for Exoscale compute instances.
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- theforeman.foreman.smart_class_parameter_override_value - Manage Smart Class Parameter Override Values
+- theforeman.foreman.wait_for_task - Wait for a task
+
+vultr.cloud
+~~~~~~~~~~~
+
+- vultr.cloud.bare_metal - Manages bare metal machines on Vultr.
+- vultr.cloud.vpc2 - Manages VPCs 2.0 on Vultr
+- vultr.cloud.vpc2_info - Gather information about the Vultr VPCs 2.0
+
+Unchanged Collections
+---------------------
+
+- ansible.posix (still version 1.5.4)
+- ansible.windows (still version 1.14.0)
+- check_point.mgmt (still version 5.1.1)
+- chocolatey.chocolatey (still version 1.5.1)
+- cisco.aci (still version 2.7.0)
+- cisco.asa (still version 4.0.1)
+- cisco.intersight (still version 1.0.27)
+- cisco.ios (still version 4.6.1)
+- cisco.iosxr (still version 5.0.3)
+- cisco.mso (still version 2.5.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 4.4.0)
+- cisco.ucs (still version 1.10.0)
+- cloud.common (still version 2.1.4)
+- cloudscale_ch.cloud (still version 2.3.1)
+- community.azure (still version 2.0.0)
+- community.ciscosmb (still version 1.0.6)
+- community.digitalocean (still version 1.24.0)
+- community.docker (still version 3.4.8)
+- community.fortios (still version 1.0.0)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.5.4)
+- community.hashi_vault (still version 5.0.0)
+- community.hrobot (still version 1.8.1)
+- community.libvirt (still version 1.2.0)
+- community.mongodb (still version 1.6.1)
+- community.mysql (still version 3.7.2)
+- community.network (still version 5.0.0)
+- community.okd (still version 2.3.0)
+- community.postgresql (still version 2.4.3)
+- community.proxysql (still version 1.5.1)
+- community.rabbitmq (still version 1.2.3)
+- community.routeros (still version 2.9.0)
+- community.sap (still version 1.0.0)
+- community.sap_libs (still version 1.4.1)
+- community.skydive (still version 1.0.0)
+- community.vmware (still version 3.9.0)
+- community.windows (still version 1.13.0)
+- community.zabbix (still version 2.1.0)
+- cyberark.conjur (still version 1.2.0)
+- cyberark.pas (still version 1.0.19)
+- dellemc.enterprise_sonic (still version 2.2.0)
+- dellemc.openmanage (still version 7.6.1)
+- dellemc.unity (still version 1.7.1)
+- fortinet.fortimanager (still version 2.2.1)
+- frr.frr (still version 2.0.2)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.2.0)
+- hetzner.hcloud (still version 1.16.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.1.0)
+- ibm.spectrum_virtualize (still version 1.12.0)
+- infinidat.infinibox (still version 1.3.12)
+- infoblox.nios_modules (still version 1.5.0)
+- inspur.ispim (still version 1.3.0)
+- inspur.sm (still version 2.3.0)
+- kubernetes.core (still version 2.4.0)
+- microsoft.ad (still version 1.3.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.22.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 22.7.0)
+- netapp.storagegrid (still version 21.11.1)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.4.0)
+- ngine_io.cloudstack (still version 2.3.0)
+- ngine_io.vultr (still version 1.1.3)
+- openstack.cloud (still version 2.1.0)
+- openvswitch.openvswitch (still version 2.1.1)
+- purestorage.fusion (still version 1.6.0)
+- sensu.sensu_go (still version 1.14.0)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 2.1.0)
+- t_systems_mms.icinga_director (still version 1.33.1)
+- telekom_mms.icinga_director (still version 1.34.1)
+- vmware.vmware_rest (still version 2.3.1)
+- vyos.vyos (still version 4.1.0)
+- wti.remote (still version 1.0.5)
+
 v8.3.0
 ======
 
@@ -83,7 +1014,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +-----------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | grafana.grafana             | 2.1.4         | 2.1.5         |                                                                                                                              |
 +-----------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
-| lowlydba.sqlserver          | 2.0.0         | 2.1.0         | The collection did not have a changelog in this version.                                                                     |
+| lowlydba.sqlserver          | 2.0.0         | 2.1.0         |                                                                                                                              |
 +-----------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | microsoft.ad                | 1.2.0         | 1.3.0         |                                                                                                                              |
 +-----------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -227,6 +1158,12 @@ grafana.grafana
 - Add Grafana Agent Version and CPU Arch to Downloaded ZIP in Grafana Agent Role
 - Move _grafana_agent_base_download_url from /vars to /defaults in Grafana Agent Role
 
+lowlydba.sqlserver
+~~~~~~~~~~~~~~~~~~
+
+- Add refresh workaround for agent schedule bug where properties returned are stale. (https://github.com/lowlydba/lowlydba.sqlserver/pull/185)
+- Added SID as an optional parameter to the login module (https://github.com/lowlydba/lowlydba.sqlserver/pull/189)
+
 microsoft.ad
 ~~~~~~~~~~~~
 
@@ -308,7 +1245,7 @@ amazon.aws
 
 - ec2_vpc_route_table_info - default filters to empty dictionary (https://github.com/ansible-collections/amazon.aws/issues/1668).
 - rds_cluster - Add ``AllocatedStorage``, ``DBClusterInstanceClass``, ``StorageType``, ``Iops``, and ``EngineMode`` to the list of parameters that can be passed when creating or modifying a Multi-AZ RDS cluster (https://github.com/ansible-collections/amazon.aws/pull/1657).
-- rds_cluster - Allow to pass GlobalClusterIdentifier to rds cluster on creation (https://github.com/ansible-collections/amazon.aws/pull/1663)."
+- rds_cluster - Allow to pass GlobalClusterIdentifier to rds cluster on creation (https://github.com/ansible-collections/amazon.aws/pull/1663).
 
 cisco.aci
 ~~~~~~~~~
@@ -1646,7 +2583,7 @@ amazon.aws
 - ec2_metadata_facts - Handle decompression when EC2 instance user-data is gzip compressed. The fetch_url method from ansible.module_utils.urls does not decompress the user-data unless the header explicitly contains ``Content-Encoding: gzip`` (https://github.com/ansible-collections/amazon.aws/pull/1575).
 - elb_application_lb - fix missing attributes on creation of ALB. The ``create_or_update_alb()`` was including ALB-specific attributes when updating an existing ALB but not when creating a new ALB (https://github.com/ansible-collections/amazon.aws/issues/1510).
 - module_utils.acm - fixes list_certificates returning only RSA_2048 certificates (https://github.com/ansible-collections/amazon.aws/issues/1567).
-- rds_instance - add support for CACertificateIdentifier to create/update rds instance (https://github.com/ansible-collections/amazon.aws/pull/1459)."
+- rds_instance - add support for CACertificateIdentifier to create/update rds instance (https://github.com/ansible-collections/amazon.aws/pull/1459).
 
 check_point.mgmt
 ~~~~~~~~~~~~~~~~
