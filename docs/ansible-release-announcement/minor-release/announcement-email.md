@@ -59,6 +59,12 @@ Visit this link to subscribe: https://bit.ly/subscribe-bullhorn
 You can find all past Bullhorn issues on the official wiki page:
 https://github.com/ansible/community/wiki/News#the-bullhorn
 
+Join our new Ansible Community Forum to follow along and participate in all the discssions release related discussions and announcements. Feel free to share your thoughts, ideas and concerns in there.
+
+Register here to join the Ansible Forum:
+
+https://forum.ansible.com
+
 Porting Help
 ------------
 
