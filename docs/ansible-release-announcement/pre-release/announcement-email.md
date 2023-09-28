@@ -1,19 +1,19 @@
-Release announcement : Ansible Community Package X.0.0
+Release announcement : Ansible Community Package X.0.0a1 (Pre Release)
 
 Hello everyone,
 
-We're happy to announce the release of the Ansible X.0.0 package!
+We're happy to announce the release of the Alpha release of Ansible X.0.0a1!
 
-Ansible X.0.0 contains latest version of ansible-core a.b and includes a curated set of Ansible collections that provides a vast number of modules and plugins. This is a major release of Ansible.
+This pre-release version contains the latest version of ansible-core a.b and includes a curated set of Ansible collections that provides a vast number of modules and plugins.
 
 ansible-core is a required dependency, not contained within the ansible packages.
 
-The "ansible" distribution
---------------------------
+How to get it?
+--------------
 
 This release is available on PyPI and can be installed with pip:
 
-`$ python3 -m pip install ansible==X.0.0 --user`
+`$ python3 -m pip install ansible==X.0.0a1 --user`
 
 The source and the wheel for this release can be found here:
 
@@ -44,7 +44,7 @@ For collections which have not opted-in to the unified changelog, you may find m
 The changelog for ansible-core a.b installed by this release of Ansible X can be found here: <changelog of ansible-core>.
 
 
-What's the schedule for new Ansible releases after X.0.0?
+What's the schedule for new Ansible releases after X.0.0a1?
 ---------------------------------------------------------
 
 The next release roadmap can be found at https://docs.ansible.com/ansible/devel/roadmap/ansible_roadmap_index.html
@@ -57,7 +57,7 @@ You can find all past Bullhorn issues on the official wiki page:
 https://github.com/ansible/community/wiki/News#the-bullhorn
 
 
-Join our new Ansible Community Forum to follow along and participate in all the discssions release related discussions and announcements. Feel free to share your thoughts, ideas and concerns in there.
+Join the new Ansible Community Forum to follow along and participate in all the discssions release related discussions and announcements. Feel free to share your thoughts, ideas and concerns in there.
 
 Register here to join the Ansible Forum:
 
