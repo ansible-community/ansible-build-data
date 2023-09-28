@@ -2,60 +2,67 @@ ancestor: 8.0.0
 releases:
   9.0.0a1:
     changes:
-      minor_changes:
-        - Move setuptools configuration into the declarative ``setup.cfg``
-          format. ``ansible`` sdists still contain a stub ``setup.py`` file,
-          but we recommend that users move to tools like pip and build and the
-          PEP 517 interface instead of setuptools' deprecated ``setup.py``
-          interface
-          (https://github.com/ansible-community/antsibull/pull/530).
-      removed_features:
-        - "``cisco.nso`` was considered unmaintained and removed from Ansible 9 as per the
-          `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
-          Users can still install this collection with ``ansible-galaxy collection install cisco.nso``."
-        - "``community.fortios`` was considered unmaintained and removed from Ansible 9 as per the
-          `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
-          Users can still install this collection with ``ansible-galaxy collection install community.fortios``."
-        - "``community.google`` was considered unmaintained and removed from Ansible 9 as per the
-          `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
-          Users can still install this collection with ``ansible-galaxy collection install community.google``."
-        - "``community.skydive`` was considered unmaintained and removed from Ansible 9 as per the
-          `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
-          Users can still install this collection with ``ansible-galaxy collection install community.skydive``."
-        - The deprecated servicenow.servicenow collection has been removed from Ansible 7, but accidentally re-added to Ansible 8. It has been removed again from Ansible 9
-          (https://github.com/ansible-community/community-topics/issues/246).
-        - The ngine_io.vultr collection has been removed from Ansible 9, because it is officially unmaintained and has been archived.
-          The successor collection ``vultr.cloud`` (using the recent v2 Vultr API) covers the same functionality but might not have compatible syntax
-          (https://github.com/ansible-community/community-topics/issues/257).
       deprecated_features:
-        - The collection ``community.sap`` has been renamed to ``community.sap_libs``.
-          For now both collections are included in Ansible. The content in ``community.sap``
-          has deprecated redirects to the new collection in Ansible 9.0.0,
-          and the collection will be removed from Ansible 10 completely. Please update your
-          FQCNs for ``community.sap``.
-        - The netapp.azure collection is considered unmaintained and will be removed
-          from Ansible 10 if no one starts maintaining it again before Ansible 10. See
-          `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
-          (https://github.com/ansible-community/community-topics/issues/234).
-        - The collection ``t_systems_mms.icinga_director`` has been renamed to ``telekom_mms.icinga_director``.
-          For now both collections are included in Ansible. The content in ``t_systems_mms.icinga_director``
-          has been replaced with deprecated redirects to the new collection in Ansible 9.0.0,
-          and these redirects will be removed from Ansible 11. Please update your
-          FQCNs for ``t_systems_mms.icinga_director``.
-        - The netapp.elementsw collection is considered unmaintained and will be removed
-          from Ansible 10 if no one starts maintaining it again before Ansible 10. See
-          `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
-          (https://github.com/ansible-community/community-topics/issues/235).
-        - The netapp.um_info collection is considered unmaintained and will be removed
-          from Ansible 10 if no one starts maintaining it again before Ansible 10. See
-          `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
-          (https://github.com/ansible-community/community-topics/issues/244).
-        - The ``community.azure`` collection is officially unmaintained and has been archived.
-          Therefore, it will be removed from Ansible 10. There is already a successor
-          collection ``azure.azcollection`` in the community package which should cover
-          the same functionality
-          (https://github.com/ansible-community/community-topics/issues/263).
-        - The ``hpe.nimble`` collection is considered unmaintained and will be removed
-          from Ansible 10 if no one starts maintaining it again before Ansible 10. See
-          `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
-          (https://github.com/ansible-community/community-topics/issues/254).
+      - The ``community.azure`` collection is officially unmaintained and has been
+        archived. Therefore, it will be removed from Ansible 10. There is already
+        a successor collection ``azure.azcollection`` in the community package which
+        should cover the same functionality (https://github.com/ansible-community/community-topics/issues/263).
+      - The ``hpe.nimble`` collection is considered unmaintained and will be removed
+        from Ansible 10 if no one starts maintaining it again before Ansible 10. See
+        `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+        (https://github.com/ansible-community/community-topics/issues/254).
+      - The collection ``community.sap`` has been renamed to ``community.sap_libs``.
+        For now both collections are included in Ansible. The content in ``community.sap``
+        has deprecated redirects to the new collection in Ansible 9.0.0, and the collection
+        will be removed from Ansible 10 completely. Please update your FQCNs for ``community.sap``.
+      - The collection ``t_systems_mms.icinga_director`` has been renamed to ``telekom_mms.icinga_director``.
+        For now both collections are included in Ansible. The content in ``t_systems_mms.icinga_director``
+        has been replaced with deprecated redirects to the new collection in Ansible
+        9.0.0, and these redirects will be removed from Ansible 11. Please update
+        your FQCNs for ``t_systems_mms.icinga_director``.
+      - The netapp.azure collection is considered unmaintained and will be removed
+        from Ansible 10 if no one starts maintaining it again before Ansible 10. See
+        `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+        (https://github.com/ansible-community/community-topics/issues/234).
+      - The netapp.elementsw collection is considered unmaintained and will be removed
+        from Ansible 10 if no one starts maintaining it again before Ansible 10. See
+        `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+        (https://github.com/ansible-community/community-topics/issues/235).
+      - The netapp.um_info collection is considered unmaintained and will be removed
+        from Ansible 10 if no one starts maintaining it again before Ansible 10. See
+        `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+        (https://github.com/ansible-community/community-topics/issues/244).
+      minor_changes:
+      - Move setuptools configuration into the declarative ``setup.cfg`` format. ``ansible``
+        sdists still contain a stub ``setup.py`` file, but we recommend that users
+        move to tools like pip and build and the PEP 517 interface instead of setuptools'
+        deprecated ``setup.py`` interface (https://github.com/ansible-community/antsibull/pull/530).
+      release_summary: 'Release Date: 2023-09-28
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+      removed_features:
+      - The deprecated servicenow.servicenow collection has been removed from Ansible
+        7, but accidentally re-added to Ansible 8. It has been removed again from
+        Ansible 9 (https://github.com/ansible-community/community-topics/issues/246).
+      - The ngine_io.vultr collection has been removed from Ansible 9, because it
+        is officially unmaintained and has been archived. The successor collection
+        ``vultr.cloud`` (using the recent v2 Vultr API) covers the same functionality
+        but might not have compatible syntax (https://github.com/ansible-community/community-topics/issues/257).
+      - '``cisco.nso`` was considered unmaintained and removed from Ansible 9 as per
+        the `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
+        Users can still install this collection with ``ansible-galaxy collection install
+        cisco.nso``.'
+      - '``community.fortios`` was considered unmaintained and removed from Ansible
+        9 as per the `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
+        Users can still install this collection with ``ansible-galaxy collection install
+        community.fortios``.'
+      - '``community.google`` was considered unmaintained and removed from Ansible
+        9 as per the `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
+        Users can still install this collection with ``ansible-galaxy collection install
+        community.google``.'
+      - '``community.skydive`` was considered unmaintained and removed from Ansible
+        9 as per the `removal from Ansible process <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#unmaintained-collections>`_.
+        Users can still install this collection with ``ansible-galaxy collection install
+        community.skydive``.'
+    release_date: '2023-09-28'
