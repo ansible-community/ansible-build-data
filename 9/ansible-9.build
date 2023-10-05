@@ -1,5 +1,5 @@
 _ansible_version: 9
-_ansible_core_version: 2.16.0b1
+_ansible_core_version: 2.16.0b2
 _python: >=3.10
 amazon.aws: >=6.4.0,<7.0.0
 ansible.netcommon: >=5.2.0,<6.0.0
@@ -89,9 +89,9 @@ ngine_io.cloudstack: >=2.3.0,<3.0.0
 ngine_io.exoscale: >=1.1.0,<2.0.0
 openstack.cloud: >=2.1.0,<3.0.0
 openvswitch.openvswitch: >=2.1.0,<3.0.0
-ovirt.ovirt: >=3.1.0,<4.0.0
+ovirt.ovirt: >=3.2.0,<4.0.0
 purestorage.flasharray: >=1.21.0,<2.0.0
-purestorage.flashblade: >=1.13.0,<2.0.0
+purestorage.flashblade: >=1.14.0,<2.0.0
 purestorage.fusion: >=1.6.0,<2.0.0
 sensu.sensu_go: >=1.14.0,<2.0.0
 splunk.es: >=2.1.0,<3.0.0
