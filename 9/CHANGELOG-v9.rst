@@ -8,6 +8,216 @@ This changelog describes changes since Ansible 8.0.0.
   :local:
   :depth: 2
 
+v9.0.0a2
+========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2023-10-05
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 9.0.0a2 contains ansible-core version 2.16.0b2.
+This is a newer version than version 2.16.0b1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Collection             | Ansible 9.0.0a1 | Ansible 9.0.0a2 | Notes                                                                                                                                                                                                          |
++========================+=================+=================+================================================================================================================================================================================================================+
+| cisco.intersight       | 2.0.2           | 2.0.3           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki           | 2.16.3          | 2.16.4          |                                                                                                                                                                                                                |
++------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.conjur        | 1.2.1           | 1.2.2           | You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`_. |
++------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.pas           | 1.0.19          | 1.0.23          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                   |
++------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| grafana.grafana        | 2.2.1           | 2.2.3           |                                                                                                                                                                                                                |
++------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ovirt.ovirt            | 3.1.3           | 3.2.0           |                                                                                                                                                                                                                |
++------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade | 1.13.1          | 1.14.0          |                                                                                                                                                                                                                |
++------------------------+-----------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - When invoking ``sleep`` in containers during container setup, the ``env`` command is used to avoid invoking the shell builtin, if present.
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Bump cryptography from 41.0.3 to 41.0.4
+- Create missing notification directory in Grafana Role
+- Remove check_mode from create local directory task in Grafana Role
+- Remove dependency on local-fs.target from Grafana Agent role
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- ovirt_vm - Add tpm_enabled (https://github.com/oVirt/ovirt-ansible-collection/pull/722).
+- storage_error_resume_behaviour - Support VM storage error resume behaviour "auto_resume", "kill", "leave_paused". (https://github.com/oVirt/ovirt-ansible-collection/pull/721)
+- vm_infra - Support boot disk renaming and resizing. (https://github.com/oVirt/ovirt-ansible-collection/pull/705)
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_bucket_replica - Added support for cascading replica links
+- purefb_info - New fields to display free space (remaining quota) for Accounts and Buckets. Space used by destroyed buckets is split out from virtual field to new destroyed_virtual field
+- purefb_info - Report encryption state in SMB client policy rules
+- purefb_info - Report more detailed space data from Purity//FB 4.3.0
+- purefb_policy - Add deny effect for object store policy rules. Requires Purity//FB 4.3.0+
+- purefb_policy - Added parameter to define object store policy description
+
+Security Fixes
+--------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-galaxy - Prevent roles from using symlinks to overwrite files outside of the installation directory (CVE-2023-5115)
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ``import_role`` reverts to previous behavior of exporting vars at compile time.
+- ansible-galaxy info - fix reporting no role found when lookup_role_by_name returns None.
+- uri/urls - Add compat function to handle the ability to parse the filename from a Content-Disposition header (https://github.com/ansible/ansible/issues/81806)
+- winrm - Better handle send input failures when communicating with hosts under load
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- cisco.meraki.networks_devices_claim - got an unexpected keyword argument 'network_id', bug with parameter naming.
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- ovirt_role - Fix administrative option when set to False (https://github.com/oVirt/ovirt-ansible-collection/pull/723).
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_userpolicy - Fixed `show` state for all user policies
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 6.4.0)
+- ansible.netcommon (still version 5.2.0)
+- ansible.posix (still version 1.5.4)
+- ansible.utils (still version 2.11.0)
+- ansible.windows (still version 2.1.0)
+- arista.eos (still version 6.1.2)
+- awx.awx (still version 23.2.0)
+- azure.azcollection (still version 1.18.1)
+- check_point.mgmt (still version 5.1.1)
+- chocolatey.chocolatey (still version 1.5.1)
+- cisco.aci (still version 2.7.0)
+- cisco.asa (still version 4.0.2)
+- cisco.dnac (still version 6.7.5)
+- cisco.ios (still version 5.0.0)
+- cisco.iosxr (still version 6.0.1)
+- cisco.ise (still version 2.5.16)
+- cisco.mso (still version 2.5.0)
+- cisco.nxos (still version 5.2.0)
+- cisco.ucs (still version 1.10.0)
+- cloud.common (still version 2.1.4)
+- cloudscale_ch.cloud (still version 2.3.1)
+- community.aws (still version 6.3.0)
+- community.azure (still version 2.0.0)
+- community.ciscosmb (still version 1.0.6)
+- community.crypto (still version 2.15.1)
+- community.digitalocean (still version 1.24.0)
+- community.dns (still version 2.6.1)
+- community.docker (still version 3.4.8)
+- community.general (still version 7.4.0)
+- community.grafana (still version 1.5.4)
+- community.hashi_vault (still version 5.0.0)
+- community.hrobot (still version 1.8.1)
+- community.libvirt (still version 1.3.0)
+- community.mongodb (still version 1.6.2)
+- community.mysql (still version 3.7.2)
+- community.network (still version 5.0.0)
+- community.okd (still version 2.3.0)
+- community.postgresql (still version 3.2.0)
+- community.proxysql (still version 1.5.1)
+- community.rabbitmq (still version 1.2.3)
+- community.routeros (still version 2.9.0)
+- community.sap (still version 2.0.0)
+- community.sap_libs (still version 1.4.1)
+- community.sops (still version 1.6.6)
+- community.vmware (still version 3.9.0)
+- community.windows (still version 2.0.0)
+- community.zabbix (still version 2.1.0)
+- containers.podman (still version 1.10.3)
+- dellemc.enterprise_sonic (still version 2.2.0)
+- dellemc.openmanage (still version 8.3.0)
+- dellemc.powerflex (still version 1.9.0)
+- dellemc.unity (still version 1.7.1)
+- f5networks.f5_modules (still version 1.26.0)
+- fortinet.fortimanager (still version 2.2.1)
+- fortinet.fortios (still version 2.3.2)
+- frr.frr (still version 2.0.2)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.2.0)
+- hetzner.hcloud (still version 2.1.1)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.1.0)
+- ibm.spectrum_virtualize (still version 2.0.0)
+- infinidat.infinibox (still version 1.3.12)
+- infoblox.nios_modules (still version 1.5.0)
+- inspur.ispim (still version 2.1.0)
+- inspur.sm (still version 2.3.0)
+- junipernetworks.junos (still version 5.3.0)
+- kubernetes.core (still version 2.4.0)
+- lowlydba.sqlserver (still version 2.2.1)
+- microsoft.ad (still version 1.3.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.22.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 22.7.0)
+- netapp.storagegrid (still version 21.11.1)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.4.0)
+- netbox.netbox (still version 3.14.0)
+- ngine_io.cloudstack (still version 2.3.0)
+- ngine_io.exoscale (still version 1.1.0)
+- openstack.cloud (still version 2.1.0)
+- openvswitch.openvswitch (still version 2.1.1)
+- purestorage.flasharray (still version 1.21.0)
+- purestorage.fusion (still version 1.6.0)
+- sensu.sensu_go (still version 1.14.0)
+- splunk.es (still version 2.1.0)
+- t_systems_mms.icinga_director (still version 2.0.1)
+- telekom_mms.icinga_director (still version 1.34.1)
+- theforeman.foreman (still version 3.14.0)
+- vmware.vmware_rest (still version 2.3.1)
+- vultr.cloud (still version 1.10.0)
+- vyos.vyos (still version 4.1.0)
+- wti.remote (still version 1.0.5)
+
 v9.0.0a1
 ========
 
@@ -333,10 +543,11 @@ Ansible-core
 - ansible-test - Update the ``nios-test-container`` to version 2.0.0, which supports API version 2.9.
 - ansible-test - Update the logic used to detect when ``ansible-test`` is running from source.
 - ansible-test - Updated the CloudStack test container to version 1.6.1.
+- ansible-test - Updated the distro test containers to version 6.3.0 to include coverage 7.3.2 for Python 3.8+. The alpine3 container is now based on 3.18 instead of 3.17 and includes Python 3.11 instead of Python 3.10.
 - ansible-test - Use ``datetime.datetime.now`` with ``tz`` specified instead of ``datetime.datetime.utcnow``.
 - ansible-test - Use a context manager to perform cleanup at exit instead of using the built-in ``atexit`` module.
 - ansible-test - remove Alpine 3.17 from remotes
-- ansible-test — Python 3.8–3.12 will use ``coverage`` v7.3.0.
+- ansible-test — Python 3.8–3.12 will use ``coverage`` v7.3.2.
 - ansible-test — ``coverage`` v6.5.0 is to be used only under Python 3.7.
 - ansible-vault create: Now raises an error when opening the editor without tty. The flag --skip-tty-check restores previous behaviour.
 - ansible_user_module - tweaked macos user defaults to reflect expected defaults (https://github.com/ansible/ansible/issues/44316)

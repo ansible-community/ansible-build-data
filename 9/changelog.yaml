@@ -66,3 +66,10 @@ releases:
         Users can still install this collection with ``ansible-galaxy collection install
         community.skydive``.'
     release_date: '2023-09-28'
+  9.0.0a2:
+    changes:
+      release_summary: 'Release Date: 2023-10-05
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2023-10-05'
