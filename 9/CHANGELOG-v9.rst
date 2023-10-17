@@ -8,6 +8,429 @@ This changelog describes changes since Ansible 8.0.0.
   :local:
   :depth: 2
 
+v9.0.0a3
+========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2023-10-17
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 9.0.0a3 contains ansible-core version 2.16.0rc1.
+This is a newer version than version 2.16.0b2 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| Collection            | Ansible 9.0.0a2 | Ansible 9.0.0a3 | Notes                                                    |
++=======================+=================+=================+==========================================================+
+| amazon.aws            | 6.4.0           | 6.5.0           |                                                          |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| cisco.dnac            | 6.7.5           | 6.7.6           | The collection did not have a changelog in this version. |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| cisco.ios             | 5.0.0           | 5.1.0           |                                                          |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| cisco.meraki          | 2.16.4          | 2.16.5          |                                                          |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| cisco.nxos            | 5.2.0           | 5.2.1           |                                                          |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| community.aws         | 6.3.0           | 6.4.0           |                                                          |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| community.dns         | 2.6.1           | 2.6.2           |                                                          |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| community.docker      | 3.4.8           | 3.4.9           |                                                          |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| community.general     | 7.4.0           | 7.5.0           |                                                          |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| community.mongodb     | 1.6.2           | 1.6.3           | There are no changes recorded in the changelog.          |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| community.routeros    | 2.9.0           | 2.10.0          |                                                          |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| community.vmware      | 3.9.0           | 3.10.0          |                                                          |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| f5networks.f5_modules | 1.26.0          | 1.27.0          |                                                          |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| fortinet.fortimanager | 2.2.1           | 2.3.0           |                                                          |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+| hetzner.hcloud        | 2.1.1           | 2.1.2           |                                                          |
++-----------------------+-----------------+-----------------+----------------------------------------------------------+
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Make Python 3.12 the default version used in the ``base`` and ``default`` containers.
+
+amazon.aws
+~~~~~~~~~~
+
+- ec2_ami - add support for ``org_arns`` and ``org_unit_arns`` in launch_permissions (https://github.com/ansible-collections/amazon.aws/pull/1690).
+- elb_application_lb_info - drop redundant ``describe_load_balancers`` call fetching ``ip_address_type`` (https://github.com/ansible-collections/amazon.aws/pull/1768).
+
+cisco.ios
+~~~~~~~~~
+
+- Fixe an issue with some files that doesn't pass the PEP8 sanity check because `type(<obj>) == <type>` is not allowed. We need to use `isinstance(<obj>,<type>)` function in place
+- ios_snmp_user - update the user part to compare correctly the auth and privacy parts.
+- ospfv2 - added more tests to improve coverage for the rm_template
+- ospfv2 - aliased passive_interface to passive_interfaces that supports a list of interfaces
+- ospfv2 - fix area ranges rendering
+- ospfv2 - fix passive interfaces rendering
+- ospfv2 - optimized all the regex to perform better
+- ospfv2 - optimized the config side code for quicker comparison and execution
+
+community.aws
+~~~~~~~~~~~~~
+
+- ecs_taskdefinition - Add parameter ``runtime_platform`` (https://github.com/ansible-collections/community.aws/issues/1891).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- cargo - add option ``executable``, which allows user to specify path to the cargo binary (https://github.com/ansible-collections/community.general/pull/7352).
+- cargo - add option ``locked`` which allows user to specify install the locked version of dependency instead of latest compatible version (https://github.com/ansible-collections/community.general/pull/6134).
+- dig lookup plugin - add TCP option to enable the use of TCP connection during DNS lookup (https://github.com/ansible-collections/community.general/pull/7343).
+- gitlab_group - add option ``force_delete`` (default: false) which allows delete group even if projects exists in it (https://github.com/ansible-collections/community.general/pull/7364).
+- ini_file - add ``ignore_spaces`` option (https://github.com/ansible-collections/community.general/pull/7273).
+- newrelic_deployment - add option ``app_name_exact_match``, which filters results for the exact app_name provided (https://github.com/ansible-collections/community.general/pull/7355).
+- onepassword lookup plugin - introduce ``account_id`` option which allows specifying which account to use (https://github.com/ansible-collections/community.general/pull/7308).
+- onepassword_raw lookup plugin - introduce ``account_id`` option which allows specifying which account to use (https://github.com/ansible-collections/community.general/pull/7308).
+- parted - on resize, use ``--fix`` option if available (https://github.com/ansible-collections/community.general/pull/7304).
+- pnpm - set correct version when state is latest or version is not mentioned. Resolves previous idempotency problem (https://github.com/ansible-collections/community.general/pull/7339).
+- proxmox - add ``vmid`` (and ``taskid`` when possible) to return values (https://github.com/ansible-collections/community.general/pull/7263).
+- random_string - added new ``ignore_similar_chars`` and ``similar_chars`` option to ignore certain chars (https://github.com/ansible-collections/community.general/pull/7242).
+- redfish_command - add new option ``update_oem_params`` for the ``MultipartHTTPPushUpdate`` command (https://github.com/ansible-collections/community.general/issues/7331).
+- redfish_config - add ``CreateVolume`` command to allow creation of volumes on servers (https://github.com/ansible-collections/community.general/pull/6813).
+- redfish_config - adding ``SetSecureBoot`` command (https://github.com/ansible-collections/community.general/pull/7129).
+- redfish_info - add support for ``GetBiosRegistries`` command (https://github.com/ansible-collections/community.general/pull/7144).
+- redfish_info - adds ``LinkStatus`` to NIC inventory (https://github.com/ansible-collections/community.general/pull/7318).
+- redis_info - refactor the redis_info module to use the redis module_utils enabling to pass TLS parameters to the Redis client (https://github.com/ansible-collections/community.general/pull/7267).
+- supervisorctl - allow to stop matching running processes before removing them with ``stop_before_removing=true`` (https://github.com/ansible-collections/community.general/pull/7284).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info - add new ``include_read_only`` option to select behavior for read-only values. By default these are not returned (https://github.com/ansible-collections/community.routeros/pull/213).
+- api_info, api_modify - add support for ``address-list`` and ``match-subdomain`` introduced by RouterOS 7.7 in the ``ip dns static`` path (https://github.com/ansible-collections/community.routeros/pull/197).
+- api_info, api_modify - add support for ``user``, ``time`` and ``gmt-offset`` under the ``system clock`` path (https://github.com/ansible-collections/community.routeros/pull/210).
+- api_info, api_modify - add support for the ``interface ppp-client`` path (https://github.com/ansible-collections/community.routeros/pull/199).
+- api_info, api_modify - add support for the ``interface wireless`` path (https://github.com/ansible-collections/community.routeros/pull/195).
+- api_info, api_modify - add support for the ``iot modbus`` path (https://github.com/ansible-collections/community.routeros/pull/205).
+- api_info, api_modify - add support for the ``ip dhcp-server option`` and ``ip dhcp-server option sets`` paths (https://github.com/ansible-collections/community.routeros/pull/223).
+- api_info, api_modify - add support for the ``ip upnp interfaces``, ``tool graphing interface``, ``tool graphing resource`` paths (https://github.com/ansible-collections/community.routeros/pull/227).
+- api_info, api_modify - add support for the ``ipv6 firewall nat`` path (https://github.com/ansible-collections/community.routeros/pull/204).
+- api_info, api_modify - add support for the ``mode`` property in ``ip neighbor discovery-settings`` introduced in RouterOS 7.7 (https://github.com/ansible-collections/community.routeros/pull/198).
+- api_info, api_modify - add support for the ``port remote-access`` path (https://github.com/ansible-collections/community.routeros/pull/224).
+- api_info, api_modify - add support for the ``routing filter rule`` and ``routing filter select-rule`` paths (https://github.com/ansible-collections/community.routeros/pull/200).
+- api_info, api_modify - add support for the ``routing table`` path in RouterOS 7 (https://github.com/ansible-collections/community.routeros/pull/215).
+- api_info, api_modify - add support for the ``tool netwatch`` path in RouterOS 7 (https://github.com/ansible-collections/community.routeros/pull/216).
+- api_info, api_modify - add support for the ``user settings`` path (https://github.com/ansible-collections/community.routeros/pull/201).
+- api_info, api_modify - add support for the ``user`` path (https://github.com/ansible-collections/community.routeros/pull/211).
+- api_info, api_modify - finalize fields for the ``interface wireless security-profiles`` path and enable it (https://github.com/ansible-collections/community.routeros/pull/203).
+- api_info, api_modify - finalize fields for the ``ppp profile`` path and enable it (https://github.com/ansible-collections/community.routeros/pull/217).
+- api_modify - add new ``handle_read_only`` and ``handle_write_only`` options to handle the module's behavior for read-only and write-only fields (https://github.com/ansible-collections/community.routeros/pull/213).
+- api_modify, api_info - support API paths ``routing id``, ``routing bgp connection`` (https://github.com/ansible-collections/community.routeros/pull/220).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- add moid property in the return value for the module(https://github.com/ansible-collections/community.vmware/pull/1855).
+- add new snapshot_id option to the vmware_guest_snapshot module(https://github.com/ansible-collections/community.vmware/pull/1847).
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_policy_rule - added six more options for ssl_extension condition
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Some arguments can support both list or string format input now.
+- Support newest versions for FortiManager v6.2 ~ v7.4
+
+Deprecated Features
+-------------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Old style vars plugins which use the entrypoints `get_host_vars` or `get_group_vars` are deprecated. The plugin should be updated to inherit from `BaseVarsPlugin` and define a `get_vars` method as the entrypoint.
+
+cisco.ios
+~~~~~~~~~
+
+- ospfv2 - removed passive_interface to passive_interfaces that supports a list of interfaces
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- The next major release, community.general 8.0.0, will drop support for ansible-core 2.11 and 2.12, which have been End of Life for some time now. This means that this collection no longer supports Python 2.6 on the target. Individual content might still work with unsupported ansible-core versions, but that can change at any time. Also please note that from now on, for every new major community.general release, we will drop support for all ansible-core versions that have been End of Life for more than a few weeks on the date of the major release (https://github.com/ansible-community/community-topics/discussions/271, https://github.com/ansible-collections/community.general/pull/7259).
+- redfish_info, redfish_config, redfish_command - the default value ``10`` for the ``timeout`` option is deprecated and will change to ``60`` in community.general 9.0.0 (https://github.com/ansible-collections/community.general/pull/7295).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Cache host_group_vars after instantiating it once and limit the amount of repetitive work it needs to do every time it runs.
+- Call PluginLoader.all() once for vars plugins, and load vars plugins that run automatically or are enabled specifically by name subsequently.
+- Fix ``run_once`` being incorrectly interpreted on handlers (https://github.com/ansible/ansible/issues/81666)
+- Properly template tags in parent blocks (https://github.com/ansible/ansible/issues/81053)
+- ansible-galaxy - Provide a better error message when using a requirements file with an invalid format - https://github.com/ansible/ansible/issues/81901
+- ansible-inventory - index available_hosts for major performance boost when dumping large inventories
+- ansible-test - Add a ``pylint`` plugin to work around a known issue on Python 3.12.
+- ansible-test - Include missing ``pylint`` requirements for Python 3.10.
+- ansible-test - Update ``pylint`` to version 3.0.1.
+
+amazon.aws
+~~~~~~~~~~
+
+- elb_application_lb_info - ensure all API queries use the retry decorator (https://github.com/ansible-collections/amazon.aws/issues/1767).
+
+cisco.ios
+~~~~~~~~~
+
+- The regex looking for errors in the terminal output was matching anything with '\S+ Error:'. Caused issues with 'show runnning-config' if this string appeared in the output. Updated the regex to require the % anchor.
+- bgp_address_family - fix deleted string with int concat issue in bgp_address_family.
+- ios_acls - Fix protocol_options rendering corrects processing of overridden/ replaced state.
+- ios_acls - Fix standard acls rendering.
+- ios_bgp_address_family - fix rendering of remote_as configuration with period.
+- ios_logging_global - fix configuration order to configure discriminator before buffer.
+- ios_prefix_lists - fix deleted state to remove exisiting prefix lists from configuration.
+- ios_service - Put condition to add `private_config_encryption` in default services
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- cisco.meraki.organizations_login_security module will not update org api authentication - fixing for look at organizations_login_security.
+
+cisco.nxos
+~~~~~~~~~~
+
+- nxos_acls - fix parsing of ACE with named source/dest port range (https://github.com/ansible-collections/cisco.nxos/issues/763).
+- vtp_version - allow VTP version 3 to be configured (https://github.com/ansible-collections/cisco.nxos/issues/704).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- vendored Docker SDK for Python code - cherry-pick changes from the Docker SDK for Python code to align code. These changes should not affect the parts used by the collection's code (https://github.com/ansible-collections/community.docker/pull/694).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- gitlab_group_variable - deleted all variables when used with ``purge=true`` due to missing ``raw`` property in KNOWN attributes (https://github.com/ansible-collections/community.general/issues/7250).
+- gitlab_project_variable - deleted all variables when used with ``purge=true`` due to missing ``raw`` property in KNOWN attributes (https://github.com/ansible-collections/community.general/issues/7250).
+- ldap_search - fix string normalization and the ``base64_attributes`` option on Python 3 (https://github.com/ansible-collections/community.general/issues/5704, https://github.com/ansible-collections/community.general/pull/7264).
+- lxc connection plugin - properly evaluate options (https://github.com/ansible-collections/community.general/pull/7369).
+- mail - skip headers containing equals characters due to missing ``maxsplit`` on header key/value parsing (https://github.com/ansible-collections/community.general/pull/7303).
+- nmap inventory plugin - fix ``get_option`` calls (https://github.com/ansible-collections/community.general/pull/7323).
+- onepassword - fix KeyError exception when trying to access value of a field that is not filled out in OnePassword item (https://github.com/ansible-collections/community.general/pull/7241).
+- snap - change the change detection mechanism from "parsing installation" to "comparing end state with initial state" (https://github.com/ansible-collections/community.general/pull/7340, https://github.com/ansible-collections/community.general/issues/7265).
+- terraform - prevents ``-backend-config`` option double encapsulating with ``shlex_quote`` function. (https://github.com/ansible-collections/community.general/pull/7301).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info, api_modify - in the ``snmp`` path, ensure that ``engine-id-suffix`` is only available on RouterOS 7.10+, and that ``engine-id`` is read-only on RouterOS 7.10+ (https://github.com/ansible-collections/community.routeros/issues/208, https://github.com/ansible-collections/community.routeros/pull/218).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- fix problem when module try apply non global or non VM type custom attribute to VM object (https://github.com/ansible-collections/community.vmware/issues/1772)
+- vmware_deploy_ovf: fix error in finding networks part of code https://github.com/ansible-collections/community.vmware/issues/1853
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_device_certificate - error-handling for connection error while running exec command function to fetch certificate details
+- bigip_pool - Resolved a bug in the code to allow the module to remove monitors from the pool
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Add 'access_token' in 'fmgr_generic'.
+- Add param 'platform' in 'fmgr_wtpprofile' and param 'interface' in 'fmgr_fsp_vlan'.
+- Fix a bug that collection may update the resource when it does not need to.
+- Fix some modules missing revision (used for version warning).
+- Fixed the bug that would report an error when providing access_token and username/password at the same time.
+- Improve document.
+- Improve fmgr_fact. 'changed' will not be true anymore if you get the result.
+- Improve sanity tests.
+- When the JSON data sent by FortiManager is not in the right format, the collection can still execute correctly.
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- hcloud_firewall - The port argument is required when the firewall rule protocol is `udp` or `tcp`.
+- hcloud_load_balancer_service - In the returned data, the invalid `health_check.http.certificates` field was renamed to `health_check.http.status_codes`.
+
+New Modules
+-----------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- community.general.consul_role - Manipulate Consul roles
+- community.general.gio_mime - Set default handler for MIME type, for applications using Gnome GIO
+- community.general.keycloak_authz_custom_policy - Allows administration of Keycloak client custom Javascript policies via Keycloak API
+- community.general.keycloak_realm_key - Allows administration of Keycloak realm keys via Keycloak API
+- community.general.simpleinit_msb - Manage services on Source Mage GNU/Linux
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- community.vmware.vcenter_root_password_expiration - root password expiration of vCSA
+- community.vmware.vmware_host_graphics - Manage Host Graphic Settings
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- fortinet.fortimanager.fmgr_casb_profile - Configure CASB profile.
+- fortinet.fortimanager.fmgr_casb_profile_saasapplication - CASB profile SaaS application.
+- fortinet.fortimanager.fmgr_casb_profile_saasapplication_accessrule - CASB profile access rule.
+- fortinet.fortimanager.fmgr_casb_profile_saasapplication_customcontrol - CASB profile custom control.
+- fortinet.fortimanager.fmgr_casb_profile_saasapplication_customcontrol_option - CASB custom control option.
+- fortinet.fortimanager.fmgr_casb_saasapplication - Configure CASB SaaS application.
+- fortinet.fortimanager.fmgr_casb_useractivity - Configure CASB user activity.
+- fortinet.fortimanager.fmgr_casb_useractivity_controloptions - CASB control options.
+- fortinet.fortimanager.fmgr_casb_useractivity_controloptions_operations - CASB control option operations.
+- fortinet.fortimanager.fmgr_casb_useractivity_match - CASB user activity match rules.
+- fortinet.fortimanager.fmgr_casb_useractivity_match_rules - CASB user activity rules.
+- fortinet.fortimanager.fmgr_dvmdb_upgrade - no description
+- fortinet.fortimanager.fmgr_firewall_accessproxy6_apigateway6_quic - QUIC setting.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6_apigateway_quic - QUIC setting.
+- fortinet.fortimanager.fmgr_firewall_accessproxy_apigateway6_quic - QUIC setting.
+- fortinet.fortimanager.fmgr_firewall_accessproxy_apigateway_quic - QUIC setting.
+- fortinet.fortimanager.fmgr_firewall_casbprofile - no description
+- fortinet.fortimanager.fmgr_firewall_casbprofile_saasapplication - no description
+- fortinet.fortimanager.fmgr_firewall_casbprofile_saasapplication_accessrule - no description
+- fortinet.fortimanager.fmgr_firewall_casbprofile_saasapplication_customcontrol - no description
+- fortinet.fortimanager.fmgr_firewall_casbprofile_saasapplication_customcontrol_option - no description
+- fortinet.fortimanager.fmgr_firewall_vendormac - Show vendor and the MAC address they have.
+- fortinet.fortimanager.fmgr_firewall_vip_quic - QUIC setting.
+- fortinet.fortimanager.fmgr_pm_config_meta_reference - no description
+- fortinet.fortimanager.fmgr_securityconsole_install_objects_v2 - no description
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_routeoffloadrouter - Configure route offload MCLAG IP address.
+- fortinet.fortimanager.fmgr_switchcontroller_ptp_profile - Global PTP profile.
+- fortinet.fortimanager.fmgr_system_csf - Add this device to a Security Fabric or set up a new Security Fabric on this device.
+- fortinet.fortimanager.fmgr_system_csf_fabricconnector - Fabric connector configuration.
+- fortinet.fortimanager.fmgr_system_csf_trustedlist - Pre-authorized and blocked security fabric nodes.
+- fortinet.fortimanager.fmgr_system_sdnproxy - Configure SDN proxy.
+- fortinet.fortimanager.fmgr_virtualpatch_profile - Configure virtual-patch profile.
+- fortinet.fortimanager.fmgr_virtualpatch_profile_exemption - Exempt devices or rules.
+
+Unchanged Collections
+---------------------
+
+- ansible.netcommon (still version 5.2.0)
+- ansible.posix (still version 1.5.4)
+- ansible.utils (still version 2.11.0)
+- ansible.windows (still version 2.1.0)
+- arista.eos (still version 6.1.2)
+- awx.awx (still version 23.2.0)
+- azure.azcollection (still version 1.18.1)
+- check_point.mgmt (still version 5.1.1)
+- chocolatey.chocolatey (still version 1.5.1)
+- cisco.aci (still version 2.7.0)
+- cisco.asa (still version 4.0.2)
+- cisco.intersight (still version 2.0.3)
+- cisco.iosxr (still version 6.0.1)
+- cisco.ise (still version 2.5.16)
+- cisco.mso (still version 2.5.0)
+- cisco.ucs (still version 1.10.0)
+- cloud.common (still version 2.1.4)
+- cloudscale_ch.cloud (still version 2.3.1)
+- community.azure (still version 2.0.0)
+- community.ciscosmb (still version 1.0.6)
+- community.crypto (still version 2.15.1)
+- community.digitalocean (still version 1.24.0)
+- community.grafana (still version 1.5.4)
+- community.hashi_vault (still version 5.0.0)
+- community.hrobot (still version 1.8.1)
+- community.libvirt (still version 1.3.0)
+- community.mysql (still version 3.7.2)
+- community.network (still version 5.0.0)
+- community.okd (still version 2.3.0)
+- community.postgresql (still version 3.2.0)
+- community.proxysql (still version 1.5.1)
+- community.rabbitmq (still version 1.2.3)
+- community.sap (still version 2.0.0)
+- community.sap_libs (still version 1.4.1)
+- community.sops (still version 1.6.6)
+- community.windows (still version 2.0.0)
+- community.zabbix (still version 2.1.0)
+- containers.podman (still version 1.10.3)
+- cyberark.conjur (still version 1.2.2)
+- cyberark.pas (still version 1.0.23)
+- dellemc.enterprise_sonic (still version 2.2.0)
+- dellemc.openmanage (still version 8.3.0)
+- dellemc.powerflex (still version 1.9.0)
+- dellemc.unity (still version 1.7.1)
+- fortinet.fortios (still version 2.3.2)
+- frr.frr (still version 2.0.2)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.2.0)
+- grafana.grafana (still version 2.2.3)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.1.0)
+- ibm.spectrum_virtualize (still version 2.0.0)
+- infinidat.infinibox (still version 1.3.12)
+- infoblox.nios_modules (still version 1.5.0)
+- inspur.ispim (still version 2.1.0)
+- inspur.sm (still version 2.3.0)
+- junipernetworks.junos (still version 5.3.0)
+- kubernetes.core (still version 2.4.0)
+- lowlydba.sqlserver (still version 2.2.1)
+- microsoft.ad (still version 1.3.0)
+- netapp.aws (still version 21.7.0)
+- netapp.azure (still version 21.10.0)
+- netapp.cloudmanager (still version 21.22.0)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 22.7.0)
+- netapp.storagegrid (still version 21.11.1)
+- netapp.um_info (still version 21.8.0)
+- netapp_eseries.santricity (still version 1.4.0)
+- netbox.netbox (still version 3.14.0)
+- ngine_io.cloudstack (still version 2.3.0)
+- ngine_io.exoscale (still version 1.1.0)
+- openstack.cloud (still version 2.1.0)
+- openvswitch.openvswitch (still version 2.1.1)
+- ovirt.ovirt (still version 3.2.0)
+- purestorage.flasharray (still version 1.21.0)
+- purestorage.flashblade (still version 1.14.0)
+- purestorage.fusion (still version 1.6.0)
+- sensu.sensu_go (still version 1.14.0)
+- splunk.es (still version 2.1.0)
+- t_systems_mms.icinga_director (still version 2.0.1)
+- telekom_mms.icinga_director (still version 1.34.1)
+- theforeman.foreman (still version 3.14.0)
+- vmware.vmware_rest (still version 2.3.1)
+- vultr.cloud (still version 1.10.0)
+- vyos.vyos (still version 4.1.0)
+- wti.remote (still version 1.0.5)
+
 v9.0.0a2
 ========
 
@@ -357,7 +780,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +-------------------------------+---------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | f5networks.f5_modules         | 1.24.0        | 1.26.0          |                                                                                                                                                                                                                |
 +-------------------------------+---------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| fortinet.fortimanager         | 2.1.7         | 2.2.1           | The collection did not have a changelog in this version.                                                                                                                                                       |
+| fortinet.fortimanager         | 2.1.7         | 2.2.1           |                                                                                                                                                                                                                |
 +-------------------------------+---------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | fortinet.fortios              | 2.2.3         | 2.3.2           |                                                                                                                                                                                                                |
 +-------------------------------+---------------+-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -451,6 +874,12 @@ community.vmware
 
 - vmware_vasa - added a new module to register/unregister a VASA provider
 - vmware_vasa_info - added a new module to gather the information about existing VASA provider(s)
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Support all FortiManager versions in 6.2, 6.4, 7.0, 7.2 and 7.4. 139 new modules.
+- Support token based authentication.
 
 fortinet.fortios
 ~~~~~~~~~~~~~~~~
@@ -1439,6 +1868,12 @@ f5networks.f5_modules
 ~~~~~~~~~~~~~~~~~~~~~
 
 - bigip_command - Added note to give appropriate timeout value for long running commands
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Corrected the behavior of module fmgr_pkg_firewall_consolidated_policy_sectionvalue and fmgr_pkg_firewall_securitypolicy_sectionvalue.
+- Improve documentation.
 
 google.cloud
 ~~~~~~~~~~~~
@@ -2465,6 +2900,16 @@ f5networks.f5_modules
 - bigip_ssl_key_cert - fixed flaw in code to make module work with same key and cert name when true_names set to true
 - bigip_virtual_server - fixed an idempotency bug where the module send asm policy profile for update even when not specified explicitly by the user
 
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Corrected description of parameters in documentation.
+- Fix a bug where the user may not be able to use workspace_locking_adom if the workspace mode is per-adom.
+- Fixed Many sanity test warnings and errors.
+- Fixed a bug where users might not be able to login.
+- Fixed version_added in the document. The value of this parameter is the version each module first supported in the FortiManager Ansible Collection.
+- Improve login logic in httpapi plugin.
+
 fortinet.fortios
 ~~~~~~~~~~~~~~~~
 
@@ -2602,7 +3047,6 @@ Ansible-core
 
 - ansible-galaxy - dies in the middle of installing a role when that role contains Java inner classes (files with $ in the file name).  This is by design, to exclude temporary or backup files. (https://github.com/ansible/ansible/pull/81553).
 - ansible-test - The ``pep8`` sanity test is unable to detect f-string spacing issues (E201, E202) on Python 3.10 and 3.11. They are correctly detected under Python 3.12. See (https://github.com/PyCQA/pycodestyle/issues/1190).
-- ansible-test - The ``pylint`` sanity test is not supported on Python 3.12. Use Python 3.10 or 3.11 instead.
 
 community.crypto
 ~~~~~~~~~~~~~~~~
@@ -2796,6 +3240,149 @@ f5networks.f5_modules
 ~~~~~~~~~~~~~~~~~~~~~
 
 - f5networks.f5_modules.bigip_provision_async - Manage BIG-IP module provisioning
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- fortinet.fortimanager.fmgr_application_casi_profile - Cloud Access Security Inspection.
+- fortinet.fortimanager.fmgr_application_casi_profile_entries - Application entries.
+- fortinet.fortimanager.fmgr_application_internetservice - Show Internet service application.
+- fortinet.fortimanager.fmgr_application_internetservice_entry - Entries in the Internet service database.
+- fortinet.fortimanager.fmgr_application_internetservicecustom - Configure custom Internet service applications.
+- fortinet.fortimanager.fmgr_application_internetservicecustom_disableentry - Disable entries in the Internet service database.
+- fortinet.fortimanager.fmgr_application_internetservicecustom_disableentry_iprange - IP ranges in the disable entry.
+- fortinet.fortimanager.fmgr_application_internetservicecustom_entry - Entries added to the Internet service database and custom database.
+- fortinet.fortimanager.fmgr_application_internetservicecustom_entry_portrange - Port ranges in the custom entry.
+- fortinet.fortimanager.fmgr_cloud_orchestaws - no description
+- fortinet.fortimanager.fmgr_cloud_orchestawsconnector - no description
+- fortinet.fortimanager.fmgr_cloud_orchestawstemplate_autoscaleexistingvpc - no description
+- fortinet.fortimanager.fmgr_cloud_orchestawstemplate_autoscalenewvpc - no description
+- fortinet.fortimanager.fmgr_cloud_orchestawstemplate_autoscaletgwnewvpc - no description
+- fortinet.fortimanager.fmgr_cloud_orchestration - no description
+- fortinet.fortimanager.fmgr_devprof_log_syslogd_filter_excludelist - no description
+- fortinet.fortimanager.fmgr_devprof_log_syslogd_filter_excludelist_fields - no description
+- fortinet.fortimanager.fmgr_devprof_log_syslogd_filter_freestyle - Free style filters.
+- fortinet.fortimanager.fmgr_devprof_log_syslogd_setting_customfieldname - Custom field name for CEF format logging.
+- fortinet.fortimanager.fmgr_dnsfilter_profile_urlfilter - URL filter settings.
+- fortinet.fortimanager.fmgr_dnsfilter_urlfilter - Configure URL filter list.
+- fortinet.fortimanager.fmgr_dnsfilter_urlfilter_entries - DNS URL filter.
+- fortinet.fortimanager.fmgr_emailfilter_profile_yahoomail - Yahoo! Mail.
+- fortinet.fortimanager.fmgr_extensioncontroller_dataplan - FortiExtender dataplan configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile - FortiExtender extender profile configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular - FortiExtender cellular configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_controllerreport - FortiExtender controller report configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_modem1 - Configuration options for modem 1.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_modem1_autoswitch - FortiExtender auto switch configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_modem2 - Configuration options for modem 2.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_modem2_autoswitch - FortiExtender auto switch configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_smsnotification - FortiExtender cellular SMS notification configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_smsnotification_alert - SMS alert list.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_cellular_smsnotification_receiver - SMS notification receiver list.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_lanextension - FortiExtender lan extension configuration.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_lanextension_backhaul - LAN extension backhaul tunnel configuration.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6 - Configure IPv6 access proxy.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6_apigateway - Set IPv4 API Gateway.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6_apigateway6 - Set IPv6 API Gateway.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6_apigateway6_realservers - Select the real servers that this Access Proxy will distribute traffic to.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6_apigateway6_sslciphersuites - SSL/TLS cipher suites to offer to a server, ordered by priority.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6_apigateway_realservers - Select the real servers that this Access Proxy will distribute traffic to.
+- fortinet.fortimanager.fmgr_firewall_accessproxy6_apigateway_sslciphersuites - SSL/TLS cipher suites to offer to a server, ordered by priority.
+- fortinet.fortimanager.fmgr_firewall_address6_profilelist - List of NSX service profiles that use this address.
+- fortinet.fortimanager.fmgr_firewall_address_profilelist - List of NSX service profiles that use this address.
+- fortinet.fortimanager.fmgr_firewall_explicitproxyaddress - Explicit web proxy address configuration.
+- fortinet.fortimanager.fmgr_firewall_explicitproxyaddress_headergroup - HTTP header group.
+- fortinet.fortimanager.fmgr_firewall_explicitproxyaddrgrp - Explicit web proxy address group configuration.
+- fortinet.fortimanager.fmgr_firewall_gtp_messagefilter - Message filter.
+- fortinet.fortimanager.fmgr_firewall_ippoolgrp - Configure IPv4 pool groups.
+- fortinet.fortimanager.fmgr_firewall_networkservicedynamic - Configure Dynamic Network Services.
+- fortinet.fortimanager.fmgr_fmg_fabric_authorization_template - no description
+- fortinet.fortimanager.fmgr_fmg_fabric_authorization_template_platforms - no description
+- fortinet.fortimanager.fmgr_fmupdate_fwmsetting_upgradetimeout - Configure the timeout value of image upgrade process.
+- fortinet.fortimanager.fmgr_fsp_vlan_dynamicmapping_interface_vrrp - VRRP configuration.
+- fortinet.fortimanager.fmgr_fsp_vlan_dynamicmapping_interface_vrrp_proxyarp - VRRP Proxy ARP configuration.
+- fortinet.fortimanager.fmgr_fsp_vlan_interface_vrrp_proxyarp - VRRP Proxy ARP configuration.
+- fortinet.fortimanager.fmgr_ips_baseline_sensor - Configure IPS sensor.
+- fortinet.fortimanager.fmgr_ips_baseline_sensor_entries - IPS sensor filter.
+- fortinet.fortimanager.fmgr_ips_baseline_sensor_entries_exemptip - Traffic from selected source or destination IP addresses is exempt from this signature.
+- fortinet.fortimanager.fmgr_ips_baseline_sensor_filter - no description
+- fortinet.fortimanager.fmgr_ips_baseline_sensor_override - no description
+- fortinet.fortimanager.fmgr_ips_baseline_sensor_override_exemptip - no description
+- fortinet.fortimanager.fmgr_log_npuserver - Configure all the log servers and create the server groups.
+- fortinet.fortimanager.fmgr_log_npuserver_servergroup - create server group.
+- fortinet.fortimanager.fmgr_log_npuserver_serverinfo - configure server info.
+- fortinet.fortimanager.fmgr_pkg_firewall_explicitproxypolicy - Configure Explicit proxy policies.
+- fortinet.fortimanager.fmgr_pkg_firewall_explicitproxypolicy_identitybasedpolicy - Identity-based policy.
+- fortinet.fortimanager.fmgr_pkg_firewall_explicitproxypolicy_sectionvalue - Configure Explicit proxy policies.
+- fortinet.fortimanager.fmgr_pkg_firewall_hyperscalepolicy - Configure IPv4/IPv6 policies.
+- fortinet.fortimanager.fmgr_pkg_firewall_hyperscalepolicy46 - Configure IPv4 to IPv6 policies.
+- fortinet.fortimanager.fmgr_pkg_firewall_hyperscalepolicy6 - Configure IPv6 policies.
+- fortinet.fortimanager.fmgr_pkg_firewall_hyperscalepolicy64 - Configure IPv6 to IPv4 policies.
+- fortinet.fortimanager.fmgr_pkg_user_nacpolicy - Configure NAC policy matching pattern to identify matching NAC devices.
+- fortinet.fortimanager.fmgr_pm_config_pblock_firewall_consolidated_policy - Configure consolidated IPv4/IPv6 policies.
+- fortinet.fortimanager.fmgr_pm_config_pblock_firewall_consolidated_policy_sectionvalue - Configure consolidated IPv4/IPv6 policies.
+- fortinet.fortimanager.fmgr_pm_config_pblock_firewall_policy6 - Configure IPv6 policies.
+- fortinet.fortimanager.fmgr_pm_config_pblock_firewall_policy6_sectionvalue - Configure IPv6 policies.
+- fortinet.fortimanager.fmgr_pm_devprof_scopemember - no description
+- fortinet.fortimanager.fmgr_pm_pkg_scopemember - Policy package or folder.
+- fortinet.fortimanager.fmgr_pm_wanprof_scopemember - no description
+- fortinet.fortimanager.fmgr_securityconsole_template_cli_preview - no description
+- fortinet.fortimanager.fmgr_switchcontroller_acl_group - Configure ACL groups to be applied on managed FortiSwitch ports.
+- fortinet.fortimanager.fmgr_switchcontroller_acl_ingress - Configure ingress ACL policies to be applied on managed FortiSwitch ports.
+- fortinet.fortimanager.fmgr_switchcontroller_acl_ingress_action - ACL actions.
+- fortinet.fortimanager.fmgr_switchcontroller_acl_ingress_classifier - ACL classifiers.
+- fortinet.fortimanager.fmgr_switchcontroller_dynamicportpolicy - Configure Dynamic port policy to be applied on the managed FortiSwitch ports through DPP device.
+- fortinet.fortimanager.fmgr_switchcontroller_dynamicportpolicy_policy - Port policies with matching criteria and actions.
+- fortinet.fortimanager.fmgr_switchcontroller_fortilinksettings - Configure integrated FortiLink settings for FortiSwitch.
+- fortinet.fortimanager.fmgr_switchcontroller_fortilinksettings_nacports - NAC specific configuration.
+- fortinet.fortimanager.fmgr_switchcontroller_macpolicy - Configure MAC policy to be applied on the managed FortiSwitch devices through NAC device.
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_dhcpsnoopingstaticclient - Configure FortiSwitch DHCP snooping static clients.
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_ports_dhcpsnoopoption82override - Configure DHCP snooping option 82 override.
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_staticmac - Configuration method to edit FortiSwitch Static and Sticky MAC.
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_stpinstance - Configuration method to edit Spanning Tree Protocol
+- fortinet.fortimanager.fmgr_switchcontroller_switchinterfacetag - Configure switch object tags.
+- fortinet.fortimanager.fmgr_switchcontroller_trafficpolicy - Configure FortiSwitch traffic policy.
+- fortinet.fortimanager.fmgr_switchcontroller_vlanpolicy - Configure VLAN policy to be applied on the managed FortiSwitch ports through dynamic-port-policy.
+- fortinet.fortimanager.fmgr_sys_cloud_orchest - no description
+- fortinet.fortimanager.fmgr_system_npu_backgroundssescan - Configure driver background scan for SSE.
+- fortinet.fortimanager.fmgr_system_npu_dosoptions - NPU DoS configurations.
+- fortinet.fortimanager.fmgr_system_npu_dswdtsprofile - Configure NPU DSW DTS profile.
+- fortinet.fortimanager.fmgr_system_npu_dswqueuedtsprofile - Configure NPU DSW Queue DTS profile.
+- fortinet.fortimanager.fmgr_system_npu_hpe - Host protection engine configuration.
+- fortinet.fortimanager.fmgr_system_npu_ipreassembly - IP reassebmly engine configuration.
+- fortinet.fortimanager.fmgr_system_npu_npqueues - Configure queue assignment on NP7.
+- fortinet.fortimanager.fmgr_system_npu_npqueues_ethernettype - Configure a NP7 QoS Ethernet Type.
+- fortinet.fortimanager.fmgr_system_npu_npqueues_ipprotocol - Configure a NP7 QoS IP Protocol.
+- fortinet.fortimanager.fmgr_system_npu_npqueues_ipservice - Configure a NP7 QoS IP Service.
+- fortinet.fortimanager.fmgr_system_npu_npqueues_profile - Configure a NP7 class profile.
+- fortinet.fortimanager.fmgr_system_npu_npqueues_scheduler - Configure a NP7 QoS Scheduler.
+- fortinet.fortimanager.fmgr_system_npu_portpathoption - Configure port using NPU or Intel-NIC.
+- fortinet.fortimanager.fmgr_system_npu_ssehascan - Configure driver HA scan for SSE.
+- fortinet.fortimanager.fmgr_system_npu_swtrhash - Configure switch traditional hashing.
+- fortinet.fortimanager.fmgr_system_npu_tcptimeoutprofile - Configure TCP timeout profile.
+- fortinet.fortimanager.fmgr_system_npu_udptimeoutprofile - Configure UDP timeout profile.
+- fortinet.fortimanager.fmgr_system_objecttag - Configure object tags.
+- fortinet.fortimanager.fmgr_system_sdnconnector_compartmentlist - Configure OCI compartment list.
+- fortinet.fortimanager.fmgr_system_sdnconnector_ociregionlist - Configure OCI region list.
+- fortinet.fortimanager.fmgr_system_socfabric_trustedlist - Pre-authorized security fabric nodes
+- fortinet.fortimanager.fmgr_um_image_upgrade - The older API for updating the firmware of specific device.
+- fortinet.fortimanager.fmgr_um_image_upgrade_ext - Update the firmware of specific device.
+- fortinet.fortimanager.fmgr_user_certificate - Configure certificate users.
+- fortinet.fortimanager.fmgr_user_deviceaccesslist - Configure device access control lists.
+- fortinet.fortimanager.fmgr_user_deviceaccesslist_devicelist - Device list.
+- fortinet.fortimanager.fmgr_user_flexvm - no description
+- fortinet.fortimanager.fmgr_user_json - no description
+- fortinet.fortimanager.fmgr_user_saml_dynamicmapping - SAML server entry configuration.
+- fortinet.fortimanager.fmgr_vpnsslweb_portal_landingpage - Landing page options.
+- fortinet.fortimanager.fmgr_vpnsslweb_portal_landingpage_formdata - Form data.
+- fortinet.fortimanager.fmgr_vpnsslweb_virtualdesktopapplist - SSL-VPN virtual desktop application list.
+- fortinet.fortimanager.fmgr_vpnsslweb_virtualdesktopapplist_apps - Applications.
+- fortinet.fortimanager.fmgr_wireless_accesscontrollist - Configure WiFi bridge access control list.
+- fortinet.fortimanager.fmgr_wireless_accesscontrollist_layer3ipv4rules - AP ACL layer3 ipv4 rule list.
+- fortinet.fortimanager.fmgr_wireless_accesscontrollist_layer3ipv6rules - AP ACL layer3 ipv6 rule list.
+- fortinet.fortimanager.fmgr_wireless_address - Configure the client with its MAC address.
+- fortinet.fortimanager.fmgr_wireless_addrgrp - Configure the MAC address group.
+- fortinet.fortimanager.fmgr_wireless_ssidpolicy - Configure WiFi SSID policies.
+- fortinet.fortimanager.fmgr_wireless_syslogprofile - Configure Wireless Termination Points
 
 inspur.ispim
 ~~~~~~~~~~~~
