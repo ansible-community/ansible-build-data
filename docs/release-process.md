@@ -7,7 +7,7 @@ This document describes the ansible community package release process.
 > **Note**
 >
 > Throughout this page, placeholder values in code blocks are formatted as
-> `{PLACEHOLDER}` where `PLACEHOLDER` describes the value to fill in.
+> `${PLACEHOLDER_VALUE}` where `PLACEHOLDER_VALUE` describes the value to fill in.
 
 
 ## Set up container
@@ -19,7 +19,7 @@ Make sure to mount your working directory as a volume so you don't have to set
 up new repository clones every time.
 
 ```
-podman run --name ansible-release -v {PERSISTENT DIRECTORY}:/pwd:z -w /pwd -ti docker.io/library/python:3.10 bash
+podman run --name ansible-release -v ${PERSISTENT_DIRECTORY}:/pwd:z -w /pwd -ti docker.io/library/python:3.10 bash
 ```
 
 
@@ -52,8 +52,8 @@ This only needs to be done once.
    This guide uses your Github username as the fork remote name.
 
    ```
-   git remote add {USERNAME} https://github.com/{USERNAME}/ansible-build-data
-   git fetch {USERNAME} -v
+   git remote add ${USERNAME} https://github.com/${USERNAME}/ansible-build-data
+   git fetch ${USERNAME} -v
    ```
 
 ## Preform release process
@@ -86,7 +86,7 @@ This only needs to be done once.
 
    ```
    export ANSIBLE_CALLBACK_RESULT_FORMAT=yaml
-   ansible-playbook playbooks/build-single-release.yaml -e antsibull_ansible_version={VERSION}
+   ansible-playbook playbooks/build-single-release.yaml -e antsibull_ansible_version=${VERSION}
    ```
 
    > **Note**
@@ -102,10 +102,10 @@ This only needs to be done once.
 
    ```
    cd build/ansible-build-data
-   git switch -c release-{VERSION}
-   git add {MAJOR VERSION}/
+   git switch -c release-${VERSION}
+   git add ${MAJOR_VERSION}/
    git commit -m "Ansible {VERSION}: Dependencies, changelog and porting guide"
-   git push -u {USERNAME} release-{VERSION}
+   git push -u ${USERNAME} release-${VERSION}
    ```
 
    Then, submit a pull request against ansible-build-data upstream.
@@ -115,20 +115,20 @@ This only needs to be done once.
    in your ansible checkout with the following command
 
    ```
-   cp {MAJOR VERSION}/porting_guide_{MAJOR VERSION}.rst ../ansible-documentation/docs/docsite/rst/porting_guides/
+   cp ${MAJOR_VERSION}/porting_guide_${MAJOR_VERSION}.rst ../ansible-documentation/docs/docsite/rst/porting_guides/
    ```
 
    switch to the ansible checkout,
    commit and push the changes,
    and then submit a PR as you normally would.
-   You can use `Add Ansible community {VERSION} porting guide` as the commit message.
+   You can use `Add Ansible community ${VERSION} porting guide` as the commit message.
 
 6. Once the ansible-build-data PR has been merged,
    publish the build artifacts to PyPI.
    From the antsibull repository root, run
 
    ```
-   twine upload build/ansible-{VERSION}.tar.gz build/ansible-{VERSION}*.whl
+   twine upload build/ansible-${VERSION}.tar.gz build/ansible-${VERSION}*.whl
    ```
 
 7. Tag the release commit in the ansible-build-data repository.
@@ -137,7 +137,7 @@ This only needs to be done once.
    cd build/ansible-build-data
    git switch main
    git pull
-   git tag {VERSION} {MERGED PR COMMIT HASH} -a -m "Ansible {VERSION}: Changelog, Porting Guide and Dependent Collection Details"
+   git tag ${VERSION} ${MERGED_PR_COMMIT_HASH} -a -m "Ansible ${VERSION}: Changelog, Porting Guide and Dependent Collection Details"
    git push --follow-tags
    ```
 
