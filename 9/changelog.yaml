@@ -84,7 +84,7 @@ releases:
     changes:
       deprecated_features:
       - The collection ``ibm.spectrum_virtualize`` has been renamed to ``ibm.storage_virtualize``.
-        For now both collections are included in Ansible. The content in ``ibm.spectrum_virtualize``
+        For now, both collections are included in Ansible. The content in ``ibm.spectrum_virtualize``
         will be replaced with deprecated redirects to the new collection in Ansible 10.0.0,
         and these redirects will eventually be removed from Ansible. Please update your
         FQCNs for ``ibm.spectrum_virtualize``.
