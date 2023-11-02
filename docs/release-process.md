@@ -56,7 +56,7 @@ This only needs to be done once.
    git fetch ${USERNAME} -v
    ```
 
-## Preform release process
+## Perform release process
 
 1. Change into the antsibull checkout.
    Make sure you have the `main` branch checked out
