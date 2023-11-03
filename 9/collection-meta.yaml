@@ -134,6 +134,10 @@ collections:
     maintainers:
       - Shilpi-J
     repository: https://github.com/ansible-collections/ibm.spectrum_virtualize
+  ibm.storage_virtualize:
+    maintainers:
+      - sumitguptaibm
+    repository: https://github.com/ansible-collections/ibm.storage_virtualize
   vultr.cloud:
     maintainers:
       - resmo

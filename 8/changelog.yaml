@@ -164,3 +164,11 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2023-10-11'
+  8.6.0:
+    changes:
+      deprecated_features:
+      - The collection ``ibm.spectrum_virtualize`` has been renamed to ``ibm.storage_virtualize``.
+        For now, both collections are included in Ansible. The content in ``ibm.spectrum_virtualize``
+        will be replaced with deprecated redirects to the new collection in Ansible 10.0.0,
+        and these redirects will eventually be removed from Ansible. Please update your
+        FQCNs for ``ibm.spectrum_virtualize``.
