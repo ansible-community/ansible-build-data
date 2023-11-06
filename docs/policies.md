@@ -108,7 +108,7 @@ In case of violations, the release manager must preform the following steps:
     >
     > Additionally, collection artifacts released to Galaxy MUST be built from the sources that are tagged in the collection's git repository as that release. Any changes made during the build process MUST be clearly documented so the collection artifact can be reproduced.
 
-    Until this issue is fixed, ansible package releases will contain {OLD VERSION}, the previous version of this collection that was properly tagged. If the collection maintainers do not respond to this issue within a reasonable a amount of time, the collection is subject to [Removal from ansible][2].
+    Until this issue is fixed, ansible package releases will contain {OLD VERSION}, the previous version of this collection that was properly tagged. If the collection maintainers do not respond to this issue within a reasonable amount of time, the collection is subject to [Removal from ansible][2].
 
     [2]: https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#collections-not-satisfying-the-collection-requirements
 
