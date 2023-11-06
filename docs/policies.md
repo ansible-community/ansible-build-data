@@ -66,28 +66,21 @@ The playbook will fail if any new collection releases are not properly tagged.
 
 In case of violations, the release manager must preform the following steps:
 
-1. First, the collection must be pinned to the previous tagged release in
-   the `ansible-VERSION.build` file.
+1. First, the collection must be restricted to the previous tagged release in
+   the `ansible-VERSION.constraints` file.
 
-   Take the `community.docker` collection as an example.
-   In `8/ansible-8.build`, it has
-
-   ```
-   community.docker: >=3.4.0,<4.0.0
-   ```
-
-   `,<4.0.0` would need to be replaced with `,<= RELEASE` where `RELEASE` is
-   the previous tagged version.
-   For instance, if community.docker 3.9.1 is released but not properly tagged
-   while community.docker 3.9.0 is properly tagged, change the line to
+   Take the `community.docker` collection as an example. If its version 3.9.0
+   was released and correctly tagged, and 3.9.1 was released but not correctly
+   tagged, add
 
    ```
-   community.docker: >=3.4.0,<=3.9.0
+   community.docker: <3.9.1
    ```
-2. Commit only the changed `ansible-VERSION.build` file:
+
+2. Commit only the changed `ansible-VERSION.constraints` file:
 
     ```
-    git add 8/ansible-8.build
+    git add 8/ansible-8.constraints
     git commit -m "pin community.docker to previous release"
     ```
 3. Rerun the release playbook.
