@@ -1,5 +1,1 @@
 fortinet.fortios: <2.3.4
-netapp.aws: <21.7.1
-netapp.azure: <21.10.1
-netapp.cloudmanager: <21.22.1
-netapp.um_info: <21.8.1
