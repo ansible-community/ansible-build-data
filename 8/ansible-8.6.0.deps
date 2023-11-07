@@ -96,7 +96,7 @@ ngine_io.vultr: 1.1.3
 openstack.cloud: 2.1.0
 openvswitch.openvswitch: 2.1.1
 ovirt.ovirt: 3.2.0
-purestorage.flasharray: 1.22.0
+purestorage.flasharray: 1.21.0
 purestorage.flashblade: 1.14.0
 purestorage.fusion: 1.6.0
 sensu.sensu_go: 1.14.0
