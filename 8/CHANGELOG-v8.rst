@@ -105,8 +105,6 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 | netbox.netbox          | 3.14.0        | 3.15.0        |                                                                                                                              |
 +------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
-| purestorage.flasharray | 1.21.0        | 1.22.0        |                                                                                                                              |
-+------------------------+---------------+---------------+------------------------------------------------------------------------------------------------------------------------------+
 
 Major Changes
 -------------
@@ -249,31 +247,6 @@ netbox.netbox
 - netbox_config_template - New module [#1090](https://github.com/netbox-community/ansible_modules/pull/1090)
 - netbox_device - Add oob_ip to device [#1085](https://github.com/netbox-community/ansible_modules/pull/1085)
 - netbox_device_type - Add default_platform [#1092](https://github.com/netbox-community/ansible_modules/pull/1092)
-
-purestorage.flasharray
-~~~~~~~~~~~~~~~~~~~~~~
-
-- purefa_eradication - Added support for disabled and enabled timers from Purity//FA 6.4.10
-- purefa_info - Add array subscription data
-- purefa_info - Added `nfs_version` to policies and rules from Purity//FA 6.4.10
-- purefa_info - Added `total_used` to multiple sections from Purity//FA 6.4.10
-- purefa_info - Prive array timezone from Purity//FA 6.4.10
-- purefa_info - Report NTP Symmetric key presence from Purity//FA 6.4.10
-- purefa_network - Add support for creating/modifying VIF and LACP_BOND interfaces
-- purefa_network - `enabled` option added. This must now be used instead of state=absent to disable a physical interface as state=absent can now fully delete a non-physical interface
-- purefa_ntp - Added support for NTP Symmetric Key from Purity//FA 6.4.10s
-- purefa_pgsnap - Add protection group snapshot rename functionality
-- purefa_policy - Added support for multiple NFS versions from Purity//FA 6.4.10
-- purefa_vg - Add rename parameter
-
-Breaking Changes / Porting Guide
---------------------------------
-
-purestorage.flasharray
-~~~~~~~~~~~~~~~~~~~~~~
-
-- purefa_pgsched - Change `snap_at` and `replicate_at` to be AM or PM hourly number rather than 24-hour time.
-- purefa_pgsnap - `now` and `remote` are now mutually exclusive.
 
 Deprecated Features
 -------------------
@@ -466,26 +439,6 @@ netbox.netbox
 
 - netbox_ device - Adjust device_role to role for NetBox 3.6 [#1066](https://github.com/netbox-community/ansible_modules/pull/1066)
 
-purestorage.flasharray
-~~~~~~~~~~~~~~~~~~~~~~
-
-- purefa_ds - Fixes error when enabling directory services while a bind_user is set on the array and a bind_password is not.
-- purefa_ds - Fixes issue with creating a new ds configuration while setting force_bind_password as "false".
-- purefa_host - Fix incorrect calling of "module.params".
-- purefa_info - Added missing alerts subset name
-- purefa_info - Fixed attribute errors after EUC changes
-- purefa_info - Fixed issue with replica links in unknown state
-- purefa_info - Fixed parameter error when enabled and disabled timers are different values on purity 6.4.10+ arrays.
-- purefa_info - Fixed py39 specific bug with multiple DNS entries
-- purefa_network - Allow `gateway` to be set as `0.0.0.0` to remove an existing gateway address
-- purefa_network - Fixed IPv6 support issues
-- purefa_network - Fixed idempotency issue when gateway not modified
-- purefa_pgsched - Fixed bug with an unnecessary substitution
-- purefa_pgsnap - Enabled to eradicate destroyed snapshots.
-- purefa_snap - Fixed incorrect calling logic causing failure on remote snapshot creation
-- purefa_subnet - Fixed IPv4 gateway removal issue.
-- purefa_subnet - Fixed IPv6 support issues.
-
 New Modules
 -----------
 
@@ -541,11 +494,6 @@ netapp.ontap
 ~~~~~~~~~~~~
 
 - netapp.ontap.na_ontap_ems_config - NetApp ONTAP module to modify EMS configuration.
-
-purestorage.flasharray
-~~~~~~~~~~~~~~~~~~~~~~
-
-- purestorage.flasharray.purefa_file - Manage FlashArray File Copies
 
 Unchanged Collections
 ---------------------
@@ -614,6 +562,7 @@ Unchanged Collections
 - openstack.cloud (still version 2.1.0)
 - openvswitch.openvswitch (still version 2.1.1)
 - ovirt.ovirt (still version 3.2.0)
+- purestorage.flasharray (still version 1.21.0)
 - purestorage.flashblade (still version 1.14.0)
 - purestorage.fusion (still version 1.6.0)
 - sensu.sensu_go (still version 1.14.0)
@@ -1662,6 +1611,7 @@ netbox.netbox
 purestorage.flasharray
 ~~~~~~~~~~~~~~~~~~~~~~
 
+- purefa_info - Add `hosts_balance` subset
 - purefa_info - Add `port_connectivity` information for hosts
 - purefa_info - Add promotion status information for volumes
 - purefa_offload - Added a new profile parameter.
