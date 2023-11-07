@@ -104,7 +104,7 @@ This only needs to be done once.
    cd build/ansible-build-data
    git switch -c release-${VERSION}
    git add ${MAJOR_VERSION}/
-   git commit -m "Ansible {VERSION}: Dependencies, changelog and porting guide"
+   git commit -m "Ansible ${VERSION}: Dependencies, changelog and porting guide"
    git push -u ${USERNAME} release-${VERSION}
    ```
 
