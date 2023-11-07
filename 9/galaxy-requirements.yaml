@@ -1,11 +1,11 @@
-# Collections included in Ansible 9.0.0a3
+# Collections included in Ansible 9.0.0b1
 collections:
 - name: amazon.aws
   source: https://galaxy.ansible.com
-  version: 6.5.0
+  version: 7.0.0
 - name: ansible.netcommon
   source: https://galaxy.ansible.com
-  version: 5.2.0
+  version: 5.3.0
 - name: ansible.posix
   source: https://galaxy.ansible.com
   version: 1.5.4
@@ -17,13 +17,13 @@ collections:
   version: 2.1.0
 - name: arista.eos
   source: https://galaxy.ansible.com
-  version: 6.1.2
+  version: 6.2.1
 - name: awx.awx
   source: https://galaxy.ansible.com
-  version: 23.2.0
+  version: 23.3.1
 - name: azure.azcollection
   source: https://galaxy.ansible.com
-  version: 1.18.1
+  version: 1.19.0
 - name: check_point.mgmt
   source: https://galaxy.ansible.com
   version: 5.1.1
@@ -32,10 +32,10 @@ collections:
   version: 1.5.1
 - name: cisco.aci
   source: https://galaxy.ansible.com
-  version: 2.7.0
+  version: 2.8.0
 - name: cisco.asa
   source: https://galaxy.ansible.com
-  version: 4.0.2
+  version: 4.0.3
 - name: cisco.dnac
   source: https://galaxy.ansible.com
   version: 6.7.6
@@ -44,16 +44,16 @@ collections:
   version: 2.0.3
 - name: cisco.ios
   source: https://galaxy.ansible.com
-  version: 5.1.0
+  version: 5.2.0
 - name: cisco.iosxr
   source: https://galaxy.ansible.com
-  version: 6.0.1
+  version: 6.1.0
 - name: cisco.ise
   source: https://galaxy.ansible.com
   version: 2.5.16
 - name: cisco.meraki
   source: https://galaxy.ansible.com
-  version: 2.16.5
+  version: 2.16.13
 - name: cisco.mso
   source: https://galaxy.ansible.com
   version: 2.5.0
@@ -71,34 +71,34 @@ collections:
   version: 2.3.1
 - name: community.aws
   source: https://galaxy.ansible.com
-  version: 6.4.0
+  version: 7.0.0
 - name: community.azure
   source: https://galaxy.ansible.com
   version: 2.0.0
 - name: community.ciscosmb
   source: https://galaxy.ansible.com
-  version: 1.0.6
+  version: 1.0.7
 - name: community.crypto
   source: https://galaxy.ansible.com
-  version: 2.15.1
+  version: 2.16.0
 - name: community.digitalocean
   source: https://galaxy.ansible.com
   version: 1.24.0
 - name: community.dns
   source: https://galaxy.ansible.com
-  version: 2.6.2
+  version: 2.6.3
 - name: community.docker
   source: https://galaxy.ansible.com
-  version: 3.4.9
+  version: 3.4.10
 - name: community.general
   source: https://galaxy.ansible.com
-  version: 7.5.0
+  version: 8.0.1
 - name: community.grafana
   source: https://galaxy.ansible.com
-  version: 1.5.4
+  version: 1.6.1
 - name: community.hashi_vault
   source: https://galaxy.ansible.com
-  version: 5.0.0
+  version: 6.0.0
 - name: community.hrobot
   source: https://galaxy.ansible.com
   version: 1.8.1
@@ -110,10 +110,10 @@ collections:
   version: 1.6.3
 - name: community.mysql
   source: https://galaxy.ansible.com
-  version: 3.7.2
+  version: 3.8.0
 - name: community.network
   source: https://galaxy.ansible.com
-  version: 5.0.0
+  version: 5.0.2
 - name: community.okd
   source: https://galaxy.ansible.com
   version: 2.3.0
@@ -137,10 +137,10 @@ collections:
   version: 1.4.1
 - name: community.sops
   source: https://galaxy.ansible.com
-  version: 1.6.6
+  version: 1.6.7
 - name: community.vmware
   source: https://galaxy.ansible.com
-  version: 3.10.0
+  version: 4.0.0
 - name: community.windows
   source: https://galaxy.ansible.com
   version: 2.0.0
@@ -149,7 +149,7 @@ collections:
   version: 2.1.0
 - name: containers.podman
   source: https://galaxy.ansible.com
-  version: 1.10.3
+  version: 1.11.0
 - name: cyberark.conjur
   source: https://galaxy.ansible.com
   version: 1.2.2
@@ -161,10 +161,10 @@ collections:
   version: 2.2.0
 - name: dellemc.openmanage
   source: https://galaxy.ansible.com
-  version: 8.3.0
+  version: 8.4.0
 - name: dellemc.powerflex
   source: https://galaxy.ansible.com
-  version: 1.9.0
+  version: 2.0.1
 - name: dellemc.unity
   source: https://galaxy.ansible.com
   version: 1.7.1
@@ -176,7 +176,7 @@ collections:
   version: 2.3.0
 - name: fortinet.fortios
   source: https://galaxy.ansible.com
-  version: 2.3.2
+  version: 2.3.4
 - name: frr.frr
   source: https://galaxy.ansible.com
   version: 2.0.2
@@ -191,7 +191,7 @@ collections:
   version: 2.2.3
 - name: hetzner.hcloud
   source: https://galaxy.ansible.com
-  version: 2.1.2
+  version: 2.3.0
 - name: hpe.nimble
   source: https://galaxy.ansible.com
   version: 1.1.4
@@ -201,6 +201,9 @@ collections:
 - name: ibm.spectrum_virtualize
   source: https://galaxy.ansible.com
   version: 2.0.0
+- name: ibm.storage_virtualize
+  source: https://galaxy.ansible.com
+  version: 2.1.0
 - name: infinidat.infinibox
   source: https://galaxy.ansible.com
   version: 1.3.12
@@ -221,37 +224,37 @@ collections:
   version: 2.4.0
 - name: lowlydba.sqlserver
   source: https://galaxy.ansible.com
-  version: 2.2.1
+  version: 2.2.2
 - name: microsoft.ad
   source: https://galaxy.ansible.com
   version: 1.3.0
 - name: netapp.aws
   source: https://galaxy.ansible.com
-  version: 21.7.0
+  version: 21.7.1
 - name: netapp.azure
   source: https://galaxy.ansible.com
-  version: 21.10.0
+  version: 21.10.1
 - name: netapp.cloudmanager
   source: https://galaxy.ansible.com
-  version: 21.22.0
+  version: 21.22.1
 - name: netapp.elementsw
   source: https://galaxy.ansible.com
   version: 21.7.0
 - name: netapp.ontap
   source: https://galaxy.ansible.com
-  version: 22.7.0
+  version: 22.8.0
 - name: netapp.storagegrid
   source: https://galaxy.ansible.com
   version: 21.11.1
 - name: netapp.um_info
   source: https://galaxy.ansible.com
-  version: 21.8.0
+  version: 21.8.1
 - name: netapp_eseries.santricity
   source: https://galaxy.ansible.com
   version: 1.4.0
 - name: netbox.netbox
   source: https://galaxy.ansible.com
-  version: 3.14.0
+  version: 3.15.0
 - name: ngine_io.cloudstack
   source: https://galaxy.ansible.com
   version: 2.3.0
@@ -269,7 +272,7 @@ collections:
   version: 3.2.0
 - name: purestorage.flasharray
   source: https://galaxy.ansible.com
-  version: 1.21.0
+  version: 1.22.0
 - name: purestorage.flashblade
   source: https://galaxy.ansible.com
   version: 1.14.0
