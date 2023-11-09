@@ -8,6 +8,158 @@ This changelog describes changes since Ansible 7.0.0.
   :local:
   :depth: 2
 
+v8.6.1
+======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2023-11-09
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 8.6.1 contains ansible-core version 2.15.6.
+This is the same version of ansible-core as in the previous Ansible release.
+
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++--------------+---------------+---------------+-------+
+| Collection   | Ansible 8.6.0 | Ansible 8.6.1 | Notes |
++==============+===============+===============+=======+
+| netapp.ontap | 22.8.0        | 22.8.2        |       |
++--------------+---------------+---------------+-------+
+
+Bugfixes
+--------
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_dns - fix keyerror for uuid when DNS is set to vserver in REST.
+- na_ontap_volume - fix invalid field error with 'space.snapshot.autodelete' in REST.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 6.5.0)
+- ansible.netcommon (still version 5.3.0)
+- ansible.posix (still version 1.5.4)
+- ansible.utils (still version 2.11.0)
+- ansible.windows (still version 1.14.0)
+- arista.eos (still version 6.2.1)
+- awx.awx (still version 22.7.0)
+- azure.azcollection (still version 1.19.0)
+- check_point.mgmt (still version 5.1.1)
+- chocolatey.chocolatey (still version 1.5.1)
+- cisco.aci (still version 2.8.0)
+- cisco.asa (still version 4.0.3)
+- cisco.dnac (still version 6.7.6)
+- cisco.intersight (still version 1.0.27)
+- cisco.ios (still version 4.6.1)
+- cisco.iosxr (still version 5.0.3)
+- cisco.ise (still version 2.5.16)
+- cisco.meraki (still version 2.16.13)
+- cisco.mso (still version 2.5.0)
+- cisco.nso (still version 1.0.3)
+- cisco.nxos (still version 4.4.0)
+- cisco.ucs (still version 1.10.0)
+- cloud.common (still version 2.1.4)
+- cloudscale_ch.cloud (still version 2.3.1)
+- community.aws (still version 6.4.0)
+- community.azure (still version 2.0.0)
+- community.ciscosmb (still version 1.0.7)
+- community.crypto (still version 2.16.0)
+- community.digitalocean (still version 1.24.0)
+- community.dns (still version 2.6.3)
+- community.docker (still version 3.4.10)
+- community.fortios (still version 1.0.0)
+- community.general (still version 7.5.1)
+- community.google (still version 1.0.0)
+- community.grafana (still version 1.6.1)
+- community.hashi_vault (still version 5.0.1)
+- community.hrobot (still version 1.8.1)
+- community.libvirt (still version 1.3.0)
+- community.mongodb (still version 1.6.3)
+- community.mysql (still version 3.8.0)
+- community.network (still version 5.0.2)
+- community.okd (still version 2.3.0)
+- community.postgresql (still version 2.4.3)
+- community.proxysql (still version 1.5.1)
+- community.rabbitmq (still version 1.2.3)
+- community.routeros (still version 2.10.0)
+- community.sap (still version 1.0.0)
+- community.sap_libs (still version 1.4.1)
+- community.skydive (still version 1.0.0)
+- community.sops (still version 1.6.7)
+- community.vmware (still version 3.11.1)
+- community.windows (still version 1.13.0)
+- community.zabbix (still version 2.1.0)
+- containers.podman (still version 1.11.0)
+- cyberark.conjur (still version 1.2.2)
+- cyberark.pas (still version 1.0.23)
+- dellemc.enterprise_sonic (still version 2.2.0)
+- dellemc.openmanage (still version 7.6.1)
+- dellemc.powerflex (still version 1.9.0)
+- dellemc.unity (still version 1.7.1)
+- f5networks.f5_modules (still version 1.27.0)
+- fortinet.fortimanager (still version 2.3.0)
+- fortinet.fortios (still version 2.3.4)
+- frr.frr (still version 2.0.2)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.2.0)
+- grafana.grafana (still version 2.2.3)
+- hetzner.hcloud (still version 1.16.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.1.0)
+- ibm.spectrum_virtualize (still version 1.12.0)
+- ibm.storage_virtualize (still version 2.1.0)
+- infinidat.infinibox (still version 1.3.12)
+- infoblox.nios_modules (still version 1.5.0)
+- inspur.ispim (still version 1.3.0)
+- inspur.sm (still version 2.3.0)
+- junipernetworks.junos (still version 5.3.0)
+- kubernetes.core (still version 2.4.0)
+- lowlydba.sqlserver (still version 2.2.2)
+- microsoft.ad (still version 1.3.0)
+- netapp.aws (still version 21.7.1)
+- netapp.azure (still version 21.10.1)
+- netapp.cloudmanager (still version 21.22.1)
+- netapp.elementsw (still version 21.7.0)
+- netapp.storagegrid (still version 21.11.1)
+- netapp.um_info (still version 21.8.1)
+- netapp_eseries.santricity (still version 1.4.0)
+- netbox.netbox (still version 3.15.0)
+- ngine_io.cloudstack (still version 2.3.0)
+- ngine_io.exoscale (still version 1.1.0)
+- ngine_io.vultr (still version 1.1.3)
+- openstack.cloud (still version 2.1.0)
+- openvswitch.openvswitch (still version 2.1.1)
+- ovirt.ovirt (still version 3.2.0)
+- purestorage.flasharray (still version 1.21.0)
+- purestorage.flashblade (still version 1.14.0)
+- purestorage.fusion (still version 1.6.0)
+- sensu.sensu_go (still version 1.14.0)
+- servicenow.servicenow (still version 1.0.6)
+- splunk.es (still version 2.1.0)
+- t_systems_mms.icinga_director (still version 1.33.1)
+- telekom_mms.icinga_director (still version 1.34.1)
+- theforeman.foreman (still version 3.14.0)
+- vmware.vmware_rest (still version 2.3.1)
+- vultr.cloud (still version 1.10.0)
+- vyos.vyos (still version 4.1.0)
+- wti.remote (still version 1.0.5)
+
 v8.6.0
 ======
 
