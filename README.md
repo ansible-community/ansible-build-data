@@ -11,6 +11,7 @@ The [issue track of this repository](https://github.com/ansible-community/ansibl
 
 1. Tracking release dates,
 1. Tracking blockers for a release,
+1. Tracking adding, renaming, and removing collections,
 1. Tracking problems with a release related to the build process:
    - This includes problems that prevent the package to be installed or system packages to be built from the PyPI release;
 1. Tracking and discussing other problems with the `ansible` community package:
