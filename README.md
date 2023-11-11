@@ -7,7 +7,7 @@ may be referred to by other projects and scripts.
 
 ## Issue tracker
 
-The [issue track of this repository](https://github.com/ansible-community/ansible-build-data/issues) is to track various aspects of the `ansible` build, including:
+[This repository's issue tracker](https://github.com/ansible-community/ansible-build-data/issues) handles various aspects of the `ansible` build, including:
 
 1. Tracking release dates,
 1. Tracking blockers for a release,
@@ -15,10 +15,10 @@ The [issue track of this repository](https://github.com/ansible-community/ansibl
 1. Tracking problems with a release related to the build process:
    - This includes problems that prevent the package to be installed or system packages to be built from the PyPI release;
 1. Tracking and discussing other problems with the `ansible` community package:
-   - This includes important problems with the included collections that are not reacted on by the collection maintainers, for example largescale incompatibilities with the current ansible-core version, violations of semantic versioning, and general violations of the [Ansible inclusion requirements](https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html);
+   - This includes important problems with the included collections that are not acted on by the collection maintainers, for example largescale incompatibilities with the current ansible-core version, violations of semantic versioning, and general violations of the [Ansible inclusion requirements](https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html);
    - This includes major or security bugs in collections with wide-reaching consequences that are not addressed by the collection maintainers, or cannot be addressed on the collection level for some reason.
 
-This issue tracker is **not** for tracking regular bugs, feature requests, or for asking for help with collections included in the `ansible` package. **Such issues will be closed.** Instead, check out the issue trackers of the respective collections, or consider [asking for help in the Ansible forum](https://forum.ansible.com/).
+This issue tracker is **not** for tracking regular bugs or feature requests for `ansible-core` or the collections in included in the `ansible` package or for user support. **Such issues will be closed.** Instead, check out the [`ansible-core` issue tracker](https://github.com/ansible/ansible), issue trackers of the respective collections, or consider [asking for help in the Ansible forum](https://forum.ansible.com/).
 
 ## Milestones
 
