@@ -170,6 +170,7 @@ collections:
     repository: https://github.com/CheckPointSW/CheckPointAnsibleMgmtCollection
   chocolatey.chocolatey:
     repository: https://github.com/chocolatey/chocolatey-ansible
+    collection-directory: "./chocolatey"
   cisco.aci:
     repository: https://github.com/CiscoDevNet/ansible-aci
   cisco.asa:
