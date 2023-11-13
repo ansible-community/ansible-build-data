@@ -18,7 +18,7 @@ may be referred to by other projects and scripts.
    - This includes important problems with the included collections that are not acted on by the collection maintainers, for example largescale incompatibilities with the current ansible-core version, violations of semantic versioning, and general violations of the [Ansible inclusion requirements](https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html);
    - This includes major or security bugs in collections with wide-reaching consequences that are not addressed by the collection maintainers, or cannot be addressed on the collection level for some reason.
 
-This issue tracker is **not** for tracking regular bugs or feature requests for `ansible-core` or the collections in included in the `ansible` package or for user support. **Such issues will be closed.** Instead, check out the [`ansible-core` issue tracker](https://github.com/ansible/ansible), issue trackers of the respective collections, or consider [asking for help in the Ansible forum](https://forum.ansible.com/).
+This issue tracker is **not** for tracking regular bugs or feature requests for `ansible-core` or the collections included in the `ansible` package or for user support. **Such issues will be closed.** Instead, check out the [`ansible-core` issue tracker](https://github.com/ansible/ansible), issue trackers of the respective collections, or consider [asking for help in the Ansible forum](https://forum.ansible.com/).
 
 ## Milestones
 
