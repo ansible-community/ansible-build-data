@@ -38,7 +38,7 @@ structure for Ansible `X+1`.
    `${NEXT_MAJOR_VERSION}/ancestor.deps`
 
     ``` sh
-    ln -sr "${CURRENT_MAJOR_VERSION}/${CURRENT_MAJOR_VERSION}.0.0.deps" \
+    ln -sr "${CURRENT_MAJOR_VERSION}/ansible-${CURRENT_MAJOR_VERSION}.0.0.deps" \
        "${NEXT_MAJOR_VERSION}/ancestor.deps"
     ```
 
