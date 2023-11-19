@@ -14,7 +14,7 @@ see [Ansible Release Process](release-process.md).
 After the release of `X.0.0`, it is necessary to create the directory
 structure for Ansible `X+1`.
 
-1. Determine the current major version and previous major version
+1. Determine the current major version and next major version
 
     ``` sh
     CURRENT_MAJOR_VERSION=9
