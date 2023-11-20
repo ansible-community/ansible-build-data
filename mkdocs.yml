@@ -24,3 +24,8 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.superfences
+nav:
+  - Ansible Build Data: README.md
+  - release-process.md
+  - policies.md
+  - new-ansible-and-freezes.md
