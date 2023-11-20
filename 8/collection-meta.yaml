@@ -62,17 +62,23 @@ collections:
   netapp.azure:
     maintainers:
       - carchi8py
-      - lonico
+      - suhasbshekar
+      - wenjun666
+      - chuyich
     repository: https://github.com/ansible-collections/netapp.azure
   netapp.cloudmanager:
     maintainers:
       - carchi8py
-      - lonico
+      - suhasbshekar
+      - wenjun666
+      - chuyich
     repository: https://github.com/ansible-collections/netapp.cloudmanager
   netapp.um_info:
     maintainers:
       - carchi8py
-      - lonico
+      - suhasbshekar
+      - wenjun666
+      - chuyich
     repository: https://github.com/ansible-collections/netapp.um_info
   community.ciscosmb:
     maintainers:
@@ -287,10 +293,20 @@ collections:
   junipernetworks.junos:
     repository: https://github.com/ansible-collections/junipernetworks.junos
   netapp.aws:
+    maintainers:
+      - carchi8py
+      - suhasbshekar
+      - wenjun666
+      - chuyich
     repository: https://github.com/ansible-collections/netapp.aws
   netapp.elementsw:
     repository: https://github.com/ansible-collections/netapp.elementsw
   netapp.ontap:
+    maintainers:
+      - carchi8py
+      - suhasbshekar
+      - wenjun666
+      - chuyich
     repository: https://github.com/ansible-collections/netapp.ontap
   netapp_eseries.santricity:
     repository: https://github.com/netapp-eseries/santricity
