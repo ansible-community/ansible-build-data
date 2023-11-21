@@ -1,0 +1,330 @@
+---
+collections:
+  ansible.utils:
+    maintainers:
+      - cidrblock
+      - ganeshrn
+      - pabelanger
+    repository: https://github.com/ansible-collections/ansible.utils
+  community.sops:
+    maintainers:
+      - endorama
+    repository: https://github.com/ansible-collections/community.sops
+  cyberark.conjur:
+    changelog-url: https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md
+    repository: https://github.com/cyberark/ansible-conjur-collection
+  dellemc.openmanage:
+    changelog-url: https://github.com/dell/dellemc-openmanage-ansible-modules/blob/collections/CHANGELOG.rst
+    maintainers:
+      - rajeevarakkal
+    repository: https://github.com/dell/dellemc-openmanage-ansible-modules
+  inspur.ispim:
+    maintainers:
+      - ispim
+    repository: https://github.com/ispim/inspur.ispim
+  inspur.sm:
+    maintainers:
+      - ISIB-Group
+    repository: https://github.com/ISIB-Group/inspur.sm
+  kubernetes.core:
+    maintainers:
+      - jillr
+      - akasurde
+      - gravesm
+    repository: https://github.com/ansible-collections/kubernetes.core
+  sensu.sensu_go:
+    maintainers:
+      - tadeboro
+      - mancabizjak
+    repository: https://github.com/sensu/sensu-go-ansible
+  t_systems_mms.icinga_director:
+    changelog-url: https://github.com/T-Systems-MMS/ansible-collection-icinga-director/blob/master/CHANGELOG.md
+    maintainers:
+      - rndmh3ro
+      - schurzi
+    repository: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
+  telekom_mms.icinga_director:
+    changelog-url: https://github.com/telekom-mms/ansible-collection-icinga-director/blob/master/CHANGELOG.md
+    maintainers:
+      - rndmh3ro
+      - schurzi
+    repository: https://github.com/telekom-mms/ansible-collection-icinga-director
+  dellemc.enterprise_sonic:
+    maintainers:
+      - javeedf
+    repository: https://github.com/ansible-collections/dellemc.enterprise_sonic
+  hpe.nimble:
+    maintainers:
+      - ar-india
+      - datamattsson
+    repository: https://github.com/hpe-storage/nimble-ansible-modules
+    collection-directory: "./ansible_collection/hpe/nimble"
+  netapp.azure:
+    maintainers:
+      - carchi8py
+      - suhasbshekar
+      - wenjun666
+      - chuyich
+    repository: https://github.com/ansible-collections/netapp.azure
+  netapp.cloudmanager:
+    maintainers:
+      - carchi8py
+      - suhasbshekar
+      - wenjun666
+      - chuyich
+    repository: https://github.com/ansible-collections/netapp.cloudmanager
+  netapp.um_info:
+    maintainers:
+      - carchi8py
+      - suhasbshekar
+      - wenjun666
+      - chuyich
+    repository: https://github.com/ansible-collections/netapp.um_info
+  community.ciscosmb:
+    maintainers:
+      - qaxi
+    repository: https://github.com/ansible-collections/community.ciscosmb
+  community.dns:
+    maintainers:
+      - felixfontein
+    repository: https://github.com/ansible-collections/community.dns
+  cloud.common:
+    maintainers:
+      - Akasurde
+      - abikouo
+      - goneri
+      - jillr
+    repository: https://github.com/ansible-collections/cloud.common
+  infoblox.nios_modules:
+    maintainers:
+      - anagha-infoblox
+    repository: https://github.com/infobloxopen/infoblox-ansible
+  microsoft.ad:
+    maintainers:
+      - jborean93
+    repository: https://github.com/ansible-collections/microsoft.ad
+  netapp.storagegrid:
+    maintainers:
+      - carchi8py
+      - jkandati
+      - joshedmonds
+    repository: https://github.com/ansible-collections/netapp.storagegrid
+  cisco.ise:
+    maintainers:
+      - wastorga
+      - racampos
+      - jbogarin
+    repository: https://github.com/CiscoISE/ansible-ise
+  community.sap:
+    maintainers:
+      - rainerleber
+    repository: https://github.com/ansible-collections/community.sap
+  community.sap_libs:
+    maintainers:
+      - rainerleber
+    repository: https://github.com/sap-linuxlab/community.sap_libs
+  vmware.vmware_rest:
+    maintainers:
+      - goneri
+    repository: https://github.com/ansible-collections/vmware.vmware_rest
+  cisco.dnac:
+    maintainers:
+      - racampos
+      - wastorga
+    repository: https://github.com/cisco-en-programmability/dnacenter-ansible
+  purestorage.fusion:
+    maintainers:
+      - sdodsley
+    repository: https://github.com/Pure-Storage-Ansible/Fusion-Collection
+  ibm.spectrum_virtualize:
+    maintainers:
+      - Shilpi-J
+    repository: https://github.com/ansible-collections/ibm.spectrum_virtualize
+  ibm.storage_virtualize:
+    maintainers:
+      - sumitguptaibm
+    repository: https://github.com/ansible-collections/ibm.storage_virtualize
+  vultr.cloud:
+    maintainers:
+      - resmo
+      - optik-aper
+    repository: https://github.com/vultr/ansible-collection-vultr
+  lowlydba.sqlserver:
+    maintainers:
+      - lowlydba
+    repository: https://github.com/LowlyDBA/lowlydba.sqlserver
+  grafana.grafana:
+    maintainers:
+      - ishanjainn
+    repository: https://github.com/grafana/grafana-ansible-collection
+  amazon.aws:
+    repository: https://github.com/ansible-collections/amazon.aws
+  ansible.netcommon:
+    repository: https://github.com/ansible-collections/ansible.netcommon
+  ansible.posix:
+    repository: https://github.com/ansible-collections/ansible.posix
+  ansible.windows:
+    repository: https://github.com/ansible-collections/ansible.windows
+  arista.eos:
+    repository: https://github.com/ansible-collections/arista.eos
+  awx.awx:
+    repository: https://github.com/ansible/awx
+    collection-directory: "./awx_collection"
+  azure.azcollection:
+    repository: https://github.com/ansible-collections/azure
+  check_point.mgmt:
+    repository: https://github.com/CheckPointSW/CheckPointAnsibleMgmtCollection
+  chocolatey.chocolatey:
+    repository: https://github.com/chocolatey/chocolatey-ansible
+    collection-directory: "./chocolatey"
+  cisco.aci:
+    repository: https://github.com/CiscoDevNet/ansible-aci
+  cisco.asa:
+    repository: https://github.com/ansible-collections/cisco.asa
+  cisco.intersight:
+    repository: https://github.com/CiscoDevNet/intersight-ansible
+  cisco.ios:
+    repository: https://github.com/ansible-collections/cisco.ios
+  cisco.iosxr:
+    repository: https://github.com/ansible-collections/cisco.iosxr
+  cisco.meraki:
+    repository: https://github.com/meraki/dashboard-api-ansible
+  cisco.mso:
+    repository: https://github.com/CiscoDevNet/ansible-mso
+  cisco.nxos:
+    repository: https://github.com/ansible-collections/cisco.nxos
+  cisco.ucs:
+    repository: https://github.com/CiscoDevNet/ansible-ucs
+  cloudscale_ch.cloud:
+    repository: https://github.com/cloudscale-ch/ansible-collection-cloudscale
+  community.aws:
+    repository: https://github.com/ansible-collections/community.aws
+  community.azure:
+    repository: https://github.com/ansible-collections/community.azure
+  community.crypto:
+    repository: https://github.com/ansible-collections/community.crypto
+  community.digitalocean:
+    repository: https://github.com/ansible-collections/community.digitalocean
+  community.docker:
+    repository: https://github.com/ansible-collections/community.docker
+  community.general:
+    repository: https://github.com/ansible-collections/community.general
+  community.grafana:
+    repository: https://github.com/ansible-collections/grafana
+  community.hashi_vault:
+    repository: https://github.com/ansible-collections/community.hashi_vault
+  community.hrobot:
+    repository: https://github.com/ansible-collections/community.hrobot
+  community.libvirt:
+    repository: https://github.com/ansible-collections/community.libvirt
+  community.mongodb:
+    repository: https://github.com/ansible-collections/community.mongodb
+  community.mysql:
+    repository: https://github.com/ansible-collections/community.mysql
+  community.network:
+    repository: https://github.com/ansible-collections/community.network
+  community.okd:
+    repository: https://github.com/openshift/community.okd
+  community.postgresql:
+    repository: https://github.com/ansible-collections/community.postgresql
+  community.proxysql:
+    repository: https://github.com/ansible-collections/community.proxysql
+  community.rabbitmq:
+    repository: https://github.com/ansible-collections/community.rabbitmq
+  community.routeros:
+    repository: https://github.com/ansible-collections/community.routeros
+  community.vmware:
+    repository: https://github.com/ansible-collections/community.vmware
+  community.windows:
+    repository: https://github.com/ansible-collections/community.windows
+  community.zabbix:
+    repository: https://github.com/ansible-collections/community.zabbix
+  containers.podman:
+    repository: https://github.com/containers/ansible-podman-collections
+  cyberark.pas:
+    repository: https://github.com/cyberark/ansible-security-automation-collection
+  dellemc.powerflex:
+    maintainers:
+      - kuttattz
+      - Bhavneet-Sharma
+      - Jennifer-John
+      - meenakshidembi691
+      - Pavan-Mudunuri
+      - Previnkumar-G
+      - trisha-dell
+    repository: https://github.com/dell/ansible-powerflex
+  dellemc.unity:
+    maintainers:
+      - kuttattz
+      - Bhavneet-Sharma
+      - Jennifer-John
+      - meenakshidembi691
+      - Pavan-Mudunuri
+      - Previnkumar-G
+      - trisha-dell
+    repository: https://github.com/dell/ansible-unity
+  f5networks.f5_modules:
+    repository: https://github.com/F5Networks/f5-ansible-f5modules
+    collection-directory: "./ansible_collections/f5networks/f5_modules"
+  fortinet.fortimanager:
+    repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortimanager-collection
+  fortinet.fortios:
+    repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortios-collection
+  frr.frr:
+    repository: https://github.com/ansible-collections/frr.frr
+  gluster.gluster:
+    repository: https://github.com/gluster/gluster-ansible-collection
+  google.cloud:
+    repository: https://github.com/ansible-collections/google.cloud
+  hetzner.hcloud:
+    repository: https://github.com/ansible-collections/hetzner.hcloud
+  ibm.qradar:
+    repository: https://github.com/ansible-collections/ibm.qradar
+  infinidat.infinibox:
+    repository: https://github.com/infinidat/ansible-infinidat-collection
+  junipernetworks.junos:
+    repository: https://github.com/ansible-collections/junipernetworks.junos
+  netapp.aws:
+    maintainers:
+      - carchi8py
+      - suhasbshekar
+      - wenjun666
+      - chuyich
+    repository: https://github.com/ansible-collections/netapp.aws
+  netapp.elementsw:
+    repository: https://github.com/ansible-collections/netapp.elementsw
+  netapp.ontap:
+    maintainers:
+      - carchi8py
+      - suhasbshekar
+      - wenjun666
+      - chuyich
+    repository: https://github.com/ansible-collections/netapp.ontap
+  netapp_eseries.santricity:
+    repository: https://github.com/netapp-eseries/santricity
+  netbox.netbox:
+    repository: https://github.com/netbox-community/ansible_modules
+  ngine_io.cloudstack:
+    repository: https://github.com/ngine-io/ansible-collection-cloudstack
+  ngine_io.exoscale:
+    repository: https://github.com/ngine-io/ansible-collection-exoscale
+  openstack.cloud:
+    repository: https://opendev.org/openstack/ansible-collections-openstack
+  openvswitch.openvswitch:
+    repository: https://github.com/ansible-collections/openvswitch.openvswitch
+  ovirt.ovirt:
+    repository: https://github.com/ovirt/ovirt-ansible-collection
+    tag_version_regex: "^(.*)-1$"
+  purestorage.flasharray:
+    repository: https://github.com/Pure-Storage-Ansible/FlashArray-Collection
+  purestorage.flashblade:
+    repository: https://github.com/Pure-Storage-Ansible/FlashBlade-Collection
+  splunk.es:
+    repository: https://github.com/ansible-collections/splunk.es
+  theforeman.foreman:
+    repository: https://github.com/theforeman/foreman-ansible-modules
+  vyos.vyos:
+    repository: https://github.com/ansible-collections/vyos.vyos
+  wti.remote:
+    repository: https://github.com/wtinetworkgear/wti-collection
+    collection-directory: "./wti/remote"
