@@ -117,11 +117,11 @@ releases require special handling before running the release playbook.
     releases table:
 
     ``` yaml
-     ${VERSION}:
-       changes:
-         release_summary: 'Release Date: ${RELEASE_DATE}
-           `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
-       release_date: '${RELEASE_DATE}'
+      ${VERSION}:
+        changes:
+          release_summary: 'Release Date: ${RELEASE_DATE}
+            `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+        release_date: '${RELEASE_DATE}'
     ```
 
     The release date should be formatted as `YYYY-MM-DD`.
