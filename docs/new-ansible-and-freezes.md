@@ -120,6 +120,8 @@ releases require special handling before running the release playbook.
       ${VERSION}:
         changes:
           release_summary: 'Release Date: ${RELEASE_DATE}
+
+
             `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
         release_date: '${RELEASE_DATE}'
     ```
