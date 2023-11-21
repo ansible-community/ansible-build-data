@@ -1,0 +1,4 @@
+# vmware.vmware_rest 2.3.1 version_conflict: cloud.common-3.0.0 but needs >=2.0.4,<3.0.0
+# This constraint has been fixed on vmware.vmware_rest's main branch,
+# so we can remove it once vmaware.vmware_rest creates a new release.
+cloud.common: <3.0.0
