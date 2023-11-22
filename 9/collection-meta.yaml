@@ -124,6 +124,8 @@ collections:
       - rainerleber
     repository: https://github.com/sap-linuxlab/community.sap_libs
   vmware.vmware_rest:
+    maintainers:
+      - ansible-collections/cloud
     repository: https://github.com/ansible-collections/vmware.vmware_rest
   cisco.dnac:
     maintainers:
