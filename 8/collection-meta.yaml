@@ -27,10 +27,6 @@ collections:
       - ISIB-Group
     repository: https://github.com/ISIB-Group/inspur.sm
   kubernetes.core:
-    maintainers:
-      - jillr
-      - akasurde
-      - gravesm
     repository: https://github.com/ansible-collections/kubernetes.core
   sensu.sensu_go:
     maintainers:
@@ -89,11 +85,6 @@ collections:
       - felixfontein
     repository: https://github.com/ansible-collections/community.dns
   cloud.common:
-    maintainers:
-      - Akasurde
-      - abikouo
-      - goneri
-      - jillr
     repository: https://github.com/ansible-collections/cloud.common
   infoblox.nios_modules:
     maintainers:
