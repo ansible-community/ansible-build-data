@@ -1,3 +1,8 @@
 ---
 ancestor: 9.0.0
-releases: {}
+releases:
+  10.0.0a1:
+    changes:
+      removed_features:
+        - The deprecated ``community.azure`` collection has been been removed.
+          There is a successor collection ``azure.azcollection`` in the community package which should cover the same functionality.
