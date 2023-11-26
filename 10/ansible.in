@@ -22,7 +22,6 @@ cisco.ucs
 cloud.common
 cloudscale_ch.cloud
 community.aws
-community.azure
 community.ciscosmb
 community.crypto
 community.digitalocean

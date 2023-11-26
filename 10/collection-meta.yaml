@@ -199,8 +199,6 @@ collections:
     repository: https://github.com/cloudscale-ch/ansible-collection-cloudscale
   community.aws:
     repository: https://github.com/ansible-collections/community.aws
-  community.azure:
-    repository: https://github.com/ansible-collections/community.azure
   community.crypto:
     repository: https://github.com/ansible-collections/community.crypto
   community.digitalocean:
