@@ -2,21 +2,21 @@ name: Upload-ansible-tarball-pypi
 on:
   workflow_dispatch:
     inputs:
-      ansible_version:
+      ansible-version:
         description: 'Release Version. Example : 11.1.0'
         required: true
-      ansible_major_version:
+      ansible-major-version:
         description: 'Exmaple 11'
         required: true
 
 env:
-  BUILD_DATA_DIR: "antsibull/build/ansible-build-data/${{ inputs.ansible_major_version }}"
-  BUILDFILE: "ansible-${{ inputs.ansible_major_version }}.build"
-  DEPSFILE: "ansible-${{ inputs.ansible_version }}.deps"
+  BUILD_DATA_DIR: "antsibull/build/ansible-build-data/${{ inputs.ansible-major-version }}"
+  BUILDFILE: "ansible-${{ inputs.ansible-major-version }}.build"
+  DEPSFILE: "ansible-${{ inputs.ansible-version }}.deps"
 
 jobs:
   publish:
-    name: 'Upload Ansible community distribution (${{ inputs.ansible_version }}) to PyPI'
+    name: 'Upload Ansible community distribution (${{ inputs.ansible-version }}) to PyPI'
     runs-on: ubuntu-latest
     environment:
       name: release
@@ -32,24 +32,10 @@ jobs:
           ref: main
           path: antsibull
 
-      - name: Check out antsibull-core
-        uses: actions/checkout@v3
-        with:
-          repository: ansible-community/antsibull-core
-          ref: main
-          path: antsibull-core
 
-      - name: Check out antsibull-changelog
-        uses: actions/checkout@v3
-        with:
-          repository: ansible-community/antsibull-changelog
-          ref: main
-          path: antsibull-changelog
-
-      - name: Pre-create sdist directory
+      - name: Pre-create build directory
         run: |
           mkdir -p antsibull/build
-          mkdir -p antsibull/sdist
 
 # We need to checkout the docs repo here
 
@@ -70,23 +56,27 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install ansible-core antsibull
-          ansible-galaxy collection install 'git+https://github.com/ansible-collections/community.general.git'
+          ansible-galaxy collection install community.general
 
 
-      - name: Create sdist dir using the deps file created in the ansible-build-data Release PR
+      - name: Create sdist and wheel using the deps file created in the ansible-build-data Release PR
+        working-directory: antsibull
         run: |
-          antsibull-build rebuild-single "${{ inputs.ansible_version }}" --data-dir "${BUILD_DATA_DIR}" --build-file "${BUILDFILE}"  --sdist-dir antsibull/dist --debian
+          ansible-playbook -vv playbooks/build-single-release.yaml -e 'antsibull_ansible-version="${{ inputs.ansible-version }}"' -e antsibull_data_reset=false
 
-      - name: Upload Ansible sdist to PyPI
+      - name: Upload Ansible sdist and wheel to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
-          packages-dir: antsibull/sdist
+          packages-dir: antsibull/build
+
+      - name: Create git tag
+        working-directory: antsibull/build/ansible-build-data
+        run: |
+          git tag -a ${{ inputs.ansible-version }} -m "Ansible ${{ inputs.ansible-version }}: Changelog, Porting Guide and Dependent Collection Details"
+          git push origin ${{ inputs.ansible-version }}
 
 
-# Create PR
-# Run the docs build
-# upload to PyPI
 # Create the tag
 
 

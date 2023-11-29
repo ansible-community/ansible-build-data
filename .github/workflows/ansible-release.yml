@@ -2,19 +2,20 @@ name: ansible-release
 on:
   workflow_dispatch:
     inputs:
-      ansible_version:
-        description: 'Release Version. Example : 11.1.0'
+      ansible-version:
+        description: >-
+          Release Version. Example : 11.1.0
         required: true
-      ansible_major_version:
-        description: 'Exmaple 11'
+      ansible-major-version:
+        description: Example 11
         required: true
 env:
-  CI_COMMIT_MESSAGE: 'Ansible "${{ inputs.ansible_version }}": Dependencies, changelog and porting guide'
+  CI_COMMIT_MESSAGE: 'Ansible "${{ inputs.ansible-version }}": Dependencies, changelog and porting guide'
 
 
 jobs:
   build:
-    name: 'Build Ansible community distribution (${{ inputs.ansible_version }})'
+    name: 'Build Ansible community distribution (${{ inputs.ansible-version }})'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -28,20 +29,6 @@ jobs:
           repository: ansible-community/antsibull
           ref: main
           path: antsibull
-
-      - name: Check out antsibull-core
-        uses: actions/checkout@v3
-        with:
-          repository: ansible-community/antsibull-core
-          ref: main
-          path: antsibull-core
-
-      - name: Check out antsibull-changelog
-        uses: actions/checkout@v3
-        with:
-          repository: ansible-community/antsibull-changelog
-          ref: main
-          path: antsibull-changelog
 
       - name: Pre-create build directory
         run: mkdir -p antsibull/build
@@ -65,12 +52,12 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install ansible-core antsibull
-          ansible-galaxy collection install 'git+https://github.com/ansible-collections/community.general.git'
+          ansible-galaxy collection install community.general
 
       - name: Checking out to a new branch & setting the user details
         run: |
           cd antsibull/build/ansible-build-data
-          git checkout -b "publish-${{ inputs.ansible_version }}"
+          git checkout -b "publish-${{ inputs.ansible-version }}"
           git config --global user.name "${{github.actor}}"
           git config --global user.email "${{github.actor}}@users.noreply.github.com"
 
@@ -81,9 +68,9 @@ jobs:
         run: |
           ansible-playbook -vv playbooks/build-single-release.yaml \
           -e antsibull_data_reset=false \
-          -e 'antsibull_ansible_version="${{ inputs.ansible_version }}"' \
-          -e 'antsibull_data_dir="{{ antsibull_data_git_dir }}/${{ inputs.ansible_major_version }}"' \
-          -e 'antsibull_build_file="ansible-${{ inputs.ansible_major_version }}.build"'
+          -e 'antsibull_ansible_version="${{ inputs.ansible-version }}"' \
+          -e 'antsibull_data_dir="{{ antsibull_data_git_dir }}/${{ inputs.ansible-major-version }}"' \
+          -e 'antsibull_build_file="ansible-${{ inputs.ansible-major-version }}.build"'
 
         env:
           # Make result better readable
@@ -93,22 +80,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-         cd "antsibull/build/ansible-build-data/${{ inputs.ansible_major_version }}"
+         cd "antsibull/build/ansible-build-data/${{ inputs.ansible-major-version }}"
          git add *.rst *.build *.deps *.yaml *.in validate-tags-ignores
          git commit -a -m "${{ env.CI_COMMIT_MESSAGE }}"
-         git push origin "publish-${{ inputs.ansible_version }}"
+         git push origin "publish-${{ inputs.ansible-version }}"
 
       - name: Create PR to the ansible-build-data
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd antsibull/build/ansible-build-data
-          gh pr create -B main -H "publish-${{ inputs.ansible_version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_COMMIT_MESSAGE }}"
+          gh pr create -B main -H "publish-${{ inputs.ansible-version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_COMMIT_MESSAGE }}"
 
-
-# Create PR
-# Run the docs build
-# upload to PyPI
 # Create the tag
 
 
