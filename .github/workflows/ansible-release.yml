@@ -10,12 +10,15 @@ on:
         required: true
 env:
   CI_COMMIT_MESSAGE: 'Ansible "${{ inputs.ansible_version }}": Dependencies, changelog and porting guide'
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 
 jobs:
   build:
     name: 'Build Ansible community distribution (${{ inputs.ansible_version }})'
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
 
 
     steps:
@@ -61,7 +64,7 @@ jobs:
         working-directory: antsibull
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install ansible-core . ../antsibull-core ../antsibull-changelog
+          python3 -m pip install ansible-core antsibull
           ansible-galaxy collection install 'git+https://github.com/ansible-collections/community.general.git'
 
       - name: Checking out to a new branch & setting the user details
@@ -87,6 +90,8 @@ jobs:
           ANSIBLE_CALLBACK_RESULT_FORMAT: yaml
 
       - name: Commit ansible-build-data and push the changes to github
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
          cd "antsibull/build/ansible-build-data/${{ inputs.ansible_major_version }}"
          git add *.rst *.build *.deps *.yaml *.in validate-tags-ignores
@@ -94,6 +99,8 @@ jobs:
          git push origin "publish-${{ inputs.ansible_version }}"
 
       - name: Create PR to the ansible-build-data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           cd antsibull/build/ansible-build-data
           gh pr create -B main -H "publish-${{ inputs.ansible_version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_COMMIT_MESSAGE }}"

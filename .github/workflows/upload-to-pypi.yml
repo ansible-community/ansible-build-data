@@ -69,13 +69,13 @@ jobs:
         working-directory: antsibull
         run: |
           python3 -m pip install --upgrade pip
-          python3 -m pip install ansible-core . ../antsibull-core ../antsibull-changelog
+          python3 -m pip install ansible-core antsibull
           ansible-galaxy collection install 'git+https://github.com/ansible-collections/community.general.git'
 
 
       - name: Create sdist dir using the deps file created in the ansible-build-data Release PR
         run: |
-          antsibull-build rebuild-single "${{ inputs.ansible_version }}" --data-dir "${BUILD_DATA_DIR}" --build-file "${BUILDFILE}" --deps-file "${DEPSFILE}" --sdist-dir antsibull/sdist --debian
+          antsibull-build rebuild-single "${{ inputs.ansible_version }}" --data-dir "${BUILD_DATA_DIR}" --build-file "${BUILDFILE}"  --sdist-dir antsibull/dist --debian
 
       - name: Upload Ansible sdist to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
