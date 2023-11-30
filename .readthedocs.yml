@@ -6,4 +6,5 @@ build:
     python: "3.11"
   commands:
     - pip install -U nox
-    - 'nox -e mkdocs -- build --site-dir _readthedocs/html "${READTHEDOCS_OUTPUT}/html"'
+    - mkdir -p _readthedocs/html/
+    - nox -e mkdocs -- build --site-dir=_readthedocs/html
