@@ -14,15 +14,12 @@ env:
   BUILDFILE: "ansible-${{ inputs.ansible-major-version }}.build"
   DEPSFILE: "ansible-${{ inputs.ansible-version }}.deps"
 
+# Build job builds the wheel and the source tarball and upload the artifacts
+
 jobs:
-  publish:
-    name: 'Upload Ansible community distribution (${{ inputs.ansible-version }}) to PyPI'
+  build:
+    name: Build and Upload sdist and wheel
     runs-on: ubuntu-latest
-    environment:
-      name: testpypi
-      url: https://test.pypi.org/project/ansible/${{ inputs.ansible-version }}
-    permissions:
-      id-token: write
 
     steps:
       - name: Check out antsibull
@@ -31,15 +28,11 @@ jobs:
           repository: ansible-community/antsibull
           path: antsibull
 
-
       - name: Pre-create build directory
         run: |
           mkdir -p antsibull/build
 
-# We need to checkout the docs repo here
-
-      # This is where the antsibull build-release role expects it by default
-      - name: Check out ansible-build-data under antsibull build directory
+      - name: Check out ansible-build-data
         uses: actions/checkout@v3
         with:
           path: antsibull/build/ansible-build-data
@@ -56,27 +49,40 @@ jobs:
           python3 -m pip install ansible-core antsibull
           ansible-galaxy collection install community.general
 
-
       - name: Create sdist and wheel using the deps file created in the ansible-build-data Release PR
         working-directory: antsibull
         run: |
           ansible-playbook -vv playbooks/build-single-release.yaml -e 'antsibull_ansible-version="${{ inputs.ansible-version }}"' -e antsibull_data_reset=false
 
-      - name: Upload Ansible sdist and wheel to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
-          repository-url: https://test.pypi.org/legacy/
-          packages-dir: antsibull/build
+          name: sdist-and-wheel
+          path: build/ansible-*.*
 
-      - name: Create git tag
-        working-directory: antsibull/build/ansible-build-data
-        run: |
-          git tag -a ${{ inputs.ansible-version }} -m "Ansible ${{ inputs.ansible-version }}: Changelog, Porting Guide and Dependent Collection Details"
-          git push origin ${{ inputs.ansible-version }}
+# publish job downloads the arifacts and publish it to PyPI
 
+  publish:
+    needs: build
+    name: 'Upload Ansible (${{ inputs.ansible-version }}) to PyPI'
+    runs-on: ubuntu-latest
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/project/ansible/${{ inputs.ansible-version }}
+    permissions:
+      id-token: write
 
-# Create the tag
+    steps:
 
+    - name: Download artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: sdist-and-wheel
+        path: dist/
 
+    - name: Upload Ansible sdist and wheel to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/legacy/
 
 

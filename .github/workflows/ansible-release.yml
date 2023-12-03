@@ -54,11 +54,11 @@ jobs:
           ansible-galaxy collection install community.general
 
       - name: Checking out to a new branch & setting the user details
+        working-directory: antsibull/build/ansible-build-data
         run: |
-          cd antsibull/build/ansible-build-data
           git checkout -b "publish-${{ inputs.ansible-version }}"
-          git config --global user.name "${{github.actor}}"
-          git config --global user.email "${{github.actor}}@users.noreply.github.com"
+          git config --global user.name "Github Actions"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
 # Run the playbook according to the current release process
 
@@ -81,7 +81,8 @@ jobs:
         run: |
          cd "antsibull/build/ansible-build-data/${{ inputs.ansible-major-version }}"
          git add *.rst *.build *.deps *.yaml *.in validate-tags-ignores
-         git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
+         git commit:x
+          -m "${{ env.CI_COMMIT_MESSAGE }}"
          git push origin "publish-${{ inputs.ansible-version }}"
 
       - name: Create PR to the ansible-build-data
