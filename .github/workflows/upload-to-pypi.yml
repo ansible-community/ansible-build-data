@@ -3,7 +3,8 @@ on:
   workflow_dispatch:
     inputs:
       ansible-version:
-        description: 'Release Version. Example : 11.1.0'
+        description: >-
+          Release Version. Example : 11.1.0
         required: true
       ansible-major-version:
         description: 'Exmaple 11'
