@@ -86,3 +86,22 @@ jobs:
         repository-url: https://test.pypi.org/legacy/
 
 
+# git-tag job creates the git tag
+
+  git-tag:
+    needs: publish
+    name: 'Creates git tag for Ansible (${{ inputs.ansible-version }})'
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Check out ansible-build-data
+        uses: actions/checkout@v3
+
+      - name: Create git tag
+        working-directory: ansible-build-data
+        run: |
+          git tag -a ${{ inputs.ansible-version }} -m "Ansible ${{ inputs.ansible-version }}: Changelog, Porting Guide and Dependent Collection Details"
+          git push origin ${{ inputs.ansible-version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
