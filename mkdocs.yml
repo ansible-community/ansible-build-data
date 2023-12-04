@@ -1,0 +1,31 @@
+---
+site_name: Ansible Package Release Management
+site_url: https://ansible.readthedocs.io/projects/ansible-build-data
+repo_url: https://github.com/ansible-community/ansible-build-data
+theme:
+  name: ansible
+  features:
+    - content.code.copy
+    - navigation.footer
+  # NOTE(gotmax23): I dislike web fonts in general and the Red Hat fonts from
+  # the Ansible theme in particular
+  font: false
+# REUSE-IgnoreStart
+copyright: >
+  Copyright (C) 2023 Ansible Project Authors |
+  SPDX-License-Identifier: <a style="text-decoration: underline;" href="https://github.com/ansible/ansible/blob/devel/COPYING">GPL-3.0-only</a>
+# REUSE-IgnoreEnd
+markdown_extensions:
+  # Builtin
+  - admonition
+  - toc:
+      permalink: true
+  # pymdownx
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+nav:
+  - Ansible Build Data: README.md
+  - release-process.md
+  - policies.md
+  - new-ansible-and-freezes.md

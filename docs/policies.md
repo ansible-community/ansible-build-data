@@ -69,13 +69,13 @@ In case of violations, the release manager must preform the following steps:
 1. First, the collection must be restricted to the previous tagged release in
    the `ansible-VERSION.constraints` file.
 
-   Take the `community.docker` collection as an example. If its version 3.9.0
-   was released and correctly tagged, and 3.9.1 was released but not correctly
-   tagged, add
+    Take the `community.docker` collection as an example. If its version 3.9.0
+    was released and correctly tagged, and 3.9.1 was released but not correctly
+    tagged, add
 
-   ```
-   community.docker: <3.9.1
-   ```
+    ```
+    community.docker: <3.9.1
+    ```
 
 2. Commit only the changed `ansible-VERSION.constraints` file:
 
@@ -83,26 +83,29 @@ In case of violations, the release manager must preform the following steps:
     git add 8/ansible-8.constraints
     git commit -m "pin community.docker to previous release"
     ```
+
 3. Rerun the release playbook.
    In this example, the ansible distribution will be built with
    community.docker 3.9.0 even though community.docker 3.9.1 is the latest
    version.
+
 4. Proceed with the rest of the release process as normal.
    Commit the other changed files.
    The collection release PR should be applied using the `Rebase and merge`
    option (as opposed to `Squash and merge`) so the first commit can be more
    easily reverted when/if the collection fixes the issue.
+
 5. The release manager or another community member needs to file an issue in
    the violating collection's issue tracker.
    This part should not block the current ansible package release,
    but the issue must have been filed before the following minor release.
    The following issue template can be used:
 
-   ``` markdown
-   Hi! As part of the ansible community package release process, we've determined that version {VERSION} of {COLLECTION} was released to Ansible Galaxy but not properly tagged in this Git repository.
-   This violates the [repository management][1] section of the Collection Requirements:
+    ``` markdown
+    Hi! As part of the ansible community package release process, we've determined that version {VERSION} of {COLLECTION} was released to Ansible Galaxy but not properly tagged in this Git repository.
+    This violates the [repository management][1] section of the Collection Requirements:
 
-   [1]: https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html#repository-management
+    [1]: https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html#repository-management
 
     > Every collection MUST have a public git repository. Releases of the collection MUST be tagged in said repository. This means that releases MUST be `git tag`ed and that the tag name MUST exactly match the Galaxy version number. Tag names MAY have a `v` prefix, but a collection's tag names MUST have a consistent format from release to release.
     >
@@ -112,7 +115,8 @@ In case of violations, the release manager must preform the following steps:
 
     [2]: https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#collections-not-satisfying-the-collection-requirements
 
-   ```
+    ```
+
 6. Post a comment in <https://github.com/ansible-community/ansible-build-data/issues/223>
    with a link to the issue.
 
