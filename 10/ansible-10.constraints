@@ -1,5 +1,4 @@
 # cisco.ise 2.6.2 version_conflict: ansible.utils-3.0.0 but needs >=2.0.0,<3.0
-# cisco.dnac 6.8.1 version_conflict: ansible.utils-3.0.0 but needs >=2.0.0,<3.0
 # cisco.meraki 2.16.16 version_conflict: ansible.utils-3.0.0 but needs >=2.0.0,<3.0
 ansible.utils: <3.0.0
 # ansible.netcommon 6.0.0 version_conflict: ansible.utils-2.12.0 but needs >=3.0.0
@@ -13,3 +12,5 @@ cisco.nxos: <6.0.0
 ibm.qradar: <3.0.0
 junipernetworks.junos: <6.0.0
 splunk.es: <3.0.0
+# Collections that require `ansible.utils>=3.0.0`
+cisco.dnac: !=6.8.2,<7.0.0
