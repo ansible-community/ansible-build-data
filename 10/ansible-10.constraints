@@ -14,3 +14,4 @@ junipernetworks.junos: <6.0.0
 splunk.es: <3.0.0
 # Collections that require `ansible.utils>=3.0.0`
 cisco.dnac: !=6.8.2,<7.0.0
+cisco.meraki: !=2.16.17,<3.0.0
