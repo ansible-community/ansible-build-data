@@ -1,5 +1,9 @@
 ancestor: 8.0.0
 releases:
+  9.0.0:
+    changes:
+      release_summary: '[YANKED] Release Date: 2023-11-21 `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2023-11-21'
   9.0.0a1:
     changes:
       deprecated_features:
@@ -100,19 +104,20 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2023-11-14'
-  9.0.0:
-   changes:
-     release_summary: '[YANKED] Release Date: 2023-11-21
-       `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
-   release_date: '2023-11-21'
   9.0.1:
-     changes:
-       release_summary: 'Release Date: 2023-11-21
+    changes:
+      bugfixes:
+      - Fix the Python package metadata in ``setup.cfg`` to require Python ``>=3.10``
+        to ensure that pip can properly install ``ansible`` on older Python versions.
+      release_summary: 'Release Date: 2023-11-21
 
 
-         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
-       bugfixes:
-         - Fix the Python package metadata in ``setup.cfg`` to require Python
-           ``>=3.10`` to ensure that pip can properly install ``ansible`` on
-           older Python versions.
-     release_date: '2023-11-21'
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2023-11-21'
+  9.1.0:
+    changes:
+      release_summary: 'Release Date: 2023-12-05
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2023-12-05'
