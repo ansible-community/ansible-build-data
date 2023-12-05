@@ -13,7 +13,7 @@ theme:
 # REUSE-IgnoreStart
 copyright: >
   Copyright (C) 2023 Ansible Project Authors |
-  SPDX-License-Identifier: <a style="text-decoration: underline;" href="https://github.com/ansible/ansible/blob/devel/COPYING">GPL-3.0-only</a>
+  SPDX-License-Identifier: <a style="text-decoration: underline;" href="https://github.com/ansible-community/ansible-build-data/blob/main/LICENSE">GPL-3.0-or-later</a>
 # REUSE-IgnoreEnd
 markdown_extensions:
   # Builtin
