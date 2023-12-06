@@ -1,6 +1,0 @@
-# https://github.com/cisco-en-programmability/dnacenter-ansible/issues/133#issuecomment-1839932598
-# cisco.dnac 6.8.2 drops support for ansible.utils v2 and contains other breaking changes
-cisco.dnac: !=6.8.2
-# Relates: https://github.com/meraki/dashboard-api-ansible/issues/38
-# cisco.meraki 2.16.17 also drops support for ansible.utils v2
-cisco.meraki: !=2.16.17
