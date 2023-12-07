@@ -125,6 +125,7 @@ collections:
     repository: https://github.com/sap-linuxlab/community.sap_libs
   vmware.vmware_rest:
     maintainers:
+      # ansible-collections/cloud
       - gravesm
       - jillr
       - hakbailey
