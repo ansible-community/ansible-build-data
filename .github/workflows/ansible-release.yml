@@ -15,7 +15,7 @@ env:
 
 jobs:
   build:
-    name: 'Build Ansible community distribution (${{ inputs.ansible-version }})'
+    name: 'Build Ansible (${{ inputs.ansible-version }})'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -49,7 +49,6 @@ jobs:
       - name: Install dependencies
         working-directory: antsibull
         run: |
-          python3 -m pip install --upgrade pip
           python3 -m pip install ansible-core antsibull
           ansible-galaxy collection install community.general
 
@@ -68,29 +67,25 @@ jobs:
           ansible-playbook -vv playbooks/build-single-release.yaml \
           -e antsibull_data_reset=false \
           -e 'antsibull_ansible_version="${{ inputs.ansible-version }}"' \
-          -e 'antsibull_data_dir="{{ antsibull_data_git_dir }}/${{ inputs.ansible-major-version }}"' \
-          -e 'antsibull_build_file="ansible-${{ inputs.ansible-major-version }}.build"'
+          -e 'antsibull_data_dir="{{ antsibull_data_git_dir }}/${{ inputs.ansible-major-version }}"'
 
         env:
           # Make result better readable
           ANSIBLE_CALLBACK_RESULT_FORMAT: yaml
 
       - name: Commit ansible-build-data and push the changes to github
+        working-directory: 'antsibull/build/ansible-build-data/${{ inputs.ansible-major-version }}'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-         cd "antsibull/build/ansible-build-data/${{ inputs.ansible-major-version }}"
          git add *.rst *.build *.deps *.yaml *.in validate-tags-ignores
          git commit:x
           -m "${{ env.CI_COMMIT_MESSAGE }}"
          git push origin "publish-${{ inputs.ansible-version }}"
 
       - name: Create PR to the ansible-build-data
+        working-directory: antsibull/build/ansible-build-data
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cd antsibull/build/ansible-build-data
           gh pr create -B main -H "publish-${{ inputs.ansible-version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_COMMIT_MESSAGE }}"
-
-
-

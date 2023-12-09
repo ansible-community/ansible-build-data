@@ -7,7 +7,7 @@ on:
           Release Version. Example : 11.1.0
         required: true
       ansible-major-version:
-        description: 'Exmaple 11'
+        description: 'Example 11'
         required: true
 
 env:
@@ -46,7 +46,6 @@ jobs:
       - name: Install dependencies
         working-directory: antsibull
         run: |
-          python3 -m pip install --upgrade pip
           python3 -m pip install ansible-core antsibull
           ansible-galaxy collection install community.general
 
