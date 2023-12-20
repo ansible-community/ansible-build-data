@@ -1,0 +1,4 @@
+# cisco.dnac 6.10.0 is not tagged
+cisco.dnac: !=6.10.0
+# ibm.storage_virtualize 2.2.0 is not tagged
+ibm.storage_virtualize: !=2.2.0
