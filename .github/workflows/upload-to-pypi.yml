@@ -52,13 +52,13 @@ jobs:
       - name: Create sdist and wheel using the deps file created in the ansible-build-data Release PR
         working-directory: antsibull
         run: |
-          ansible-playbook -vv playbooks/build-single-release.yaml -e 'antsibull_ansible-version="${{ inputs.ansible-version }}"' -e antsibull_data_reset=false
+          ansible-playbook -vv playbooks/build-single-release.yaml -e 'antsibull_ansible-version=${{ inputs.ansible-version }}' -e antsibull_data_reset=false
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: sdist-and-wheel
-          path: build/ansible-*.*
+          path: antsibull/build/ansible-*.*
 
 # publish job downloads the arifacts and publish it to PyPI
 
@@ -101,6 +101,8 @@ jobs:
       - name: Create git tag
         working-directory: ansible-build-data
         run: |
+          git config --global user.name "Github Actions"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git tag -a ${{ inputs.ansible-version }} -m "Ansible ${{ inputs.ansible-version }}: Changelog, Porting Guide and Dependent Collection Details"
           git push origin ${{ inputs.ansible-version }}
         env:

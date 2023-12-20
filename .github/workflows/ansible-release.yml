@@ -10,7 +10,7 @@ on:
         description: Example 11
         required: true
 env:
-  CI_COMMIT_MESSAGE: 'Ansible "${{ inputs.ansible-version }}": Dependencies, changelog and porting guide'
+  CI_COMMIT_MESSAGE: 'Ansible ${{ inputs.ansible-version }}: Dependencies, changelog and porting guide'
 
 
 jobs:
@@ -32,8 +32,6 @@ jobs:
 
       - name: Pre-create build directory
         run: mkdir -p antsibull/build
-
-# We need to checkout the docs repo here
 
       # This is where the antsibull build-release role expects it by default
       - name: Check out ansible-build-data under antsibull build directory
@@ -66,8 +64,8 @@ jobs:
         run: |
           ansible-playbook -vv playbooks/build-single-release.yaml \
           -e antsibull_data_reset=false \
-          -e 'antsibull_ansible_version="${{ inputs.ansible-version }}"' \
-          -e 'antsibull_data_dir="{{ antsibull_data_git_dir }}/${{ inputs.ansible-major-version }}"'
+          -e 'antsibull_ansible_version=${{ inputs.ansible-version }}' \
+          -e 'antsibull_data_dir={{ antsibull_data_git_dir }}/${{ inputs.ansible-major-version }}'
 
         env:
           # Make result better readable
@@ -79,8 +77,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
          git add *.rst *.build *.deps *.yaml *.in validate-tags-ignores
-         git commit:x
-          -m "${{ env.CI_COMMIT_MESSAGE }}"
+         git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
          git push origin "publish-${{ inputs.ansible-version }}"
 
       - name: Create PR to the ansible-build-data
