@@ -67,8 +67,8 @@ jobs:
     name: 'Upload Ansible (${{ inputs.ansible-version }}) to PyPI'
     runs-on: ubuntu-latest
     environment:
-      name: testpypi
-      url: https://test.pypi.org/project/ansible/${{ inputs.ansible-version }}
+      name: pypi
+      url: https://pypi.org/project/ansible/${{ inputs.ansible-version }}
     permissions:
       id-token: write
 
@@ -83,7 +83,7 @@ jobs:
     - name: Upload Ansible sdist and wheel to PyPI
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        repository-url: https://test.pypi.org/legacy/
+        repository-url: https://pypi.org/project/ansible
 
 
 # git-tag job creates the git tag
