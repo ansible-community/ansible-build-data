@@ -12,7 +12,6 @@ on:
 env:
   CI_COMMIT_MESSAGE: 'Ansible ${{ inputs.ansible-version }}: Dependencies, changelog and porting guide'
 
-
 jobs:
   build:
     name: 'Build Ansible (${{ inputs.ansible-version }})'
@@ -20,7 +19,6 @@ jobs:
     permissions:
       pull-requests: write
       contents: write
-
 
     steps:
       - name: Check out antsibull
