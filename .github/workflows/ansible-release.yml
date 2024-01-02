@@ -11,6 +11,7 @@ on:
         required: true
 env:
   CI_COMMIT_MESSAGE: 'Ansible ${{ inputs.ansible-version }}: Dependencies, changelog and porting guide'
+  ANSIBLE_VERSION: '${{ inputs.ansible-version }}'
 
 jobs:
   build:
@@ -51,7 +52,7 @@ jobs:
       - name: Checking out to a new branch & setting the user details
         working-directory: antsibull/build/ansible-build-data
         run: |
-          git checkout -b "publish-${{ inputs.ansible-version }}"
+          git checkout -b "publish-${ANSIBLE_VERSION}"
           git config --global user.name "Github Actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
@@ -62,8 +63,7 @@ jobs:
         run: |
           ansible-playbook -vv playbooks/build-single-release.yaml \
           -e antsibull_data_reset=false \
-          -e 'antsibull_ansible_version=${{ inputs.ansible-version }}' \
-          -e 'antsibull_data_dir={{ antsibull_data_git_dir }}/${{ inputs.ansible-major-version }}'
+          -e "antsibull_ansible_version=${ANSIBLE_VERSION}" \
 
         env:
           # Make result better readable
@@ -71,16 +71,14 @@ jobs:
 
       - name: Commit ansible-build-data and push the changes to github
         working-directory: 'antsibull/build/ansible-build-data/${{ inputs.ansible-major-version }}'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
          git add *.rst *.build *.deps *.yaml *.in validate-tags-ignores
          git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
-         git push origin "publish-${{ inputs.ansible-version }}"
+         git push origin "publish-${ANSIBLE_VERSION}"
 
       - name: Create PR to the ansible-build-data
         working-directory: antsibull/build/ansible-build-data
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr create -B main -H "publish-${{ inputs.ansible-version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_COMMIT_MESSAGE }}"
+          gh pr create --base main --head "publish-${{ inputs.ansible-version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_COMMIT_MESSAGE }}"

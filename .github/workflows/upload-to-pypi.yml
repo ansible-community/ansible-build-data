@@ -7,13 +7,11 @@ on:
           Release Version. Example : 11.1.0
         required: true
       ansible-major-version:
-        description: 'Example 11'
+        description: 'Ansible major version. Example: 11'
         required: true
 
 env:
-  BUILD_DATA_DIR: "antsibull/build/ansible-build-data/${{ inputs.ansible-major-version }}"
-  BUILDFILE: "ansible-${{ inputs.ansible-major-version }}.build"
-  DEPSFILE: "ansible-${{ inputs.ansible-version }}.deps"
+  ANSIBLE_VERSION: "${{ inputs.ansible-version }}"
 
 # Build job builds the wheel and the source tarball and upload the artifacts
 
@@ -52,7 +50,7 @@ jobs:
       - name: Create sdist and wheel using the deps file created in the ansible-build-data Release PR
         working-directory: antsibull
         run: |
-          ansible-playbook -vv playbooks/build-single-release.yaml -e 'antsibull_ansible-version=${{ inputs.ansible-version }}' -e antsibull_data_reset=false
+          ansible-playbook -vv playbooks/build-single-release.yaml -e "antsibull_ansible-version=${ANSIBLE_VERSION}" -e antsibull_data_reset=false
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -68,7 +66,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/project/ansible/${{ inputs.ansible-version }}
+      url: https://pypi.org/project/ansible
     permissions:
       id-token: write
 
@@ -89,6 +87,8 @@ jobs:
     needs: publish
     name: 'Creates git tag for Ansible (${{ inputs.ansible-version }})'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
 
@@ -100,7 +100,5 @@ jobs:
         run: |
           git config --global user.name "Github Actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag -a ${{ inputs.ansible-version }} -m "Ansible ${{ inputs.ansible-version }}: Changelog, Porting Guide and Dependent Collection Details"
+          git tag -a "${ANSIBLE_VERSION}" -m "Ansible ${ANSIBLE_VERSION}: Changelog, Porting Guide and Dependent Collection Details"
           git push origin ${{ inputs.ansible-version }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
