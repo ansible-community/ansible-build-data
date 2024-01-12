@@ -32,6 +32,7 @@ community.general
 community.grafana
 community.hashi_vault
 community.hrobot
+community.library_inventory_filtering_v1
 community.libvirt
 community.mongodb
 community.mysql

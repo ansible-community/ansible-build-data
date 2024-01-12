@@ -221,6 +221,10 @@ collections:
     repository: https://github.com/ansible-collections/community.hashi_vault
   community.hrobot:
     repository: https://github.com/ansible-collections/community.hrobot
+  community.library_inventory_filtering_v1:
+    maintainers:
+      - felixfontein
+    repository: https://github.com/ansible-collections/community.library_inventory_filtering
   community.libvirt:
     repository: https://github.com/ansible-collections/community.libvirt
   community.mongodb:
