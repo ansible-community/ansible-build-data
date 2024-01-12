@@ -101,4 +101,4 @@ jobs:
           git config --global user.name "Github Actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git tag -a "${ANSIBLE_VERSION}" -m "Ansible ${ANSIBLE_VERSION}: Changelog, Porting Guide and Dependent Collection Details"
-          git push origin ${{ inputs.ansible-version }}
+          git push origin ${ANSIBLE_VERSION}}

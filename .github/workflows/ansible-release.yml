@@ -46,24 +46,30 @@ jobs:
       - name: Install dependencies
         working-directory: antsibull
         run: |
-          python3 -m pip install ansible-core antsibull
+          python3 -m pip install ansible-core
+          python3 -m pip install antsibull
           ansible-galaxy collection install community.general
 
-      - name: Checking out to a new branch & setting the user details
+      - name: Checking out to a new branch
         working-directory: antsibull/build/ansible-build-data
         run: |
           git checkout -b "publish-${ANSIBLE_VERSION}"
+
+      - name: Setting the user details
+        working-directory: antsibull/build/ansible-build-data
+        run: |
           git config --global user.name "Github Actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
 
 # Run the playbook according to the current release process
 
       - name: Test building a release with the defaults
         working-directory: antsibull
-        run: |
-          ansible-playbook -vv playbooks/build-single-release.yaml \
-          -e antsibull_data_reset=false \
-          -e "antsibull_ansible_version=${ANSIBLE_VERSION}" \
+        run: >-
+          ansible-playbook -vv playbooks/build-single-release.yaml
+          -e antsibull_data_reset=false
+          -e "antsibull_ansible_version=${ANSIBLE_VERSION}"
 
         env:
           # Make result better readable
