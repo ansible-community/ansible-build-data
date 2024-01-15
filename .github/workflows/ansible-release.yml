@@ -56,7 +56,6 @@ jobs:
           git checkout -b "publish-${ANSIBLE_VERSION}"
 
       - name: Setting the user details
-        working-directory: antsibull/build/ansible-build-data
         run: |
           git config --global user.name "Github Actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -86,5 +85,9 @@ jobs:
         working-directory: antsibull/build/ansible-build-data
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh pr create --base main --head "publish-${{ inputs.ansible-version }}" --title "${{ env.CI_COMMIT_MESSAGE }}"  --body "${{ env.CI_COMMIT_MESSAGE }}"
+        run: >-
+          gh pr create
+          --base main
+          --head "publish-${{ inputs.ansible-version }}"
+          --title "${{ env.CI_COMMIT_MESSAGE }}"
+          --body "${{ env.CI_COMMIT_MESSAGE }}"

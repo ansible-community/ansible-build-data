@@ -50,7 +50,7 @@ jobs:
       - name: Create sdist and wheel using the deps file created in the ansible-build-data Release PR
         working-directory: antsibull
         run: |
-          ansible-playbook -vv playbooks/build-single-release.yaml -e "antsibull_ansible-version=${ANSIBLE_VERSION}" -e antsibull_data_reset=false
+          ansible-playbook -vv playbooks/build-single-release.yaml -e "antsibull_ansible_version=${ANSIBLE_VERSION}" -e antsibull_data_reset=false
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
