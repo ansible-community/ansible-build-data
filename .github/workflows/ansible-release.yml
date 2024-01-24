@@ -99,20 +99,12 @@ jobs:
 
   # publish job downloads the arifacts and publish it to PyPI
 
-  prreview:
-    runs-on: ubuntu-latest
-    environment: pypirelease
-    needs: build
-    steps:
-      - name: Pause for the PR review
-        run: echo 'Review Done'
-
   publish:
-    needs: [build, prreview]
+    needs: [build]
     name: 'Upload Ansible (${{ inputs.ansible-version }}) to PyPI'
     runs-on: ubuntu-latest
     environment:
-      name: pypi
+      name: pypirelease
       url: https://pypi.org/project/ansible
     permissions:
       id-token: write
