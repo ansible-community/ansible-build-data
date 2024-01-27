@@ -10,12 +10,14 @@ on:
         description: Example 11
         required: true
 env:
-  CI_COMMIT_MESSAGE: 'Ansible ${{ inputs.ansible-version }}: Dependencies, changelog and porting guide'
-  ANSIBLE_VERSION: '${{ inputs.ansible-version }}'
+  CI_COMMIT_MESSAGE: >-
+    Ansible ${{ inputs.ansible-version }}:
+    Dependencies, changelog and porting guide
+  ANSIBLE_VERSION: ${{ inputs.ansible-version }}
 
 jobs:
   build:
-    name: 'Build Ansible (${{ inputs.ansible-version }})'
+    name: Build Ansible (${{ inputs.ansible-version }})
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -41,7 +43,7 @@ jobs:
       - name: Set up Python 3.11
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: 3.11
 
       - name: Install dependencies
         working-directory: antsibull
@@ -80,7 +82,8 @@ jobs:
           path: antsibull/build/ansible-*.*
 
       - name: Commit ansible-build-data and push the changes to github
-        working-directory: 'antsibull/build/ansible-build-data/${{ inputs.ansible-major-version }}'
+        working-directory: >-
+          antsibull/build/ansible-build-data/${{ inputs.ansible-major-version }}
         run: |
          git add *.rst *.build *.deps *.yaml *.in validate-tags-ignores
          git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
@@ -94,18 +97,18 @@ jobs:
           gh pr create
           --base main
           --head "publish-${{ inputs.ansible-version }}"
-          --title "${{ env.CI_COMMIT_MESSAGE }}"
+          --title "Release Ansible v${{ inputs.ansible-version }}"
           --body "${{ env.CI_COMMIT_MESSAGE }}"
 
   # publish job downloads the arifacts and publish it to PyPI
 
   publish:
-    needs: [build]
-    name: 'Upload Ansible (${{ inputs.ansible-version }}) to PyPI'
+    needs: build
+    name: Upload Ansible (${{ inputs.ansible-version }}) to PyPI
     runs-on: ubuntu-latest
     environment:
       name: pypirelease
-      url: https://pypi.org/project/ansible
+      url: https://pypi.org/project/ansible/${{ inputs.ansible-version }}
     permissions:
       id-token: write
 
@@ -124,7 +127,8 @@ jobs:
 
   git-tag:
     needs: publish
-    name: 'Creates git tag for Ansible (${{ inputs.ansible-version }})'
+    name: Creates git tag for Ansible (${{ inputs.ansible-version }})
+
     runs-on: ubuntu-latest
     permissions:
       contents: write
