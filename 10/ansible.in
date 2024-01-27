@@ -62,7 +62,6 @@ gluster.gluster
 google.cloud
 grafana.grafana
 hetzner.hcloud
-hpe.nimble
 ibm.qradar
 ibm.spectrum_virtualize
 ibm.storage_virtualize

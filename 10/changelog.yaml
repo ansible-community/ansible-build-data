@@ -6,3 +6,6 @@ releases:
       removed_features:
         - The deprecated ``community.azure`` collection has been removed.
           There is a successor collection ``azure.azcollection`` in the community package which should cover the same functionality.
+        - The ``hpe.nimble`` collection was considered unmaintained and removed from Ansible 10
+          (https://github.com/ansible-community/community-topics/issues/254).
+          Users can still install this collection with ``ansible-galaxy collection install hpe.nimble``.
