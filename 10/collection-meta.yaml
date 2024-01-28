@@ -53,13 +53,6 @@ collections:
     maintainers:
       - javeedf
     repository: https://github.com/ansible-collections/dellemc.enterprise_sonic
-  netapp.azure:
-    maintainers:
-      - carchi8py
-      - suhasbshekar
-      - wenjun666
-      - chuyich
-    repository: https://github.com/ansible-collections/netapp.azure
   netapp.cloudmanager:
     maintainers:
       - carchi8py
