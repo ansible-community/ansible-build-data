@@ -288,13 +288,6 @@ collections:
     repository: https://github.com/infinidat/ansible-infinidat-collection
   junipernetworks.junos:
     repository: https://github.com/ansible-collections/junipernetworks.junos
-  netapp.aws:
-    maintainers:
-      - carchi8py
-      - suhasbshekar
-      - wenjun666
-      - chuyich
-    repository: https://github.com/ansible-collections/netapp.aws
   netapp.ontap:
     maintainers:
       - carchi8py
