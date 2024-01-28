@@ -72,7 +72,6 @@ junipernetworks.junos
 kubernetes.core
 lowlydba.sqlserver
 microsoft.ad
-netapp.azure
 netapp.cloudmanager
 netapp_eseries.santricity
 netapp.ontap
