@@ -75,7 +75,6 @@ microsoft.ad
 netapp.aws
 netapp.azure
 netapp.cloudmanager
-netapp.elementsw
 netapp_eseries.santricity
 netapp.ontap
 netapp.storagegrid

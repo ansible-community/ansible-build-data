@@ -12,3 +12,6 @@ releases:
         - The ``gluster.gluster`` collection was considered unmaintained and removed from Ansible 10
           (https://github.com/ansible-community/community-topics/issues/225).
           Users can still install this collection with ``ansible-galaxy collection install gluster.gluster``.
+        - The ``netapp.elementsw`` collection was considered unmaintained and removed from Ansible 10
+          (https://github.com/ansible-community/community-topics/issues/235).
+          Users can still install this collection with ``ansible-galaxy collection install netapp.elementsw``.

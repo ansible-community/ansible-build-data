@@ -295,8 +295,6 @@ collections:
       - wenjun666
       - chuyich
     repository: https://github.com/ansible-collections/netapp.aws
-  netapp.elementsw:
-    repository: https://github.com/ansible-collections/netapp.elementsw
   netapp.ontap:
     maintainers:
       - carchi8py
