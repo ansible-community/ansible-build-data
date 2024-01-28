@@ -95,10 +95,6 @@ collections:
       - racampos
       - jbogarin
     repository: https://github.com/CiscoISE/ansible-ise
-  community.sap:
-    maintainers:
-      - rainerleber
-    repository: https://github.com/ansible-collections/community.sap
   community.sap_libs:
     maintainers:
       - rainerleber
