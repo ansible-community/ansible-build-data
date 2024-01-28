@@ -21,3 +21,6 @@ releases:
         - The ``netapp.azure`` collection was considered unmaintained and removed from Ansible 10
           (https://github.com/ansible-community/community-topics/issues/234).
           Users can still install this collection with ``ansible-galaxy collection install netapp.azure``.
+        - The ``netapp.um_info`` collection was considered unmaintained and removed from Ansible 10
+          (https://github.com/ansible-community/community-topics/issues/244).
+          Users can still install this collection with ``ansible-galaxy collection install netapp.um_info``.

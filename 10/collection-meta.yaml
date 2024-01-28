@@ -60,13 +60,6 @@ collections:
       - wenjun666
       - chuyich
     repository: https://github.com/ansible-collections/netapp.cloudmanager
-  netapp.um_info:
-    maintainers:
-      - carchi8py
-      - suhasbshekar
-      - wenjun666
-      - chuyich
-    repository: https://github.com/ansible-collections/netapp.um_info
   community.ciscosmb:
     maintainers:
       - qaxi
