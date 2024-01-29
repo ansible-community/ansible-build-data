@@ -107,7 +107,7 @@ jobs:
     name: Upload Ansible (${{ inputs.ansible-version }}) to PyPI
     runs-on: ubuntu-latest
     environment:
-      name: pypirelease
+      name: pypi
       url: https://pypi.org/project/ansible/${{ inputs.ansible-version }}
     permissions:
       id-token: write
@@ -137,6 +137,8 @@ jobs:
 
       - name: Check out ansible-build-data
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.repository.default_branch }}
 
       - name: Create git tag
         working-directory: ansible-build-data
