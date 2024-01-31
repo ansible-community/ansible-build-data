@@ -128,3 +128,10 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2024-01-30'
+  9.3.0:
+    changes:
+      deprecated_features:
+        - The ``inspur.sm`` collection is considered unmaintained and will be removed
+          from Ansible 11 if no one starts maintaining it again before Ansible 11. See
+          `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+          (https://forum.ansible.com/t/2854).
