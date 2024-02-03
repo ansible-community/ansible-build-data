@@ -5,7 +5,6 @@ Ansible 9 Release Notes
 This changelog describes changes since Ansible 8.0.0.
 
 .. contents::
-  :local:
   :depth: 2
 
 v9.2.0
@@ -1465,7 +1464,6 @@ Ansible-core
 
 Ansible 9.0.1 contains ansible-core version 2.16.0.
 This is the same version of ansible-core as in the previous Ansible release.
-
 
 Bugfixes
 --------
