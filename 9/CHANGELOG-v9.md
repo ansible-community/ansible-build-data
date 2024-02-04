@@ -4684,13 +4684,12 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 #### netbox\.netbox
 
 * Fix schema caching \[\#1053\]\([https\://github\.com/netbox\-community/ansible\_modules/pull/1053](https\://github\.com/netbox\-community/ansible\_modules/pull/1053)\)
-*  device \- Adjust device\_role to role for NetBox 3\.6 \[\#1066\]\([https\://github\.com/netbox\-community/ansible\_modules/pull/1066](https\://github\.com/netbox\-community/ansible\_modules/pull/1066)\)
-  ## Docutils System Messages
+* <a href="#system-message-1"><span class="problematic">netbox\_</span></a> device \- Adjust device\_role to role for NetBox 3\.6 \[\#1066\]\([https\://github\.com/netbox\-community/ansible\_modules/pull/1066](https\://github\.com/netbox\-community/ansible\_modules/pull/1066)\)
 
+  ## Docutils System Messages
 
   <details>
   <summary><strong>ERROR/3</strong> (&lt;string&gt;, line 1)</summary>
-
 
   Unknown target name\: \"netbox\"\.
 
