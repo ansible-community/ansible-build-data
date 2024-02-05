@@ -13,7 +13,7 @@ Ansible 9 Porting Guide
 
 Ansible 9 is based on Ansible-core 2.16.
 
-We suggest you read this page along with the `Ansible 9 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/9/CHANGELOG-v9.rst>`_ to understand what updates you may need to make.
+We suggest you read this page along with the `Ansible 9 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/9/CHANGELOG-v9.md>`_ to understand what updates you may need to make.
 
 Playbook
 ========
