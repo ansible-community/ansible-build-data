@@ -85,8 +85,8 @@ jobs:
         working-directory: >-
           antsibull/build/ansible-build-data/${{ inputs.ansible-major-version }}
         run: |
-         git add *.rst *.build *.deps *.yaml *.in validate-tags-ignores
-         git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
+         git add .
+         git commit -m "${CI_COMMIT_MESSAGE}"
          git push origin "publish-${ANSIBLE_VERSION}"
 
       - name: Create PR to the ansible-build-data
