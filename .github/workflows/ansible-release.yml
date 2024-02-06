@@ -1,0 +1,150 @@
+name: Release Ansible package
+on:
+  workflow_dispatch:
+    inputs:
+      ansible-version:
+        description: >-
+          Release Version. Example: 11.1.0
+        required: true
+      ansible-major-version:
+        description: >-
+          Major Release Version. Example: 11
+        required: true
+env:
+  CI_COMMIT_MESSAGE: >-
+    Ansible ${{ inputs.ansible-version }}:
+    Dependencies, changelog and porting guide
+  ANSIBLE_VERSION: ${{ inputs.ansible-version }}
+
+jobs:
+  build:
+    name: Build Ansible (${{ inputs.ansible-version }})
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+
+    steps:
+      - name: Check out antsibull
+        uses: actions/checkout@v3
+        with:
+          repository: ansible-community/antsibull
+          ref: main
+          path: antsibull
+
+      - name: Pre-create build directory
+        run: mkdir -p antsibull/build
+
+      # This is where the antsibull build-release role expects it by default
+      - name: Check out ansible-build-data under antsibull build directory
+        uses: actions/checkout@v3
+        with:
+          path: antsibull/build/ansible-build-data
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install dependencies
+        working-directory: antsibull
+        run: |
+          python3 -m pip install ansible-core
+          python3 -m pip install antsibull
+          ansible-galaxy install -r requirements.yml
+
+      - name: Checking out to a new branch
+        working-directory: antsibull/build/ansible-build-data
+        run: |
+          git checkout -b "publish-${ANSIBLE_VERSION}"
+
+      - name: Setting the user details
+        run: |
+          git config --global user.name "Github Actions"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      # Run the playbook according to the current release process
+
+      - name: Building a release with the defaults
+        working-directory: antsibull
+        run: >-
+          ansible-playbook -vv playbooks/build-single-release.yaml
+          -e antsibull_data_reset=false
+          -e "antsibull_ansible_version=${ANSIBLE_VERSION}"
+        env:
+          # Make result better readable
+          ANSIBLE_CALLBACK_RESULT_FORMAT: yaml
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: sdist-and-wheel
+          path: antsibull/build/ansible-*.*
+
+      - name: Commit ansible-build-data and push the changes to github
+        working-directory: >-
+          antsibull/build/ansible-build-data/${{ inputs.ansible-major-version }}
+        run: |
+         git add .
+         git commit -m "${CI_COMMIT_MESSAGE}"
+         git push origin "publish-${ANSIBLE_VERSION}"
+
+      - name: Create PR to the ansible-build-data
+        working-directory: antsibull/build/ansible-build-data
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >-
+          gh pr create
+          --base main
+          --head "publish-${ANSIBLE_VERSION}"
+          --title "Release Ansible ${ANSIBLE_VERSION}"
+          --body "${CI_COMMIT_MESSAGE}"
+
+  # publish job downloads the arifacts and publish it to PyPI
+
+  publish:
+    needs: build
+    name: Upload Ansible (${{ inputs.ansible-version }}) to PyPI
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/project/ansible/${{ inputs.ansible-version }}
+    permissions:
+      id-token: write
+
+    steps:
+
+    - name: Download artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: sdist-and-wheel
+        path: dist/
+
+    - name: Upload Ansible sdist and wheel to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+
+  # git-tag job creates the git tag
+
+  git-tag:
+    needs: publish
+    name: Creates git tag for Ansible (${{ inputs.ansible-version }})
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+
+      - name: Check out ansible-build-data
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Create git tag
+        working-directory: ansible-build-data
+        run: |
+          git config --global user.name "Github Actions"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "${ANSIBLE_VERSION}" -m "Ansible ${ANSIBLE_VERSION}: Changelog, Porting Guide and Dependent Collection Details"
+          git push origin "${ANSIBLE_VERSION}"
+
