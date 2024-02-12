@@ -53,8 +53,8 @@ This only needs to be done once.
     This guide uses your Github username as the fork remote name.
 
     ```
-    git remote add ${USERNAME} https://github.com/${USERNAME}/ansible-build-data
-    git fetch ${USERNAME} -v
+    git remote add ${GH_USERNAME} https://github.com/${GH_USERNAME}/ansible-build-data
+    git fetch ${GH_USERNAME} -v
     ```
 
 ## Perform release process
@@ -105,7 +105,7 @@ This only needs to be done once.
     git switch -c release-${VERSION}
     git add ${MAJOR_VERSION}/
     git commit -m "Ansible ${VERSION}: Dependencies, changelog and porting guide"
-    git push -u ${USERNAME} release-${VERSION}
+    git push -u ${GH_USERNAME} release-${VERSION}
     ```
 
     Then, submit a pull request against ansible-build-data upstream.
