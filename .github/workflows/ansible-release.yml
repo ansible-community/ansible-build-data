@@ -26,7 +26,7 @@ jobs:
 
     steps:
       - name: Check out antsibull
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: ansible-community/antsibull
           ref: main
@@ -37,7 +37,7 @@ jobs:
 
       # This is where the antsibull build-release role expects it by default
       - name: Check out ansible-build-data under antsibull build directory
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: antsibull/build/ansible-build-data
 
@@ -136,7 +136,7 @@ jobs:
     steps:
 
       - name: Check out ansible-build-data
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.repository.default_branch }}
 
