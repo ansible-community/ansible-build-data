@@ -8,6 +8,10 @@ releases:
           from Ansible 11 if no one starts maintaining it again before Ansible 11. See
           `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
           (https://forum.ansible.com/t/2854).
+        - The ``netapp.storagegrid`` collection is considered unmaintained and will be removed
+          from Ansible 11 if no one starts maintaining it again before Ansible 11. See
+          `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+          (https://forum.ansible.com/t/2811).
       removed_features:
         - The deprecated ``community.azure`` collection has been removed.
           There is a successor collection ``azure.azcollection`` in the community package which should cover the same functionality.
