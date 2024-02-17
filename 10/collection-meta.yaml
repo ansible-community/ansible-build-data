@@ -116,10 +116,6 @@ collections:
       - racampos
       - wastorga
     repository: https://github.com/cisco-en-programmability/dnacenter-ansible
-  purestorage.fusion:
-    maintainers:
-      - sdodsley
-    repository: https://github.com/Pure-Storage-Ansible/Fusion-Collection
   ibm.spectrum_virtualize:
     maintainers:
       - Shilpi-J

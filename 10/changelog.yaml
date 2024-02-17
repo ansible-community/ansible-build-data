@@ -36,3 +36,5 @@ releases:
         - The deprecated ``community.sap`` collection has been removed from Ansible 10
           (https://github.com/ansible-community/community-topics/issues/247).
           There is a successor collection ``community.sap_libs`` in the community package which should cover the same functionality.
+        - The deprecated ``purestorage.fusion`` collection has been removed
+          (https://forum.ansible.com/t/3712).

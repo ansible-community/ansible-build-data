@@ -83,7 +83,6 @@ openvswitch.openvswitch
 ovirt.ovirt
 purestorage.flasharray
 purestorage.flashblade
-purestorage.fusion
 sensu.sensu_go
 splunk.es
 theforeman.foreman
