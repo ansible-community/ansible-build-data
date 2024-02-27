@@ -76,7 +76,7 @@ jobs:
           ANSIBLE_CALLBACK_RESULT_FORMAT: yaml
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: sdist-and-wheel
           path: antsibull/build/ansible-*.*
