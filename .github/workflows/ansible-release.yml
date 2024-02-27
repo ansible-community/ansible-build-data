@@ -141,7 +141,6 @@ jobs:
           ref: ${{ github.event.repository.default_branch }}
 
       - name: Create git tag
-        working-directory: ansible-build-data
         run: |
           git config --global user.name "Github Actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
