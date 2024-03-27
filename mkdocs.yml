@@ -26,6 +26,7 @@ markdown_extensions:
   - pymdownx.superfences
 nav:
   - Ansible Build Data: README.md
+  - automated-process.md
   - release-process.md
   - policies.md
   - new-ansible-and-freezes.md

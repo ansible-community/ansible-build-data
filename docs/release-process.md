@@ -1,8 +1,8 @@
-# Ansible Release Process
+# Manual Ansible Release Process
 
 ## Preamble
 
-This document describes the ansible community package release process.
+This document describes the "manual" ansible community package release process.
 
 !!! note
     Throughout this page, placeholder values in code blocks are formatted as
