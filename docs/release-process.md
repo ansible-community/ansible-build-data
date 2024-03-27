@@ -1,8 +1,8 @@
-# Ansible Release Process
+# Manual Ansible Release Process
 
 ## Preamble
 
-This document describes the ansible community package release process.
+This document describes the "manual" ansible community package release process.
 
 !!! note
     Throughout this page, placeholder values in code blocks are formatted as
@@ -142,11 +142,10 @@ This only needs to be done once.
     ```
 
 8. Announce the release on Matrix and the mailing list.
-   TODO: Move announcement templates into this repository.
-   Release managers can copy and paste the previous release's announcement for
-   now.
-   Make sure to change the version numbers and sha256sum in the announcement
-   text.
+
+    ```
+    antsibull-build announcements --send --data-dir ${MAJOR_VERSION} ${VERSION}
+    ```
 
 [container]: https://hub.docker.com/_/python
 [abd-fork]: https://github.com/ansible-community/ansible-build-data/fork
