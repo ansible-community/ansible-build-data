@@ -77,6 +77,7 @@ jobs:
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
+        id: upload-artifact
         with:
           name: sdist-and-wheel
           path: antsibull/build/ansible-*.*
@@ -93,12 +94,14 @@ jobs:
         working-directory: antsibull/build/ansible-build-data
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: >-
-          gh pr create
-          --base main
-          --head "publish-${ANSIBLE_VERSION}"
-          --title "Release Ansible ${ANSIBLE_VERSION}"
-          --body "${CI_COMMIT_MESSAGE}"
+          ARTIFACT_URL: ${{ steps.upload-artifact.outputs.artifact-url }}
+        run: |
+          body="$(echo -e "${CI_COMMIT_MESSAGE}\nRelease artifacts: <${ARTIFACT_URL}>")"
+          gh pr create \
+          --base main \
+          --head "publish-${ANSIBLE_VERSION}" \
+          --title "Release Ansible ${ANSIBLE_VERSION}" \
+          --body "${body}"
 
   # publish job downloads the arifacts and publish it to PyPI
 
