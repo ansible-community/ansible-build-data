@@ -1,4 +1,0 @@
-# cisco.dnac 6.13.1 needs ansible.utils < 4.0.0
-# cisco.meraki 2.17.2 needs ansible.utils < 4.0.0
-# cisco.ise 2.8.0 needs ansible.utils < 4.0.0
-ansible.utils: <4.0.0
