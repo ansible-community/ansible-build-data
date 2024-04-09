@@ -1,40 +1,51 @@
----
 ancestor: 9.0.0
 releases:
   10.0.0a1:
     changes:
       deprecated_features:
-        - The ``inspur.sm`` collection is considered unmaintained and will be removed
-          from Ansible 11 if no one starts maintaining it again before Ansible 11. See
-          `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
-          (https://forum.ansible.com/t/2854).
-        - The ``netapp.storagegrid`` collection is considered unmaintained and will be removed
-          from Ansible 11 if no one starts maintaining it again before Ansible 11. See
-          `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
-          (https://forum.ansible.com/t/2811).
+      - The ``inspur.sm`` collection is considered unmaintained and will be removed
+        from Ansible 11 if no one starts maintaining it again before Ansible 11. See
+        `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+        (https://forum.ansible.com/t/2854).
+      - The ``netapp.storagegrid`` collection is considered unmaintained and will
+        be removed from Ansible 11 if no one starts maintaining it again before Ansible
+        11. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
+        (https://forum.ansible.com/t/2811).
+      release_summary: 'Release Date: 2024-04-09
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
       removed_features:
-        - The deprecated ``community.azure`` collection has been removed.
-          There is a successor collection ``azure.azcollection`` in the community package which should cover the same functionality.
-        - The ``hpe.nimble`` collection was considered unmaintained and removed from Ansible 10
-          (https://github.com/ansible-community/community-topics/issues/254).
-          Users can still install this collection with ``ansible-galaxy collection install hpe.nimble``.
-        - The ``gluster.gluster`` collection was considered unmaintained and removed from Ansible 10
-          (https://github.com/ansible-community/community-topics/issues/225).
-          Users can still install this collection with ``ansible-galaxy collection install gluster.gluster``.
-        - The ``netapp.elementsw`` collection was considered unmaintained and removed from Ansible 10
-          (https://github.com/ansible-community/community-topics/issues/235).
-          Users can still install this collection with ``ansible-galaxy collection install netapp.elementsw``.
-        - The ``netapp.aws`` collection was considered unmaintained and removed from Ansible 10
-          (https://github.com/ansible-community/community-topics/issues/223).
-          Users can still install this collection with ``ansible-galaxy collection install netapp.aws``.
-        - The ``netapp.azure`` collection was considered unmaintained and removed from Ansible 10
-          (https://github.com/ansible-community/community-topics/issues/234).
-          Users can still install this collection with ``ansible-galaxy collection install netapp.azure``.
-        - The ``netapp.um_info`` collection was considered unmaintained and removed from Ansible 10
-          (https://github.com/ansible-community/community-topics/issues/244).
-          Users can still install this collection with ``ansible-galaxy collection install netapp.um_info``.
-        - The deprecated ``community.sap`` collection has been removed from Ansible 10
-          (https://github.com/ansible-community/community-topics/issues/247).
-          There is a successor collection ``community.sap_libs`` in the community package which should cover the same functionality.
-        - The deprecated ``purestorage.fusion`` collection has been removed
-          (https://forum.ansible.com/t/3712).
+      - The ``gluster.gluster`` collection was considered unmaintained and removed
+        from Ansible 10 (https://github.com/ansible-community/community-topics/issues/225).
+        Users can still install this collection with ``ansible-galaxy collection install
+        gluster.gluster``.
+      - The ``hpe.nimble`` collection was considered unmaintained and removed from
+        Ansible 10 (https://github.com/ansible-community/community-topics/issues/254).
+        Users can still install this collection with ``ansible-galaxy collection install
+        hpe.nimble``.
+      - The ``netapp.aws`` collection was considered unmaintained and removed from
+        Ansible 10 (https://github.com/ansible-community/community-topics/issues/223).
+        Users can still install this collection with ``ansible-galaxy collection install
+        netapp.aws``.
+      - The ``netapp.azure`` collection was considered unmaintained and removed from
+        Ansible 10 (https://github.com/ansible-community/community-topics/issues/234).
+        Users can still install this collection with ``ansible-galaxy collection install
+        netapp.azure``.
+      - The ``netapp.elementsw`` collection was considered unmaintained and removed
+        from Ansible 10 (https://github.com/ansible-community/community-topics/issues/235).
+        Users can still install this collection with ``ansible-galaxy collection install
+        netapp.elementsw``.
+      - The ``netapp.um_info`` collection was considered unmaintained and removed
+        from Ansible 10 (https://github.com/ansible-community/community-topics/issues/244).
+        Users can still install this collection with ``ansible-galaxy collection install
+        netapp.um_info``.
+      - The deprecated ``community.azure`` collection has been removed. There is a
+        successor collection ``azure.azcollection`` in the community package which
+        should cover the same functionality.
+      - The deprecated ``community.sap`` collection has been removed from Ansible
+        10 (https://github.com/ansible-community/community-topics/issues/247). There
+        is a successor collection ``community.sap_libs`` in the community package
+        which should cover the same functionality.
+      - The deprecated ``purestorage.fusion`` collection has been removed (https://forum.ansible.com/t/3712).
+    release_date: '2024-04-09'
