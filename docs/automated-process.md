@@ -17,7 +17,7 @@ This document describes the (mostly) automated ansible community package release
 2. Check out the PR in your `ansible-build-data` clone and copy the updated porting guide into the `ansible-documentation` repository.
    Create a PR for updating the porting guide for the `devel` branch of `ansible-documentation`.
 
-3. Once both PRs (in `ansible-build-data` and `ansible-documentation`) are approved, merge the `ansible-build-data` PR and approve the next workflow step.
+3. Once both PRs (in `ansible-build-data` and `ansible-documentation`) are approved, merge the `ansible-build-data` PR and approve the next workflow step (**in this order!** the next steps of the workflow require the PR to be merged!).
    This will upload the package to PyPI and tag the release in `ansible-build-data`.
 
 4. Merge the porting guide PR, and backport it to the latest `stable-x` branches down to the ansible-core version that is included in this Ansible release.
