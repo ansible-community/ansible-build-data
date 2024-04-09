@@ -24,7 +24,7 @@ This document describes the (mostly) automated ansible community package release
 
 5. Announce the release on the Forum, Matrix, and the mailing list.
 
-   For that, run the following in the `${MAJOR_VERSION}` directory of the `ansible-build-data` checkout:
-   ```
+    For that, run the following in the `${MAJOR_VERSION}` directory of the `ansible-build-data` checkout:
+    ```
     antsibull-build announcements --send --data-dir . ${VERSION}
-   ```
+    ```
