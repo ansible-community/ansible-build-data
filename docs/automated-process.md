@@ -11,7 +11,7 @@ This document describes the (mostly) automated ansible community package release
 
 ## Trigger the workflow
 
-1. Trigger the workflow https://github.com/ansible-community/ansible-build-data/actions/workflows/ansible-release.yml and fill in the release version (like 11.2.0) and the major version (like 11).
+1. Trigger [the automated workflow on GHA](https://github.com/ansible-community/ansible-build-data/actions/workflows/ansible-release.yml) and fill in the release version (like 11.2.0) and the major version (like 11).
    The process will create a PR in the `ansible-build-data` repository, and wait for approval before continuing with uploading the package to PyPI.
 
 2. Check out the PR in your `ansible-build-data` clone and copy the updated porting guide into the `ansible-documentation` repository.
