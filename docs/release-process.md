@@ -1,8 +1,9 @@
-# Manual Ansible Release Process
+# How to release a new version of the Ansible Community Package - Manual Release Process
 
 ## Preamble
 
 This document describes the "manual" ansible community package release process.
+There exists an [automated version of this process](automated-process.md) using GitHub Actions.
 
 !!! note
     Throughout this page, placeholder values in code blocks are formatted as
@@ -141,8 +142,7 @@ This only needs to be done once.
     git push --follow-tags
     ```
 
-8. Announce the release on Matrix and the mailing list.
-
+8. Announce the release on the Forum, Matrix, and the mailing list by running the following command in the `${MAJOR_VERSION}` directory of the `ansible-build-data` checkout:
     ```
     antsibull-build announcements --send --data-dir ${MAJOR_VERSION} ${VERSION}
     ```
