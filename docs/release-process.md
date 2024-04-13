@@ -1,4 +1,4 @@
-# How to release a new version of the Ansible Community Package - Manual Release Process
+# How to release a new version of the Ansible Community Package — Manual Release Process
 
 ## Preamble
 
