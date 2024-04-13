@@ -3,7 +3,8 @@
 ## Preamble
 
 This document describes the "manual" ansible community package release process.
-There exists an [automated version of this process](automated-process.md) using GitHub Actions.
+There exists an [automated version of this process](automated-process.md) using
+GitHub Actions.
 
 !!! note
     Throughout this page, placeholder values in code blocks are formatted as
@@ -93,9 +94,10 @@ This only needs to be done once.
 
     !!! note
         When building ansible versions greater than 9.0.0a1,
-        `Validate tags file` task failures will fail the release playbook instead
-        of warning and moving on.
-        See [policies.md][tagging-enforcement] for how to proceed if this step fails.
+        `Validate tags file` task failures will fail the release playbook
+        instead of warning and moving on.
+        See [policies.md][tagging-enforcement] for how to proceed if this step
+        fails.
 
 4. Commit the changes and push them to your fork.
 
@@ -111,9 +113,9 @@ This only needs to be done once.
 
     Then, submit a pull request against ansible-build-data upstream.
 
-5. Submit a PR to ansible/ansible-documentation to add the new porting guide to the docsite.
-   Copy the porting guide to the ansible docsite directory
-   in your ansible checkout with the following command
+5. Submit a PR to ansible/ansible-documentation to add the new porting guide to
+   the docsite. Copy the porting guide to the ansible docsite directory in your
+   ansible checkout with the following command
 
     ```
     cp ${MAJOR_VERSION}/porting_guide_${MAJOR_VERSION}.rst ../ansible-documentation/docs/docsite/rst/porting_guides/
@@ -142,7 +144,9 @@ This only needs to be done once.
     git push --follow-tags
     ```
 
-8. Announce the release on the Forum, Matrix, and the mailing list by running the following command in the `${MAJOR_VERSION}` directory of the `ansible-build-data` checkout:
+8. Announce the release on the Forum, Matrix, and the mailing list by running
+   the following command in the `${MAJOR_VERSION}` directory of the
+   `ansible-build-data` checkout:
     ```
     antsibull-build announcements --send --data-dir ${MAJOR_VERSION} ${VERSION}
     ```
