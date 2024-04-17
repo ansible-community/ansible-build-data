@@ -41,7 +41,6 @@ community.postgresql
 community.proxysql
 community.rabbitmq
 community.routeros
-community.sap_libs
 community.sops
 community.vmware
 community.windows

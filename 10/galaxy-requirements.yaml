@@ -129,9 +129,6 @@ collections:
 - name: community.routeros
   source: https://galaxy.ansible.com
   version: 2.14.0
-- name: community.sap_libs
-  source: https://galaxy.ansible.com
-  version: 1.4.2
 - name: community.sops
   source: https://galaxy.ansible.com
   version: 1.6.7

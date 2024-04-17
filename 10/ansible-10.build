@@ -44,7 +44,6 @@ community.postgresql: >=3.4.0,<4.0.0
 community.proxysql: >=1.5.0,<2.0.0
 community.rabbitmq: >=1.3.0,<2.0.0
 community.routeros: >=2.14.0,<3.0.0
-community.sap_libs: >=1.4.0,<2.0.0
 community.sops: >=1.6.0,<2.0.0
 community.vmware: >=4.2.0,<5.0.0
 community.windows: >=2.2.0,<3.0.0

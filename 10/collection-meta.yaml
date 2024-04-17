@@ -95,10 +95,6 @@ collections:
       - racampos
       - jbogarin
     repository: https://github.com/CiscoISE/ansible-ise
-  community.sap_libs:
-    maintainers:
-      - rainerleber
-    repository: https://github.com/sap-linuxlab/community.sap_libs
   vmware.vmware_rest:
     maintainers:
       # ansible-collections/cloud
