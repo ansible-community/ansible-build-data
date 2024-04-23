@@ -6,10 +6,6 @@ on:
         description: >-
           Release Version. Example: 11.1.0
         required: true
-      ansible-major-version:
-        description: >-
-          Major Release Version. Example: 11
-        required: true
 env:
   CI_COMMIT_MESSAGE: >-
     Ansible ${{ inputs.ansible-version }}:
@@ -51,9 +47,38 @@ jobs:
       - name: Install dependencies
         working-directory: antsibull
         run: |
+          python3 -m pip install packaging
           python3 -m pip install ansible-core
           python3 -m pip install antsibull
           ansible-galaxy install -r requirements.yml
+
+      - name: Validate version and extract major version
+        shell: python
+        id: extract-version
+        run: |
+          import os
+          import pathlib
+          import sys
+
+          from packaging.version import Version
+
+          FILE_APPEND_MODE = 'a'
+          OUTPUTS_FILE_PATH = pathlib.Path(os.environ['GITHUB_OUTPUT'])
+          VERSION = os.environ['ANSIBLE_VERSION']
+
+          def set_output(name, value):
+              with OUTPUTS_FILE_PATH.open(FILE_APPEND_MODE) as outputs_file:
+                  outputs_file.writelines(f'{name}={value}{os.linesep}')
+
+          try:
+              version = Version(VERSION)
+          except Exception as exc:
+              print(
+                  f'::error ::The version {VERSION!r} cannot be parsed: {exc}.'
+              )
+              sys.exit(1)
+
+          set_output('major-version', version.major)
 
       - name: Checking out to a new branch
         working-directory: antsibull/build/ansible-build-data
@@ -86,7 +111,7 @@ jobs:
 
       - name: Commit ansible-build-data and push the changes to github
         working-directory: >-
-          antsibull/build/ansible-build-data/${{ inputs.ansible-major-version }}
+          antsibull/build/ansible-build-data/${{ steps.extract-version.outputs.major-version }}
         run: |
          git add .
          git commit -m "${CI_COMMIT_MESSAGE}"
