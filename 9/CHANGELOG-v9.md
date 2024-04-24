@@ -147,7 +147,7 @@ Release Date\: 2024\-04\-24
 
 [Porting Guide](https\://docs\.ansible\.com/ansible/devel/porting\_guides\.html)
 
-Please note that this release replaces an accidentally and wrongly released 9\.5\.0 that included a breaking change\. The 9\.5\.0 release has been yanked from PyPI and is not part of the official release history\.
+Please note that this release replaces a mistakenly released 9\.5\.0 that included a breaking change\. The 9\.5\.0 release has been yanked from PyPI and is not part of the official release history\.
 
 <a id="ansible-core"></a>
 ### Ansible\-core
