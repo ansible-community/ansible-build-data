@@ -130,7 +130,7 @@ jobs:
           --base main \
           --head "publish-${ANSIBLE_VERSION}" \
           --title "Release Ansible ${ANSIBLE_VERSION}" \
-          --body "${body}" >> "$GITHUB_OUTPUT"
+         --body "${body}" | tee -a "$GITHUB_OUTPUT"
 
   # publish job downloads the arifacts and publish it to PyPI
 
@@ -150,7 +150,7 @@ jobs:
       env:
         PR_URL: ${{ needs.build.outputs.create-pr }}
       run: |
-        STATE=$(gh pr view "${PR_URL}" --json state --template "{{.state}}")
+        STATE="$(gh pr view "${PR_URL}" --json state --template "{{.state}}")"
         if [ "${STATE}" != "MERGED" ]; then
           echo "::error ::The state of PR ${PR_URL} must be MERGED, not ${STATE}"
           exit 1
