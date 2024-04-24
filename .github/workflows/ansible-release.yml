@@ -130,7 +130,7 @@ jobs:
           --base main \
           --head "publish-${ANSIBLE_VERSION}" \
           --title "Release Ansible ${ANSIBLE_VERSION}" \
-         --body "${body}" | tee -a "$GITHUB_OUTPUT"
+          --body "${body}" | tee -a "$GITHUB_OUTPUT"
 
   # publish job downloads the arifacts and publish it to PyPI
 
