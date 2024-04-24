@@ -148,7 +148,7 @@ This only needs to be done once.
    the following command in the `${MAJOR_VERSION}` directory of the
    `ansible-build-data` checkout:
     ```
-    antsibull-build announcements --send --data-dir ${MAJOR_VERSION} ${VERSION}
+    antsibull-build announcements --send --data-dir . ${VERSION}
     ```
 
 [container]: https://hub.docker.com/_/python
