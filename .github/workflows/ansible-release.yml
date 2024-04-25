@@ -73,10 +73,9 @@ jobs:
           try:
               version = Version(VERSION)
           except Exception as exc:
-              print(
+              sys.exit(
                   f'::error ::The version {VERSION!r} cannot be parsed: {exc}.'
               )
-              sys.exit(1)
 
           set_output('major-version', version.major)
 
