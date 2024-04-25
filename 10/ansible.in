@@ -69,6 +69,7 @@ inspur.ispim
 inspur.sm
 junipernetworks.junos
 kubernetes.core
+kaytus.ksmanage
 lowlydba.sqlserver
 microsoft.ad
 netapp.cloudmanager
