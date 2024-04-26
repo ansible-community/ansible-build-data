@@ -17,9 +17,8 @@ release process. The automated processes uses GitHub Actions to automate the
 1. Trigger [the automated
    workflow](https://github.com/ansible-community/ansible-build-data/actions/workflows/ansible-release.yml)
    on the **Actions** tab of the repository and specify the release version,
-   such as 11.2.0, and the major version, such as 11. The process will create
-   a PR in the [`ansible-build-data`
-   repository](https://github.com/ansible-community/ansible-build-data/).
+   such as `11.2.0` or `12.0.0rc1`. The process will create a PR in the
+   [`ansible-build-data` repository](https://github.com/ansible-community/ansible-build-data/).
    Afterwards, it will wait for approval before continuing with uploading the
    package to PyPI. All users with commit rights in the `ansible-build-data`
    repository will be informed with a notification once the approval is needed.
