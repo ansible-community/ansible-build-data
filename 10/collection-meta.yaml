@@ -26,6 +26,10 @@ collections:
     maintainers:
       - ISIB-Group
     repository: https://github.com/ISIB-Group/inspur.sm
+  kaytus.ksmanage:
+    maintainers:
+      - ieisystem
+    repository: https://github.com/ieisystem/kaytus.ksmanage
   kubernetes.core:
     maintainers:
       - jillr

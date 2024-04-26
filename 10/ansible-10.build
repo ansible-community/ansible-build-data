@@ -71,6 +71,7 @@ infoblox.nios_modules: >=1.6.0,<2.0.0
 inspur.ispim: >=2.2.0,<3.0.0
 inspur.sm: >=2.3.0,<3.0.0
 junipernetworks.junos: >=7.0.0,<8.0.0
+kaytus.ksmanage: >=1.2.1,<2.0.0
 kubernetes.core: >=3.0.0,<4.0.0
 lowlydba.sqlserver: >=2.3.0,<3.0.0
 microsoft.ad: >=1.5.0,<2.0.0
