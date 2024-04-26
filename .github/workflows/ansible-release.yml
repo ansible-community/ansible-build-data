@@ -6,10 +6,6 @@ on:
         description: >-
           Release Version. Example: 11.1.0
         required: true
-      ansible-major-version:
-        description: >-
-          Major Release Version. Example: 11
-        required: true
 env:
   CI_COMMIT_MESSAGE: >-
     Ansible ${{ inputs.ansible-version }}:
@@ -23,6 +19,8 @@ jobs:
     permissions:
       pull-requests: write
       contents: write
+    outputs:
+      pr_url: ${{ steps.create-pr.outputs.pr_url }}
 
     steps:
       - name: Check out antsibull
@@ -49,9 +47,37 @@ jobs:
       - name: Install dependencies
         working-directory: antsibull
         run: |
+          python3 -m pip install packaging
           python3 -m pip install ansible-core
           python3 -m pip install antsibull
           ansible-galaxy install -r requirements.yml
+
+      - name: Validate version and extract major version
+        shell: python
+        id: extract-version
+        run: |
+          import os
+          import pathlib
+          import sys
+
+          from packaging.version import Version
+
+          FILE_APPEND_MODE = 'a'
+          OUTPUTS_FILE_PATH = pathlib.Path(os.environ['GITHUB_OUTPUT'])
+          VERSION = os.environ['ANSIBLE_VERSION']
+
+          def set_output(name, value):
+              with OUTPUTS_FILE_PATH.open(FILE_APPEND_MODE) as outputs_file:
+                  outputs_file.writelines(f'{name}={value}{os.linesep}')
+
+          try:
+              version = Version(VERSION)
+          except Exception as exc:
+              sys.exit(
+                  f'::error ::The version {VERSION!r} cannot be parsed: {exc}.'
+              )
+
+          set_output('major-version', version.major)
 
       - name: Checking out to a new branch
         working-directory: antsibull/build/ansible-build-data
@@ -84,24 +110,26 @@ jobs:
 
       - name: Commit ansible-build-data and push the changes to github
         working-directory: >-
-          antsibull/build/ansible-build-data/${{ inputs.ansible-major-version }}
+          antsibull/build/ansible-build-data/${{ steps.extract-version.outputs.major-version }}
         run: |
          git add .
          git commit -m "${CI_COMMIT_MESSAGE}"
          git push origin "publish-${ANSIBLE_VERSION}"
 
       - name: Create PR to the ansible-build-data
+        id: create-pr
         working-directory: antsibull/build/ansible-build-data
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ARTIFACT_URL: ${{ steps.upload-artifact.outputs.artifact-url }}
         run: |
           body="$(echo -e "${CI_COMMIT_MESSAGE}\nRelease artifacts: <${ARTIFACT_URL}>")"
+          echo -n "pr_url=" >> "$GITHUB_OUTPUT"
           gh pr create \
           --base main \
           --head "publish-${ANSIBLE_VERSION}" \
           --title "Release Ansible ${ANSIBLE_VERSION}" \
-          --body "${body}"
+          --body "${body}" | tee -a "$GITHUB_OUTPUT"
 
   # publish job downloads the arifacts and publish it to PyPI
 
@@ -116,6 +144,16 @@ jobs:
       id-token: write
 
     steps:
+
+    - name: Ensure that the PR was merged
+      env:
+        PR_URL: ${{ needs.build.outputs.create-pr }}
+      run: |
+        STATE="$(gh pr view "${PR_URL}" --json state --template "{{.state}}")"
+        if [ "${STATE}" != "MERGED" ]; then
+          echo "::error ::The state of PR ${PR_URL} must be MERGED, not ${STATE}"
+          exit 1
+        fi
 
     - name: Download artifact
       uses: actions/download-artifact@v4
@@ -149,4 +187,3 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git tag -a "${ANSIBLE_VERSION}" -m "Ansible ${ANSIBLE_VERSION}: Changelog, Porting Guide and Dependent Collection Details"
           git push origin "${ANSIBLE_VERSION}"
-
