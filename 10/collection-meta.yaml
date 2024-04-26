@@ -26,16 +26,16 @@ collections:
     maintainers:
       - ISIB-Group
     repository: https://github.com/ISIB-Group/inspur.sm
+  kaytus.ksmanage:
+    maintainers:
+      - ieisystem
+    repository: https://github.com/ieisystem/kaytus.ksmanage
   kubernetes.core:
     maintainers:
       - jillr
       - akasurde
       - gravesm
     repository: https://github.com/ansible-collections/kubernetes.core
-  kaytus.ksmanage:
-    maintainers:
-      - ieisystem
-    repository: https://github.com/ieisystem/kaytus.ksmanage
   sensu.sensu_go:
     maintainers:
       - tadeboro
