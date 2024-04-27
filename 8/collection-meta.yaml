@@ -133,7 +133,7 @@ collections:
       - alinabuzachis
       - GomathiselviS
       - abikouo
-      - komaldesai13 
+      - komaldesai13
     repository: https://github.com/ansible-collections/vmware.vmware_rest
   cisco.dnac:
     maintainers:

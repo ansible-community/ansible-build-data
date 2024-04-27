@@ -1,5 +1,10 @@
+---
+# Copyright (c) Ansible Project
+# GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 name: Release Ansible package
-on:
+'on':
   workflow_dispatch:
     inputs:
       ansible-version:
@@ -142,26 +147,25 @@ jobs:
       id-token: write
 
     steps:
+      - name: Ensure that the PR was merged
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ needs.build.outputs.pr_url }}
+        run: |
+          STATE="$(gh pr view "${PR_URL}" --json state --template "{{.state}}")"
+          if [ "${STATE}" != "MERGED" ]; then
+            echo "::error ::The state of PR ${PR_URL} must be MERGED, not ${STATE}"
+            exit 1
+          fi
 
-    - name: Ensure that the PR was merged
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        PR_URL: ${{ needs.build.outputs.pr_url }}
-      run: |
-        STATE="$(gh pr view "${PR_URL}" --json state --template "{{.state}}")"
-        if [ "${STATE}" != "MERGED" ]; then
-          echo "::error ::The state of PR ${PR_URL} must be MERGED, not ${STATE}"
-          exit 1
-        fi
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: sdist-and-wheel
+          path: dist/
 
-    - name: Download artifact
-      uses: actions/download-artifact@v4
-      with:
-        name: sdist-and-wheel
-        path: dist/
-
-    - name: Upload Ansible sdist and wheel to PyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Upload Ansible sdist and wheel to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
 
   # git-tag job creates the git tag
 
@@ -174,7 +178,6 @@ jobs:
       contents: write
 
     steps:
-
       - name: Check out ansible-build-data
         uses: actions/checkout@v4
         with:
