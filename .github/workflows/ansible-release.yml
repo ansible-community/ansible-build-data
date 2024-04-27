@@ -47,9 +47,7 @@ jobs:
       - name: Install dependencies
         working-directory: antsibull
         run: |
-          python3 -m pip install packaging
-          python3 -m pip install ansible-core
-          python3 -m pip install antsibull
+          python3 -m pip install packaging ansible-core antsibull
           ansible-galaxy install -r requirements.yml
 
       - name: Validate version and extract major version
