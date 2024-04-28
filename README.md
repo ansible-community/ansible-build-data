@@ -77,6 +77,10 @@ In case of a potential release blocker, the following actions need to be done:
   release of Ansible.  This file will be created by the `antsibull-build single`
   command.
 
+## Linting
+
+To lint the files in this repository, run `nox -e lint`. This assumes you have `nox` installed.
+
 ## Adding a new collection
 
 ### Next Ansible major release
