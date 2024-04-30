@@ -7,6 +7,544 @@ This changelog describes changes since Ansible 9.0.0.
 .. contents::
   :depth: 2
 
+v10.0.0a2
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2024-04-30
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- kaytus.ksmanage (version 1.2.1)
+
+Ansible-core
+------------
+
+Ansible 10.0.0a2 contains ansible-core version 2.17.0rc1.
+This is a newer version than version 2.17.0b1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                               | Ansible 10.0.0a1 | Ansible 10.0.0a2 | Notes                                                                                                                        |
++==========================================+==================+==================+==============================================================================================================================+
+| ansible.netcommon                        | 6.0.0            | 6.1.1            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.utils                            | 4.0.0            | 4.1.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| arista.eos                               | 8.0.0            | 9.0.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| awx.awx                                  | 24.1.0           | 24.3.0           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.dnac                               | 6.13.2           | 6.13.3           |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios                                | 7.0.0            | 8.0.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.iosxr                              | 8.0.0            | 9.0.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ise                                | 2.8.1            | 2.9.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.nxos                               | 7.0.0            | 8.0.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto                         | 2.18.0           | 2.19.0           |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns                            | 2.8.3            | 2.9.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker                         | 3.8.1            | 3.9.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general                        | 8.5.0            | 8.6.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot                         | 1.9.1            | 1.9.2            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.library_inventory_filtering_v1 | 1.0.0            | 1.0.1            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros                       | 2.14.0           | 2.15.0           |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware                         | 4.2.0            | 4.3.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman                        | 1.12.1           | 1.13.0           |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.openmanage                       | 9.1.0            | 9.2.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.powerflex                        | 2.3.0            | 2.4.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| grafana.grafana                          | 3.0.0            | 5.0.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| hetzner.hcloud                           | 3.0.0            | 3.1.1            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| infinidat.infinibox                      | 1.4.3            | 1.4.5            | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| junipernetworks.junos                    | 7.0.0            | 8.0.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| kaytus.ksmanage                          |                  | 1.2.1            | The collection was added to Ansible                                                                                          |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap                             | 22.10.0          | 22.11.0          |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| telekom_mms.icinga_director              | 2.1.0            | 2.1.1            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+arista.eos
+~~~~~~~~~~
+
+- Update the netcommon base version 6.1.0 to support cli_restore plugin.
+
+cisco.ios
+~~~~~~~~~
+
+- Update the netcommon base version 6.1.0 to support cli_restore plugin.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- Update the netcommon base version to support cli_restore plugin.
+
+cisco.nxos
+~~~~~~~~~~
+
+- Updated the minimum required ansible.netcommon version to 6.1.0 to support the cli_restore module.
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add quadlet support for Podman modules
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_session - This module allows you to create and delete the sessions on iDRAC.
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Add Grafana Loki role by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/188
+- Add Grafana Mimir role by @GVengelen in https://github.com/grafana/grafana-ansible-collection/pull/183
+- Add an Ansible role for Grafana Alloy by @ishanjainn in https://github.com/grafana/grafana-ansible-collection/pull/169
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- Update the netcommon base version 6.1.0 to support cli_restore plugin.
+
+Minor Changes
+-------------
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- Add new module cli_restore that exclusively handles restoring of backup configuration to target applaince.
+
+arista.eos
+~~~~~~~~~~
+
+- Add support for cli_restore functionality.
+- Please refer the PR to know more about core changes (https://github.com/ansible-collections/ansible.netcommon/pull/618).
+- cli_restore module is part of netcommon.
+
+cisco.dnac
+~~~~~~~~~~
+
+- Adding support to importing a template using JSON file
+- Changes in discovery workflow manager modules  relating to different states of the discovery job
+- Changes in inventory and swim workflow manager modules.
+
+cisco.ios
+~~~~~~~~~
+
+- Add support for cli_restore functionality.
+- Please refer the PR to know more about core changes (https://github.com/ansible-collections/ansible.netcommon/pull/618).
+- cli_restore module is part of netcommon.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- Add support for cli_restore functionality.
+- Please refer the PR to know more about core changes (https://github.com/ansible-collections/ansible.netcommon/pull/618).
+- cli_restore module is part of netcommon.
+
+cisco.nxos
+~~~~~~~~~~
+
+- Add support for cli_restore functionality.
+- Please refer the PR to know more about core changes (https://github.com/ansible-collections/ansible.netcommon/pull/618). The cli_restore module is a part of ansible.netcommon.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- When using cryptography >= 42.0.0, use offset-aware ``datetime.datetime`` objects (with timezone UTC) instead of offset-naive UTC timestamps (https://github.com/ansible-collections/community.crypto/issues/726, https://github.com/ansible-collections/community.crypto/pull/727).
+- openssh_cert - avoid UTC functions deprecated in Python 3.12 when using Python 3 (https://github.com/ansible-collections/community.crypto/pull/727).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- The EE requirements now include PyYAML, since the ``docker_compose_v2*`` modules depend on it when the ``definition`` option is used. This should not have a noticable effect on generated EEs since ansible-core itself depends on PyYAML as well, and ansible-builder explicitly ignores this dependency (https://github.com/ansible-collections/community.docker/pull/832).
+- docker_compose_v2* - the new option ``check_files_existing`` allows to disable the check for one of the files ``compose.yaml``, ``compose.yml``, ``docker-compose.yaml``, and ``docker-compose.yml`` in ``project_src`` if ``files`` is not specified. This is necessary if a non-standard compose filename is specified through other means, like the ``COMPOSE_FILE`` environment variable (https://github.com/ansible-collections/community.docker/issues/838, https://github.com/ansible-collections/community.docker/pull/839).
+- docker_compose_v2* modules - allow to provide an inline definition of the compose content instead of having to provide a ``project_src`` directory with the compose file written into it (https://github.com/ansible-collections/community.docker/issues/829, https://github.com/ansible-collections/community.docker/pull/832).
+- vendored Docker SDK for Python - remove unused code that relies on functionality deprecated in Python 3.12 (https://github.com/ansible-collections/community.docker/pull/834).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- Use offset-aware ``datetime.datetime`` objects (with timezone UTC) instead of offset-naive UTC timestamps, which are deprecated in Python 3.12 (https://github.com/ansible-collections/community.general/pull/8222).
+- apt_rpm - add new states ``latest`` and ``present_not_latest``. The value ``latest`` is equivalent to the current behavior of ``present``, which will upgrade a package if a newer version exists. ``present_not_latest`` does what most users would expect ``present`` to do: it does not upgrade if the package is already installed. The current behavior of ``present`` will be deprecated in a later version, and eventually changed to that of ``present_not_latest`` (https://github.com/ansible-collections/community.general/issues/8217, https://github.com/ansible-collections/community.general/pull/8247).
+- bitwarden lookup plugin - add support to filter by organization ID (https://github.com/ansible-collections/community.general/pull/8188).
+- filesystem - add bcachefs support (https://github.com/ansible-collections/community.general/pull/8126).
+- ini_file - add an optional parameter ``section_has_values``. If the target ini file contains more than one ``section``, use ``section_has_values`` to specify which one should be updated (https://github.com/ansible-collections/community.general/pull/7505).
+- java_cert - add ``cert_content`` argument (https://github.com/ansible-collections/community.general/pull/8153).
+- keycloak_client, keycloak_clientscope, keycloak_clienttemplate - added ``docker-v2`` protocol support, enhancing alignment with Keycloak's protocol options (https://github.com/ansible-collections/community.general/issues/8215, https://github.com/ansible-collections/community.general/pull/8216).
+- nmcli - adds OpenvSwitch support with new ``type`` values ``ovs-port``, ``ovs-interface``, and ``ovs-bridge``, and new ``slave_type`` value ``ovs-port`` (https://github.com/ansible-collections/community.general/pull/8154).
+- osx_defaults - add option ``check_types`` to enable changing the type of existing defaults on the fly (https://github.com/ansible-collections/community.general/pull/8173).
+- passwordstore lookup - add ``missing_subkey`` parameter defining the behavior of the lookup when a passwordstore subkey is missing (https://github.com/ansible-collections/community.general/pull/8166).
+- portage - adds the possibility to explicitely tell portage to write packages to world file (https://github.com/ansible-collections/community.general/issues/6226, https://github.com/ansible-collections/community.general/pull/8236).
+- redfish_command - add command ``ResetToDefaults`` to reset manager to default state (https://github.com/ansible-collections/community.general/issues/8163).
+- redfish_info - add boolean return value ``MultipartHttpPush`` to ``GetFirmwareUpdateCapabilities`` (https://github.com/ansible-collections/community.general/issues/8194, https://github.com/ansible-collections/community.general/pull/8195).
+- ssh_config - allow ``accept-new`` as valid value for ``strict_host_key_checking`` (https://github.com/ansible-collections/community.general/pull/8257).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info, api_modify - Add RouterOS 7.x support to ``/mpls ldp`` path (https://github.com/ansible-collections/community.routeros/pull/271).
+- api_info, api_modify - add ``/ip route rule`` path for RouterOS 6.x (https://github.com/ansible-collections/community.routeros/pull/278).
+- api_info, api_modify - add ``/routing filter`` path for RouterOS 6.x (https://github.com/ansible-collections/community.routeros/pull/279).
+- api_info, api_modify - add default value for ``from-pool`` field in ``/ipv6 address`` (https://github.com/ansible-collections/community.routeros/pull/270).
+- api_info, api_modify - add missing path ``/interface pppoe-server server`` (https://github.com/ansible-collections/community.routeros/pull/273).
+- api_info, api_modify - add missing path ``/ip dhcp-relay`` (https://github.com/ansible-collections/community.routeros/pull/276).
+- api_info, api_modify - add missing path ``/queue simple`` (https://github.com/ansible-collections/community.routeros/pull/269).
+- api_info, api_modify - add missing path ``/queue type`` (https://github.com/ansible-collections/community.routeros/pull/274).
+- api_info, api_modify - add missing paths ``/routing bgp aggregate``, ``/routing bgp network`` and ``/routing bgp peer`` (https://github.com/ansible-collections/community.routeros/pull/277).
+- api_info, api_modify - add support for paths ``/mpls interface``, ``/mpls ldp accept-filter``, ``/mpls ldp advertise-filter`` and ``mpls ldp interface`` (https://github.com/ansible-collections/community.routeros/pull/272).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- Document that all parameters and VMware object names are case sensitive (https://github.com/ansible-collections/community.vmware/issues/2019).
+- Drop the outdated (and actually unmaintained) scenario guides (https://github.com/ansible-collections/community.vmware/pull/2022).
+- vmware_dvswitch - Add switchIpAddress/switch_ip parameter for netflow config
+- vmware_guest_tools_info - Use `toolsVersionStatus2` instead of `toolsVersionStatus` (https://github.com/ansible-collections/community.vmware/issues/2033).
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_reset - This module allows you to reset the iDRAC to factory default settings.
+
+dellemc.powerflex
+~~~~~~~~~~~~~~~~~
+
+- Added support for executing Ansible PowerFlex modules and roles on AWS environment.
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Bump ansible-lint from 24.2.0 to 24.2.1 by @dependabot in https://github.com/grafana/grafana-ansible-collection/pull/164
+- Bump ansible-lint from 24.2.0 to 24.2.1 by @dependabot in https://github.com/grafana/grafana-ansible-collection/pull/168
+- Bump black from 24.1.1 to 24.3.0 by @dependabot in https://github.com/grafana/grafana-ansible-collection/pull/165
+- Clarify grafana-server configuration in README by @VGerris in https://github.com/grafana/grafana-ansible-collection/pull/177
+- Update description to match module by @brmurphy in https://github.com/grafana/grafana-ansible-collection/pull/179
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- primary_ip - Use the `server` option to assign a Primary IP being created to a server.
+- server - Allow passing Datacenter name or ID to the `datacenter` argument.
+- server - Allow passing Image name or ID to the `image` argument.
+- server - Allow passing Location name or ID to the `location` argument.
+- server - Allow passing SSH Keys names or IDs to the `ssh_keys` argument.
+- server - Allow passing Volume names or IDs to the `volumes` argument.
+- server - Renamed the `allow_deprecated_image` option to `image_allow_deprecated`.
+
+junipernetworks.junos
+~~~~~~~~~~~~~~~~~~~~~
+
+- Add support for cli_restore functionality.
+- Please refer the PR to know more about core changes (https://github.com/ansible-collections/ansible.netcommon/pull/618).
+- cli_restore module is part of netcommon.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_cifs - new option `offline_files` added in REST, requires ONTAP 9.10 or later.
+- na_ontap_net_ifgrp - updated documentation for parameter `name`.
+- na_ontap_vserver_audit - new options `schedule.*` added under `log.rotation`, requires ONTAP 9.6 or later.
+
+Deprecated Features
+-------------------
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme.backends module utils - from community.crypto on, all implementations of ``CryptoBackend`` must override ``get_ordered_csr_identifiers()``. The current default implementation, which simply sorts the result of ``get_csr_identifiers()``, will then be removed (https://github.com/ansible-collections/community.crypto/pull/725).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- hipchat callback plugin - the hipchat service has been discontinued and the self-hosted variant has been End of Life since 2020. The callback plugin is therefore deprecated and will be removed from community.general 10.0.0 if nobody provides compelling reasons to still keep it (https://github.com/ansible-collections/community.general/issues/8184, https://github.com/ansible-collections/community.general/pull/8189).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_guest_tools_info - `vm_tools_install_status` will be removed from next major version (5.0.0) of the collection since the API call that provides this information has been deprecated by VMware. Use `vm_tools_running_status` / `vm_tools_version_status` instead (https://github.com/ansible-collections/community.vmware/issues/2033).
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Removed Python 2.7 and Python 3.6 as a supported remote version. Python 3.7+ is now required for target execution.
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Fix handlers not being executed in lockstep using the linear strategy in some cases (https://github.com/ansible/ansible/issues/82307)
+- ansible-config will now properly template defaults before dumping them.
+- ansible_managed restored it's 'templatability' by ensuring the possible injection routes are cut off earlier in the process.
+- dnf5 - replace removed API calls
+- facts - add a generic detection for VMware in product name.
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- Added guidance for users to open an issue for the respective platform if plugin support is needed.
+- Improved module execution to gracefully handle cases where plugin support is required, providing a clear error message to the user.
+- libssh connection plugin - stop using deprecated ``PlayContext.verbosity`` property that is no longer present in ansible-core 2.18 (https://github.com/ansible-collections/ansible.netcommon/pull/626).
+- network_cli - removed deprecated play_context.verbosity property.
+
+cisco.ise
+~~~~~~~~~
+
+- Service included active_directories.
+- Service included ad_groups.
+- Service included custom_attributes.
+- Service included duo_identity_sync.
+- Service included duo_mfa.
+- Service included enable_mfa.
+- Service included endpoint_stop_replication_service.
+- Service included endpoints.
+- Service included full_upgrade.
+- Service included is_mfa_enabled.
+- Service included native_ipsec.
+- Service included px_grid_direct.
+- Service included sgt_range_reservation.
+- Service included user_equipment.
+
+cisco.nxos
+~~~~~~~~~~
+
+- nxos_facts - correct parse JSON output when multiple interfaces have IPv6 address assigned (https://github.com/ansible-collections/cisco.nxos/issues/771).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme_certificate - respect the order of the CNAME and SAN identifiers that are passed on when creating an ACME order (https://github.com/ansible-collections/community.crypto/issues/723, https://github.com/ansible-collections/community.crypto/pull/725).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+- inventory plugins - add unsafe wrapper to avoid marking strings that do not contain ``{`` or ``}`` as unsafe, to work around a bug in AWX (https://github.com/ansible-collections/community.dns/pull/197).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_compose_v2* - allow ``project_src`` to be a relative path, by converting it to an absolute path before using it (https://github.com/ansible-collections/community.docker/issues/827, https://github.com/ansible-collections/community.docker/pull/828).
+- docker_compose_v2* modules - abort with a nice error message instead of crash when the Docker Compose CLI plugin version is ``dev`` (https://github.com/ansible-collections/community.docker/issues/825, https://github.com/ansible-collections/community.docker/pull/826).
+- inventory plugins - add unsafe wrapper to avoid marking strings that do not contain ``{`` or ``}`` as unsafe, to work around a bug in AWX (https://github.com/ansible-collections/community.docker/pull/835).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- aix_filesystem - fix ``_validate_vg`` not passing VG name to ``lsvg_cmd`` (https://github.com/ansible-collections/community.general/issues/8151).
+- apt_rpm - when checking whether packages were installed after running ``apt-get -y install <packages>``, only the last package name was checked (https://github.com/ansible-collections/community.general/pull/8263).
+- bitwarden_secrets_manager lookup plugin - implements retry with exponential backoff to avoid lookup errors when Bitwardn's API rate limiting is encountered (https://github.com/ansible-collections/community.general/issues/8230, https://github.com/ansible-collections/community.general/pull/8238).
+- from_ini filter plugin - disabling interpolation of ``ConfigParser`` to allow converting values with a ``%`` sign (https://github.com/ansible-collections/community.general/issues/8183, https://github.com/ansible-collections/community.general/pull/8185).
+- gitlab_issue, gitlab_label, gitlab_milestone - avoid crash during version comparison when the python-gitlab Python module is not installed (https://github.com/ansible-collections/community.general/pull/8158).
+- haproxy - fix an issue where HAProxy could get stuck in DRAIN mode when the backend was unreachable (https://github.com/ansible-collections/community.general/issues/8092).
+- inventory plugins - add unsafe wrapper to avoid marking strings that do not contain ``{`` or ``}`` as unsafe, to work around a bug in AWX ((https://github.com/ansible-collections/community.general/issues/8212, https://github.com/ansible-collections/community.general/pull/8225).
+- ipa - fix get version regex in IPA module_utils (https://github.com/ansible-collections/community.general/pull/8175).
+- keycloak_client - add sorted ``defaultClientScopes`` and ``optionalClientScopes`` to normalizations (https://github.com/ansible-collections/community.general/pull/8223).
+- keycloak_realm - add normalizations for ``enabledEventTypes`` and ``supportedLocales`` (https://github.com/ansible-collections/community.general/pull/8224).
+- puppet - add option ``environment_lang`` to set the environment language encoding. Defaults to lang ``C``. It is recommended to set it to ``C.UTF-8`` or ``en_US.UTF-8`` depending on what is available on your system. (https://github.com/ansible-collections/community.general/issues/8000)
+- riak - support ``riak admin`` sub-command in newer Riak KV versions beside the legacy ``riak-admin`` main command (https://github.com/ansible-collections/community.general/pull/8211).
+- to_ini filter plugin - disabling interpolation of ``ConfigParser`` to allow converting values with a ``%`` sign (https://github.com/ansible-collections/community.general/issues/8183, https://github.com/ansible-collections/community.general/pull/8185).
+- xml - make module work with lxml 5.1.1, which removed some internals that the module was relying on (https://github.com/ansible-collections/community.general/pull/8169).
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- inventory plugins - add unsafe wrapper to avoid marking strings that do not contain ``{`` or ``}`` as unsafe, to work around a bug in AWX (https://github.com/ansible-collections/community.hrobot/pull/102).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- Use `isinstance()` instead of `type()` for a typecheck (https://github.com/ansible-collections/community.vmware/pull/2011).
+- vmware_guest - Fix a error while updating the VM by adding a new disk. While adding a disk to an  existing VM, it leaves it in invalid state. (https://github.com/ansible-collections/community.vmware/pull/2044).
+- vmware_guest - Fix a missing error message while setting a template parameter with inconsistency guest_os ID (https://github.com/ansible-collections/community.vmware/pull/2036).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Fix pod info for non-existant pods
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- inventory - Ensure inventory host variables are serializable and can be cached.
+- primary_ip - Added the missing `auto_delete` field to the return values.
+- primary_ip - The `auto_delete` option is now used when creating or updating a Primary IP.
+- primary_ip_info - Added the missing `auto_delete` field to the return values.
+- server - Do not remove the server from its placement group when the `placement_group` argument is not specified.
+- server - Pass an empty string to the `placement_group` argument to remove a server from its placement group.
+- server_network - The returned `alias_ips` list is now sorted.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_dns - fix issue with modifying DNS servers in REST.
+- na_ontap_fpolicy_policy - fixed issue with idempotency in REST.
+- na_ontap_quotas - fixed issue with idempotency in REST.
+- na_ontap_security_config - added warning for missing `supported_cipher_suites` to maintain idempotency in REST.
+
+telekom_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- change notification interval variable to int-type (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/254)
+- set user_groups in notification to empty list (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/255)
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_diagnostics - Issue(285322) - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- idrac_storage_volume - Issue(290766) - The module will report success instead of showing failure for new virtual creation on the BOSS-N1 controller if a virtual disk is already present on the same controller.
+- ome_diagnostics - Issue(279193) - Export of SupportAssist collection logs to the share location fails on OME version 4.0.0.
+- ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+New Plugins
+-----------
+
+Filter
+~~~~~~
+
+- community.dns.quote_txt - Quotes a string to use as a TXT record entry
+- community.dns.unquote_txt - Unquotes a TXT record entry to a string
+
+New Modules
+-----------
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- ansible.netcommon.cli_restore - Restore device configuration to network devices over network_cli
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- community.crypto.x509_certificate_convert - Convert X.509 certificates
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- community.general.keycloak_client_rolescope - Allows administration of Keycloak client roles scope to restrict the usage of certain roles to a other specific client applications.
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- dellemc.openmanage.idrac_session - Allows you to create and delete the sessions on iDRAC.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 7.5.0)
+- ansible.posix (still version 1.5.4)
+- ansible.windows (still version 2.3.0)
+- azure.azcollection (still version 2.3.0)
+- check_point.mgmt (still version 5.2.3)
+- chocolatey.chocolatey (still version 1.5.1)
+- cisco.aci (still version 2.9.0)
+- cisco.asa (still version 5.0.1)
+- cisco.intersight (still version 2.0.8)
+- cisco.meraki (still version 2.18.0)
+- cisco.mso (still version 2.6.0)
+- cisco.ucs (still version 1.10.0)
+- cloud.common (still version 3.0.0)
+- cloudscale_ch.cloud (still version 2.3.1)
+- community.aws (still version 7.2.0)
+- community.ciscosmb (still version 1.0.8)
+- community.digitalocean (still version 1.26.0)
+- community.grafana (still version 1.8.0)
+- community.hashi_vault (still version 6.2.0)
+- community.libvirt (still version 1.3.0)
+- community.mongodb (still version 1.7.3)
+- community.mysql (still version 3.9.0)
+- community.network (still version 5.0.2)
+- community.okd (still version 3.0.1)
+- community.postgresql (still version 3.4.0)
+- community.proxysql (still version 1.5.1)
+- community.rabbitmq (still version 1.3.0)
+- community.sap_libs (still version 1.4.2)
+- community.sops (still version 1.6.7)
+- community.windows (still version 2.2.0)
+- community.zabbix (still version 2.3.1)
+- cyberark.conjur (still version 1.2.2)
+- cyberark.pas (still version 1.0.25)
+- dellemc.enterprise_sonic (still version 2.4.0)
+- dellemc.unity (still version 2.0.0)
+- f5networks.f5_modules (still version 1.28.0)
+- fortinet.fortimanager (still version 2.4.0)
+- fortinet.fortios (still version 2.3.6)
+- frr.frr (still version 2.0.2)
+- google.cloud (still version 1.3.0)
+- ibm.qradar (still version 3.0.0)
+- ibm.spectrum_virtualize (still version 2.0.0)
+- ibm.storage_virtualize (still version 2.3.1)
+- infoblox.nios_modules (still version 1.6.1)
+- inspur.ispim (still version 2.2.0)
+- inspur.sm (still version 2.3.0)
+- kubernetes.core (still version 3.0.1)
+- lowlydba.sqlserver (still version 2.3.2)
+- microsoft.ad (still version 1.5.0)
+- netapp.cloudmanager (still version 21.22.1)
+- netapp.storagegrid (still version 21.12.0)
+- netapp_eseries.santricity (still version 1.4.0)
+- netbox.netbox (still version 3.17.0)
+- ngine_io.cloudstack (still version 2.3.0)
+- ngine_io.exoscale (still version 1.1.0)
+- openstack.cloud (still version 2.2.0)
+- openvswitch.openvswitch (still version 2.1.1)
+- ovirt.ovirt (still version 3.2.0)
+- purestorage.flasharray (still version 1.27.0)
+- purestorage.flashblade (still version 1.17.0)
+- sensu.sensu_go (still version 1.14.0)
+- splunk.es (still version 3.0.0)
+- t_systems_mms.icinga_director (still version 2.0.1)
+- theforeman.foreman (still version 4.0.0)
+- vmware.vmware_rest (still version 3.0.1)
+- vultr.cloud (still version 1.12.1)
+- vyos.vyos (still version 4.1.0)
+- wti.remote (still version 1.0.5)
+
 v10.0.0a1
 =========
 
@@ -1496,6 +2034,7 @@ Ansible-core
 - ansible-galaxy info - fix reporting no role found when lookup_role_by_name returns None.
 - ansible-galaxy role import - exit with 1 when the import fails (https://github.com/ansible/ansible/issues/82175).
 - ansible-galaxy role install - fix installing roles from Galaxy that have version ``None`` (https://github.com/ansible/ansible/issues/81832).
+- ansible-galaxy role install - fix symlinks (https://github.com/ansible/ansible/issues/82702, https://github.com/ansible/ansible/issues/81965).
 - ansible-galaxy role install - normalize tarfile paths and symlinks using ``ansible.utils.path.unfrackpath`` and consider them valid as long as the realpath is in the tarfile's role directory (https://github.com/ansible/ansible/issues/81965).
 - ansible-inventory - index available_hosts for major performance boost when dumping large inventories
 - ansible-pull now will expand relative paths for the ``-d|--directory`` option is now expanded before use.
