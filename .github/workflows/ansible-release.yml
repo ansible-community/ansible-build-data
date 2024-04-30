@@ -143,7 +143,13 @@ jobs:
 
     steps:
 
+    - name: Check out ansible-build-data
+      uses: actions/checkout@v4
+      with:
+        path: ansible-build-data
+
     - name: Ensure that the PR was merged
+      working-directory: ansible-build-data
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PR_URL: ${{ needs.build.outputs.create-pr }}
