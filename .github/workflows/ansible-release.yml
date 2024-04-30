@@ -145,6 +145,7 @@ jobs:
 
     - name: Ensure that the PR was merged
       env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PR_URL: ${{ needs.build.outputs.create-pr }}
       run: |
         STATE="$(gh pr view "${PR_URL}" --json state --template "{{.state}}")"
