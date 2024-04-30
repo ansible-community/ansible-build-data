@@ -49,3 +49,10 @@ releases:
         which should cover the same functionality.
       - The deprecated ``purestorage.fusion`` collection has been removed (https://forum.ansible.com/t/3712).
     release_date: '2024-04-09'
+  10.0.0a2:
+    changes:
+      release_summary: 'Release Date: 2024-04-30
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2024-04-30'
