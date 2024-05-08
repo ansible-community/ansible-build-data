@@ -127,7 +127,7 @@ jobs:
           ARTIFACT_URL: ${{ steps.upload-artifact.outputs.artifact-url }}
         run: |
           body="$(echo -e "${CI_COMMIT_MESSAGE}\nRelease artifacts: <${ARTIFACT_URL}>")"
-          echo -n "pr_url=" >> "$GITHUB_OUTPUT"
+          echo -n "pr_url=" >> "${GITHUB_OUTPUT}"
           gh pr create \
           --base main \
           --head "publish-${ANSIBLE_VERSION}" \
@@ -145,6 +145,8 @@ jobs:
       url: https://pypi.org/project/ansible/${{ inputs.ansible-version }}
     permissions:
       id-token: write
+    outputs:
+      pr_url: ${{ needs.build.outputs.pr_url }}
 
     steps:
       - name: Ensure that the PR was merged
@@ -178,14 +180,25 @@ jobs:
       contents: write
 
     steps:
+      - name: Figure out merge commit
+        id: merge-commit
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ needs.publish.outputs.pr_url }}
+        run: |
+          MERGE_COMMIT="$(gh pr view "${PR_URL}" --json mergeCommit --template "{{.mergeCommit.oid}}")"
+          echo "merge_commit=${MERGE_COMMIT}" >> "${GITHUB_OUTPUT}"
+
       - name: Check out ansible-build-data
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.repository.default_branch }}
 
       - name: Create git tag
+        env:
+          MERGE_COMMIT: ${{steps.merge-commit.outputs.merge_commit}}
         run: |
           git config --global user.name "Github Actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git tag -a "${ANSIBLE_VERSION}" -m "Ansible ${ANSIBLE_VERSION}: Changelog, Porting Guide and Dependent Collection Details"
+          git tag -a "${ANSIBLE_VERSION}" "${MERGE_COMMIT}" -m "Ansible ${ANSIBLE_VERSION}: Changelog, Porting Guide and Dependent Collection Details"
           git push origin "${ANSIBLE_VERSION}"
