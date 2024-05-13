@@ -16,11 +16,19 @@ name: Release Ansible package
           Whether to preserve existing `.deps` files.
         type: boolean
         default: false
+      existing-branch:
+        description: >-
+          If provided, assumes that a branch of this name exists in the ansible-build-data
+          repository. Changes will be pushed to this branch, and the PR will be created from
+          it.
+        type: string
+        default: ''
 env:
   CI_COMMIT_MESSAGE: >-
     Ansible ${{ inputs.ansible-version }}:
     Dependencies, changelog and porting guide
   ANSIBLE_VERSION: ${{ inputs.ansible-version }}
+  BRANCH_NAME: ${{ inputs.existing-branch || ('publish-' + inputs.ansible-version) }}
 
 jobs:
   build:
@@ -43,11 +51,12 @@ jobs:
       - name: Pre-create build directory
         run: mkdir -p antsibull/build
 
-      # This is where the antsibull build-release role expects it by default
       - name: Check out ansible-build-data under antsibull build directory
         uses: actions/checkout@v4
         with:
+          # This is where the antsibull build-release role expects it by default
           path: antsibull/build/ansible-build-data
+          ref: ${{ inputs.existing-branch || '' }}
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
@@ -88,9 +97,10 @@ jobs:
           set_output('major-version', version.major)
 
       - name: Checking out to a new branch
+        if: inputs.existing-branch == ''
         working-directory: antsibull/build/ansible-build-data
         run: |
-          git checkout -b "publish-${ANSIBLE_VERSION}"
+          git checkout -b "${BRANCH_NAME}"
 
       - name: Setting the user details
         run: |
@@ -122,9 +132,9 @@ jobs:
         working-directory: >-
           antsibull/build/ansible-build-data/${{ steps.extract-version.outputs.major-version }}
         run: |
-         git add .
-         git commit -m "${CI_COMMIT_MESSAGE}"
-         git push origin "publish-${ANSIBLE_VERSION}"
+          git add .
+          git commit -m "${CI_COMMIT_MESSAGE}"
+          git push origin "${BRANCH_NAME}"
 
       - name: Create PR to the ansible-build-data
         id: create-pr
@@ -137,7 +147,7 @@ jobs:
           echo -n "pr_url=" >> "${GITHUB_OUTPUT}"
           gh pr create \
           --base main \
-          --head "publish-${ANSIBLE_VERSION}" \
+          --head "${BRANCH_NAME}" \
           --title "Release Ansible ${ANSIBLE_VERSION}" \
           --body "${body}" | tee -a "$GITHUB_OUTPUT"
 
