@@ -11,6 +11,11 @@ name: Release Ansible package
         description: >-
           Release Version. Example: 11.1.0
         required: true
+      preserve-deps:
+        description: >-
+          Whether to preserve existing `.deps` files.
+        type: boolean
+        default: false
 env:
   CI_COMMIT_MESSAGE: >-
     Ansible ${{ inputs.ansible-version }}:
@@ -96,13 +101,15 @@ jobs:
 
       - name: Building a release with the defaults
         working-directory: antsibull
+        env:
+          PRESERVE_DEPS: ${{ inputs.preserve-deps }}
+          # Make result better readable
+          ANSIBLE_CALLBACK_RESULT_FORMAT: yaml
         run: >-
           ansible-playbook -vv playbooks/build-single-release.yaml
           -e antsibull_data_reset=false
           -e "antsibull_ansible_version=${ANSIBLE_VERSION}"
-        env:
-          # Make result better readable
-          ANSIBLE_CALLBACK_RESULT_FORMAT: yaml
+          -e "antsibull_preserve_deps=${PRESERVE_DEPS}"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
