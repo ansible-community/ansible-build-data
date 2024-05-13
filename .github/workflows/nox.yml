@@ -1,0 +1,47 @@
+---
+# GNU General Public License v3.0+ (see LICENSE or https://www.gnu.org/licenses/gpl-3.0.txt)
+# SPDX-License-Identifier: GPL-3.0-or-later
+# SPDX-FileCopyrightText: 2023 Maxwell G <maxwell@gtmx.me
+
+name: nox
+'on':
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # Run once per week (Thursday at 04:00 UTC)
+  schedule:
+    - cron: '0 4 * * 4'
+  workflow_dispatch:
+
+env:
+  FORCE_COLOR: "1"
+
+jobs:
+  nox:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: antsibull
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - session: lint
+            python-versions: "3.12"
+    name: "Run nox ${{ matrix.session }} session"
+    steps:
+      - name: Check out antsibull
+        uses: actions/checkout@v4
+        with:
+          path: antsibull
+      - name: Setup nox
+        uses: wntrblm/nox@2024.04.15
+        with:
+          python-versions: "${{ matrix.python-versions }}"
+      - name: Set up nox environments
+        run: |
+          OTHER_ANTSIBULL_MODE=git nox -v -e "${{ matrix.session }}" ${{ matrix.codecov && 'coverage' || '' }} --install-only
+      - name: "Run nox -e ${{ matrix.session }}"
+        run: |
+          OTHER_ANTSIBULL_MODE=git nox -v -e "${{ matrix.session }}" --reuse-existing-virtualenvs --no-install
