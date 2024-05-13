@@ -20,8 +20,9 @@ release process. The automated processes uses GitHub Actions to automate the
    such as `11.2.0` or `12.0.0rc1`. The process will create a PR in the
    [`ansible-build-data` repository](https://github.com/ansible-community/ansible-build-data/).
    Afterwards, it will wait for approval before continuing with uploading the
-   package to PyPI. All users with commit rights in the `ansible-build-data`
-   repository will be informed with a notification once the approval is needed.
+   package to PyPI. All users in the [ansible-community/release-management-wg
+   group](https://github.com/orgs/ansible-community/teams/release-management-wg)[^1]
+   will be informed with a notification once the approval is needed.
    The notification includes a link to the page where the upload step can be
    approved.
 
@@ -49,3 +50,6 @@ release process. The automated processes uses GitHub Actions to automate the
     ```
     antsibull-build announcements --send --data-dir . ${VERSION}
     ```
+
+[^1]: This group is configured as "Required reviewers" for the "Configure pypi"
+      build environment in GitHub Actions of the `ansible-build-data` repository.

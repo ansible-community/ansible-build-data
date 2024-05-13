@@ -18,6 +18,7 @@ copyright: >
 markdown_extensions:
   # Builtin
   - admonition
+  - footnotes
   - toc:
       permalink: true
   # pymdownx
