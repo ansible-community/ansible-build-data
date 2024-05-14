@@ -21,7 +21,9 @@ release process. The automated processes uses GitHub Actions to automate the
    This always has to be specified.
 
    The following additional inputs are required for special releases. Generally
-   you do not need to pass them and can rely on their defaults.
+   you do not need to pass them and can rely on their defaults. Cases where you
+   need these inputs are described in the [Special builds](#special-builds)
+   section below.
 
    * You can optionally decide whether to preserve existing `.deps` files.
      The default is to regenerate them.
@@ -67,3 +69,70 @@ release process. The automated processes uses GitHub Actions to automate the
 
 [^1]: This group is configured as "Required reviewers" for the "Configure pypi"
       build environment in GitHub Actions of the `ansible-build-data` repository.
+
+## Special builds
+
+### Builds with a specific release summary other than the default one
+
+Sometimes you want to use a different release summary than the default one.
+For example for the Ansible 9.5.1 release, we included some text that explained
+why the release has version 9.5.1 and not 9.5.0.
+
+For this, create a new branch in `ansible-build-data`. Add a `release_summary`
+changelog entry for the new release to the `changelog.yaml` file in the major
+version's directory. Make sure to follow the same basic structure of the version's
+record in `changelog.yaml`. This can look as follows:
+```yaml
+releases:
+  ...
+  12.3.4:
+    changes:
+      release_summary: |
+        Release Date: 2024-05-14
+
+        Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+        This is a special release because of ...
+```
+
+
+After that, you can start the automated workflow. You need to set the following option
+next to the release version:
+
+1. Set `existing-branch` to the branch you pushed to the `ansible-build-data`
+   repository.
+
+### Additional release candidates (rc2 etc.)
+
+For these release candidates, you only want to bump very specific collection
+versions, and not use new bugfix releases of potentially all included collections.
+
+For this, create a new branch in `ansible-build-data` where you copy the `.deps`
+file of the previous release candidate to the location of the `.deps` file of the
+planned release. Then you modify the new `.deps` file with the version updates
+you plan to make.
+
+After that, you can start the automated workflow. You need to set the following options
+next to the release version:
+
+1. Set `preserve-deps` to `true`;
+
+2. Set `existing-branch` to the branch you pushed to the `ansible-build-data`
+   repository.
+
+### New major release (x.0.0)
+
+The new major release should include exactly the same dependencies as the last
+release candidate.
+
+For this, create a new branch in `ansible-build-data` where you copy the `.deps`
+file of the last release candidate to the location of the `.deps` file of the
+planned major release. Do not modify the new `.deps` file with any version updates.
+
+After that, you can start the automated workflow. You need to set the following options
+next to the release version:
+
+1. Set `preserve-deps` to `true`;
+
+2. Set `existing-branch` to the branch you pushed to the `ansible-build-data`
+   repository.
