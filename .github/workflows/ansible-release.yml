@@ -36,7 +36,7 @@ env:
     Ansible ${{ inputs.ansible-version }}:
     Dependencies, changelog and porting guide
   ANSIBLE_VERSION: ${{ inputs.ansible-version }}
-  BRANCH_NAME: ${{ inputs.existing-branch || ('publish-' + inputs.ansible-version) }}
+  ANSIBLE_BRANCH_NAME: ${{ inputs.existing-branch || ('publish-' + inputs.ansible-version) }}
 
 jobs:
   build:
@@ -108,7 +108,7 @@ jobs:
         if: inputs.existing-branch == ''
         working-directory: antsibull/build/ansible-build-data
         run: |
-          git checkout -b "${BRANCH_NAME}"
+          git checkout -b "${ANSIBLE_BRANCH_NAME}"
 
       - name: Setting the user details
         run: |
@@ -144,7 +144,7 @@ jobs:
         run: |
           git add .
           git commit -m "${CI_COMMIT_MESSAGE}"
-          git push origin "${BRANCH_NAME}"
+          git push origin "${ANSIBLE_BRANCH_NAME}"
 
       - name: Create PR to the ansible-build-data
         id: create-pr
@@ -157,7 +157,7 @@ jobs:
           echo -n "pr_url=" >> "${GITHUB_OUTPUT}"
           gh pr create \
           --base main \
-          --head "${BRANCH_NAME}" \
+          --head "${ANSIBLE_BRANCH_NAME}" \
           --title "Release Ansible ${ANSIBLE_VERSION}" \
           --body "${body}" | tee -a "$GITHUB_OUTPUT"
 
