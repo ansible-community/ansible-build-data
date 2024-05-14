@@ -95,7 +95,6 @@ releases:
         This is a special release because of ...
 ```
 
-
 After that, you can start the automated workflow. You need to set the following option
 next to the release version:
 
