@@ -18,15 +18,14 @@ name: Release Ansible package
         default: false
       allow-reset-build-deps:
         description: >-
-          Whether to allow resetting existing `.build` files during alpha and beta-1 releases.
-
-          Should only be set to `false` for specific alpha or beta-1 releases if the deps and
-          build files have been prepared manually.
+          Whether to allow resetting existing .build files during alpha and beta-1 releases.
+          Only set to false for special alpha or beta-1 releases if the deps and build files
+          have been prepared manually!
         type: boolean
         default: true
       existing-branch:
         description: >-
-          If provided, assumes that a branch of this name exists in the `ansible-build-data`
+          If provided, assumes that a branch of this name exists in the ansible-build-data
           repository. Changes will be pushed to this branch, and the PR will be created from
           it.
         type: string
@@ -36,7 +35,7 @@ env:
     Ansible ${{ inputs.ansible-version }}:
     Dependencies, changelog and porting guide
   ANSIBLE_VERSION: ${{ inputs.ansible-version }}
-  ANSIBLE_BRANCH_NAME: ${{ inputs.existing-branch || ('publish-' + inputs.ansible-version) }}
+  ANSIBLE_BRANCH_NAME: ${{ inputs.existing-branch || format('publish-{0}', inputs.ansible-version) }}
 
 jobs:
   build:
