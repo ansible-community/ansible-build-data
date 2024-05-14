@@ -20,27 +20,27 @@ release process. The automated processes uses GitHub Actions to automate the
    The most important is the release version, such as `11.2.0` or `12.0.0rc1`.
    This always has to be specified.
 
-   The following additional inputs are required for special releases. Generally
-   you do not need to pass them and can rely on their defaults. Cases where you
-   need these inputs are described in the [Special builds](#special-builds)
-   section below.
+    The following additional inputs are required for special releases. Generally
+    you do not need to pass them and can rely on their defaults. Cases where you
+    need these inputs are described in the [Special builds](#special-builds)
+    section below.
 
-   * You can optionally decide whether to preserve existing `.deps` files.
-     The default is to regenerate them.
-   * You can optionally decide whether the `.build` file should be regenerated
-     during alpha and beta-1 releases.
-   * You can also specify an existing branch in the [`ansible-build-data`
-     repository](https://github.com/ansible-community/ansible-build-data/) to
-     create the PR on.
+    * You can optionally decide whether to preserve existing `.deps` files.
+      The default is to regenerate them.
+    * You can optionally decide whether the `.build` file should be regenerated
+      during alpha and beta-1 releases.
+    * You can also specify an existing branch in the [`ansible-build-data`
+      repository](https://github.com/ansible-community/ansible-build-data/) to
+      create the PR on.
 
-   The process will create a PR in the [`ansible-build-data`
-   repository](https://github.com/ansible-community/ansible-build-data/).
-   Afterwards, it will wait for approval before continuing with uploading the
-   package to PyPI. All users in the [ansible-community/release-management-wg
-   group](https://github.com/orgs/ansible-community/teams/release-management-wg)[^1]
-   will be informed with a notification once the approval is needed.
-   The notification includes a link to the page where the upload step can be
-   approved.
+    The process will create a PR in the [`ansible-build-data`
+    repository](https://github.com/ansible-community/ansible-build-data/).
+    Afterwards, it will wait for approval before continuing with uploading the
+    package to PyPI. All users in the [ansible-community/release-management-wg
+    group](https://github.com/orgs/ansible-community/teams/release-management-wg)[^1]
+    will be informed with a notification once the approval is needed.
+    The notification includes a link to the page where the upload step can be
+    approved.
 
 2. Check out the PR in your `ansible-build-data` clone and copy the updated
    porting guide from its `${MAJOR_VERSION}` directory into the
