@@ -16,6 +16,14 @@ name: Release Ansible package
           Whether to preserve existing `.deps` files.
         type: boolean
         default: false
+      allow-reset-build-deps:
+        description: >-
+          Whether to allow resetting existing `.build` files during alpha and beta-1 releases.
+
+          Should only be set to `false` for specific alpha or beta-1 releases if the deps file
+          has been prepared manually.
+        type: boolean
+        default: true
       existing-branch:
         description: >-
           If provided, assumes that a branch of this name exists in the ansible-build-data
@@ -113,11 +121,13 @@ jobs:
         working-directory: antsibull
         env:
           PRESERVE_DEPS: ${{ inputs.preserve-deps }}
+          ALLOW_RESET_BUILD_DEPS: ${{ inputs.allow-reset-build-deps }}
           # Make result better readable
           ANSIBLE_CALLBACK_RESULT_FORMAT: yaml
         run: >-
           ansible-playbook -vv playbooks/build-single-release.yaml
           -e antsibull_data_reset=false
+          -e "antsibull_build_reset=${ALLOW_RESET_BUILD_DEPS}"
           -e "antsibull_ansible_version=${ANSIBLE_VERSION}"
           -e "antsibull_preserve_deps=${PRESERVE_DEPS}"
 

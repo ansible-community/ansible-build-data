@@ -16,12 +16,20 @@ release process. The automated processes uses GitHub Actions to automate the
 
 1. Trigger [the automated
    workflow](https://github.com/ansible-community/ansible-build-data/actions/workflows/ansible-release.yml)
-   on the **Actions** tab of the repository and specify the release version,
-   such as `11.2.0` or `12.0.0rc1`, and optionally whether to preserve existing
-   `.deps` files (the default is to regenerate them). You can also specify an
-   existing branch in the [`ansible-build-data`
-   repository](https://github.com/ansible-community/ansible-build-data/) to
-   create the PR on.
+   on the **Actions** tab of the repository. This workflow has multiple inputs.
+   The most important is the release version, such as `11.2.0` or `12.0.0rc1`.
+   This always has to be specified.
+
+   The following additional inputs are required for special releases. Generally
+   you do not need to pass them and can rely on their defaults.
+
+   * You can optionally decide whether to preserve existing `.deps` files.
+     The default is to regenerate them.
+   * You can optionally decide whether the `.build` file should be regenerated
+     during alpha and beta-1 releases.
+   * You can also specify an existing branch in the [`ansible-build-data`
+     repository](https://github.com/ansible-community/ansible-build-data/) to
+     create the PR on.
 
    The process will create a PR in the [`ansible-build-data`
    repository](https://github.com/ansible-community/ansible-build-data/).
