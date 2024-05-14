@@ -7,6 +7,373 @@ This changelog describes changes since Ansible 9.0.0.
 .. contents::
   :depth: 2
 
+v10.0.0a3
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2024-05-14
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 10.0.0a3 contains ansible-core version 2.17.0rc2.
+This is a newer version than version 2.17.0rc1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection             | Ansible 10.0.0a2 | Ansible 10.0.0a3 | Notes                                                                                                                        |
++========================+==================+==================+==============================================================================================================================+
+| amazon.aws             | 7.5.0            | 7.6.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| awx.awx                | 24.3.0           | 24.3.1           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight       | 2.0.8            | 2.0.9            | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki           | 2.18.0           | 2.18.1           |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.ciscosmb     | 1.0.8            | 1.0.9            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto       | 2.19.0           | 2.19.1           |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.grafana      | 1.8.0            | 1.9.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot       | 1.9.2            | 2.0.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mongodb      | 1.7.3            | 1.7.4            | There are no changes recorded in the changelog.                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.zabbix       | 2.3.1            | 2.4.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortimanager  | 2.4.0            | 2.5.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| grafana.grafana        | 5.0.0            | 5.2.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| inspur.ispim           | 2.2.0            | 2.2.1            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| netbox.netbox          | 3.17.0           | 3.18.0           |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flasharray | 1.27.0           | 1.28.0           |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- The ``community.hrobot`` collection now depends on the ``community.library_inventory_filtering_v1`` collection. This utility collection provides host filtering functionality for inventory plugins. If you use the Ansible community package, both collections are included and you do not have to do anything special. If you install the collection with ``ansible-galaxy collection install``, it will be installed automatically. If you install the collection by copying the files of the collection to a place where ansible-core can find it, for example by cloning the git repository, you need to make sure that you also have to install the dependency if you are using the inventory plugin (https://github.com/ansible-collections/community.hrobot/pull/101).
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Add a new config part to configure KeyCloak based auth by @he0s in https://github.com/grafana/grafana-ansible-collection/pull/191
+- Add promtail role by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/197
+- Bump ansible-lint from 24.2.2 to 24.2.3 by @dependabot in https://github.com/grafana/grafana-ansible-collection/pull/195
+
+Minor Changes
+-------------
+
+amazon.aws
+~~~~~~~~~~
+
+- ec2_instance - add support for ``host`` option in placement.tenancy (https://github.com/ansible-collections/amazon.aws/pull/2026).
+- ec2_vol - Ensure volume state is not one of ``deleted`` or ``deleting`` when trying to delete volume, to guaranty idempotency (https://github.com/ansible-collections/amazon.aws/pull/2052).
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- Fixing problem of naming in `organizations_appliance_vpn_third_party_vpnpeers_info`.
+- Removing `state` from allowed parameters for `networks_syslog_servers` module.
+- The `id` parameter is change type to an `integer` in `networks_appliance_vlans` module.
+- The `id` parameter is now required for `networks_appliance_vlans` module.
+
+community.ciscosmb
+~~~~~~~~~~~~~~~~~~
+
+- added additional attribute - add interface 'bandwidth' attribute
+- reverted attribute change - keep interface 'bandwith' attribute
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- Add new module `grafana_silence` to create and delete silences through the API
+- Add role components for `grafana_silence` module
+- lookup - grafana_dashboards - add `validate_certs` and `ca_path` options to plugin for custom certs validation
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- robot inventory plugin - add ``filter`` option which allows to include and exclude hosts based on Jinja2 conditions (https://github.com/ansible-collections/community.hrobot/pull/101).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- Add slash at the end of the location directives, to prevent path traversal attacks.
+- Added active_since and active_till in zabbix_maintenance
+- Added content_type for email in zabbix_mediatypes
+- Introduce flag `enable_version_check` to allow installations on non-supported platforms.
+- agent, javagateway, proxy, server, and web role - added the http_proxy and https_proxy environment variables to "Debian | Download gpg key" analog to other tasks
+- agent, javagateway, proxy, server, and web role - introduced default variable zabbix_repo_deb_gpg_key_url with value http://repo.zabbix.com/zabbix-official-repo.key
+- agent, javagateway, proxy, server, and web role - introduced default variable zabbix_repo_deb_include_deb_src with value true
+- agent, javagateway, proxy, server, and web role - removed superfluous slash in zabbix_gpg_key of the Debian vars and renamed key to zabbix-repo instead of zabbix-official-repo
+- agent, javagateway, proxy, server, and web role - used variable zabbix_repo_deb_include_deb_src in "Debian | Installing repository" to determine whether deb-src should be added to /etc/apt/sources.list.d/zabbix.sources
+- agent, javagateway, proxy, server, and web role - used zabbix_repo_deb_gpg_key_url in "Debian | Download gpg key" instead of hardcoded url
+- zabbix_correlation module added
+- zabbix_service_info module added
+- zabbix_template - Add template_yaml parameter.
+- zabbix_web role, Refactored zabbix_selinux variable names to correlate with selinux boolean names.
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Renamed the input argument "message" to "fmgr_message" to comply with Ansible requirements.
+
+inspur.ispim
+~~~~~~~~~~~~
+
+- Modify ansible-test.yml to add the ansible 2.17 test https://github.com/ispim/inspur.ispim/pull/33.
+- Modify ansible-test.yml to add the ansible2.16 test.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- nb_inventory - Add Virtual Disks to inventory [#1188](https://github.com/netbox-community/ansible_modules/pull/1188)
+- nb_inventory - Don't extract null values from custom fields [#1184](https://github.com/netbox-community/ansible_modules/pull/1184)
+- nb_inventory - Improve documentation for oob_ip_as_primary_ip [#1218](https://github.com/netbox-community/ansible_modules/pull/1218)
+- nb_inventory - Make oob_ip available regardless of oob_ip_as_primary_ip option [#1211](https://github.com/netbox-community/ansible_modules/pull/1211)
+- nb_lookup - Add custom field choice set [#1186](https://github.com/netbox-community/ansible_modules/pull/1186)
+- nb_lookup - Add endpoint for Virtual Disks [#1177](https://github.com/netbox-community/ansible_modules/pull/1177)
+- netbox_device_type and netbox_rack - Change u_height to float [#1200](https://github.com/netbox-community/ansible_modules/pull/1200)
+- netbox_export_templates - Update documentation [#1214](https://github.com/netbox-community/ansible_modules/pull/1214)
+- netbox_power_port - Add label [#1202](https://github.com/netbox-community/ansible_modules/pull/1202)
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_hg - Add support to rename existing hostgroup
+- purefa_info - Add ``is_local`` parameter for snapshots
+- purefa_info - Add performance data for some subsets
+- purefa_info - Add service_mode to identify if array is Evergreen//One or standard FlashArray
+- purefa_pg - Enhance ``state absent`` to work on volumes, hosts and hostgroups
+- purefa_snap - Add ``created_epoch`` parameter in response
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- robot inventory plugin - ``filters`` is now no longer an alias of ``simple_filters``, but a new, different option (https://github.com/ansible-collections/community.hrobot/pull/101).
+
+Deprecated Features
+-------------------
+
+amazon.aws
+~~~~~~~~~~
+
+- cloudformation - the ``template`` parameter has been deprecated and will be removed in a release after 2026-05-01.  The ``template_body`` parameter can be used in conjungtion with the lookup plugin (https://github.com/ansible-collections/amazon.aws/pull/2048).
+- module_utils.botocore - the ``boto3`` parameter for ``get_aws_connection_info()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+- module_utils.botocore - the ``boto3`` parameter for ``get_aws_region()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+- module_utils.ec2 - the ``boto3`` parameter for ``get_ec2_security_group_ids_from_names()`` will be removed in a release after 2025-05-01. The ``boto3`` parameter has been ignored since release 4.0.0 (https://github.com/ansible-collections/amazon.aws/pull/2047).
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- removed deprecated `message` argument in `grafana_dashboard`
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- The collection no longer supports Ansible, ansible-base, and ansible-core releases that are currently End of Life at the time of the 2.0.0 release. This means that Ansible 2.9, ansible-base 2.10, ansible-core 2.11, ansible-core 2.12, ansible-core 2.13, and ansible-core 2.14 are no longer supported. The collection might still work with these versions, but it can stop working at any moment without advance notice, and this will not be considered a bug (https://github.com/ansible-collections/community.hrobot/pull/101).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Add a version ceiling constraint for pypsrp to avoid potential breaking changes in the 1.0.0 release.
+- ansible-doc - fixed "inicates" typo in output
+- ansible-doc - format top-level descriptions with multiple paragraphs as multiple paragraphs, instead of concatenating them (https://github.com/ansible/ansible/pull/83155).
+- ensure we have logger before we log when we have increased verbosity.
+- uri - update the documentation for follow_redirects.
+
+amazon.aws
+~~~~~~~~~~
+
+- iam_managed_policy - fixes bug that causes ``ParamValidationError`` when attempting to delete a policy that's attached to a role or a user (https://github.com/ansible-collections/amazon.aws/issues/2067).
+- iam_role_info - fixes bug in handling paths missing the ``/`` prefix and/or suffix (https://github.com/ansible-collections/amazon.aws/issues/2065).
+- s3_object - fix idempotency issue when copying object uploaded using multipart upload (https://github.com/ansible-collections/amazon.aws/issues/2016).
+
+community.ciscosmb
+~~~~~~~~~~~~~~~~~~
+
+- typo in changelog fragment template
+- typo in test script
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- crypto.math module utils - change return values for ``quick_is_not_prime()`` and ``convert_int_to_bytes(0, 0)`` for special cases that do not appear when using the collection (https://github.com/ansible-collections/community.crypto/pull/733).
+- ecs_certificate - fixed ``csr`` option to be empty and allow renewal of a specific certificate according to the Renewal Information specification (https://github.com/ansible-collections/community.crypto/pull/740).
+- x509_certificate - since community.crypto 2.19.0 the module was no longer idempotent with respect to ``not_before`` and ``not_after`` times. This is now fixed (https://github.com/ansible-collections/community.crypto/issues/753, https://github.com/ansible-collections/community.crypto/pull/754).
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- Handling of desired default state for first `grafana_datasource`
+- Ignore `type` argument for diff comparison if `grafana-postgresq-datasource` alias `postgres` is used
+- Set umask for `grafana_plugin` command
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- zabbix_agent - Fixed IPMI authentication algorithm default setting
+- zabbix_agent - Fixed issue to where scripts can be deployed alongside userparameters
+- zabbix_host - Don't reset IPMI setting when update inventory data of a host
+- zabbix_host - Finish task with failed if host_group parameter is empty list
+- zabbix_server - proper indentaion of become in selinux.yaml
+- zabbix_web - Added missing semicolon to nginx vhost template.
+- zabbix_web role, Add missing selinux.yml tasks.
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Improved bypass_validation. If you now set bypass_validation to true, it will allow you to send parameters that are not defined in the schema.
+- Improved documentation, added description for all "no description" modules.
+- Improved documentation.
+- Supported "state:absent" for all modules end with "_objectmember", "_scopemember", and "_scetionvalue".
+- Supported FortiManager 6.4.14, 7.0.11, 7.0.12, 7.2.5.
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_host - Allows all current host inititators to be correctly removed
+- purefa_host - Fix idempotency issue with connected volume
+- purefa_volume - Ensure module response for creation of volume and rerun are the same
+- purefa_volume - Fix idempotency issue with delete volume
+
+New Modules
+-----------
+
+amazon.aws
+~~~~~~~~~~
+
+- amazon.aws.rds_cluster_param_group - Manage RDS cluster parameter groups
+- amazon.aws.rds_cluster_param_group_info - Describes the properties of specific RDS cluster parameter group.
+- amazon.aws.rds_engine_versions_info - Describes the properties of specific versions of DB engines.
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- community.zabbix.zabbix_correlation - Create/update/delete Zabbix correlation
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- netbox.netbox.netbox_custom_field_choice_set - Create, updates, or removes Custom Field Choice sets
+- netbox.netbox.netbox_module_bay - Create, updates, or removes Module Bay
+
+Unchanged Collections
+---------------------
+
+- ansible.netcommon (still version 6.1.1)
+- ansible.posix (still version 1.5.4)
+- ansible.utils (still version 4.1.0)
+- ansible.windows (still version 2.3.0)
+- arista.eos (still version 9.0.0)
+- azure.azcollection (still version 2.3.0)
+- check_point.mgmt (still version 5.2.3)
+- chocolatey.chocolatey (still version 1.5.1)
+- cisco.aci (still version 2.9.0)
+- cisco.asa (still version 5.0.1)
+- cisco.dnac (still version 6.13.3)
+- cisco.ios (still version 8.0.0)
+- cisco.iosxr (still version 9.0.0)
+- cisco.ise (still version 2.9.0)
+- cisco.mso (still version 2.6.0)
+- cisco.nxos (still version 8.0.0)
+- cisco.ucs (still version 1.10.0)
+- cloud.common (still version 3.0.0)
+- cloudscale_ch.cloud (still version 2.3.1)
+- community.aws (still version 7.2.0)
+- community.digitalocean (still version 1.26.0)
+- community.dns (still version 2.9.0)
+- community.docker (still version 3.9.0)
+- community.general (still version 8.6.0)
+- community.hashi_vault (still version 6.2.0)
+- community.library_inventory_filtering_v1 (still version 1.0.1)
+- community.libvirt (still version 1.3.0)
+- community.mysql (still version 3.9.0)
+- community.network (still version 5.0.2)
+- community.okd (still version 3.0.1)
+- community.postgresql (still version 3.4.0)
+- community.proxysql (still version 1.5.1)
+- community.rabbitmq (still version 1.3.0)
+- community.routeros (still version 2.15.0)
+- community.sap_libs (still version 1.4.2)
+- community.sops (still version 1.6.7)
+- community.vmware (still version 4.3.0)
+- community.windows (still version 2.2.0)
+- containers.podman (still version 1.13.0)
+- cyberark.conjur (still version 1.2.2)
+- cyberark.pas (still version 1.0.25)
+- dellemc.enterprise_sonic (still version 2.4.0)
+- dellemc.openmanage (still version 9.2.0)
+- dellemc.powerflex (still version 2.4.0)
+- dellemc.unity (still version 2.0.0)
+- f5networks.f5_modules (still version 1.28.0)
+- fortinet.fortios (still version 2.3.6)
+- frr.frr (still version 2.0.2)
+- google.cloud (still version 1.3.0)
+- hetzner.hcloud (still version 3.1.1)
+- ibm.qradar (still version 3.0.0)
+- ibm.spectrum_virtualize (still version 2.0.0)
+- ibm.storage_virtualize (still version 2.3.1)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.6.1)
+- inspur.sm (still version 2.3.0)
+- junipernetworks.junos (still version 8.0.0)
+- kaytus.ksmanage (still version 1.2.1)
+- kubernetes.core (still version 3.0.1)
+- lowlydba.sqlserver (still version 2.3.2)
+- microsoft.ad (still version 1.5.0)
+- netapp.cloudmanager (still version 21.22.1)
+- netapp.ontap (still version 22.11.0)
+- netapp.storagegrid (still version 21.12.0)
+- netapp_eseries.santricity (still version 1.4.0)
+- ngine_io.cloudstack (still version 2.3.0)
+- ngine_io.exoscale (still version 1.1.0)
+- openstack.cloud (still version 2.2.0)
+- openvswitch.openvswitch (still version 2.1.1)
+- ovirt.ovirt (still version 3.2.0)
+- purestorage.flashblade (still version 1.17.0)
+- sensu.sensu_go (still version 1.14.0)
+- splunk.es (still version 3.0.0)
+- t_systems_mms.icinga_director (still version 2.0.1)
+- telekom_mms.icinga_director (still version 2.1.1)
+- theforeman.foreman (still version 4.0.0)
+- vmware.vmware_rest (still version 3.0.1)
+- vultr.cloud (still version 1.12.1)
+- vyos.vyos (still version 4.1.0)
+- wti.remote (still version 1.0.5)
+
 v10.0.0a2
 =========
 
