@@ -7,6 +7,183 @@ This changelog describes changes since Ansible 9.0.0.
 .. contents::
   :depth: 2
 
+v10.0.0a3
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2024-05-14
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+This is some test.
+
+Ansible-core
+------------
+
+Ansible 10.0.0a3 contains ansible-core version 2.17.0rc2.
+This is a newer version than version 2.17.0rc1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------+------------------+------------------+-------+
+| Collection       | Ansible 10.0.0a2 | Ansible 10.0.0a3 | Notes |
++==================+==================+==================+=======+
+| community.hrobot | 1.9.2            | 2.0.0            |       |
++------------------+------------------+------------------+-------+
+
+Major Changes
+-------------
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- The ``community.hrobot`` collection now depends on the ``community.library_inventory_filtering_v1`` collection. This utility collection provides host filtering functionality for inventory plugins. If you use the Ansible community package, both collections are included and you do not have to do anything special. If you install the collection with ``ansible-galaxy collection install``, it will be installed automatically. If you install the collection by copying the files of the collection to a place where ansible-core can find it, for example by cloning the git repository, you need to make sure that you also have to install the dependency if you are using the inventory plugin (https://github.com/ansible-collections/community.hrobot/pull/101).
+
+Minor Changes
+-------------
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- robot inventory plugin - add ``filter`` option which allows to include and exclude hosts based on Jinja2 conditions (https://github.com/ansible-collections/community.hrobot/pull/101).
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- robot inventory plugin - ``filters`` is now no longer an alias of ``simple_filters``, but a new, different option (https://github.com/ansible-collections/community.hrobot/pull/101).
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- The collection no longer supports Ansible, ansible-base, and ansible-core releases that are currently End of Life at the time of the 2.0.0 release. This means that Ansible 2.9, ansible-base 2.10, ansible-core 2.11, ansible-core 2.12, ansible-core 2.13, and ansible-core 2.14 are no longer supported. The collection might still work with these versions, but it can stop working at any moment without advance notice, and this will not be considered a bug (https://github.com/ansible-collections/community.hrobot/pull/101).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Add a version ceiling constraint for pypsrp to avoid potential breaking changes in the 1.0.0 release.
+- ansible-doc - fixed "inicates" typo in output
+- ansible-doc - format top-level descriptions with multiple paragraphs as multiple paragraphs, instead of concatenating them (https://github.com/ansible/ansible/pull/83155).
+- ensure we have logger before we log when we have increased verbosity.
+- uri - update the documentation for follow_redirects.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 7.5.0)
+- ansible.netcommon (still version 6.1.1)
+- ansible.posix (still version 1.5.4)
+- ansible.utils (still version 4.1.0)
+- ansible.windows (still version 2.3.0)
+- arista.eos (still version 9.0.0)
+- awx.awx (still version 24.3.0)
+- azure.azcollection (still version 2.3.0)
+- check_point.mgmt (still version 5.2.3)
+- chocolatey.chocolatey (still version 1.5.1)
+- cisco.aci (still version 2.9.0)
+- cisco.asa (still version 5.0.1)
+- cisco.dnac (still version 6.13.3)
+- cisco.intersight (still version 2.0.8)
+- cisco.ios (still version 8.0.0)
+- cisco.iosxr (still version 9.0.0)
+- cisco.ise (still version 2.9.0)
+- cisco.meraki (still version 2.18.0)
+- cisco.mso (still version 2.6.0)
+- cisco.nxos (still version 8.0.0)
+- cisco.ucs (still version 1.10.0)
+- cloud.common (still version 3.0.0)
+- cloudscale_ch.cloud (still version 2.3.1)
+- community.aws (still version 7.2.0)
+- community.ciscosmb (still version 1.0.8)
+- community.crypto (still version 2.19.0)
+- community.digitalocean (still version 1.26.0)
+- community.dns (still version 2.9.0)
+- community.docker (still version 3.9.0)
+- community.general (still version 8.6.0)
+- community.grafana (still version 1.8.0)
+- community.hashi_vault (still version 6.2.0)
+- community.library_inventory_filtering_v1 (still version 1.0.1)
+- community.libvirt (still version 1.3.0)
+- community.mongodb (still version 1.7.3)
+- community.mysql (still version 3.9.0)
+- community.network (still version 5.0.2)
+- community.okd (still version 3.0.1)
+- community.postgresql (still version 3.4.0)
+- community.proxysql (still version 1.5.1)
+- community.rabbitmq (still version 1.3.0)
+- community.routeros (still version 2.15.0)
+- community.sap_libs (still version 1.4.2)
+- community.sops (still version 1.6.7)
+- community.vmware (still version 4.3.0)
+- community.windows (still version 2.2.0)
+- community.zabbix (still version 2.3.1)
+- containers.podman (still version 1.13.0)
+- cyberark.conjur (still version 1.2.2)
+- cyberark.pas (still version 1.0.25)
+- dellemc.enterprise_sonic (still version 2.4.0)
+- dellemc.openmanage (still version 9.2.0)
+- dellemc.powerflex (still version 2.4.0)
+- dellemc.unity (still version 2.0.0)
+- f5networks.f5_modules (still version 1.28.0)
+- fortinet.fortimanager (still version 2.4.0)
+- fortinet.fortios (still version 2.3.6)
+- frr.frr (still version 2.0.2)
+- google.cloud (still version 1.3.0)
+- grafana.grafana (still version 5.0.0)
+- hetzner.hcloud (still version 3.1.1)
+- ibm.qradar (still version 3.0.0)
+- ibm.spectrum_virtualize (still version 2.0.0)
+- ibm.storage_virtualize (still version 2.3.1)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.6.1)
+- inspur.ispim (still version 2.2.0)
+- inspur.sm (still version 2.3.0)
+- junipernetworks.junos (still version 8.0.0)
+- kaytus.ksmanage (still version 1.2.1)
+- kubernetes.core (still version 3.0.1)
+- lowlydba.sqlserver (still version 2.3.2)
+- microsoft.ad (still version 1.5.0)
+- netapp.cloudmanager (still version 21.22.1)
+- netapp.ontap (still version 22.11.0)
+- netapp.storagegrid (still version 21.12.0)
+- netapp_eseries.santricity (still version 1.4.0)
+- netbox.netbox (still version 3.17.0)
+- ngine_io.cloudstack (still version 2.3.0)
+- ngine_io.exoscale (still version 1.1.0)
+- openstack.cloud (still version 2.2.0)
+- openvswitch.openvswitch (still version 2.1.1)
+- ovirt.ovirt (still version 3.2.0)
+- purestorage.flasharray (still version 1.27.0)
+- purestorage.flashblade (still version 1.17.0)
+- sensu.sensu_go (still version 1.14.0)
+- splunk.es (still version 3.0.0)
+- t_systems_mms.icinga_director (still version 2.0.1)
+- telekom_mms.icinga_director (still version 2.1.1)
+- theforeman.foreman (still version 4.0.0)
+- vmware.vmware_rest (still version 3.0.1)
+- vultr.cloud (still version 1.12.1)
+- vyos.vyos (still version 4.1.0)
+- wti.remote (still version 1.0.5)
+
 v10.0.0a2
 =========
 
