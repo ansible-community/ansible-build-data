@@ -1,0 +1,2 @@
+# community.grafana introduced semver violation by removing features in a minor release
+community.grafana: <1.9.0
