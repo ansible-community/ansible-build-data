@@ -161,7 +161,14 @@ releases:
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
 
 
-        Please note that this release replaces a mistakenly released 9.5.0
-        that included a breaking change. The 9.5.0 release has been yanked from PyPI and
-        is not part of the official release history.'
+        Please note that this release replaces a mistakenly released 9.5.0 that included
+        a breaking change. The 9.5.0 release has been yanked from PyPI and is not
+        part of the official release history.'
     release_date: '2024-04-24'
+  9.6.0:
+    changes:
+      release_summary: 'Release Date: 2024-05-21
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2024-05-21'
