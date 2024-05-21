@@ -60,12 +60,24 @@ release process. The automated processes uses GitHub Actions to automate the
    branches down to the ansible-core version that is included in the Ansible
    release.
 
-5. Announce the release on the Forum, Matrix, and the mailing list by running
-   the following command in the `${MAJOR_VERSION}` directory of the
+5. You will need `antsibull` for this step. If you haven't installed it yet,
+   you can do it like this:
+   ```
+   pip install antsibull[clipboard]
+   ```
+   Using `antsibull[clipboard]` makes sure you have really everything you need
+   for the announcements.
+
+   Then announce the release on the Forum, the mailing list and Matrix by
+   running the following command in the `${MAJOR_VERSION}` directory of the
    `ansible-build-data` checkout:
     ```
     antsibull-build announcements --send --data-dir . ${VERSION}
     ```
+    This will open your default browser and email client to do the announcement
+    on the forum and the mailing list. It will also tell you where to announce
+    this on Matrix, ask for the URL of the forum thread and create a suitable
+    text in your clipboard that you can copy to Matrix.
 
 [^1]: This group is configured as "Required reviewers" for the "Configure pypi"
       build environment in GitHub Actions of the `ansible-build-data` repository.
