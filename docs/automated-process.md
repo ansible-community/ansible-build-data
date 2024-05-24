@@ -60,19 +60,16 @@ release process. The automated processes uses GitHub Actions to automate the
    branches down to the ansible-core version that is included in the Ansible
    release.
 
-5. You will need `antsibull` for this step. If you haven't installed it yet,
-   you can do it like this:
+5. Make sure that you have installed [`antsibull`](https://pypi.org/project/antsibull/)
+   and a supported clipboard library. You can do that like this:
 
     ```
     pip install antsibull[clipboard]
     ```
 
-    Using `antsibull[clipboard]` makes sure you have really everything you need
-    for the announcements.
-
-    Then announce the release on the Forum, the mailing list and Matrix by
-    running the following command in the `${MAJOR_VERSION}` directory of the
-    `ansible-build-data` checkout:
+6. Then announce the release on the Forum, the mailing list and Matrix by
+   running the following command in the `${MAJOR_VERSION}` directory of the
+   `ansible-build-data` checkout:
 
     ```
     antsibull-build announcements --send --data-dir . ${VERSION}
