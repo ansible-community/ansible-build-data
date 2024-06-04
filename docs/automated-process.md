@@ -149,3 +149,7 @@ next to the release version:
 
 2. Set `existing-branch` to the branch you pushed to the `ansible-build-data`
    repository.
+
+Finally, remember to prepare the directory for the next major Ansible release. How
+to do this is described in [Setting up for a new major
+release](new-ansible-and-freezes.md#setting-up-for-a-new-major-release).
