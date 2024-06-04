@@ -22,10 +22,6 @@ collections:
     maintainers:
       - ispim
     repository: https://github.com/ispim/inspur.ispim
-  inspur.sm:
-    maintainers:
-      - ISIB-Group
-    repository: https://github.com/ISIB-Group/inspur.sm
   kaytus.ksmanage:
     maintainers:
       - ieisystem

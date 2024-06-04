@@ -1,3 +1,9 @@
 ---
 ancestor: 10.0.0
-releases: {}
+releases:
+  11.0.0a1:
+    changes:
+      removed_features:
+      - The ``inspur.sm`` collection was considered unmaintained and removed
+        from Ansible 11 (https://forum.ansible.com/t/2854).
+        Users can still install this collection with ``ansible-galaxy collection install inspur.sm``.
