@@ -139,7 +139,8 @@ release candidate.
 
 For this, create a new branch in `ansible-build-data` where you copy the `.deps`
 file of the last release candidate to the location of the `.deps` file of the
-planned major release. Update `_ansible_version` in the new `.deps` file, but don't change it in any other way.
+planned major release. Update `_ansible_version` in the new `.deps` file, but don't
+change it in any other way.
 
 After that, you can start the automated workflow. You need to set the following options
 next to the release version:
