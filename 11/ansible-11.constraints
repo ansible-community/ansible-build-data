@@ -1,0 +1,4 @@
+# cyberark.pas 1.0.27 isn't tagged
+cyberark.pas: <1.0.27
+# vmware.vmware_rest 3.0.1 needs cloud.common < 4.0.0
+cloud.common: <4.0.0
