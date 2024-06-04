@@ -1,4 +1,4 @@
-_ansible_version: 10.0.0rc1
+_ansible_version: 10.0.0
 _ansible_core_version: 2.17.0
 _python: >=3.10
 amazon.aws: 8.0.0
