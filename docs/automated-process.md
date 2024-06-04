@@ -122,7 +122,7 @@ versions, and not use new bugfix releases of potentially all included collection
 For this, create a new branch in `ansible-build-data` where you copy the `.deps`
 file of the previous release candidate to the location of the `.deps` file of the
 planned release. Then you modify the new `.deps` file with the version updates
-you plan to make.
+you plan to make and update `_ansible_version`.
 
 After that, you can start the automated workflow. You need to set the following options
 next to the release version:
@@ -139,7 +139,7 @@ release candidate.
 
 For this, create a new branch in `ansible-build-data` where you copy the `.deps`
 file of the last release candidate to the location of the `.deps` file of the
-planned major release. Do not modify the new `.deps` file with any version updates.
+planned major release. Update `_ansible_version` in the new `.deps` file, but don't change it in any other way.
 
 After that, you can start the automated workflow. You need to set the following options
 next to the release version:
