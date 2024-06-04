@@ -58,7 +58,15 @@ structure for Ansible `X+1`.
     touch "${NEXT_MAJOR_VERSION}/validate-tags-ignores"
     ```
 
-7. Add the next major version to ansible-build-data's CI
+7. Create a blank `ansible-${NEXT_MAJOR_VERSION}.constraints` file
+
+    ``` sh
+    touch "${NEXT_MAJOR_VERSION}/ansible-${NEXT_MAJOR_VERSION}.constraints"
+    ```
+
+    You might need to fill this with some initial data.
+
+8. Add the next major version to ansible-build-data's CI
 
     Open `.github/workflows/antsibull-build.yml` and the following block to the
     matrix:
@@ -69,13 +77,13 @@ structure for Ansible `X+1`.
       ansible_major_version: ${NEXT_MAJOR_VERSION}
     ```
 
-8. Commit the changes
+9. Commit the changes
 
     ``` sh
     git add "${NEXT_MAJOR_VERSION}" .github/workflows/antsibull-build.yml
     ```
 
-9. Submit a PR against ansible-build-data
+10. Submit a PR against ansible-build-data
 
 
 ## Freeze release
