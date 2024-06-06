@@ -29,13 +29,16 @@ Playbook
   has been expanded to non-task conditionals as well, such as the ``assert`` action.
 
   .. code-block:: yaml
+
      - name: task with a module result (always untrusted by Ansible)
        shell: echo "hi mom"
        register: untrusted_result
+
      # don't do it this way...
      # - name: insecure conditional with embedded template consulting untrusted data
      #   assert:
      #     that: '"hi mom" is in {{ untrusted_result.stdout }}'
+
      - name: securely access untrusted values directly as Jinja variables instead
        assert:
          that: '"hi mom" is in untrusted_result.stdout'
