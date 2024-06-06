@@ -2,11 +2,17 @@
 
 This changelog describes changes since Ansible 9\.0\.0\.
 
-- <a href="#v10-0-0">v10\.0\.0</a>
+- <a href="#v10-0-1">v10\.0\.1</a>
     - <a href="#release-summary">Release Summary</a>
+    - <a href="#ansible-core">Ansible\-core</a>
+    - <a href="#changed-collections">Changed Collections</a>
+    - <a href="#bugfixes">Bugfixes</a>
+    - <a href="#unchanged-collections">Unchanged Collections</a>
+- <a href="#v10-0-0">v10\.0\.0</a>
+    - <a href="#release-summary-1">Release Summary</a>
     - <a href="#removed-collections">Removed Collections</a>
     - <a href="#added-collections">Added Collections</a>
-    - <a href="#ansible-core">Ansible\-core</a>
+    - <a href="#ansible-core-1">Ansible\-core</a>
     - <a href="#included-collections">Included Collections</a>
     - <a href="#major-changes">Major Changes</a>
     - <a href="#minor-changes">Minor Changes</a>
@@ -14,23 +20,169 @@ This changelog describes changes since Ansible 9\.0\.0\.
     - <a href="#deprecated-features">Deprecated Features</a>
     - <a href="#removed-features-previously-deprecated">Removed Features \(previously deprecated\)</a>
     - <a href="#security-fixes">Security Fixes</a>
-    - <a href="#bugfixes">Bugfixes</a>
+    - <a href="#bugfixes-1">Bugfixes</a>
     - <a href="#known-issues">Known Issues</a>
     - <a href="#new-plugins">New Plugins</a>
     - <a href="#new-modules">New Modules</a>
     - <a href="#new-roles">New Roles</a>
-    - <a href="#unchanged-collections">Unchanged Collections</a>
+    - <a href="#unchanged-collections-1">Unchanged Collections</a>
+
+<a id="v10-0-1"></a>
+## v10\.0\.1
+
+- <a href="#release-summary">Release Summary</a>
+- <a href="#ansible-core">Ansible\-core</a>
+- <a href="#changed-collections">Changed Collections</a>
+- <a href="#bugfixes">Bugfixes</a>
+    - <a href="#inspur-ispim">inspur\.ispim</a>
+    - <a href="#kaytus-ksmanage">kaytus\.ksmanage</a>
+- <a href="#unchanged-collections">Unchanged Collections</a>
+
+<a id="release-summary"></a>
+### Release Summary
+
+Release Date\: 2024\-06\-06
+
+[Porting Guide](https\://docs\.ansible\.com/ansible/devel/porting\_guides\.html)
+
+This release updates 10\.0\.0 by removing binary files from a Windows venv that accidentally were included in two collection releases\.
+
+<a id="ansible-core"></a>
+### Ansible\-core
+
+Ansible 10\.0\.1 contains ansible\-core version 2\.17\.0\.
+This is the same version of ansible\-core as in the previous Ansible release\.
+
+<a id="changed-collections"></a>
+### Changed Collections
+
+If not mentioned explicitly\, the changes are reported in the combined changelog below\.
+
+| Collection      | Ansible 10.0.0 | Ansible 10.0.1 | Notes |
+| --------------- | -------------- | -------------- | ----- |
+| inspur.ispim    | 2.2.1          | 2.2.2          |       |
+| kaytus.ksmanage | 1.2.1          | 1.2.2          |       |
+
+<a id="bugfixes"></a>
+### Bugfixes
+
+<a id="inspur-ispim"></a>
+#### inspur\.ispim
+
+* Remove venv files that were accidentally bundled in 2\.2\.1 \([https\://github\.com/ispim/inspur\.ispim/pull/35](https\://github\.com/ispim/inspur\.ispim/pull/35)\)\.
+
+<a id="kaytus-ksmanage"></a>
+#### kaytus\.ksmanage
+
+* Remove venv files that were accidentally bundled in 1\.2\.2\([https\://github\.com/ieisystem/kaytus\.ksmanage/pull/23](https\://github\.com/ieisystem/kaytus\.ksmanage/pull/23)\)\.
+
+<a id="unchanged-collections"></a>
+### Unchanged Collections
+
+* amazon\.aws \(still version 8\.0\.0\)
+* ansible\.netcommon \(still version 6\.1\.2\)
+* ansible\.posix \(still version 1\.5\.4\)
+* ansible\.utils \(still version 4\.1\.0\)
+* ansible\.windows \(still version 2\.3\.0\)
+* arista\.eos \(still version 9\.0\.0\)
+* awx\.awx \(still version 24\.3\.1\)
+* azure\.azcollection \(still version 2\.3\.0\)
+* check\_point\.mgmt \(still version 5\.2\.3\)
+* chocolatey\.chocolatey \(still version 1\.5\.1\)
+* cisco\.aci \(still version 2\.9\.0\)
+* cisco\.asa \(still version 5\.0\.1\)
+* cisco\.dnac \(still version 6\.13\.3\)
+* cisco\.intersight \(still version 2\.0\.9\)
+* cisco\.ios \(still version 8\.0\.0\)
+* cisco\.iosxr \(still version 9\.0\.0\)
+* cisco\.ise \(still version 2\.9\.1\)
+* cisco\.meraki \(still version 2\.18\.1\)
+* cisco\.mso \(still version 2\.6\.0\)
+* cisco\.nxos \(still version 8\.0\.0\)
+* cisco\.ucs \(still version 1\.10\.0\)
+* cloud\.common \(still version 3\.0\.0\)
+* cloudscale\_ch\.cloud \(still version 2\.3\.1\)
+* community\.aws \(still version 8\.0\.0\)
+* community\.ciscosmb \(still version 1\.0\.9\)
+* community\.crypto \(still version 2\.20\.0\)
+* community\.digitalocean \(still version 1\.26\.0\)
+* community\.dns \(still version 3\.0\.0\)
+* community\.docker \(still version 3\.10\.3\)
+* community\.general \(still version 9\.0\.1\)
+* community\.grafana \(still version 1\.9\.1\)
+* community\.hashi\_vault \(still version 6\.2\.0\)
+* community\.hrobot \(still version 2\.0\.0\)
+* community\.library\_inventory\_filtering\_v1 \(still version 1\.0\.1\)
+* community\.libvirt \(still version 1\.3\.0\)
+* community\.mongodb \(still version 1\.7\.4\)
+* community\.mysql \(still version 3\.9\.0\)
+* community\.network \(still version 5\.0\.2\)
+* community\.okd \(still version 3\.0\.1\)
+* community\.postgresql \(still version 3\.4\.1\)
+* community\.proxysql \(still version 1\.5\.1\)
+* community\.rabbitmq \(still version 1\.3\.0\)
+* community\.routeros \(still version 2\.15\.0\)
+* community\.sap\_libs \(still version 1\.4\.2\)
+* community\.sops \(still version 1\.6\.7\)
+* community\.vmware \(still version 4\.4\.0\)
+* community\.windows \(still version 2\.2\.0\)
+* community\.zabbix \(still version 2\.4\.0\)
+* containers\.podman \(still version 1\.13\.0\)
+* cyberark\.conjur \(still version 1\.2\.2\)
+* cyberark\.pas \(still version 1\.0\.25\)
+* dellemc\.enterprise\_sonic \(still version 2\.4\.0\)
+* dellemc\.openmanage \(still version 9\.2\.0\)
+* dellemc\.powerflex \(still version 2\.4\.0\)
+* dellemc\.unity \(still version 2\.0\.0\)
+* f5networks\.f5\_modules \(still version 1\.28\.0\)
+* fortinet\.fortimanager \(still version 2\.5\.0\)
+* fortinet\.fortios \(still version 2\.3\.6\)
+* frr\.frr \(still version 2\.0\.2\)
+* google\.cloud \(still version 1\.3\.0\)
+* grafana\.grafana \(still version 5\.2\.0\)
+* hetzner\.hcloud \(still version 3\.1\.1\)
+* ibm\.qradar \(still version 3\.0\.0\)
+* ibm\.spectrum\_virtualize \(still version 2\.0\.0\)
+* ibm\.storage\_virtualize \(still version 2\.3\.1\)
+* infinidat\.infinibox \(still version 1\.4\.5\)
+* infoblox\.nios\_modules \(still version 1\.6\.1\)
+* inspur\.sm \(still version 2\.3\.0\)
+* junipernetworks\.junos \(still version 8\.0\.0\)
+* kubernetes\.core \(still version 3\.1\.0\)
+* lowlydba\.sqlserver \(still version 2\.3\.2\)
+* microsoft\.ad \(still version 1\.5\.0\)
+* netapp\.cloudmanager \(still version 21\.22\.1\)
+* netapp\.ontap \(still version 22\.11\.0\)
+* netapp\.storagegrid \(still version 21\.12\.0\)
+* netapp\_eseries\.santricity \(still version 1\.4\.0\)
+* netbox\.netbox \(still version 3\.18\.0\)
+* ngine\_io\.cloudstack \(still version 2\.3\.0\)
+* ngine\_io\.exoscale \(still version 1\.1\.0\)
+* openstack\.cloud \(still version 2\.2\.0\)
+* openvswitch\.openvswitch \(still version 2\.1\.1\)
+* ovirt\.ovirt \(still version 3\.2\.0\)
+* purestorage\.flasharray \(still version 1\.28\.0\)
+* purestorage\.flashblade \(still version 1\.17\.0\)
+* sensu\.sensu\_go \(still version 1\.14\.0\)
+* splunk\.es \(still version 3\.0\.0\)
+* t\_systems\_mms\.icinga\_director \(still version 2\.0\.1\)
+* telekom\_mms\.icinga\_director \(still version 2\.1\.2\)
+* theforeman\.foreman \(still version 4\.0\.0\)
+* vmware\.vmware\_rest \(still version 3\.0\.1\)
+* vultr\.cloud \(still version 1\.12\.1\)
+* vyos\.vyos \(still version 4\.1\.0\)
+* wti\.remote \(still version 1\.0\.5\)
 
 <a id="v10-0-0"></a>
 ## v10\.0\.0
 
-- <a href="#release-summary">Release Summary</a>
+- <a href="#release-summary-1">Release Summary</a>
 - <a href="#removed-collections">Removed Collections</a>
 - <a href="#added-collections">Added Collections</a>
-- <a href="#ansible-core">Ansible\-core</a>
+- <a href="#ansible-core-1">Ansible\-core</a>
 - <a href="#included-collections">Included Collections</a>
 - <a href="#major-changes">Major Changes</a>
-    - <a href="#ansible-core-1">Ansible\-core</a>
+    - <a href="#ansible-core-2">Ansible\-core</a>
     - <a href="#ansible-netcommon">ansible\.netcommon</a>
     - <a href="#ansible-utils">ansible\.utils</a>
     - <a href="#arista-eos">arista\.eos</a>
@@ -53,7 +205,7 @@ This changelog describes changes since Ansible 9\.0\.0\.
     - <a href="#junipernetworks-junos">junipernetworks\.junos</a>
     - <a href="#splunk-es">splunk\.es</a>
 - <a href="#minor-changes">Minor Changes</a>
-    - <a href="#ansible-core-2">Ansible\-core</a>
+    - <a href="#ansible-core-3">Ansible\-core</a>
     - <a href="#amazon-aws">amazon\.aws</a>
     - <a href="#ansible-netcommon-1">ansible\.netcommon</a>
     - <a href="#ansible-utils-1">ansible\.utils</a>
@@ -95,7 +247,7 @@ This changelog describes changes since Ansible 9\.0\.0\.
     - <a href="#grafana-grafana-1">grafana\.grafana</a>
     - <a href="#hetzner-hcloud">hetzner\.hcloud</a>
     - <a href="#ibm-storage-virtualize">ibm\.storage\_virtualize</a>
-    - <a href="#inspur-ispim">inspur\.ispim</a>
+    - <a href="#inspur-ispim-1">inspur\.ispim</a>
     - <a href="#junipernetworks-junos-1">junipernetworks\.junos</a>
     - <a href="#kubernetes-core">kubernetes\.core</a>
     - <a href="#lowlydba-sqlserver">lowlydba\.sqlserver</a>
@@ -110,7 +262,7 @@ This changelog describes changes since Ansible 9\.0\.0\.
     - <a href="#vmware-vmware-rest">vmware\.vmware\_rest</a>
     - <a href="#vultr-cloud">vultr\.cloud</a>
 - <a href="#breaking-changes--porting-guide">Breaking Changes / Porting Guide</a>
-    - <a href="#ansible-core-3">Ansible\-core</a>
+    - <a href="#ansible-core-4">Ansible\-core</a>
     - <a href="#amazon-aws-1">amazon\.aws</a>
     - <a href="#cloud-common">cloud\.common</a>
     - <a href="#community-aws-1">community\.aws</a>
@@ -124,7 +276,7 @@ This changelog describes changes since Ansible 9\.0\.0\.
     - <a href="#theforeman-foreman-1">theforeman\.foreman</a>
     - <a href="#vmware-vmware-rest-1">vmware\.vmware\_rest</a>
 - <a href="#deprecated-features">Deprecated Features</a>
-    - <a href="#ansible-core-4">Ansible\-core</a>
+    - <a href="#ansible-core-5">Ansible\-core</a>
     - <a href="#amazon-aws-2">amazon\.aws</a>
     - <a href="#community-aws-2">community\.aws</a>
     - <a href="#community-crypto-1">community\.crypto</a>
@@ -137,7 +289,7 @@ This changelog describes changes since Ansible 9\.0\.0\.
     - <a href="#dellemc-openmanage-2">dellemc\.openmanage</a>
     - <a href="#kubernetes-core-2">kubernetes\.core</a>
 - <a href="#removed-features-previously-deprecated">Removed Features \(previously deprecated\)</a>
-    - <a href="#ansible-core-5">Ansible\-core</a>
+    - <a href="#ansible-core-6">Ansible\-core</a>
     - <a href="#amazon-aws-3">amazon\.aws</a>
     - <a href="#arista-eos-2">arista\.eos</a>
     - <a href="#cisco-ios-2">cisco\.ios</a>
@@ -149,13 +301,13 @@ This changelog describes changes since Ansible 9\.0\.0\.
     - <a href="#community-hrobot-4">community\.hrobot</a>
     - <a href="#junipernetworks-junos-2">junipernetworks\.junos</a>
 - <a href="#security-fixes">Security Fixes</a>
-    - <a href="#ansible-core-6">Ansible\-core</a>
+    - <a href="#ansible-core-7">Ansible\-core</a>
     - <a href="#community-dns-5">community\.dns</a>
     - <a href="#community-docker-3">community\.docker</a>
     - <a href="#community-general-4">community\.general</a>
     - <a href="#community-hrobot-5">community\.hrobot</a>
-- <a href="#bugfixes">Bugfixes</a>
-    - <a href="#ansible-core-7">Ansible\-core</a>
+- <a href="#bugfixes-1">Bugfixes</a>
+    - <a href="#ansible-core-8">Ansible\-core</a>
     - <a href="#amazon-aws-4">amazon\.aws</a>
     - <a href="#ansible-netcommon-2">ansible\.netcommon</a>
     - <a href="#ansible-utils-2">ansible\.utils</a>
@@ -246,9 +398,9 @@ This changelog describes changes since Ansible 9\.0\.0\.
     - <a href="#theforeman-foreman-3">theforeman\.foreman</a>
     - <a href="#vultr-cloud-2">vultr\.cloud</a>
 - <a href="#new-roles">New Roles</a>
-- <a href="#unchanged-collections">Unchanged Collections</a>
+- <a href="#unchanged-collections-1">Unchanged Collections</a>
 
-<a id="release-summary"></a>
+<a id="release-summary-1"></a>
 ### Release Summary
 
 Release Date\: 2024\-06\-04
@@ -274,7 +426,7 @@ Release Date\: 2024\-06\-04
 * community\.library\_inventory\_filtering\_v1 \(version 1\.0\.1\)
 * kaytus\.ksmanage \(version 1\.2\.1\)
 
-<a id="ansible-core"></a>
+<a id="ansible-core-1"></a>
 ### Ansible\-core
 
 Ansible 10\.0\.0 contains ansible\-core version 2\.17\.0\.
@@ -366,7 +518,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="major-changes"></a>
 ### Major Changes
 
-<a id="ansible-core-1"></a>
+<a id="ansible-core-2"></a>
 #### Ansible\-core
 
 * urls\.py \- Removed support for Python 2
@@ -514,7 +666,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="minor-changes"></a>
 ### Minor Changes
 
-<a id="ansible-core-2"></a>
+<a id="ansible-core-3"></a>
 #### Ansible\-core
 
 * Add <code>dump</code> and <code>passno</code> mount information to facts component \([https\://github\.com/ansible/ansible/issues/80478](https\://github\.com/ansible/ansible/issues/80478)\)
@@ -1453,7 +1605,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * ibm\_svc\_manage\_volumgroup \- Added support to create clone or thinkclone volumegroup from snapshot from a subset of volumes
 * ibm\_svc\_manage\_volumgroup \- Added support to delete volumegroups keeping volumes via \'evictvolumes\'\.
 
-<a id="inspur-ispim"></a>
+<a id="inspur-ispim-1"></a>
 #### inspur\.ispim
 
 * Modify ansible\-test\.yml to add the ansible 2\.17 test [https\://github\.com/ispim/inspur\.ispim/pull/33](https\://github\.com/ispim/inspur\.ispim/pull/33)\.
@@ -1625,7 +1777,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="breaking-changes--porting-guide"></a>
 ### Breaking Changes / Porting Guide
 
-<a id="ansible-core-3"></a>
+<a id="ansible-core-4"></a>
 #### Ansible\-core
 
 * assert \- Nested templating may result in an inability for the conditional to be evaluated\. See the porting guide for more information\.
@@ -1729,7 +1881,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * The <code>inspur\.sm</code> collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11\. See [the removal process for details on how this works](https\://github\.com/ansible\-collections/overview/blob/main/removal\_from\_ansible\.rst\#cancelling\-removal\-of\-an\-unmaintained\-collection) \([https\://forum\.ansible\.com/t/2854](https\://forum\.ansible\.com/t/2854)\)\.
 * The <code>netapp\.storagegrid</code> collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11\. See [the removal process for details on how this works](https\://github\.com/ansible\-collections/overview/blob/main/removal\_from\_ansible\.rst\#cancelling\-removal\-of\-an\-unmaintained\-collection) \([https\://forum\.ansible\.com/t/2811](https\://forum\.ansible\.com/t/2811)\)\.
 
-<a id="ansible-core-4"></a>
+<a id="ansible-core-5"></a>
 #### Ansible\-core
 
 * Old style vars plugins which use the entrypoints <em class="title-reference">get\_host\_vars</em> or <em class="title-reference">get\_group\_vars</em> are deprecated\. The plugin should be updated to inherit from <em class="title-reference">BaseVarsPlugin</em> and define a <em class="title-reference">get\_vars</em> method as the entrypoint\.
@@ -1836,7 +1988,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * The deprecated <code>community\.sap</code> collection has been removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/247](https\://github\.com/ansible\-community/community\-topics/issues/247)\)\. There is a successor collection <code>community\.sap\_libs</code> in the community package which should cover the same functionality\.
 * The deprecated <code>purestorage\.fusion</code> collection has been removed \([https\://forum\.ansible\.com/t/3712](https\://forum\.ansible\.com/t/3712)\)\.
 
-<a id="ansible-core-5"></a>
+<a id="ansible-core-6"></a>
 #### Ansible\-core
 
 * Remove deprecated APIs from ansible\-docs \([https\://github\.com/ansible/ansible/issues/81716](https\://github\.com/ansible/ansible/issues/81716)\)\.
@@ -1920,7 +2072,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="security-fixes"></a>
 ### Security Fixes
 
-<a id="ansible-core-6"></a>
+<a id="ansible-core-7"></a>
 #### Ansible\-core
 
 * ANSIBLE\_NO\_LOG \- Address issue where ANSIBLE\_NO\_LOG was ignored \(CVE\-2024\-0690\)
@@ -1948,10 +2100,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * robot inventory plugin \- make sure all data received from the Hetzner robot service server is marked as unsafe\, so remote code execution by obtaining texts that can be evaluated as templates is not possible \([https\://www\.die\-welt\.net/2024/03/remote\-code\-execution\-in\-ansible\-dynamic\-inventory\-plugins/](https\://www\.die\-welt\.net/2024/03/remote\-code\-execution\-in\-ansible\-dynamic\-inventory\-plugins/)\, [https\://github\.com/ansible\-collections/community\.hrobot/pull/99](https\://github\.com/ansible\-collections/community\.hrobot/pull/99)\)\.
 
-<a id="bugfixes"></a>
+<a id="bugfixes-1"></a>
 ### Bugfixes
 
-<a id="ansible-core-7"></a>
+<a id="ansible-core-8"></a>
 #### Ansible\-core
 
 * Add a version ceiling constraint for pypsrp to avoid potential breaking changes in the 1\.0\.0 release\.
@@ -3085,7 +3237,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * dellemc\.openmanage\.idrac\_user \- Role to manage local users of iDRAC\.
 
-<a id="unchanged-collections"></a>
+<a id="unchanged-collections-1"></a>
 ### Unchanged Collections
 
 * ansible\.posix \(still version 1\.5\.4\)
