@@ -2,3 +2,5 @@
 cyberark.pas: <1.0.27
 # vmware.vmware_rest 3.0.1 needs cloud.common < 4.0.0
 cloud.common: <4.0.0
+# cisco.dnac 6.16.0, cisco.ise 2.9.2, and cisco.meraki 2.18.1 need ansible.utils < 5.0.0
+ansible.utils: <5.0.0
