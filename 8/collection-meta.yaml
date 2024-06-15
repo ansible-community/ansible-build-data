@@ -28,9 +28,7 @@ collections:
     repository: https://github.com/ISIB-Group/inspur.sm
   kubernetes.core:
     maintainers:
-      - jillr
-      - akasurde
-      - gravesm
+      - ansible-collections/cloud
     repository: https://github.com/ansible-collections/kubernetes.core
   sensu.sensu_go:
     maintainers:
@@ -90,10 +88,7 @@ collections:
     repository: https://github.com/ansible-collections/community.dns
   cloud.common:
     maintainers:
-      - Akasurde
-      - abikouo
-      - goneri
-      - jillr
+      - ansible-collections/cloud
     repository: https://github.com/ansible-collections/cloud.common
   infoblox.nios_modules:
     maintainers:
@@ -166,6 +161,8 @@ collections:
       - ishanjainn
     repository: https://github.com/grafana/grafana-ansible-collection
   amazon.aws:
+    maintainers:
+      - ansible-collections/cloud
     repository: https://github.com/ansible-collections/amazon.aws
   ansible.netcommon:
     repository: https://github.com/ansible-collections/ansible.netcommon
@@ -208,6 +205,8 @@ collections:
   cloudscale_ch.cloud:
     repository: https://github.com/cloudscale-ch/ansible-collection-cloudscale
   community.aws:
+    maintainers:
+      - ansible-collections/cloud
     repository: https://github.com/ansible-collections/community.aws
   community.azure:
     repository: https://github.com/ansible-collections/community.azure
@@ -238,6 +237,8 @@ collections:
   community.network:
     repository: https://github.com/ansible-collections/community.network
   community.okd:
+    maintainers:
+      - ansible-collections/cloud
     repository: https://github.com/openshift/community.okd
   community.postgresql:
     repository: https://github.com/ansible-collections/community.postgresql
