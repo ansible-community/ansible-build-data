@@ -32,6 +32,11 @@ collections:
       - akasurde
       - gravesm
     repository: https://github.com/ansible-collections/kubernetes.core
+  kubevirt.core:
+    maintainers:
+      - 0xFelix
+      - guidograzioli
+    repository: https://github.com/kubevirt/kubevirt.core
   sensu.sensu_go:
     maintainers:
       - tadeboro
