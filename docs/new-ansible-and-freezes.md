@@ -95,6 +95,12 @@ TODO: Improve the release playbook to support this case without requiring extra 
 Beyond the regular [Ansible Release Process](release-process.md), X.Y.0
 releases require special handling before running the release playbook.
 
+!!! note
+    This can be done in a simpler fashion when using the [automated release
+    process](automated-process.md). See the regular automated workflow for
+    versions up to rc1, and the [Special builds](automated-process.md#special-builds)
+    section for further release candidates and for the final major release.
+
 1. Determine the previous and the current releases
 
     ``` sh
