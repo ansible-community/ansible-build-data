@@ -66,6 +66,7 @@ hetzner.hcloud: >=3.1.0,<4.0.0
 ibm.qradar: >=3.0.0,<4.0.0
 ibm.spectrum_virtualize: >=2.0.0,<3.0.0
 ibm.storage_virtualize: >=2.3.0,<3.0.0
+ieisystem.inmanage: >=2.0.0,<3.0.0
 infinidat.infinibox: >=1.4.0,<2.0.0
 infoblox.nios_modules: >=1.6.0,<2.0.0
 inspur.ispim: >=2.2.0,<3.0.0
