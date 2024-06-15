@@ -124,6 +124,10 @@ collections:
     maintainers:
       - sumitguptaibm
     repository: https://github.com/ansible-collections/ibm.storage_virtualize
+  ieisystem.inmanage:
+    maintainers:
+      - ieisystem
+    repository: https://github.com/ieisystem/ieisystem.inmanage
   vultr.cloud:
     maintainers:
       - resmo
