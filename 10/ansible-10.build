@@ -74,6 +74,7 @@ inspur.sm: >=2.3.0,<3.0.0
 junipernetworks.junos: >=8.0.0,<9.0.0
 kaytus.ksmanage: >=1.2.0,<2.0.0
 kubernetes.core: >=3.1.0,<4.0.0
+kubevirt.core: >=1.5.0,<2.0.0
 lowlydba.sqlserver: >=2.3.0,<3.0.0
 microsoft.ad: >=1.5.0,<2.0.0
 netapp.cloudmanager: >=21.22.0,<22.0.0
