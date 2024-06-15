@@ -70,7 +70,6 @@ inspur.sm
 junipernetworks.junos
 kaytus.ksmanage
 kubernetes.core
-kubevirt.core
 lowlydba.sqlserver
 microsoft.ad
 netapp.cloudmanager
