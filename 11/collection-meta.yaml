@@ -83,12 +83,6 @@ collections:
     maintainers:
       - jborean93
     repository: https://github.com/ansible-collections/microsoft.ad
-  netapp.storagegrid:
-    maintainers:
-      - carchi8py
-      - jkandati
-      - joshedmonds
-    repository: https://github.com/ansible-collections/netapp.storagegrid
   cisco.ise:
     maintainers:
       - wastorga
