@@ -183,3 +183,10 @@ releases:
         This release updates 9.6.0 by removing binary files from a Windows venv that
         accidentally were included in two collection releases.'
     release_date: '2024-06-06'
+  9.7.0:
+    changes:
+      release_summary: 'Release Date: 2024-06-18
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2024-06-18'
