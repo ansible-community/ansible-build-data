@@ -252,8 +252,6 @@ collections:
     repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortimanager-collection
   fortinet.fortios:
     repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortios-collection
-  frr.frr:
-    repository: https://github.com/ansible-collections/frr.frr
   google.cloud:
     repository: https://github.com/ansible-collections/google.cloud
   hetzner.hcloud:
@@ -281,8 +279,6 @@ collections:
     repository: https://github.com/ngine-io/ansible-collection-exoscale
   openstack.cloud:
     repository: https://opendev.org/openstack/ansible-collections-openstack
-  openvswitch.openvswitch:
-    repository: https://github.com/ansible-collections/openvswitch.openvswitch
   ovirt.ovirt:
     repository: https://github.com/ovirt/ovirt-ansible-collection
     tag_version_regex: "^(.*)-1$"
