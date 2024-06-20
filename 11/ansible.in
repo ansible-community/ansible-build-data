@@ -56,7 +56,6 @@ dellemc.unity
 f5networks.f5_modules
 fortinet.fortimanager
 fortinet.fortios
-frr.frr
 google.cloud
 grafana.grafana
 hetzner.hcloud
@@ -79,7 +78,6 @@ netbox.netbox
 ngine_io.cloudstack
 ngine_io.exoscale
 openstack.cloud
-openvswitch.openvswitch
 ovirt.ovirt
 purestorage.flasharray
 purestorage.flashblade
