@@ -1,3 +1,4 @@
+# Please keep this in alphabetical order
 ---
 collections:
   amazon.aws:
@@ -287,6 +288,8 @@ collections:
       - rndmh3ro
       - schurzi
     repository: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
+  vmware.vmware:
+    repository: https://github.com/ansible-collections/vmware.vmware
   vmware.vmware_rest:
     maintainers:
       # ansible-collections/cloud

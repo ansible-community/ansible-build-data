@@ -93,6 +93,7 @@ splunk.es: >=3.0.0,<4.0.0
 t_systems_mms.icinga_director: >=2.0.0,<3.0.0
 telekom_mms.icinga_director: >=2.1.0,<3.0.0
 theforeman.foreman: >=4.0.0,<5.0.0
+vmware.vmware: >=1.3.0,<2.0.0
 vmware.vmware_rest: >=3.0.0,<4.0.0
 vultr.cloud: >=1.12.0,<2.0.0
 vyos.vyos: >=4.1.0,<5.0.0
