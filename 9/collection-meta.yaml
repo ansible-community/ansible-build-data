@@ -203,6 +203,10 @@ collections:
     maintainers:
       - sumitguptaibm
     repository: https://github.com/ansible-collections/ibm.storage_virtualize
+  ieisystem.inmanage:
+    maintainers:
+      - ieisystem
+    repository: https://github.com/ieisystem/ieisystem.inmanage
   infinidat.infinibox:
     repository: https://github.com/infinidat/ansible-infinidat-collection
   infoblox.nios_modules:
