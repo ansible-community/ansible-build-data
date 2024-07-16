@@ -193,11 +193,18 @@ releases:
   9.8.0:
     changes:
       deprecated_features:
-        - The ``frr.frr`` collection has been deprecated by the maintainers. Since they've also announced to not support ansible-core 2.18,
-          it will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11. See
-          `the removal process for details on how this works <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#canceling-removal-of-an-unmaintained-collection>`__
-          (https://forum.ansible.com/t/6243).
-        - The ``openvswitch.openvswitch`` collection has been deprecated by the maintainers. Since they've also announced to not support ansible-core 2.18,
-          it will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11. See
-          `the removal process for details on how this works <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#canceling-removal-of-an-unmaintained-collection>`__
-          (https://forum.ansible.com/t/6245).
+      - The ``frr.frr`` collection has been deprecated by the maintainers. Since they've
+        also announced to not support ansible-core 2.18, it will be removed from Ansible
+        11 if no one starts maintaining it again before Ansible 11. See `the removal
+        process for details on how this works <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#canceling-removal-of-an-unmaintained-collection>`__
+        (https://forum.ansible.com/t/6243).
+      - The ``openvswitch.openvswitch`` collection has been deprecated by the maintainers.
+        Since they've also announced to not support ansible-core 2.18, it will be
+        removed from Ansible 11 if no one starts maintaining it again before Ansible
+        11. See `the removal process for details on how this works <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#canceling-removal-of-an-unmaintained-collection>`__
+        (https://forum.ansible.com/t/6245).
+      release_summary: 'Release Date: 2024-07-16
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2024-07-16'
