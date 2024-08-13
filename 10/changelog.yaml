@@ -120,3 +120,10 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2024-07-16'
+  10.3.0:
+    changes:
+      release_summary: 'Release Date: 2024-08-13
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2024-08-13'
