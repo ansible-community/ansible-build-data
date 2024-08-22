@@ -41,7 +41,7 @@ jobs:
           python-versions: "${{ matrix.python-versions }}"
       - name: Set up nox environments
         run: |
-          nox -v -e "${{ matrix.session }}" ${{ matrix.codecov && 'coverage' || '' }} --install-only
+          nox -v -e "${{ matrix.session }}" --install-only
       - name: "Run nox -e ${{ matrix.session }}"
         run: |
           nox -v -e "${{ matrix.session }}" --reuse-existing-virtualenvs --no-install
