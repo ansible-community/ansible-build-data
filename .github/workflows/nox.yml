@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: antsibull
+        working-directory: ansible-build-data
     strategy:
       fail-fast: false
       matrix:
@@ -31,17 +31,17 @@ jobs:
             python-versions: "3.12"
     name: "Run nox ${{ matrix.session }} session"
     steps:
-      - name: Check out antsibull
+      - name: Check out ansible-build-data
         uses: actions/checkout@v4
         with:
-          path: antsibull
+          path: ansible-build-data
       - name: Setup nox
         uses: wntrblm/nox@2024.04.15
         with:
           python-versions: "${{ matrix.python-versions }}"
       - name: Set up nox environments
         run: |
-          OTHER_ANTSIBULL_MODE=git nox -v -e "${{ matrix.session }}" ${{ matrix.codecov && 'coverage' || '' }} --install-only
+          nox -v -e "${{ matrix.session }}" --install-only
       - name: "Run nox -e ${{ matrix.session }}"
         run: |
-          OTHER_ANTSIBULL_MODE=git nox -v -e "${{ matrix.session }}" --reuse-existing-virtualenvs --no-install
+          nox -v -e "${{ matrix.session }}" --reuse-existing-virtualenvs --no-install

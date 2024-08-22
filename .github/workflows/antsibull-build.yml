@@ -53,6 +53,13 @@ jobs:
           ref: main
           path: antsibull-changelog
 
+      - name: Check out antsibull-docutils
+        uses: actions/checkout@v4
+        with:
+          repository: ansible-community/antsibull-docutils
+          ref: main
+          path: antsibull-docutils
+
       - name: Pre-create build directory
         run: mkdir -p antsibull/build
 
