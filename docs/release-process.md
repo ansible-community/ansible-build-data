@@ -144,12 +144,17 @@ This only needs to be done once.
     git push --follow-tags
     ```
 
-8. Announce the release on the Forum, Matrix, and the mailing list by running
+8. Announce the release on the Forum and Matrix by running
    the following command in the `${MAJOR_VERSION}` directory of the
    `ansible-build-data` checkout:
     ```
     antsibull-build announcements --send --data-dir . ${VERSION}
     ```
+
+    This will open your default browser to do the announcement on the forum.
+    It will also tell you where to announce this on Matrix,
+    ask for the URL of the forum thread,
+    and create a suitable text in your clipboard that you can copy to Matrix.
 
 [container]: https://hub.docker.com/_/python
 [abd-fork]: https://github.com/ansible-community/ansible-build-data/fork
