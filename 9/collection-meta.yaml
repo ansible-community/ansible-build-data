@@ -69,6 +69,11 @@ collections:
     repository: https://github.com/ansible-collections/community.aws
   community.azure:
     repository: https://github.com/ansible-collections/community.azure
+    removal:
+      version: 10
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/263
+      announce_version: 9.0.0a1
   community.ciscosmb:
     maintainers:
       - qaxi
@@ -117,6 +122,11 @@ collections:
     maintainers:
       - rainerleber
     repository: https://github.com/ansible-collections/community.sap
+    removal:
+      version: 10
+      reason: renamed
+      new_name: community.sap_libs
+      announce_version: 9.0.0a1
   community.sap_libs:
     maintainers:
       - rainerleber
@@ -178,6 +188,11 @@ collections:
     repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortios-collection
   frr.frr:
     repository: https://github.com/ansible-collections/frr.frr
+    removal:
+      version: 11
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/6243
+      announce_version: 9.8.0
   gluster.gluster:
     repository: https://github.com/gluster/gluster-ansible-collection
   google.cloud:
@@ -194,12 +209,23 @@ collections:
       - datamattsson
     repository: https://github.com/hpe-storage/nimble-ansible-modules
     collection-directory: "./ansible_collection/hpe/nimble"
+    removal:
+      version: 10
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/254
+      announce_version: 9.0.0a1
   ibm.qradar:
     repository: https://github.com/ansible-collections/ibm.qradar
   ibm.spectrum_virtualize:
     maintainers:
       - Shilpi-J
     repository: https://github.com/ansible-collections/ibm.spectrum_virtualize
+    removal:
+      version: TBD
+      reason: renamed
+      new_name: ibm.storage_virtualize
+      announce_version: 9.0.0b1
+      redirect_replacement_version: 10
   ibm.storage_virtualize:
     maintainers:
       - sumitguptaibm
@@ -222,6 +248,11 @@ collections:
     maintainers:
       - ISIB-Group
     repository: https://github.com/ISIB-Group/inspur.sm
+    removal:
+      version: 11
+      reason: considered-unmaintained
+      discussion: https://forum.ansible.com/t/2854
+      announce_version: 9.3.0
   junipernetworks.junos:
     repository: https://github.com/ansible-collections/junipernetworks.junos
   kaytus.ksmanage:
@@ -256,6 +287,11 @@ collections:
       - wenjun666
       - chuyich
     repository: https://github.com/ansible-collections/netapp.azure
+    removal:
+      version: 10
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/234
+      announce_version: 9.0.0a1
   netapp.cloudmanager:
     maintainers:
       - carchi8py
@@ -265,6 +301,11 @@ collections:
     repository: https://github.com/ansible-collections/netapp.cloudmanager
   netapp.elementsw:
     repository: https://github.com/ansible-collections/netapp.elementsw
+    removal:
+      version: 10
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/235
+      announce_version: 9.0.0a1
   netapp.ontap:
     maintainers:
       - carchi8py
@@ -278,6 +319,11 @@ collections:
       - jkandati
       - joshedmonds
     repository: https://github.com/ansible-collections/netapp.storagegrid
+    removal:
+      version: 11
+      reason: considered-unmaintained
+      discussion: https://forum.ansible.com/t/2811
+      announce_version: 9.3.0
   netapp.um_info:
     maintainers:
       - carchi8py
@@ -285,6 +331,11 @@ collections:
       - wenjun666
       - chuyich
     repository: https://github.com/ansible-collections/netapp.um_info
+    removal:
+      version: 10
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/244
+      announce_version: 9.0.0a1
   netapp_eseries.santricity:
     repository: https://github.com/netapp-eseries/santricity
   netbox.netbox:
@@ -297,6 +348,11 @@ collections:
     repository: https://opendev.org/openstack/ansible-collections-openstack
   openvswitch.openvswitch:
     repository: https://github.com/ansible-collections/openvswitch.openvswitch
+    removal:
+      version: 11
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/6245
+      announce_version: 9.8.0
   ovirt.ovirt:
     repository: https://github.com/ovirt/ovirt-ansible-collection
     tag_version_regex: "^(.*)-1$"
@@ -308,6 +364,11 @@ collections:
     maintainers:
       - sdodsley
     repository: https://github.com/Pure-Storage-Ansible/Fusion-Collection
+    removal:
+      version: 10
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/3712
+      announce_version: 9.3.0
   sensu.sensu_go:
     maintainers:
       - tadeboro
@@ -321,6 +382,11 @@ collections:
       - rndmh3ro
       - schurzi
     repository: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
+    removal:
+      version: 10
+      reason: renamed
+      new_name: telekom_mms.icinga_director
+      announce_version: 9.0.0a1
   telekom_mms.icinga_director:
     changelog-url: https://github.com/telekom-mms/ansible-collection-icinga-director/blob/master/CHANGELOG.md
     maintainers:
