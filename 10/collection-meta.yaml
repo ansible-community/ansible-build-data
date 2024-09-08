@@ -173,7 +173,7 @@ collections:
   frr.frr:
     repository: https://github.com/ansible-collections/frr.frr
     removal:
-      version: 11
+      major_version: 11
       reason: deprecated
       discussion: https://forum.ansible.com/t/6243
       announce_version: 10.2.0
@@ -192,7 +192,7 @@ collections:
       - Shilpi-J
     repository: https://github.com/ansible-collections/ibm.spectrum_virtualize
     removal:
-      version: TBD
+      major_version: TBD
       reason: renamed
       new_name: ibm.storage_virtualize
   ibm.storage_virtualize:
@@ -218,7 +218,7 @@ collections:
       - ISIB-Group
     repository: https://github.com/ISIB-Group/inspur.sm
     removal:
-      version: 11
+      major_version: 11
       reason: considered-unmaintained
       discussion: https://forum.ansible.com/t/2854
       announce_version: 10.0.0a1
@@ -268,7 +268,7 @@ collections:
       - joshedmonds
     repository: https://github.com/ansible-collections/netapp.storagegrid
     removal:
-      version: 11
+      major_version: 11
       reason: considered-unmaintained
       discussion: https://forum.ansible.com/t/2811
       announce_version: 10.0.0a1
@@ -285,7 +285,7 @@ collections:
   openvswitch.openvswitch:
     repository: https://github.com/ansible-collections/openvswitch.openvswitch
     removal:
-      version: 11
+      major_version: 11
       reason: deprecated
       discussion: https://forum.ansible.com/t/6245
       announce_version: 10.2.0

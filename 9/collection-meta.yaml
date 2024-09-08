@@ -70,7 +70,7 @@ collections:
   community.azure:
     repository: https://github.com/ansible-collections/community.azure
     removal:
-      version: 10
+      major_version: 10
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/263
       announce_version: 9.0.0a1
@@ -123,7 +123,7 @@ collections:
       - rainerleber
     repository: https://github.com/ansible-collections/community.sap
     removal:
-      version: 10
+      major_version: 10
       reason: renamed
       new_name: community.sap_libs
       announce_version: 9.0.0a1
@@ -189,7 +189,7 @@ collections:
   frr.frr:
     repository: https://github.com/ansible-collections/frr.frr
     removal:
-      version: 11
+      major_version: 11
       reason: deprecated
       discussion: https://forum.ansible.com/t/6243
       announce_version: 9.8.0
@@ -210,7 +210,7 @@ collections:
     repository: https://github.com/hpe-storage/nimble-ansible-modules
     collection-directory: "./ansible_collection/hpe/nimble"
     removal:
-      version: 10
+      major_version: 10
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/254
       announce_version: 9.0.0a1
@@ -221,11 +221,11 @@ collections:
       - Shilpi-J
     repository: https://github.com/ansible-collections/ibm.spectrum_virtualize
     removal:
-      version: TBD
+      major_version: TBD
       reason: renamed
       new_name: ibm.storage_virtualize
       announce_version: 9.0.0b1
-      redirect_replacement_version: 10
+      redirect_replacement_major_version: 10
   ibm.storage_virtualize:
     maintainers:
       - sumitguptaibm
@@ -249,7 +249,7 @@ collections:
       - ISIB-Group
     repository: https://github.com/ISIB-Group/inspur.sm
     removal:
-      version: 11
+      major_version: 11
       reason: considered-unmaintained
       discussion: https://forum.ansible.com/t/2854
       announce_version: 9.3.0
@@ -288,7 +288,7 @@ collections:
       - chuyich
     repository: https://github.com/ansible-collections/netapp.azure
     removal:
-      version: 10
+      major_version: 10
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/234
       announce_version: 9.0.0a1
@@ -302,7 +302,7 @@ collections:
   netapp.elementsw:
     repository: https://github.com/ansible-collections/netapp.elementsw
     removal:
-      version: 10
+      major_version: 10
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/235
       announce_version: 9.0.0a1
@@ -320,7 +320,7 @@ collections:
       - joshedmonds
     repository: https://github.com/ansible-collections/netapp.storagegrid
     removal:
-      version: 11
+      major_version: 11
       reason: considered-unmaintained
       discussion: https://forum.ansible.com/t/2811
       announce_version: 9.3.0
@@ -332,7 +332,7 @@ collections:
       - chuyich
     repository: https://github.com/ansible-collections/netapp.um_info
     removal:
-      version: 10
+      major_version: 10
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/244
       announce_version: 9.0.0a1
@@ -349,7 +349,7 @@ collections:
   openvswitch.openvswitch:
     repository: https://github.com/ansible-collections/openvswitch.openvswitch
     removal:
-      version: 11
+      major_version: 11
       reason: deprecated
       discussion: https://forum.ansible.com/t/6245
       announce_version: 9.8.0
@@ -365,7 +365,7 @@ collections:
       - sdodsley
     repository: https://github.com/Pure-Storage-Ansible/Fusion-Collection
     removal:
-      version: 10
+      major_version: 10
       reason: deprecated
       discussion: https://forum.ansible.com/t/3712
       announce_version: 9.3.0
@@ -383,7 +383,7 @@ collections:
       - schurzi
     repository: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
     removal:
-      version: 10
+      major_version: 10
       reason: renamed
       new_name: telekom_mms.icinga_director
       announce_version: 9.0.0a1
