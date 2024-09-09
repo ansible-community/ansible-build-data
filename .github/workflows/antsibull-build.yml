@@ -60,6 +60,13 @@ jobs:
           ref: main
           path: antsibull-docutils
 
+      - name: Check out antsibull-fileutils
+        uses: actions/checkout@v4
+        with:
+          repository: ansible-community/antsibull-fileutils
+          ref: main
+          path: antsibull-fileutils
+
       - name: Pre-create build directory
         run: mkdir -p antsibull/build
 
