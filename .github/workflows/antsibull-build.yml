@@ -88,6 +88,11 @@ jobs:
           python3 -m pip install ansible-core . ../antsibull-core ../antsibull-changelog ../antsibull-docutils ../antsibull-fileutils
           ansible-galaxy collection install 'git+https://github.com/ansible-collections/community.general.git'
 
+      - name: Lint collection metadata
+        working-directory: antsibull/build/ansible-build-data/${{ matrix.ansible_major_version }}
+        run: |
+          antsibull-build lint-collection-meta ${{ matrix.ansible_major_version }}
+
       - name: Test building a release with the defaults
         working-directory: antsibull
         run: |
