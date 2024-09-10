@@ -7,6 +7,546 @@ This changelog describes changes since Ansible 8.0.0.
 .. contents::
   :depth: 2
 
+v9.10.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2024-09-10
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 9.10.0 contains ansible-core version 2.16.11.
+This is a newer version than version 2.16.10 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection               | Ansible 9.9.0 | Ansible 9.10.0 | Notes                                                                                                                        |
++==========================+===============+================+==============================================================================================================================+
+| ansible.windows          | 2.4.0         | 2.5.0          |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.dnac               | 6.17.1        | 6.18.0         |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight         | 2.0.10        | 2.0.17         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ucs                | 1.10.0        | 1.11.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto         | 2.21.1        | 2.22.0         |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.digitalocean   | 1.26.0        | 1.27.0         | There are no changes recorded in the changelog.                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns            | 2.9.4         | 2.9.5          |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general        | 8.6.4         | 8.6.5          |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql          | 3.9.0         | 3.10.3         |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.postgresql     | 3.4.1         | 3.5.0          |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros       | 2.18.0        | 2.19.0         |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sops           | 1.8.2         | 1.9.0          |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware         | 4.5.0         | 4.7.0          |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.windows        | 2.2.0         | 2.3.0          |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.enterprise_sonic | 2.4.0         | 2.5.0          |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortimanager    | 2.6.0         | 2.7.0          |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| google.cloud             | 1.3.0         | 1.4.1          |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| microsoft.ad             | 1.6.0         | 1.7.1          |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ngine_io.cloudstack      | 2.3.0         | 2.4.0          |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flasharray   | 1.30.2        | 1.31.1         |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware            | 1.4.0         | 1.5.0          |                                                                                                                              |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| wti.remote               | 1.0.5         | 1.0.8          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++--------------------------+---------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- Set minimum supported Ansible version to 2.15 to align with the versions still supported by Ansible.
+- owner - Migrated to ``Ansible.Basic`` format to add basic checks like invocation args checking
+- win_powershell - Changed `sensitive_parameters` to use `New-Object`, rather than `::new()`
+
+cisco.dnac
+~~~~~~~~~~
+
+- Added 'fabric_sites_zones_workflow_manager.py' to manage fabric sites/zones and update the authentication profile template.
+- Added 'sda_extranet_policies_workflow_manager' to provide SDA Extranet Policies for managing SDA Extranet Policy.
+- Added Circle CI support for integration testing.
+- Bug fixes in user_role_workflow_manager module.
+- Changes in accesspoint_workflow_manager module.
+- Changes in device_configs_backup_workflow_manager to support name of the site to which the device is assigned.
+- Changes in inventory_workflow_manager to support maximum devices to resync, and resync timeout.
+- Changes in network_settings_workflow_manager to support reserve ip subpools.
+- Changes in provision_workflow_manager to support enhanced log messages.
+- Changes in rma_workflow_manager module to support pre check for device replacement.
+- device_configs_backup_workflow_manager.py. added attribute 'site'.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- openssl_privatekey, openssl_privatekey_pipe - add default value ``auto`` for ``cipher`` option, which happens to be the only supported value for this option anyway. Therefore it is no longer necessary to specify ``cipher=auto`` when providing ``passphrase`` (https://github.com/ansible-collections/community.crypto/issues/793, https://github.com/ansible-collections/community.crypto/pull/794).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_info - Add ``tls_requires`` returned value for the ``users_info`` filter (https://github.com/ansible-collections/community.mysql/pull/628).
+- mysql_info - return a database server engine used (https://github.com/ansible-collections/community.mysql/issues/644).
+- mysql_replication - Adds support for `CHANGE REPLICATION SOURCE TO` statement (https://github.com/ansible-collections/community.mysql/issues/635).
+- mysql_replication - Adds support for `SHOW BINARY LOG STATUS` and `SHOW BINLOG STATUS` on getprimary mode.
+- mysql_replication - Improve detection of IsReplica and IsPrimary by inspecting the dictionary returned from the SQL query instead of relying on variable types. This ensures compatibility with changes in the connector or the output of SHOW REPLICA STATUS and SHOW MASTER STATUS, allowing for easier maintenance if these change in the future.
+- mysql_user - Add salt parameter to generate static hash for `caching_sha2_password` and `sha256_password` plugins.
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgres - add support for postgres ``infinity`` timestamps by replacing them with ``datetime.min`` / ``datetime.max`` values (https://github.com/ansible-collections/community.postgresql/pull/714).
+- postgresql_publication - add the ``tables_in_schema`` argument to implement ``FOR TABLES IN SCHEMA`` feature (https://github.com/ansible-collections/community.postgresql/issues/709).
+- postgresql_user - adds the ``configuration`` argument that allows to manage user-specific default configuration (https://github.com/ansible-collections/community.postgresql/issues/598).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info, api_modify - add support for the ``ip dns adlist`` path implemented by RouterOS 7.15 and newer (https://github.com/ansible-collections/community.routeros/pull/310).
+- api_info, api_modify - add support for the ``mld-version`` and ``multicast-querier`` properties in ``interface bridge`` (https://github.com/ansible-collections/community.routeros/pull/315).
+- api_info, api_modify - add support for the ``routing filter num-list`` path implemented by RouterOS 7 and newer (https://github.com/ansible-collections/community.routeros/pull/313).
+- api_info, api_modify - add support for the ``routing igmp-proxy`` path (https://github.com/ansible-collections/community.routeros/pull/309).
+- api_modify, api_info - add read-only ``default`` field to ``snmp community`` (https://github.com/ansible-collections/community.routeros/pull/311).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- decrypt filter plugin - now supports the input and output type ``ini`` (https://github.com/ansible-collections/community.sops/pull/204).
+- sops lookup plugin - new option ``extract`` allows extracting a single key out of a JSON or YAML file, equivalent to sops' ``decrypt --extract`` (https://github.com/ansible-collections/community.sops/pull/200).
+- sops lookup plugin - now supports the input and output type ``ini`` (https://github.com/ansible-collections/community.sops/pull/204).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_vm_vm_drs_rule - added datacenter argument to correctly deal with multiple clusters with same name(https://github.com/ansible-collections/community.vmware/issues/2101).
+- vsphere_file - Fix examples in documentation (https://github.com/ansible-collections/community.vmware/issues/2110).
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- Set minimum supported Ansible version to 2.15 to align with the versions still supported by Asnible.
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- bgp_af - Add support for 'import vrf' commands (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/351).
+- sonic_bfd - Add playbook check and diff modes support for bfd module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/346).
+- sonic_bgp - Add playbook check and diff modes support for bgp module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/350).
+- sonic_bgp - Add support BGP Asn Notation (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/417).
+- sonic_bgp - Fix GitHub issue# 416 (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/418).
+- sonic_bgp_af - Add playbook check and diff modes support for bgp_af module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/350).
+- sonic_bgp_af - Add support for BGP Asn Notation (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/417).
+- sonic_bgp_af - Add support for aggregate address configuration(https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/398).
+- sonic_bgp_af - Update replaced state handling (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/400)
+- sonic_bgp_as_paths - Add playbook check and diff modes support for bgp_as_paths module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/350).
+- sonic_bgp_communities - Add playbook check and diff modes support for bgp_communities module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/350).
+- sonic_bgp_ext_communities - Add playbook check and diff modes support for bgp_ext_communities module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/350).
+- sonic_bgp_neighbors - Add playbook check and diff modes support for bgp_neighbors module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/360).
+- sonic_bgp_neighbors - Add support for BGP Asn Notation (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/417).
+- sonic_bgp_neighbors - Add support for replaced and overridden states (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/335).
+- sonic_bgp_neighbors - Add support for replaced and overridden states (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/336).
+- sonic_bgp_neighbors - Add support for the "fabric_external" option (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/336).
+- sonic_bgp_neighbors_af - Add playbook check and diff modes support for bgp_neighbors_af module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/360).
+- sonic_bgp_neighbors_af - Add support for BGP Asn Notation (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/417).
+- sonic_copp - Add playbook check and diff modes support for copp module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/346).
+- sonic_dhcp_relay - Add playbook check and diff modes support for dhcp_relay module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/346).
+- sonic_dhcp_snooping - Add playbook check and diff modes support for dhcp_snooping module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/346).
+- sonic_interfaces - Add description, enabled option support for Loopback interfaces (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/364).
+- sonic_interfaces - Fix GitHub issue 357 - set proper default value when deleted (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/366).
+- sonic_interfaces - Update replaced state handling (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/364).
+- sonic_l3_interfaces - Add playbook check and diff modes support for l3_interfaces module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/328).
+- sonic_l3_interfaces - Add support for USGv6R1 related features (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/374).
+- sonic_l3_interfaces - Fix IPv6 default dad configuration handling (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/428).
+- sonic_lag_interfaces - Add evpn ethernet-segment support for LAG interfaces (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/403).
+- sonic_lldp_global - Add playbook check and diff modes support for lldp_global module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/338).
+- sonic_logging - Add support for protocol option in logging module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/317).
+- sonic_mac - Add playbook check and diff modes support for mac module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/338).
+- sonic_mclag - Add playbook check and diff modes support for mclag module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/337).
+- sonic_mclag - Enable session-vrf command support in mclag(https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/299).
+- sonic_port_breakout - Add playbook check and diff modes support for port_breakout module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/337).
+- sonic_port_group - Make error message for port group facts gathering more descriptive (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/396).
+- sonic_prefix_lists - Add playbook check and diff modes support for prefix_lists module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/331).
+- sonic_qos_maps - Comment out PFC priority group map tests cases (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/395).
+- sonic_qos_scheduler - Update states implementation (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/373).
+- sonic_route_maps - Add UT for route maps module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/384).
+- sonic_route_maps - Add playbook check and diff modes support for route_maps module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/331).
+- sonic_route_maps - Add support for BGP Asn Notation (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/417).
+- sonic_route_maps - Add support for the 'set tag' option and synchronize module documentation with argspec and model (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/413).
+- sonic_stp - Add playbook check and diff modes support for stp module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/338).
+- sonic_system - Add support for 'standard_extended' interface-naming mode (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/352).
+- sonic_system - Add support for configuring auto-breakout feature (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/342).
+- sonic_system - Adding Versatile Hash feature.(https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/401).
+- sonic_system - Enable auditd command support(https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/405).
+- sonic_system - Update replaced state handling (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/388).
+- sonic_vxlan - Fix GitHub issue 376 - Change vxlan module get_fact function (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/393).
+- sonic_vxlans - Add playbook check and diff modes support for vxlans module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/337).
+- sonic_vxlans - Add support for the "external_ip" vxlan option (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/330).
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Supported FortiManager 7.6.0. Added 7 new modules.
+- Supported check mode for all modules except "fmgr_generic". You can use "ansible-playbook -i <your-host-file> <your-playbook> --check" to validate whether your playbook will make any changes to the FortiManager.
+
+google.cloud
+~~~~~~~~~~~~
+
+- ansible - 2.16.0 is now the minimum version supported
+- ansible - 3.10 is now the minimum Python version
+- ansible-test - integration tests are now run against 2.16.0 and 2.17.0
+- gcloud role - use dnf instead of yum on RHEL
+- gcp_secret_manager - add as a module and lookup plugin (https://github.com/ansible-collections/google.cloud/pull/578)
+- gcp_secret_manager - support more than 10 versions (https://github.com/ansible-collections/google.cloud/pull/634)
+- restore google_cloud_ops_agents submodule (https://github.com/ansible-collections/google.cloud/pull/594)
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- Set minimum supported Ansible version to 2.15 to align with the versions still supported by Ansible.
+- microsoft.ad.computer - Added the ``do_not_append_dollar_to_sam`` option which can create a computer account without the ``$`` suffix when an explicit ``sam_account_name`` was provided without one.
+- microsoft.ad.domain - Added ``reboot_timeout`` option to control how long a reboot can go for.
+- microsoft.ad.domain_child - Added ``reboot_timeout`` option to control how long a reboot can go for.
+- microsoft.ad.domain_controller - Added ``reboot_timeout`` option to control how long a reboot can go for.
+- microsoft.ad.membership - Added ``domain_server`` option to specify the DC to use for domain join operations - https://github.com/ansible-collections/microsoft.ad/issues/131#issuecomment-2201151651
+- microsoft.ad.membership - Added ``reboot_timeout`` option to control how long a reboot can go for.
+
+ngine_io.cloudstack
+~~~~~~~~~~~~~~~~~~~
+
+- Added possiblity to disable certs validation using ``validate_certs`` argument (https://github.com/ngine-io/ansible-collection-cloudstack/pull/131).
+- cs_project - Extended to pass ``cleanup=true`` to the deleteProject API when deleting a project (https://github.com/ngine-io/ansible-collection-cloudstack/pull/122).
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_token - Add ``disable_warnings`` support
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- Add action group (https://github.com/ansible-collections/vmware.vmware/pull/59).
+- cluster - Added cluster module, which is meant to succeed the community.vmware.vmware_cluster module (https://github.com/ansible-collections/vmware.vmware/pull/60).
+- cluster_vcls - Added module to manage vCLS settings, based on community.vmware.vmware_cluster_vcls (https://github.com/ansible-collections/vmware.vmware/pull/61).
+- folder_template_from_vm - Use a more robust method when waiting for tasks to complete to improve accuracy (https://github.com/ansible-collections/vmware.vmware/pull/64).
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- collection - support of mysqlclient connector is deprecated - use PyMySQL connector instead! We will stop testing against it in collection version 4.0.0 and remove the related code in 5.0.0 (https://github.com/ansible-collections/community.mysql/issues/654).
+- mysql_info - The ``users_info`` filter returned variable ``plugin_auth_string`` contains the hashed password and it's misleading, it will be removed from community.mysql 4.0.0. Use the `plugin_hash_string` return value instead (https://github.com/ansible-collections/community.mysql/pull/629).
+- mysql_user - the ``user`` alias of the ``name`` argument has been deprecated and will be removed in collection version 5.0.0. Use the ``name`` argument instead.
+
+Deprecated Features
+-------------------
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_cluster - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2143).
+- vmware_cluster_drs - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2136).
+- vmware_cluster_vcls - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2156).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Fix ``SemanticVersion.parse()`` to store the version string so that ``__repr__`` reports it instead of ``None`` (https://github.com/ansible/ansible/pull/83831).
+- Fix an issue where registered variable was not available for templating in ``loop_control.label`` on skipped looped tasks (https://github.com/ansible/ansible/issues/83619)
+- Fix for ``meta`` tasks breaking host/fork affinity with ``host_pinned`` strategy (https://github.com/ansible/ansible/issues/83294)
+- Fix using the current task's directory for looking up relative paths within roles (https://github.com/ansible/ansible/issues/82695).
+- atomic_move - fix using the setgid bit on the parent directory when creating files (https://github.com/ansible/ansible/issues/46742, https://github.com/ansible/ansible/issues/67177).
+- connection plugins using the 'extras' option feature would need variables to match the plugin's loaded name, sometimes requiring fqcn, which is not the same as the documented/declared/expected variables. Now we fall back to the 'basename' of the fqcn, but plugin authors can still set the expected value directly.
+- csvfile lookup - give an error when no search term is provided using modern config syntax (https://github.com/ansible/ansible/issues/83689).
+- include_tasks - Display location when attempting to load a task list where ``include_*`` did not specify any value - https://github.com/ansible/ansible/issues/83874
+- module respawn - Address an issue with Python 2 where a respawned module could not parse module args (https://github.com/ansible/ansible/issues/83812)
+- powershell - Improve CLIXML decoding to decode all control characters and unicode characters that are encoded as surrogate pairs.
+- psrp - Fix bug when attempting to fetch a file path that contains special glob characters like ``[]``
+- runtime-metadata sanity test - do not crash on deprecations if ``galaxy.yml`` contains an empty ``version`` field (https://github.com/ansible/ansible/pull/83831).
+- ssh - Fix bug when attempting to fetch a file path with characters that should be quoted when using the ``piped`` transfer method
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- setup - Better handle orphaned users when attempting to retrieve ``ansible_machine_id`` - https://github.com/ansible-collections/ansible.windows/issues/606
+- win_owner - Try to enable extra privileges if available to set the owner even when the caller may not have explicit rights to do so normally - https://github.com/ansible-collections/ansible.windows/issues/633
+- win_powershell - Fix up depth handling on ``$Ansible.Result`` when using a custom ``executable`` - https://github.com/ansible-collections/ansible.windows/issues/642
+- win_powershell - increase open timeout for ``executable`` parameter to prevent exceptions on first-run or slower targets. (https://github.com/ansible-collections/ansible.windows/issues/644).
+- win_updates - Base64 encode the update wrapper and payload to prevent locale-specific encoding issues.
+- win_updates - Handle race condition when ``Wait-Process`` did not handle when the process had ended - https://github.com/ansible-collections/ansible.windows/issues/623
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- gitlab_group_access_token - fix crash in check mode caused by attempted access to a newly created access token (https://github.com/ansible-collections/community.general/pull/8796).
+- gitlab_project_access_token - fix crash in check mode caused by attempted access to a newly created access token (https://github.com/ansible-collections/community.general/pull/8796).
+- keycloak_realm_key - fix invalid usage of ``parent_id`` (https://github.com/ansible-collections/community.general/issues/7850, https://github.com/ansible-collections/community.general/pull/8823).
+- keycloak_user_federation - fix key error when removing mappers during an update and new mappers are specified in the module args (https://github.com/ansible-collections/community.general/pull/8762).
+- keycloak_user_federation - fix the ``UnboundLocalError`` that occurs when an ID is provided for a user federation mapper (https://github.com/ansible-collections/community.general/pull/8831).
+- keycloak_user_federation - sort desired and after mapper list by name (analog to before mapper list) to minimize diff and make change detection more accurate (https://github.com/ansible-collections/community.general/pull/8761).
+- proxmox inventory plugin - fixed a possible error on concatenating responses from proxmox. In case an API call unexpectedly returned an empty result, the inventory failed with a fatal error. Added check for empty response (https://github.com/ansible-collections/community.general/issues/8798, https://github.com/ansible-collections/community.general/pull/8794).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_info - Add ``plugin_hash_string`` to ``users_info`` filter's output. The existing ``plugin_auth_string`` contained the hashed password and thus is missleading, it will be removed from community.mysql 4.0.0. (https://github.com/ansible-collections/community.mysql/pull/629).
+- mysql_user - Added a warning to update_password's on_new_username option if multiple accounts with the same username but different passwords exist (https://github.com/ansible-collections/community.mysql/pull/642).
+- mysql_user - Fix ``tls_requires`` not removing ``SSL`` and ``X509`` when sets as empty (https://github.com/ansible-collections/community.mysql/pull/628).
+- mysql_user - Fix idempotence when using variables from the ``users_info`` filter of ``mysql_info`` as an input (https://github.com/ansible-collections/community.mysql/pull/628).
+- mysql_user - Fixed an IndexError in the update_password functionality introduced in PR https://github.com/ansible-collections/community.mysql/pull/580 and released in community.mysql 3.8.0. If you used this functionality, please avoid versions 3.8.0 to 3.9.0 (https://github.com/ansible-collections/community.mysql/pull/642).
+- mysql_user - add correct ``ed25519`` auth plugin handling (https://github.com/ansible-collections/community.mysql/issues/6).
+- mysql_user - add correct ``ed25519`` auth plugin handling when creating a user (https://github.com/ansible-collections/community.mysql/issues/672).
+- mysql_user - add correct ``ed25519`` auth plugin handling when creating a user (https://github.com/ansible-collections/community.mysql/pull/676).
+- mysql_user - module makes changes when is executed with ``plugin_auth_string`` parameter and check mode.
+- mysql_variables - fix the module always changes on boolean values (https://github.com/ansible-collections/community.mysql/issues/652).
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgres - psycopg2 automatically sets the datestyle on the connection to iso whenever it encounters a datestyle configuration it doesn't recognize, but psycopg3 does not. Fix now enforces iso datestyle when using psycopg3 (https://github.com/ansible-collections/community.postgresql/issues/711).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- Document dependency on requests (https://github.com/ansible-collections/community.vmware/issues/2127).
+- vmware_guest_disk - round size to int, supporting float values properly (https://github.com/ansible-collections/community.vmware/issues/123).
+- vmware_guest_snapshot - Update documentation regarding snapshot_id parameter (https://github.com/ansible-collections/community.vmware/issues/2145).
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- win_mapped_drive - Use correct P/Invoke signature to fix mapped network drives on 32 Bit OS.
+- win_mapped_drive - better handle failures when attempting to set mapped drive that already exists but was seen as a local path.
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- sonic_bfd - Fix BFD states implementation bug (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/383).
+- sonic_bgp_neighbors - Fix issues with deleted state (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/335).
+- sonic_copp - Fix CoPP states implementation bug (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/381).
+- sonic_interfaces - Fix exception when gathering facts (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/377).
+- sonic_interfaces - Fix replaced and overridden state handling for Loopback interfaces (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/364).
+- sonic_l2_interfaces - Fix exception when gathering facts (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/410).
+- sonic_l3_interfaces - Fix replaced state handling (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/431).
+- sonic_mac - Fix MAC states implementation bug (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/383).
+- sonic_prefix_lists - Fix idempotency failure (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/354).
+- sonic_prefix_lists - Fix replaced state handling (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/354).
+- sonic_qos_pfc - Add back accidentally deleted line of code  (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/391).
+- sonic_static_routes - Fix static routes states implementation bug (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/383).
+- sonic_vlans - Fix exception when gathering facts (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/377).
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Fixed Bug in "fmgr_fact"
+- Improved documentation.
+
+google.cloud
+~~~~~~~~~~~~
+
+- ansible-lint - remove jinja templates from test assertions
+- gcp_kms_filters - add DOCUMENTATION string
+- gcp_secret_manager - make an f-string usage backward compatible
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- Fix ``microsoft.ad.debug_ldap_client`` documentation problem so it appears in the ``ansible-doc`` plugin list and online documentation.
+- Removed usages of the python call ``datetime.datetime.utcnow()`` in favour of ``datetime.datetime.now(datetime.timezone.utc)``. The original method is now deprecated in Python 3.12 and will be removed in a later version.
+- group - fix error when creating a group with no members explicitly set - https://github.com/ansible-collections/microsoft.ad/issues/141
+- ldap - Filter out managed service accounts in the default LDAP filter used. The ``filter_without_computer`` can be used to disable the default filter if needed.
+- membership - allow domain join with hostname change if the account for that host already exists - https://github.com/ansible-collections/microsoft.ad/pull/145
+- microsoft.ad.computer - Added fallback ``identity`` lookup for ``sAMAccountName`` with the ``$`` suffix. This ensures that finding the computer object will work with or without the ``$`` suffix. - https://github.com/ansible-collections/microsoft.ad/issues/124
+- microsoft.ad.group - Fix setting group members of Builtin groups of a domain controller - https://github.com/ansible-collections/microsoft.ad/issues/130
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_dsrole - Fix version check logic
+- purefa_pod - Fix issue with pod not creating correctly
+- purefa_subnet - Initialize varaible correctly
+- purefa_syslog_settings - Initialize varaible correctly
+- purefa_volume - Fixes ``eradicate`` so it doesn't report success when it hasn't actually eradicated
+- purefa_volume - Fixes ``volfact`` response when in ``check_mode``
+- purefa_volume - Fixes issue where malformed ``volfact`` will cause the ``move`` to apparently fail.
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- README - Fix typos in README (https://github.com/ansible-collections/vmware.vmware/pull/66).
+
+New Modules
+-----------
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- dellemc.enterprise_sonic.sonic_login_lockout - Manage Global Login Lockout configurations on SONiC.
+- dellemc.enterprise_sonic.sonic_mgmt_servers - Manage management servers configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_ospf_area - configure OSPF area settings on SONiC.
+- dellemc.enterprise_sonic.sonic_ospfv2 - Configure global OSPFv2 protocol settings on SONiC.
+- dellemc.enterprise_sonic.sonic_ospfv2_interfaces - Configure OSPFv2 interface mode protocol settings on SONiC.
+- dellemc.enterprise_sonic.sonic_pim_global - Manage global PIM configurations on SONiC.
+- dellemc.enterprise_sonic.sonic_pim_interfaces - Manage interface-specific PIM configurations on SONiC.
+- dellemc.enterprise_sonic.sonic_poe - Manage PoE configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_qos_buffer - Manage QoS buffer configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_qos_interfaces - Manage QoS interfaces configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_qos_maps - Manage QoS maps configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_qos_pfc - Manage QoS PFC configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_qos_scheduler - Manage QoS scheduler configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_qos_wred - Manage QoS WRED profiles configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_roce - Manage RoCE QoS configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_sflow - configure sflow settings on SONiC.
+- dellemc.enterprise_sonic.sonic_vrrp - Configure VRRP protocol settings on SONiC.
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- fortinet.fortimanager.fmgr_fmg_sasemanager_settings - Fmg sase manager settings
+- fortinet.fortimanager.fmgr_fmg_sasemanager_status - Fmg sase manager status
+- fortinet.fortimanager.fmgr_pm_config_pblock_firewall_proxypolicy - Configure proxy policies.
+- fortinet.fortimanager.fmgr_pm_config_pblock_firewall_proxypolicy_sectionvalue - Configure proxy policies.
+- fortinet.fortimanager.fmgr_system_admin_user_policyblock - Policy block write access.
+- fortinet.fortimanager.fmgr_system_fmgcluster - fmg clsuter.
+- fortinet.fortimanager.fmgr_system_fmgcluster_peer - Peer.
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- microsoft.ad.service_account - Manage Active Directory service account objects
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purestorage.flasharray.purefa_dsrole_old - Configure FlashArray Directory Service Roles (pre-6.6.3)
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 7.6.1)
+- ansible.netcommon (still version 5.3.0)
+- ansible.posix (still version 1.5.4)
+- ansible.utils (still version 2.12.0)
+- arista.eos (still version 6.2.2)
+- awx.awx (still version 23.9.0)
+- azure.azcollection (still version 1.19.0)
+- check_point.mgmt (still version 5.2.3)
+- chocolatey.chocolatey (still version 1.5.1)
+- cisco.aci (still version 2.10.1)
+- cisco.asa (still version 4.0.3)
+- cisco.ios (still version 5.3.0)
+- cisco.iosxr (still version 6.1.1)
+- cisco.ise (still version 2.9.3)
+- cisco.meraki (still version 2.18.1)
+- cisco.mso (still version 2.9.0)
+- cisco.nxos (still version 5.3.0)
+- cloud.common (still version 2.1.4)
+- cloudscale_ch.cloud (still version 2.4.0)
+- community.aws (still version 7.2.0)
+- community.azure (still version 2.0.0)
+- community.ciscosmb (still version 1.0.9)
+- community.docker (still version 3.12.1)
+- community.grafana (still version 1.9.1)
+- community.hashi_vault (still version 6.2.0)
+- community.hrobot (still version 1.9.3)
+- community.library_inventory_filtering_v1 (still version 1.0.1)
+- community.libvirt (still version 1.3.0)
+- community.mongodb (still version 1.7.6)
+- community.network (still version 5.0.3)
+- community.okd (still version 2.3.0)
+- community.proxysql (still version 1.6.0)
+- community.rabbitmq (still version 1.3.0)
+- community.sap (still version 2.0.0)
+- community.sap_libs (still version 1.4.2)
+- community.zabbix (still version 2.5.1)
+- containers.podman (still version 1.15.4)
+- cyberark.conjur (still version 1.3.0)
+- cyberark.pas (still version 1.0.27)
+- dellemc.openmanage (still version 8.7.0)
+- dellemc.powerflex (still version 2.5.0)
+- dellemc.unity (still version 1.7.1)
+- f5networks.f5_modules (still version 1.30.1)
+- fortinet.fortios (still version 2.3.7)
+- frr.frr (still version 2.0.2)
+- gluster.gluster (still version 1.0.2)
+- grafana.grafana (still version 2.2.5)
+- hetzner.hcloud (still version 2.5.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.1.0)
+- ibm.spectrum_virtualize (still version 2.0.0)
+- ibm.storage_virtualize (still version 2.4.1)
+- ieisystem.inmanage (still version 2.0.0)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.6.1)
+- inspur.ispim (still version 2.2.3)
+- inspur.sm (still version 2.3.0)
+- junipernetworks.junos (still version 5.3.1)
+- kaytus.ksmanage (still version 1.2.2)
+- kubernetes.core (still version 2.4.2)
+- lowlydba.sqlserver (still version 2.3.3)
+- netapp.aws (still version 21.7.1)
+- netapp.azure (still version 21.10.1)
+- netapp.cloudmanager (still version 21.22.1)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 22.12.0)
+- netapp.storagegrid (still version 21.12.0)
+- netapp.um_info (still version 21.8.1)
+- netapp_eseries.santricity (still version 1.4.0)
+- netbox.netbox (still version 3.19.1)
+- ngine_io.exoscale (still version 1.1.0)
+- openstack.cloud (still version 2.2.0)
+- openvswitch.openvswitch (still version 2.1.1)
+- ovirt.ovirt (still version 3.2.0)
+- purestorage.flashblade (still version 1.18.0)
+- purestorage.fusion (still version 1.6.1)
+- sensu.sensu_go (still version 1.14.0)
+- splunk.es (still version 2.1.2)
+- t_systems_mms.icinga_director (still version 2.0.1)
+- telekom_mms.icinga_director (still version 1.35.0)
+- theforeman.foreman (still version 3.15.0)
+- vmware.vmware_rest (still version 2.3.1)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 4.1.0)
+
 v9.9.0
 ======
 
