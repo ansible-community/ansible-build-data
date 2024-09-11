@@ -321,4 +321,3 @@ collections:
     repository: https://github.com/ansible-collections/vyos.vyos
   wti.remote:
     repository: https://github.com/wtinetworkgear/wti-collection
-    collection-directory: "./wti/remote"
