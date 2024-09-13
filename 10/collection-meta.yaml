@@ -172,6 +172,11 @@ collections:
     repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortios-collection
   frr.frr:
     repository: https://github.com/ansible-collections/frr.frr
+    removal:
+      major_version: 11
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/6243
+      announce_version: 10.5.0
   google.cloud:
     repository: https://github.com/ansible-collections/google.cloud
   grafana.grafana:
