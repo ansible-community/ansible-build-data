@@ -91,7 +91,7 @@ jobs:
       - name: Lint collection metadata
         working-directory: antsibull/build/ansible-build-data/${{ matrix.ansible_major_version }}
         run: |
-          antsibull-build lint-collection-meta ${{ matrix.ansible_major_version }}
+          antsibull-build lint-build-data ${{ matrix.ansible_major_version }}
 
       - name: Test building a release with the defaults
         working-directory: antsibull
