@@ -184,6 +184,10 @@ collections:
     maintainers:
       - Shilpi-J
     repository: https://github.com/ansible-collections/ibm.spectrum_virtualize
+    removal:
+      major_version: TBD
+      reason: renamed
+      new_name: ibm.storage_virtualize
   ibm.storage_virtualize:
     maintainers:
       - sumitguptaibm
@@ -234,8 +238,6 @@ collections:
       - wenjun666
       - chuyich
     repository: https://github.com/ansible-collections/netapp.cloudmanager
-  netapp_eseries.santricity:
-    repository: https://github.com/netapp-eseries/santricity
   netapp.ontap:
     maintainers:
       - carchi8py
@@ -243,6 +245,8 @@ collections:
       - wenjun666
       - chuyich
     repository: https://github.com/ansible-collections/netapp.ontap
+  netapp_eseries.santricity:
+    repository: https://github.com/netapp-eseries/santricity
   netbox.netbox:
     repository: https://github.com/netbox-community/ansible_modules
   ngine_io.cloudstack:
@@ -265,6 +269,12 @@ collections:
     repository: https://github.com/sensu/sensu-go-ansible
   splunk.es:
     repository: https://github.com/ansible-collections/splunk.es
+  t_systems_mms.icinga_director:
+    changelog-url: https://github.com/T-Systems-MMS/ansible-collection-icinga-director/blob/master/CHANGELOG.md
+    maintainers:
+      - rndmh3ro
+      - schurzi
+    repository: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
   telekom_mms.icinga_director:
     changelog-url: https://github.com/telekom-mms/ansible-collection-icinga-director/blob/master/CHANGELOG.md
     maintainers:
@@ -273,12 +283,6 @@ collections:
     repository: https://github.com/telekom-mms/ansible-collection-icinga-director
   theforeman.foreman:
     repository: https://github.com/theforeman/foreman-ansible-modules
-  t_systems_mms.icinga_director:
-    changelog-url: https://github.com/T-Systems-MMS/ansible-collection-icinga-director/blob/master/CHANGELOG.md
-    maintainers:
-      - rndmh3ro
-      - schurzi
-    repository: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
   vmware.vmware:
     maintainers:
       - machacekondra

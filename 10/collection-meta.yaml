@@ -172,6 +172,11 @@ collections:
     repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortios-collection
   frr.frr:
     repository: https://github.com/ansible-collections/frr.frr
+    removal:
+      major_version: 11
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/6243
+      announce_version: 10.2.0
   google.cloud:
     repository: https://github.com/ansible-collections/google.cloud
   grafana.grafana:
@@ -186,6 +191,10 @@ collections:
     maintainers:
       - Shilpi-J
     repository: https://github.com/ansible-collections/ibm.spectrum_virtualize
+    removal:
+      major_version: TBD
+      reason: renamed
+      new_name: ibm.storage_virtualize
   ibm.storage_virtualize:
     maintainers:
       - sumitguptaibm
@@ -208,6 +217,11 @@ collections:
     maintainers:
       - ISIB-Group
     repository: https://github.com/ISIB-Group/inspur.sm
+    removal:
+      major_version: 11
+      reason: considered-unmaintained
+      discussion: https://forum.ansible.com/t/2854
+      announce_version: 10.0.0a1
   junipernetworks.junos:
     repository: https://github.com/ansible-collections/junipernetworks.junos
   kaytus.ksmanage:
@@ -253,6 +267,11 @@ collections:
       - jkandati
       - joshedmonds
     repository: https://github.com/ansible-collections/netapp.storagegrid
+    removal:
+      major_version: 11
+      reason: considered-unmaintained
+      discussion: https://forum.ansible.com/t/2811
+      announce_version: 10.0.0a1
   netapp_eseries.santricity:
     repository: https://github.com/netapp-eseries/santricity
   netbox.netbox:
@@ -265,6 +284,11 @@ collections:
     repository: https://opendev.org/openstack/ansible-collections-openstack
   openvswitch.openvswitch:
     repository: https://github.com/ansible-collections/openvswitch.openvswitch
+    removal:
+      major_version: 11
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/6245
+      announce_version: 10.2.0
   ovirt.ovirt:
     repository: https://github.com/ovirt/ovirt-ansible-collection
     tag_version_regex: "^(.*)-1$"
