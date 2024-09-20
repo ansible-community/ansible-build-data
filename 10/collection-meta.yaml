@@ -351,3 +351,78 @@ collections:
     repository: https://github.com/ansible-collections/vyos.vyos
   wti.remote:
     repository: https://github.com/wtinetworkgear/wti-collection
+removed_collections:
+  community.azure:
+    repository: https://github.com/ansible-collections/community.azure
+    removal:
+      major_version: 10
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/263
+      announce_version: 9.0.0a1
+    removed_version: 10.0.0a1
+  community.sap:
+    maintainers:
+      - rainerleber
+    repository: https://github.com/ansible-collections/community.sap
+    removal:
+      major_version: 10
+      reason: renamed
+      new_name: community.sap_libs
+      announce_version: 9.0.0a1
+    removed_version: 10.0.0a1
+  hpe.nimble:
+    maintainers:
+      - ar-india
+      - datamattsson
+    repository: https://github.com/hpe-storage/nimble-ansible-modules
+    collection-directory: "./ansible_collection/hpe/nimble"
+    removal:
+      major_version: 10
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/254
+      announce_version: 9.0.0a1
+    removed_version: 10.0.0a1
+  netapp.azure:
+    maintainers:
+      - carchi8py
+      - suhasbshekar
+      - wenjun666
+      - chuyich
+    repository: https://github.com/ansible-collections/netapp.azure
+    removal:
+      major_version: 10
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/234
+      announce_version: 9.0.0a1
+    removed_version: 10.0.0a1
+  netapp.elementsw:
+    repository: https://github.com/ansible-collections/netapp.elementsw
+    removal:
+      major_version: 10
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/235
+      announce_version: 9.0.0a1
+    removed_version: 10.0.0a1
+  netapp.um_info:
+    maintainers:
+      - carchi8py
+      - suhasbshekar
+      - wenjun666
+      - chuyich
+    repository: https://github.com/ansible-collections/netapp.um_info
+    removal:
+      major_version: 10
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/244
+      announce_version: 9.0.0a1
+    removed_version: 10.0.0a1
+  purestorage.fusion:
+    maintainers:
+      - sdodsley
+    repository: https://github.com/Pure-Storage-Ansible/Fusion-Collection
+    removal:
+      major_version: 10
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/3712
+      announce_version: 9.3.0
+    removed_version: 10.0.0a1

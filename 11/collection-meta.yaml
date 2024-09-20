@@ -305,3 +305,55 @@ collections:
     repository: https://github.com/ansible-collections/vyos.vyos
   wti.remote:
     repository: https://github.com/wtinetworkgear/wti-collection
+removed_collections:
+  frr.frr:
+    repository: https://github.com/ansible-collections/frr.frr
+    removal:
+      major_version: 11
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/6243
+      announce_version: 10.2.0
+    removed_version: 11.0.0a1
+  inspur.sm:
+    maintainers:
+      - ISIB-Group
+    repository: https://github.com/ISIB-Group/inspur.sm
+    removal:
+      major_version: 11
+      reason: considered-unmaintained
+      discussion: https://forum.ansible.com/t/2854
+      announce_version: 10.0.0a1
+    removed_version: 11.0.0a1
+  netapp.storagegrid:
+    maintainers:
+      - carchi8py
+      - jkandati
+      - joshedmonds
+    repository: https://github.com/ansible-collections/netapp.storagegrid
+    removal:
+      major_version: 11
+      reason: considered-unmaintained
+      discussion: https://forum.ansible.com/t/2811
+      announce_version: 10.0.0a1
+    removed_version: 11.0.0a1
+  openvswitch.openvswitch:
+    repository: https://github.com/ansible-collections/openvswitch.openvswitch
+    removal:
+      major_version: 11
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/6245
+      announce_version: 10.2.0
+    removed_version: 11.0.0a1
+  t_systems_mms.icinga_director:
+    changelog-url: https://github.com/T-Systems-MMS/ansible-collection-icinga-director/blob/master/CHANGELOG.md
+    maintainers:
+      - rndmh3ro
+      - schurzi
+    repository: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
+    removal:
+      major_version: 11
+      reason: renamed
+      new_name: telekom_mms.icinga_director
+      announce_version: 9.5.0
+      redirect_replacement_major_version: 9
+    removed_version: 11.0.0a1
