@@ -269,12 +269,6 @@ collections:
     repository: https://github.com/sensu/sensu-go-ansible
   splunk.es:
     repository: https://github.com/ansible-collections/splunk.es
-  t_systems_mms.icinga_director:
-    changelog-url: https://github.com/T-Systems-MMS/ansible-collection-icinga-director/blob/master/CHANGELOG.md
-    maintainers:
-      - rndmh3ro
-      - schurzi
-    repository: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
   telekom_mms.icinga_director:
     changelog-url: https://github.com/telekom-mms/ansible-collection-icinga-director/blob/master/CHANGELOG.md
     maintainers:
