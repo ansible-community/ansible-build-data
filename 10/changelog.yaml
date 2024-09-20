@@ -141,4 +141,4 @@ releases:
         For now both collections are included in Ansible. The content in ``t_systems_mms.icinga_director``
         has been replaced with deprecated redirects to the new collection in Ansible
         9.0.0, and these redirects will be removed from Ansible 11. Please update
-        your FQCNs for ``t_systems_mms.icinga_director``.
+        your FQCNs from ``t_systems_mms.icinga_director`` to ``telekom_mms.icinga_director``.
