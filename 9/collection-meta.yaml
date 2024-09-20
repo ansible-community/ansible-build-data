@@ -383,10 +383,11 @@ collections:
       - schurzi
     repository: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
     removal:
-      major_version: 10
+      major_version: 11
       reason: renamed
       new_name: telekom_mms.icinga_director
       announce_version: 9.0.0a1
+      redirect_replacement_major_version: 9
   telekom_mms.icinga_director:
     changelog-url: https://github.com/telekom-mms/ansible-collection-icinga-director/blob/master/CHANGELOG.md
     maintainers:

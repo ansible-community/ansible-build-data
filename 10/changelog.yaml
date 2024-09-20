@@ -134,3 +134,11 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2024-09-10'
+  10.5.0:
+    changes:
+      deprecated_features:
+      - The collection ``t_systems_mms.icinga_director`` has been renamed to ``telekom_mms.icinga_director``.
+        For now both collections are included in Ansible. The content in ``t_systems_mms.icinga_director``
+        has been replaced with deprecated redirects to the new collection in Ansible
+        9.0.0, and these redirects will be removed from Ansible 11. Please update
+        your FQCNs for ``t_systems_mms.icinga_director``.

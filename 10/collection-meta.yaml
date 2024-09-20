@@ -309,6 +309,12 @@ collections:
       - rndmh3ro
       - schurzi
     repository: https://github.com/T-Systems-MMS/ansible-collection-icinga-director
+    removal:
+      major_version: 11
+      reason: renamed
+      new_name: telekom_mms.icinga_director
+      announce_version: 10.5.0
+      redirect_replacement_major_version: 9
   telekom_mms.icinga_director:
     changelog-url: https://github.com/telekom-mms/ansible-collection-icinga-director/blob/master/CHANGELOG.md
     maintainers:
