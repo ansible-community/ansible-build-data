@@ -424,3 +424,49 @@ collections:
     repository: https://github.com/ansible-collections/vyos.vyos
   wti.remote:
     repository: https://github.com/wtinetworkgear/wti-collection
+removed_collections:
+  cisco.nso:
+    repository: https://github.com/CiscoDevNet/ansible-nso
+    removal:
+      version: 9.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/155
+      announce_version: 8.0.0a1
+  community.fortios:
+    repository: https://github.com/ansible-collections/community.fortios
+    removal:
+      version: 9.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/162
+      announce_version: 8.0.0a1
+  community.google:
+    repository: https://github.com/ansible-collections/community.google
+    removal:
+      version: 9.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/160
+      announce_version: 8.0.0a1
+  community.skydive:
+    repository: https://github.com/ansible-collections/skydive
+    removal:
+      version: 9.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/171
+      announce_version: 8.0.0a1
+  ngine_io.vultr:
+    repository: https://github.com/ngine-io/ansible-collection-vultr
+    removal:
+      version: 9.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/257
+      announce_version: 8.3.0
+  servicenow.servicenow:
+    repository: https://github.com/ServiceNowITOM/servicenow-ansible
+    removal:
+      version: 9.0.0a1
+      reason: other
+      reason_text:
+        The deprecated servicenow.servicenow collection has been removed from Ansible 7,
+        but accidentally re-added to Ansible 8.
+      discussion: https://github.com/ansible-community/community-topics/issues/246
+      announce_version: 8.2.0
