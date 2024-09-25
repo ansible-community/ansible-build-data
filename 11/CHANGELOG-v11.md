@@ -1356,10 +1356,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="removed-features-previously-deprecated"></a>
 ### Removed Features \(previously deprecated\)
 
-* The \`\`frr\.frr\` has been removed because it does not support ansible\-core 2\.18 \([https\://forum\.ansible\.com/t/6243](https\://forum\.ansible\.com/t/6243)\)\.
+* The <code>frr\.frr</code> collection has been removed because it does not support ansible\-core 2\.18 \([https\://forum\.ansible\.com/t/6243](https\://forum\.ansible\.com/t/6243)\)\.
 * The <code>inspur\.sm</code> collection was considered unmaintained and removed from Ansible 11 \([https\://forum\.ansible\.com/t/2854](https\://forum\.ansible\.com/t/2854)\)\. Users can still install this collection with <code>ansible\-galaxy collection install inspur\.sm</code>\.
 * The <code>netapp\.storagegrid</code> collection was considered unmaintained and removed from Ansible 11 \([https\://forum\.ansible\.com/t/2811](https\://forum\.ansible\.com/t/2811)\)\. Users can still install this collection with <code>ansible\-galaxy collection install netapp\.storagegrid</code>\.
-* The \`\`openvswitch\.openvswitch\` collection has been removed because it does not support ansible\-core 2\.18 \([https\://forum\.ansible\.com/t/6245](https\://forum\.ansible\.com/t/6245)\)\.
+* The <code>openvswitch\.openvswitch</code> collection has been removed because it does not support ansible\-core 2\.18 \([https\://forum\.ansible\.com/t/6245](https\://forum\.ansible\.com/t/6245)\)\.
 
 <a id="ansible-core-4"></a>
 #### Ansible\-core

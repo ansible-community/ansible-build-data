@@ -7,7 +7,7 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
       removed_features:
-      - The ``frr.frr` has been removed because it does not support ansible-core 2.18
+      - The ``frr.frr`` collection has been removed because it does not support ansible-core 2.18
         (https://forum.ansible.com/t/6243).
       - The ``inspur.sm`` collection was considered unmaintained and removed from
         Ansible 11 (https://forum.ansible.com/t/2854). Users can still install this
@@ -15,6 +15,6 @@ releases:
       - The ``netapp.storagegrid`` collection was considered unmaintained and removed
         from Ansible 11 (https://forum.ansible.com/t/2811). Users can still install
         this collection with ``ansible-galaxy collection install netapp.storagegrid``.
-      - The ``openvswitch.openvswitch` collection has been removed because it does
+      - The ``openvswitch.openvswitch`` collection has been removed because it does
         not support ansible-core 2.18 (https://forum.ansible.com/t/6245).
     release_date: '2024-09-25'
