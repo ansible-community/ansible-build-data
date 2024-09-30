@@ -142,3 +142,9 @@ releases:
         has been replaced with deprecated redirects to the new collection in Ansible
         9.0.0, and these redirects will be removed from Ansible 11. Please update
         your FQCNs from ``t_systems_mms.icinga_director`` to ``telekom_mms.icinga_director``.
+      - The ``ngine_io.exoscale`` collection has been deprecated by the maintainers. Since they've
+        also announced that the collection does not work anymore with the Cloudstack API after May 1, 2024,
+        it will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
+        See `the removal process for details on how this works
+        <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#canceling-removal-of-an-unmaintained-collection>`__
+        (https://forum.ansible.com/t/2572).

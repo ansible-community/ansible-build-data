@@ -18,3 +18,8 @@ releases:
       - The ``openvswitch.openvswitch`` collection has been removed because it does
         not support ansible-core 2.18 (https://forum.ansible.com/t/6245).
     release_date: '2024-09-25'
+  11.0.0a2:
+    changes:
+      removed_features:
+      - The ``ngine_io.exoscale`` collection has been removed because it has been deprecated by its maintainers
+        (https://forum.ansible.com/t/2572).
