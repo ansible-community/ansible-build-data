@@ -77,7 +77,6 @@ netapp_eseries.santricity
 netapp.ontap
 netbox.netbox
 ngine_io.cloudstack
-ngine_io.exoscale
 openstack.cloud
 ovirt.ovirt
 purestorage.flasharray

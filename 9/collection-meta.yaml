@@ -344,6 +344,11 @@ collections:
     repository: https://github.com/ngine-io/ansible-collection-cloudstack
   ngine_io.exoscale:
     repository: https://github.com/ngine-io/ansible-collection-exoscale
+    removal:
+      major_version: 11
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/2572
+      announce_version: 9.11.0
   openstack.cloud:
     repository: https://opendev.org/openstack/ansible-collections-openstack
   openvswitch.openvswitch:

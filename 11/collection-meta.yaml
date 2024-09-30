@@ -251,8 +251,6 @@ collections:
     repository: https://github.com/netbox-community/ansible_modules
   ngine_io.cloudstack:
     repository: https://github.com/ngine-io/ansible-collection-cloudstack
-  ngine_io.exoscale:
-    repository: https://github.com/ngine-io/ansible-collection-exoscale
   openstack.cloud:
     repository: https://opendev.org/openstack/ansible-collections-openstack
   ovirt.ovirt:
@@ -333,6 +331,13 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://forum.ansible.com/t/2811
       announce_version: 10.0.0a1
+  ngine_io.exoscale:
+    repository: https://github.com/ngine-io/ansible-collection-exoscale
+    removal:
+      version: 11.0.0a2
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/2572
+      announce_version: 10.5.0
   openvswitch.openvswitch:
     repository: https://github.com/ansible-collections/openvswitch.openvswitch
     removal:

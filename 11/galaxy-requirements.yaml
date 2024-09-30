@@ -237,9 +237,6 @@ collections:
 - name: ngine_io.cloudstack
   source: https://galaxy.ansible.com
   version: 2.4.1
-- name: ngine_io.exoscale
-  source: https://galaxy.ansible.com
-  version: 1.1.0
 - name: openstack.cloud
   source: https://galaxy.ansible.com
   version: 2.2.0
