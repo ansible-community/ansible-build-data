@@ -80,7 +80,6 @@ netapp.ontap: >=22.12.0,<23.0.0
 netapp_eseries.santricity: >=1.4.0,<2.0.0
 netbox.netbox: >=3.20.0,<4.0.0
 ngine_io.cloudstack: >=2.4.0,<3.0.0
-ngine_io.exoscale: >=1.1.0,<2.0.0
 openstack.cloud: >=2.2.0,<3.0.0
 ovirt.ovirt: >=3.2.0,<4.0.0
 purestorage.flasharray: >=1.31.0,<2.0.0

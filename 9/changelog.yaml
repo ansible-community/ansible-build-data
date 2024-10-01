@@ -128,6 +128,13 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2024-09-10'
+  9.11.0:
+    changes:
+      deprecated_features:
+      - The ``ngine_io.exoscale`` collection has been deprecated by the maintainers. Since they've
+        also announced that the collection does not work anymore with the Cloudstack API after May 1, 2024,
+        it will be removed from Ansible 11
+        (https://forum.ansible.com/t/2572).
   9.2.0:
     changes:
       release_summary: 'Release Date: 2024-01-30
