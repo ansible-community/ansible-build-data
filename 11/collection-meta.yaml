@@ -270,7 +270,9 @@ collections:
       announce_version: 11.0.0a2
       reason: guidelines-violation
       discussion: https://forum.ansible.com/t/8380
-      reason_text: https://github.com/sensu/sensu-go-ansible/issues/362
+      reason_text: >
+        The collection has
+        L(unresolved sanity test failures, https://github.com/sensu/sensu-go-ansible/issues/362).
   splunk.es:
     repository: https://github.com/ansible-collections/splunk.es
   telekom_mms.icinga_director:
