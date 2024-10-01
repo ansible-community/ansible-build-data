@@ -133,9 +133,7 @@ releases:
       deprecated_features:
       - The ``ngine_io.exoscale`` collection has been deprecated by the maintainers. Since they've
         also announced that the collection does not work anymore with the Cloudstack API after May 1, 2024,
-        it will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
-        See `the removal process for details on how this works
-        <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#canceling-removal-of-an-unmaintained-collection>`__
+        it will be removed from Ansible 11
         (https://forum.ansible.com/t/2572).
   9.2.0:
     changes:
