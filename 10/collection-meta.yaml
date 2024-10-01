@@ -306,6 +306,12 @@ collections:
       - tadeboro
       - mancabizjak
     repository: https://github.com/sensu/sensu-go-ansible
+    removal:
+      major_version: 12
+      announce_version: 10.5.0
+      reason: guidelines-violation
+      discussion: https://forum.ansible.com/t/8380
+      reason_text: https://github.com/sensu/sensu-go-ansible/issues/362
   splunk.es:
     repository: https://github.com/ansible-collections/splunk.es
   t_systems_mms.icinga_director:
