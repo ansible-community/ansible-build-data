@@ -148,8 +148,11 @@ This only needs to be done once.
    the following command in the `${MAJOR_VERSION}` directory of the
    `ansible-build-data` checkout:
     ```
-    antsibull-build announcements --send --data-dir . ${VERSION}
+    antsibull-build announcements --send --data-dir . ${VERSION} [ --end-of-life ]
     ```
+
+    The `--end-of-life` flag should be added if this is the final release for the
+    `${MAJOR_VERSION}` major release train.
 
     This will open your default browser to do the announcement on the forum.
     It will also tell you where to announce this on Matrix,
