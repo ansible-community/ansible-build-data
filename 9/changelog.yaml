@@ -135,6 +135,10 @@ releases:
         also announced that the collection does not work anymore with the Cloudstack API after May 1, 2024,
         it will be removed from Ansible 11
         (https://forum.ansible.com/t/2572).
+      - The ``sensu.sensu_go`` collection will be removed from Ansible 12 due
+        to unresolved Ansible inclusion requirements violations
+        (https://forum.ansible.com/t/8380).
+        See `the removal process for details on how this works and can be cancelled <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__.
   9.2.0:
     changes:
       release_summary: 'Release Date: 2024-01-30
@@ -229,11 +233,3 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2024-08-13'
-
-  9.11.0:
-    changes:
-      deprecated_features:
-      - The ``sensu.sensu_go`` collection will be removed from Ansible 12 due
-        to unresolved Ansible inclusion requirements violations
-        (https://forum.ansible.com/t/8380).
-        See `the removal process for details on how this works and can be cancelled <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__.
