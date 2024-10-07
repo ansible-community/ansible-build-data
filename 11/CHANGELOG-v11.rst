@@ -1248,10 +1248,16 @@ community.vmware
 Removed Features (previously deprecated)
 ----------------------------------------
 
-- The ``frr.frr`` collection has been removed because it does not support ansible-core 2.18 (https://forum.ansible.com/t/6243).
-- The ``inspur.sm`` collection was considered unmaintained and removed from Ansible 11 (https://forum.ansible.com/t/2854). Users can still install this collection with ``ansible-galaxy collection install inspur.sm``.
-- The ``netapp.storagegrid`` collection was considered unmaintained and removed from Ansible 11 (https://forum.ansible.com/t/2811). Users can still install this collection with ``ansible-galaxy collection install netapp.storagegrid``.
-- The ``openvswitch.openvswitch`` collection has been removed because it does not support ansible-core 2.18 (https://forum.ansible.com/t/6245).
+- The ``inspur.sm`` collection was considered unmaintained and has been removed from Ansible 11 (`https://forum.ansible.com/t/2854 <https://forum.ansible.com/t/2854>`__).
+  Users can still install this collection with ``ansible-galaxy collection install inspur.sm``.
+- The ``netapp.storagegrid`` collection was considered unmaintained and has been removed from Ansible 11 (`https://forum.ansible.com/t/2811 <https://forum.ansible.com/t/2811>`__).
+  Users can still install this collection with ``ansible-galaxy collection install netapp.storagegrid``.
+- The collection ``t_systems_mms.icinga_director`` has been completely removed from Ansible.
+  It has been renamed to ``telekom_mms.icinga_director``.
+  ``t_systems_mms.icinga_director`` has been replaced by deprecated redirects to ``telekom_mms.icinga_director`` in Ansible 9.0.0.
+  Please update your FQCNs from ``t_systems_mms.icinga_director`` to ``telekom_mms.icinga_director``.
+- The deprecated ``frr.frr`` collection has been removed (`https://forum.ansible.com/t/6243 <https://forum.ansible.com/t/6243>`__).
+- The deprecated ``openvswitch.openvswitch`` collection has been removed (`https://forum.ansible.com/t/6245 <https://forum.ansible.com/t/6245>`__).
 
 Ansible-core
 ~~~~~~~~~~~~

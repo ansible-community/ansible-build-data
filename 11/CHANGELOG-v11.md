@@ -1356,10 +1356,16 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="removed-features-previously-deprecated"></a>
 ### Removed Features \(previously deprecated\)
 
-* The <code>frr\.frr</code> collection has been removed because it does not support ansible\-core 2\.18 \([https\://forum\.ansible\.com/t/6243](https\://forum\.ansible\.com/t/6243)\)\.
-* The <code>inspur\.sm</code> collection was considered unmaintained and removed from Ansible 11 \([https\://forum\.ansible\.com/t/2854](https\://forum\.ansible\.com/t/2854)\)\. Users can still install this collection with <code>ansible\-galaxy collection install inspur\.sm</code>\.
-* The <code>netapp\.storagegrid</code> collection was considered unmaintained and removed from Ansible 11 \([https\://forum\.ansible\.com/t/2811](https\://forum\.ansible\.com/t/2811)\)\. Users can still install this collection with <code>ansible\-galaxy collection install netapp\.storagegrid</code>\.
-* The <code>openvswitch\.openvswitch</code> collection has been removed because it does not support ansible\-core 2\.18 \([https\://forum\.ansible\.com/t/6245](https\://forum\.ansible\.com/t/6245)\)\.
+* The <code>inspur\.sm</code> collection was considered unmaintained and has been removed from Ansible 11 \([https\://forum\.ansible\.com/t/2854](https\://forum\.ansible\.com/t/2854)\)\.
+  Users can still install this collection with <code>ansible\-galaxy collection install inspur\.sm</code>\.
+* The <code>netapp\.storagegrid</code> collection was considered unmaintained and has been removed from Ansible 11 \([https\://forum\.ansible\.com/t/2811](https\://forum\.ansible\.com/t/2811)\)\.
+  Users can still install this collection with <code>ansible\-galaxy collection install netapp\.storagegrid</code>\.
+* The collection <code>t\_systems\_mms\.icinga\_director</code> has been completely removed from Ansible\.
+  It has been renamed to <code>telekom\_mms\.icinga\_director</code>\.
+  <code>t\_systems\_mms\.icinga\_director</code> has been replaced by deprecated redirects to <code>telekom\_mms\.icinga\_director</code> in Ansible 9\.0\.0\.
+  Please update your FQCNs from <code>t\_systems\_mms\.icinga\_director</code> to <code>telekom\_mms\.icinga\_director</code>\.
+* The deprecated <code>frr\.frr</code> collection has been removed \([https\://forum\.ansible\.com/t/6243](https\://forum\.ansible\.com/t/6243)\)\.
+* The deprecated <code>openvswitch\.openvswitch</code> collection has been removed \([https\://forum\.ansible\.com/t/6245](https\://forum\.ansible\.com/t/6245)\)\.
 
 <a id="ansible-core-4"></a>
 #### Ansible\-core

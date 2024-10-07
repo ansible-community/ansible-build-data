@@ -1585,8 +1585,12 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="deprecated-features-2"></a>
 ### Deprecated Features
 
-* The <code>frr\.frr</code> collection has been deprecated by the maintainers\. Since they\'ve also announced to not support ansible\-core 2\.18\, it will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11\. See [the removal process for details on how this works](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#canceling\-removal\-of\-an\-unmaintained\-collection) \([https\://forum\.ansible\.com/t/6243](https\://forum\.ansible\.com/t/6243)\)\.
-* The <code>openvswitch\.openvswitch</code> collection has been deprecated by the maintainers\. Since they\'ve also announced to not support ansible\-core 2\.18\, it will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11\. See [the removal process for details on how this works](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#canceling\-removal\-of\-an\-unmaintained\-collection) \([https\://forum\.ansible\.com/t/6245](https\://forum\.ansible\.com/t/6245)\)\.
+* The <code>frr\.frr</code> collection has been deprecated\.
+  It will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11\.
+  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/6243](https\://forum\.ansible\.com/t/6243)\)\.
+* The <code>openvswitch\.openvswitch</code> collection has been deprecated\.
+  It will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11\.
+  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/6245](https\://forum\.ansible\.com/t/6245)\)\.
 
 <a id="bugfixes-2"></a>
 ### Bugfixes
@@ -4229,8 +4233,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="deprecated-features-4"></a>
 ### Deprecated Features
 
-* The <code>inspur\.sm</code> collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11\. See [the removal process for details on how this works](https\://github\.com/ansible\-collections/overview/blob/main/removal\_from\_ansible\.rst\#cancelling\-removal\-of\-an\-unmaintained\-collection) \([https\://forum\.ansible\.com/t/2854](https\://forum\.ansible\.com/t/2854)\)\.
-* The <code>netapp\.storagegrid</code> collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11\. See [the removal process for details on how this works](https\://github\.com/ansible\-collections/overview/blob/main/removal\_from\_ansible\.rst\#cancelling\-removal\-of\-an\-unmaintained\-collection) \([https\://forum\.ansible\.com/t/2811](https\://forum\.ansible\.com/t/2811)\)\.
+* The <code>inspur\.sm</code> collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11\.
+  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details\, including for how this can be cancelled \([https\://forum\.ansible\.com/t/2854](https\://forum\.ansible\.com/t/2854)\)\.
+* The <code>netapp\.storagegrid</code> collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11\.
+  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details\, including for how this can be cancelled \([https\://forum\.ansible\.com/t/2811](https\://forum\.ansible\.com/t/2811)\)\.
 
 <a id="ansible-core-15"></a>
 #### Ansible\-core
@@ -4329,14 +4335,20 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="removed-features-previously-deprecated"></a>
 ### Removed Features \(previously deprecated\)
 
-* The <code>gluster\.gluster</code> collection was considered unmaintained and removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/225](https\://github\.com/ansible\-community/community\-topics/issues/225)\)\. Users can still install this collection with <code>ansible\-galaxy collection install gluster\.gluster</code>\.
-* The <code>hpe\.nimble</code> collection was considered unmaintained and removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/254](https\://github\.com/ansible\-community/community\-topics/issues/254)\)\. Users can still install this collection with <code>ansible\-galaxy collection install hpe\.nimble</code>\.
-* The <code>netapp\.aws</code> collection was considered unmaintained and removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/223](https\://github\.com/ansible\-community/community\-topics/issues/223)\)\. Users can still install this collection with <code>ansible\-galaxy collection install netapp\.aws</code>\.
-* The <code>netapp\.azure</code> collection was considered unmaintained and removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/234](https\://github\.com/ansible\-community/community\-topics/issues/234)\)\. Users can still install this collection with <code>ansible\-galaxy collection install netapp\.azure</code>\.
-* The <code>netapp\.elementsw</code> collection was considered unmaintained and removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/235](https\://github\.com/ansible\-community/community\-topics/issues/235)\)\. Users can still install this collection with <code>ansible\-galaxy collection install netapp\.elementsw</code>\.
-* The <code>netapp\.um\_info</code> collection was considered unmaintained and removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/244](https\://github\.com/ansible\-community/community\-topics/issues/244)\)\. Users can still install this collection with <code>ansible\-galaxy collection install netapp\.um\_info</code>\.
-* The deprecated <code>community\.azure</code> collection has been removed\. There is a successor collection <code>azure\.azcollection</code> in the community package which should cover the same functionality\.
-* The deprecated <code>community\.sap</code> collection has been removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/247](https\://github\.com/ansible\-community/community\-topics/issues/247)\)\. There is a successor collection <code>community\.sap\_libs</code> in the community package which should cover the same functionality\.
+* The <code>community\.azure</code> collection was considered unmaintained and has been removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/263](https\://github\.com/ansible\-community/community\-topics/issues/263)\)\.
+  Users can still install this collection with <code>ansible\-galaxy collection install community\.azure</code>\.
+* The <code>hpe\.nimble</code> collection was considered unmaintained and has been removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/254](https\://github\.com/ansible\-community/community\-topics/issues/254)\)\.
+  Users can still install this collection with <code>ansible\-galaxy collection install hpe\.nimble</code>\.
+* The <code>netapp\.azure</code> collection was considered unmaintained and has been removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/234](https\://github\.com/ansible\-community/community\-topics/issues/234)\)\.
+  Users can still install this collection with <code>ansible\-galaxy collection install netapp\.azure</code>\.
+* The <code>netapp\.elementsw</code> collection was considered unmaintained and has been removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/235](https\://github\.com/ansible\-community/community\-topics/issues/235)\)\.
+  Users can still install this collection with <code>ansible\-galaxy collection install netapp\.elementsw</code>\.
+* The <code>netapp\.um\_info</code> collection was considered unmaintained and has been removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/244](https\://github\.com/ansible\-community/community\-topics/issues/244)\)\.
+  Users can still install this collection with <code>ansible\-galaxy collection install netapp\.um\_info</code>\.
+* The collection <code>community\.sap</code> has been completely removed from Ansible\.
+  It has been renamed to <code>community\.sap\_libs</code>\.
+  The collection will be completely removed from Ansible eventually\.
+  Please update your FQCNs from <code>community\.sap</code> to <code>community\.sap\_libs</code>\.
 * The deprecated <code>purestorage\.fusion</code> collection has been removed \([https\://forum\.ansible\.com/t/3712](https\://forum\.ansible\.com/t/3712)\)\.
 
 <a id="ansible-core-16"></a>

@@ -9,52 +9,10 @@ releases:
     release_date: '2024-06-04'
   10.0.0a1:
     changes:
-      deprecated_features:
-      - The ``inspur.sm`` collection is considered unmaintained and will be removed
-        from Ansible 11 if no one starts maintaining it again before Ansible 11. See
-        `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
-        (https://forum.ansible.com/t/2854).
-      - The ``netapp.storagegrid`` collection is considered unmaintained and will
-        be removed from Ansible 11 if no one starts maintaining it again before Ansible
-        11. See `the removal process for details on how this works <https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#cancelling-removal-of-an-unmaintained-collection>`__
-        (https://forum.ansible.com/t/2811).
       release_summary: 'Release Date: 2024-04-09
 
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
-      removed_features:
-      - The ``gluster.gluster`` collection was considered unmaintained and removed
-        from Ansible 10 (https://github.com/ansible-community/community-topics/issues/225).
-        Users can still install this collection with ``ansible-galaxy collection install
-        gluster.gluster``.
-      - The ``hpe.nimble`` collection was considered unmaintained and removed from
-        Ansible 10 (https://github.com/ansible-community/community-topics/issues/254).
-        Users can still install this collection with ``ansible-galaxy collection install
-        hpe.nimble``.
-      - The ``netapp.aws`` collection was considered unmaintained and removed from
-        Ansible 10 (https://github.com/ansible-community/community-topics/issues/223).
-        Users can still install this collection with ``ansible-galaxy collection install
-        netapp.aws``.
-      - The ``netapp.azure`` collection was considered unmaintained and removed from
-        Ansible 10 (https://github.com/ansible-community/community-topics/issues/234).
-        Users can still install this collection with ``ansible-galaxy collection install
-        netapp.azure``.
-      - The ``netapp.elementsw`` collection was considered unmaintained and removed
-        from Ansible 10 (https://github.com/ansible-community/community-topics/issues/235).
-        Users can still install this collection with ``ansible-galaxy collection install
-        netapp.elementsw``.
-      - The ``netapp.um_info`` collection was considered unmaintained and removed
-        from Ansible 10 (https://github.com/ansible-community/community-topics/issues/244).
-        Users can still install this collection with ``ansible-galaxy collection install
-        netapp.um_info``.
-      - The deprecated ``community.azure`` collection has been removed. There is a
-        successor collection ``azure.azcollection`` in the community package which
-        should cover the same functionality.
-      - The deprecated ``community.sap`` collection has been removed from Ansible
-        10 (https://github.com/ansible-community/community-topics/issues/247). There
-        is a successor collection ``community.sap_libs`` in the community package
-        which should cover the same functionality.
-      - The deprecated ``purestorage.fusion`` collection has been removed (https://forum.ansible.com/t/3712).
     release_date: '2024-04-09'
   10.0.0a2:
     changes:
@@ -104,17 +62,6 @@ releases:
     release_date: '2024-06-18'
   10.2.0:
     changes:
-      deprecated_features:
-      - The ``frr.frr`` collection has been deprecated by the maintainers. Since they've
-        also announced to not support ansible-core 2.18, it will be removed from Ansible
-        11 if no one starts maintaining it again before Ansible 11. See `the removal
-        process for details on how this works <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#canceling-removal-of-an-unmaintained-collection>`__
-        (https://forum.ansible.com/t/6243).
-      - The ``openvswitch.openvswitch`` collection has been deprecated by the maintainers.
-        Since they've also announced to not support ansible-core 2.18, it will be
-        removed from Ansible 11 if no one starts maintaining it again before Ansible
-        11. See `the removal process for details on how this works <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#canceling-removal-of-an-unmaintained-collection>`__
-        (https://forum.ansible.com/t/6245).
       release_summary: 'Release Date: 2024-07-16
 
 
@@ -134,19 +81,3 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2024-09-10'
-  10.5.0:
-    changes:
-      deprecated_features:
-      - The collection ``t_systems_mms.icinga_director`` has been renamed to ``telekom_mms.icinga_director``.
-        For now both collections are included in Ansible. The content in ``t_systems_mms.icinga_director``
-        has been replaced with deprecated redirects to the new collection in Ansible
-        9.0.0, and these redirects will be removed from Ansible 11. Please update
-        your FQCNs from ``t_systems_mms.icinga_director`` to ``telekom_mms.icinga_director``.
-      - The ``ngine_io.exoscale`` collection has been deprecated by the maintainers. Since they've
-        also announced that the collection does not work anymore with the Cloudstack API after May 1, 2024,
-        it will be removed from Ansible 11
-        (https://forum.ansible.com/t/2572).
-      - The ``sensu.sensu_go`` collection will be removed from Ansible 12 due
-        to unresolved Ansible inclusion requirements violations
-        (https://forum.ansible.com/t/8380).
-        See `the removal process for details on how this works and can be cancelled <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__.
