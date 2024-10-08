@@ -4337,8 +4337,12 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * The <code>community\.azure</code> collection was considered unmaintained and has been removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/263](https\://github\.com/ansible\-community/community\-topics/issues/263)\)\.
   Users can still install this collection with <code>ansible\-galaxy collection install community\.azure</code>\.
+* The <code>gluster\.gluster</code> collection was considered unmaintained and has been removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/225](https\://github\.com/ansible\-community/community\-topics/issues/225)\)\.
+  Users can still install this collection with <code>ansible\-galaxy collection install gluster\.gluster</code>\.
 * The <code>hpe\.nimble</code> collection was considered unmaintained and has been removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/254](https\://github\.com/ansible\-community/community\-topics/issues/254)\)\.
   Users can still install this collection with <code>ansible\-galaxy collection install hpe\.nimble</code>\.
+* The <code>netapp\.aws</code> collection was considered unmaintained and has been removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/223](https\://github\.com/ansible\-community/community\-topics/issues/223)\)\.
+  Users can still install this collection with <code>ansible\-galaxy collection install netapp\.aws</code>\.
 * The <code>netapp\.azure</code> collection was considered unmaintained and has been removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/234](https\://github\.com/ansible\-community/community\-topics/issues/234)\)\.
   Users can still install this collection with <code>ansible\-galaxy collection install netapp\.azure</code>\.
 * The <code>netapp\.elementsw</code> collection was considered unmaintained and has been removed from Ansible 10 \([https\://github\.com/ansible\-community/community\-topics/issues/235](https\://github\.com/ansible\-community/community\-topics/issues/235)\)\.
