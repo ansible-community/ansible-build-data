@@ -469,6 +469,26 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/160
       announce_version: 8.0.0a1
+  community.kubernetes:
+    repository: https://github.com/ansible-collections/community.kubernetes
+    removal:
+      version: 6.0.0a2
+      reason: renamed
+      new_name: kubernetes.core
+      announce_version: 4.2.0
+      redirect_replacement_major_version: 5
+      discussion: https://github.com/ansible-community/community-topics/issues/22
+      # https://github.com/ansible-community/community-topics/issues/93
+  community.kubevirt:
+    repository: https://github.com/ansible-collections/community.kubevirt
+    removal:
+      version: 6.0.0a2
+      reason: other
+      reason_text: >-
+        The collection has not been working with the community.kubernetes collection included since Ansible
+        5.0.0, and unfortunately nobody managed to adjust the collection to work with
+        kubernetes.core >= 2.0.0.
+      discussion: https://github.com/ansible-community/community-topics/issues/92
   community.skydive:
     repository: https://github.com/ansible-collections/skydive
     removal:
@@ -476,6 +496,34 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/171
       announce_version: 8.0.0a1
+  dellemc.os10:
+    repository: https://github.com/ansible-collections/dellemc.os10
+    removal:
+      version: 8.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/134
+      announce_version: 6.5.0
+  dellemc.os6:
+    repository: https://github.com/ansible-collections/dellemc.os6
+    removal:
+      version: 8.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/132
+      announce_version: 6.5.0
+  dellemc.os9:
+    repository: https://github.com/ansible-collections/dellemc.os9
+    removal:
+      version: 8.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/133
+      announce_version: 6.5.0
+  mellanox.onyx:
+    repository: https://github.com/ansible-collections/mellanox.onyx
+    removal:
+      version: 8.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/136
+      announce_version: 6.5.0
   ngine_io.vultr:
     repository: https://github.com/ngine-io/ansible-collection-vultr
     removal:

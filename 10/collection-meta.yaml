@@ -365,6 +365,13 @@ collections:
   wti.remote:
     repository: https://github.com/wtinetworkgear/wti-collection
 removed_collections:
+  cisco.nso:
+    repository: https://github.com/CiscoDevNet/ansible-nso
+    removal:
+      version: 9.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/155
+      announce_version: 8.0.0a1
   community.azure:
     repository: https://github.com/ansible-collections/community.azure
     removal:
@@ -372,6 +379,40 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/263
       announce_version: 9.0.0a1
+  community.fortios:
+    repository: https://github.com/ansible-collections/community.fortios
+    removal:
+      version: 9.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/162
+      announce_version: 8.0.0a1
+  community.google:
+    repository: https://github.com/ansible-collections/community.google
+    removal:
+      version: 9.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/160
+      announce_version: 8.0.0a1
+  community.kubernetes:
+    repository: https://github.com/ansible-collections/community.kubernetes
+    removal:
+      version: 6.0.0a2
+      reason: renamed
+      new_name: kubernetes.core
+      announce_version: 4.2.0
+      redirect_replacement_major_version: 5
+      discussion: https://github.com/ansible-community/community-topics/issues/22
+      # https://github.com/ansible-community/community-topics/issues/93
+  community.kubevirt:
+    repository: https://github.com/ansible-collections/community.kubevirt
+    removal:
+      version: 6.0.0a2
+      reason: other
+      reason_text: >-
+        The collection has not been working with the community.kubernetes collection included since Ansible
+        5.0.0, and unfortunately nobody managed to adjust the collection to work with
+        kubernetes.core >= 2.0.0.
+      discussion: https://github.com/ansible-community/community-topics/issues/92
   community.sap:
     maintainers:
       - rainerleber
@@ -381,6 +422,34 @@ removed_collections:
       reason: renamed
       new_name: community.sap_libs
       announce_version: 9.0.0a1
+  community.skydive:
+    repository: https://github.com/ansible-collections/skydive
+    removal:
+      version: 9.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/171
+      announce_version: 8.0.0a1
+  dellemc.os10:
+    repository: https://github.com/ansible-collections/dellemc.os10
+    removal:
+      version: 8.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/134
+      announce_version: 6.5.0
+  dellemc.os6:
+    repository: https://github.com/ansible-collections/dellemc.os6
+    removal:
+      version: 8.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/132
+      announce_version: 6.5.0
+  dellemc.os9:
+    repository: https://github.com/ansible-collections/dellemc.os9
+    removal:
+      version: 8.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/133
+      announce_version: 6.5.0
   gluster.gluster:
     repository: https://github.com/gluster/gluster-ansible-collection
     removal:
@@ -399,6 +468,13 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/254
       announce_version: 9.0.0a1
+  mellanox.onyx:
+    repository: https://github.com/ansible-collections/mellanox.onyx
+    removal:
+      version: 8.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/136
+      announce_version: 6.5.0
   netapp.aws:
     maintainers:
       - carchi8py
@@ -442,6 +518,13 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/244
       announce_version: 9.0.0a1
+  ngine_io.vultr:
+    repository: https://github.com/ngine-io/ansible-collection-vultr
+    removal:
+      version: 9.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/257
+      announce_version: 8.3.0
   purestorage.fusion:
     maintainers:
       - sdodsley
@@ -451,3 +534,13 @@ removed_collections:
       reason: deprecated
       discussion: https://forum.ansible.com/t/3712
       announce_version: 9.3.0
+  servicenow.servicenow:
+    repository: https://github.com/ServiceNowITOM/servicenow-ansible
+    removal:
+      version: 9.0.0a1
+      reason: other
+      reason_text:
+        The deprecated servicenow.servicenow collection has been removed from Ansible 7,
+        but accidentally re-added to Ansible 8.
+      discussion: https://github.com/ansible-community/community-topics/issues/246
+      announce_version: 8.2.0
