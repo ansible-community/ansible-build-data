@@ -195,6 +195,11 @@ collections:
       announce_version: 9.8.0
   gluster.gluster:
     repository: https://github.com/gluster/gluster-ansible-collection
+    removal:
+      major_version: 10
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/225
+      announce_version: 7.7.0
   google.cloud:
     repository: https://github.com/ansible-collections/google.cloud
   grafana.grafana:
@@ -280,6 +285,11 @@ collections:
       - wenjun666
       - chuyich
     repository: https://github.com/ansible-collections/netapp.aws
+    removal:
+      major_version: 10
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/223
+      announce_version: 7.7.0
   netapp.azure:
     maintainers:
       - carchi8py

@@ -381,6 +381,13 @@ removed_collections:
       reason: renamed
       new_name: community.sap_libs
       announce_version: 9.0.0a1
+  gluster.gluster:
+    repository: https://github.com/gluster/gluster-ansible-collection
+    removal:
+      version: 10.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/225
+      announce_version: 7.7.0
   hpe.nimble:
     maintainers:
       - ar-india
@@ -392,6 +399,18 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/254
       announce_version: 9.0.0a1
+  netapp.aws:
+    maintainers:
+      - carchi8py
+      - suhasbshekar
+      - wenjun666
+      - chuyich
+    repository: https://github.com/ansible-collections/netapp.aws
+    removal:
+      version: 10.0.0a1
+      reason: considered-unmaintained
+      discussion: https://github.com/ansible-community/community-topics/issues/223
+      announce_version: 7.7.0
   netapp.azure:
     maintainers:
       - carchi8py

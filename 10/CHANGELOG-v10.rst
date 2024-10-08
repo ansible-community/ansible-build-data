@@ -4030,8 +4030,12 @@ Removed Features (previously deprecated)
 
 - The ``community.azure`` collection was considered unmaintained and has been removed from Ansible 10 (`https://github.com/ansible-community/community-topics/issues/263 <https://github.com/ansible-community/community-topics/issues/263>`__).
   Users can still install this collection with ``ansible-galaxy collection install community.azure``.
+- The ``gluster.gluster`` collection was considered unmaintained and has been removed from Ansible 10 (`https://github.com/ansible-community/community-topics/issues/225 <https://github.com/ansible-community/community-topics/issues/225>`__).
+  Users can still install this collection with ``ansible-galaxy collection install gluster.gluster``.
 - The ``hpe.nimble`` collection was considered unmaintained and has been removed from Ansible 10 (`https://github.com/ansible-community/community-topics/issues/254 <https://github.com/ansible-community/community-topics/issues/254>`__).
   Users can still install this collection with ``ansible-galaxy collection install hpe.nimble``.
+- The ``netapp.aws`` collection was considered unmaintained and has been removed from Ansible 10 (`https://github.com/ansible-community/community-topics/issues/223 <https://github.com/ansible-community/community-topics/issues/223>`__).
+  Users can still install this collection with ``ansible-galaxy collection install netapp.aws``.
 - The ``netapp.azure`` collection was considered unmaintained and has been removed from Ansible 10 (`https://github.com/ansible-community/community-topics/issues/234 <https://github.com/ansible-community/community-topics/issues/234>`__).
   Users can still install this collection with ``ansible-galaxy collection install netapp.azure``.
 - The ``netapp.elementsw`` collection was considered unmaintained and has been removed from Ansible 10 (`https://github.com/ansible-community/community-topics/issues/235 <https://github.com/ansible-community/community-topics/issues/235>`__).
