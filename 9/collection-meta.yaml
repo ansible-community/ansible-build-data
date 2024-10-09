@@ -125,6 +125,11 @@ collections:
     repository: https://github.com/ansible-collections/community.mysql
   community.network:
     repository: https://github.com/ansible-collections/community.network
+    removal:
+      major_version: 12
+      announce_version: 9.12.0
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/8030
   community.okd:
     maintainers:
       # - ansible-collections/cloud
