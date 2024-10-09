@@ -209,6 +209,14 @@ collections:
     repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortios-collection
   google.cloud:
     repository: https://github.com/ansible-collections/google.cloud
+    removal:
+      major_version: 12
+      announce_version: 11.0.0a2
+      reason: guidelines-violation
+      discussion: https://forum.ansible.com/t/8609
+      reason_text: >
+        The collection has
+        L(unresolved sanity test failures, https://github.com/ansible-collections/google.cloud/issues/613).
   grafana.grafana:
     maintainers:
       - ishanjainn

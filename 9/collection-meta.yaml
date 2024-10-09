@@ -229,6 +229,14 @@ collections:
       announce_version: 7.7.0
   google.cloud:
     repository: https://github.com/ansible-collections/google.cloud
+    removal:
+      major_version: 12
+      announce_version: 9.12.0
+      reason: guidelines-violation
+      discussion: https://forum.ansible.com/t/8609
+      reason_text: >
+        The collection has
+        L(unresolved sanity test failures, https://github.com/ansible-collections/google.cloud/issues/613).
   grafana.grafana:
     maintainers:
       - ishanjainn
