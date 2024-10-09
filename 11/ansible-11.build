@@ -3,7 +3,7 @@ _ansible_core_version: 2.18.0b1
 _python: >=3.11
 amazon.aws: >=8.2.0,<9.0.0
 ansible.netcommon: >=7.1.0,<8.0.0
-ansible.posix: >=1.6.0,<2.0.0
+ansible.posix: >=1.5.4,<2.0.0
 ansible.utils: >=4.1.0,<5.0.0
 ansible.windows: >=2.5.0,<3.0.0
 arista.eos: >=10.0.0,<11.0.0
