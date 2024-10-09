@@ -58,14 +58,31 @@ collections:
     repository: https://github.com/CiscoDevNet/ansible-ucs
   cloud.common:
     maintainers:
-      - Akasurde
+      # - ansible-collections/cloud
       - abikouo
-      - goneri
+      - alinabuzachis
+      - GomathiselviS
+      - gravesm
+      - hakbailey
       - jillr
+      - mandar242
+      - viciousprimate
     repository: https://github.com/ansible-collections/cloud.common
   cloudscale_ch.cloud:
     repository: https://github.com/cloudscale-ch/ansible-collection-cloudscale
   community.aws:
+    maintainers:
+      # - ansible-collections/cloud
+      - abikouo
+      - alinabuzachis
+      - GomathiselviS
+      - gravesm
+      - hakbailey
+      - jillr
+      - mandar242
+      - markuman
+      - tremble
+      - viciousprimate
     repository: https://github.com/ansible-collections/community.aws
   community.azure:
     repository: https://github.com/ansible-collections/community.azure
@@ -109,6 +126,16 @@ collections:
   community.network:
     repository: https://github.com/ansible-collections/community.network
   community.okd:
+    maintainers:
+      # - ansible-collections/cloud
+      - abikouo
+      - alinabuzachis
+      - GomathiselviS
+      - gravesm
+      - hakbailey
+      - jillr
+      - mandar242
+      - viciousprimate
     repository: https://github.com/openshift/community.okd
   community.postgresql:
     repository: https://github.com/ansible-collections/community.postgresql
@@ -266,9 +293,15 @@ collections:
     repository: https://github.com/ieisystem/kaytus.ksmanage
   kubernetes.core:
     maintainers:
-      - jillr
-      - akasurde
+      # - ansible-collections/cloud
+      - abikouo
+      - alinabuzachis
+      - GomathiselviS
       - gravesm
+      - hakbailey
+      - jillr
+      - mandar242
+      - viciousprimate
     repository: https://github.com/ansible-collections/kubernetes.core
   lowlydba.sqlserver:
     maintainers:
@@ -428,15 +461,10 @@ collections:
     repository: https://github.com/ansible-collections/vmware.vmware
   vmware.vmware_rest:
     maintainers:
-      # ansible-collections/cloud
-      - gravesm
-      - jillr
-      - hakbailey
-      - viciousprimate
-      - alinabuzachis
-      - GomathiselviS
-      - abikouo
-      - komaldesai13
+      - machacekondra
+      - mikemorency
+      - bardielle
+      - mariolenz
     repository: https://github.com/ansible-collections/vmware.vmware_rest
   vultr.cloud:
     maintainers:
