@@ -137,10 +137,10 @@ collections:
   vmware.vmware_rest:
     maintainers:
       maintainers:
-      - machacekondra
-      - mikemorency
-      - bardielle
-      - mariolenz
+        - machacekondra
+        - mikemorency
+        - bardielle
+        - mariolenz
     repository: https://github.com/ansible-collections/vmware.vmware_rest
   cisco.dnac:
     maintainers:
