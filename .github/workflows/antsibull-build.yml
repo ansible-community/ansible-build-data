@@ -32,12 +32,12 @@ jobs:
             ansible_major_version: 11
 
     steps:
-      - name: Check out antsibull
+      - name: Check out antsibull-build
         uses: actions/checkout@v4
         with:
-          repository: ansible-community/antsibull
+          repository: ansible-community/antsibull-build
           ref: main
-          path: antsibull
+          path: antsibull-build
 
       - name: Check out antsibull-core
         uses: actions/checkout@v4
@@ -68,13 +68,13 @@ jobs:
           path: antsibull-fileutils
 
       - name: Pre-create build directory
-        run: mkdir -p antsibull/build
+        run: mkdir -p antsibull-build/build
 
       # This is where the antsibull build-release role expects it by default
       - name: Check out ansible-build-data under antsibull build directory
         uses: actions/checkout@v4
         with:
-          path: antsibull/build/ansible-build-data
+          path: antsibull-build/build/ansible-build-data
 
       - name: Set up Python 3.11
         uses: actions/setup-python@v5
@@ -82,19 +82,19 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        working-directory: antsibull
+        working-directory: antsibull-build
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install ansible-core . ../antsibull-core ../antsibull-changelog ../antsibull-docutils ../antsibull-fileutils
           ansible-galaxy collection install 'git+https://github.com/ansible-collections/community.general.git'
 
       - name: Lint collection metadata
-        working-directory: antsibull/build/ansible-build-data/${{ matrix.ansible_major_version }}
+        working-directory: antsibull-build/build/ansible-build-data/${{ matrix.ansible_major_version }}
         run: |
           antsibull-build lint-build-data ${{ matrix.ansible_major_version }}
 
       - name: Test building a release with the defaults
-        working-directory: antsibull
+        working-directory: antsibull-build
         run: |
           ansible-playbook -vv playbooks/build-single-release.yaml \
           -e antsibull_data_reset=false \
