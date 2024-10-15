@@ -211,7 +211,7 @@ collections:
     repository: https://github.com/ansible-collections/google.cloud
     removal:
       major_version: 12
-      announce_version: 11.0.0a2
+      announce_version: 11.0.0b1
       reason: guidelines-violation
       discussion: https://forum.ansible.com/t/8609
       reason_text: >
