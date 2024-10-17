@@ -12,6 +12,7 @@ name: antsibull-build
   # Run once per week (Thursday at 04:00 UTC)
   schedule:
     - cron: '0 4 * * 4'
+  workflow_dispatch:
 
 jobs:
   build:
