@@ -26,18 +26,18 @@ podman run --name ansible-release -v ${PERSISTENT_DIRECTORY}:/pwd:z -w /pwd -ti 
 
 ## Set up repository clones
 
-First, you need to set up ansible-build-data and antsibull repository clones.
+First, you need to set up ansible-build-data and antsibull-build repository clones.
 This only needs to be done once.
 
 1. [Fork][abd-fork] the [ansible-build-data] repository.
 
-2. Checkout the antsibull and ansible-documentation repositories
-   and change into antsibull.
+2. Checkout the antsibull-build and ansible-documentation repositories
+   and change into antsibull-build.
 
     ```
     git clone https://github.com/ansible/ansible-documentation
-    git clone https://github.com/ansible-community/antsibull
-    cd antsibull
+    git clone https://github.com/ansible-community/antsibull-build
+    cd antsibull-build
     ```
 
 3. Checkout ansible-build-data and configure your fork.
@@ -61,7 +61,7 @@ This only needs to be done once.
 
 ## Perform release process
 
-1. Change into the antsibull checkout.
+1. Change into the antsibull-build checkout.
    Make sure you have the `main` branch checked out
    and run `git pull` to update to the latest commit.
 
@@ -74,11 +74,11 @@ This only needs to be done once.
     python3 -m pip install -U pip
     ```
 
-    Install the `antsibull`, `ansible-core`, and `twine` python packages,
+    Install the `antsibull-build`, `ansible-core`, and `twine` python packages,
     as well as the community.general collection.
 
     ```
-    python3 -m pip install antsibull ansible-core twine
+    python3 -m pip install antsibull-build ansible-core twine
     ansible-galaxy collection install --force community.general
     ```
 
@@ -128,7 +128,7 @@ This only needs to be done once.
 
 6. Once the ansible-build-data PR has been merged,
    publish the build artifacts to PyPI.
-   From the antsibull repository root, run
+   From the antsibull-build repository root, run
 
     ```
     twine upload build/ansible-${VERSION}.tar.gz build/ansible-${VERSION}*.whl
@@ -162,6 +162,6 @@ This only needs to be done once.
 [container]: https://hub.docker.com/_/python
 [abd-fork]: https://github.com/ansible-community/ansible-build-data/fork
 [ansible-build-data]: https://github.com/ansible-community/ansible-build-data
-[release-playbook]: https://github.com/ansible-community/antsibull/blob/main/playbooks/build-single-release.yaml
-[release-playbook-args]: https://github.com/ansible-community/antsibull/blob/main/roles/build-release/meta/argument_specs.yml
+[release-playbook]: https://github.com/ansible-community/antsibull-build/blob/main/playbooks/build-single-release.yaml
+[release-playbook-args]: https://github.com/ansible-community/antsibull-build/blob/main/roles/build-release/meta/argument_specs.yml
 [tagging-enforcement]: https://github.com/gotmax23/ansible-build-data/blob/docs/docs/policies.md#enforcement

@@ -48,21 +48,21 @@ jobs:
       pr_url: ${{ steps.create-pr.outputs.pr_url }}
 
     steps:
-      - name: Check out antsibull
+      - name: Check out antsibull-build
         uses: actions/checkout@v4
         with:
-          repository: ansible-community/antsibull
+          repository: ansible-community/antsibull-build
           ref: main
-          path: antsibull
+          path: antsibull-build
 
       - name: Pre-create build directory
-        run: mkdir -p antsibull/build
+        run: mkdir -p antsibull-build/build
 
-      - name: Check out ansible-build-data under antsibull build directory
+      - name: Check out ansible-build-data under antsibull-build build directory
         uses: actions/checkout@v4
         with:
-          # This is where the antsibull build-release role expects it by default
-          path: antsibull/build/ansible-build-data
+          # This is where the antsibull-build build-release role expects it by default
+          path: antsibull-build/build/ansible-build-data
           ref: ${{ inputs.existing-branch || '' }}
 
       - name: Set up Python 3.11
@@ -71,9 +71,9 @@ jobs:
           python-version: 3.11
 
       - name: Install dependencies
-        working-directory: antsibull
+        working-directory: antsibull-build
         run: |
-          python3 -m pip install packaging ansible-core antsibull
+          python3 -m pip install packaging ansible-core antsibull-build
           ansible-galaxy install -r requirements.yml
 
       - name: Validate version and extract major version
@@ -105,7 +105,7 @@ jobs:
 
       - name: Checking out to a new branch
         if: inputs.existing-branch == ''
-        working-directory: antsibull/build/ansible-build-data
+        working-directory: antsibull-build/build/ansible-build-data
         run: |
           git checkout -b "${ANSIBLE_BRANCH_NAME}"
 
@@ -117,7 +117,7 @@ jobs:
       # Run the playbook according to the current release process
 
       - name: Building a release with the defaults
-        working-directory: antsibull
+        working-directory: antsibull-build
         env:
           PRESERVE_DEPS: ${{ inputs.preserve-deps }}
           ALLOW_RESET_BUILD_DEPS: ${{ inputs.allow-reset-build-deps }}
@@ -135,11 +135,11 @@ jobs:
         id: upload-artifact
         with:
           name: sdist-and-wheel
-          path: antsibull/build/ansible-*.*
+          path: antsibull-build/build/ansible-*.*
 
       - name: Commit ansible-build-data and push the changes to github
         working-directory: >-
-          antsibull/build/ansible-build-data/${{ steps.extract-version.outputs.major-version }}
+          antsibull-build/build/ansible-build-data/${{ steps.extract-version.outputs.major-version }}
         run: |
           git add .
           git commit -m "${CI_COMMIT_MESSAGE}"
@@ -147,7 +147,7 @@ jobs:
 
       - name: Create PR to the ansible-build-data
         id: create-pr
-        working-directory: antsibull/build/ansible-build-data
+        working-directory: antsibull-build/build/ansible-build-data
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ARTIFACT_URL: ${{ steps.upload-artifact.outputs.artifact-url }}
