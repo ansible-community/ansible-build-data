@@ -123,7 +123,7 @@ In case of violations, the release manager must preform the following steps:
 
 [1]: https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst
 [2]: https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html#repository-management
-[3]: https://github.com/ansible-community/antsibull/blob/main/playbooks/build-single-release.yaml
+[3]: https://github.com/ansible-community/antsibull-build/blob/main/playbooks/build-single-release.yaml
 [4]: https://github.com/ansible-community/ansible-build-data/blob/main/7/ansible-7.5.0-tags.yaml
 [4a]: https://github.com/ansible-community/ansible-build-data/blob/main/7/validate-tags-ignores
 [5]: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/default_callback.html#parameter-result_format

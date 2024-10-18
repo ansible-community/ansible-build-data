@@ -60,11 +60,11 @@ release process. The automated processes uses GitHub Actions to automate the
    branches down to the ansible-core version that is included in the Ansible
    release.
 
-5. Make sure that you have installed [`antsibull`](https://pypi.org/project/antsibull/)
+5. Make sure that you have installed [`antsibull-build`](https://pypi.org/project/antsibull-build/)
    and a supported clipboard library. You can do that like this:
 
     ```
-    pip install antsibull[clipboard]
+    pip install antsibull-build[clipboard]
     ```
 
 6. Then announce the release on the Forum and Matrix by
