@@ -65,10 +65,10 @@ jobs:
           path: antsibull-build/build/ansible-build-data
           ref: ${{ inputs.existing-branch || '' }}
 
-      - name: Set up Python 3.11
+      - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
-          python-version: 3.11
+          python-version: 3.12
 
       - name: Install dependencies
         working-directory: antsibull-build
