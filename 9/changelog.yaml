@@ -1,16 +1,13 @@
+---
 ancestor: 8.0.0
 releases:
-  9.0.0:
-    changes:
-      release_summary: '[YANKED] Release Date: 2023-11-21 `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
-    release_date: '2023-11-21'
   9.0.0a1:
     changes:
       minor_changes:
-      - Move setuptools configuration into the declarative ``setup.cfg`` format. ``ansible``
-        sdists still contain a stub ``setup.py`` file, but we recommend that users
-        move to tools like pip and build and the PEP 517 interface instead of setuptools'
-        deprecated ``setup.py`` interface (https://github.com/ansible-community/antsibull/pull/530).
+        - Move setuptools configuration into the declarative ``setup.cfg`` format.
+          ``ansible`` sdists still contain a stub ``setup.py`` file, but we recommend
+          that users move to tools like pip and build and the PEP 517 interface instead
+          of setuptools' deprecated ``setup.py`` interface (https://github.com/ansible-community/antsibull/pull/530).
       release_summary: 'Release Date: 2023-09-28
 
 
@@ -44,11 +41,15 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2023-11-14'
+  9.0.0:
+    changes:
+      release_summary: '[YANKED] Release Date: 2023-11-21 `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2023-11-21'
   9.0.1:
     changes:
       bugfixes:
-      - Fix the Python package metadata in ``setup.cfg`` to require Python ``>=3.10``
-        to ensure that pip can properly install ``ansible`` on older Python versions.
+        - Fix the Python package metadata in ``setup.cfg`` to require Python ``>=3.10``
+          to ensure that pip can properly install ``ansible`` on older Python versions.
       release_summary: 'Release Date: 2023-11-21
 
 
@@ -61,20 +62,6 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2023-12-05'
-  9.10.0:
-    changes:
-      release_summary: 'Release Date: 2024-09-10
-
-
-        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
-    release_date: '2024-09-10'
-  9.11.0:
-    changes:
-      release_summary: 'Release Date: 2024-10-08
-
-
-        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
-    release_date: '2024-10-08'
   9.2.0:
     changes:
       release_summary: 'Release Date: 2024-01-30
@@ -147,3 +134,17 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2024-08-13'
+  9.10.0:
+    changes:
+      release_summary: 'Release Date: 2024-09-10
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2024-09-10'
+  9.11.0:
+    changes:
+      release_summary: 'Release Date: 2024-10-08
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2024-10-08'
