@@ -675,7 +675,6 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#community-vmware-4">community\.vmware</a>
 - <a href="#removed-features-previously-deprecated-1">Removed Features \(previously deprecated\)</a>
     - <a href="#ansible-core-7">Ansible\-core</a>
-    - <a href="#ansible-posix-3">ansible\.posix</a>
     - <a href="#community-grafana-2">community\.grafana</a>
     - <a href="#community-okd-1">community\.okd</a>
     - <a href="#kubernetes-core-2">kubernetes\.core</a>
@@ -685,7 +684,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#ansible-core-9">Ansible\-core</a>
     - <a href="#amazon-aws-2">amazon\.aws</a>
     - <a href="#ansible-netcommon-2">ansible\.netcommon</a>
-    - <a href="#ansible-posix-4">ansible\.posix</a>
+    - <a href="#ansible-posix-3">ansible\.posix</a>
     - <a href="#ansible-windows-1">ansible\.windows</a>
     - <a href="#arista-eos-1">arista\.eos</a>
     - <a href="#check-point-mgmt-1">check\_point\.mgmt</a>
@@ -1941,11 +1940,6 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * play\_context \- remove deprecated PlayContext\.verbosity property \([https\://github\.com/ansible/ansible/issues/82945](https\://github\.com/ansible/ansible/issues/82945)\)\.
 * utils/listify \- remove deprecated \'loader\' argument from listify\_lookup\_plugin\_terms API \([https\://github\.com/ansible/ansible/issues/82949](https\://github\.com/ansible/ansible/issues/82949)\)\.
 
-<a id="ansible-posix-3"></a>
-#### ansible\.posix
-
-* skippy \- Remove skippy pluglin as it is no longer supported\([https\://github\.com/ansible\-collections/ansible\.posix/issues/350](https\://github\.com/ansible\-collections/ansible\.posix/issues/350)\)\.
-
 <a id="community-grafana-2"></a>
 #### community\.grafana
 
@@ -2116,7 +2110,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * The v6\.1\.2 release introduced a change in cliconfbase\'s edit\_config\(\) signature which broke many platform cliconfs\. This patch release reverts that change\.
 * Updated the error message for the content\_templates parser to include the correct parser name and detailed error information\.
 
-<a id="ansible-posix-4"></a>
+<a id="ansible-posix-3"></a>
 #### ansible\.posix
 
 * Bugfix in the documentation regarding the path option for authorised\_key\([https\://github\.com/ansible\-collections/ansible\.posix/issues/483](https\://github\.com/ansible\-collections/ansible\.posix/issues/483)\)\.
