@@ -11,5 +11,6 @@ rules:
 ignore:
   - /.nox/
   - /*/ansible-*.yaml
-  - /*/changelog.yaml
+  - /2.10/changelog.yaml
+  - /[3-8]/changelog.yaml
   - /*/galaxy-requirements.yaml
