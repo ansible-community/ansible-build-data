@@ -307,6 +307,14 @@ collections:
       - jkandati
       - joshedmonds
     repository: https://github.com/ansible-collections/netapp.storagegrid
+    removal:
+      major_version: 11
+      reason: considered-unmaintained
+      discussion: https://forum.ansible.com/t/2811
+      updates:
+        - removed_version: 11.0.0a1
+        - readded_version: 11.0.0b2
+          reason_text: Maintenance of the collection has been taken over by another team at NetApp.
   netapp_eseries.santricity:
     repository: https://github.com/netapp-eseries/santricity
   netbox.netbox:
