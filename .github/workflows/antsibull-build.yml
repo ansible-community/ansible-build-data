@@ -43,8 +43,9 @@ jobs:
       - name: Check out antsibull-core
         uses: actions/checkout@v4
         with:
-          repository: ansible-community/antsibull-core
-          ref: main
+          # TODO: remove
+          repository: felixfontein/antsibull-core
+          ref: cancel-deprecation
           path: antsibull-core
 
       - name: Check out antsibull-changelog
