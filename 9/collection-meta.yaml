@@ -380,6 +380,8 @@ collections:
       reason: considered-unmaintained
       discussion: https://forum.ansible.com/t/2811
       announce_version: 9.3.0
+      updates:
+        - cancelled_version: 9.12.0
   netapp.um_info:
     maintainers:
       - carchi8py

@@ -75,6 +75,7 @@ microsoft.ad
 netapp.cloudmanager
 netapp_eseries.santricity
 netapp.ontap
+netapp.storagegrid
 netbox.netbox
 ngine_io.cloudstack
 openstack.cloud
