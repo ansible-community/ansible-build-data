@@ -7,6 +7,448 @@ This changelog describes changes since Ansible 8.0.0.
 .. contents::
   :depth: 2
 
+v9.12.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2024-11-05
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 9.12.0 contains ansible-core version 2.16.13.
+This is a newer version than version 2.16.12 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Collection                               | Ansible 9.11.0 | Ansible 9.12.0 | Notes                                                                                                                                                                                                          |
++==========================================+================+================+================================================================================================================================================================================================================+
+| ansible.posix                            | 1.5.4          | 1.6.2          |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.dnac                               | 6.20.0         | 6.22.0         |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ise                                | 2.9.3          | 2.9.5          |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki                             | 2.18.2         | 2.18.3         |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto                         | 2.22.1         | 2.22.3         |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.dns                            | 2.9.6          | 2.9.7          |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.docker                         | 3.13.0         | 3.13.1         |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.general                        | 8.6.6          | 8.6.7          |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.library_inventory_filtering_v1 | 1.0.1          | 1.0.2          |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.mongodb                        | 1.7.7          | 1.7.8          | There are no changes recorded in the changelog.                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.network                        | 5.0.3          | 5.1.0          |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.postgresql                     | 3.6.1          | 3.7.0          |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros                       | 2.19.0         | 2.20.0         |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware                         | 4.7.1          | 4.8.0          |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman                        | 1.16.1         | 1.16.2         |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.conjur                          | 1.3.0          | 1.3.1          | You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`_. |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules                    | 1.31.0         | 1.32.1         |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortios                         | 2.3.7          | 2.3.8          |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| netapp.cloudmanager                      | 21.22.1        | 21.24.0        |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| netapp.storagegrid                       | 21.12.0        | 21.13.0        | There are no changes recorded in the changelog.                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade                   | 1.18.0         | 1.19.1         |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware                            | 1.5.0          | 1.6.0          |                                                                                                                                                                                                                |
++------------------------------------------+----------------+----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- Dropping support for Ansible 2.9, ansible-core 2.15 will be minimum required version for this release
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Improve the logic for SET function to send GET request first then PUT or POST
+- Mantis
+- Support new FOS versions 7.6.0.
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Improve container runtime probe error handling. When unexpected probe output is encountered, an error with more useful debugging information is provided.
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- Add summary_only parameter to profile_roles and profile_tasks callbacks.
+- firewalld - add functionality to set forwarding (https://github.com/ansible-collections/ansible.posix/pull/548).
+- firewalld - added offline flag implementation (https://github.com/ansible-collections/ansible.posix/pull/484)
+- firewalld - respawn module to use the system python interpreter when the ``firewall`` python module is not available for ``ansible_python_interpreter`` (https://github.com/ansible-collections/ansible.posix/pull/460).
+- firewalld_info - Only warn about ignored zones, when there are zones ignored.
+- firewalld_info - respawn module to use the system python interpreter when the ``firewall`` python module is not available for ``ansible_python_interpreter`` (https://github.com/ansible-collections/ansible.posix/pull/460).
+- mount - add no_log option for opts parameter (https://github.com/ansible-collections/ansible.posix/pull/563).
+- seboolean - respawn module to use the system python interpreter when the ``selinux`` python module is not available for ``ansible_python_interpreter`` (https://github.com/ansible-collections/ansible.posix/pull/460).
+- selinux - respawn module to use the system python interpreter when the ``selinux`` python module is not available for ``ansible_python_interpreter`` (https://github.com/ansible-collections/ansible.posix/pull/460).
+
+cisco.dnac
+~~~~~~~~~~
+
+- Added 'lan_automation_workflow_manager' to automate network discovery, deployment, and device configuration with LAN Automation.
+- Added 'sda_extranet_policies_workflow_manager' to manage SDA Extranet Policies.
+- Added 'sda_fabric_devices_workflow_manager' to manage SDA fabric devices.
+- Added 'sda_fabric_virtual_networks_workflow_manager' to configure fabric VLANs, Virtual Networks, and Anycast Gateways.
+- Added 'sda_host_port_onboarding_workflow_manager' to manage host port onboarding in SD-Access Fabric.
+- Ansible utils requirement updated.
+- Bug fixes in accesspoint_workflow_manager module
+- Bug fixes in network_settings_workflow_manager module
+- Bug fixes in pnp_workflow_manager module
+- Changes in accesspoint_workflow_manager module.
+- Changes in device_configs_backup_workflow_manager module
+- Changes in device_credential_workflow_manager module.
+- Changes in dnac.py
+- Changes in dnac.py to support common APIs
+- Changes in events_and_notifications_workflow_manager module.
+- Changes in inventory_workflow_manager module.
+- Changes in ise_radius_integration_workflow_manager module.
+- Changes in sda_fabric_transits_workflow_manager module.
+- Changes in user_role_workflow_manager module.
+- Code change in template_workflow_manager module
+- Code change in user_role_manager module
+- Code changes in network_compliance_workflow_manager module
+- Code changes in rma_workflow_manager module
+- Code changes in sda_fabric_devices_workflow_manager module
+- Code changes in sda_fabric_sites_zones_workflow_manager module
+- Code changes in sda_fabric_virtual_networks_workflow_manager module
+- Code changes in sda_host_port_onboarding_workflow_manager module
+- Code changes in site_workflow_manager module
+- Code changes in swim_workflow_manager module
+- Code enhancements in device_credential_workflow_manager module
+- Enhancements in ise_radius_integration_workflow_manager module
+- Enhancements in network_settings_workflow_manager module.
+- Enhancements in swim_workflow_manager module.
+- accesspoint_workflow_manager.py - added attribute 'factory_reset_aps'.
+- device_credential_workflow_manager.py - added attribute 'apply_credentials_to_site'.
+- inventory_workflow_manager.py - Removed attribute hostname_list, serial_number_list and mac_address_list
+- inventory_workflow_manager.py - added attribute hostnames, serial_numbers and mac_addresses
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_set - adds the ``queries`` return value to return executed DML statements.
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info, api_modify - add new parameters from the RouterOS 7.16 release (https://github.com/ansible-collections/community.routeros/pull/323).
+- api_info, api_modify - add support ``interface l2tp-client`` configuration (https://github.com/ansible-collections/community.routeros/pull/322).
+- api_info, api_modify - add support for the ``cpu-frequency``, ``memory-frequency``, ``preboot-etherboot`` and ``preboot-etherboot-server`` properties in ``system routerboard settings`` (https://github.com/ansible-collections/community.routeros/pull/320).
+- api_info, api_modify - add support for the ``matching-type`` property in ``ip dhcp-server matcher`` introduced by RouterOS 7.16 (https://github.com/ansible-collections/community.routeros/pull/321).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_vm_info - Improve performance when parsing custom attributes information (https://github.com/ansible-collections/community.vmware/pull/2194)
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_gtm_server - Added check for datacenter existence in Check Mode.
+
+netapp.cloudmanager
+~~~~~~~~~~~~~~~~~~~
+
+- na_cloudmanager_cvo_aws - increase timeout for creating cvo to 90 mins.
+- na_cloudmanager_cvo_azure - increase timeout for creating cvo to 90 mins.
+- na_cloudmanager_cvo_gcp - increase timeout for creating cvo to 90 mins.
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- multiple - YAML lint fixes based on updated ``ansible-lint`` version
+- purefb_bucket - Allow bucket quotas to be modified.
+- purefb_info - Add ``time_remaining_status`` to bucket information from REST 2.14
+- purefb_info - Expose SMTP encryption mode
+- purefb_policy - Add new policy type of ``worm`` which is availble from Purity//FB 4.5.0
+- purefb_smtp - Add encryption mode support from Purity//FB 4.5.0
+- purefb_snap - Change ``targets`` to ``target` and from ``list`` to ``str``. ``targets`` added as alias and code to ensure existing list in playbooks is translated as a string.
+- purefb_syslog - Enable ``services`` parameter and also the ability update existing syslog servers from REST 2.14
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- cluster_dpm - Migrated module from community.vmware to configure DPM in a vCenter cluster
+- cluster_drs_recommendations - Migrated module from community.vmware to apply any DRS recommendations the vCenter cluster may have
+
+Deprecated Features
+-------------------
+
+- The ``community.network`` collection has been deprecated.
+  It will be removed from Ansible 12 if no one starts maintaining it again before Ansible 12.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/8030 <https://forum.ansible.com/t/8030>`__).
+- The google.cloud collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements.
+  The collection has \ `unresolved sanity test failures <https://github.com/ansible-collections/google.cloud/issues/613>`__.
+  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/8609 <https://forum.ansible.com/t/8609>`__).
+
+community.network
+~~~~~~~~~~~~~~~~~
+
+- This collection and all content in it is unmaintained and deprecated (https://forum.ansible.com/t/8030). If you are interested in maintaining parts of the collection, please copy them to your own repository, and tell others about in the Forum discussion. See the `collection creator path <https://docs.ansible.com/ansible/devel/dev_guide/developing_collections_path.html>`__ for details.
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_cluster_dpm - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2217).
+- vmware_cluster_drs_recommendations - the module has been deprecated and will be removed in community.vmware 6.0.0 (https://github.com/ansible-collections/community.vmware/pull/2218).
+
+Security Fixes
+--------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- include_vars action - Ensure that result masking is correctly requested when vault-encrypted files are read. (CVE-2024-8775)
+- task result processing - Ensure that action-sourced result masking (``_ansible_no_log=True``) is preserved. (CVE-2024-8775)
+- user action won't allow ssh-keygen, chown and chmod to run on existing ssh public key file, avoiding traversal on existing symlinks (CVE-2024-9902).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Improve performance on large inventories by reducing the number of implicit meta tasks.
+- ansible-test - Enable the ``sys.unraisablehook`` work-around for the ``pylint`` sanity test on Python 3.11. Previously the work-around was only enabled for Python 3.12 and later. However, the same issue has been discovered on Python 3.11.
+- user action will now require O(force) to overwrite the public part of an ssh key when generating ssh keys, as was already the case for the private part.
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- Bugfix in the documentation regarding the path option for authorised_key(https://github.com/ansible-collections/ansible.posix/issues/483).
+- acl - Fixed to set ACLs on paths mounted with NFS version 4 correctly (https://github.com/ansible-collections/ansible.posix/issues/240).
+- backport - Drop ansible-core 2.14 and set 2.15 minimum version (https://github.com/ansible-collections/ansible.posix/issues/578).
+- mount - Handle ``boot`` option on Linux, NetBSD and OpenBSD correctly (https://github.com/ansible-collections/ansible.posix/issues/364).
+- seboolean - make it work with disabled SELinux
+- skippy - Revert removal of skippy plugin. It will be removed in version 2.0.0 (https://github.com/ansible-collections/ansible.posix/issues/573).
+- synchronize - maintain proper formatting of the remote paths (https://github.com/ansible-collections/ansible.posix/pull/361).
+- sysctl - fix sysctl to work properly on symlinks (https://github.com/ansible-collections/ansible.posix/issues/111).
+
+cisco.ise
+~~~~~~~~~
+
+- Collection not compatible with ansible.utils 5.x.y
+- Getting deployment info for entire deployment does not work
+- cisco.ise.pan_ha object has no attribute 'enable_pan_ha'
+- cisco.ise.support_bundle_download keeps failing after downloading the file
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- Ansible utils requirements updated.
+- cisco.meraki.networks_clients_info - incorrect API endpoint, fixing info module.
+- cisco.meraki.networks_switch_stacks delete stack not working, fixing path parameters.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme_* modules - when using the OpenSSL backend, explicitly use the UTC timezone in Python code (https://github.com/ansible-collections/community.crypto/pull/811).
+- acme_certificate - fix authorization failure when CSR contains SANs with mixed case (https://github.com/ansible-collections/community.crypto/pull/803).
+- time module utils - fix conversion of naive ``datetime`` objects to UNIX timestamps for Python 3 (https://github.com/ansible-collections/community.crypto/issues/808, https://github.com/ansible-collections/community.crypto/pull/810).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_compose_v2 - improve parsing of dry-run image build operations from JSON events (https://github.com/ansible-collections/community.docker/issues/975, https://github.com/ansible-collections/community.docker/pull/976).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- collection_version lookup plugin - use ``importlib`` directly instead of the deprecated and in ansible-core 2.19 removed ``ansible.module_utils.compat.importlib`` (https://github.com/ansible-collections/community.general/pull/9084).
+- modprobe - fix check mode not being honored for ``persistent`` option (https://github.com/ansible-collections/community.general/issues/9051, https://github.com/ansible-collections/community.general/pull/9052).
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_set - fixes resetting logic to allow resetting shared_preload_libraries with ``reset: true`` (https://github.com/ansible-collections/community.postgresql/issues/744).
+- postgresql_set - forbids resetting shared_preload_libraries by passing an empty string (https://github.com/ansible-collections/community.postgresql/issues/744).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_guest - Fix existing disk erroneously being re-created when modifying vm with 8 or more disks. (https://github.com/ansible-collections/community.vmware/pull/2173).
+- vmware_vmotion - Fix a `list index out of range` error when vSphere doesn't provide a placement recommendation (https://github.com/ansible-collections/community.vmware/pull/2208).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add missing parameters for podman container quadlet
+- Add new options for podman_network
+- Add option to specify kube file content in module
+- Add quadlet file mode option to specify file permission
+- Add secret to login module
+- Don't check image availability in Quadlet
+- Fix max_size idempotency issue
+- Fix typo in quadlet generator
+- Fix unsupported pull policy in example on podman_container.py
+- fix quadlet cmd_args append mistake
+- podman_login does not support check_mode
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_imish_config - fixed a bug that resulted in incomplete config when using BGV route domain
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Github
+- Mantis
+- Return invalid json content instead of error while adding redundant comma at the end of the last variable in `fortios_json_generic`.
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_certs - Fix issue with importing certificates
+- purefb_certs - Fix parameter mispelling of ``intermeadiate_cert`` to ``intermediate_cert``. Keep original mispelling as an alias.
+- purefb_ds - Initialize variable correctly
+- purefb_policy - Initialize variable correctly
+- purefb_ra - Fix incorrect import statement
+- purefb_snap - Fix issue with immeadiate remote snapshots not executing
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- Fix typos in all module documentation and README
+- cluster_drs - fixed backwards vMotion rate (input 1 set rate to 5 in vCenter) (https://github.com/ansible-collections/vmware.vmware/issues/68)
+
+New Modules
+-----------
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purestorage.flashblade.purefb_saml - Manage FlashBlade SAML2 service and identity providers
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 7.6.1)
+- ansible.netcommon (still version 5.3.0)
+- ansible.utils (still version 2.12.0)
+- ansible.windows (still version 2.5.0)
+- arista.eos (still version 6.2.2)
+- awx.awx (still version 23.9.0)
+- azure.azcollection (still version 1.19.0)
+- check_point.mgmt (still version 5.2.3)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.10.1)
+- cisco.asa (still version 4.0.3)
+- cisco.intersight (still version 2.0.20)
+- cisco.ios (still version 5.3.0)
+- cisco.iosxr (still version 6.1.1)
+- cisco.mso (still version 2.9.0)
+- cisco.nxos (still version 5.3.0)
+- cisco.ucs (still version 1.14.0)
+- cloud.common (still version 2.1.4)
+- cloudscale_ch.cloud (still version 2.4.0)
+- community.aws (still version 7.2.0)
+- community.azure (still version 2.0.0)
+- community.ciscosmb (still version 1.0.9)
+- community.digitalocean (still version 1.27.0)
+- community.grafana (still version 1.9.1)
+- community.hashi_vault (still version 6.2.0)
+- community.hrobot (still version 1.9.4)
+- community.libvirt (still version 1.3.0)
+- community.mysql (still version 3.10.3)
+- community.okd (still version 2.3.0)
+- community.proxysql (still version 1.6.0)
+- community.rabbitmq (still version 1.3.0)
+- community.sap (still version 2.0.0)
+- community.sap_libs (still version 1.4.2)
+- community.sops (still version 1.9.1)
+- community.windows (still version 2.3.0)
+- community.zabbix (still version 2.5.1)
+- cyberark.pas (still version 1.0.27)
+- dellemc.enterprise_sonic (still version 2.5.1)
+- dellemc.openmanage (still version 8.7.0)
+- dellemc.powerflex (still version 2.5.0)
+- dellemc.unity (still version 1.7.1)
+- fortinet.fortimanager (still version 2.7.0)
+- frr.frr (still version 2.0.2)
+- gluster.gluster (still version 1.0.2)
+- google.cloud (still version 1.4.1)
+- grafana.grafana (still version 2.2.5)
+- hetzner.hcloud (still version 2.5.0)
+- hpe.nimble (still version 1.1.4)
+- ibm.qradar (still version 2.1.0)
+- ibm.spectrum_virtualize (still version 2.0.0)
+- ibm.storage_virtualize (still version 2.5.0)
+- ieisystem.inmanage (still version 2.0.0)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.7.0)
+- inspur.ispim (still version 2.2.3)
+- inspur.sm (still version 2.3.0)
+- junipernetworks.junos (still version 5.3.1)
+- kaytus.ksmanage (still version 1.2.2)
+- kubernetes.core (still version 2.4.2)
+- lowlydba.sqlserver (still version 2.3.4)
+- microsoft.ad (still version 1.7.1)
+- netapp.aws (still version 21.7.1)
+- netapp.azure (still version 21.10.1)
+- netapp.elementsw (still version 21.7.0)
+- netapp.ontap (still version 22.12.0)
+- netapp.um_info (still version 21.8.1)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.20.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- ngine_io.exoscale (still version 1.1.0)
+- openstack.cloud (still version 2.2.0)
+- openvswitch.openvswitch (still version 2.1.1)
+- ovirt.ovirt (still version 3.2.0)
+- purestorage.flasharray (still version 1.31.1)
+- purestorage.fusion (still version 1.6.1)
+- sensu.sensu_go (still version 1.14.0)
+- splunk.es (still version 2.1.2)
+- t_systems_mms.icinga_director (still version 2.0.1)
+- telekom_mms.icinga_director (still version 1.35.0)
+- theforeman.foreman (still version 3.15.0)
+- vmware.vmware_rest (still version 2.3.1)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 4.1.0)
+- wti.remote (still version 1.0.10)
+
 v9.11.0
 =======
 
@@ -49,7 +491,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
 | community.crypto          | 2.22.0         | 2.22.1         |                                                                                                                              |
 +---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
-| community.dns             | 2.9.5          | 2.9.6          | The collection did not have a changelog in this version.                                                                     |
+| community.dns             | 2.9.5          | 2.9.6          |                                                                                                                              |
 +---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
 | community.docker          | 3.12.1         | 3.13.0         |                                                                                                                              |
 +---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
@@ -221,6 +663,11 @@ community.crypto
 
 - acme_* modules - when querying renewal information, make sure to insert a slash between the base URL and the certificate identifier (https://github.com/ansible-collections/community.crypto/issues/801, https://github.com/ansible-collections/community.crypto/pull/802).
 - various modules - pass absolute paths to ``module.atomic_move()`` (https://github.com/ansible/ansible/issues/83950, https://github.com/ansible-collections/community.crypto/pull/799).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
 
 community.docker
 ~~~~~~~~~~~~~~~~
