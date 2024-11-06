@@ -7,6 +7,138 @@ This changelog describes changes since Ansible 10.0.0.
 .. contents::
   :depth: 2
 
+v11.0.0b2
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2024-11-06
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- netapp.storagegrid (version 21.13.0)
+
+Ansible-core
+------------
+
+Ansible 11.0.0b2 contains ansible-core version 2.18.0.
+This is the same version of ansible-core as in the previous Ansible release.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++--------------------+------------------+------------------+-------------------------------------+
+| Collection         | Ansible 11.0.0b1 | Ansible 11.0.0b2 | Notes                               |
++====================+==================+==================+=====================================+
+| netapp.storagegrid |                  | 21.13.0          | The collection was added to Ansible |
++--------------------+------------------+------------------+-------------------------------------+
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 9.0.0)
+- ansible.netcommon (still version 7.1.0)
+- ansible.posix (still version 1.6.2)
+- ansible.utils (still version 5.1.2)
+- ansible.windows (still version 2.5.0)
+- arista.eos (still version 10.0.1)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.0.0)
+- check_point.mgmt (still version 6.2.1)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.10.1)
+- cisco.asa (still version 6.0.0)
+- cisco.dnac (still version 6.22.0)
+- cisco.intersight (still version 2.0.20)
+- cisco.ios (still version 9.0.3)
+- cisco.iosxr (still version 10.2.2)
+- cisco.ise (still version 2.9.5)
+- cisco.meraki (still version 2.18.3)
+- cisco.mso (still version 2.9.0)
+- cisco.nxos (still version 9.2.1)
+- cisco.ucs (still version 1.14.0)
+- cloud.common (still version 4.0.0)
+- cloudscale_ch.cloud (still version 2.4.0)
+- community.aws (still version 9.0.0)
+- community.ciscosmb (still version 1.0.9)
+- community.crypto (still version 2.22.3)
+- community.digitalocean (still version 1.27.0)
+- community.dns (still version 3.0.6)
+- community.docker (still version 4.0.0)
+- community.general (still version 10.0.0)
+- community.grafana (still version 2.1.0)
+- community.hashi_vault (still version 6.2.0)
+- community.hrobot (still version 2.0.2)
+- community.library_inventory_filtering_v1 (still version 1.0.2)
+- community.libvirt (still version 1.3.0)
+- community.mongodb (still version 1.7.8)
+- community.mysql (still version 3.10.3)
+- community.network (still version 5.1.0)
+- community.okd (still version 4.0.0)
+- community.postgresql (still version 3.7.0)
+- community.proxysql (still version 1.6.0)
+- community.rabbitmq (still version 1.3.0)
+- community.routeros (still version 3.0.0)
+- community.sap_libs (still version 1.4.2)
+- community.sops (still version 2.0.0)
+- community.vmware (still version 5.1.0)
+- community.windows (still version 2.3.0)
+- community.zabbix (still version 3.1.2)
+- containers.podman (still version 1.16.2)
+- cyberark.conjur (still version 1.3.1)
+- cyberark.pas (still version 1.0.27)
+- dellemc.enterprise_sonic (still version 2.5.1)
+- dellemc.openmanage (still version 9.8.0)
+- dellemc.powerflex (still version 2.5.0)
+- dellemc.unity (still version 2.0.0)
+- f5networks.f5_modules (still version 1.32.1)
+- fortinet.fortimanager (still version 2.7.0)
+- fortinet.fortios (still version 2.3.8)
+- google.cloud (still version 1.4.1)
+- grafana.grafana (still version 5.6.0)
+- hetzner.hcloud (still version 4.2.1)
+- ibm.qradar (still version 4.0.0)
+- ibm.spectrum_virtualize (still version 2.0.0)
+- ibm.storage_virtualize (still version 2.5.0)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.7.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 9.1.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 5.0.0)
+- kubevirt.core (still version 2.1.0)
+- lowlydba.sqlserver (still version 2.3.4)
+- microsoft.ad (still version 1.7.1)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 22.12.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.20.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.2.0)
+- ovirt.ovirt (still version 3.2.0)
+- purestorage.flasharray (still version 1.31.1)
+- purestorage.flashblade (still version 1.19.1)
+- sensu.sensu_go (still version 1.14.0)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.2.0)
+- theforeman.foreman (still version 4.2.0)
+- vmware.vmware (still version 1.6.0)
+- vmware.vmware_rest (still version 4.2.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 5.0.0)
+- wti.remote (still version 1.0.10)
+
 v11.0.0b1
 =========
 
@@ -2794,8 +2926,6 @@ Removed Features (previously deprecated)
 
 - The ``inspur.sm`` collection was considered unmaintained and has been removed from Ansible 11 (`https://forum.ansible.com/t/2854 <https://forum.ansible.com/t/2854>`__).
   Users can still install this collection with ``ansible-galaxy collection install inspur.sm``.
-- The ``netapp.storagegrid`` collection was considered unmaintained and has been removed from Ansible 11 (`https://forum.ansible.com/t/2811 <https://forum.ansible.com/t/2811>`__).
-  Users can still install this collection with ``ansible-galaxy collection install netapp.storagegrid``.
 - The collection ``t_systems_mms.icinga_director`` has been completely removed from Ansible.
   It has been renamed to ``telekom_mms.icinga_director``.
   ``t_systems_mms.icinga_director`` has been replaced by deprecated redirects to ``telekom_mms.icinga_director`` in Ansible 9.0.0.
