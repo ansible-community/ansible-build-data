@@ -301,6 +301,12 @@ collections:
       - wenjun666
       - chuyich
     repository: https://github.com/ansible-collections/netapp.ontap
+  netapp.storagegrid:
+    maintainers:
+      - carchi8py
+      - jkandati
+      - joshedmonds
+    repository: https://github.com/ansible-collections/netapp.storagegrid
   netapp_eseries.santricity:
     repository: https://github.com/netapp-eseries/santricity
   netbox.netbox:
@@ -520,17 +526,6 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/235
       announce_version: 9.0.0a1
-  netapp.storagegrid:
-    maintainers:
-      - carchi8py
-      - jkandati
-      - joshedmonds
-    repository: https://github.com/ansible-collections/netapp.storagegrid
-    removal:
-      version: 11.0.0a1
-      reason: considered-unmaintained
-      discussion: https://forum.ansible.com/t/2811
-      announce_version: 10.0.0a1
   netapp.um_info:
     maintainers:
       - carchi8py
