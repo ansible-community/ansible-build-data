@@ -13,12 +13,13 @@ This changelog describes changes since Ansible 10\.0\.0\.
     - <a href="#added-collections">Added Collections</a>
     - <a href="#ansible-core-1">Ansible\-core</a>
     - <a href="#changed-collections-1">Changed Collections</a>
+    - <a href="#major-changes">Major Changes</a>
     - <a href="#unchanged-collections-1">Unchanged Collections</a>
 - <a href="#v11-0-0b1">v11\.0\.0b1</a>
     - <a href="#release-summary-2">Release Summary</a>
     - <a href="#ansible-core-2">Ansible\-core</a>
     - <a href="#changed-collections-2">Changed Collections</a>
-    - <a href="#major-changes">Major Changes</a>
+    - <a href="#major-changes-1">Major Changes</a>
     - <a href="#minor-changes">Minor Changes</a>
     - <a href="#breaking-changes--porting-guide">Breaking Changes / Porting Guide</a>
     - <a href="#deprecated-features">Deprecated Features</a>
@@ -34,7 +35,7 @@ This changelog describes changes since Ansible 10\.0\.0\.
     - <a href="#removed-collections">Removed Collections</a>
     - <a href="#ansible-core-5">Ansible\-core</a>
     - <a href="#changed-collections-3">Changed Collections</a>
-    - <a href="#major-changes-1">Major Changes</a>
+    - <a href="#major-changes-2">Major Changes</a>
     - <a href="#minor-changes-1">Minor Changes</a>
     - <a href="#breaking-changes--porting-guide-1">Breaking Changes / Porting Guide</a>
     - <a href="#deprecated-features-1">Deprecated Features</a>
@@ -49,7 +50,7 @@ This changelog describes changes since Ansible 10\.0\.0\.
     - <a href="#added-collections-1">Added Collections</a>
     - <a href="#ansible-core-8">Ansible\-core</a>
     - <a href="#included-collections">Included Collections</a>
-    - <a href="#major-changes-2">Major Changes</a>
+    - <a href="#major-changes-3">Major Changes</a>
     - <a href="#minor-changes-2">Minor Changes</a>
     - <a href="#breaking-changes--porting-guide-2">Breaking Changes / Porting Guide</a>
     - <a href="#deprecated-features-2">Deprecated Features</a>
@@ -224,6 +225,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 - <a href="#added-collections">Added Collections</a>
 - <a href="#ansible-core-1">Ansible\-core</a>
 - <a href="#changed-collections-1">Changed Collections</a>
+- <a href="#major-changes">Major Changes</a>
 - <a href="#unchanged-collections-1">Unchanged Collections</a>
 
 <a id="release-summary-1"></a>
@@ -252,6 +254,12 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 | Collection         | Ansible 11.0.0b1 | Ansible 11.0.0b2 | Notes                               |
 | ------------------ | ---------------- | ---------------- | ----------------------------------- |
 | netapp.storagegrid |                  | 21.13.0          | The collection was added to Ansible |
+
+<a id="major-changes"></a>
+### Major Changes
+
+* The previously removed collection netapp\.storagegrid was re\-added to Ansible 11 \([https\://forum\.ansible\.com/t/2811](https\://forum\.ansible\.com/t/2811)\)\.
+  Maintenance of the collection has been taken over by another team at NetApp\.
 
 <a id="unchanged-collections-1"></a>
 ### Unchanged Collections
@@ -355,7 +363,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 - <a href="#release-summary-2">Release Summary</a>
 - <a href="#ansible-core-2">Ansible\-core</a>
 - <a href="#changed-collections-2">Changed Collections</a>
-- <a href="#major-changes">Major Changes</a>
+- <a href="#major-changes-1">Major Changes</a>
     - <a href="#amazon-aws">amazon\.aws</a>
     - <a href="#ansible-utils">ansible\.utils</a>
     - <a href="#dellemc-openmanage">dellemc\.openmanage</a>
@@ -483,7 +491,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 | vmware.vmware                            | 1.5.0            | 1.6.0            |                                                                                                                                                                                                              |
 | vmware.vmware_rest                       | 4.1.0            | 4.2.0            |                                                                                                                                                                                                              |
 
-<a id="major-changes"></a>
+<a id="major-changes-1"></a>
 ### Major Changes
 
 <a id="amazon-aws"></a>
@@ -1464,7 +1472,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 - <a href="#removed-collections">Removed Collections</a>
 - <a href="#ansible-core-5">Ansible\-core</a>
 - <a href="#changed-collections-3">Changed Collections</a>
-- <a href="#major-changes-1">Major Changes</a>
+- <a href="#major-changes-2">Major Changes</a>
     - <a href="#dellemc-openmanage-4">dellemc\.openmanage</a>
     - <a href="#fortinet-fortios">fortinet\.fortios</a>
     - <a href="#ieisystem-inmanage">ieisystem\.inmanage</a>
@@ -1564,7 +1572,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 | netapp_eseries.santricity | 1.4.0            | 1.4.1            |                                                                                                                              |
 | ngine_io.cloudstack       | 2.4.1            | 2.5.0            |                                                                                                                              |
 
-<a id="major-changes-1"></a>
+<a id="major-changes-2"></a>
 ### Major Changes
 
 <a id="dellemc-openmanage-4"></a>
@@ -2011,7 +2019,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 - <a href="#added-collections-1">Added Collections</a>
 - <a href="#ansible-core-8">Ansible\-core</a>
 - <a href="#included-collections">Included Collections</a>
-- <a href="#major-changes-2">Major Changes</a>
+- <a href="#major-changes-3">Major Changes</a>
     - <a href="#ansible-netcommon">ansible\.netcommon</a>
     - <a href="#ansible-posix-2">ansible\.posix</a>
     - <a href="#arista-eos-1">arista\.eos</a>
@@ -2284,7 +2292,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 | vyos.vyos                | 4.1.0          | 5.0.0            |                                                                                                                                                                                                              |
 | wti.remote               | 1.0.5          | 1.0.10           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                 |
 
-<a id="major-changes-2"></a>
+<a id="major-changes-3"></a>
 ### Major Changes
 
 <a id="ansible-netcommon"></a>
@@ -3292,6 +3300,8 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * The <code>inspur\.sm</code> collection was considered unmaintained and has been removed from Ansible 11 \([https\://forum\.ansible\.com/t/2854](https\://forum\.ansible\.com/t/2854)\)\.
   Users can still install this collection with <code>ansible\-galaxy collection install inspur\.sm</code>\.
+* The <code>netapp\.storagegrid</code> collection was considered unmaintained and has been removed from Ansible 11 \([https\://forum\.ansible\.com/t/2811](https\://forum\.ansible\.com/t/2811)\)\.
+  Users can still install this collection with <code>ansible\-galaxy collection install netapp\.storagegrid</code>\.
 * The collection <code>t\_systems\_mms\.icinga\_director</code> has been completely removed from Ansible\.
   It has been renamed to <code>telekom\_mms\.icinga\_director</code>\.
   <code>t\_systems\_mms\.icinga\_director</code> has been replaced by deprecated redirects to <code>telekom\_mms\.icinga\_director</code> in Ansible 9\.0\.0\.
