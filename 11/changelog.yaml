@@ -29,6 +29,13 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2024-11-06'
+  11.0.0rc1:
+    changes:
+      release_summary: 'Release Date: 2024-11-12
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2024-11-12'
 remove_collection_changelog_entries:
   ansible.posix:
     1.6.0:
