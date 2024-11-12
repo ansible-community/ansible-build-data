@@ -2,68 +2,231 @@
 
 This changelog describes changes since Ansible 10\.0\.0\.
 
-- <a href="#v11-0-0b2">v11\.0\.0b2</a>
+- <a href="#v11-0-0rc1">v11\.0\.0rc1</a>
     - <a href="#release-summary">Release Summary</a>
-    - <a href="#added-collections">Added Collections</a>
     - <a href="#ansible-core">Ansible\-core</a>
     - <a href="#changed-collections">Changed Collections</a>
+    - <a href="#bugfixes">Bugfixes</a>
     - <a href="#unchanged-collections">Unchanged Collections</a>
-- <a href="#v11-0-0b1">v11\.0\.0b1</a>
+- <a href="#v11-0-0b2">v11\.0\.0b2</a>
     - <a href="#release-summary-1">Release Summary</a>
+    - <a href="#added-collections">Added Collections</a>
     - <a href="#ansible-core-1">Ansible\-core</a>
     - <a href="#changed-collections-1">Changed Collections</a>
+    - <a href="#unchanged-collections-1">Unchanged Collections</a>
+- <a href="#v11-0-0b1">v11\.0\.0b1</a>
+    - <a href="#release-summary-2">Release Summary</a>
+    - <a href="#ansible-core-2">Ansible\-core</a>
+    - <a href="#changed-collections-2">Changed Collections</a>
     - <a href="#major-changes">Major Changes</a>
     - <a href="#minor-changes">Minor Changes</a>
     - <a href="#breaking-changes--porting-guide">Breaking Changes / Porting Guide</a>
     - <a href="#deprecated-features">Deprecated Features</a>
     - <a href="#removed-features-previously-deprecated">Removed Features \(previously deprecated\)</a>
     - <a href="#security-fixes">Security Fixes</a>
-    - <a href="#bugfixes">Bugfixes</a>
+    - <a href="#bugfixes-1">Bugfixes</a>
     - <a href="#known-issues">Known Issues</a>
     - <a href="#new-plugins">New Plugins</a>
     - <a href="#new-modules">New Modules</a>
-    - <a href="#unchanged-collections-1">Unchanged Collections</a>
+    - <a href="#unchanged-collections-2">Unchanged Collections</a>
 - <a href="#v11-0-0a2">v11\.0\.0a2</a>
-    - <a href="#release-summary-2">Release Summary</a>
+    - <a href="#release-summary-3">Release Summary</a>
     - <a href="#removed-collections">Removed Collections</a>
-    - <a href="#ansible-core-4">Ansible\-core</a>
-    - <a href="#changed-collections-2">Changed Collections</a>
+    - <a href="#ansible-core-5">Ansible\-core</a>
+    - <a href="#changed-collections-3">Changed Collections</a>
     - <a href="#major-changes-1">Major Changes</a>
     - <a href="#minor-changes-1">Minor Changes</a>
     - <a href="#breaking-changes--porting-guide-1">Breaking Changes / Porting Guide</a>
     - <a href="#deprecated-features-1">Deprecated Features</a>
     - <a href="#removed-features-previously-deprecated-1">Removed Features \(previously deprecated\)</a>
-    - <a href="#bugfixes-1">Bugfixes</a>
+    - <a href="#bugfixes-2">Bugfixes</a>
     - <a href="#known-issues-1">Known Issues</a>
     - <a href="#new-modules-1">New Modules</a>
-    - <a href="#unchanged-collections-2">Unchanged Collections</a>
+    - <a href="#unchanged-collections-3">Unchanged Collections</a>
 - <a href="#v11-0-0a1">v11\.0\.0a1</a>
-    - <a href="#release-summary-3">Release Summary</a>
+    - <a href="#release-summary-4">Release Summary</a>
     - <a href="#removed-collections-1">Removed Collections</a>
     - <a href="#added-collections-1">Added Collections</a>
-    - <a href="#ansible-core-7">Ansible\-core</a>
+    - <a href="#ansible-core-8">Ansible\-core</a>
     - <a href="#included-collections">Included Collections</a>
     - <a href="#major-changes-2">Major Changes</a>
     - <a href="#minor-changes-2">Minor Changes</a>
     - <a href="#breaking-changes--porting-guide-2">Breaking Changes / Porting Guide</a>
     - <a href="#deprecated-features-2">Deprecated Features</a>
     - <a href="#removed-features-previously-deprecated-2">Removed Features \(previously deprecated\)</a>
-    - <a href="#bugfixes-2">Bugfixes</a>
+    - <a href="#bugfixes-3">Bugfixes</a>
     - <a href="#known-issues-2">Known Issues</a>
     - <a href="#new-plugins-1">New Plugins</a>
     - <a href="#new-modules-2">New Modules</a>
-    - <a href="#unchanged-collections-3">Unchanged Collections</a>
+    - <a href="#unchanged-collections-4">Unchanged Collections</a>
+
+<a id="v11-0-0rc1"></a>
+## v11\.0\.0rc1
+
+- <a href="#release-summary">Release Summary</a>
+- <a href="#ansible-core">Ansible\-core</a>
+- <a href="#changed-collections">Changed Collections</a>
+- <a href="#bugfixes">Bugfixes</a>
+    - <a href="#community-dns">community\.dns</a>
+    - <a href="#community-docker">community\.docker</a>
+    - <a href="#community-general">community\.general</a>
+- <a href="#unchanged-collections">Unchanged Collections</a>
+
+<a id="release-summary"></a>
+### Release Summary
+
+Release Date\: 2024\-11\-12
+
+[Porting Guide](https\://docs\.ansible\.com/ansible/devel/porting\_guides\.html)
+
+<a id="ansible-core"></a>
+### Ansible\-core
+
+Ansible 11\.0\.0rc1 contains ansible\-core version 2\.18\.0\.
+This is the same version of ansible\-core as in the previous Ansible release\.
+
+<a id="changed-collections"></a>
+### Changed Collections
+
+If not mentioned explicitly\, the changes are reported in the combined changelog below\.
+
+| Collection        | Ansible 11.0.0b2 | Ansible 11.0.0rc1 | Notes |
+| ----------------- | ---------------- | ----------------- | ----- |
+| community.dns     | 3.0.6            | 3.0.7             |       |
+| community.docker  | 4.0.0            | 4.0.1             |       |
+| community.general | 10.0.0           | 10.0.1            |       |
+
+<a id="bugfixes"></a>
+### Bugfixes
+
+<a id="community-dns"></a>
+#### community\.dns
+
+* Update Public Suffix List\.
+
+<a id="community-docker"></a>
+#### community\.docker
+
+* docker\_compose\_v2\_run \- make sure to sanitize <code>labels</code> before sending them to the Docker Daemon \([https\://github\.com/ansible\-collections/community\.docker/pull/985](https\://github\.com/ansible\-collections/community\.docker/pull/985)\)\.
+* docker\_config \- make sure to sanitize <code>labels</code> before sending them to the Docker Daemon \([https\://github\.com/ansible\-collections/community\.docker/pull/985](https\://github\.com/ansible\-collections/community\.docker/pull/985)\)\.
+* docker\_network \- make sure to sanitize <code>labels</code> before sending them to the Docker Daemon \([https\://github\.com/ansible\-collections/community\.docker/pull/985](https\://github\.com/ansible\-collections/community\.docker/pull/985)\)\.
+* docker\_node \- make sure to sanitize <code>labels</code> before sending them to the Docker Daemon \([https\://github\.com/ansible\-collections/community\.docker/pull/985](https\://github\.com/ansible\-collections/community\.docker/pull/985)\)\.
+* docker\_secret \- make sure to sanitize <code>labels</code> before sending them to the Docker Daemon \([https\://github\.com/ansible\-collections/community\.docker/pull/985](https\://github\.com/ansible\-collections/community\.docker/pull/985)\)\.
+* docker\_swarm \- make sure to sanitize <code>labels</code> before sending them to the Docker Daemon \([https\://github\.com/ansible\-collections/community\.docker/pull/985](https\://github\.com/ansible\-collections/community\.docker/pull/985)\)\.
+* docker\_swarm\_service \- make sure to sanitize <code>labels</code> and <code>container\_labels</code> before sending them to the Docker Daemon \([https\://github\.com/ansible\-collections/community\.docker/pull/985](https\://github\.com/ansible\-collections/community\.docker/pull/985)\)\.
+* docker\_volume \- make sure to sanitize <code>labels</code> before sending them to the Docker Daemon \([https\://github\.com/ansible\-collections/community\.docker/pull/985](https\://github\.com/ansible\-collections/community\.docker/pull/985)\)\.
+
+<a id="community-general"></a>
+#### community\.general
+
+* keycloak\_client \- fix diff by removing code that turns the attributes dict which contains additional settings into a list \([https\://github\.com/ansible\-collections/community\.general/pull/9077](https\://github\.com/ansible\-collections/community\.general/pull/9077)\)\.
+* keycloak\_clientscope \- fix diff and <code>end\_state</code> by removing the code that turns the attributes dict\, which contains additional config items\, into a list \([https\://github\.com/ansible\-collections/community\.general/pull/9082](https\://github\.com/ansible\-collections/community\.general/pull/9082)\)\.
+* redfish\_utils module utils \- remove undocumented default applytime \([https\://github\.com/ansible\-collections/community\.general/pull/9114](https\://github\.com/ansible\-collections/community\.general/pull/9114)\)\.
+
+<a id="unchanged-collections"></a>
+### Unchanged Collections
+
+* amazon\.aws \(still version 9\.0\.0\)
+* ansible\.netcommon \(still version 7\.1\.0\)
+* ansible\.posix \(still version 1\.6\.2\)
+* ansible\.utils \(still version 5\.1\.2\)
+* ansible\.windows \(still version 2\.5\.0\)
+* arista\.eos \(still version 10\.0\.1\)
+* awx\.awx \(still version 24\.6\.1\)
+* azure\.azcollection \(still version 3\.0\.0\)
+* check\_point\.mgmt \(still version 6\.2\.1\)
+* chocolatey\.chocolatey \(still version 1\.5\.3\)
+* cisco\.aci \(still version 2\.10\.1\)
+* cisco\.asa \(still version 6\.0\.0\)
+* cisco\.dnac \(still version 6\.22\.0\)
+* cisco\.intersight \(still version 2\.0\.20\)
+* cisco\.ios \(still version 9\.0\.3\)
+* cisco\.iosxr \(still version 10\.2\.2\)
+* cisco\.ise \(still version 2\.9\.5\)
+* cisco\.meraki \(still version 2\.18\.3\)
+* cisco\.mso \(still version 2\.9\.0\)
+* cisco\.nxos \(still version 9\.2\.1\)
+* cisco\.ucs \(still version 1\.14\.0\)
+* cloud\.common \(still version 4\.0\.0\)
+* cloudscale\_ch\.cloud \(still version 2\.4\.0\)
+* community\.aws \(still version 9\.0\.0\)
+* community\.ciscosmb \(still version 1\.0\.9\)
+* community\.crypto \(still version 2\.22\.3\)
+* community\.digitalocean \(still version 1\.27\.0\)
+* community\.grafana \(still version 2\.1\.0\)
+* community\.hashi\_vault \(still version 6\.2\.0\)
+* community\.hrobot \(still version 2\.0\.2\)
+* community\.library\_inventory\_filtering\_v1 \(still version 1\.0\.2\)
+* community\.libvirt \(still version 1\.3\.0\)
+* community\.mongodb \(still version 1\.7\.8\)
+* community\.mysql \(still version 3\.10\.3\)
+* community\.network \(still version 5\.1\.0\)
+* community\.okd \(still version 4\.0\.0\)
+* community\.postgresql \(still version 3\.7\.0\)
+* community\.proxysql \(still version 1\.6\.0\)
+* community\.rabbitmq \(still version 1\.3\.0\)
+* community\.routeros \(still version 3\.0\.0\)
+* community\.sap\_libs \(still version 1\.4\.2\)
+* community\.sops \(still version 2\.0\.0\)
+* community\.vmware \(still version 5\.1\.0\)
+* community\.windows \(still version 2\.3\.0\)
+* community\.zabbix \(still version 3\.1\.2\)
+* containers\.podman \(still version 1\.16\.2\)
+* cyberark\.conjur \(still version 1\.3\.1\)
+* cyberark\.pas \(still version 1\.0\.27\)
+* dellemc\.enterprise\_sonic \(still version 2\.5\.1\)
+* dellemc\.openmanage \(still version 9\.8\.0\)
+* dellemc\.powerflex \(still version 2\.5\.0\)
+* dellemc\.unity \(still version 2\.0\.0\)
+* f5networks\.f5\_modules \(still version 1\.32\.1\)
+* fortinet\.fortimanager \(still version 2\.7\.0\)
+* fortinet\.fortios \(still version 2\.3\.8\)
+* google\.cloud \(still version 1\.4\.1\)
+* grafana\.grafana \(still version 5\.6\.0\)
+* hetzner\.hcloud \(still version 4\.2\.1\)
+* ibm\.qradar \(still version 4\.0\.0\)
+* ibm\.spectrum\_virtualize \(still version 2\.0\.0\)
+* ibm\.storage\_virtualize \(still version 2\.5\.0\)
+* ieisystem\.inmanage \(still version 3\.0\.0\)
+* infinidat\.infinibox \(still version 1\.4\.5\)
+* infoblox\.nios\_modules \(still version 1\.7\.0\)
+* inspur\.ispim \(still version 2\.2\.3\)
+* junipernetworks\.junos \(still version 9\.1\.0\)
+* kaytus\.ksmanage \(still version 2\.0\.0\)
+* kubernetes\.core \(still version 5\.0\.0\)
+* kubevirt\.core \(still version 2\.1\.0\)
+* lowlydba\.sqlserver \(still version 2\.3\.4\)
+* microsoft\.ad \(still version 1\.7\.1\)
+* netapp\.cloudmanager \(still version 21\.24\.0\)
+* netapp\.ontap \(still version 22\.12\.0\)
+* netapp\.storagegrid \(still version 21\.13\.0\)
+* netapp\_eseries\.santricity \(still version 1\.4\.1\)
+* netbox\.netbox \(still version 3\.20\.0\)
+* ngine\_io\.cloudstack \(still version 2\.5\.0\)
+* openstack\.cloud \(still version 2\.2\.0\)
+* ovirt\.ovirt \(still version 3\.2\.0\)
+* purestorage\.flasharray \(still version 1\.31\.1\)
+* purestorage\.flashblade \(still version 1\.19\.1\)
+* sensu\.sensu\_go \(still version 1\.14\.0\)
+* splunk\.es \(still version 4\.0\.0\)
+* telekom\_mms\.icinga\_director \(still version 2\.2\.0\)
+* theforeman\.foreman \(still version 4\.2\.0\)
+* vmware\.vmware \(still version 1\.6\.0\)
+* vmware\.vmware\_rest \(still version 4\.2\.0\)
+* vultr\.cloud \(still version 1\.13\.0\)
+* vyos\.vyos \(still version 5\.0\.0\)
+* wti\.remote \(still version 1\.0\.10\)
 
 <a id="v11-0-0b2"></a>
 ## v11\.0\.0b2
 
-- <a href="#release-summary">Release Summary</a>
+- <a href="#release-summary-1">Release Summary</a>
 - <a href="#added-collections">Added Collections</a>
-- <a href="#ansible-core">Ansible\-core</a>
-- <a href="#changed-collections">Changed Collections</a>
-- <a href="#unchanged-collections">Unchanged Collections</a>
+- <a href="#ansible-core-1">Ansible\-core</a>
+- <a href="#changed-collections-1">Changed Collections</a>
+- <a href="#unchanged-collections-1">Unchanged Collections</a>
 
-<a id="release-summary"></a>
+<a id="release-summary-1"></a>
 ### Release Summary
 
 Release Date\: 2024\-11\-06
@@ -75,13 +238,13 @@ Release Date\: 2024\-11\-06
 
 * netapp\.storagegrid \(version 21\.13\.0\)
 
-<a id="ansible-core"></a>
+<a id="ansible-core-1"></a>
 ### Ansible\-core
 
 Ansible 11\.0\.0b2 contains ansible\-core version 2\.18\.0\.
 This is the same version of ansible\-core as in the previous Ansible release\.
 
-<a id="changed-collections"></a>
+<a id="changed-collections-1"></a>
 ### Changed Collections
 
 If not mentioned explicitly\, the changes are reported in the combined changelog below\.
@@ -90,7 +253,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 | ------------------ | ---------------- | ---------------- | ----------------------------------- |
 | netapp.storagegrid |                  | 21.13.0          | The collection was added to Ansible |
 
-<a id="unchanged-collections"></a>
+<a id="unchanged-collections-1"></a>
 ### Unchanged Collections
 
 * amazon\.aws \(still version 9\.0\.0\)
@@ -189,9 +352,9 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="v11-0-0b1"></a>
 ## v11\.0\.0b1
 
-- <a href="#release-summary-1">Release Summary</a>
-- <a href="#ansible-core-1">Ansible\-core</a>
-- <a href="#changed-collections-1">Changed Collections</a>
+- <a href="#release-summary-2">Release Summary</a>
+- <a href="#ansible-core-2">Ansible\-core</a>
+- <a href="#changed-collections-2">Changed Collections</a>
 - <a href="#major-changes">Major Changes</a>
     - <a href="#amazon-aws">amazon\.aws</a>
     - <a href="#ansible-utils">ansible\.utils</a>
@@ -203,8 +366,8 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#cisco-dnac">cisco\.dnac</a>
     - <a href="#cisco-iosxr">cisco\.iosxr</a>
     - <a href="#community-aws">community\.aws</a>
-    - <a href="#community-docker">community\.docker</a>
-    - <a href="#community-general">community\.general</a>
+    - <a href="#community-docker-1">community\.docker</a>
+    - <a href="#community-general-1">community\.general</a>
     - <a href="#community-routeros">community\.routeros</a>
     - <a href="#community-vmware">community\.vmware</a>
     - <a href="#dellemc-openmanage-1">dellemc\.openmanage</a>
@@ -217,23 +380,23 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 - <a href="#breaking-changes--porting-guide">Breaking Changes / Porting Guide</a>
     - <a href="#amazon-aws-2">amazon\.aws</a>
     - <a href="#community-aws-1">community\.aws</a>
-    - <a href="#community-docker-1">community\.docker</a>
-    - <a href="#community-general-1">community\.general</a>
+    - <a href="#community-docker-2">community\.docker</a>
+    - <a href="#community-general-2">community\.general</a>
     - <a href="#community-routeros-1">community\.routeros</a>
 - <a href="#deprecated-features">Deprecated Features</a>
     - <a href="#amazon-aws-3">amazon\.aws</a>
     - <a href="#community-aws-2">community\.aws</a>
-    - <a href="#community-general-2">community\.general</a>
+    - <a href="#community-general-3">community\.general</a>
     - <a href="#community-vmware-1">community\.vmware</a>
 - <a href="#removed-features-previously-deprecated">Removed Features \(previously deprecated\)</a>
-    - <a href="#community-docker-2">community\.docker</a>
-    - <a href="#community-general-3">community\.general</a>
+    - <a href="#community-docker-3">community\.docker</a>
+    - <a href="#community-general-4">community\.general</a>
     - <a href="#community-routeros-2">community\.routeros</a>
     - <a href="#community-sops">community\.sops</a>
 - <a href="#security-fixes">Security Fixes</a>
-    - <a href="#ansible-core-2">Ansible\-core</a>
-- <a href="#bugfixes">Bugfixes</a>
     - <a href="#ansible-core-3">Ansible\-core</a>
+- <a href="#bugfixes-1">Bugfixes</a>
+    - <a href="#ansible-core-4">Ansible\-core</a>
     - <a href="#amazon-aws-4">amazon\.aws</a>
     - <a href="#ansible-posix">ansible\.posix</a>
     - <a href="#ansible-utils-2">ansible\.utils</a>
@@ -244,9 +407,9 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#cisco-meraki">cisco\.meraki</a>
     - <a href="#community-aws-3">community\.aws</a>
     - <a href="#community-crypto">community\.crypto</a>
-    - <a href="#community-dns">community\.dns</a>
-    - <a href="#community-docker-3">community\.docker</a>
-    - <a href="#community-general-4">community\.general</a>
+    - <a href="#community-dns-1">community\.dns</a>
+    - <a href="#community-docker-4">community\.docker</a>
+    - <a href="#community-general-5">community\.general</a>
     - <a href="#community-vmware-2">community\.vmware</a>
     - <a href="#containers-podman">containers\.podman</a>
     - <a href="#dellemc-openmanage-2">dellemc\.openmanage</a>
@@ -255,7 +418,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#vmware-vmware-1">vmware\.vmware</a>
     - <a href="#vmware-vmware-rest-1">vmware\.vmware\_rest</a>
 - <a href="#known-issues">Known Issues</a>
-    - <a href="#community-general-5">community\.general</a>
+    - <a href="#community-general-6">community\.general</a>
     - <a href="#dellemc-openmanage-3">dellemc\.openmanage</a>
 - <a href="#new-plugins">New Plugins</a>
     - <a href="#filter">Filter</a>
@@ -263,18 +426,18 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 - <a href="#new-modules">New Modules</a>
     - <a href="#amazon-aws-5">amazon\.aws</a>
     - <a href="#cisco-iosxr-2">cisco\.iosxr</a>
-    - <a href="#community-general-6">community\.general</a>
+    - <a href="#community-general-7">community\.general</a>
     - <a href="#purestorage-flashblade-2">purestorage\.flashblade</a>
-- <a href="#unchanged-collections-1">Unchanged Collections</a>
+- <a href="#unchanged-collections-2">Unchanged Collections</a>
 
-<a id="release-summary-1"></a>
+<a id="release-summary-2"></a>
 ### Release Summary
 
 Release Date\: 2024\-11\-05
 
 [Porting Guide](https\://docs\.ansible\.com/ansible/devel/porting\_guides\.html)
 
-<a id="ansible-core-1"></a>
+<a id="ansible-core-2"></a>
 ### Ansible\-core
 
 Ansible 11\.0\.0b1 contains ansible\-core version 2\.18\.0\.
@@ -282,43 +445,43 @@ This is a newer version than version 2\.18\.0rc1 contained in the previous Ansib
 
 The changes are reported in the combined changelog below\.
 
-<a id="changed-collections-1"></a>
+<a id="changed-collections-2"></a>
 ### Changed Collections
 
 If not mentioned explicitly\, the changes are reported in the combined changelog below\.
 
-| Collection                               | Ansible 11.0.0a2 | Ansible 11.0.0b1 | Notes                                                                                                                                                                                                        |
-| ---------------------------------------- | ---------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| amazon.aws                               | 8.2.1            | 9.0.0            |                                                                                                                                                                                                              |
-| ansible.posix                            | 1.6.1            | 1.6.2            |                                                                                                                                                                                                              |
-| ansible.utils                            | 4.1.0            | 5.1.2            |                                                                                                                                                                                                              |
-| arista.eos                               | 10.0.0           | 10.0.1           |                                                                                                                                                                                                              |
-| azure.azcollection                       | 2.7.0            | 3.0.0            | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                 |
-| cisco.dnac                               | 6.20.0           | 6.22.0           |                                                                                                                                                                                                              |
-| cisco.ios                                | 9.0.2            | 9.0.3            |                                                                                                                                                                                                              |
-| cisco.iosxr                              | 10.1.0           | 10.2.2           |                                                                                                                                                                                                              |
-| cisco.ise                                | 2.9.3            | 2.9.5            |                                                                                                                                                                                                              |
-| cisco.meraki                             | 2.18.2           | 2.18.3           |                                                                                                                                                                                                              |
-| community.aws                            | 8.0.0            | 9.0.0            |                                                                                                                                                                                                              |
-| community.crypto                         | 2.22.1           | 2.22.3           |                                                                                                                                                                                                              |
-| community.dns                            | 3.0.5            | 3.0.6            |                                                                                                                                                                                                              |
-| community.docker                         | 3.13.0           | 4.0.0            |                                                                                                                                                                                                              |
-| community.general                        | 9.5.0            | 10.0.0           |                                                                                                                                                                                                              |
-| community.library_inventory_filtering_v1 | 1.0.1            | 1.0.2            |                                                                                                                                                                                                              |
-| community.mongodb                        | 1.7.7            | 1.7.8            | There are no changes recorded in the changelog.                                                                                                                                                              |
-| community.routeros                       | 2.19.0           | 3.0.0            |                                                                                                                                                                                                              |
-| community.sops                           | 1.9.1            | 2.0.0            |                                                                                                                                                                                                              |
-| community.vmware                         | 5.0.1            | 5.1.0            |                                                                                                                                                                                                              |
-| containers.podman                        | 1.16.1           | 1.16.2           |                                                                                                                                                                                                              |
-| cyberark.conjur                          | 1.3.0            | 1.3.1            | You can find the collection's changelog at [https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md](https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md). |
-| dellemc.openmanage                       | 9.7.0            | 9.8.0            |                                                                                                                                                                                                              |
-| f5networks.f5_modules                    | 1.31.0           | 1.32.1           |                                                                                                                                                                                                              |
-| grafana.grafana                          | 5.5.1            | 5.6.0            |                                                                                                                                                                                                              |
-| netapp.cloudmanager                      | 21.22.1          | 21.24.0          |                                                                                                                                                                                                              |
-| purestorage.flashblade                   | 1.18.0           | 1.19.1           |                                                                                                                                                                                                              |
-| telekom_mms.icinga_director              | 2.1.2            | 2.2.0            |                                                                                                                                                                                                              |
-| vmware.vmware                            | 1.5.0            | 1.6.0            |                                                                                                                                                                                                              |
-| vmware.vmware_rest                       | 4.1.0            | 4.2.0            |                                                                                                                                                                                                              |
+| Collection                               | Ansible 11.0.0a2 | Ansible 11.0.0b1 | Notes                                                                                                                                                                                                         |
+| ---------------------------------------- | ---------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| amazon.aws                               | 8.2.1            | 9.0.0            |                                                                                                                                                                                                               |
+| ansible.posix                            | 1.6.1            | 1.6.2            |                                                                                                                                                                                                               |
+| ansible.utils                            | 4.1.0            | 5.1.2            |                                                                                                                                                                                                               |
+| arista.eos                               | 10.0.0           | 10.0.1           |                                                                                                                                                                                                               |
+| azure.azcollection                       | 2.7.0            | 3.0.0            | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                  |
+| cisco.dnac                               | 6.20.0           | 6.22.0           |                                                                                                                                                                                                               |
+| cisco.ios                                | 9.0.2            | 9.0.3            |                                                                                                                                                                                                               |
+| cisco.iosxr                              | 10.1.0           | 10.2.2           |                                                                                                                                                                                                               |
+| cisco.ise                                | 2.9.3            | 2.9.5            |                                                                                                                                                                                                               |
+| cisco.meraki                             | 2.18.2           | 2.18.3           |                                                                                                                                                                                                               |
+| community.aws                            | 8.0.0            | 9.0.0            |                                                                                                                                                                                                               |
+| community.crypto                         | 2.22.1           | 2.22.3           |                                                                                                                                                                                                               |
+| community.dns                            | 3.0.5            | 3.0.6            |                                                                                                                                                                                                               |
+| community.docker                         | 3.13.0           | 4.0.0            |                                                                                                                                                                                                               |
+| community.general                        | 9.5.0            | 10.0.0           |                                                                                                                                                                                                               |
+| community.library_inventory_filtering_v1 | 1.0.1            | 1.0.2            |                                                                                                                                                                                                               |
+| community.mongodb                        | 1.7.7            | 1.7.8            | There are no changes recorded in the changelog.                                                                                                                                                               |
+| community.routeros                       | 2.19.0           | 3.0.0            |                                                                                                                                                                                                               |
+| community.sops                           | 1.9.1            | 2.0.0            |                                                                                                                                                                                                               |
+| community.vmware                         | 5.0.1            | 5.1.0            |                                                                                                                                                                                                               |
+| containers.podman                        | 1.16.1           | 1.16.2           |                                                                                                                                                                                                               |
+| cyberark.conjur                          | 1.3.0            | 1.3.1            | You can find the collection's changelog at `[https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md](https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md). |
+| dellemc.openmanage                       | 9.7.0            | 9.8.0            |                                                                                                                                                                                                               |
+| f5networks.f5_modules                    | 1.31.0           | 1.32.1           |                                                                                                                                                                                                               |
+| grafana.grafana                          | 5.5.1            | 5.6.0            |                                                                                                                                                                                                               |
+| netapp.cloudmanager                      | 21.22.1          | 21.24.0          |                                                                                                                                                                                                               |
+| purestorage.flashblade                   | 1.18.0           | 1.19.1           |                                                                                                                                                                                                               |
+| telekom_mms.icinga_director              | 2.1.2            | 2.2.0            |                                                                                                                                                                                                               |
+| vmware.vmware                            | 1.5.0            | 1.6.0            |                                                                                                                                                                                                               |
+| vmware.vmware_rest                       | 4.1.0            | 4.2.0            |                                                                                                                                                                                                               |
 
 <a id="major-changes"></a>
 ### Major Changes
@@ -536,12 +699,12 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * ec2\_vpc\_vpn\_info \- Refactor module to use shared code from <code>amazon\.aws\.plugins\.module\_utils\.ec2</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2160](https\://github\.com/ansible\-collections/community\.aws/pull/2160)\)\.
 * elb\_classic\_lb\_info \- Refactor elb\_classic\_lb\_info module \([https\://github\.com/ansible\-collections/community\.aws/pull/2139](https\://github\.com/ansible\-collections/community\.aws/pull/2139)\)\.
 
-<a id="community-docker"></a>
+<a id="community-docker-1"></a>
 #### community\.docker
 
 * docker\_compose\_v2 \- add <code>renew\_anon\_volumes</code> parameter for <code>docker compose up</code> \([https\://github\.com/ansible\-collections/community\.docker/pull/977](https\://github\.com/ansible\-collections/community\.docker/pull/977)\)\.
 
-<a id="community-general"></a>
+<a id="community-general-1"></a>
 #### community\.general
 
 * CmdRunner module util \- argument formats can be specified as plain functions without calling <code>cmd\_runner\_fmt\.as\_func\(\)</code> \([https\://github\.com/ansible\-collections/community\.general/pull/8479](https\://github\.com/ansible\-collections/community\.general/pull/8479)\)\.
@@ -835,15 +998,15 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * elb\_classic\_lb\_info \- The module has been migrated from the <code>community\.aws</code> collection\. Playbooks using the Fully Qualified Collection Name for this module should be updated to use <code>amazon\.aws\.elb\_classic\_lb\_info</code>\.
 * iam\_policy \- the <code>connection\_properties</code> return key was previously deprecated and has been removed\, please use <code>raw\_connection\_properties</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2165](https\://github\.com/ansible\-collections/community\.aws/pull/2165)\)\.
 
-<a id="community-docker-1"></a>
+<a id="community-docker-2"></a>
 #### community\.docker
 
 * docker\_container \- the default of <code>image\_name\_mismatch</code> changed from <code>ignore</code> to <code>recreate</code> \([https\://github\.com/ansible\-collections/community\.docker/pull/971](https\://github\.com/ansible\-collections/community\.docker/pull/971)\)\.
 
-<a id="community-general-1"></a>
+<a id="community-general-2"></a>
 #### community\.general
 
-* The collection no longer supports ansible\-core 2\.13 and ansible\-core 2\.14\. While most \(or even all\) modules and plugins might still work with these versions\, they are no longer tested in CI and breakages regarding them will not be fixed \([https\://github\.com/ansible\-collections/community\.general/pull/8921](https\://github\.com/ansible\-collections/community\.general/pull/8921)\)\.\"
+* The collection no longer supports ansible\-core 2\.13 and ansible\-core 2\.14\. While most \(or even all\) modules and plugins might still work with these versions\, they are no longer tested in CI and breakages regarding them will not be fixed \([https\://github\.com/ansible\-collections/community\.general/pull/8921](https\://github\.com/ansible\-collections/community\.general/pull/8921)\)\.
 * cmd\_runner module utils \- CLI arguments created directly from module parameters are no longer assigned a default formatter \([https\://github\.com/ansible\-collections/community\.general/pull/8928](https\://github\.com/ansible\-collections/community\.general/pull/8928)\)\.
 * irc \- the defaults of <code>use\_tls</code> and <code>validate\_certs</code> changed from <code>false</code> to <code>true</code> \([https\://github\.com/ansible\-collections/community\.general/pull/8918](https\://github\.com/ansible\-collections/community\.general/pull/8918)\)\.
 * rhsm\_repository \- the states <code>present</code> and <code>absent</code> have been removed\. Use <code>enabled</code> and <code>disabled</code> instead \([https\://github\.com/ansible\-collections/community\.general/pull/8918](https\://github\.com/ansible\-collections/community\.general/pull/8918)\)\.
@@ -876,7 +1039,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * community\.aws collection \- due to the AWS SDKs announcing the end of support for Python less than 3\.8 \([https\://aws\.amazon\.com/blogs/developer/python\-support\-policy\-updates\-for\-aws\-sdks\-and\-tools/](https\://aws\.amazon\.com/blogs/developer/python\-support\-policy\-updates\-for\-aws\-sdks\-and\-tools/)\) support for Python less than 3\.8 by this collection has been deprecated and will removed in release 10\.0\.0 \([https\://github\.com/ansible\-collections/community\.aws/pull/2195](https\://github\.com/ansible\-collections/community\.aws/pull/2195)\)\.
 
-<a id="community-general-2"></a>
+<a id="community-general-3"></a>
 #### community\.general
 
 * CmdRunner module util \- setting the value of the <code>ignore\_none</code> parameter within a <code>CmdRunner</code> context is deprecated and that feature should be removed in community\.general 12\.0\.0 \([https\://github\.com/ansible\-collections/community\.general/pull/8479](https\://github\.com/ansible\-collections/community\.general/pull/8479)\)\.
@@ -896,7 +1059,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="removed-features-previously-deprecated"></a>
 ### Removed Features \(previously deprecated\)
 
-<a id="community-docker-2"></a>
+<a id="community-docker-3"></a>
 #### community\.docker
 
 * The collection no longer supports ansible\-core 2\.11\, 2\.12\, 2\.13\, and 2\.14\. You need ansible\-core 2\.15\.0 or newer to use community\.docker 4\.x\.y \([https\://github\.com/ansible\-collections/community\.docker/pull/971](https\://github\.com/ansible\-collections/community\.docker/pull/971)\)\.
@@ -905,7 +1068,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * docker\_container \- the <code>purge\_networks</code> option has been removed\. Use <code>networks\: strict</code> in <code>comparisons</code> instead and make sure that <code>networks</code> is specified \([https\://github\.com/ansible\-collections/community\.docker/pull/971](https\://github\.com/ansible\-collections/community\.docker/pull/971)\)\.
 * various modules and plugins \- remove the <code>ssl\_version</code> option \([https\://github\.com/ansible\-collections/community\.docker/pull/971](https\://github\.com/ansible\-collections/community\.docker/pull/971)\)\.
 
-<a id="community-general-3"></a>
+<a id="community-general-4"></a>
 #### community\.general
 
 * The consul\_acl module has been removed\. Use community\.general\.consul\_token and/or community\.general\.consul\_policy instead \([https\://github\.com/ansible\-collections/community\.general/pull/8921](https\://github\.com/ansible\-collections/community\.general/pull/8921)\)\.
@@ -932,17 +1095,17 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="security-fixes"></a>
 ### Security Fixes
 
-<a id="ansible-core-2"></a>
+<a id="ansible-core-3"></a>
 #### Ansible\-core
 
 * include\_vars action \- Ensure that result masking is correctly requested when vault\-encrypted files are read\. \(CVE\-2024\-8775\)
 * task result processing \- Ensure that action\-sourced result masking \(<code>\_ansible\_no\_log\=True</code>\) is preserved\. \(CVE\-2024\-8775\)
 * user action won\'t allow ssh\-keygen\, chown and chmod to run on existing ssh public key file\, avoiding traversal on existing symlinks \(CVE\-2024\-9902\)\.
 
-<a id="bugfixes"></a>
+<a id="bugfixes-1"></a>
 ### Bugfixes
 
-<a id="ansible-core-3"></a>
+<a id="ansible-core-4"></a>
 #### Ansible\-core
 
 * user action will now require O\(force\) to overwrite the public part of an ssh key when generating ssh keys\, as was already the case for the private part\.
@@ -1013,17 +1176,17 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * acme\_certificate \- fix authorization failure when CSR contains SANs with mixed case \([https\://github\.com/ansible\-collections/community\.crypto/pull/803](https\://github\.com/ansible\-collections/community\.crypto/pull/803)\)\.
 * time module utils \- fix conversion of naive <code>datetime</code> objects to UNIX timestamps for Python 3 \([https\://github\.com/ansible\-collections/community\.crypto/issues/808](https\://github\.com/ansible\-collections/community\.crypto/issues/808)\, [https\://github\.com/ansible\-collections/community\.crypto/pull/810](https\://github\.com/ansible\-collections/community\.crypto/pull/810)\)\.
 
-<a id="community-dns"></a>
+<a id="community-dns-1"></a>
 #### community\.dns
 
 * Update Public Suffix List\.
 
-<a id="community-docker-3"></a>
+<a id="community-docker-4"></a>
 #### community\.docker
 
 * docker\_compose\_v2 \- improve parsing of dry\-run image build operations from JSON events \([https\://github\.com/ansible\-collections/community\.docker/issues/975](https\://github\.com/ansible\-collections/community\.docker/issues/975)\, [https\://github\.com/ansible\-collections/community\.docker/pull/976](https\://github\.com/ansible\-collections/community\.docker/pull/976)\)\.
 
-<a id="community-general-4"></a>
+<a id="community-general-5"></a>
 #### community\.general
 
 * bitwarden lookup plugin \- fix <code>KeyError</code> in <code>search\_field</code> \([https\://github\.com/ansible\-collections/community\.general/issues/8549](https\://github\.com/ansible\-collections/community\.general/issues/8549)\, [https\://github\.com/ansible\-collections/community\.general/pull/8557](https\://github\.com/ansible\-collections/community\.general/pull/8557)\)\.
@@ -1161,7 +1324,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="known-issues"></a>
 ### Known Issues
 
-<a id="community-general-5"></a>
+<a id="community-general-6"></a>
 #### community\.general
 
 * jenkins\_node \- the module is not able to update offline message when node is already offline due to internally using toggleOffline API \([https\://github\.com/ansible\-collections/community\.general/pull/9084](https\://github\.com/ansible\-collections/community\.general/pull/9084)\)\.
@@ -1205,7 +1368,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * cisco\.iosxr\.iosxr\_route\_maps \- Resource module to configure route maps\.
 
-<a id="community-general-6"></a>
+<a id="community-general-7"></a>
 #### community\.general
 
 * community\.general\.bootc\_manage \- Bootc Switch and Upgrade\.
@@ -1228,7 +1391,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * purestorage\.flashblade\.purefb\_saml \- Manage FlashBlade SAML2 service and identity providers
 
-<a id="unchanged-collections-1"></a>
+<a id="unchanged-collections-2"></a>
 ### Unchanged Collections
 
 * ansible\.netcommon \(still version 7\.1\.0\)
@@ -1297,37 +1460,37 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="v11-0-0a2"></a>
 ## v11\.0\.0a2
 
-- <a href="#release-summary-2">Release Summary</a>
+- <a href="#release-summary-3">Release Summary</a>
 - <a href="#removed-collections">Removed Collections</a>
-- <a href="#ansible-core-4">Ansible\-core</a>
-- <a href="#changed-collections-2">Changed Collections</a>
+- <a href="#ansible-core-5">Ansible\-core</a>
+- <a href="#changed-collections-3">Changed Collections</a>
 - <a href="#major-changes-1">Major Changes</a>
     - <a href="#dellemc-openmanage-4">dellemc\.openmanage</a>
     - <a href="#fortinet-fortios">fortinet\.fortios</a>
     - <a href="#ieisystem-inmanage">ieisystem\.inmanage</a>
     - <a href="#kaytus-ksmanage">kaytus\.ksmanage</a>
 - <a href="#minor-changes-1">Minor Changes</a>
-    - <a href="#ansible-core-5">Ansible\-core</a>
+    - <a href="#ansible-core-6">Ansible\-core</a>
     - <a href="#chocolatey-chocolatey">chocolatey\.chocolatey</a>
     - <a href="#cisco-dnac-1">cisco\.dnac</a>
-    - <a href="#community-general-7">community\.general</a>
+    - <a href="#community-general-8">community\.general</a>
     - <a href="#community-postgresql">community\.postgresql</a>
     - <a href="#infoblox-nios-modules">infoblox\.nios\_modules</a>
     - <a href="#ngine-io-cloudstack">ngine\_io\.cloudstack</a>
 - <a href="#breaking-changes--porting-guide-1">Breaking Changes / Porting Guide</a>
     - <a href="#cloud-common">cloud\.common</a>
 - <a href="#deprecated-features-1">Deprecated Features</a>
-    - <a href="#community-general-8">community\.general</a>
+    - <a href="#community-general-9">community\.general</a>
     - <a href="#community-network">community\.network</a>
 - <a href="#removed-features-previously-deprecated-1">Removed Features \(previously deprecated\)</a>
-- <a href="#bugfixes-1">Bugfixes</a>
-    - <a href="#ansible-core-6">Ansible\-core</a>
+- <a href="#bugfixes-2">Bugfixes</a>
+    - <a href="#ansible-core-7">Ansible\-core</a>
     - <a href="#ansible-posix-1">ansible\.posix</a>
     - <a href="#chocolatey-chocolatey-1">chocolatey\.chocolatey</a>
     - <a href="#cloud-common-1">cloud\.common</a>
     - <a href="#community-crypto-1">community\.crypto</a>
-    - <a href="#community-dns-1">community\.dns</a>
-    - <a href="#community-general-9">community\.general</a>
+    - <a href="#community-dns-2">community\.dns</a>
+    - <a href="#community-general-10">community\.general</a>
     - <a href="#community-postgresql-1">community\.postgresql</a>
     - <a href="#community-sops-1">community\.sops</a>
     - <a href="#community-vmware-3">community\.vmware</a>
@@ -1342,14 +1505,14 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 - <a href="#known-issues-1">Known Issues</a>
     - <a href="#dellemc-openmanage-6">dellemc\.openmanage</a>
 - <a href="#new-modules-1">New Modules</a>
-    - <a href="#community-docker-4">community\.docker</a>
-    - <a href="#community-general-10">community\.general</a>
+    - <a href="#community-docker-5">community\.docker</a>
+    - <a href="#community-general-11">community\.general</a>
     - <a href="#ieisystem-inmanage-2">ieisystem\.inmanage</a>
     - <a href="#infoblox-nios-modules-2">infoblox\.nios\_modules</a>
     - <a href="#kaytus-ksmanage-2">kaytus\.ksmanage</a>
-- <a href="#unchanged-collections-2">Unchanged Collections</a>
+- <a href="#unchanged-collections-3">Unchanged Collections</a>
 
-<a id="release-summary-2"></a>
+<a id="release-summary-3"></a>
 ### Release Summary
 
 Release Date\: 2024\-10\-15
@@ -1361,7 +1524,7 @@ Release Date\: 2024\-10\-15
 
 * ngine\_io\.exoscale \(previously included version\: 1\.1\.0\)
 
-<a id="ansible-core-4"></a>
+<a id="ansible-core-5"></a>
 ### Ansible\-core
 
 Ansible 11\.0\.0a2 contains ansible\-core version 2\.18\.0rc1\.
@@ -1369,7 +1532,7 @@ This is a newer version than version 2\.18\.0b1 contained in the previous Ansibl
 
 The changes are reported in the combined changelog below\.
 
-<a id="changed-collections-2"></a>
+<a id="changed-collections-3"></a>
 ### Changed Collections
 
 If not mentioned explicitly\, the changes are reported in the combined changelog below\.
@@ -1430,7 +1593,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="minor-changes-1"></a>
 ### Minor Changes
 
-<a id="ansible-core-5"></a>
+<a id="ansible-core-6"></a>
 #### Ansible\-core
 
 * ansible\-test \- Default to Python 3\.13 in the <code>base</code> and <code>default</code> containers\.
@@ -1463,7 +1626,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * Setting dnac versions and compare for version based routing\.
 * Unit test automation for worflow\_manager modules\.
 
-<a id="community-general-7"></a>
+<a id="community-general-8"></a>
 #### community\.general
 
 * dig lookup plugin \- add <code>port</code> option to specify DNS server port \([https\://github\.com/ansible\-collections/community\.general/pull/8966](https\://github\.com/ansible\-collections/community\.general/pull/8966)\)\.
@@ -1553,7 +1716,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
   The collection has [unresolved sanity test failures](https\://github\.com/sensu/sensu\-go\-ansible/issues/362)\.
   See [Collections Removal Process for collections not satisfying the collection requirements](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#collections\-not\-satisfying\-the\-collection\-requirements) for more details\, including for how this can be cancelled \([https\://forum\.ansible\.com/t/8380](https\://forum\.ansible\.com/t/8380)\)\.
 
-<a id="community-general-8"></a>
+<a id="community-general-9"></a>
 #### community\.general
 
 * hipchat \- the hipchat service has been discontinued and the self\-hosted variant has been End of Life since 2020\. The module is therefore deprecated and will be removed from community\.general 11\.0\.0 if nobody provides compelling reasons to still keep it \([https\://github\.com/ansible\-collections/community\.general/pull/8919](https\://github\.com/ansible\-collections/community\.general/pull/8919)\)\.
@@ -1568,10 +1731,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * The deprecated <code>ngine\_io\.exoscale</code> collection has been removed \([https\://forum\.ansible\.com/t/2572](https\://forum\.ansible\.com/t/2572)\)\.
 
-<a id="bugfixes-1"></a>
+<a id="bugfixes-2"></a>
 ### Bugfixes
 
-<a id="ansible-core-6"></a>
+<a id="ansible-core-7"></a>
 #### Ansible\-core
 
 * Errors now preserve stacked error messages even when YAML is involved\.
@@ -1608,12 +1771,12 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * acme\_\* modules \- when querying renewal information\, make sure to insert a slash between the base URL and the certificate identifier \([https\://github\.com/ansible\-collections/community\.crypto/issues/801](https\://github\.com/ansible\-collections/community\.crypto/issues/801)\, [https\://github\.com/ansible\-collections/community\.crypto/pull/802](https\://github\.com/ansible\-collections/community\.crypto/pull/802)\)\.
 * various modules \- pass absolute paths to <code>module\.atomic\_move\(\)</code> \([https\://github\.com/ansible/ansible/issues/83950](https\://github\.com/ansible/ansible/issues/83950)\, [https\://github\.com/ansible\-collections/community\.crypto/pull/799](https\://github\.com/ansible\-collections/community\.crypto/pull/799)\)\.
 
-<a id="community-dns-1"></a>
+<a id="community-dns-2"></a>
 #### community\.dns
 
 * Update Public Suffix List\.
 
-<a id="community-general-9"></a>
+<a id="community-general-10"></a>
 #### community\.general
 
 * cloudflare\_dns \- fix changing Cloudflare SRV records \([https\://github\.com/ansible\-collections/community\.general/issues/8679](https\://github\.com/ansible\-collections/community\.general/issues/8679)\, [https\://github\.com/ansible\-collections/community\.general/pull/8948](https\://github\.com/ansible\-collections/community\.general/pull/8948)\)\.
@@ -1736,13 +1899,13 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="new-modules-1"></a>
 ### New Modules
 
-<a id="community-docker-4"></a>
+<a id="community-docker-5"></a>
 #### community\.docker
 
 * community\.docker\.docker\_compose\_v2\_exec \- Run command in a container of a Compose service\.
 * community\.docker\.docker\_compose\_v2\_run \- Run command in a new container of a Compose service\.
 
-<a id="community-general-10"></a>
+<a id="community-general-11"></a>
 #### community\.general
 
 * community\.general\.ipa\_getkeytab \- Manage keytab file in FreeIPA\.
@@ -1768,7 +1931,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * kaytus\.ksmanage\.edit\_system\_lock\_mode \- Set system lock mode information
 * kaytus\.ksmanage\.system\_lock\_mode\_info \- Get system lock mode information
 
-<a id="unchanged-collections-2"></a>
+<a id="unchanged-collections-3"></a>
 ### Unchanged Collections
 
 * amazon\.aws \(still version 8\.2\.1\)
@@ -1843,10 +2006,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="v11-0-0a1"></a>
 ## v11\.0\.0a1
 
-- <a href="#release-summary-3">Release Summary</a>
+- <a href="#release-summary-4">Release Summary</a>
 - <a href="#removed-collections-1">Removed Collections</a>
 - <a href="#added-collections-1">Added Collections</a>
-- <a href="#ansible-core-7">Ansible\-core</a>
+- <a href="#ansible-core-8">Ansible\-core</a>
 - <a href="#included-collections">Included Collections</a>
 - <a href="#major-changes-2">Major Changes</a>
     - <a href="#ansible-netcommon">ansible\.netcommon</a>
@@ -1868,7 +2031,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#splunk-es">splunk\.es</a>
     - <a href="#vyos-vyos">vyos\.vyos</a>
 - <a href="#minor-changes-2">Minor Changes</a>
-    - <a href="#ansible-core-8">Ansible\-core</a>
+    - <a href="#ansible-core-9">Ansible\-core</a>
     - <a href="#amazon-aws-6">amazon\.aws</a>
     - <a href="#ansible-netcommon-1">ansible\.netcommon</a>
     - <a href="#ansible-posix-3">ansible\.posix</a>
@@ -1882,8 +2045,8 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#cisco-nxos-1">cisco\.nxos</a>
     - <a href="#cloudscale-ch-cloud">cloudscale\_ch\.cloud</a>
     - <a href="#community-crypto-2">community\.crypto</a>
-    - <a href="#community-docker-5">community\.docker</a>
-    - <a href="#community-general-11">community\.general</a>
+    - <a href="#community-docker-6">community\.docker</a>
+    - <a href="#community-general-12">community\.general</a>
     - <a href="#community-grafana">community\.grafana</a>
     - <a href="#community-mysql">community\.mysql</a>
     - <a href="#community-okd">community\.okd</a>
@@ -1916,7 +2079,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#vultr-cloud">vultr\.cloud</a>
     - <a href="#vyos-vyos-1">vyos\.vyos</a>
 - <a href="#breaking-changes--porting-guide-2">Breaking Changes / Porting Guide</a>
-    - <a href="#ansible-core-9">Ansible\-core</a>
+    - <a href="#ansible-core-10">Ansible\-core</a>
     - <a href="#community-mysql-1">community\.mysql</a>
     - <a href="#community-vmware-6">community\.vmware</a>
     - <a href="#community-zabbix-2">community\.zabbix</a>
@@ -1924,22 +2087,22 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#kubernetes-core-1">kubernetes\.core</a>
     - <a href="#vmware-vmware-rest-3">vmware\.vmware\_rest</a>
 - <a href="#deprecated-features-2">Deprecated Features</a>
-    - <a href="#ansible-core-10">Ansible\-core</a>
+    - <a href="#ansible-core-11">Ansible\-core</a>
     - <a href="#amazon-aws-7">amazon\.aws</a>
     - <a href="#cisco-ios-3">cisco\.ios</a>
-    - <a href="#community-docker-6">community\.docker</a>
-    - <a href="#community-general-12">community\.general</a>
+    - <a href="#community-docker-7">community\.docker</a>
+    - <a href="#community-general-13">community\.general</a>
     - <a href="#community-grafana-1">community\.grafana</a>
     - <a href="#community-routeros-4">community\.routeros</a>
     - <a href="#community-sops-3">community\.sops</a>
     - <a href="#community-vmware-7">community\.vmware</a>
 - <a href="#removed-features-previously-deprecated-2">Removed Features \(previously deprecated\)</a>
-    - <a href="#ansible-core-11">Ansible\-core</a>
+    - <a href="#ansible-core-12">Ansible\-core</a>
     - <a href="#community-grafana-2">community\.grafana</a>
     - <a href="#community-okd-1">community\.okd</a>
     - <a href="#kubernetes-core-2">kubernetes\.core</a>
-- <a href="#bugfixes-2">Bugfixes</a>
-    - <a href="#ansible-core-12">Ansible\-core</a>
+- <a href="#bugfixes-3">Bugfixes</a>
+    - <a href="#ansible-core-13">Ansible\-core</a>
     - <a href="#amazon-aws-8">amazon\.aws</a>
     - <a href="#ansible-netcommon-2">ansible\.netcommon</a>
     - <a href="#ansible-posix-4">ansible\.posix</a>
@@ -1952,9 +2115,9 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#cisco-mso-1">cisco\.mso</a>
     - <a href="#cisco-nxos-2">cisco\.nxos</a>
     - <a href="#community-crypto-3">community\.crypto</a>
-    - <a href="#community-dns-2">community\.dns</a>
-    - <a href="#community-docker-7">community\.docker</a>
-    - <a href="#community-general-13">community\.general</a>
+    - <a href="#community-dns-3">community\.dns</a>
+    - <a href="#community-docker-8">community\.docker</a>
+    - <a href="#community-general-14">community\.general</a>
     - <a href="#community-grafana-3">community\.grafana</a>
     - <a href="#community-hrobot">community\.hrobot</a>
     - <a href="#community-mysql-2">community\.mysql</a>
@@ -1988,16 +2151,16 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#theforeman-foreman-1">theforeman\.foreman</a>
     - <a href="#vmware-vmware-rest-4">vmware\.vmware\_rest</a>
 - <a href="#known-issues-2">Known Issues</a>
-    - <a href="#ansible-core-13">Ansible\-core</a>
+    - <a href="#ansible-core-14">Ansible\-core</a>
     - <a href="#ansible-netcommon-3">ansible\.netcommon</a>
-    - <a href="#community-docker-8">community\.docker</a>
+    - <a href="#community-docker-9">community\.docker</a>
     - <a href="#dellemc-openmanage-10">dellemc\.openmanage</a>
 - <a href="#new-plugins-1">New Plugins</a>
     - <a href="#test-1">Test</a>
 - <a href="#new-modules-2">New Modules</a>
-    - <a href="#ansible-core-14">Ansible\-core</a>
+    - <a href="#ansible-core-15">Ansible\-core</a>
     - <a href="#check-point-mgmt-2">check\_point\.mgmt</a>
-    - <a href="#community-general-14">community\.general</a>
+    - <a href="#community-general-15">community\.general</a>
     - <a href="#community-grafana-4">community\.grafana</a>
     - <a href="#community-zabbix-4">community\.zabbix</a>
     - <a href="#containers-podman-5">containers\.podman</a>
@@ -2008,9 +2171,9 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#netbox-netbox-2">netbox\.netbox</a>
     - <a href="#purestorage-flasharray-2">purestorage\.flasharray</a>
     - <a href="#theforeman-foreman-2">theforeman\.foreman</a>
-- <a href="#unchanged-collections-3">Unchanged Collections</a>
+- <a href="#unchanged-collections-4">Unchanged Collections</a>
 
-<a id="release-summary-3"></a>
+<a id="release-summary-4"></a>
 ### Release Summary
 
 Release Date\: 2024\-09\-25
@@ -2033,7 +2196,7 @@ Release Date\: 2024\-09\-25
 * kubevirt\.core \(version 2\.1\.0\)
 * vmware\.vmware \(version 1\.5\.0\)
 
-<a id="ansible-core-7"></a>
+<a id="ansible-core-8"></a>
 ### Ansible\-core
 
 Ansible 11\.0\.0a1 contains ansible\-core version 2\.18\.0b1\.
@@ -2046,80 +2209,80 @@ The changes are reported in the combined changelog below\.
 
 If not mentioned explicitly\, the changes are reported in the combined changelog below\.
 
-| Collection               | Ansible 10.0.0 | Ansible 11.0.0a1 | Notes                                                                                                                                                                                                        |
-| ------------------------ | -------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| amazon.aws               | 8.0.0          | 8.2.1            |                                                                                                                                                                                                              |
-| ansible.netcommon        | 6.1.2          | 7.1.0            |                                                                                                                                                                                                              |
-| ansible.posix            | 1.5.4          | 1.6.0            |                                                                                                                                                                                                              |
-| ansible.windows          | 2.3.0          | 2.5.0            |                                                                                                                                                                                                              |
-| arista.eos               | 9.0.0          | 10.0.0           |                                                                                                                                                                                                              |
-| awx.awx                  | 24.3.1         | 24.6.1           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                 |
-| azure.azcollection       | 2.3.0          | 2.7.0            | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                 |
-| check_point.mgmt         | 5.2.3          | 6.2.1            |                                                                                                                                                                                                              |
-| cisco.aci                | 2.9.0          | 2.10.1           |                                                                                                                                                                                                              |
-| cisco.asa                | 5.0.1          | 6.0.0            |                                                                                                                                                                                                              |
-| cisco.dnac               | 6.13.3         | 6.18.0           |                                                                                                                                                                                                              |
-| cisco.intersight         | 2.0.9          | 2.0.18           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                 |
-| cisco.ios                | 8.0.0          | 9.0.2            |                                                                                                                                                                                                              |
-| cisco.iosxr              | 9.0.0          | 10.1.0           |                                                                                                                                                                                                              |
-| cisco.ise                | 2.9.1          | 2.9.3            |                                                                                                                                                                                                              |
-| cisco.meraki             | 2.18.1         | 2.18.2           |                                                                                                                                                                                                              |
-| cisco.mso                | 2.6.0          | 2.9.0            |                                                                                                                                                                                                              |
-| cisco.nxos               | 8.0.0          | 9.2.1            |                                                                                                                                                                                                              |
-| cisco.ucs                | 1.10.0         | 1.14.0           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                 |
-| cloudscale_ch.cloud      | 2.3.1          | 2.4.0            |                                                                                                                                                                                                              |
-| community.crypto         | 2.20.0         | 2.22.0           |                                                                                                                                                                                                              |
-| community.digitalocean   | 1.26.0         | 1.27.0           | There are no changes recorded in the changelog.                                                                                                                                                              |
-| community.dns            | 3.0.0          | 3.0.4            |                                                                                                                                                                                                              |
-| community.docker         | 3.10.3         | 3.12.2           |                                                                                                                                                                                                              |
-| community.general        | 9.0.1          | 9.4.0            |                                                                                                                                                                                                              |
-| community.grafana        | 1.9.1          | 2.1.0            |                                                                                                                                                                                                              |
-| community.hrobot         | 2.0.0          | 2.0.1            |                                                                                                                                                                                                              |
-| community.mongodb        | 1.7.4          | 1.7.6            | There are no changes recorded in the changelog.                                                                                                                                                              |
-| community.mysql          | 3.9.0          | 3.10.3           |                                                                                                                                                                                                              |
-| community.network        | 5.0.2          | 5.0.3            |                                                                                                                                                                                                              |
-| community.okd            | 3.0.1          | 4.0.0            |                                                                                                                                                                                                              |
-| community.postgresql     | 3.4.1          | 3.6.1            |                                                                                                                                                                                                              |
-| community.proxysql       | 1.5.1          | 1.6.0            |                                                                                                                                                                                                              |
-| community.routeros       | 2.15.0         | 2.19.0           |                                                                                                                                                                                                              |
-| community.sops           | 1.6.7          | 1.9.0            |                                                                                                                                                                                                              |
-| community.vmware         | 4.4.0          | 5.0.0            |                                                                                                                                                                                                              |
-| community.windows        | 2.2.0          | 2.3.0            |                                                                                                                                                                                                              |
-| community.zabbix         | 2.4.0          | 3.1.2            |                                                                                                                                                                                                              |
-| containers.podman        | 1.13.0         | 1.16.0           |                                                                                                                                                                                                              |
-| cyberark.conjur          | 1.2.2          | 1.3.0            | You can find the collection's changelog at [https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md](https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md). |
-| cyberark.pas             | 1.0.25         | 1.0.27           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                 |
-| dellemc.enterprise_sonic | 2.4.0          | 2.5.1            |                                                                                                                                                                                                              |
-| dellemc.openmanage       | 9.2.0          | 9.6.0            |                                                                                                                                                                                                              |
-| dellemc.powerflex        | 2.4.0          | 2.5.0            |                                                                                                                                                                                                              |
-| f5networks.f5_modules    | 1.28.0         | 1.31.0           |                                                                                                                                                                                                              |
-| fortinet.fortimanager    | 2.5.0          | 2.7.0            |                                                                                                                                                                                                              |
-| fortinet.fortios         | 2.3.6          | 2.3.7            |                                                                                                                                                                                                              |
-| google.cloud             | 1.3.0          | 1.4.1            |                                                                                                                                                                                                              |
-| grafana.grafana          | 5.2.0          | 5.5.1            |                                                                                                                                                                                                              |
-| hetzner.hcloud           | 3.1.1          | 4.2.1            |                                                                                                                                                                                                              |
-| ibm.qradar               | 3.0.0          | 4.0.0            |                                                                                                                                                                                                              |
-| ibm.storage_virtualize   | 2.3.1          | 2.5.0            |                                                                                                                                                                                                              |
-| ieisystem.inmanage       |                | 2.0.0            | The collection was added to Ansible                                                                                                                                                                          |
-| inspur.ispim             | 2.2.1          | 2.2.3            |                                                                                                                                                                                                              |
-| junipernetworks.junos    | 8.0.0          | 9.1.0            |                                                                                                                                                                                                              |
-| kaytus.ksmanage          | 1.2.1          | 1.2.2            |                                                                                                                                                                                                              |
-| kubernetes.core          | 3.1.0          | 5.0.0            |                                                                                                                                                                                                              |
-| kubevirt.core            |                | 2.1.0            | The collection was added to Ansible                                                                                                                                                                          |
-| lowlydba.sqlserver       | 2.3.2          | 2.3.3            |                                                                                                                                                                                                              |
-| microsoft.ad             | 1.5.0          | 1.7.1            |                                                                                                                                                                                                              |
-| netapp.ontap             | 22.11.0        | 22.12.0          |                                                                                                                                                                                                              |
-| netbox.netbox            | 3.18.0         | 3.20.0           |                                                                                                                                                                                                              |
-| ngine_io.cloudstack      | 2.3.0          | 2.4.1            |                                                                                                                                                                                                              |
-| purestorage.flasharray   | 1.28.0         | 1.31.1           |                                                                                                                                                                                                              |
-| purestorage.flashblade   | 1.17.0         | 1.18.0           |                                                                                                                                                                                                              |
-| splunk.es                | 3.0.0          | 4.0.0            |                                                                                                                                                                                                              |
-| theforeman.foreman       | 4.0.0          | 4.2.0            |                                                                                                                                                                                                              |
-| vmware.vmware            |                | 1.5.0            | The collection was added to Ansible                                                                                                                                                                          |
-| vmware.vmware_rest       | 3.0.1          | 4.1.0            |                                                                                                                                                                                                              |
-| vultr.cloud              | 1.12.1         | 1.13.0           |                                                                                                                                                                                                              |
-| vyos.vyos                | 4.1.0          | 5.0.0            |                                                                                                                                                                                                              |
-| wti.remote               | 1.0.5          | 1.0.10           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                 |
+| Collection               | Ansible 10.0.0 | Ansible 11.0.0a1 | Notes                                                                                                                                                                                                         |
+| ------------------------ | -------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| amazon.aws               | 8.0.0          | 8.2.1            |                                                                                                                                                                                                               |
+| ansible.netcommon        | 6.1.2          | 7.1.0            |                                                                                                                                                                                                               |
+| ansible.posix            | 1.5.4          | 1.6.0            |                                                                                                                                                                                                               |
+| ansible.windows          | 2.3.0          | 2.5.0            |                                                                                                                                                                                                               |
+| arista.eos               | 9.0.0          | 10.0.0           |                                                                                                                                                                                                               |
+| awx.awx                  | 24.3.1         | 24.6.1           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                  |
+| azure.azcollection       | 2.3.0          | 2.7.0            | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                  |
+| check_point.mgmt         | 5.2.3          | 6.2.1            |                                                                                                                                                                                                               |
+| cisco.aci                | 2.9.0          | 2.10.1           |                                                                                                                                                                                                               |
+| cisco.asa                | 5.0.1          | 6.0.0            |                                                                                                                                                                                                               |
+| cisco.dnac               | 6.13.3         | 6.18.0           |                                                                                                                                                                                                               |
+| cisco.intersight         | 2.0.9          | 2.0.18           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                  |
+| cisco.ios                | 8.0.0          | 9.0.2            |                                                                                                                                                                                                               |
+| cisco.iosxr              | 9.0.0          | 10.1.0           |                                                                                                                                                                                                               |
+| cisco.ise                | 2.9.1          | 2.9.3            |                                                                                                                                                                                                               |
+| cisco.meraki             | 2.18.1         | 2.18.2           |                                                                                                                                                                                                               |
+| cisco.mso                | 2.6.0          | 2.9.0            |                                                                                                                                                                                                               |
+| cisco.nxos               | 8.0.0          | 9.2.1            |                                                                                                                                                                                                               |
+| cisco.ucs                | 1.10.0         | 1.14.0           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                  |
+| cloudscale_ch.cloud      | 2.3.1          | 2.4.0            |                                                                                                                                                                                                               |
+| community.crypto         | 2.20.0         | 2.22.0           |                                                                                                                                                                                                               |
+| community.digitalocean   | 1.26.0         | 1.27.0           | There are no changes recorded in the changelog.                                                                                                                                                               |
+| community.dns            | 3.0.0          | 3.0.4            |                                                                                                                                                                                                               |
+| community.docker         | 3.10.3         | 3.12.2           |                                                                                                                                                                                                               |
+| community.general        | 9.0.1          | 9.4.0            |                                                                                                                                                                                                               |
+| community.grafana        | 1.9.1          | 2.1.0            |                                                                                                                                                                                                               |
+| community.hrobot         | 2.0.0          | 2.0.1            |                                                                                                                                                                                                               |
+| community.mongodb        | 1.7.4          | 1.7.6            | There are no changes recorded in the changelog.                                                                                                                                                               |
+| community.mysql          | 3.9.0          | 3.10.3           |                                                                                                                                                                                                               |
+| community.network        | 5.0.2          | 5.0.3            |                                                                                                                                                                                                               |
+| community.okd            | 3.0.1          | 4.0.0            |                                                                                                                                                                                                               |
+| community.postgresql     | 3.4.1          | 3.6.1            |                                                                                                                                                                                                               |
+| community.proxysql       | 1.5.1          | 1.6.0            |                                                                                                                                                                                                               |
+| community.routeros       | 2.15.0         | 2.19.0           |                                                                                                                                                                                                               |
+| community.sops           | 1.6.7          | 1.9.0            |                                                                                                                                                                                                               |
+| community.vmware         | 4.4.0          | 5.0.0            |                                                                                                                                                                                                               |
+| community.windows        | 2.2.0          | 2.3.0            |                                                                                                                                                                                                               |
+| community.zabbix         | 2.4.0          | 3.1.2            |                                                                                                                                                                                                               |
+| containers.podman        | 1.13.0         | 1.16.0           |                                                                                                                                                                                                               |
+| cyberark.conjur          | 1.2.2          | 1.3.0            | You can find the collection's changelog at `[https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md](https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md). |
+| cyberark.pas             | 1.0.25         | 1.0.27           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                  |
+| dellemc.enterprise_sonic | 2.4.0          | 2.5.1            |                                                                                                                                                                                                               |
+| dellemc.openmanage       | 9.2.0          | 9.6.0            |                                                                                                                                                                                                               |
+| dellemc.powerflex        | 2.4.0          | 2.5.0            |                                                                                                                                                                                                               |
+| f5networks.f5_modules    | 1.28.0         | 1.31.0           |                                                                                                                                                                                                               |
+| fortinet.fortimanager    | 2.5.0          | 2.7.0            |                                                                                                                                                                                                               |
+| fortinet.fortios         | 2.3.6          | 2.3.7            |                                                                                                                                                                                                               |
+| google.cloud             | 1.3.0          | 1.4.1            |                                                                                                                                                                                                               |
+| grafana.grafana          | 5.2.0          | 5.5.1            |                                                                                                                                                                                                               |
+| hetzner.hcloud           | 3.1.1          | 4.2.1            |                                                                                                                                                                                                               |
+| ibm.qradar               | 3.0.0          | 4.0.0            |                                                                                                                                                                                                               |
+| ibm.storage_virtualize   | 2.3.1          | 2.5.0            |                                                                                                                                                                                                               |
+| ieisystem.inmanage       |                | 2.0.0            | The collection was added to Ansible                                                                                                                                                                           |
+| inspur.ispim             | 2.2.1          | 2.2.3            |                                                                                                                                                                                                               |
+| junipernetworks.junos    | 8.0.0          | 9.1.0            |                                                                                                                                                                                                               |
+| kaytus.ksmanage          | 1.2.1          | 1.2.2            |                                                                                                                                                                                                               |
+| kubernetes.core          | 3.1.0          | 5.0.0            |                                                                                                                                                                                                               |
+| kubevirt.core            |                | 2.1.0            | The collection was added to Ansible                                                                                                                                                                           |
+| lowlydba.sqlserver       | 2.3.2          | 2.3.3            |                                                                                                                                                                                                               |
+| microsoft.ad             | 1.5.0          | 1.7.1            |                                                                                                                                                                                                               |
+| netapp.ontap             | 22.11.0        | 22.12.0          |                                                                                                                                                                                                               |
+| netbox.netbox            | 3.18.0         | 3.20.0           |                                                                                                                                                                                                               |
+| ngine_io.cloudstack      | 2.3.0          | 2.4.1            |                                                                                                                                                                                                               |
+| purestorage.flasharray   | 1.28.0         | 1.31.1           |                                                                                                                                                                                                               |
+| purestorage.flashblade   | 1.17.0         | 1.18.0           |                                                                                                                                                                                                               |
+| splunk.es                | 3.0.0          | 4.0.0            |                                                                                                                                                                                                               |
+| theforeman.foreman       | 4.0.0          | 4.2.0            |                                                                                                                                                                                                               |
+| vmware.vmware            |                | 1.5.0            | The collection was added to Ansible                                                                                                                                                                           |
+| vmware.vmware_rest       | 3.0.1          | 4.1.0            |                                                                                                                                                                                                               |
+| vultr.cloud              | 1.12.1         | 1.13.0           |                                                                                                                                                                                                               |
+| vyos.vyos                | 4.1.0          | 5.0.0            |                                                                                                                                                                                                               |
+| wti.remote               | 1.0.5          | 1.0.10           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                  |
 
 <a id="major-changes-2"></a>
 ### Major Changes
@@ -2247,7 +2410,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="minor-changes-2"></a>
 ### Minor Changes
 
-<a id="ansible-core-8"></a>
+<a id="ansible-core-9"></a>
 #### Ansible\-core
 
 * Add <code>gid\_min</code>\, <code>gid\_max</code> to the group plugin to overwrite the defaults provided by the <code>/etc/login\.defs</code> file \([https\://github\.com/ansible/ansible/pull/81770](https\://github\.com/ansible/ansible/pull/81770)\)\.
@@ -2495,7 +2658,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * get\_certificate \- allow to obtain the certificate chain sent by the server\, and the one used for validation\, with the new <code>get\_certificate\_chain</code> option\. Note that this option only works if the module is run with Python 3\.10 or newer \([https\://github\.com/ansible\-collections/community\.crypto/issues/568](https\://github\.com/ansible\-collections/community\.crypto/issues/568)\, [https\://github\.com/ansible\-collections/community\.crypto/pull/784](https\://github\.com/ansible\-collections/community\.crypto/pull/784)\)\.
 * openssl\_privatekey\, openssl\_privatekey\_pipe \- add default value <code>auto</code> for <code>cipher</code> option\, which happens to be the only supported value for this option anyway\. Therefore it is no longer necessary to specify <code>cipher\=auto</code> when providing <code>passphrase</code> \([https\://github\.com/ansible\-collections/community\.crypto/issues/793](https\://github\.com/ansible\-collections/community\.crypto/issues/793)\, [https\://github\.com/ansible\-collections/community\.crypto/pull/794](https\://github\.com/ansible\-collections/community\.crypto/pull/794)\)\.
 
-<a id="community-docker-5"></a>
+<a id="community-docker-6"></a>
 #### community\.docker
 
 * docker\, docker\_api connection plugins \- allow to determine the working directory when executing commands with the new <code>working\_dir</code> option \([https\://github\.com/ansible\-collections/community\.docker/pull/943](https\://github\.com/ansible\-collections/community\.docker/pull/943)\)\.
@@ -2507,7 +2670,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * docker\_container \- the new <code>state\=healthy</code> allows to wait for a container to become healthy on startup\. The <code>healthy\_wait\_timeout</code> option allows to configure the maximum time to wait for this to happen \([https\://github\.com/ansible\-collections/community\.docker/issues/890](https\://github\.com/ansible\-collections/community\.docker/issues/890)\, [https\://github\.com/ansible\-collections/community\.docker/pull/921](https\://github\.com/ansible\-collections/community\.docker/pull/921)\)\.
 * docker\_container \- when creating a container\, directly pass all networks to connect to to the Docker Daemon for API version 1\.44 and newer\. This makes creation more efficient and works around a bug in Docker Daemon that does not use the specified MAC address in at least some cases\, though only for creation \([https\://github\.com/ansible\-collections/community\.docker/pull/933](https\://github\.com/ansible\-collections/community\.docker/pull/933)\)\.
 
-<a id="community-general-11"></a>
+<a id="community-general-12"></a>
 #### community\.general
 
 * MH module utils \- add parameter <code>when</code> to <code>cause\_changes</code> decorator \([https\://github\.com/ansible\-collections/community\.general/pull/8766](https\://github\.com/ansible\-collections/community\.general/pull/8766)\)\.
@@ -3011,7 +3174,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="breaking-changes--porting-guide-2"></a>
 ### Breaking Changes / Porting Guide
 
-<a id="ansible-core-9"></a>
+<a id="ansible-core-10"></a>
 #### Ansible\-core
 
 * Stopped wrapping all commands sent over SSH on a Windows target with a <code>powershell\.exe</code> executable\. This results in one less process being started on each command for Windows to improve efficiency\, simplify the code\, and make <code>raw</code> an actual raw command run with the default shell configured on the Windows sshd settings\. This should have no affect on most tasks except for <code>raw</code> which now is not guaranteed to always be running in a PowerShell shell and from having the console output codepage set to UTF\-8\. To avoid this issue either swap to using <code>ansible\.windows\.win\_command</code>\, <code>ansible\.windows\.win\_shell</code>\, <code>ansible\.windows\.win\_powershell</code> or manually wrap the raw command with the shell commands needed to set the output console encoding\.
@@ -3069,7 +3232,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="deprecated-features-2"></a>
 ### Deprecated Features
 
-<a id="ansible-core-10"></a>
+<a id="ansible-core-11"></a>
 #### Ansible\-core
 
 * Deprecate <code>ansible\.module\_utils\.basic\.AnsibleModule\.safe\_eval</code> and <code>ansible\.module\_utils\.common\.safe\_eval</code> as they are no longer used\.
@@ -3090,12 +3253,12 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * ios\_linkagg \- deprecate legacy module ios\_linkagg
 * ios\_lldp \- deprecate legacy module ios\_lldp
 
-<a id="community-docker-6"></a>
+<a id="community-docker-7"></a>
 #### community\.docker
 
 * The collection deprecates support for all ansible\-core versions that are currently End of Life\, [according to the ansible\-core support matrix](https\://docs\.ansible\.com/ansible\-core/devel/reference\_appendices/release\_and\_maintenance\.html\#ansible\-core\-support\-matrix)\. This means that the next major release of the collection will no longer support ansible\-core 2\.11\, ansible\-core 2\.12\, ansible\-core 2\.13\, and ansible\-core 2\.14\.
 
-<a id="community-general-12"></a>
+<a id="community-general-13"></a>
 #### community\.general
 
 * MH decorator cause\_changes module utils \- deprecate parameters <code>on\_success</code> and <code>on\_failure</code> \([https\://github\.com/ansible\-collections/community\.general/pull/8791](https\://github\.com/ansible\-collections/community\.general/pull/8791)\)\.
@@ -3136,7 +3299,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * The deprecated <code>frr\.frr</code> collection has been removed \([https\://forum\.ansible\.com/t/6243](https\://forum\.ansible\.com/t/6243)\)\.
 * The deprecated <code>openvswitch\.openvswitch</code> collection has been removed \([https\://forum\.ansible\.com/t/6245](https\://forum\.ansible\.com/t/6245)\)\.
 
-<a id="ansible-core-11"></a>
+<a id="ansible-core-12"></a>
 #### Ansible\-core
 
 * Play \- removed deprecated <code>ROLE\_CACHE</code> property in favor of <code>role\_cache</code>\.
@@ -3171,10 +3334,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * module\_utils/common\.py \- the previously deprecated <code>get\_api\_client\(\)</code> function has been removed \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/726](https\://github\.com/ansible\-collections/kubernetes\.core/pull/726)\)\.
 * module\_utils/common\.py \- the previously deprecated <code>unique\_string\(\)</code> function has been removed \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/726](https\://github\.com/ansible\-collections/kubernetes\.core/pull/726)\)\.
 
-<a id="bugfixes-2"></a>
+<a id="bugfixes-3"></a>
 ### Bugfixes
 
-<a id="ansible-core-12"></a>
+<a id="ansible-core-13"></a>
 #### Ansible\-core
 
 * \-\> runas become \- Generate new token for the SYSTEM token to use for become\. This should result in the full SYSTEM token being used and problems starting the process that fails with <code>The process creation has been blocked</code>\.
@@ -3403,12 +3566,12 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * When using cryptography \>\= 43\.0\.0\, use offset\-aware <code>datetime\.datetime</code> objects \(with timezone UTC\) instead of offset\-naive UTC timestamps for the <code>InvalidityDate</code> X\.509 CRL extension \([https\://github\.com/ansible\-collections/community\.crypto/issues/726](https\://github\.com/ansible\-collections/community\.crypto/issues/726)\, [https\://github\.com/ansible\-collections/community\.crypto/pull/730](https\://github\.com/ansible\-collections/community\.crypto/pull/730)\)\.
 
-<a id="community-dns-2"></a>
+<a id="community-dns-3"></a>
 #### community\.dns
 
 * Update Public Suffix List\.
 
-<a id="community-docker-7"></a>
+<a id="community-docker-8"></a>
 #### community\.docker
 
 * docker\_compose \- make sure that the module uses the <code>api\_version</code> parameter \([https\://github\.com/ansible\-collections/community\.docker/pull/881](https\://github\.com/ansible\-collections/community\.docker/pull/881)\)\.
@@ -3425,7 +3588,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * docker\_prune \- fix handling of lists for the filter options \([https\://github\.com/ansible\-collections/community\.docker/issues/961](https\://github\.com/ansible\-collections/community\.docker/issues/961)\, [https\://github\.com/ansible\-collections/community\.docker/pull/966](https\://github\.com/ansible\-collections/community\.docker/pull/966)\)\.
 * vendored Docker SDK for Python \- use <code>LooseVersion</code> instead of <code>StrictVersion</code> to compare urllib3 versions\. This is needed for development versions \([https\://github\.com/ansible\-collections/community\.docker/pull/902](https\://github\.com/ansible\-collections/community\.docker/pull/902)\)\.
 
-<a id="community-general-13"></a>
+<a id="community-general-14"></a>
 #### community\.general
 
 * gitlab\_group\_access\_token \- fix crash in check mode caused by attempted access to a newly created access token \([https\://github\.com/ansible\-collections/community\.general/pull/8796](https\://github\.com/ansible\-collections/community\.general/pull/8796)\)\.
@@ -3756,7 +3919,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="known-issues-2"></a>
 ### Known Issues
 
-<a id="ansible-core-13"></a>
+<a id="ansible-core-14"></a>
 #### Ansible\-core
 
 * ansible\-test \- When using ansible\-test containers with Podman on a Ubuntu 24\.04 host\, ansible\-test must be run as a non\-root user to avoid permission issues caused by AppArmor\.
@@ -3767,7 +3930,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * libssh \- net\_put and net\_get fail when the destination file intended to be fetched is not present\.
 
-<a id="community-docker-8"></a>
+<a id="community-docker-9"></a>
 #### community\.docker
 
 * docker\_container \- when specifying a MAC address for a container\'s network\, and the network is attached after container creation \(for example\, due to idempotency checks\)\, the MAC address is at least in some cases ignored by the Docker Daemon \([https\://github\.com/ansible\-collections/community\.docker/pull/933](https\://github\.com/ansible\-collections/community\.docker/pull/933)\)\.
@@ -3794,7 +3957,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="new-modules-2"></a>
 ### New Modules
 
-<a id="ansible-core-14"></a>
+<a id="ansible-core-15"></a>
 #### Ansible\-core
 
 <a id="lib"></a>
@@ -3888,7 +4051,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * check\_point\.mgmt\.cp\_mgmt\_verify\_management\_license \- Check how many Security Gateway objects the Management Server license supports\.
 * check\_point\.mgmt\.cp\_mgmt\_vsx\_provisioning\_tool \- Run the VSX provisioning tool with the specified parameters\.
 
-<a id="community-general-14"></a>
+<a id="community-general-15"></a>
 #### community\.general
 
 * community\.general\.keycloak\_userprofile \- Allows managing Keycloak User Profiles\.
@@ -3985,7 +4148,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * theforeman\.foreman\.content\_import\_repository \- Manage repository content imports
 * theforeman\.foreman\.content\_import\_version \- Manage content view version content imports
 
-<a id="unchanged-collections-3"></a>
+<a id="unchanged-collections-4"></a>
 ### Unchanged Collections
 
 * ansible\.utils \(still version 4\.1\.0\)
