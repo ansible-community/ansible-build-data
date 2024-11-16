@@ -30,4 +30,4 @@ nav:
   - Automated Ansible Release Process: automated-process.md
   - Manual Ansible Release Process: release-process.md
   - policies.md
-  - new-ansible-and-freezes.md
+  - new-ansible.md
