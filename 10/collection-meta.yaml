@@ -328,6 +328,9 @@ collections:
       reason: considered-unmaintained
       discussion: https://forum.ansible.com/t/2811
       announce_version: 10.0.0a1
+      updates:
+        - cancelled_version: 10.7.0
+          reason_text: Maintenance of the collection has been taken over by another team at NetApp.
   netapp_eseries.santricity:
     repository: https://github.com/netapp-eseries/santricity
   netbox.netbox:

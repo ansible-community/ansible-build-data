@@ -199,6 +199,12 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 | netapp.storagegrid |                  | 21.13.0          | The collection was added to Ansible |
 +--------------------+------------------+------------------+-------------------------------------+
 
+Major Changes
+-------------
+
+- The previously removed collection netapp.storagegrid was re-added to Ansible 11 (`https://forum.ansible.com/t/2811 <https://forum.ansible.com/t/2811>`__).
+  Maintenance of the collection has been taken over by another team at NetApp.
+
 Unchanged Collections
 ---------------------
 
@@ -3082,6 +3088,8 @@ Removed Features (previously deprecated)
 
 - The ``inspur.sm`` collection was considered unmaintained and has been removed from Ansible 11 (`https://forum.ansible.com/t/2854 <https://forum.ansible.com/t/2854>`__).
   Users can still install this collection with ``ansible-galaxy collection install inspur.sm``.
+- The ``netapp.storagegrid`` collection was considered unmaintained and has been removed from Ansible 11 (`https://forum.ansible.com/t/2811 <https://forum.ansible.com/t/2811>`__).
+  Users can still install this collection with ``ansible-galaxy collection install netapp.storagegrid``.
 - The collection ``t_systems_mms.icinga_director`` has been completely removed from Ansible.
   It has been renamed to ``telekom_mms.icinga_director``.
   ``t_systems_mms.icinga_director`` has been replaced by deprecated redirects to ``telekom_mms.icinga_director`` in Ansible 9.0.0.
