@@ -8373,7 +8373,7 @@ Deprecated Features
 - The collection ``ibm.spectrum_virtualize`` was renamed to ``ibm.storage_virtualize``.
   For now both collections are included in Ansible.
   The content in ``ibm.spectrum_virtualize`` will be replaced by deprecated redirects in Ansible 10.0.0.
-  The collection will be completely removed from Ansible eventually.
+  The collection will be completely removed from Ansible 12.
   Please update your FQCNs from ``ibm.spectrum_virtualize`` to ``ibm.storage_virtualize``.
 - The collection ``t_systems_mms.icinga_director`` was renamed to ``telekom_mms.icinga_director``.
   For now both collections are included in Ansible.

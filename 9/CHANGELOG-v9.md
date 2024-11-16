@@ -8929,7 +8929,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * The collection <code>ibm\.spectrum\_virtualize</code> was renamed to <code>ibm\.storage\_virtualize</code>\.
   For now both collections are included in Ansible\.
   The content in <code>ibm\.spectrum\_virtualize</code> will be replaced by deprecated redirects in Ansible 10\.0\.0\.
-  The collection will be completely removed from Ansible eventually\.
+  The collection will be completely removed from Ansible 12\.
   Please update your FQCNs from <code>ibm\.spectrum\_virtualize</code> to <code>ibm\.storage\_virtualize</code>\.
 * The collection <code>t\_systems\_mms\.icinga\_director</code> was renamed to <code>telekom\_mms\.icinga\_director</code>\.
   For now both collections are included in Ansible\.
