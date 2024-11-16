@@ -213,14 +213,6 @@ collections:
     repository: https://github.com/ansible-collections/hetzner.hcloud
   ibm.qradar:
     repository: https://github.com/ansible-collections/ibm.qradar
-  ibm.spectrum_virtualize:
-    maintainers:
-      - Shilpi-J
-    repository: https://github.com/ansible-collections/ibm.spectrum_virtualize
-    removal:
-      major_version: TBD
-      reason: renamed
-      new_name: ibm.storage_virtualize
   ibm.storage_virtualize:
     maintainers:
       - sumitguptaibm
@@ -464,6 +456,14 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/254
       announce_version: 9.0.0a1
+  ibm.spectrum_virtualize:
+    maintainers:
+      - Shilpi-J
+    repository: https://github.com/ansible-collections/ibm.spectrum_virtualize
+    removal:
+      version: 12.0.0a1
+      reason: renamed
+      new_name: ibm.storage_virtualize
   inspur.sm:
     maintainers:
       - ISIB-Group

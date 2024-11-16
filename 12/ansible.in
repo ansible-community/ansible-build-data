@@ -58,7 +58,6 @@ fortinet.fortios
 grafana.grafana
 hetzner.hcloud
 ibm.qradar
-ibm.spectrum_virtualize
 ibm.storage_virtualize
 ieisystem.inmanage
 infinidat.infinibox
