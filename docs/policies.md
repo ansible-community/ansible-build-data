@@ -158,11 +158,6 @@ As an example, consider the following metadata entry:
 collections:
   foo.bar:
     repository: https://github.com/ansible-collections/foo.bar
-    removal:
-      major_version: 20
-      reason: deprecated
-      announce_version: 20.0.0a1
-      discussion: https://forum.ansible.com/t/.../
 ```
 This should be moved to `removed_collections` and changed as follows:
 ```yaml
