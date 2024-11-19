@@ -68,7 +68,7 @@ structure for Ansible `X+1`.
 
 8. Add the next major version to ansible-build-data's CI:
 
-    Open `.github/workflows/antsibull-build.yml` and the following block to the
+    Open `.github/workflows/antsibull-build.yml` and add the following block to the
     matrix:
 
     ``` yaml
