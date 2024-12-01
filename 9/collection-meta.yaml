@@ -266,7 +266,7 @@ collections:
       - Shilpi-J
     repository: https://github.com/ansible-collections/ibm.spectrum_virtualize
     removal:
-      major_version: TBD
+      major_version: 12
       reason: renamed
       new_name: ibm.storage_virtualize
       announce_version: 9.0.0b1
