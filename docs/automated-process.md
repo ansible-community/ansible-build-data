@@ -155,4 +155,4 @@ next to the release version:
 
 When the new major release has been done, remember to prepare the directory for
 the next major Ansible release. How to do this is described in [Setting up for a
-new major release](new-ansible-and-freezes.md#setting-up-for-a-new-major-release).
+new major release](new-ansible.md#setting-up-for-a-new-major-release).
