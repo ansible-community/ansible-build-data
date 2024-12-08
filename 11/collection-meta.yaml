@@ -41,6 +41,11 @@ collections:
     repository: https://github.com/CiscoDevNet/ansible-aci
   cisco.asa:
     repository: https://github.com/ansible-collections/cisco.asa
+    removal:
+      major_version: 12
+      announce_version: 11.2.0
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/38960
   cisco.dnac:
     maintainers:
       - racampos
