@@ -39,8 +39,6 @@ collections:
     collection-directory: "./chocolatey"
   cisco.aci:
     repository: https://github.com/CiscoDevNet/ansible-aci
-  cisco.asa:
-    repository: https://github.com/ansible-collections/cisco.asa
   cisco.dnac:
     maintainers:
       - racampos
@@ -331,6 +329,13 @@ collections:
   wti.remote:
     repository: https://github.com/wtinetworkgear/wti-collection
 removed_collections:
+  cisco.asa:
+    repository: https://github.com/ansible-collections/cisco.asa
+    removal:
+      version: 12.0.0a1
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/38960
+      announce_version: 11.2.0
   cisco.nso:
     repository: https://github.com/CiscoDevNet/ansible-nso
     removal:
