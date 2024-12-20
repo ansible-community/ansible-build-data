@@ -22,12 +22,6 @@ jobs:
       matrix:
         include:
           # Using ansible_version as X.99.0 since it is unreleased so new deps are generated
-          - name: Ansible 9
-            ansible_version: 9.99.0
-            ansible_major_version: 9
-          - name: Ansible 10
-            ansible_version: 10.99.0
-            ansible_major_version: 10
           - name: Ansible 11
             ansible_version: 11.99.0
             ansible_major_version: 11
