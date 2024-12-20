@@ -1,0 +1,2 @@
+# cisco.meraki 2.20.0 has an invalid Python file (https://github.com/meraki/dashboard-api-ansible/issues/76)
+cisco.meraki: <2.20.0
