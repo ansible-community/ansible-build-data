@@ -706,6 +706,7 @@ Deprecated Features
 - The google.cloud collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements.
   The collection has \ `unresolved sanity test failures <https://github.com/ansible-collections/google.cloud/issues/613>`__.
   See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/8609 <https://forum.ansible.com/t/8609>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install google.cloud``.
 
 community.network
 ~~~~~~~~~~~~~~~~~
@@ -1224,6 +1225,7 @@ Deprecated Features
 - The sensu.sensu_go collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements.
   The collection has \ `unresolved sanity test failures <https://github.com/sensu/sensu-go-ansible/issues/362>`__.
   See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/8380 <https://forum.ansible.com/t/8380>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install sensu.sensu_go``.
 
 community.general
 ~~~~~~~~~~~~~~~~~
@@ -3904,6 +3906,8 @@ Removed Collections
 - netapp.um_info (previously included version: 21.8.1)
 - purestorage.fusion (previously included version: 1.6.0)
 
+You can still install a removed collection manually with ``ansible-galaxy collection install <name-of-collection>``.
+
 Added Collections
 -----------------
 
@@ -5442,8 +5446,10 @@ Deprecated Features
 
 - The ``inspur.sm`` collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
   See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/2854 <https://forum.ansible.com/t/2854>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install inspur.sm``.
 - The ``netapp.storagegrid`` collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
   See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/2811 <https://forum.ansible.com/t/2811>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install netapp.storagegrid``.
 
 Ansible-core
 ~~~~~~~~~~~~
