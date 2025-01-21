@@ -596,6 +596,7 @@ Deprecated Features
 - The google.cloud collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements.
   The collection has \ `unresolved sanity test failures <https://github.com/ansible-collections/google.cloud/issues/613>`__.
   See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/8609 <https://forum.ansible.com/t/8609>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install google.cloud``.
 
 community.network
 ~~~~~~~~~~~~~~~~~
@@ -1022,6 +1023,7 @@ Deprecated Features
 - The sensu.sensu_go collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements.
   The collection has \ `unresolved sanity test failures <https://github.com/sensu/sensu-go-ansible/issues/362>`__.
   See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/8380 <https://forum.ansible.com/t/8380>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install sensu.sensu_go``.
 
 Bugfixes
 --------
@@ -5074,8 +5076,10 @@ Deprecated Features
 
 - The ``inspur.sm`` collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
   See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/2854 <https://forum.ansible.com/t/2854>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install inspur.sm``.
 - The ``netapp.storagegrid`` collection is considered unmaintained and will be removed from Ansible 11 if no one starts maintaining it again before Ansible 11.
   See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/2811 <https://forum.ansible.com/t/2811>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install netapp.storagegrid``.
 - The ``purestorage.fusion`` collection has been deprecated.
   It will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10.
   See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/3712 <https://forum.ansible.com/t/3712>`__).
@@ -6978,6 +6982,8 @@ Removed Collections
 - ngine_io.vultr (previously included version: 1.1.3)
 - servicenow.servicenow (previously included version: 1.0.6)
 
+You can still install a removed collection manually with ``ansible-galaxy collection install <name-of-collection>``.
+
 Added Collections
 -----------------
 
@@ -8735,14 +8741,19 @@ Deprecated Features
 
 - The ``community.azure`` collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10.
   See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://github.com/ansible-community/community-topics/issues/263 <https://github.com/ansible-community/community-topics/issues/263>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install community.azure``.
 - The ``hpe.nimble`` collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10.
   See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://github.com/ansible-community/community-topics/issues/254 <https://github.com/ansible-community/community-topics/issues/254>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install hpe.nimble``.
 - The ``netapp.azure`` collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10.
   See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://github.com/ansible-community/community-topics/issues/234 <https://github.com/ansible-community/community-topics/issues/234>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install netapp.azure``.
 - The ``netapp.elementsw`` collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10.
   See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://github.com/ansible-community/community-topics/issues/235 <https://github.com/ansible-community/community-topics/issues/235>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install netapp.elementsw``.
 - The ``netapp.um_info`` collection is considered unmaintained and will be removed from Ansible 10 if no one starts maintaining it again before Ansible 10.
   See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://github.com/ansible-community/community-topics/issues/244 <https://github.com/ansible-community/community-topics/issues/244>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install netapp.um_info``.
 - The collection ``community.sap`` was renamed to ``community.sap_libs``.
   For now both collections are included in Ansible.
   The collection will be completely removed from Ansible 10.

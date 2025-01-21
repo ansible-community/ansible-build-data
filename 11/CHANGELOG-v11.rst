@@ -541,6 +541,8 @@ Removed Collections
 - openvswitch.openvswitch (previously included version: 2.1.1)
 - t_systems_mms.icinga_director (previously included version: 2.0.1)
 
+You can still install a removed collection manually with ``ansible-galaxy collection install <name-of-collection>``.
+
 Added Collections
 -----------------
 
@@ -2118,9 +2120,11 @@ Deprecated Features
 - The google.cloud collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements.
   The collection has \ `unresolved sanity test failures <https://github.com/ansible-collections/google.cloud/issues/613>`__.
   See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/8609 <https://forum.ansible.com/t/8609>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install google.cloud``.
 - The sensu.sensu_go collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements.
   The collection has \ `unresolved sanity test failures <https://github.com/sensu/sensu-go-ansible/issues/362>`__.
   See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/8380 <https://forum.ansible.com/t/8380>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install sensu.sensu_go``.
 
 Ansible-core
 ~~~~~~~~~~~~

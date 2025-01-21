@@ -798,6 +798,8 @@ Release Date\: 2024\-11\-19
 * openvswitch\.openvswitch \(previously included version\: 2\.1\.1\)
 * t\_systems\_mms\.icinga\_director \(previously included version\: 2\.0\.1\)
 
+You can still install a removed collection manually with <code>ansible\-galaxy collection install \<name\-of\-collection\></code>\.
+
 <a id="added-collections"></a>
 ### Added Collections
 
@@ -2292,9 +2294,11 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * The google\.cloud collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements\.
   The collection has [unresolved sanity test failures](https\://github\.com/ansible\-collections/google\.cloud/issues/613)\.
   See [Collections Removal Process for collections not satisfying the collection requirements](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#collections\-not\-satisfying\-the\-collection\-requirements) for more details\, including for how this can be cancelled \([https\://forum\.ansible\.com/t/8609](https\://forum\.ansible\.com/t/8609)\)\.
+  After removal\, users can still install this collection with <code>ansible\-galaxy collection install google\.cloud</code>\.
 * The sensu\.sensu\_go collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements\.
   The collection has [unresolved sanity test failures](https\://github\.com/sensu/sensu\-go\-ansible/issues/362)\.
   See [Collections Removal Process for collections not satisfying the collection requirements](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#collections\-not\-satisfying\-the\-collection\-requirements) for more details\, including for how this can be cancelled \([https\://forum\.ansible\.com/t/8380](https\://forum\.ansible\.com/t/8380)\)\.
+  After removal\, users can still install this collection with <code>ansible\-galaxy collection install sensu\.sensu\_go</code>\.
 
 <a id="ansible-core-7"></a>
 #### Ansible\-core
