@@ -36,7 +36,7 @@ jobs:
         with:
           path: ansible-build-data
       - name: Setup nox
-        uses: wntrblm/nox@2024.10.09
+        uses: wntrblm/nox@2025.02.09
         with:
           python-versions: "${{ matrix.python-versions }}"
       - name: Set up nox environments
