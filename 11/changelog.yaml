@@ -57,6 +57,13 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2025-01-28'
+  11.3.0:
+    changes:
+      release_summary: 'Release Date: 2025-02-25
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2025-02-25'
 remove_collection_changelog_entries:
   ansible.posix:
     1.6.0:
