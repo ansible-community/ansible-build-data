@@ -15,87 +15,39 @@ Ansible 11 is based on Ansible-core 2.18.
 
 We suggest you read this page along with the `Ansible 11 Changelog <https://github.com/ansible-community/ansible-build-data/blob/main/11/CHANGELOG-v11.md>`_ to understand what updates you may need to make.
 
-Playbook
-========
+Porting Guide for v11.4.0
+=========================
 
-No notable changes
+Breaking Changes
+----------------
 
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
 
-Command Line
-============
+- postgresql_info - the ``db`` alias is deprecated and will be removed in the next major release, use the ``login_db`` argument instead.
+- postgresql_pg_hba - regarding #776 'keep_comments_at_rules' has been deprecated and won't do anything, the default is to keep the comments at the rules they are specified with. keep_comments_at_rules will be removed in 5.0.0 (https://github.com/ansible-collections/community.postgresql/pull/778)
+- postgresql_user - the ``db`` alias is deprecated and will be removed in the next major release, use the ``login_db`` argument instead.
 
-* Python 3.10 is a no longer supported control node version. Python 3.11+ is now required for running Ansible.
-* Python 3.7 is a no longer supported remote version. Python 3.8+ is now required for target execution.
+Major Changes
+-------------
 
+community.zabbix
+~~~~~~~~~~~~~~~~
 
-Deprecated
-==========
+- All Roles - Updated to support version 7.2
 
-No notable changes
-
-
-Modules
-=======
-
-No notable changes
-
-
-Modules removed
----------------
-
-The following modules no longer exist:
-
-* No notable changes
-
-
-Deprecation notices
+Deprecated Features
 -------------------
 
-No notable changes
+community.vmware
+~~~~~~~~~~~~~~~~
 
-
-Noteworthy module changes
--------------------------
-
-No notable changes
-
-
-Plugins
-=======
-
-* The ``ssh`` connection plugin now officially supports targeting Windows hosts. A
-  breaking change that has been made as part of this official support is the low level command
-  execution done by plugins like ``ansible.builtin.raw`` and action plugins calling
-  ``_low_level_execute_command`` is no longer wrapped with a ``powershell.exe`` wrapped
-  invocation. These commands will now be executed directly on the target host using
-  the default shell configuration set on the Windows host. This change is done to
-  simplify the configuration required on the Ansible side, make module execution more
-  efficient, and to remove the need to decode stderr CLIXML output. A consequence of this
-  change is that ``ansible.builtin.raw`` commands are no longer guaranteed to be
-  run through a PowerShell shell and with the output encoding of UTF-8. To run a command
-  through PowerShell and with UTF-8 output support, use the ``ansible.windows.win_shell``
-  or ``ansible.windows.win_powershell`` module instead.
-
-  .. code-block:: yaml
-
-      - name: Run with win_shell
-        ansible.windows.win_shell: Write-Host "Hello, Café"
-
-      - name: Run with win_powershell
-        ansible.windows.win_powershell:
-          script: Write-Host "Hello, Café"
-
-
-Porting custom scripts
-======================
-
-No notable changes
-
-
-Networking
-==========
-
-No notable changes
+- vcenter_folder - the module has been deprecated and will be removed in community.vmware 7.0.0 (https://github.com/ansible-collections/community.vmware/pull/2340).
+- vmware_cluster_ha - the module has been deprecated and will be removed in community.vmware 7.0.0 (https://github.com/ansible-collections/community.vmware/pull/2321).
+- vmware_content_deploy_ovf_template - the module has been deprecated and will be removed in community.vmware 7.0.0 (https://github.com/ansible-collections/community.vmware/pull/2332).
+- vmware_content_deploy_template - the module has been deprecated and will be removed in community.vmware 7.0.0 (https://github.com/ansible-collections/community.vmware/pull/2332).
+- vmware_content_library_manager - the module has been deprecated and will be removed in community.vmware 7.0.0 (https://github.com/ansible-collections/community.vmware/pull/2345).
+- vmware_host - the module has been deprecated and will be removed in community.vmware 7.0.0 (https://github.com/ansible-collections/community.vmware/pull/2337).
 
 Porting Guide for v11.3.0
 =========================
