@@ -260,6 +260,10 @@ collections:
     maintainers:
       - jborean93
     repository: https://github.com/ansible-collections/microsoft.ad
+  microsoft.iis:
+    maintainers:
+      - jborean93
+    repository: https://github.com/ansible-collections/microsoft.iis
   netapp.cloudmanager:
     maintainers:
       - carchi8py
