@@ -75,6 +75,7 @@ kubernetes.core: >=5.0.0,<6.0.0
 kubevirt.core: >=2.1.0,<3.0.0
 lowlydba.sqlserver: >=2.3.0,<3.0.0
 microsoft.ad: >=1.7.0,<2.0.0
+microsoft.iis: >=1.0.2,<2.0.0
 netapp.cloudmanager: >=21.24.0,<22.0.0
 netapp.ontap: >=22.12.0,<23.0.0
 netapp.storagegrid: >=21.13.0,<22.0.0

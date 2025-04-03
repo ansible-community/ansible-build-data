@@ -68,6 +68,7 @@ kubernetes.core
 kubevirt.core
 lowlydba.sqlserver
 microsoft.ad
+microsoft.iis
 netapp.cloudmanager
 netapp_eseries.santricity
 netapp.ontap
