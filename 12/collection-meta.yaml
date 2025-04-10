@@ -209,6 +209,10 @@ collections:
     repository: https://github.com/grafana/grafana-ansible-collection
   hetzner.hcloud:
     repository: https://github.com/ansible-collections/hetzner.hcloud
+  hitachivantara.vspone_block:
+    maintainers:
+      - rsahuHitachi
+      - tcng28
   ibm.qradar:
     repository: https://github.com/ansible-collections/ibm.qradar
   ibm.storage_virtualize:

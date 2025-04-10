@@ -62,6 +62,7 @@ fortinet.fortios: >=2.3.0,<3.0.0
 google.cloud: >=1.4.0,<2.0.0
 grafana.grafana: >=5.6.0,<6.0.0
 hetzner.hcloud: >=4.2.0,<5.0.0
+hitachivantara.vspone_block: >=3.0.0,<4.0.0
 ibm.qradar: >=4.0.0,<5.0.0
 ibm.spectrum_virtualize: >=2.0.0,<3.0.0
 ibm.storage_virtualize: >=2.5.0,<3.0.0
