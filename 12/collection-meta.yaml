@@ -213,6 +213,7 @@ collections:
     maintainers:
       - rsahuHitachi
       - tcng28
+    repository: https://github.com/hitachi-vantara/vspone-block-ansible
   ibm.qradar:
     repository: https://github.com/ansible-collections/ibm.qradar
   ibm.storage_virtualize:
