@@ -59,6 +59,7 @@ fortinet.fortios
 google.cloud
 grafana.grafana
 hetzner.hcloud
+hitachivantara.vspone_block
 ibm.qradar
 ibm.spectrum_virtualize
 ibm.storage_virtualize
