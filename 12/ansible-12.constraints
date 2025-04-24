@@ -2,3 +2,5 @@
 # ERROR: cisco.ise 2.10.0 version_conflict: ansible.utils-6.0.0 but needs >=2.0.0,<6.0
 # ERROR: cisco.meraki 2.20.8 version_conflict: ansible.utils-6.0.0 but needs >=2.0.0,<6.0
 ansible.utils: <6.0.0
+#  grafana.grafana 6.0.0 is not tagged (https://github.com/grafana/grafana-ansible-collection/issues/345)
+grafana.grafana: <6.0.0

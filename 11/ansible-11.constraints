@@ -1,0 +1,2 @@
+#  grafana.grafana 6.0.0 is not tagged (https://github.com/grafana/grafana-ansible-collection/issues/345)
+grafana.grafana: <6.0.0
