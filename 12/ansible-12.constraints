@@ -1,3 +1,6 @@
 # ERROR: cisco.dnac 6.31.3 version_conflict: ansible.utils-6.0.0 but needs >=2.0.0,<6.0
 # ERROR: cisco.ise 2.10.0 version_conflict: ansible.utils-6.0.0 but needs >=2.0.0,<6.0
 ansible.utils: <6.0.0
+
+# https://github.com/cyberark/ansible-security-automation-collection/issues/83
+cyberark.pas: <1.0.31
