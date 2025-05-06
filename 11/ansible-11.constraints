@@ -1,0 +1,2 @@
+# cisco.dnac 6.32.0 needs ansible.utils >= 6.0
+cisco.dnac: <6.32.0

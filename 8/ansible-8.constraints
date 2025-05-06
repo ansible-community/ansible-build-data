@@ -1,3 +1,6 @@
 # cyberark.conjur 1.3.1 no longer is compatible with Python 3.9, which is used for the bytecompile test in antsibull-build for Ansible 8,
 # and happens to be the minimum required controller Python version supported by ansible-core 2.15, on which Ansible 8 is based.
 cyberark.conjur: <1.3.1
+
+# cisco.dnac 6.32.0 needs ansible.utils >= 6.0
+cisco.dnac: <6.32.0
