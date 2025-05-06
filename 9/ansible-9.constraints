@@ -1,2 +1,2 @@
-# ibm.storage_virtualize 2.7.2 is not tagged (https://github.com/ansible-collections/ibm.storage_virtualize/issues/57)
-ibm.storage_virtualize: <2.7.2
+# cisco.dnac 6.32.0 needs ansible.utils >= 6.0
+cisco.dnac: <6.32.0
