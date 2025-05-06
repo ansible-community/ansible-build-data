@@ -36,6 +36,7 @@ community.mongodb
 community.mysql
 community.okd
 community.postgresql
+community.proxmox
 community.proxysql
 community.rabbitmq
 community.routeros

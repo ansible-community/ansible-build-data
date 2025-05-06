@@ -152,6 +152,8 @@ collections:
     repository: https://github.com/openshift/community.okd
   community.postgresql:
     repository: https://github.com/ansible-collections/community.postgresql
+  community.proxmox:
+    repository: https://github.com/ansible-collections/community.proxmox
   community.proxysql:
     repository: https://github.com/ansible-collections/community.proxysql
   community.rabbitmq:
