@@ -7,6 +7,453 @@ This changelog describes changes since Ansible 11.0.0.
 .. contents::
   :depth: 2
 
+v12.0.0a3
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-05-06
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 12.0.0a3 contains ansible-core version 2.19.0b3.
+This is a newer version than version 2.19.0b2 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection             | Ansible 12.0.0a2 | Ansible 12.0.0a3 | Notes                                                                                                                        |
++========================+==================+==================+==============================================================================================================================+
+| ansible.windows        | 2.8.0            | 3.0.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.aws          | 9.2.0            | 9.3.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto       | 2.26.0           | 2.26.1           |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker       | 4.5.2            | 4.6.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.grafana      | 2.1.0            | 2.2.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot       | 2.2.0            | 2.3.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.postgresql   | 3.14.0           | 4.0.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.windows      | 2.4.0            | 3.0.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.pas           | 1.0.30           | 1.0.32           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.openmanage     | 9.11.0           | 9.12.0           |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| grafana.grafana        | 6.0.0            | 6.0.1            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| kubevirt.core          | 2.1.0            | 2.2.0            | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| lowlydba.sqlserver     | 2.6.0            | 2.6.1            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| microsoft.ad           | 1.8.1            | 1.9.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade | 1.19.2           | 1.20.0           |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware          | 1.11.0           | 2.0.0            |                                                                                                                              |
++------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- the collection does not test against Python 2 and starts accepting content written in Python 3 since collection version 4.0.0 (https://github.com/ansible-collections/community.postgresql/issues/829).
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_gather_facts - This role is enhanced to support iDRAC10.
+- idrac_lifecycle_controller_job_status_info - This module is enhanced to support iDRAC10.
+- idrac_system_info - This module is enhanced to support iDRAC10.
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- cluster modules - Add identifying information about the cluster managed to the output of cluster modules
+- folder_paths - Throw an error when a relative folder path is provided and the datacenter name is not provided
+- module_utils/argument_spec - make argument specs public so other collections can use them https://github.com/ansible-collections/vmware.vmware/issues/144
+- module_utils/clients - make client utils public so other collections can use them https://github.com/ansible-collections/vmware.vmware/issues/144
+- update query file to include cluster module queries
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-config will now show internal, but not test configuration entries. This allows for debugging but still denoting the configurations as internal use only (_ prefix).
+- ansible-test - Improved ``pylint`` checks for Ansible-specific deprecation functions.
+- ansible-test - Use the ``-t`` option to set the stop timeout when stopping a container. This avoids use of the ``--time`` option which was deprecated in Docker v28.0.
+- collection metadata - The collection loader now parses scalar values from ``meta/runtime.yml`` as strings. This avoids issues caused by unquoted values such as versions or dates being parsed as types other than strings.
+- deprecation warnings - Deprecation warning APIs automatically capture the identity of the deprecating plugin. The ``collection_name`` argument is only required to correctly attribute deprecations that occur in module_utils or other non-plugin code.
+- deprecation warnings - Improved deprecation messages to more clearly indicate the affected content, including plugin name when available.
+- deprecations - Collection name strings not of the form ``ns.coll`` passed to deprecation API functions will result in an error.
+- deprecations - Removed support for specifying deprecation dates as a ``datetime.date``, which was included in an earlier 2.19 pre-release.
+- deprecations - Some argument names to ``deprecate_value`` for consistency with existing APIs. An earlier 2.19 pre-release included a ``removal_`` prefix on the ``date`` and ``version`` arguments.
+- modules - The ``AnsibleModule.deprecate`` function no longer sends deprecation messages to the target host's logging system.
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- Set minimum supported Ansible version to 2.16 to align with the versions still supported by Ansible.
+- win_template - Added ``comment_start_string`` and ``comment_end_string`` as options to align with the builtin ``template`` module.
+
+community.aws
+~~~~~~~~~~~~~
+
+- Bump version of ansible-lint to 25.1.2.
+- aws_ssm - Move the ``aws_ssm`` connection plugin's plugin_utils into a dedicated folder (https://github.com/ansible-collections/community.aws/pull/2279).
+- aws_ssm - Refactor S3 operations methods for improved clarity (https://github.com/ansible-collections/community.aws/pull/2275).
+- aws_ssm - Refactor connection/aws_ssm to add new TerminalManager class and move relevant methods to the new class (https://github.com/ansible-collections/community.aws/pull/2270).
+- aws_ssm - Refactor connection/aws_ssm to add new ``FileTransferManager`` class and move relevant methods to the new class (https://github.com/ansible-collections/community.aws/pull/2273).
+- aws_ssm - Refactor connection/aws_ssm to add new ``SSMSessionManager`` and ``ProcessManager`` classes and move relevant methods to the new class (https://github.com/ansible-collections/community.aws/pull/2272).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_container_copy_into - add ``mode_parse`` parameter which determines how ``mode`` is parsed (https://github.com/ansible-collections/community.docker/pull/1074).
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- Add argument `tls_servername` for `grafana_datasource`
+- Support `alertmanager` as type for `grafana_datasource`
+- grafana_dashboard - allow creating dashboards in subfolders
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_user - return a PostgreSQL error message when a user cannot be removed.
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- Set minimum supported Ansible version to 2.16 to align with the versions still supported by Ansible.
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Remove Node modules from Ansible Collection build
+
+lowlydba.sqlserver
+~~~~~~~~~~~~~~~~~~
+
+- Added support for Ansible 2.19
+- Updated the test matrix to include Ansible 2.19 and remove Ansible 2.16
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- Set minimum supported Ansible version to 2.16 to align with the versions still supported by Ansible.
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_ad - Add support for Global Catalog Servers
+- purefb_dns - Added support for multiple DNS configurations.
+- purefb_ds - SMB directory services deprecated from Purity//FB 4.5.2
+- purefb_info - Add support for Active Directory Global Catalog Servers
+- purefb_info - Added snapshot creation date-time and time_remaining, if snapshot is not deleted, to the ``snapshots`` response.
+- purefb_info - Added support for multiple DNS configurations.
+- purefb_policy - Snapshot policies can now have specific filesystems and/or replica links added or deletred from the policy
+- purefb_proxy - Added support to update existing proxy
+- purefb_proxy - Updated to REST v2
+- purefb_s3user - Changed ``key_state`` state to be ``keystate`` as ``key_state`` is reserved.
+- purefb_s3user - Changed ``remove_key`` parameter to ``key_name`` and add new ``state`` of ``key_state`` to allow a specificed key to be enabled/disabled using the new parameter ``enable_key``.
+- purefb_s3user - Updated failure messages for applying policies to an object user account.
+- purefb_subnet - ``prefix`` removed as a required parameter for updating an existing subnet
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- Warn the user when more than one host has the same name in the inventory plugins. Throw an error if strict is true
+- content_template - Added more options to search for the source VM like uuid and moid. Also made argument validation more accurate
+- guest_info - Allow user to specify folder path to help select the VM to query
+- rename private module_utils to drop the redundant vmware prefix
+- vcsa_backup_schedule - Add module to manage the vCenter backup schedule
+- vcsa_backup_schedule_info - Add module to gather info about the vCenter backup schedules
+- vm_advanced_settings - Add module to manage the advanced settings on a VM
+- vm_powerstate - Add better error message when scheduling a power state task in the past
+- vm_snapshot - migrate vmware_guest_snapshot module from community to here
+- vms inventory - Fixed issue where a user could accidentally not collect a required parameter, config.guestId
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- drop support for ansible 2.15 since it is EOL https://github.com/ansible-collections/vmware.vmware/issues/103
+- updated minimum pyVmomi version to 8.0.3.0.1 https://github.com/ansible-collections/vmware.vmware/issues/56
+
+Deprecated Features
+-------------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Passing a ``warnings` or ``deprecations`` key to ``exit_json`` or ``fail_json`` is deprecated. Use ``AnsibleModule.warn`` or ``AnsibleModule.deprecate`` instead.
+- plugins - Accessing plugins with ``_``-prefixed filenames without the ``_`` prefix is deprecated.
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql modules = the ``login``, ``unix_socket`` and ``host`` aliases are deprecated and will be removed in ``community.postgresql 5.0.0``, use the ``login_user``, ``login_unix_socket`` and ``login_host`` arguments instead.
+- postgresql_set - the module has been deprecated and will be removed in ``community.postgresql 5.0.0``. Please use the ``community.postgresql.postgresql_alter_system`` module instead (https://github.com/ansible-collections/community.postgresql/issues/823).
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- win_audit_policy_system - Deprecated module and will be redirected to ``ansible.windows.win_audit_policy_system``. Use ``ansible.windows.win_audit_policy_system`` instead as the redirection will be removed in 4.0.0
+- win_audit_rule - Deprecated module and will be redirected to ``ansible.windows.win_audit_rule``. Use ``ansible.windows.win_audit_rule`` instead as the redirection will be removed in 4.0.0
+- win_auto_logon - Deprecated module and will be redirected to ``ansible.windows.win_auto_logon``. Use ``ansible.windows.win_auto_logon`` instead as the redirection will be removed in 4.0.0
+- win_certificate_info - Deprecated module and will be redirected to ``ansible.windows.win_certificate_info``. Use ``ansible.windows.win_certificate_info`` instead as the redirection will be removed in 4.0.0
+- win_computer_description - Deprecated module and will be redirected to ``ansible.windows.win_computer_description``. Use ``ansible.windows.win_computer_description`` instead as the redirection will be removed in 4.0.0
+- win_credential - Deprecated module and will be redirected to ``ansible.windows.win_credential``. Use ``ansible.windows.win_credential`` instead as the redirection will be removed in 4.0.0
+- win_dhcp_lease - Deprecated module and will be redirected to ``ansible.windows.win_dhcp_lease``. Use ``ansible.windows.win_dhcp_lease`` instead as the redirection will be removed in 4.0.0
+- win_dns_record - Deprecated module and will be redirected to ``ansible.windows.win_dns_record``. Use ``ansible.windows.win_dns_record`` instead as the redirection will be removed in 4.0.0
+- win_dns_zone - Deprecated module and will be redirected to ``ansible.windows.win_dns_zone``. Use ``ansible.windows.win_dns_zone`` instead as the redirection will be removed in 4.0.0
+- win_eventlog - Deprecated module and will be redirected to ``ansible.windows.win_eventlog``. Use ``ansible.windows.win_eventlog`` instead as the redirection will be removed in 4.0.0
+- win_feature_info - Deprecated module and will be redirected to ``ansible.windows.win_feature_info``. Use ``ansible.windows.win_feature_info`` instead as the redirection will be removed in 4.0.0
+- win_file_compression - Deprecated module and will be redirected to ``ansible.windows.win_file_compression``. Use ``ansible.windows.win_file_compression`` instead as the redirection will be removed in 4.0.0
+- win_firewall - Deprecated module and will be redirected to ``ansible.windows.win_firewall``. Use ``ansible.windows.win_firewall`` instead as the redirection will be removed in 4.0.0
+- win_hosts - Deprecated module and will be redirected to ``ansible.windows.win_hosts``. Use ``ansible.windows.win_hosts`` instead as the redirection will be removed in 4.0.0
+- win_hotfix - Deprecated module and will be redirected to ``ansible.windows.win_hotfix``. Use ``ansible.windows.win_hotfix`` instead as the redirection will be removed in 4.0.0
+- win_http_proxy - Deprecated module and will be redirected to ``ansible.windows.win_http_proxy``. Use ``ansible.windows.win_http_proxy`` instead as the redirection will be removed in 4.0.0
+- win_iis_virtualdirectory - Deprecated module, use ``microsoft.iis.virtual_directory`` instead as the module will be removed in 4.0.0
+- win_iis_webapplication - Deprecated module, use ``microsoft.iis.web_application`` instead instead as the module will be removed in 4.0.0
+- win_iis_webapppool - Deprecated module, use ``microsoft.iis.web_app_pool`` instead instead as the module will be removed in 4.0.0
+- win_iis_webbinding - Deprecated module, use ``microsoft.iis.website`` instead instead as the module will be removed in 4.0.0
+- win_iis_website - Deprecated module, use ``microsoft.iis.website`` instead instead as the module will be removed in 4.0.0
+- win_inet_proxy - Deprecated module and will be redirected to ``ansible.windows.win_inet_proxy``. Use ``ansible.windows.win_inet_proxy`` instead as the redirection will be removed in 4.0.0
+- win_listen_ports_facts - Deprecated module and will be redirected to ``ansible.windows.win_listen_ports_facts``. Use ``ansible.windows.win_listen_ports_facts`` instead as the redirection will be removed in 4.0.0
+- win_mapped_drive - Deprecated module and will be redirected to ``ansible.windows.win_mapped_drive``. Use ``ansible.windows.win_mapped_drive`` instead as the redirection will be removed in 4.0.0
+- win_product_facts - Deprecated module and will be redirected to ``ansible.windows.win_product_facts``. Use ``ansible.windows.win_product_facts`` instead as the redirection will be removed in 4.0.0
+- win_region - Deprecated module and will be redirected to ``ansible.windows.win_region``. Use ``ansible.windows.win_region`` instead as the redirection will be removed in 4.0.0
+- win_route - Deprecated module and will be redirected to ``ansible.windows.win_route``. Use ``ansible.windows.win_route`` instead as the redirection will be removed in 4.0.0
+- win_timezone - Deprecated module and will be redirected to ``ansible.windows.win_timezone``. Use ``ansible.windows.win_timezone`` instead as the redirection will be removed in 4.0.0
+- win_user_profile - Deprecated module and will be redirected to ``ansible.windows.win_user_profile``. Use ``ansible.windows.win_user_profile`` instead as the redirection will be removed in 4.0.0
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- win_domain - Removed deprecated module, use ``microsoft.ad.domain`` instead
+- win_domain_controller - Removed deprecated module, use ``microsoft.ad.domain_controller`` instead
+- win_domain_membership - Removed deprecated module, use ``microsoft.ad.membership`` instead
+- win_feature - Removed deprecated return value ``restart_needed`` in ``feature_result``, use ``reboot_required`` instead
+- win_updates - Removed deprecated return value ``filtered_reason``, use ``filtered_reasons`` instead
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_info - the db alias has been removed in ``community.postgresql 4.0.0``. Please use the ``login_db`` option instead (https://github.com/ansible-collections/community.postgresql/issues/801).
+- postgresql_lang - the module has been removed in ``community.postgresql 4.0.0``. Please use the ``community.postgresql.postgresql_ext`` module instead (https://github.com/ansible-collections/community.postgresql/issues/561).
+- postgresql_privs - the ``password`` argument has been removed in ``community.postgresql 4.0.0``. Use the ``login_password`` argument instead (https://github.com/ansible-collections/community.postgresql/issues/408).
+- postgresql_user - the ``priv`` argument has been removed in ``community.postgresql 4.0.0``. Please use the ``community.postgresql.postgresql_privs`` module to grant/revoke privileges instead (https://github.com/ansible-collections/community.postgresql/issues/493).
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- win_domain_computer - Removed deprecated module, use ``microsoft.ad.computer`` instead
+- win_domain_group - Removed deprecated module, use ``microsoft.ad.group`` instead
+- win_domain_group_membership - Removed deprecated module, use ``microsoft.ad.membership`` instead
+- win_domain_object_info - Removed deprecated module, use ``microsoft.ad.object_info`` instead
+- win_domain_ou - Removed deprecated module, use ``microsoft.ad.ou`` instead
+- win_domain_user - Removed deprecated module, use ``microsoft.ad.user`` instead
+- win_lineinfile - Removed deprecated return value ``backup``, use ``backup_file`` instead
+- win_xml - Removed deprecated, and undocumented, return value ``backup``, use ``backup_file`` instead
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- vm_list_group_by_clusters - Tombstone module in favor of vmware.vmware.vm_list_group_by_clusters_info
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Ansible will now ensure predictable permissions on remote artifacts, until now it only ensured executable and relied on system masks for the rest.
+- dnf5 - avoid generating excessive transaction entries in the dnf5 history (https://github.com/ansible/ansible/issues/85046)
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- win_find - allow users case sensitive match the filename (https://github.com/ansible-collections/ansible.windows/issues/473).
+- win_powershell - Handle failure on output conversion when the output object uses a custom adapter set that fails to enumerate the method members. This is seen when using the output from ``Get-WmiObject`` - https://github.com/ansible-collections/ansible.windows/issues/767
+- win_regedit - Handle decimal values with no decimal values which may be the result of a Jinja2 template
+- win_template - Added support for Ansible 2.19 and the introduction of the data tagging feature.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- luks_device - mark parameter ``passphrase_encoding`` as ``no_log=False`` to avoid confusing warning (https://github.com/ansible-collections/community.crypto/pull/867).
+- luks_device - removing a specific keyslot with ``remove_keyslot`` caused the module to hang while cryptsetup was waiting for a passphrase from stdin, while the module did not supply one. Since a keyslot is not necessary, do not provide one (https://github.com/ansible-collections/community.crypto/issues/864, https://github.com/ansible-collections/community.crypto/pull/868).
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- Remove field `apiVersion` from return of current `grafana_datasource` for working diff
+- grafana_dashboard - add uid to payload
+- test: replace more deprecated `TestCase.assertEquals` to support Python 3.12
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- win_format - fix crash when using path parameter without force option (https://github.com/ansible-collections/community.windows/pull/615).
+- win_toast - fix title and message in the notification.
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_system_info - (Issue 812) - idrac_system_info fails on iDRAC10.
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- ldap inventory - Fix up support for Ansible 2.19.
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_bucket - Resolved issue with removing bucket quota
+- purefb_info - Fixed issue after SMD Directory Services no longer avaible from REST 2.16
+- purefb_policy - Fixed creation of snapshot policies with assigned filesystems and/or replica links
+- purefb_s3acc - Fixed issue with public access config settings not being correctly for an account
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- cluster_ha - Fix exception when cluster ha module checks for differences with VM monitoring configs
+- fix method to lookup datastore clusters by name or moid https://github.com/ansible-collections/vmware.vmware/issues/152
+- vm_snapshot - Make sure snapshot output is always included if state is present
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_diagnostics - Issue(285322) - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- idrac_firmware - Issue(279282) - This module does not support firmware update using HTTP, HTTPS, and FTP shares with authentication on iDRAC8.
+- ome_smart_fabric_uplink - Issue(186024) - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+New Modules
+-----------
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- community.hrobot.storagebox_snapshot - Create, update, or delete a snapshot of a storage box.
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purestorage.flashblade.purefb_bucket_access - Manage FlashBlade bucket access policies
+- purestorage.flashblade.purefb_fleet - Manage Fusion Fleet
+- purestorage.flashblade.purefb_server - Manage FlashBlade servers
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 9.4.0)
+- ansible.netcommon (still version 8.0.0)
+- ansible.posix (still version 2.0.0)
+- ansible.utils (still version 5.1.2)
+- arista.eos (still version 11.0.0)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.3.1)
+- check_point.mgmt (still version 6.4.0)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.11.0)
+- cisco.dnac (still version 6.31.3)
+- cisco.intersight (still version 2.0.20)
+- cisco.ios (still version 10.0.0)
+- cisco.iosxr (still version 11.0.0)
+- cisco.ise (still version 2.10.0)
+- cisco.meraki (still version 2.21.0)
+- cisco.mso (still version 2.10.0)
+- cisco.nxos (still version 10.0.0)
+- cisco.ucs (still version 1.16.0)
+- cloud.common (still version 4.0.0)
+- cloudscale_ch.cloud (still version 2.4.1)
+- community.ciscosmb (still version 1.0.10)
+- community.digitalocean (still version 1.27.0)
+- community.dns (still version 3.2.3)
+- community.general (still version 10.6.0)
+- community.hashi_vault (still version 6.2.0)
+- community.library_inventory_filtering_v1 (still version 1.1.1)
+- community.libvirt (still version 1.3.1)
+- community.mongodb (still version 1.7.9)
+- community.mysql (still version 3.13.0)
+- community.okd (still version 4.0.1)
+- community.proxysql (still version 1.6.0)
+- community.rabbitmq (still version 1.4.0)
+- community.routeros (still version 3.6.0)
+- community.sap_libs (still version 1.4.2)
+- community.sops (still version 2.0.5)
+- community.vmware (still version 5.6.0)
+- community.zabbix (still version 3.3.0)
+- containers.podman (still version 1.16.3)
+- cyberark.conjur (still version 1.3.3)
+- dellemc.enterprise_sonic (still version 3.0.0)
+- dellemc.powerflex (still version 2.6.0)
+- dellemc.unity (still version 2.0.0)
+- f5networks.f5_modules (still version 1.35.0)
+- fortinet.fortimanager (still version 2.9.1)
+- fortinet.fortios (still version 2.4.0)
+- hetzner.hcloud (still version 4.3.0)
+- hitachivantara.vspone_block (still version 3.4.0)
+- ibm.qradar (still version 4.0.0)
+- ibm.storage_virtualize (still version 2.7.3)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 10.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 5.2.0)
+- microsoft.iis (still version 1.0.2)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 22.14.0)
+- netapp.storagegrid (still version 21.14.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.0)
+- purestorage.flasharray (still version 1.34.1)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.2.2)
+- theforeman.foreman (still version 5.3.0)
+- vmware.vmware_rest (still version 4.7.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 5.0.0)
+- wti.remote (still version 1.0.10)
+
 v12.0.0a2
 =========
 
@@ -700,7 +1147,6 @@ Ansible-core
 - cron - Provide additional error information while writing cron file (https://github.com/ansible/ansible/issues/83223).
 - csvfile - let the config system do the typecasting (https://github.com/ansible/ansible/pull/82263).
 - display - Deduplication of warning and error messages considers the full content of the message (including source and traceback contexts, if enabled). This may result in fewer messages being omitted.
-- display - The ``collection_name`` arg to ``Display.deprecated`` no longer has any effect. Information about the calling plugin is automatically captured by the display infrastructure, included in the displayed messages, and made available to callbacks.
 - distribution - Added openSUSE MicroOS to Suse OS family (#84685).
 - dnf5, apt - add ``auto_install_module_deps`` option (https://github.com/ansible/ansible/issues/84206)
 - docs - add collection name in message from which the module is being deprecated (https://github.com/ansible/ansible/issues/84116).
@@ -720,7 +1166,6 @@ Ansible-core
 - module_utils - Add ``NoReturn`` type annotations to functions which never return.
 - modules - PowerShell modules can now receive ``datetime.date``, ``datetime.time`` and ``datetime.datetime`` values as ISO 8601 strings.
 - modules - PowerShell modules can now receive strings sourced from inline vault-encrypted strings.
-- modules - The ``collection_name`` arg to Python module-side ``deprecate`` methods no longer has any effect. Information about the calling module is automatically captured by the warning infrastructure and included in the module result.
 - modules - Unhandled exceptions during Python module execution are now returned as structured data from the target. This allows the new traceback handling to be applied to exceptions raised on targets.
 - pipelining logic has mostly moved to connection plugins so they can decide/override settings.
 - plugin error handling - When raising exceptions in an exception handler, be sure to use ``raise ... from`` as appropriate. This supersedes the use of the ``AnsibleError`` arg ``orig_exc`` to represent the cause. Specifying ``orig_exc`` as the cause is still permitted. Failure to use ``raise ... from`` when ``orig_exc`` is set will result in a warning. Additionally, if the two cause exceptions do not match, a warning will be issued.
@@ -1799,6 +2244,7 @@ lowlydba.sqlserver
 
 - Add new `login_role` module to add/remove server roles for logins (https://github.com/lowlydba/lowlydba.sqlserver/pull/293).
 - Add new user_role module to manage users' membership to database roles (https://github.com/lowlydba/lowlydba.sqlserver/pull/292).
+- Added support for contained Availability Groups using dbatools 2.1.15 (https://github.com/lowlydba/lowlydba.sqlserver/pull/249).
 
 microsoft.ad
 ~~~~~~~~~~~~
