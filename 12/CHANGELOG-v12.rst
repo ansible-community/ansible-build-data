@@ -7,6 +7,264 @@ This changelog describes changes since Ansible 11.0.0.
 .. contents::
   :depth: 2
 
+v12.0.0a4
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-05-12
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 12.0.0a4 contains ansible-core version 2.19.0b4.
+This is a newer version than version 2.19.0b3 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection         | Ansible 12.0.0a3 | Ansible 12.0.0a4 | Notes                                                                                                                        |
++====================+==================+==================+==============================================================================================================================+
+| amazon.aws         | 9.4.0            | 9.5.0            |                                                                                                                              |
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki       | 2.21.0           | 2.21.1           |                                                                                                                              |
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.pas       | 1.0.32           | 1.0.35           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap       | 22.14.0          | 23.0.0           |                                                                                                                              |
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.storagegrid | 21.14.0          | 21.15.0          |                                                                                                                              |
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- library `netapp-lib` is now an optional requirement.
+- na_ontap_lun - added compatibility for ASA r2 systems.
+- na_ontap_lun_copy - added check to prevent use on unsupported ASA r2 systems.
+- na_ontap_lun_map - added compatibility for ASA r2 systems.
+- na_ontap_lun_map_reporting_nodes - added compatibility for ASA r2 systems.
+- na_ontap_nvme_namespace - added compatibility for ASA r2 systems.
+- na_ontap_nvme_subsystem - added compatibility for ASA r2 systems.
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- facts - add "CloudStack KVM Hypervisor" for Linux VM in virtual facts (https://github.com/ansible/ansible/issues/85089).
+- modules - use ``AnsibleModule.warn`` instead of passing ``warnings`` to ``exit_json`` or ``fail_json`` which is deprecated.
+
+amazon.aws
+~~~~~~~~~~
+
+- Bump version of ansible-lint to 25.1.2 (https://github.com/ansible-collections/amazon.aws/pull/2590).
+- iam_user_info - Add tags to ListUsers or GetGroup results (https://github.com/ansible-collections/amazon.aws/pull/2567).
+- iam_user_info - Return empty user list when invalid group name is provided instead of python error (https://github.com/ansible-collections/amazon.aws/pull/2567).
+- module_utils/modules.py - call to ``deprecate()`` without specifying ``collection_name``, ``version`` or ``date`` arguments raises a sanity errors (https://github.com/ansible-collections/amazon.aws/pull/2607).
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- all modules - defaults to certificate based authentication if `username,password` and `cert_filepath/key_filepath` are set.
+- na_ontap_ndmp - Added get method to generate and retrieve ndmp user passowrd in REST.
+- na_ontap_volume - updated documentation for `snapshot_auto_delete`.
+- updated ZAPI deprecation warnings in README & module utilities.
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- na_sg_grid_ha_group - added check mode support in the module.
+- na_sg_org_container - Enhanced the Consistency setting.
+- na_sg_org_container - new option `capacity_limit` added for bucket, requires storageGRID 11.9 or later.
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- all modules - added ability to authenticate using `username/password` and `tenant_id` (for Tenant) in the module.
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Updated the ``pylint`` sanity test to skip some deprecation validation checks when all arguments are dynamic.
+- config - Preserve or apply Origin tag to values returned by config.
+- config - Prevented fatal errors when ``MODULE_IGNORE_EXTS`` configuration was set.
+- config - Templating failures on config defaults now issue a warning. Previously, failures silently returned an unrendered and untrusted template to the caller.
+- config - ``ensure_type`` correctly propagates trust and other tags on returned values.
+- config - ``ensure_type`` now converts mappings to ``dict`` when requested, instead of returning the mapping.
+- config - ``ensure_type`` now converts sequences to ``list`` when requested, instead of returning the sequence.
+- config - ``ensure_type`` now correctly errors when ``pathlist`` or ``pathspec`` types encounter non-string list items.
+- config - ``ensure_type`` now reports an error when ``bytes`` are provided for any known ``value_type``. Previously, the behavior was undefined, but often resulted in an unhandled exception or incorrect return type.
+- config - ``ensure_type`` with expected type ``int`` now properly converts ``True`` and ``False`` values to ``int``. Previously, these values were silently returned unmodified.
+- convert_bool.boolean API conversion function - Unhashable values passed to ``boolean`` behave like other non-boolean convertible values, returning False or raising ``TypeError`` depending on the value of ``strict``. Previously, unhashable values always raised ``ValueError`` due to an invalid set membership check.
+- dnf5 - when ``bugfix`` and/or ``security`` is specified, skip packages that do not have any such updates, even for new versions of libdnf5 where this functionality changed and it is considered failure
+- plugin loader - Apply template trust to strings loaded from plugin configuration definitions and doc fragments.
+- template action - Template files where the entire file's output renders as ``None`` are no longer emitted as the string "None", but instead render to an empty file as in previous releases.
+
+amazon.aws
+~~~~~~~~~~
+
+- iam_user_info - Actually call GetUser when only user name is supplied instead of listing and filtering from all users (https://github.com/ansible-collections/amazon.aws/pull/2567).
+- iam_user_info - Actually filter users by path prefix when one is provided (https://github.com/ansible-collections/amazon.aws/pull/2567).
+- route53_info - removes jijna delimiters from example using when (https://github.com/ansible-collections/amazon.aws/issues/2594).
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- cisco.meraki.devices_switch_ports - fix get_object_by_name method.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_ems_config - fix issue with support check mode when proxy_password is not set in REST.
+- na_ontap_quotas - changed examples in documentation for `type`.
+- na_ontap_snapmirror - fix delete snapmirror timeout issue by retrying in REST.
+- na_ontap_software_update - Updated documentation for `https`.
+- na_ontap_user_role - fix issue with modifying privileges in REST.
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- na_sg_org_user - fix where existing users with no groups attached were not getting any groups added.
+
+New Modules
+-----------
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- netapp.ontap.na_ontap_mav_approval_group - NetApp ONTAP multi-admin verification (MAV) approval group
+- netapp.ontap.na_ontap_mav_config - NetApp ONTAP multi-admin verification (MAV) global setting
+- netapp.ontap.na_ontap_mav_rule - NetApp ONTAP multi-admin verification (MAV) rule
+- netapp.ontap.na_ontap_storage_unit - NetApp ONTAP ASA r2 storage unit
+- netapp.ontap.na_ontap_storage_unit_snapshot - NetApp ONTAP ASA r2 storage unit snapshot
+- netapp.ontap.na_ontap_support_config_backup - NetApp ONTAP support configuration backup
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- netapp.storagegrid.na_sg_grid_alert_receiver - NetApp StorageGRID manage alert receiver.
+- netapp.storagegrid.na_sg_grid_audit_destination - Configure audit log destinations on StorageGRID.
+- netapp.storagegrid.na_sg_grid_autosupport - Configure autosupport on StorageGRID.
+- netapp.storagegrid.na_sg_grid_domain_name - Configure endpoint domain name on StorageGRID.
+- netapp.storagegrid.na_sg_grid_hotfix - Apply hotfixes on StorageGRID.
+- netapp.storagegrid.na_sg_grid_proxy_settings - NetApp StorageGRID manage proxy settings for the grid.
+- netapp.storagegrid.na_sg_grid_snmp - Configure SNMP agent on StorageGRID.
+- netapp.storagegrid.na_sg_grid_tenant - NetApp StorageGRID manage tenant accounts.
+- netapp.storagegrid.na_sg_grid_vlan_interface - Configure VLAN interface on StorageGRID.
+- netapp.storagegrid.na_sg_org_bucket - Manage buckets on StorageGRID.
+
+Unchanged Collections
+---------------------
+
+- ansible.netcommon (still version 8.0.0)
+- ansible.posix (still version 2.0.0)
+- ansible.utils (still version 5.1.2)
+- ansible.windows (still version 3.0.0)
+- arista.eos (still version 11.0.0)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.3.1)
+- check_point.mgmt (still version 6.4.0)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.11.0)
+- cisco.dnac (still version 6.31.3)
+- cisco.intersight (still version 2.0.20)
+- cisco.ios (still version 10.0.0)
+- cisco.iosxr (still version 11.0.0)
+- cisco.ise (still version 2.10.0)
+- cisco.mso (still version 2.10.0)
+- cisco.nxos (still version 10.0.0)
+- cisco.ucs (still version 1.16.0)
+- cloud.common (still version 4.0.0)
+- cloudscale_ch.cloud (still version 2.4.1)
+- community.aws (still version 9.3.0)
+- community.ciscosmb (still version 1.0.10)
+- community.crypto (still version 2.26.1)
+- community.digitalocean (still version 1.27.0)
+- community.dns (still version 3.2.3)
+- community.docker (still version 4.6.0)
+- community.general (still version 10.6.0)
+- community.grafana (still version 2.2.0)
+- community.hashi_vault (still version 6.2.0)
+- community.hrobot (still version 2.3.0)
+- community.library_inventory_filtering_v1 (still version 1.1.1)
+- community.libvirt (still version 1.3.1)
+- community.mongodb (still version 1.7.9)
+- community.mysql (still version 3.13.0)
+- community.okd (still version 4.0.1)
+- community.postgresql (still version 4.0.0)
+- community.proxysql (still version 1.6.0)
+- community.rabbitmq (still version 1.4.0)
+- community.routeros (still version 3.6.0)
+- community.sap_libs (still version 1.4.2)
+- community.sops (still version 2.0.5)
+- community.vmware (still version 5.6.0)
+- community.windows (still version 3.0.0)
+- community.zabbix (still version 3.3.0)
+- containers.podman (still version 1.16.3)
+- cyberark.conjur (still version 1.3.3)
+- dellemc.enterprise_sonic (still version 3.0.0)
+- dellemc.openmanage (still version 9.12.0)
+- dellemc.powerflex (still version 2.6.0)
+- dellemc.unity (still version 2.0.0)
+- f5networks.f5_modules (still version 1.35.0)
+- fortinet.fortimanager (still version 2.9.1)
+- fortinet.fortios (still version 2.4.0)
+- grafana.grafana (still version 6.0.1)
+- hetzner.hcloud (still version 4.3.0)
+- hitachivantara.vspone_block (still version 3.4.0)
+- ibm.qradar (still version 4.0.0)
+- ibm.storage_virtualize (still version 2.7.3)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 10.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 5.2.0)
+- kubevirt.core (still version 2.2.0)
+- lowlydba.sqlserver (still version 2.6.1)
+- microsoft.ad (still version 1.9.0)
+- microsoft.iis (still version 1.0.2)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.0)
+- purestorage.flasharray (still version 1.34.1)
+- purestorage.flashblade (still version 1.20.0)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.2.2)
+- theforeman.foreman (still version 5.3.0)
+- vmware.vmware (still version 2.0.0)
+- vmware.vmware_rest (still version 4.7.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 5.0.0)
+- wti.remote (still version 1.0.10)
+
 v12.0.0a3
 =========
 
@@ -2756,7 +3014,7 @@ Ansible-core
 - get_url - fix honoring ``filename`` from the ``content-disposition`` header even when the type is ``inline`` (https://github.com/ansible/ansible/issues/83690)
 - host_group_vars - fixed defining the 'key' variable if the get_vars method is called with cache=False (https://github.com/ansible/ansible/issues/84384)
 - include_vars - fix including previously undefined hash variables with hash_behaviour merge (https://github.com/ansible/ansible/issues/84295).
-- iptables - Allows the wait paramater to be used with iptables chain creation (https://github.com/ansible/ansible/issues/84490)
+- iptables - Allows the wait parameter to be used with iptables chain creation (https://github.com/ansible/ansible/issues/84490)
 - linear strategy - fix executing ``end_role`` meta tasks for each host, instead of handling these as implicit run_once tasks (https://github.com/ansible/ansible/issues/84660).
 - local connection plugin - Become timeout errors now include all received data. Previously, the most recently-received data was discarded.
 - local connection plugin - Ensure ``become`` success validation always occurs, even when an active plugin does not set ``prompt``.
@@ -2808,7 +3066,7 @@ amazon.aws
 ~~~~~~~~~~
 
 - cloudformation - Fix bug where termination protection is not updated when create_changeset=true is used for stack updates (https://github.com/ansible-collections/amazon.aws/pull/2391).
-- ec2_instance - Fix issue where EC2 instance module failed to apply security groups when both `network` and `vpc_subnet_id`` were specified, caused by passing `None` to discover_security_groups() (https://github.com/ansible-collections/amazon.aws/pull/2488).
+- ec2_instance - Fix issue where EC2 instance module failed to apply security groups when both ``network`` and ``vpc_subnet_id`` were specified, caused by passing ``None`` to discover_security_groups() (https://github.com/ansible-collections/amazon.aws/pull/2488).
 - ec2_security_group - Fix the diff mode issue when creating a security group containing a rule with a managed prefix list (https://github.com/ansible-collections/amazon.aws/issues/2373).
 - ec2_vpc_nacl_info - Fix failure when listing NetworkACLs and no ACLs are found (https://github.com/ansible-collections/amazon.aws/issues/2425).
 - ec2_vpc_net - handle ipv6_cidr ``false`` and no Ipv6CidrBlockAssociationSet in vpc (https://github.com/ansible-collections/amazon.aws/pull/2374).
