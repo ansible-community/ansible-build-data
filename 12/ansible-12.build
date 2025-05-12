@@ -1,7 +1,7 @@
 _ansible_version: 12
-_ansible_core_version: 2.19.0b3
+_ansible_core_version: 2.19.0b4
 _python: >=3.11
-amazon.aws: >=9.4.0,<10.0.0
+amazon.aws: >=9.5.0,<10.0.0
 ansible.netcommon: >=8.0.0,<9.0.0
 ansible.posix: >=2.0.0,<3.0.0
 ansible.utils: >=5.1.0,<6.0.0
@@ -74,8 +74,8 @@ lowlydba.sqlserver: >=2.6.0,<3.0.0
 microsoft.ad: >=1.9.0,<2.0.0
 microsoft.iis: >=1.0.0,<2.0.0
 netapp.cloudmanager: >=21.24.0,<22.0.0
-netapp.ontap: >=22.14.0,<23.0.0
-netapp.storagegrid: >=21.14.0,<22.0.0
+netapp.ontap: >=23.0.0,<24.0.0
+netapp.storagegrid: >=21.15.0,<22.0.0
 netapp_eseries.santricity: >=1.4.0,<2.0.0
 netbox.netbox: >=3.21.0,<4.0.0
 ngine_io.cloudstack: >=2.5.0,<3.0.0
