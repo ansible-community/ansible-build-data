@@ -1,2 +1,5 @@
 # cisco.dnac 6.32.0 needs ansible.utils >= 6.0
 cisco.dnac: <6.32.0
+
+# netapp.storagegrid 21.15.0 claims to have breaking changes
+netapp.storagegrid: <21.15.0
