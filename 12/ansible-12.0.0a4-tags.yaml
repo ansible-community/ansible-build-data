@@ -302,8 +302,8 @@ netapp.ontap:
   version: 23.0.0
 netapp.storagegrid:
   repository: https://github.com/ansible-collections/netapp.storagegrid
-  tag: 21.15.0
-  version: 21.15.0
+  tag: 21.14.0
+  version: 21.14.0
 netapp_eseries.santricity:
   repository: https://github.com/netapp-eseries/santricity
   tag: v1.4.1
