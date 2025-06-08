@@ -39,6 +39,7 @@ community.mongodb: >=1.7.0,<2.0.0
 community.mysql: >=3.14.0,<4.0.0
 community.okd: >=4.0.0,<5.0.0
 community.postgresql: >=4.1.0,<5.0.0
+community.proxmox: >=1.0.0,<2.0.0
 community.proxysql: >=1.6.0,<2.0.0
 community.rabbitmq: >=1.5.0,<2.0.0
 community.routeros: >=3.7.0,<4.0.0
