@@ -7,6 +7,404 @@ This changelog describes changes since Ansible 11.0.0.
 .. contents::
   :depth: 2
 
+v12.0.0a6
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-06-12
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- community.proxmox (version 1.0.1)
+
+Ansible-core
+------------
+
+Ansible 12.0.0a6 contains ansible-core version 2.19.0b6.
+This is a newer version than version 2.19.0b5 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                  | Ansible 12.0.0a5 | Ansible 12.0.0a6 | Notes                                                                                                                        |
++=============================+==================+==================+==============================================================================================================================+
+| cisco.meraki                | 2.21.2           | 2.21.3           |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker            | 4.6.0            | 4.6.1            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot            | 2.3.0            | 2.4.0            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.proxmox           |                  | 1.0.1            | The collection was added to Ansible                                                                                          |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware            | 5.6.0            | 5.7.0            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.zabbix            | 3.3.0            | 4.0.0            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman           | 1.16.3           | 1.16.4           |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| hetzner.hcloud              | 5.0.1            | 5.1.0            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| hitachivantara.vspone_block | 3.4.2            | 3.5.0            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| kubevirt.core               | 2.2.2            | 2.2.3            | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| telekom_mms.icinga_director | 2.2.2            | 2.3.0            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman          | 5.3.0            | 5.4.0            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware               | 2.0.1            | 2.1.0            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansiballz - Added an experimental AnsiballZ extension for remote debugging.
+- ansiballz - Added support for AnsiballZ extensions.
+- ansiballz - Moved AnsiballZ code coverage support into an extension.
+- ansiballz - Refactored AnsiballZ and module respawn.
+- template action and lookup plugin - The value of the ``ansible_managed`` variable (if set) will not be masked by the ``template`` action and lookup. Previously, the value calculated by the ``DEFAULT_MANAGED_STR`` configuration option always masked the variable value during plugin execution, preventing runtime customization.
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vcenter_extension - Stop using ``connect_to_api`` (https://github.com/ansible-collections/community.vmware/pull/2372).
+- vmware_guest_cross_vc_clone - Stop using ``connect_to_api`` (https://github.com/ansible-collections/community.vmware/pull/2372).
+- vmware_guest_instant_clone - Stop using ``connect_to_api`` (https://github.com/ansible-collections/community.vmware/pull/2372).
+- vmware_vm_inventory - Stop using ``connect_to_api`` (https://github.com/ansible-collections/community.vmware/pull/2372).
+- vmware_vsan_cluster - Stop using ``connect_to_api`` (https://github.com/ansible-collections/community.vmware/pull/2372).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- Add `zabbix_http_headers` variable to allow specifying custom HTTP headers for Zabbix API calls. This can be useful for authentication or other custom header requirements.
+- Agent Role - Removed Temporary Fix supporting RHEL9
+- You can now deploy these roles with inject_facts_as_vars set to false
+- roles - sane selinux defaults
+- roles/proxy - optionally creation of proxy_group and adding proxy to group (Zabbix 7.0+)
+- roles/zabbix_agent - Tweaking the windows service
+- zabbix_action module - properly configure discovery check condition in discovery action depending on information provided in discovery check `value`.
+- zabbix_configuration module - Add this module to import configuration data.
+- zabbix_group - add propagate parameter
+- zabbix_item - added support for item types zabbix_agent, snmp_trap, snmp_agent, ipmi_agent and jmx_agent
+- zabbix_mediatype - add Message template for services
+- zabbix_proxy role - fix Zabbix proxy with encryptuion registration
+- zabbix_server role - facilitate overriding database schemas loaded
+- zabbix_server role - facilitate overriding packages installed
+- zabbix_service - add better idempotency that checks every parameter for change and updates only the changed ones
+- zabbix_templategroup - add propagate parameter
+- zabbix_token module - Fix status value for zabbix Auth token.
+- zabbix_token module - update the logic for update of Zabbix Token
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- ssh_key - Log a warning when the provided public key does not match one in the API.
+- ssh_key - When the public key does not match the one in the API, allow recreating the SSH Key in the API using the ``force=true`` argument.
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Added additional parameters primary_volume_device_group_name and secondary_volume_device_group_name to retrieve ShadowImage group details more quickly.
+- Added new module `hv_external_parity_group_facts` to retrieve information about External Parity Group.
+- Added new module `hv_external_path_group_facts` to retrieve information about External Path Group.
+- Added new module `hv_external_path_group` to manage External Path Groups.
+- Added new module `hv_mp_facts` to retrieve MP Blades information from VSP storage models.
+- Added support for begin_secondary_volume_id and end_secondary_volume_id to the remote replication modules - hv_gad, hv_hur, hv_truecopy.
+- Added support for cloning a Thin Image pair to the hv_snapshot module.
+- Added support for cloning pairs in a specified snapshot group to the hv_snapshot_group module.
+- Added support for deleting an iSCSI name of an external storage system that is registered to a port on the local storage system to the hv_storage_port module.
+- Added support for deleting garbage data for all Thin Image pairs in a snapshot tree to the hv_snapshot module.
+- Added support for disconnecting from a volume on the external storage system to the hv_external_volume module.
+- Added support for getting a list of LUs defined for a port on an external storage system to the hv_storage_port_facts module.
+- Added support for getting a list of ports on an external storage system to the hv_storage_port_facts module.
+- Added support for getting information about a specific LU path to the hv_hostgroup_facts module.
+- Added support for getting information about a specific LU path to the hv_iscsi_target_facts module.
+- Added support for getting information about an iSCSI target of a port on an external storage system to the hv_storage_port_facts module.
+- Added support for getting the iSCSI name of an external storage system that is registered to a port on the local storage system to the hv_storage_port_facts module.
+- Added support for lun_id for the secondary host group for TC and HUR. For GAD, lun_id and enable_preferred_path are supported.
+- Added support for performing a login test on an iSCSI target of an external storage system that is registered to a port on the local storage system to the hv_storage_port module.
+- Added support for reclaiming the zero pages of a DP volume to the hv_ldev module.
+- Added support for registering an iSCSI name of an external storage system to a port on the local storage system to the hv_storage_port module.
+- Added support for releasing the host reservation status by specifying a host group to the hv_hostgroup module.
+- Added support for releasing the host reservation status by specifying an iSCSI target to the hv_iscsi_target module.
+- Added support for releasing the host reservation status by specifying the LU path to the hv_hostgroup module.
+- Added support for releasing the host reservation status by specifying the LU path to the hv_iscsi_target module.
+- Added support for setting the nickname for a WWN to the hv_hostgroup module.
+- Added support for setting the nickname for an iSCSI name to the hv_iscsi_target module.
+- Added support for setting the nickname of an IQN initiator to the hv_iscsi_target module.
+- Added the ability to change the settings of the following parameters of an LDEV using the hv_ldev module - data_reduction_process_mode, is_compression_acceleration_enabled, is_relocation_enabled,is_full_allocation_enabled, is_alua_enabled
+- Added the ability to format a volume to the hv_ldev module.
+- Added the ability to set the nick_name of an iSCSI using the hv_iscsi_target module.
+- Added the following new parameters to the output of hv_ldev_facts is_compression_acceleration_enabled, data_reduction_process_mode, is_relocation_enabled, is_full_allocation_enabled
+- Added the following parameters to creating an LDEV using the hv_ldev module is_parallel_execution_enabled, start_ldev_id, end_ldev_id, external_parity_group, is_compression_acceleration_enabled
+- Enabled host group name together with port ID as identifiers for a host group.
+- Enabled the iSCSI target name together with the port ID as identifiers for the iSCSI target.if both ID and name are specified, the ID is used together with the port ID as the iSCSI target identifier.
+
+telekom_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Add API timeout option for all modules (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/282)
+- Add support for IcingaDB in inventory plugin (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/274)
+- Icinga dependency modules implementation (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/272)
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- repository - add ``rhel-10`` to os version filter choices
+- repository - add support for the ``retain_package_versions_count`` parameter
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- moid_from_path - Add lookup plugins to get an objects MOID (https://github.com/ansible-collections/vmware.vmware/issues/191)
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- All Roles - Remove support for Ubuntu 20.04
+- zabbix 6.4 in roles is no longer supported
+
+Deprecated Features
+-------------------
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- module_utils.vmware - Deprecate ``connect_to_api`` (https://github.com/ansible-collections/community.vmware/pull/2372).
+- vmware_guest_powerstate - the module has been deprecated and will be removed in community.vmware 7.0.0 (https://github.com/ansible-collections/community.vmware/pull/2398).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Fix templating ``tags`` on plays and roles. (https://github.com/ansible/ansible/issues/69903)
+- ansible-doc will no longer ignore docs for modules without an extension (https://github.com/ansible/ansible/issues/85279).
+- display - Fix hang caused by early post-fork writers to stdout/stderr (e.g., pydevd) encountering an unreleased fork lock.
+- get_url - add a check to recognize incomplete data transfers.
+- include_tasks - fix templating options when used as a handler (https://github.com/ansible/ansible/pull/85015).
+- templating - Fixed cases where template expression blocks halted prematurely when a Jinja macro invocation returned an undefined value.
+- templating - Jinja macros returned from a template expression can now be called from another template expression.
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- cisco.meraki.devices_cellular_sims - fix idempotency error.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_compose_v2 - handle a (potentially unintentional) breaking change in Docker Compose 2.37.0. Note that ``ContainerName`` is no longer part of the return value (https://github.com/ansible-collections/community.docker/issues/1082, https://github.com/ansible-collections/community.docker/pull/1083).
+- docker_container - fix idempotency if ``command=[]`` and ``command_handling=correct`` (https://github.com/ansible-collections/community.docker/issues/1080, https://github.com/ansible-collections/community.docker/pull/1085).
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- storagebox - make sure that changes of boolean parameters are sent correctly to the Robot service (https://github.com/ansible-collections/community.hrobot/issues/160, https://github.com/ansible-collections/community.hrobot/pull/161).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vm_device_helper - Fix an issue with ansible-core 2.19 (https://github.com/ansible-collections/community.vmware/pull/2391).
+- vmware_guest_controller - Fix an issue with ansible-core 2.19 (https://github.com/ansible-collections/community.vmware/pull/2391).
+- vmware_guest_disk - Fix an issue with ansible-core 2.19 (https://github.com/ansible-collections/community.vmware/pull/2391).
+- vmware_host_inventory - New option ``enable_backward_compatability`` that can be set to ``false`` to work with ansible-core 2.19 (https://github.com/ansible-collections/community.vmware/pull/2391).
+- vmware_target_canonical_info - Fix an issue with ansible-core 2.19 (https://github.com/ansible-collections/community.vmware/pull/2391).
+- vmware_vm_inventory - New option ``enable_backward_compatability`` that can be set to ``false`` to work with ansible-core 2.19 (https://github.com/ansible-collections/community.vmware/pull/2391).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- host module - Fixed idempotentcy related to changes in tag order.
+- maintenace module - Fixed idempotentcy related to changes in tag order.
+- roles/zabbix_agent - Reading existing PSK files failed on Windows
+- roles/zabbix_agent - UserParameterDir get wrong value if var zabbix_agent_userparamaterdir is set
+- roles/zabbix_repo - debian architectures should map better for i386 and armhf
+- roles/zabbix_repo - debian/ubuntu arm64 repo url fixed for zabbix 7.2
+- zabbix_agent Role - Add _zabbix_agent_pluginsocket variable to override /tmp/agent.plugin.sock
+- zabbix_service - fix propagation_value and propagation_rule parameters
+- zabbix_template_info module - Dump YAML formatted template data without date in Zabbix 7.0 or higher.
+- zabbix_web role - fix /etc/zabbix/web/zabbix.conf.php file mode.
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Document that sdnotify can be set to healthy
+- Fix CI for podman_image_info
+- Fix None values in LogOpt in Quadlet
+- Fix conditions in CI jobs
+- Fix idempotency for any podman secret driver
+- Fix idempotency for systemd keyword
+- Fix setuptools
+- Handle image arguments in podman_container
+- Remove docker protocol when inspecting image
+- Set custom tmpfs idempotency
+- Use usedforsecurity for hashlib.sha256 only in python version >=3.9
+- correctly quote labels and environment variables for quadlets
+- doc - podman_secret - fix indentation error in example
+- fix(podman_image) - correct intendation on 'loop' keyword
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- All returned resource IDs are now integers instead of strings.
+- server - The ``placement_group`` argument now correctly handles placement group IDs during updates.
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Fixed output details of `host_group_number` and `host_group_id` in `hv_hg` and 'hv_hg_facts' modules to be consistent.
+
+telekom_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Bug: dependency apply module raises error when using a variable for parent host or service (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/276)
+- Extend checks in diff as a workaround for type confusion with the Director API (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/278)
+- add 'groups' parameter to task 'icinga_user.yml' (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/284)
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- content_upload - lower chunk size to 1MB to avoid generating too big requests (https://github.com/theforeman/foreman-ansible-modules/issues/1862)
+- host - ensure LCE and CV are always sent together when updating one of them
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- Make integration tests compatible with ansible-core 2.19 (https://github.com/ansible-collections/vmware.vmware/issues/194)
+- cluster_drs - Fix error when non-string advanced settings are applied (https://github.com/ansible-collections/vmware.vmware/issues/190)
+- cluster_ha - Fix error when non-string advanced settings are applied (https://github.com/ansible-collections/vmware.vmware/issues/190)
+- tests/integration/vmware_folder_template_from_vm - Fix tests for 2.19
+
+New Modules
+-----------
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- community.hrobot.storagebox_snapshot_info - Query the snapshots for a storage box.
+- community.hrobot.storagebox_subaccount - Create, update, or delete a subaccount for a storage box.
+- community.hrobot.storagebox_subaccount_info - Query the subaccounts for a storage box.
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Vsp
+^^^
+
+- hitachivantara.vspone_block.hv_external_parity_group_facts - Retrieves information about External Parity Group from Hitachi VSP storage systems.
+- hitachivantara.vspone_block.hv_external_path_group - Manages External Path Groups in the Hitachi VSP storage systems.
+- hitachivantara.vspone_block.hv_external_path_group_facts - Retrieves information about External Path Group from Hitachi VSP storage systems.
+- hitachivantara.vspone_block.hv_mp_facts - Retrieves MP blades information from Hitachi VSP storage systems.
+
+telekom_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- telekom_mms.icinga_director.icinga_dependency_apply - Manage dependency apply rules in Icinga2
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.1.0)
+- ansible.netcommon (still version 8.0.0)
+- ansible.posix (still version 2.0.0)
+- ansible.utils (still version 5.1.2)
+- ansible.windows (still version 3.1.0)
+- arista.eos (still version 11.0.0)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.4.0)
+- check_point.mgmt (still version 6.4.1)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.11.0)
+- cisco.dnac (still version 6.31.3)
+- cisco.intersight (still version 2.1.0)
+- cisco.ios (still version 10.1.0)
+- cisco.iosxr (still version 11.1.0)
+- cisco.ise (still version 2.10.0)
+- cisco.mso (still version 2.10.0)
+- cisco.nxos (still version 10.1.0)
+- cisco.ucs (still version 1.16.0)
+- cloud.common (still version 4.2.0)
+- cloudscale_ch.cloud (still version 2.5.1)
+- community.aws (still version 10.0.0)
+- community.ciscosmb (still version 1.0.10)
+- community.crypto (still version 3.0.0-a2)
+- community.digitalocean (still version 1.27.0)
+- community.dns (still version 3.2.4)
+- community.general (still version 10.7.0)
+- community.grafana (still version 2.2.0)
+- community.hashi_vault (still version 6.2.0)
+- community.library_inventory_filtering_v1 (still version 1.1.1)
+- community.libvirt (still version 1.4.0)
+- community.mongodb (still version 1.7.10)
+- community.mysql (still version 3.14.0)
+- community.okd (still version 4.0.2)
+- community.postgresql (still version 4.1.0)
+- community.proxysql (still version 1.6.0)
+- community.rabbitmq (still version 1.5.0)
+- community.routeros (still version 3.7.0)
+- community.sap_libs (still version 1.4.2)
+- community.sops (still version 2.0.5)
+- community.windows (still version 3.0.0)
+- cyberark.conjur (still version 1.3.3)
+- cyberark.pas (still version 1.0.35)
+- dellemc.enterprise_sonic (still version 3.0.0)
+- dellemc.openmanage (still version 9.12.1)
+- dellemc.powerflex (still version 2.6.0)
+- dellemc.unity (still version 2.0.0)
+- f5networks.f5_modules (still version 1.36.0)
+- fortinet.fortimanager (still version 2.9.1)
+- fortinet.fortios (still version 2.4.0)
+- grafana.grafana (still version 6.0.1)
+- ibm.qradar (still version 4.0.0)
+- ibm.storage_virtualize (still version 2.7.4)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 10.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 5.3.0)
+- lowlydba.sqlserver (still version 2.6.1)
+- microsoft.ad (still version 1.9.1)
+- microsoft.iis (still version 1.0.2)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.0.0)
+- netapp.storagegrid (still version 21.14.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.1)
+- purestorage.flasharray (still version 1.34.1)
+- purestorage.flashblade (still version 1.20.0)
+- splunk.es (still version 4.0.0)
+- vmware.vmware_rest (still version 4.7.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 5.0.0)
+- wti.remote (still version 1.0.10)
+
 v12.0.0a5
 =========
 
@@ -3355,9 +3753,7 @@ Ansible-core
 - plugin error handling - The ``AnsibleError`` constructor arg ``suppress_extended_error`` is deprecated. Using ``suppress_extended_error=True`` has the same effect as ``show_content=False``.
 - template lookup - The jinja2_native option is no longer used in the Ansible Core code base. Jinja2 native mode is now the default and only option.
 - templating - Support for enabling Jinja2 extensions (not plugins) has been deprecated.
-- templating - The ``ansible_managed`` variable available for certain templating scenarios, such as the ``template`` action and ``template`` lookup has been deprecated. Define and use a custom variable instead of relying on ``ansible_managed``.
 - templating - The ``disable_lookups`` option has no effect, since plugins must be updated to apply trust before any templating can be performed.
-- to_yaml/to_nice_yaml filters - Implicit YAML dumping of vaulted value ciphertext is deprecated. Set `dump_vault_tags` to explicitly specify the desired behavior.
 - tree callback - The ``tree`` callback and its associated ad-hoc CLI args (``-t``, ``--tree``) are deprecated.
 
 amazon.aws
