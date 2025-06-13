@@ -3,9 +3,5 @@ ansible.utils: <6.0.0
 # cisco.dnac 6.32.0 needs ansible.utils >= 6.0 -- restrict as long as we have the ansible.utils restriction in there
 cisco.dnac: <6.32.0
 
-# ERROR: kubevirt.core 2.2.2 version_conflict: kubernetes.core-6.0.0 but needs >=5.2.0,<6.0.0
-# ERROR: community.okd 4.0.2 version_conflict: kubernetes.core-6.0.0 but needs >=5.0.0,<6.0.0
-kubernetes.core: <6.0.0
-
 # ERROR: grafana.grafana contains a node_modules folder
 grafana.grafana: !=6.0.0
