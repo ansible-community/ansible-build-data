@@ -16,7 +16,6 @@ cisco.dnac: >=6.31.0,<7.0.0
 cisco.intersight: >=2.1.0,<3.0.0
 cisco.ios: >=10.1.0,<11.0.0
 cisco.iosxr: >=11.1.0,<12.0.0
-cisco.ise: >=2.10.0,<3.0.0
 cisco.meraki: >=2.21.0,<3.0.0
 cisco.mso: >=2.10.0,<3.0.0
 cisco.nxos: >=10.1.0,<11.0.0
