@@ -50,12 +50,6 @@ collections:
     repository: https://github.com/ansible-collections/cisco.ios
   cisco.iosxr:
     repository: https://github.com/ansible-collections/cisco.iosxr
-  cisco.ise:
-    maintainers:
-      - wastorga
-      - racampos
-      - jbogarin
-    repository: https://github.com/CiscoISE/ansible-ise
   cisco.meraki:
     repository: https://github.com/meraki/dashboard-api-ansible
   cisco.mso:
@@ -347,6 +341,16 @@ removed_collections:
       reason: deprecated
       discussion: https://forum.ansible.com/t/38960
       announce_version: 11.2.0
+  cisco.ise:
+    maintainers:
+      - wastorga
+      - racampos
+      - jbogarin
+    repository: https://github.com/CiscoISE/ansible-ise
+    removal:
+      version: 12.0.0a7
+      reason: considered-unmaintained
+      discussion: https://forum.ansible.com/t/43367
   cisco.nso:
     repository: https://github.com/CiscoDevNet/ansible-nso
     removal:
