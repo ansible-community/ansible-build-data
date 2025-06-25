@@ -56,9 +56,9 @@ release process. The automated processes uses GitHub Actions to automate the
    merged!). This will upload the package to PyPI and tag the release in
    `ansible-build-data`.
 
-4. Merge the porting guide PR, and backport it to the latest `stable-x`
+4. Merge the porting guide PR, and request backports to the latest `stable-x`
    branches down to the ansible-core version that is included in the Ansible
-   release.
+   release. Documenation mantainers can add the appropriate backport labels to enable these automatically.
 
 5. Make sure that you have installed [`antsibull-build`](https://pypi.org/project/antsibull-build/)
    and a supported clipboard library. You can do that like this:
