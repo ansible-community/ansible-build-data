@@ -58,7 +58,7 @@ release process. The automated processes uses GitHub Actions to automate the
 
 4. Merge the porting guide PR, and request backports to the latest `stable-x`
    branches down to the ansible-core version that is included in the Ansible
-   release. Documenation mantainers can add the appropriate backport labels to enable these automatically.
+   release. Documentation mantainers can add the appropriate backport labels to enable these automatically.
 
 5. Make sure that you have installed [`antsibull-build`](https://pypi.org/project/antsibull-build/)
    and a supported clipboard library. You can do that like this:
