@@ -63,6 +63,11 @@ collections:
       - racampos
       - jbogarin
     repository: https://github.com/CiscoISE/ansible-ise
+    removal:
+      major_version: 12
+      announce_version: 11.8.0
+      reason: considered-unmaintained
+      discussion: https://forum.ansible.com/t/43367
   cisco.meraki:
     repository: https://github.com/meraki/dashboard-api-ansible
   cisco.mso:
