@@ -7,6 +7,183 @@ This changelog describes changes since Ansible 11.0.0.
 .. contents::
   :depth: 2
 
+v12.0.0a8
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-07-01
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 12.0.0a8 contains ansible-core version 2.19.0rc1.
+This is a newer version than version 2.19.0b7 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                  | Ansible 12.0.0a7 | Ansible 12.0.0a8 | Notes                                                                                                                        |
++=============================+==================+==================+==============================================================================================================================+
+| azure.azcollection          | 3.5.0            | 3.6.0            | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman           | 1.16.4           | 1.17.0           |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.powerflex           | 2.6.0            | 2.6.1            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| hitachivantara.vspone_block | 3.5.0            | 3.5.1            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- templating - Relaxed the Jinja sandbox to allow specific bitwise operations which have no filter equivalent. The allowed methods are ``__and__``, ``__lshift__``, ``__or__``, ``__rshift__``, ``__xor__``.
+- templating - Switched from the Jinja immutable sandbox to the standard sandbox. This restores the ability to use mutation methods such as ``list.append`` and ``dict.update``.
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add another test for volumes
+- Added checks for volume opts
+
+dellemc.powerflex
+~~~~~~~~~~~~~~~~~
+
+- Added none check for mdm cluster id in mdm_cluster module.
+- Updated minimum SDK version to 2.6.1.
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Update automatic role argument spec validation to not use deprecated syntax (https://github.com/ansible/ansible/issues/85399).
+- ssh connection plugin - Allow only one password prompt attempt when utilizing ``SSH_ASKPASS`` (https://github.com/ansible/ansible/issues/85359)
+
+dellemc.powerflex
+~~~~~~~~~~~~~~~~~
+
+- snapshot_policy - Renamed snapshotAccessMode and secureSnapshots to snapshot_access_mode and secure_snapshots respectively.
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Resolved an issue where adding a path to an external path group for FC and retrieving external path group facts would fail.
+
+New Modules
+-----------
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- containers.podman.podman_system_info - Get podman system information from host machine
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.1.0)
+- ansible.netcommon (still version 8.0.0)
+- ansible.posix (still version 2.0.0)
+- ansible.utils (still version 6.0.0)
+- ansible.windows (still version 3.1.0)
+- arista.eos (still version 11.0.0)
+- awx.awx (still version 24.6.1)
+- check_point.mgmt (still version 6.4.1)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.11.0)
+- cisco.dnac (still version 6.35.0)
+- cisco.intersight (still version 2.1.0)
+- cisco.ios (still version 10.1.0)
+- cisco.iosxr (still version 11.1.0)
+- cisco.meraki (still version 2.21.3)
+- cisco.mso (still version 2.10.0)
+- cisco.nxos (still version 10.1.0)
+- cisco.ucs (still version 1.16.0)
+- cloud.common (still version 5.0.0)
+- cloudscale_ch.cloud (still version 2.5.1)
+- community.aws (still version 10.0.0)
+- community.ciscosmb (still version 1.0.10)
+- community.crypto (still version 3.0.0-rc1)
+- community.digitalocean (still version 1.27.0)
+- community.dns (still version 3.2.5)
+- community.docker (still version 4.6.1)
+- community.general (still version 11.0.0)
+- community.grafana (still version 2.2.0)
+- community.hashi_vault (still version 6.2.0)
+- community.hrobot (still version 2.4.0)
+- community.library_inventory_filtering_v1 (still version 1.1.1)
+- community.libvirt (still version 1.4.0)
+- community.mongodb (still version 1.7.10)
+- community.mysql (still version 3.14.0)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.1.0)
+- community.proxmox (still version 1.0.1)
+- community.proxysql (still version 1.6.0)
+- community.rabbitmq (still version 1.5.0)
+- community.routeros (still version 3.8.0)
+- community.sap_libs (still version 1.4.2)
+- community.sops (still version 2.1.0)
+- community.vmware (still version 5.7.1)
+- community.windows (still version 3.0.0)
+- community.zabbix (still version 4.0.0)
+- cyberark.conjur (still version 1.3.3)
+- cyberark.pas (still version 1.0.35)
+- dellemc.enterprise_sonic (still version 3.0.0)
+- dellemc.openmanage (still version 9.12.1)
+- dellemc.unity (still version 2.0.0)
+- f5networks.f5_modules (still version 1.36.0)
+- fortinet.fortimanager (still version 2.10.0)
+- fortinet.fortios (still version 2.4.0)
+- grafana.grafana (still version 6.0.2)
+- hetzner.hcloud (still version 5.1.0)
+- ibm.qradar (still version 4.0.0)
+- ibm.storage_virtualize (still version 2.7.4)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 10.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.0.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.6.1)
+- microsoft.ad (still version 1.9.1)
+- microsoft.iis (still version 1.0.2)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.0.0)
+- netapp.storagegrid (still version 21.15.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.1)
+- purestorage.flasharray (still version 1.35.1)
+- purestorage.flashblade (still version 1.20.0)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.3.0)
+- theforeman.foreman (still version 5.4.0)
+- vmware.vmware (still version 2.2.0)
+- vmware.vmware_rest (still version 4.7.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v12.0.0a7
 =========
 
@@ -1197,7 +1374,7 @@ hitachivantara.vspone_block
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Added additional parameters primary_volume_device_group_name and secondary_volume_device_group_name to retrieve ShadowImage group details more quickly.
-- Added new module `hv_external_parity_group_facts` to retrieve information about External Parity Group.
+- Added new module `hv_external_paritygroup_facts` to retrieve information about External Parity Group.
 - Added new module `hv_external_path_group_facts` to retrieve information about External Path Group.
 - Added new module `hv_external_path_group` to manage External Path Groups.
 - Added new module `hv_mp_facts` to retrieve MP Blades information from VSP storage models.
@@ -1388,7 +1565,7 @@ hitachivantara.vspone_block
 Vsp
 ^^^
 
-- hitachivantara.vspone_block.hv_external_parity_group_facts - Retrieves information about External Parity Group from Hitachi VSP storage systems.
+- hitachivantara.vspone_block.hv_external_paritygroup_facts - Retrieves information about External Parity Group from Hitachi VSP storage systems.
 - hitachivantara.vspone_block.hv_external_path_group - Manages External Path Groups in the Hitachi VSP storage systems.
 - hitachivantara.vspone_block.hv_external_path_group_facts - Retrieves information about External Path Group from Hitachi VSP storage systems.
 - hitachivantara.vspone_block.hv_mp_facts - Retrieves MP blades information from Hitachi VSP storage systems.
