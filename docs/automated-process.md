@@ -11,6 +11,34 @@ release process. The automated processes uses GitHub Actions to automate the
     `${PLACEHOLDER_VALUE}` where `PLACEHOLDER_VALUE` describes the value to
     specify.
 
+## Setup for the release
+
+### Credentials
+
+- Access to https://github.com/ansible-community/ansible-build-data repo
+- Access to https://github.com/ansible/ansible repo
+- Access to Ansible Release Management working group (in Github).
+- Join Release Management working group and Community Working Group.
+- Be a part of the maintainer group in PyPI.
+- Access to test PyPI.
+
+
+### Read about the following
+
+- [Trusted Publisher in PyPI](https://docs.pypi.org/trusted-publishers/).
+- [Examine the GitHub Actions release workflow](https://github.com/ansible-community/ansible-build-data/blob/main/.github/workflows/ansible-release.yml).
+- [Talk on Using Trusted Publishing to Ansible release](https://docs.pypi.org/trusted-publishers/)
+- Ask and show intention to be the Release Manager in the release-management working group.
+- Shadow the release manager for 2 releases.
+- [Release Roadmap](https://docs.ansible.com/ansible/devel/roadmap)
+
+### Build Checklist
+
+-  Communicate with the Community about the start and the progress on the #release-management:ansible.com Matrix channel.
+-  Fork `ansible-community/ansible-build-data` repo.
+-  Fork `ansible/ansible-documentation` repo.
+-  Follow the workflow from the ansible-build-data repo.
+-  Release Announcement at the forum.
 
 ## Trigger the workflow
 
