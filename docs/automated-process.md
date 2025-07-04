@@ -15,12 +15,9 @@ release process. The automated processes uses GitHub Actions to automate the
 
 ### Credentials
 
-- Access to https://github.com/ansible-community/ansible-build-data repo
-- Access to https://github.com/ansible/ansible repo
-- Access to Ansible Release Management working group (in Github).
-- Join Release Management working group and Community Working Group.
-- Be a part of the maintainer group in PyPI.
-- Access to test PyPI.
+- Membership to [ansible-build-data](https://github.com/ansible-community/ansible-build-data) repo.
+- Become member of the [Ansible Release Management working group](https://github.com/orgs/ansible-community/teams/release-management-wg/).
+- Join [Release Management Working Group in [Ansible Forum](https://forum.ansible.com/g/release-managers) and [Matrix](#release-management:ansible.com).
 
 
 ### Read about the following
@@ -32,12 +29,10 @@ release process. The automated processes uses GitHub Actions to automate the
 - Shadow the release manager for 2 releases.
 - [Release Roadmap](https://docs.ansible.com/ansible/devel/roadmap)
 
-### Build Checklist
+### Process summary
 
--  Communicate with the Community about the start and the progress on the #release-management:ansible.com Matrix channel.
--  Fork `ansible-community/ansible-build-data` repo.
--  Fork `ansible/ansible-documentation` repo.
--  Follow the workflow from the ansible-build-data repo.
+-  Communicate with the Community about the start and the progress on the [#release-management:ansible.com Matrix channel](https://matrix.to/#/#release-management:ansible.com).
+-  Follow the release workflow as mentioned below.
 -  Release Announcement at the forum.
 
 ## Trigger the workflow
