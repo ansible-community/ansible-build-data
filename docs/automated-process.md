@@ -15,7 +15,7 @@ release process. The automated processes uses GitHub Actions to automate the
 
 ### Credentials
 
-- Membership to [ansible-build-data](https://github.com/ansible-community/ansible-build-data) repo.
+- Become a member of the [ansible-build-data](https://github.com/ansible-community/ansible-build-data) repo.
 - Become member of the [Ansible Release Management working group](https://github.com/orgs/ansible-community/teams/release-management-wg/).
 - Join [Release Management Working Group in [Ansible Forum](https://forum.ansible.com/g/release-managers) and [Matrix](#release-management:ansible.com).
 
