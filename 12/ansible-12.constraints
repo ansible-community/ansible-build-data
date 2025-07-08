@@ -1,5 +1,2 @@
 # ERROR: grafana.grafana contains a node_modules folder
 grafana.grafana: !=6.0.0
-
-# ERROR: vmware.vmware_rest 4.8.0 version_conflict: cloud.common-5.0.0 but needs >=4.1.0,<5.0.0
-vmware.vmware_rest: <4.8.0
