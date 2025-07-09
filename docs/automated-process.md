@@ -15,7 +15,7 @@ release process. The automated processes uses GitHub Actions to automate the
 
 ### Credentials
 
-Note that most of the following items cannot be done yourself, but need someone from the Ansible community team to assign them to you. You need to earn some trust first before this will happen.
+Note that most of the following items cannot be done by yourself, but need someone from the Ansible community team to assign them to you. You need to earn some trust first before this will happen.
 
 - Become a member of the [ansible-build-data](https://github.com/ansible-community/ansible-build-data) repo.
 - Become member of the [Ansible Release Management working group](https://github.com/orgs/ansible-community/teams/release-management-wg/).
