@@ -7,6 +7,324 @@ This changelog describes changes since Ansible 11.0.0.
 .. contents::
   :depth: 2
 
+v12.0.0a9
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-07-09
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 12.0.0a9 contains ansible-core version 2.19.0rc2.
+This is a newer version than version 2.19.0rc1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------+------------------+------------------+-------+
+| Collection            | Ansible 12.0.0a8 | Ansible 12.0.0a9 | Notes |
++=======================+==================+==================+=======+
+| ansible.netcommon     | 8.0.0            | 8.0.1            |       |
++-----------------------+------------------+------------------+-------+
+| arista.eos            | 11.0.0           | 11.0.1           |       |
++-----------------------+------------------+------------------+-------+
+| cisco.dnac            | 6.35.0           | 6.36.0           |       |
++-----------------------+------------------+------------------+-------+
+| cisco.ios             | 10.1.0           | 10.1.1           |       |
++-----------------------+------------------+------------------+-------+
+| cisco.nxos            | 10.1.0           | 10.2.0           |       |
++-----------------------+------------------+------------------+-------+
+| community.crypto      | 3.0.0-rc1        | 3.0.0            |       |
++-----------------------+------------------+------------------+-------+
+| community.hrobot      | 2.4.0            | 2.5.0            |       |
++-----------------------+------------------+------------------+-------+
+| community.proxmox     | 1.0.1            | 1.1.0            |       |
++-----------------------+------------------+------------------+-------+
+| dellemc.openmanage    | 9.12.1           | 9.12.2           |       |
++-----------------------+------------------+------------------+-------+
+| f5networks.f5_modules | 1.36.0           | 1.37.1           |       |
++-----------------------+------------------+------------------+-------+
+| vmware.vmware_rest    | 4.7.0            | 4.8.1            |       |
++-----------------------+------------------+------------------+-------+
+
+Major Changes
+-------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_bios - This module is enhanced to support iDRAC10.
+- idrac_diagnostics - This module is enhanced to support iDRAC10.
+- idrac_firmware - This module is enhanced to support iDRAC10.
+- idrac_job_queue - This role is enhanced to support iDRAC10.
+- idrac_lifecycle_controller_logs - This module is enhanced to support iDRAC10.
+- idrac_network_attributes - This module is enhanced to support iDRAC10.
+- idrac_secure_boot - This module is enhanced to support iDRAC10.
+- idrac_server_powerstate - This role is enhanced to support iDRAC10.
+- idrac_session - This module is enhanced to support iDRAC10.
+- idrac_system_erase - This module is enhanced to support iDRAC10.
+- redfish_event_subscription - This module is enhanced to support iDRAC10.
+- redfish_power_state - This module is enhanced to support iDRAC10.
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- modules - disable turbo mode for module execution by default. Make it optional to enable it using an environment variable (https://github.com/ansible-collections/vmware.vmware_rest/issues/499)
+
+Minor Changes
+-------------
+
+cisco.dnac
+~~~~~~~~~~
+
+- Added create in configuration_template module
+- Changes in lan_automation_create module
+- Update dnacentersdk requirement from 2.7.0 to 2.10.1
+
+cisco.nxos
+~~~~~~~~~~
+
+- nxos_interfaces - Added service-policy, logging, mac-address and snmp configuration options for interface.
+- nxos_l2_interfaces - Enhances capability of the module to deal with addition attributes under l2 interfaces. Adds support for CDP, Link flap and beacon.
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- Introduced a new action group (module defaults group) ``community.hrobot.api`` that includes all modules that support the new Hetzner API. This is currently limited to a subset of the storage box modules; these currently support both the ``community.hrobot.robot`` and the new ``community.hrobot.api`` action group, and will eventually drop the ``community.hrobot.robot`` action group once the Robot API for storage boxes is removed by Hetzner (https://github.com/ansible-collections/community.hrobot/pull/166, https://github.com/ansible-collections/community.hrobot/pull/167, https://github.com/ansible-collections/community.hrobot/pull/168, https://github.com/ansible-collections/community.hrobot/pull/169).
+- storagebox - support the new Hetzner API (https://github.com/ansible-collections/community.hrobot/pull/166).
+- storagebox_info - support the new Hetzner API (https://github.com/ansible-collections/community.hrobot/pull/166).
+- storagebox_set_password - support the new Hetzner API. Note that the new API does not support setting a random password; you must always provide a password when using the new API (https://github.com/ansible-collections/community.hrobot/pull/168).
+- storagebox_snapshot - support the new Hetzner API (https://github.com/ansible-collections/community.hrobot/pull/168).
+- storagebox_snapshot_info - support the new Hetzner API (https://github.com/ansible-collections/community.hrobot/pull/168).
+- storagebox_snapshot_plan - support the new Hetzner API (https://github.com/ansible-collections/community.hrobot/pull/167).
+- storagebox_snapshot_plan_info - support the new Hetzner API (https://github.com/ansible-collections/community.hrobot/pull/167).
+- storagebox_subaccount - no longer mark ``password_mode`` as ``no_log`` (https://github.com/ansible-collections/community.hrobot/pull/168).
+- storagebox_subaccount - support the new Hetzner API. Note that the new API does not support setting a random password; you must always provide a password when using the new API to create a storagebox (https://github.com/ansible-collections/community.hrobot/pull/168).
+- storagebox_subaccount_info - support the new Hetzner API (https://github.com/ansible-collections/community.hrobot/pull/168).
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- proxmox - allow force deletion of LXC containers (https://github.com/ansible-collections/community.proxmox/pull/105).
+- proxmox - validate the cluster name length (https://github.com/ansible-collections/community.proxmox/pull/119).
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- change cloud.common dependency to 4.1 to support anisble 2.19
+
+Deprecated Features
+-------------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Jinja test plugins - Returning a non-boolean result from a Jinja test plugin is deprecated.
+- YAML parsing - Usage of the YAML 1.1 ``!!omap`` and ``!!pairs`` tags is deprecated. Use standard mappings instead.
+- YAML parsing - Usage of the undocumented ``!vault-encrypted`` YAML tag is deprecated. Use ``!vault`` instead.
+- config - The ``DEFAULT_ALLOW_UNSAFE_LOOKUPS`` configuration option is deprecated and no longer has any effect. Ansible templating no longer encounters situations where use of lookup plugins is considered "unsafe".
+- config - The ``DEFAULT_UNDEFINED_VAR_BEHAVIOR`` configuration option is deprecated and no longer has any effect. Attempting to use an undefined variable where undefined values are unexpected is now always an error. This behavior was enabled by default in previous versions, and disabling it yielded inconsistent results.
+- config - The ``STRING_TYPE_FILTERS`` configuration option is deprecated and no longer has any effect. Since the template engine now always preserves native types, there is no longer a risk of unintended conversion from strings to native types.
+- config - Using the ``DEFAULT_JINJA2_EXTENSIONS`` configuration option to enable Jinja2 extensions is deprecated. Previously, custom Jinja extensions were disabled by default, as they can destabilize the Ansible templating environment. Templates should only make use of filter, test and lookup plugins.
+- config - Using the ``DEFAULT_MANAGED_STR`` configuration option to customize the value of the ``ansible_managed`` variable is deprecated. The ``ansible_managed`` variable can now be set the same as any other variable.
+- playbook - The ``timedout.frame`` task result value (injected when a task timeout occurs) is deprecated. Include ``error`` in the ``DISPLAY_TRACEBACK`` config value to capture a full Python traceback for timed out actions.
+- public API - The ``ansible.errors.AnsibleFilterTypeError`` exception type has been deprecated. Use ``AnsibleTypeError`` instead.
+- public API - The ``ansible.errors._AnsibleActionDone`` exception type has been deprecated. Action plugins should return a task result dictionary in success cases instead of raising.
+- public API - The ``ansible.module_utils.common.json.json_dump`` function is deprecated. Call Python stdlib ``json.dumps`` instead, with ``cls`` set to an Ansible profile encoder type from ``ansible.module_utils.common.json.get_encoder``.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme_certificate - the option ``modify_account``'s default value ``true`` has been deprecated. It will change to ``false`` in community.crypto 4.0.0. We recommend to set the option to an explicit value to avoid deprecation warnings, and to prefer setting it to ``false`` already now. Better use the ``community.crypto.acme_account`` module instead (https://github.com/ansible-collections/community.crypto/issues/924).
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- lookup plugins - Deprecate all lookup plugins in favor of vmware.vmware.moid_from_path (https://github.com/ansible-collections/vmware.vmware_rest/pull/608)
+
+Bugfixes
+--------
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- (#633) Fixed typo in ansible.netcommon.telnet parameter crlf (was clrf by mistake)
+- netconf - Adds check for netconf session_close RPC happens only if connection is alive.
+
+arista.eos
+~~~~~~~~~~
+
+- Fix route map community handling to include missing community_attributes level in the dictionary
+- Fixed idempotency regarding logging port in differing versions of EOS
+- Fixed idempotency when using `replaced` state on host with multiple ACLs present.
+- Fixed parsing of relative route-map metric adjustments in when extracting settings from device output.
+- Support colon-delimited format in BGP community strings
+- Update route_maps to correctly handle ipv6 next-hop address
+
+cisco.dnac
+~~~~~~~~~~
+
+- Fixed get in sites_telemetry_settings module
+
+cisco.ios
+~~~~~~~~~
+
+- cisco.ios.ios_acls - Added default acls to not get updated/removed in any state.
+- cisco.ios.ios_hsrp_interfaces - Fix module operation around the preempt attributes, also addressed issues around command ordering.
+- cisco.ios.ios_l3_interfaces - Fixed Helper Address command support for l3 interface.
+- cisco.ios.ios_ospfv2 - Fix ospf admin distance parameter and fix other distance specific attributes to be optional.
+- cisco.ios.ios_vlans - Fixed errors during VLAN overrides where primary VLANs have private VLAN associations referencing non-existent or higher VLAN IDs, ensuring smoother private VLAN handling and preventing module failures.
+- ios_bgp_address_family - Refined state handling for `replaced` and `overridden` modes and enhanced address-family parsing to accurately differentiate between types such as unicast, multicast, and others.
+- ios_static_routes - Add missing interface names in parser
+- ios_vrf_address_family - Added support for parsing the `stitching` attribute under route targets when gathering facts. Enhanced handling of `import_config` and `export` and renamed them to `imports` and `exports` to consistently represent them as lists of dictionaries during fact collection.
+
+cisco.nxos
+~~~~~~~~~~
+
+- nxos_acls - Fix issue where Not sufficient TCAM bank error not being captured by error regex.
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- robot inventory plugin - avoid using deprecated option when templating options (https://github.com/ansible-collections/community.hrobot/pull/165).
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- proxmox inventory plugin - avoid using deprecated option when templating options (https://github.com/ansible-collections/community.proxmox/pull/108).
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_virtual_server fix module crash issue
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- Allow cloud.common 5.0.0 and later again (https://github.com/ansible-collections/vmware.vmware_rest/pull/614).
+
+Known Issues
+------------
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- storagebox* modules - the Hetzner Robot API for storage boxes is `deprecated and will be sunset on July 30, 2025 <https://docs.hetzner.cloud/changelog#2025-06-25-new-api-for-storage-boxes>`__. The modules are currently not compatible with the new API. We will try to adjust them until then, but usage and return values might change slightly due to differences in the APIs.
+  For the new API, an API token needs to be registered and provided as ``hetzner_token`` (https://github.com/ansible-collections/community.hrobot/pull/166).
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_attributes - The module accepts both the string as well as integer value for the field "SNMP.1.AgentCommunity" for iDRAC10.
+- idrac_diagnostics - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- ome_smart_fabric_uplink - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+New Modules
+-----------
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- community.proxmox.proxmox_access_acl - Management of ACLs for objects in Proxmox VE Cluster.
+- community.proxmox.proxmox_cluster_ha_groups - Management of HA groups in Proxmox VE Cluster.
+- community.proxmox.proxmox_cluster_ha_resources - Management of HA groups in Proxmox VE Cluster.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.1.0)
+- ansible.posix (still version 2.0.0)
+- ansible.utils (still version 6.0.0)
+- ansible.windows (still version 3.1.0)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.6.0)
+- check_point.mgmt (still version 6.4.1)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.11.0)
+- cisco.intersight (still version 2.1.0)
+- cisco.iosxr (still version 11.1.0)
+- cisco.meraki (still version 2.21.3)
+- cisco.mso (still version 2.10.0)
+- cisco.ucs (still version 1.16.0)
+- cloud.common (still version 5.0.0)
+- cloudscale_ch.cloud (still version 2.5.1)
+- community.aws (still version 10.0.0)
+- community.ciscosmb (still version 1.0.10)
+- community.digitalocean (still version 1.27.0)
+- community.dns (still version 3.2.5)
+- community.docker (still version 4.6.1)
+- community.general (still version 11.0.0)
+- community.grafana (still version 2.2.0)
+- community.hashi_vault (still version 6.2.0)
+- community.library_inventory_filtering_v1 (still version 1.1.1)
+- community.libvirt (still version 1.4.0)
+- community.mongodb (still version 1.7.10)
+- community.mysql (still version 3.14.0)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.1.0)
+- community.proxysql (still version 1.6.0)
+- community.rabbitmq (still version 1.5.0)
+- community.routeros (still version 3.8.0)
+- community.sap_libs (still version 1.4.2)
+- community.sops (still version 2.1.0)
+- community.vmware (still version 5.7.1)
+- community.windows (still version 3.0.0)
+- community.zabbix (still version 4.0.0)
+- containers.podman (still version 1.17.0)
+- cyberark.conjur (still version 1.3.3)
+- cyberark.pas (still version 1.0.35)
+- dellemc.enterprise_sonic (still version 3.0.0)
+- dellemc.powerflex (still version 2.6.1)
+- dellemc.unity (still version 2.0.0)
+- fortinet.fortimanager (still version 2.10.0)
+- fortinet.fortios (still version 2.4.0)
+- grafana.grafana (still version 6.0.2)
+- hetzner.hcloud (still version 5.1.0)
+- hitachivantara.vspone_block (still version 3.5.1)
+- ibm.qradar (still version 4.0.0)
+- ibm.storage_virtualize (still version 2.7.4)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 10.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.0.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.6.1)
+- microsoft.ad (still version 1.9.1)
+- microsoft.iis (still version 1.0.2)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.0.0)
+- netapp.storagegrid (still version 21.15.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.1)
+- purestorage.flasharray (still version 1.35.1)
+- purestorage.flashblade (still version 1.20.0)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.3.0)
+- theforeman.foreman (still version 5.4.0)
+- vmware.vmware (still version 2.2.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v12.0.0a8
 =========
 
