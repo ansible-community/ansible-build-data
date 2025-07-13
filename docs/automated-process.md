@@ -20,10 +20,10 @@ Note that most of the following items cannot be done by yourself, but need someo
 - Become a member of the [ansible-build-data](https://github.com/ansible-community/ansible-build-data) repo.
 - Become member of the Ansible Release Management working group on Github.
 - For making the announcements relating to releases, please open your Matrix client and send the message to:
-  - #release-management:ansible.com
-  - #community:ansible.com
-  - #packaging:ansible.com
-  - #social:ansible.com (mention @newsbot)
+    - [`#release-management:ansible.com`](https://matrix.to/#/#release-management:ansible.com)
+    - [`#community:ansible.com`](https://matrix.to/#/#community:ansible.com)
+    - [`#packaging:ansible.com`](https://matrix.to/#/#packaging:ansible.com)
+    - [`#social:ansible.com`](https://matrix.to/#/#social:ansible.com) (mention `@newsbot`)
 - Join Release Management Working Group in [Ansible Forum](https://forum.ansible.com/g/release-managers).
 
 
