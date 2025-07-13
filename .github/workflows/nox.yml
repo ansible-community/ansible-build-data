@@ -9,9 +9,9 @@ name: nox
     branches: [main]
   pull_request:
     branches: [main]
-  # Run once per week (Thursday at 04:00 UTC)
+  # Run once per week (Thursday at 04:15 UTC)
   schedule:
-    - cron: '0 4 * * 4'
+    - cron: '15 4 * * 4'
   workflow_dispatch:
 
 env:
