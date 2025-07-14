@@ -9,9 +9,9 @@ name: antsibull-build
     branches: [main]
   pull_request:
     branches: [main]
-  # Run once per week (Thursday at 04:00 UTC)
+  # Run once per day (at 04:00 UTC)
   schedule:
-    - cron: '0 4 * * 4'
+    - cron: '0 4 * * *'
   workflow_dispatch:
 
 jobs:
