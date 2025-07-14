@@ -458,13 +458,6 @@ removed_collections:
       announce_version: 7.7.0
   google.cloud:
     repository: https://github.com/ansible-collections/google.cloud
-    removal:
-      version: 12.0.0a1
-      reason: guidelines-violation
-      discussion: https://forum.ansible.com/t/8609
-      reason_text: >
-        The collection has
-        L(unresolved sanity test failures, https://github.com/ansible-collections/google.cloud/issues/613).
   hpe.nimble:
     maintainers:
       - ar-india
