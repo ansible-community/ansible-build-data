@@ -19,6 +19,7 @@ jobs:
     name: 'Build Ansible community distribution (${{ matrix.name }})'
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         include:
           # Using ansible_version as X.99.0 since it is unreleased so new deps are generated
