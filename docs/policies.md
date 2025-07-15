@@ -430,7 +430,7 @@ In case of violations, the release manager must preform the following steps:
    with a link to the issue.
 
 
-[1]: https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst
+[1]: https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html
 [2]: https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html#repository-management
 [3]: https://github.com/ansible-community/antsibull-build/blob/main/playbooks/build-single-release.yaml
 [4]: https://github.com/ansible-community/ansible-build-data/blob/main/7/ansible-7.5.0-tags.yaml
