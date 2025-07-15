@@ -199,6 +199,16 @@ collections:
     repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortimanager-collection
   fortinet.fortios:
     repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortios-collection
+  google.cloud:
+    repository: https://github.com/ansible-collections/google.cloud
+    removal:
+      major_version: 12
+      reason: guidelines-violation
+      discussion: https://forum.ansible.com/t/8609
+      updates:
+        - removed_version: 12.0.0a1
+        - readded_version: 12.0.0b1
+          reason_text: The sanity test failures have been addressed.
   grafana.grafana:
     maintainers:
       - ishanjainn
@@ -456,8 +466,6 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/225
       announce_version: 7.7.0
-  google.cloud:
-    repository: https://github.com/ansible-collections/google.cloud
   hpe.nimble:
     maintainers:
       - ar-india

@@ -226,9 +226,6 @@ collections:
       announce_version: 11.0.0b1
       reason: guidelines-violation
       discussion: https://forum.ansible.com/t/8609
-      reason_text: >
-        The collection has
-        L(unresolved sanity test failures, https://github.com/ansible-collections/google.cloud/issues/613).
       updates:
         - cancelled_version: 11.8.0
           reason_text: The sanity test failures have been addressed.
