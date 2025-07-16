@@ -7,6 +7,442 @@ This changelog describes changes since Ansible 10.0.0.
 .. contents::
   :depth: 2
 
+v11.8.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-07-16
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 11.8.0 contains ansible-core version 2.18.7.
+This is a newer version than version 2.18.6 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Collection                  | Ansible 11.7.0 | Ansible 11.8.0 | Notes                                                                                                                                                                                                           |
++=============================+================+================+=================================================================================================================================================================================================================+
+| azure.azcollection          | 3.4.0          | 3.6.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                    |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki                | 2.21.3         | 2.21.4         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.ciscosmb          | 1.0.10         | 1.0.11         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.dns               | 3.2.5          | 3.2.6          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.general           | 10.7.1         | 10.7.2         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot            | 2.4.0          | 2.5.0          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.proxmox           | 1.0.1          | 1.2.0          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.rabbitmq          | 1.5.0          | 1.6.0          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware            | 5.7.0          | 5.7.1          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman           | 1.16.4         | 1.17.0         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.conjur             | 1.3.3          | 1.3.6          | You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`__. |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.openmanage          | 9.12.1         | 9.12.2         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.powerflex           | 2.6.0          | 2.6.1          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules       | 1.36.0         | 1.37.1         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortimanager       | 2.9.1          | 2.10.0         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| google.cloud                | 1.5.3          | 1.6.0          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| hitachivantara.vspone_block | 3.5.0          | 3.5.1          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flasharray      | 1.34.1         | 1.36.0         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware_rest          | 4.7.0          | 4.8.1          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_bios - This module is enhanced to support iDRAC10.
+- idrac_diagnostics - This module is enhanced to support iDRAC10.
+- idrac_firmware - This module is enhanced to support iDRAC10.
+- idrac_job_queue - This role is enhanced to support iDRAC10.
+- idrac_lifecycle_controller_logs - This module is enhanced to support iDRAC10.
+- idrac_network_attributes - This module is enhanced to support iDRAC10.
+- idrac_secure_boot - This module is enhanced to support iDRAC10.
+- idrac_server_powerstate - This role is enhanced to support iDRAC10.
+- idrac_session - This module is enhanced to support iDRAC10.
+- idrac_system_erase - This module is enhanced to support iDRAC10.
+- redfish_event_subscription - This module is enhanced to support iDRAC10.
+- redfish_power_state - This module is enhanced to support iDRAC10.
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- modules - disable turbo mode for module execution by default. Make it optional to enable it using an environment variable (https://github.com/ansible-collections/vmware.vmware_rest/issues/499)
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Add RHEL 10.0 as a remote platform for testing.
+
+community.ciscosmb
+~~~~~~~~~~~~~~~~~~
+
+- Update modules to conform core 2.19 and templating changes
+- solves
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- Introduced a new action group (module defaults group) ``community.hrobot.api`` that includes all modules that support the new Hetzner API. This is currently limited to a subset of the storage box modules; these currently support both the ``community.hrobot.robot`` and the new ``community.hrobot.api`` action group, and will eventually drop the ``community.hrobot.robot`` action group once the Robot API for storage boxes is removed by Hetzner (https://github.com/ansible-collections/community.hrobot/pull/166, https://github.com/ansible-collections/community.hrobot/pull/167, https://github.com/ansible-collections/community.hrobot/pull/168, https://github.com/ansible-collections/community.hrobot/pull/169).
+- storagebox - support the new Hetzner API (https://github.com/ansible-collections/community.hrobot/pull/166).
+- storagebox_info - support the new Hetzner API (https://github.com/ansible-collections/community.hrobot/pull/166).
+- storagebox_set_password - support the new Hetzner API. Note that the new API does not support setting a random password; you must always provide a password when using the new API (https://github.com/ansible-collections/community.hrobot/pull/168).
+- storagebox_snapshot - support the new Hetzner API (https://github.com/ansible-collections/community.hrobot/pull/168).
+- storagebox_snapshot_info - support the new Hetzner API (https://github.com/ansible-collections/community.hrobot/pull/168).
+- storagebox_snapshot_plan - support the new Hetzner API (https://github.com/ansible-collections/community.hrobot/pull/167).
+- storagebox_snapshot_plan_info - support the new Hetzner API (https://github.com/ansible-collections/community.hrobot/pull/167).
+- storagebox_subaccount - no longer mark ``password_mode`` as ``no_log`` (https://github.com/ansible-collections/community.hrobot/pull/168).
+- storagebox_subaccount - support the new Hetzner API. Note that the new API does not support setting a random password; you must always provide a password when using the new API to create a storagebox (https://github.com/ansible-collections/community.hrobot/pull/168).
+- storagebox_subaccount_info - support the new Hetzner API (https://github.com/ansible-collections/community.hrobot/pull/168).
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- proxmox - allow force deletion of LXC containers (https://github.com/ansible-collections/community.proxmox/pull/105).
+- proxmox - validate the cluster name length (https://github.com/ansible-collections/community.proxmox/pull/119).
+- proxmox inventory plugin - always provide basic information regardless of want_facts (https://github.com/ansible-collections/community.proxmox/pull/124).
+- proxmox_cluster - cluster creation has been made idempotent (https://github.com/ansible-collections/community.proxmox/pull/125).
+- proxmox_pct_remote - allow forward agent with paramiko (https://github.com/ansible-collections/community.proxmox/pull/130).
+
+community.rabbitmq
+~~~~~~~~~~~~~~~~~~
+
+- rabbitmq_policy - add support to policy manipulation through RabbitMQ API (https://github.com/ansible-collections/community.rabbitmq/issues/203)
+- rabbitmq_vhost - make rabbitmqctl optional when configuring vhosts using the RabbitMQ API (https://github.com/ansible-collections/community.rabbitmq/issues/201)
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add another test for volumes
+- Added checks for volume opts
+
+dellemc.powerflex
+~~~~~~~~~~~~~~~~~
+
+- Added none check for mdm cluster id in mdm_cluster module.
+- Updated minimum SDK version to 2.6.1.
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Supported new modules in FortiManager 7.4.6, 7.4.7, 7.6.3.
+
+google.cloud
+~~~~~~~~~~~~
+
+- gcp_compute - added GVNIC support to compute instance (https://github.com/ansible-collections/google.cloud/pull/688).
+- gcp_compute - added ``discard_local_ssd`` flag to compute instance (https://github.com/ansible-collections/google.cloud/pull/686).
+- gcp_compute - added hostname support to dynamic inventory (https://github.com/ansible-collections/google.cloud/pull/689).
+- gcp_secret_manager - added support for regional secret manager (https://github.com/ansible-collections/google.cloud/pull/685).
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_endpoint - Converted to REST v2
+- purefa_fleet - Allows FlashBlades to be added to Fusion fleets if FlashArray is Purity//FA 6.8.5 or higher
+- purefa_host - Hosts can be created in realms and renamed within the same realm
+- purefa_host - Move function added to allow movement of host to/from realms
+- purefa_inventory - Added support for capacity down licensing
+- purefa_policy - Added support change a specific quota rule by name
+- purefa_subnet - Converted to use REST 2
+- purefa_user - No longer tries to expose API tokens as these are not required in the module
+- purefa_volume - Added support for creating volumes in Realms
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- change cloud.common dependency to 4.1 to support anisble 2.19
+
+Deprecated Features
+-------------------
+
+- The ``cisco.ise`` collection is considered unmaintained and will be removed from Ansible 12 if no one starts maintaining it again before Ansible 12.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/43367 <https://forum.ansible.com/t/43367>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install cisco.ise``.
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- lookup plugins - Deprecate all lookup plugins in favor of vmware.vmware.moid_from_path (https://github.com/ansible-collections/vmware.vmware_rest/pull/608)
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-doc will no longer ignore docs for modules without an extension (https://github.com/ansible/ansible/issues/85279).
+- ansible-pull change detection will now work independently of callback or result format settings.
+- ansible-test - Fix Python relative import resolution from ``__init__.py`` files when using change detection.
+- dnf5 - handle all libdnf5 specific exceptions (https://github.com/ansible/ansible/issues/84634)
+- meta - avoid traceback when retrieving the meta task name (https://github.com/ansible/ansible/issues/85367).
+- password lookup - fix acquiring the lock when human-readable FileExistsError error message is not English.
+- user - Set timeout for passphrase interaction.
+- user - Update prompt for SSH key passphrase (https://github.com/ansible/ansible/issues/84484).
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- cisco.meraki.networks_appliance_traffic_shaping_uplink_bandwidth - fix idempotency error.
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+- hetzner_dns_records inventory plugin - avoid using deprecated option when templating options (https://github.com/ansible-collections/community.dns/pull/266).
+- hosttech_dns_records inventory plugin - avoid using deprecated option when templating options (https://github.com/ansible-collections/community.dns/pull/266).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- dependent lookup plugin - avoid deprecated ansible-core 2.19 functionality (https://github.com/ansible-collections/community.general/pull/10359).
+- github_release - support multiple types of GitHub tokens; no longer failing when ``ghs_`` token type is provided (https://github.com/ansible-collections/community.general/issues/10338, https://github.com/ansible-collections/community.general/pull/10339).
+- icinga2 inventory plugin - avoid using deprecated option when templating options (https://github.com/ansible-collections/community.general/pull/10271).
+- incus connection plugin - fix error handling to return more useful Ansible errors to the user (https://github.com/ansible-collections/community.general/issues/10344, https://github.com/ansible-collections/community.general/pull/10349).
+- linode inventory plugin - avoid using deprecated option when templating options (https://github.com/ansible-collections/community.general/pull/10271).
+- logstash callback plugin - remove reference to Python 2 library (https://github.com/ansible-collections/community.general/pull/10345).
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- robot inventory plugin - avoid using deprecated option when templating options (https://github.com/ansible-collections/community.hrobot/pull/165).
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- proxmox inventory plugin - avoid using deprecated option when templating options (https://github.com/ansible-collections/community.proxmox/pull/108).
+
+community.rabbitmq
+~~~~~~~~~~~~~~~~~~
+
+- rabbitmq_user - URL encode the `vhost` and `user` fields to allow for input with '/' characters. (https://github.com/ansible-collections/community.rabbitmq/issues/205)
+- rabbitmq_vhost - Fail module if the requests library is missing. This maintains the same behavior across all the modules.
+- setup_rabbitmq - incorrect SSL library was selected for install on Ubuntu Noble. Fix now installs the correct version on newer Ubuntu versions. (https://github.com/ansible-collections/community.rabbitmq/issues/199)
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- Fix issues with pyvmomi 9.0.0.0 (https://github.com/ansible-collections/community.vmware/issues/2414).
+- vmware_vmotion - Fix issue with same resource pool name on different clusters (https://github.com/ansible-collections/community.vmware/issues/1719).
+
+dellemc.powerflex
+~~~~~~~~~~~~~~~~~
+
+- snapshot_policy - Renamed snapshotAccessMode and secureSnapshots to snapshot_access_mode and secure_snapshots respectively.
+
+f5networks.f5_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- bigip_virtual_server fix module crash issue
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Added "gather_facts" to all example playbooks.
+- Fixed a BUG that occurred when username/password and access token were used at the same time.
+
+google.cloud
+~~~~~~~~~~~~
+
+- gcp_secret_manager - cleaned up error responses (https://github.com/ansible-collections/google.cloud/pull/690).
+- gcp_serviceusage_service - updated documentation (https://github.com/ansible-collections/google.cloud/pull/691).
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Resolved an issue where adding a path to an external path group for FC and retrieving external path group facts would fail.
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_ds - Fixed issue with updaing a LDAP configuration fails with a list error.
+- purefa_proxy - Fixed issue with incorrect string comparison
+- purefa_vg - Fixed issue where VG QoS updates were being ignored
+- purefa_volume - Fixed issue for error on volume delete w/o eradicate
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- Allow cloud.common 5.0.0 and later again (https://github.com/ansible-collections/vmware.vmware_rest/pull/614).
+
+Known Issues
+------------
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- storagebox* modules - the Hetzner Robot API for storage boxes is `deprecated and will be sunset on July 30, 2025 <https://docs.hetzner.cloud/changelog#2025-06-25-new-api-for-storage-boxes>`__. The modules are currently not compatible with the new API. We will try to adjust them until then, but usage and return values might change slightly due to differences in the APIs.
+  For the new API, an API token needs to be registered and provided as ``hetzner_token`` (https://github.com/ansible-collections/community.hrobot/pull/166).
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_attributes - The module accepts both the string as well as integer value for the field "SNMP.1.AgentCommunity" for iDRAC10.
+- idrac_diagnostics - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- ome_smart_fabric_uplink - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+New Modules
+-----------
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- community.proxmox.proxmox_access_acl - Management of ACLs for objects in Proxmox VE Cluster.
+- community.proxmox.proxmox_cluster_ha_groups - Management of HA groups in Proxmox VE Cluster.
+- community.proxmox.proxmox_cluster_ha_resources - Management of HA groups in Proxmox VE Cluster.
+- community.proxmox.proxmox_group - Group management for Proxmox VE cluster.
+- community.proxmox.proxmox_node - Manage Proxmox VE nodes.
+- community.proxmox.proxmox_user - User management for Proxmox VE cluster.
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- containers.podman.podman_system_info - Get podman system information from host machine
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- fortinet.fortimanager.fmgr_dlp_exactdatamatch - Configure exact-data-match template used by DLP scan.
+- fortinet.fortimanager.fmgr_dlp_exactdatamatch_columns - DLP exact-data-match column types.
+- fortinet.fortimanager.fmgr_dlp_label - Configure labels used by DLP blocking.
+- fortinet.fortimanager.fmgr_dlp_label_entries - DLP label entries.
+- fortinet.fortimanager.fmgr_extensioncontroller_extendervap - FortiExtender wifi vap configuration.
+- fortinet.fortimanager.fmgr_firewall_internetserviceextension - Configure Internet Services Extension.
+- fortinet.fortimanager.fmgr_firewall_internetserviceextension_disableentry - Disable entries in the Internet Service database.
+- fortinet.fortimanager.fmgr_firewall_internetserviceextension_disableentry_ip6range - IPv6 ranges in the disable entry.
+- fortinet.fortimanager.fmgr_firewall_internetserviceextension_disableentry_iprange - IPv4 ranges in the disable entry.
+- fortinet.fortimanager.fmgr_firewall_internetserviceextension_disableentry_portrange - Port ranges in the disable entry.
+- fortinet.fortimanager.fmgr_firewall_internetserviceextension_entry - Entries added to the Internet Service extension database.
+- fortinet.fortimanager.fmgr_firewall_internetserviceextension_entry_portrange - Port ranges in the custom entry.
+- fortinet.fortimanager.fmgr_fmupdate_fgdsetting - Cli fmupdate fgd setting
+- fortinet.fortimanager.fmgr_fmupdate_fgdsetting_serveroverride - Cli fmupdate fgd setting server override
+- fortinet.fortimanager.fmgr_gtp_rattimeoutprofile - RAT timeout profile
+- fortinet.fortimanager.fmgr_icap_servergroup - Configure an ICAP server group consisting of multiple forward servers.
+- fortinet.fortimanager.fmgr_icap_servergroup_serverlist - Add ICAP servers to a list to form a server group.
+- fortinet.fortimanager.fmgr_system_log_deviceselector - Accept/reject devices matching specified filter types.
+- fortinet.fortimanager.fmgr_telemetrycontroller_agentprofile - Configure FortiTelemetry agent profiles.
+- fortinet.fortimanager.fmgr_telemetrycontroller_application_predefine - Configure FortiTelemetry predefined applications.
+- fortinet.fortimanager.fmgr_telemetrycontroller_profile - Configure FortiTelemetry profiles.
+- fortinet.fortimanager.fmgr_telemetrycontroller_profile_application - Configure applications.
+- fortinet.fortimanager.fmgr_telemetrycontroller_profile_application_sla - Service level agreement
+- fortinet.fortimanager.fmgr_user_scim - Configure SCIM client entries.
+- fortinet.fortimanager.fmgr_wireless_vap_ip6prefixlist - Wireless controller vap ip6 prefix list
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 9.5.0)
+- ansible.netcommon (still version 7.2.0)
+- ansible.posix (still version 1.6.2)
+- ansible.utils (still version 5.1.2)
+- ansible.windows (still version 2.8.0)
+- arista.eos (still version 10.1.1)
+- awx.awx (still version 24.6.1)
+- check_point.mgmt (still version 6.4.1)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.11.0)
+- cisco.asa (still version 6.1.0)
+- cisco.dnac (still version 6.31.3)
+- cisco.intersight (still version 2.1.0)
+- cisco.ios (still version 9.2.0)
+- cisco.iosxr (still version 10.3.1)
+- cisco.ise (still version 2.10.0)
+- cisco.mso (still version 2.10.0)
+- cisco.nxos (still version 9.4.0)
+- cisco.ucs (still version 1.16.0)
+- cloud.common (still version 4.2.0)
+- cloudscale_ch.cloud (still version 2.5.1)
+- community.aws (still version 9.3.0)
+- community.crypto (still version 2.26.3)
+- community.digitalocean (still version 1.27.0)
+- community.docker (still version 4.6.1)
+- community.grafana (still version 2.2.0)
+- community.hashi_vault (still version 6.2.0)
+- community.library_inventory_filtering_v1 (still version 1.1.1)
+- community.libvirt (still version 1.4.0)
+- community.mongodb (still version 1.7.10)
+- community.mysql (still version 3.14.0)
+- community.network (still version 5.1.0)
+- community.okd (still version 4.0.2)
+- community.postgresql (still version 3.14.2)
+- community.proxysql (still version 1.6.0)
+- community.routeros (still version 3.8.0)
+- community.sap_libs (still version 1.4.2)
+- community.sops (still version 2.1.0)
+- community.windows (still version 2.4.0)
+- community.zabbix (still version 3.3.0)
+- cyberark.pas (still version 1.0.35)
+- dellemc.enterprise_sonic (still version 2.5.1)
+- dellemc.unity (still version 2.0.0)
+- fortinet.fortios (still version 2.4.0)
+- grafana.grafana (still version 5.7.0)
+- hetzner.hcloud (still version 4.3.0)
+- ibm.qradar (still version 4.0.0)
+- ibm.spectrum_virtualize (still version 2.0.0)
+- ibm.storage_virtualize (still version 2.7.4)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 9.1.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 5.3.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.6.1)
+- microsoft.ad (still version 1.9.1)
+- microsoft.iis (still version 1.0.2)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 22.14.0)
+- netapp.storagegrid (still version 21.14.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.1)
+- purestorage.flashblade (still version 1.20.0)
+- sensu.sensu_go (still version 1.14.0)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.3.0)
+- theforeman.foreman (still version 4.2.0)
+- vmware.vmware (still version 1.11.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 5.0.0)
+- wti.remote (still version 1.0.10)
+
 v11.7.0
 =======
 
@@ -179,7 +615,7 @@ hitachivantara.vspone_block
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Added additional parameters primary_volume_device_group_name and secondary_volume_device_group_name to retrieve ShadowImage group details more quickly.
-- Added new module `hv_external_parity_group_facts` to retrieve information about External Parity Group.
+- Added new module `hv_external_paritygroup_facts` to retrieve information about External Parity Group.
 - Added new module `hv_external_path_group_facts` to retrieve information about External Path Group.
 - Added new module `hv_external_path_group` to manage External Path Groups.
 - Added new module `hv_mp_facts` to retrieve MP Blades information from VSP storage models.
@@ -427,7 +863,7 @@ hitachivantara.vspone_block
 Vsp
 ^^^
 
-- hitachivantara.vspone_block.hv_external_parity_group_facts - Retrieves information about External Parity Group from Hitachi VSP storage systems.
+- hitachivantara.vspone_block.hv_external_paritygroup_facts - Retrieves information about External Parity Group from Hitachi VSP storage systems.
 - hitachivantara.vspone_block.hv_external_path_group - Manages External Path Groups in the Hitachi VSP storage systems.
 - hitachivantara.vspone_block.hv_external_path_group_facts - Retrieves information about External Path Group from Hitachi VSP storage systems.
 - hitachivantara.vspone_block.hv_mp_facts - Retrieves MP blades information from Hitachi VSP storage systems.
