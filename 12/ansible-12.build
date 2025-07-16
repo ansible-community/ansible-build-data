@@ -57,6 +57,7 @@ dellemc.unity: >=2.0.0,<3.0.0
 f5networks.f5_modules: >=1.37.0,<2.0.0
 fortinet.fortimanager: >=2.10.0,<3.0.0
 fortinet.fortios: >=2.4.0,<3.0.0
+google.cloud: >=1.0.0,<2.0.0
 grafana.grafana: >=6.0.0,<7.0.0
 hetzner.hcloud: >=5.1.0,<6.0.0
 hitachivantara.vspone_block: >=3.5.0,<4.0.0

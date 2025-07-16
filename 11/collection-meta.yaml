@@ -234,6 +234,9 @@ collections:
       reason_text: >
         The collection has
         L(unresolved sanity test failures, https://github.com/ansible-collections/google.cloud/issues/613).
+      updates:
+        - cancelled_version: 11.9.0
+          reason_text: The sanity test failures have been addressed.
   grafana.grafana:
     maintainers:
       - ishanjainn
