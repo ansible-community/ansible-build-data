@@ -7,6 +7,187 @@ This changelog describes changes since Ansible 11.0.0.
 .. contents::
   :depth: 2
 
+v12.0.0rc1
+==========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-07-21
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- google.cloud (version 1.0.2)
+
+Ansible-core
+------------
+
+Ansible 12.0.0rc1 contains ansible-core version 2.19.0.
+This is a newer version than version 2.19.0rc2 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------+------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Collection            | Ansible 12.0.0a9 | Ansible 12.0.0rc1 | Notes                                                                                                                                                                                                           |
++=======================+==================+===================+=================================================================================================================================================================================================================+
+| cisco.meraki          | 2.21.3           | 2.21.4            |                                                                                                                                                                                                                 |
++-----------------------+------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.ciscosmb    | 1.0.10           | 1.0.11            |                                                                                                                                                                                                                 |
++-----------------------+------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto      | 3.0.0            | 3.0.1             |                                                                                                                                                                                                                 |
++-----------------------+------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.dns         | 3.2.5            | 3.2.6             |                                                                                                                                                                                                                 |
++-----------------------+------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.hashi_vault | 6.2.0            | 6.2.1             |                                                                                                                                                                                                                 |
++-----------------------+------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.conjur       | 1.3.3            | 1.3.6             | You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`__. |
++-----------------------+------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| google.cloud          |                  | 1.0.2             | The collection was added to Ansible                                                                                                                                                                             |
++-----------------------+------------------+-------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+community.ciscosmb
+~~~~~~~~~~~~~~~~~~
+
+- Update modules to conform core 2.19 and templating changes
+- solves
+
+Deprecated Features
+-------------------
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- ansible-core - support for several ``ansible-core`` versions will be dropped in ``v7.0.0``. The collection will focus on current supported versions of ``ansible-core`` going forward and more agressively drop end-of-life or soon-to-be EOL versions (https://docs.ansible.com/ansible/devel/reference_appendices/release_and_maintenance.html).
+- python - support for several ``python`` versions will be dropped in ``v7.0.0``. The collection will focus on ``python`` versions that are supported by the active versions of ``ansible-core`` on the controller side at a minimum, and some subset of target versions (https://docs.ansible.com/ansible/devel/reference_appendices/release_and_maintenance.html).
+
+Bugfixes
+--------
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- cisco.meraki.networks_appliance_traffic_shaping_uplink_bandwidth - fix idempotency error.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- openssl_csr and openssl_csr_pipe - the idempotency check for ``key_usage`` resulted in a crash if ``Key Agreement``/``keyAgreement`` was not set (https://github.com/ansible-collections/community.crypto/issues/934, https://github.com/ansible-collections/community.crypto/pull/935).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+- hetzner_dns_records inventory plugin - avoid using deprecated option when templating options (https://github.com/ansible-collections/community.dns/pull/266).
+- hosttech_dns_records inventory plugin - avoid using deprecated option when templating options (https://github.com/ansible-collections/community.dns/pull/266).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- connection_options - the ``validate_certs`` option had no effect if the ``retries`` option was set. Fix now also sets the parameter correctly in the retry request session (https://github.com/ansible-collections/community.hashi_vault/issues/461).
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.1.0)
+- ansible.netcommon (still version 8.0.1)
+- ansible.posix (still version 2.0.0)
+- ansible.utils (still version 6.0.0)
+- ansible.windows (still version 3.1.0)
+- arista.eos (still version 11.0.1)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.6.0)
+- check_point.mgmt (still version 6.4.1)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.11.0)
+- cisco.dnac (still version 6.36.0)
+- cisco.intersight (still version 2.1.0)
+- cisco.ios (still version 10.1.1)
+- cisco.iosxr (still version 11.1.0)
+- cisco.mso (still version 2.10.0)
+- cisco.nxos (still version 10.2.0)
+- cisco.ucs (still version 1.16.0)
+- cloud.common (still version 5.0.0)
+- cloudscale_ch.cloud (still version 2.5.1)
+- community.aws (still version 10.0.0)
+- community.digitalocean (still version 1.27.0)
+- community.docker (still version 4.6.1)
+- community.general (still version 11.0.0)
+- community.grafana (still version 2.2.0)
+- community.hrobot (still version 2.5.0)
+- community.library_inventory_filtering_v1 (still version 1.1.1)
+- community.libvirt (still version 1.4.0)
+- community.mongodb (still version 1.7.10)
+- community.mysql (still version 3.14.0)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.1.0)
+- community.proxmox (still version 1.1.0)
+- community.proxysql (still version 1.6.0)
+- community.rabbitmq (still version 1.5.0)
+- community.routeros (still version 3.8.0)
+- community.sap_libs (still version 1.4.2)
+- community.sops (still version 2.1.0)
+- community.vmware (still version 5.7.1)
+- community.windows (still version 3.0.0)
+- community.zabbix (still version 4.0.0)
+- containers.podman (still version 1.17.0)
+- cyberark.pas (still version 1.0.35)
+- dellemc.enterprise_sonic (still version 3.0.0)
+- dellemc.openmanage (still version 9.12.2)
+- dellemc.powerflex (still version 2.6.1)
+- dellemc.unity (still version 2.0.0)
+- f5networks.f5_modules (still version 1.37.1)
+- fortinet.fortimanager (still version 2.10.0)
+- fortinet.fortios (still version 2.4.0)
+- grafana.grafana (still version 6.0.2)
+- hetzner.hcloud (still version 5.1.0)
+- hitachivantara.vspone_block (still version 3.5.1)
+- ibm.qradar (still version 4.0.0)
+- ibm.storage_virtualize (still version 2.7.4)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 10.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.0.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.6.1)
+- microsoft.ad (still version 1.9.1)
+- microsoft.iis (still version 1.0.2)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.0.0)
+- netapp.storagegrid (still version 21.15.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.1)
+- purestorage.flasharray (still version 1.35.1)
+- purestorage.flashblade (still version 1.20.0)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.3.0)
+- theforeman.foreman (still version 5.4.0)
+- vmware.vmware (still version 2.2.0)
+- vmware.vmware_rest (still version 4.8.1)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v12.0.0a9
 =========
 
