@@ -7,6 +7,599 @@ This changelog describes changes since Ansible 11.0.0.
 .. contents::
   :depth: 2
 
+v12.0.0b1
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-07-22
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- google.cloud (version 1.6.0)
+
+Ansible-core
+------------
+
+Ansible 12.0.0b1 contains ansible-core version 2.19.0.
+This is a newer version than version 2.19.0rc2 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Collection                  | Ansible 12.0.0a9 | Ansible 12.0.0b1 | Notes                                                                                                                                                                                                           |
++=============================+==================+==================+=================================================================================================================================================================================================================+
+| ansible.posix               | 2.0.0            | 2.1.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ansible.windows             | 3.1.0            | 3.2.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.aci                   | 2.11.0           | 2.12.0           |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki                | 2.21.3           | 2.21.4           |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.mso                   | 2.10.0           | 2.11.0           |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.ciscosmb          | 1.0.10           | 1.0.11           |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto            | 3.0.0            | 3.0.1            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.dns               | 3.2.5            | 3.2.6            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.general           | 11.0.0           | 11.1.0           |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.grafana           | 2.2.0            | 2.3.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.hashi_vault       | 6.2.0            | 7.0.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.libvirt           | 1.4.0            | 2.0.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.proxmox           | 1.1.0            | 1.2.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.rabbitmq          | 1.5.0            | 1.6.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.sops              | 2.1.0            | 2.2.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.windows           | 3.0.0            | 3.0.1            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.zabbix            | 4.0.0            | 4.1.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.conjur             | 1.3.3            | 1.3.6            | You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`__. |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| google.cloud                |                  | 1.6.0            | The collection was added to Ansible                                                                                                                                                                             |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| hitachivantara.vspone_block | 3.5.1            | 4.0.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| microsoft.ad                | 1.9.1            | 1.9.2            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| microsoft.iis               | 1.0.2            | 1.0.3            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flasharray      | 1.35.1           | 1.36.0           |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| telekom_mms.icinga_director | 2.3.0            | 2.4.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+- The previously removed collection google.cloud was re-added to Ansible 12 (`https://forum.ansible.com/t/8609 <https://forum.ansible.com/t/8609>`__).
+  The sanity test failures have been addressed.
+
+community.libvirt
+~~~~~~~~~~~~~~~~~
+
+- virt_volume - a new command 'create_cidata_cdrom' enables the creation of a cloud-init CDROM, which can be attached to a cloud-init enabled base image, for bootstrapping networking, users etc.
+- virt_volume - the commands create_from, delete, download, info, resize, upload, wipe, facts did not work and were not tested. They have either been refactored to work, and tested, or removed.
+- virt_volume - the mechanism of passing variables to the member functions was not flexible enough to cope with differing parameter requirements. All parameters are now passed as kwargs, which allows the member functions to select the parameters they need.
+- virt_volume - the module appears to have been derived from virt_pool, but not cleaned up to remove much non-functional code.  It has been refactored to remove the pool-specific code, and to make it more flexible.
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- All Roles - Updated to support Zabbix 7.4
+
+Minor Changes
+-------------
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- profile_tasks and profile_roles callback plugins - avoid deleted/deprecated callback functions, instead use modern interface that was introduced a longer time ago (https://github.com/ansible-collections/ansible.posix/issues/650).
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- win_find - add support for 'any' to find both directories and files (https://github.com/ansible-collections/ansible.windows/issues/797).
+- win_template - Preserve user-supplied value for ``ansible_managed`` when set on Ansible Core 2.19+.
+
+cisco.aci
+~~~~~~~~~
+
+- Add description, console_log_severity, local_file_log_format, and console_log_format to aci_syslog_group module.
+- Add enhanced_log and rfc5424-ts options to attribute format of aci_syslog_group module.
+- Add epg_cos, epg_cos_preference, ipam_dhcp_override, ipam_enabled, ipam_gateway, lag_policy_name, netflow_direction, primary_encap_inner, and secondary_encap_inner atributes to aci_epg_to_domain module.
+- Add missing options to priority attribute and vrf to scope attribute in aci_contract module.
+- Add nutanix support for aci_aep_to_domain, aci_domain, aci_domain_to_encap_pool, aci_domain_to_vlan_pool, aci_vmm_controller, aci_vmm_credential modules.
+- Add pod_id attribute to aci_switch_policy_vpc_protection_group module.
+
+cisco.mso
+~~~~~~~~~
+
+- Add admin_state attribute to mso_schema_site_anp_epg module.
+- Improved ndo modules returned current value with actual API response.
+
+community.ciscosmb
+~~~~~~~~~~~~~~~~~~
+
+- Update modules to conform core 2.19 and templating changes
+- solves
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- cloudflare_dns - adds support for PTR records (https://github.com/ansible-collections/community.general/pull/10267).
+- cloudflare_dns - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- cloudflare_dns - simplify validations and refactor some code, no functional changes (https://github.com/ansible-collections/community.general/pull/10269).
+- crypttab - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- datadog_monitor - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- dense callback plugin - use f-strings instead of concatenation (https://github.com/ansible-collections/community.general/pull/10285).
+- gitlab_deploy_key - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- gitlab_group_access_token - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- gitlab_hook - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- gitlab_project_access_token - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- gitlab_runner - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- iocage inventory plugin - use f-strings instead of concatenation (https://github.com/ansible-collections/community.general/pull/10285).
+- ipa_group - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- jc filter plugin - use f-strings instead of concatenation (https://github.com/ansible-collections/community.general/pull/10285).
+- jenkins_build - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- jenkins_build_info - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- keycloak - add support for ``grant_type=client_credentials`` to all keycloak modules, so that specifying ``auth_client_id`` and ``auth_client_secret`` is sufficient for authentication (https://github.com/ansible-collections/community.general/pull/10231).
+- keycloak module utils - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- logstash callback plugin - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- mail callback plugin - use f-strings instead of concatenation (https://github.com/ansible-collections/community.general/pull/10285).
+- nmcli - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- nmcli - simplify validations and refactor some code, no functional changes (https://github.com/ansible-collections/community.general/pull/10323).
+- oneandone_firewall_policy - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- oneandone_load_balancer - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- oneandone_monitoring_policy - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- onepassword_info - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- osx_defaults - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- ovh_ip_loadbalancing_backend - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- pacemaker_cluster - add ``state=maintenance`` for managing pacemaker maintenance mode (https://github.com/ansible-collections/community.general/issues/10200, https://github.com/ansible-collections/community.general/pull/10227).
+- pacemaker_cluster - rename ``node`` to ``name`` and add ``node`` alias (https://github.com/ansible-collections/community.general/pull/10227).
+- pacemaker_resource - enhance module by removing duplicative code (https://github.com/ansible-collections/community.general/pull/10227).
+- packet_device - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- pagerduty - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- pingdom - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- python_runner module utils - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- rhevm - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- rocketchat - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- sensu_silence - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- sl_vm - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- urpmi - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- wsl connection plugin - use f-strings instead of concatenation (https://github.com/ansible-collections/community.general/pull/10285).
+- xattr - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+- xen_orchestra inventory plugin - use f-strings instead of concatenation (https://github.com/ansible-collections/community.general/pull/10285).
+- xfconf - minor adjustments the the code (https://github.com/ansible-collections/community.general/pull/10311).
+- xml - remove redundant brackets in conditionals, no functional changes (https://github.com/ansible-collections/community.general/pull/10328).
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- grafana_team - integrate parameter ``org_id``
+- grafana_team - integrate parameter ``org_name``
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- proxmox inventory plugin - always provide basic information regardless of want_facts (https://github.com/ansible-collections/community.proxmox/pull/124).
+- proxmox_cluster - cluster creation has been made idempotent (https://github.com/ansible-collections/community.proxmox/pull/125).
+- proxmox_pct_remote - allow forward agent with paramiko (https://github.com/ansible-collections/community.proxmox/pull/130).
+
+community.rabbitmq
+~~~~~~~~~~~~~~~~~~
+
+- rabbitmq_policy - add support to policy manipulation through RabbitMQ API (https://github.com/ansible-collections/community.rabbitmq/issues/203)
+- rabbitmq_vhost - make rabbitmqctl optional when configuring vhosts using the RabbitMQ API (https://github.com/ansible-collections/community.rabbitmq/issues/201)
+
+community.sops
+~~~~~~~~~~~~~~
+
+- load_vars - expressions can now be lazily evaluated when using ansible-core 2.19 or newer (https://github.com/ansible-collections/community.sops/pull/229).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- Web Role - Added `zabbix_web_custom_php` to allow for addition of customer PHP settings
+- Web Role - Added support for `ssl_prefer_server_ciphers`
+- Web Role - Added support for `zabbix_web_ssl_session_protocols`
+- Web Role - Added support for `zabbix_web_ssl_session_stapling`
+- roles/proxy - Fixing the zabbix_proxy_proxyconfigfrequency functionality
+- zabbix_group_info - Add the possibility to retrive all host Group
+- zabbix_template_info - Add the possibility to retrive all template Group
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Added a new `"hv_audit_log_transfer_dest"` module to set the transfer destinations of audit log files using UDP/TCP ports.
+- Added a new `"hv_audit_log_transfer_dest_facts"` module to get information about the transfer destinations of audit log files.
+- Added a new `"hv_clpr"` module to create, update, and delete CLPR information.
+- Added a new `"hv_clpr_facts"` module to get CLPR information.
+- Added a new `"hv_external_paritygroup"` module to assign external volume groups to a CLPR.
+- Added a new `"hv_external_paritygroup"` module to change the MP blade assigned to an external volume group.
+- Added a new `"hv_server_priority_manager"` module to set, change, and delete Server Priority Manager information.
+- Added a new `"hv_server_priority_manager_facts"` module to get Server Priority Manager information.
+- Added a new `"hv_snmp_setting"` module to manage SNMP settings.
+- Added a new `"hv_snmp_settings_facts"` module to get SNMP settings for a storage system.
+- Added a new `"hv_storage_system"` module to set the date and time in a storage system with NTP disabled/enabled.
+- Added a new `"hv_storage_system_monitor_facts"` module to get alert, hardware installed, and channel board information.
+- Added a new `"hv_upload_file"` module to upload a primary/secondary client certificate file to a storage system for audit log.
+- Added support for a secondary volume takeover HUR pair to the `"hv_hur"` module.
+- Added support for assigning a CLPR ID to a parity group to the `"hv_paritygroup"` module.
+- Added support for changing pool settings by pool name and by pool ID with new parameters to the `"hv_storage_pool"` module.
+- Added support for creating a HUR pair with `"provisioned_secondary_volume_id"` to the `"hv_hur"`, `"hv_gad"` and `"hv_truecopy"` modules.
+- Added support for creating a pair with `"provisioned_secondary_volume_id"` and hostgroups to the `"hv_hur"` , `"hv_gad"` and `"hv_truecopy"` modules.
+- Added support for creating a storage pool with a specific pool ID and LDEV numbers to the `"hv_storage_pool"` module.
+- Added support for creating a storage pool with a specific pool ID and start and end LDEV numbers to the `"hv_storage_pool"` module.
+- Added support for deleting a pool including pool volumes to the `"hv_storage_pool"` module.
+- Added support for getting a list of time zones that can be used in a storage system to the `"hv_storagesystem_facts"` module.
+- Added support for getting free LDEV IDs to the `"hv_ldev_facts"` module.
+- Added support for initializing the capacity saving function for a pool to the `"hv_storage_pool"` module.
+- Added support for performing tier relocation of a pool to the `"hv_storage_pool"` module.
+- Added support for restoring a pool to the `"hv_storage_pool"` module.
+- Added support for running performance monitoring of a pool to the `"hv_storage_pool"` module.
+- Added support for setting the CLPR ID of a volume to the `"hv_ldev"` module.
+- Added support for taking over a remote copy group for the HUR replication type to the `"hv_remote_copy_group"` module.
+- Enhanced the `"hv_storagepool_facts"` module to support additional output parameters.
+- Removed query for ports, quorum disks, journalPools, and freeLogicalUnitList from the `"hv_storagesystem_facts"` module.
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_user - No longer tries to expose API tokens as these are not required in the module
+
+telekom_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Add zone option for icinga_user_group module (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/286)
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- ansible-core - support for all end-of-life versions of ``ansible-core`` has been dropped. The collection is tested with ``ansible-core>=2.17`` (https://github.com/ansible-collections/community.hashi_vault/issues/470).
+- python - support for older versions of Python has been dropped. The collection is tested with all supported controller-side versions and a few lower target-side versions depending on the tests (https://github.com/ansible-collections/community.hashi_vault/issues/470).
+
+Deprecated Features
+-------------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- catapult - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10329).
+- pacemaker_cluster - the parameter ``state`` will become a required parameter in community.general 12.0.0 (https://github.com/ansible-collections/community.general/pull/10227).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- ansible-core - support for several ``ansible-core`` versions will be dropped in ``v7.0.0``. The collection will focus on current supported versions of ``ansible-core`` going forward and more agressively drop end-of-life or soon-to-be EOL versions (https://docs.ansible.com/ansible/devel/reference_appendices/release_and_maintenance.html).
+- python - support for several ``python`` versions will be dropped in ``v7.0.0``. The collection will focus on ``python`` versions that are supported by the active versions of ``ansible-core`` on the controller side at a minimum, and some subset of target versions (https://docs.ansible.com/ansible/devel/reference_appendices/release_and_maintenance.html).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- Web Role - Depricated `zabbix_web_SSLSessionCacheTimeout` for `zabbix_web_ssl_session_cache_timeout`
+- Web Role - Depricated `zabbix_web_SSLSessionCache` for `zabbix_web_ssl_session_cache`
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+community.libvirt
+~~~~~~~~~~~~~~~~~
+
+- virt_volume - PoolConnection class has been removed
+- virt_volume - the 'deleted' state has been removed as its definition was not entirely accurate, and the 'wipe' boolean option is added to 'state/absent' and 'command/delete'.
+- virt_volume - undocumented but unused FLAGS have been removed.
+- virt_volume - undocumented but unused/non-functional functions (get_status, get_status2, get_state, get_uuid, build) have been removed.
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- `hv_gateway_admin_password` module has been removed.
+- `hv_gateway_subscriber_facts` module has been removed.
+- `hv_gateway_subscriber` module has been removed.
+- `hv_gateway_subscription_facts` module has been removed.
+- `hv_gateway_unsubscribe_resource` module has been removed.
+- `hv_storagesystem` module has been removed.
+- `hv_system_facts` module has been removed.
+- `hv_uaig_token_facts` module has been removed.
+
+Bugfixes
+--------
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- ansible.posix.cgroup_perf_recap - fixes json module load path (https://github.com/ansible-collections/ansible.posix/issues/630).
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- win_copy - report correct information about symlinks in action plugin.
+- win_service - Fix crash when attempting to create a service with the ``--check`` flag.
+
+cisco.aci
+~~~~~~~~~
+
+- Fix API call and index error for non-existing configExportP in aci_config_snapshot.
+- Fix the aci_access_port_block_to_access_port module to query a specific object with the object name.
+- Fix to read the last_as from the module params in aci_action_rule_set_as_path.
+- Fix type of subnet_control in aci_bd_subnet from string to list of strings.
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- cisco.meraki.networks_appliance_traffic_shaping_uplink_bandwidth - fix idempotency error.
+
+cisco.mso
+~~~~~~~~~
+
+- Fix API endpoint to query local and remote users in ND4.0
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- openssl_csr and openssl_csr_pipe - the idempotency check for ``key_usage`` resulted in a crash if ``Key Agreement``/``keyAgreement`` was not set (https://github.com/ansible-collections/community.crypto/issues/934, https://github.com/ansible-collections/community.crypto/pull/935).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+- hetzner_dns_records inventory plugin - avoid using deprecated option when templating options (https://github.com/ansible-collections/community.dns/pull/266).
+- hosttech_dns_records inventory plugin - avoid using deprecated option when templating options (https://github.com/ansible-collections/community.dns/pull/266).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- dependent lookup plugin - avoid deprecated ansible-core 2.19 functionality (https://github.com/ansible-collections/community.general/pull/10359).
+- github_release - support multiple types of GitHub tokens; no longer failing when ``ghs_`` token type is provided (https://github.com/ansible-collections/community.general/issues/10338, https://github.com/ansible-collections/community.general/pull/10339).
+- icinga2 inventory plugin - avoid using deprecated option when templating options (https://github.com/ansible-collections/community.general/pull/10271).
+- incus connection plugin - fix error handling to return more useful Ansible errors to the user (https://github.com/ansible-collections/community.general/issues/10344, https://github.com/ansible-collections/community.general/pull/10349).
+- linode inventory plugin - avoid using deprecated option when templating options (https://github.com/ansible-collections/community.general/pull/10271).
+- logstash callback plugin - remove reference to Python 2 library (https://github.com/ansible-collections/community.general/pull/10345).
+
+community.grafana
+~~~~~~~~~~~~~~~~~
+
+- Fix parsing of grafana version for pre-releases and security releases
+- grafana_dashboard - fix change detection for dashboards in folders
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- connection_options - the ``validate_certs`` option had no effect if the ``retries`` option was set. Fix now also sets the parameter correctly in the retry request session (https://github.com/ansible-collections/community.hashi_vault/issues/461).
+
+community.libvirt
+~~~~~~~~~~~~~~~~~
+
+- virt_volume - create_from was non-functional, and is now folded into create (added clone_source parameter). Fixes
+- virt_volume - info, facts, download, upload commands have been removed as they were not functional (and not tested).
+- virt_volume - wipe command now works (and is also a boolean option for 'state/absent' and 'command/delete').
+
+community.rabbitmq
+~~~~~~~~~~~~~~~~~~
+
+- rabbitmq_user - URL encode the `vhost` and `user` fields to allow for input with '/' characters. (https://github.com/ansible-collections/community.rabbitmq/issues/205)
+- rabbitmq_vhost - Fail module if the requests library is missing. This maintains the same behavior across all the modules.
+- setup_rabbitmq - incorrect SSL library was selected for install on Ubuntu Noble. Fix now installs the correct version on newer Ubuntu versions. (https://github.com/ansible-collections/community.rabbitmq/issues/199)
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- win_rabbitmq_plugin - removed redundant quotes that caused failures when specifying ``rabbitmq_bin_path`` (https://github.com/ansible-collections/community.windows/issues/635).
+- win_scoop - Fix issue when scoop is installed at a path with spaces like ``C:\Program Files`` - https://github.com/ansible-collections/community.windows/issues/614
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- Token Module - Fixed integration with Zabbix 7.4
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- microsoft.ad.object_info - Correctly return multivalued attributes with one entry as array with on item (instead of returning a string) - https://github.com/ansible-collections/microsoft.ad/issues/199
+
+microsoft.iis
+~~~~~~~~~~~~~
+
+- website_info - fixed a crash when the specified iis site does not exist, ensuring the module no longer inserts a ``null`` in the site list. (https://github.com/ansible-collections/microsoft.iis/pull/36)
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_vg - Fixed issue where VG QoS updates were being ignored
+
+Known Issues
+------------
+
+community.libvirt
+~~~~~~~~~~~~~~~~~
+
+- virt_volume - check_mode is disabled. It was not fully supported in the previous code either ('state/present', 'command/create' did not support it).
+
+New Plugins
+-----------
+
+Callback
+~~~~~~~~
+
+- community.general.tasks_only - Only show tasks.
+
+New Modules
+-----------
+
+cisco.aci
+~~~~~~~~~
+
+- cisco.aci.aci_interface_policy_port_channel_member - Manage Port Channel Member interface policies (lacp:IfPol)
+- cisco.aci.aci_l4l7_concrete_device - Manage L4-L7 Concrete Devices (vns:CDev)
+- cisco.aci.aci_l4l7_concrete_interface - Manage L4-L7 Concrete Interfaces (vns:CIf)
+- cisco.aci.aci_l4l7_concrete_interface_attachment - Manage L4-L7 Concrete Interface Attachment (vns:RsCIfAttN)
+- cisco.aci.aci_l4l7_device - Manage L4-L7 Devices (vns:LDevVip)
+- cisco.aci.aci_l4l7_device_selection_interface_context - Manage L4-L7 Device Selection Policy Logical Interface Contexts (vns:LIfCtx)
+- cisco.aci.aci_l4l7_device_selection_policy - Manage L4-L7 Device Selection Policies (vns:LDevCtx)
+- cisco.aci.aci_l4l7_logical_interface - Manage L4-L7 Logical Interface (vns:LIf)
+- cisco.aci.aci_l4l7_policy_based_redirect - Manage L4-L7 Policy Based Redirection Policies (vns:SvcRedirectPol)
+- cisco.aci.aci_l4l7_policy_based_redirect_destination - Manage L4-L7 Policy Based Redirect Destinations (vns:RedirectDest and vns:L1L2RedirectDest)
+- cisco.aci.aci_l4l7_redirect_health_group - Manage L4-L7 Redirect Health Groups (vns:RedirectHealthGroup)
+- cisco.aci.aci_l4l7_service_graph_template - Manage L4-L7 Service Graph Templates (vns:AbsGraph)
+- cisco.aci.aci_l4l7_service_graph_template_connection - Manage L4-L7 Service Graph Template Abs Connections (vns:AbsConnection)
+- cisco.aci.aci_l4l7_service_graph_template_connection_to_connector - Manage L4-L7 Service Graph Template Connections between function nodes and terminal nodes (vns:RsAbsConnectionConns)
+- cisco.aci.aci_l4l7_service_graph_template_functional_connection - Manage L4-L7 Service Graph Templates Functional Connections (vns:AbsFuncConn)
+- cisco.aci.aci_l4l7_service_graph_template_node - Manage L4-L7 Service Graph Templates Nodes (vns:AbsNode)
+- cisco.aci.aci_l4l7_service_graph_template_term_node - Manage L4-L7 SGT Term Nodes (vns:AbsTermNodeCon, vns:AbsTermNodeProv and vns:AbsTermConn)
+- cisco.aci.aci_node_mgmt_epg_to_contract - Bind Node Management EPGs to Contracts (fv:RsCons, fv:RsProv, fv:RsProtBy, fv:RsConsIf and mgmt:RsOoBProv)
+- cisco.aci.aci_oob_contract - Manage Out-of-Band (OOB) Contract resources (vz:OOBBrCP)
+- cisco.aci.aci_vmm_enhanced_lag_policy - Manage Enhanced LACP Policy for Virtual Machine Manager (VMM) in Cisco ACI (lacp:EnhancedLagPol)
+- cisco.aci.aci_vrf_fallback_route_group - Manage VRF Fallback Route Groups (fv:FBRGroup, fv:FBRoute, and fv:FBRMember)
+
+cisco.mso
+~~~~~~~~~
+
+- cisco.mso.ndo_fabric_span_session - Manage Fabric SPAN Sessions on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_fabric_span_session_source - Manage Fabric SPAN Sessions Source on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_fabric_span_session_source_filter - Manage Fabric SPAN Sessions Source Filter on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_l3out_bgp_peer - Manage L3Out BGP Peer on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_l3out_node_static_route - Manage L3Out Node Static Routes on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_l3out_node_static_route_next_hop - Manage L3Out Node Static Route Next Hops on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_l3out_routed_interface - Manage L3Out Routed Interfaces on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_l3out_routed_sub_interface - Manage L3Out Routed Sub-Interfaces on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_pod_profile - Manage Pod Profiles on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_pod_settings - Manage Pod Settings on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_qos_class_policy - Manage QoS Class Policies on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_schema_template_contract_service_chain - Manage the Schema Template Contract Service Chaining workflow on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_service_device_cluster - Manage Service Device Clusters on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_tenant_span_session - Manage Tenant SPAN Sessions on Cisco Nexus Dashboard Orchestrator (NDO).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- community.general.jenkins_credential - Manage Jenkins credentials and domains via API.
+
+community.libvirt
+~~~~~~~~~~~~~~~~~
+
+- community.libvirt.virt_install - Provision new virtual machines using virt-install tool
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- community.proxmox.proxmox_group - Group management for Proxmox VE cluster.
+- community.proxmox.proxmox_node - Manage Proxmox VE nodes.
+- community.proxmox.proxmox_user - User management for Proxmox VE cluster.
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Vsp
+^^^
+
+- hitachivantara.vspone_block.hv_audit_log_transfer_dest - This module specifies settings related to the transfer of audit log files from a storage system to the syslog servers.
+- hitachivantara.vspone_block.hv_audit_log_transfer_dest_facts - Retrieves about the settings related to the transfer of audit log files to the syslog servers.
+- hitachivantara.vspone_block.hv_external_paritygroup - Manages assignment of MP blade and CLPR to an External Parity Group from Hitachi VSP storage systems.
+- hitachivantara.vspone_block.hv_server_priority_manager - Manage Server Priority Manager information on Hitachi VSP storage systems.
+- hitachivantara.vspone_block.hv_server_priority_manager_facts - Retrieves Server Priority Manager information from Hitachi VSP storage systems.
+- hitachivantara.vspone_block.hv_snmp_settings - Manage SNMP settings on Hitachi Vantara storage systems.
+- hitachivantara.vspone_block.hv_snmp_settings_facts - Retrieves SNMP configuration from Hitachi VSP storage systems.
+- hitachivantara.vspone_block.hv_storage_system - This module specifies storage systems settings like updating the date and time.
+- hitachivantara.vspone_block.hv_storage_system_monitor_facts - Retrieves alerts, hardware installed, and channel boards information from Hitachi VSP storage systems.
+- hitachivantara.vspone_block.hv_upload_file - This uploads the files required to set the transfer destination of audit log files.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.1.0)
+- ansible.netcommon (still version 8.0.1)
+- ansible.utils (still version 6.0.0)
+- arista.eos (still version 11.0.1)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.6.0)
+- check_point.mgmt (still version 6.4.1)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.dnac (still version 6.36.0)
+- cisco.intersight (still version 2.1.0)
+- cisco.ios (still version 10.1.1)
+- cisco.iosxr (still version 11.1.0)
+- cisco.nxos (still version 10.2.0)
+- cisco.ucs (still version 1.16.0)
+- cloud.common (still version 5.0.0)
+- cloudscale_ch.cloud (still version 2.5.1)
+- community.aws (still version 10.0.0)
+- community.digitalocean (still version 1.27.0)
+- community.docker (still version 4.6.1)
+- community.hrobot (still version 2.5.0)
+- community.library_inventory_filtering_v1 (still version 1.1.1)
+- community.mongodb (still version 1.7.10)
+- community.mysql (still version 3.14.0)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.1.0)
+- community.proxysql (still version 1.6.0)
+- community.routeros (still version 3.8.0)
+- community.sap_libs (still version 1.4.2)
+- community.vmware (still version 5.7.1)
+- containers.podman (still version 1.17.0)
+- cyberark.pas (still version 1.0.35)
+- dellemc.enterprise_sonic (still version 3.0.0)
+- dellemc.openmanage (still version 9.12.2)
+- dellemc.powerflex (still version 2.6.1)
+- dellemc.unity (still version 2.0.0)
+- f5networks.f5_modules (still version 1.37.1)
+- fortinet.fortimanager (still version 2.10.0)
+- fortinet.fortios (still version 2.4.0)
+- grafana.grafana (still version 6.0.2)
+- hetzner.hcloud (still version 5.1.0)
+- ibm.qradar (still version 4.0.0)
+- ibm.storage_virtualize (still version 2.7.4)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 10.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.0.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.6.1)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.0.0)
+- netapp.storagegrid (still version 21.15.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.1)
+- purestorage.flashblade (still version 1.20.0)
+- splunk.es (still version 4.0.0)
+- theforeman.foreman (still version 5.4.0)
+- vmware.vmware (still version 2.2.0)
+- vmware.vmware_rest (still version 4.8.1)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v12.0.0a9
 =========
 
