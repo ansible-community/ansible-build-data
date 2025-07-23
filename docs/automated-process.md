@@ -80,7 +80,7 @@ Note that most of the following items cannot be done by yourself, but need someo
     * You can also specify an existing branch (`devel` branch by default) to create the *draft PR* on the [ansible-documentation repository](https://github.com/ansible/ansible-documentation/).
 
    The process will create a PR in the [`ansible-documentation`
-   repository](https://github.com/ansible/ansible-documentation/).The release manager needs to check the Porting Guide PR once manually and un-draft to change the status to `ready to review. ' Afterwards, it will wait for approval before continuing with uploading the
+   repository](https://github.com/ansible/ansible-documentation/).The release manager needs to check the Porting Guide PR once manually and un-draft to change the status to 'ready to review.' Afterwards, it will wait for approval before continuing with uploading the
    package to PyPI. All users in the [ansible-community/release-management-wg
    group](https://github.com/orgs/ansible-community/teams/release-management-wg)[^1]
    has to be informed of the approval needed.
