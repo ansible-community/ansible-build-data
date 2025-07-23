@@ -71,13 +71,20 @@ Note that most of the following items cannot be done by yourself, but need someo
     The notification includes a link to the page where the upload step can be
     approved.
 
-2. Check out the PR in your `ansible-build-data` clone and copy the updated
-   porting guide from its `${MAJOR_VERSION}` directory into the
-   [`docs/docsite/rst/porting_guides/`](https://github.com/ansible/ansible-documentation/tree/devel/docs/docsite/rst/porting_guides/)
-   directory of the [`ansible-documentation`
-   repository](https://github.com/ansible/ansible-documentation/). Create a
-   PR for updating the porting guide for the `devel` branch of
-   `ansible-documentation`.
+2. To create the porting guide PR in the ansible-documentation repository, trigger [the automated
+   workflow](https://github.com/ansible/ansible-documentation/blob/devel/.github/workflows/release-porting-guide.yml)
+   on the **Actions** tab of the repository. This workflow has the following inputs,
+
+    * Release Branch name, the newly created [ansible-build-data](https://github.com/ansible-community/ansible-build-data/) PR for the release needs to be specified. For example: `refs/pull/576/merge` for the Ansible 12.0.0b1 release.
+    * The next input is the release version, such as `11.2.0` or `12.0.0rc1`.
+    * You can also specify an existing branch (`devel` branch by default) to create the *draft PR* on the [ansible-documentation repository](https://github.com/ansible/ansible-documentation/).
+
+   The process will create a PR in the [`ansible-documentation`
+   repository](https://github.com/ansible/ansible-documentation/).The release manager needs to check the Porting Guide PR once manually and un-draft to change the status to `ready to review. ' Afterwards, it will wait for approval before continuing with uploading the
+   package to PyPI. All users in the [ansible-community/release-management-wg
+   group](https://github.com/orgs/ansible-community/teams/release-management-wg)[^1]
+   has to be informed of the approval needed.
+
 
 3. After both PRs (in `ansible-build-data` and `ansible-documentation`) are
    approved, merge the `ansible-build-data` PR and approve the next workflow
