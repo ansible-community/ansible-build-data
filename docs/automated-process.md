@@ -77,13 +77,11 @@ Note that most of the following items cannot be done by yourself, but need someo
 
     * **Release Branch name**. Specify the name of the branch from the newly created [ansible-build-data](https://github.com/ansible-community/ansible-build-data/) PR for the release, for example: `refs/pull/576/merge`.
     * **Exact release version**. Specify a release version such as `11.2.0` or `12.0.0rc1`.
-    * You can also specify an existing branch (`devel` branch by default) to create the *draft PR* on the [ansible-documentation repository](https://github.com/ansible/ansible-documentation/).
+    * **Use the workflow from** the **Branch: devel** `devel` is selected as the branch by default. Do not edit this while doing the release. This option is there to test the workflow itself.
 
    The process will create a PR in the [`ansible-documentation`
-   repository](https://github.com/ansible/ansible-documentation/).The release manager needs to check the Porting Guide PR once manually and un-draft to change the status to 'ready to review.' Afterwards, it will wait for approval before continuing with uploading the
-   package to PyPI. All users in the [ansible-community/release-management-wg
-   group](https://github.com/orgs/ansible-community/teams/release-management-wg)[^1]
-   have to be informed of the approval needed.
+   repository](https://github.com/ansible/ansible-documentation/).The release manager needs to check the Porting Guide PR once manually and un-draft to change the status to 'ready to review.' Afterwards, the [ansible-community/release-management-wg
+    group](https://github.com/orgs/ansible-community/teams/release-management-wg)[^1] needs to be informed in [matrix](#release-management:ansible.com) about the PR. (pinged manually with a message like this - "There is a [Porting Guide PR](PR url), can someone please go ahead and have a look, review and merge it.")
 
 
 3. After both PRs (in `ansible-build-data` and `ansible-documentation`) are
