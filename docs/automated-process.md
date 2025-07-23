@@ -83,7 +83,7 @@ Note that most of the following items cannot be done by yourself, but need someo
    repository](https://github.com/ansible/ansible-documentation/).The release manager needs to check the Porting Guide PR once manually and un-draft to change the status to 'ready to review.' Afterwards, it will wait for approval before continuing with uploading the
    package to PyPI. All users in the [ansible-community/release-management-wg
    group](https://github.com/orgs/ansible-community/teams/release-management-wg)[^1]
-   has to be informed of the approval needed.
+   have to be informed of the approval needed.
 
 
 3. After both PRs (in `ansible-build-data` and `ansible-documentation`) are
