@@ -71,7 +71,7 @@ Note that most of the following items cannot be done by yourself, but need someo
     The notification includes a link to the page where the upload step can be
     approved.
 
-2. To create the porting guide PR in the ansible-documentation repository, trigger [the automated
+2. If a porting guide exists in the `ansible-build-data` PR, trigger [the automated
    workflow](https://github.com/ansible/ansible-documentation/actions/workflows/release-porting-guide.yml)
    on the **Actions** tab of the repository. This workflow has the following inputs:
 
