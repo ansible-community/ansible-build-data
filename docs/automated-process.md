@@ -80,7 +80,7 @@ Note that most of the following items cannot be done by yourself, but need someo
     * **Use the workflow from** the **Branch: devel** `devel` is selected as the branch by default. Do not edit this while doing the release. This option is there to test the workflow itself.
 
    The process will create a PR in the [`ansible-documentation`
-   repository](https://github.com/ansible/ansible-documentation/).The release manager needs to check the Porting Guide PR once manually and un-draft to change the status to 'ready to review.' Afterwards, the [ansible-community/release-management-wg
+   repository](https://github.com/ansible/ansible-documentation/).The release manager needs to check the Porting Guide PR and change the status to 'ready to review.' Afterwards, the [ansible-community/release-management-wg
     group](https://github.com/orgs/ansible-community/teams/release-management-wg)[^1] needs to be informed in [matrix](#release-management:ansible.com) about the PR. (pinged manually with a message like this - "There is a [Porting Guide PR](PR url), can someone please go ahead and have a look, review and merge it.")
 
 
