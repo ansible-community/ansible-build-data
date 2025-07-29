@@ -7,6 +7,215 @@ This changelog describes changes since Ansible 11.0.0.
 .. contents::
   :depth: 2
 
+v12.0.0b2
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-07-29
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 12.0.0b2 contains ansible-core version 2.19.0.
+This is the same version of ansible-core as in the previous Ansible release.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+------------------+------------------+----------------------------------------------------------+
+| Collection                  | Ansible 12.0.0b1 | Ansible 12.0.0b2 | Notes                                                    |
++=============================+==================+==================+==========================================================+
+| community.crypto            | 3.0.1            | 3.0.2            |                                                          |
++-----------------------------+------------------+------------------+----------------------------------------------------------+
+| community.dns               | 3.2.6            | 3.2.7            |                                                          |
++-----------------------------+------------------+------------------+----------------------------------------------------------+
+| community.docker            | 4.6.1            | 4.6.2            |                                                          |
++-----------------------------+------------------+------------------+----------------------------------------------------------+
+| community.general           | 11.1.0           | 11.1.1           |                                                          |
++-----------------------------+------------------+------------------+----------------------------------------------------------+
+| community.routeros          | 3.8.0            | 3.8.1            |                                                          |
++-----------------------------+------------------+------------------+----------------------------------------------------------+
+| grafana.grafana             | 6.0.2            | 6.0.3            | The collection did not have a changelog in this version. |
++-----------------------------+------------------+------------------+----------------------------------------------------------+
+| hitachivantara.vspone_block | 4.0.0            | 4.0.1            |                                                          |
++-----------------------------+------------------+------------------+----------------------------------------------------------+
+
+Minor Changes
+-------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- aerospike_migrations - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- airbrake_deployment - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- bigpanda - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- bootc_manage - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- bower - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- btrfs_subvolume - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- bundler - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- campfire - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- cargo - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- catapult - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- cisco_webex - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- consul_kv - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- consul_policy - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- copr - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- datadog_downtime - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- datadog_monitor - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- dconf - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- dimensiondata_network - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- dimensiondata_vlan - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- dnf_config_manager - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- dnsmadeeasy - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- dpkg_divert - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- easy_install - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- elasticsearch_plugin - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- facter - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- filesystem - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10494).
+- sysrc - adjustments to the code (https://github.com/ansible-collections/community.general/pull/10417).
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Added support to 'create' and 'delete' external parity group in the 'hv_external_paritygroup' modules.
+- Added support to get ldev details using 'pool_id', 'resource_group_id', 'journal_id' and 'parity_group_id' in the `"hv_ldev_facts"` module.
+
+Bugfixes
+--------
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- Improve error message when loading a private key fails due to correct private key files or wrong passwords. Also include the original cryptography error since it likely contains more helpful information (https://github.com/ansible-collections/community.crypto/issues/936, https://github.com/ansible-collections/community.crypto/pull/939).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_compose_v2 - adjust to new dry-run build events in Docker Compose 2.39.0+ (https://github.com/ansible-collections/community.docker/pull/1101).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- apache2_module - avoid ansible-core 2.19 deprecation (https://github.com/ansible-collections/community.general/pull/10459).
+- apk - handle empty name strings properly (https://github.com/ansible-collections/community.general/issues/10441, https://github.com/ansible-collections/community.general/pull/10442).
+- cronvar - fix crash on missing ``cron_file`` parent directories (https://github.com/ansible-collections/community.general/issues/10460, https://github.com/ansible-collections/community.general/pull/10461).
+- cronvar - handle empty strings on ``value`` properly  (https://github.com/ansible-collections/community.general/issues/10439, https://github.com/ansible-collections/community.general/pull/10445).
+- htpasswd - avoid ansible-core 2.19 deprecation (https://github.com/ansible-collections/community.general/pull/10459).
+- irc - pass hostname to ``wrap_socket()`` if ``use_tls=true`` and ``validate_certs=true`` (https://github.com/ansible-collections/community.general/issues/10472, https://github.com/ansible-collections/community.general/pull/10491).
+- listen_port_facts - avoid crash when required commands are missing (https://github.com/ansible-collections/community.general/issues/10457, https://github.com/ansible-collections/community.general/pull/10458).
+- syspatch - avoid ansible-core 2.19 deprecation (https://github.com/ansible-collections/community.general/pull/10459).
+- sysrc - fixes parsing with multi-line variables (https://github.com/ansible-collections/community.general/issues/10394, https://github.com/ansible-collections/community.general/pull/10417).
+- sysupgrade - avoid ansible-core 2.19 deprecation (https://github.com/ansible-collections/community.general/pull/10459).
+- zypper_repository - avoid ansible-core 2.19 deprecation (https://github.com/ansible-collections/community.general/pull/10459).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- facts and api_facts modules - prevent deprecation warnings when used with ansible-core 2.19 (https://github.com/ansible-collections/community.routeros/pull/384).
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.1.0)
+- ansible.netcommon (still version 8.0.1)
+- ansible.posix (still version 2.1.0)
+- ansible.utils (still version 6.0.0)
+- ansible.windows (still version 3.2.0)
+- arista.eos (still version 11.0.1)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.6.0)
+- check_point.mgmt (still version 6.4.1)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.12.0)
+- cisco.dnac (still version 6.36.0)
+- cisco.intersight (still version 2.1.0)
+- cisco.ios (still version 10.1.1)
+- cisco.iosxr (still version 11.1.0)
+- cisco.meraki (still version 2.21.4)
+- cisco.mso (still version 2.11.0)
+- cisco.nxos (still version 10.2.0)
+- cisco.ucs (still version 1.16.0)
+- cloud.common (still version 5.0.0)
+- cloudscale_ch.cloud (still version 2.5.1)
+- community.aws (still version 10.0.0)
+- community.ciscosmb (still version 1.0.11)
+- community.digitalocean (still version 1.27.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.0.0)
+- community.hrobot (still version 2.5.0)
+- community.library_inventory_filtering_v1 (still version 1.1.1)
+- community.libvirt (still version 2.0.0)
+- community.mongodb (still version 1.7.10)
+- community.mysql (still version 3.14.0)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.1.0)
+- community.proxmox (still version 1.2.0)
+- community.proxysql (still version 1.6.0)
+- community.rabbitmq (still version 1.6.0)
+- community.sap_libs (still version 1.4.2)
+- community.sops (still version 2.2.0)
+- community.vmware (still version 5.7.1)
+- community.windows (still version 3.0.1)
+- community.zabbix (still version 4.1.0)
+- containers.podman (still version 1.17.0)
+- cyberark.conjur (still version 1.3.6)
+- cyberark.pas (still version 1.0.35)
+- dellemc.enterprise_sonic (still version 3.0.0)
+- dellemc.openmanage (still version 9.12.2)
+- dellemc.powerflex (still version 2.6.1)
+- dellemc.unity (still version 2.0.0)
+- f5networks.f5_modules (still version 1.37.1)
+- fortinet.fortimanager (still version 2.10.0)
+- fortinet.fortios (still version 2.4.0)
+- google.cloud (still version 1.6.0)
+- hetzner.hcloud (still version 5.1.0)
+- ibm.qradar (still version 4.0.0)
+- ibm.storage_virtualize (still version 2.7.4)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 10.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.0.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.6.1)
+- microsoft.ad (still version 1.9.2)
+- microsoft.iis (still version 1.0.3)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.0.0)
+- netapp.storagegrid (still version 21.15.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.1)
+- purestorage.flasharray (still version 1.36.0)
+- purestorage.flashblade (still version 1.20.0)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.4.0)
+- theforeman.foreman (still version 5.4.0)
+- vmware.vmware (still version 2.2.0)
+- vmware.vmware_rest (still version 4.8.1)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v12.0.0b1
 =========
 
