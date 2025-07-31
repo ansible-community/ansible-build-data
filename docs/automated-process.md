@@ -81,7 +81,7 @@ Note that most of the following items cannot be done by yourself, but need someo
 
    The process will create a PR in the [`ansible-documentation`
    repository](https://github.com/ansible/ansible-documentation/).The release manager needs to check the Porting Guide PR and change the status to 'ready to review.' Afterwards, the [ansible-community/release-management-wg
-    group](https://github.com/orgs/ansible-community/teams/release-management-wg)[^1] needs to be informed in [matrix](#release-management:ansible.com) about the PR. (pinged manually with a message like this - "There is a [Porting Guide PR](PR url), can someone please go ahead and have a look, review and merge it.")
+    group](https://github.com/orgs/ansible-community/teams/release-management-wg)[^1] needs to be informed in [the Matrix #release-management room](#release-management:ansible.com) about the PR. (Write a message like this: `There is a [Porting Guide PR](PR url), can someone please go ahead and have a look, review and merge it.`)
 
 
 3. After both PRs (in `ansible-build-data` and `ansible-documentation`) are
