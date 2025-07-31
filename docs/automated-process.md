@@ -75,7 +75,7 @@ Note that most of the following items cannot be done by yourself, but need someo
    workflow](https://github.com/ansible/ansible-documentation/actions/workflows/release-porting-guide.yml)
    on the **Actions** tab of the `ansible-documentation` repository to create the porting guide PR. This workflow has the following inputs:
 
-    * **Release Branch name**. Specify the name of the branch from the newly created [ansible-build-data](https://github.com/ansible-community/ansible-build-data/) PR for the release, for example: `refs/pull/576/merge`.
+    * **Release Branch name**. Specify the name of the branch from the newly created [ansible-build-data](https://github.com/ansible-community/ansible-build-data/) PR for the release, for example: `refs/pull/576/merge`. This branch refers to the current state of Pull Request #576 in the ansible-build-data repository. You need to adjust the number to the PR's number.
     * **Exact release version**. Specify a release version such as `11.2.0` or `12.0.0rc1`.
     * **Use the workflow from** the **Branch: devel** `devel` is selected as the branch by default. Do not edit this while doing the release. This option is there to test the workflow itself.
 
