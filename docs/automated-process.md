@@ -71,13 +71,18 @@ Note that most of the following items cannot be done by yourself, but need someo
     The notification includes a link to the page where the upload step can be
     approved.
 
-2. Check out the PR in your `ansible-build-data` clone and copy the updated
-   porting guide from its `${MAJOR_VERSION}` directory into the
-   [`docs/docsite/rst/porting_guides/`](https://github.com/ansible/ansible-documentation/tree/devel/docs/docsite/rst/porting_guides/)
-   directory of the [`ansible-documentation`
-   repository](https://github.com/ansible/ansible-documentation/). Create a
-   PR for updating the porting guide for the `devel` branch of
-   `ansible-documentation`.
+2. If a porting guide exists in the `ansible-build-data` PR, trigger [the automated
+   workflow](https://github.com/ansible/ansible-documentation/actions/workflows/release-porting-guide.yml)
+   on the **Actions** tab of the `ansible-documentation` repository to create the porting guide PR. This workflow has the following inputs:
+
+    * **Release Branch name**. Specify the name of the branch from the newly created [ansible-build-data](https://github.com/ansible-community/ansible-build-data/) PR for the release, for example: `refs/pull/576/merge`. This branch refers to the current state of Pull Request #576 in the ansible-build-data repository. You need to adjust the number to the PR's number.
+    * **Exact release version**. Specify a release version such as `11.2.0` or `12.0.0rc1`.
+    * **Use the workflow from** the **Branch: devel** `devel` is selected as the branch by default. Do not edit this while doing the release. This option is there to test the workflow itself.
+
+    The process will create a PR in the [`ansible-documentation`
+    repository](https://github.com/ansible/ansible-documentation/).The release manager needs to check the Porting Guide PR and change the status to 'ready to review.' Afterwards, the [ansible-community/release-management-wg
+    group](https://github.com/orgs/ansible-community/teams/release-management-wg)[^1] needs to be informed in [the Matrix #release-management room](#release-management:ansible.com) about the PR. (Write a message like this: `There is a [Porting Guide PR](PR url), can someone please go ahead and have a look, review and merge it.`)
+
 
 3. After both PRs (in `ansible-build-data` and `ansible-documentation`) are
    approved, merge the `ansible-build-data` PR and approve the next workflow
