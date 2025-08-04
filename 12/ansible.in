@@ -81,6 +81,7 @@ openstack.cloud
 ovirt.ovirt
 purestorage.flasharray
 purestorage.flashblade
+ravendb.ravendb
 splunk.es
 theforeman.foreman
 telekom_mms.icinga_director
