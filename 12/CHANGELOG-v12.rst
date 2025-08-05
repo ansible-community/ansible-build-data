@@ -7,6 +7,335 @@ This changelog describes changes since Ansible 11.0.0.
 .. contents::
   :depth: 2
 
+v12.0.0b9
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-08-05
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 12.0.0b9 contains ansible-core version 2.19.0.
+This is the same version of ansible-core as in the previous Ansible release.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++---------------------+------------------+------------------+-------+
+| Collection          | Ansible 12.0.0b2 | Ansible 12.0.0b9 | Notes |
++=====================+==================+==================+=======+
+| cloudscale_ch.cloud | 2.5.1            | 2.5.2            |       |
++---------------------+------------------+------------------+-------+
+| community.crypto    | 3.0.2            | 3.0.3            |       |
++---------------------+------------------+------------------+-------+
+| community.general   | 11.1.1           | 11.1.2           |       |
++---------------------+------------------+------------------+-------+
+| community.sops      | 2.2.0            | 2.2.1            |       |
++---------------------+------------------+------------------+-------+
+| dellemc.openmanage  | 9.12.2           | 9.12.3           |       |
++---------------------+------------------+------------------+-------+
+
+Major Changes
+-------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- OpenManage iDRAC Ansible modules are now compatible with Ansible Core version 2.19.
+- idrac_bios - This role is enhanced to support iDRAC10.
+- idrac_boot - This module is enhanced to support iDRAC10.
+- idrac_boot - This role is enhanced to support iDRAC10.
+- idrac_certificates - This module is enhanced to support iDRAC10.
+- idrac_reset - This module is enhanced to support iDRAC10.
+- idrac_reset - This role is enhanced to support iDRAC10.
+- idrac_support_assist - This module is enhanced to support iDRAC10.
+- idrac_user - This module is enhanced to support iDRAC10.
+- idrac_user - This role is enhanced to support iDRAC10.
+- ome_firmware - This module is enhanced to support OME 4.5.
+- ome_firmware_baseline - This module is enhanced to support OME 4.5.
+- ome_firmware_baseline_compliance_info - This module is enhanced to support OME 4.5.
+- ome_firmware_baseline_info - This module is enhanced to support OME 4.5.
+- ome_firmware_catalog - This module is enhanced to support OME 4.5.
+- redfish_firmware - This module is enhanced to support iDRAC10.
+
+Minor Changes
+-------------
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- Remove the custom error message from snapshots module to fix root volume snapshots/restores on stopped servers
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- gem - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- git_config_info - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- github_deploy_key - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- github_repo - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- github_webhook - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- github_webhook_info - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- gitlab_branch - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- gitlab_group_access_token - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- gitlab_group_variable - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- gitlab_hook - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- gitlab_instance_variable - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- gitlab_issue - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- gitlab_label - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- gitlab_merge_request - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- gitlab_milestone - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- gitlab_project - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- gitlab_project_access_token - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- gitlab_project_variable - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- grove - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- hg - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- homebrew - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- homebrew_cask - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- homebrew_tap - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- honeybadger_deployment - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- htpasswd - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- icinga2_host - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- influxdb_user - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- ini_file - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- ipa_dnsrecord - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- ipa_dnszone - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- ipa_service - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- ipbase_info - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- ipwcli_dns - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- irc - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- jabber - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- jenkins_credential - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- jenkins_job - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- jenkins_script - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10505).
+- keycloak_authz_authorization_scope - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- keycloak_authz_permission - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- keycloak_role - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- keycloak_userprofile - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- keyring - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- kibana_plugin - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- layman - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- ldap_attrs - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- ldap_inc - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- librato_annotation - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- lldp - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- logentries - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- lxca_cmms - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- lxca_nodes - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- macports - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- mail - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- manageiq_alerts - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- manageiq_group - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- manageiq_policies - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- manageiq_policies_info - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- manageiq_tags - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- manageiq_tenant - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- matrix - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- mattermost - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- maven_artifact - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- memset_dns_reload - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- memset_zone - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- memset_zone_record - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- mqtt - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- mssql_db - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- mssql_script - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- netcup_dns - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- newrelic_deployment - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- nsupdate - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10507).
+- oci_vcn - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- one_image_info - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- one_template - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- one_vnet - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- onepassword_info - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- oneview_fc_network_info - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- opendj_backendprop - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- ovh_monthly_billing - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- pagerduty - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- pagerduty_change - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- pagerduty_user - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- pam_limits - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- pear - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- pkgng - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- pnpm - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- portage - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- pritunl_org - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- pritunl_org_info - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- pritunl_user - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- pritunl_user_info - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- pubnub_blocks - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- pushbullet - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- pushover - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- redis_data - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- redis_data_incr - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- riak - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- rocketchat - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- rollbar_deployment - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- say - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- scaleway_database_backup - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- sendgrid - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- sensu_silence - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- sorcery - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- ssh_config - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- statusio_maintenance - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- svr4pkg - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- swdepot - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- syslogger - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- sysrc - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- systemd_creds_decrypt - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- systemd_creds_encrypt - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10512).
+- taiga_issue - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- twilio - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- utm_aaa_group - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- utm_ca_host_key_cert - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- utm_dns_host - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- utm_network_interface_address - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- utm_proxy_auth_profile - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- utm_proxy_exception - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- utm_proxy_frontend - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- utm_proxy_location - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- vertica_configuration - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- vertica_info - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- vertica_role - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- xbps - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- yarn - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- zypper - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+- zypper_repository - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10513).
+
+Bugfixes
+--------
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme_* modules - also retry on HTTP responses 502 Bad Gateway and 504 Gateway Timeout. The latter is needed for ZeroSSL, which seems to have a lot of 504s (https://github.com/ansible-collections/community.crypto/issues/945, https://github.com/ansible-collections/community.crypto/pull/947).
+- acme_* modules - increase the maximum amount of retries from 10 to 20 to accomodate ZeroSSL's buggy implementation (https://github.com/ansible-collections/community.crypto/pull/949).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- apk - fix check for empty/whitespace-only package names (https://github.com/ansible-collections/community.general/pull/10532).
+- capabilities - using invalid path (symlink/directory/...) returned unrelated and incoherent error messages (https://github.com/ansible-collections/community.general/issues/5649, https://github.com/ansible-collections/community.general/pull/10455).
+- doas become plugin - disable pipelining on ansible-core 2.19+. The plugin does not work with pipelining, and since ansible-core 2.19 become plugins can indicate that they do not work with pipelining (https://github.com/ansible-collections/community.general/issues/9977, https://github.com/ansible-collections/community.general/pull/10537).
+- json_query filter plugin - make compatible with lazy evaluation list and dictionary types of ansible-core 2.19 (https://github.com/ansible-collections/community.general/pull/10539).
+- machinectl become plugin - disable pipelining on ansible-core 2.19+. The plugin does not work with pipelining, and since ansible-core 2.19 become plugins can indicate that they do not work with pipelining (https://github.com/ansible-collections/community.general/pull/10537).
+- merge_variables lookup plugin - avoid deprecated functionality from ansible-core 2.19 (https://github.com/ansible-collections/community.general/pull/10566).
+- wsl connection plugin - avoid deprecated ansible-core paramiko import helper, import paramiko directly instead (https://github.com/ansible-collections/community.general/issues/10515, https://github.com/ansible-collections/community.general/pull/10531).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- install role - avoid deprecated parameter value for the ``ansible.builtin.uri`` module (https://github.com/ansible-collections/community.sops/pull/255).
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_attributes - The module accepts both the string as well as integer value for the field "SNMP.1.AgentCommunity" for iDRAC10.
+- idrac_diagnostics - This module doesn't support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- ome_smart_fabric_uplink - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.1.0)
+- ansible.netcommon (still version 8.0.1)
+- ansible.posix (still version 2.1.0)
+- ansible.utils (still version 6.0.0)
+- ansible.windows (still version 3.2.0)
+- arista.eos (still version 11.0.1)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.6.0)
+- check_point.mgmt (still version 6.4.1)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.12.0)
+- cisco.dnac (still version 6.36.0)
+- cisco.intersight (still version 2.1.0)
+- cisco.ios (still version 10.1.1)
+- cisco.iosxr (still version 11.1.0)
+- cisco.meraki (still version 2.21.4)
+- cisco.mso (still version 2.11.0)
+- cisco.nxos (still version 10.2.0)
+- cisco.ucs (still version 1.16.0)
+- cloud.common (still version 5.0.0)
+- community.aws (still version 10.0.0)
+- community.ciscosmb (still version 1.0.11)
+- community.digitalocean (still version 1.27.0)
+- community.dns (still version 3.2.7)
+- community.docker (still version 4.6.2)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.0.0)
+- community.hrobot (still version 2.5.0)
+- community.library_inventory_filtering_v1 (still version 1.1.1)
+- community.libvirt (still version 2.0.0)
+- community.mongodb (still version 1.7.10)
+- community.mysql (still version 3.14.0)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.1.0)
+- community.proxmox (still version 1.2.0)
+- community.proxysql (still version 1.6.0)
+- community.rabbitmq (still version 1.6.0)
+- community.routeros (still version 3.8.1)
+- community.sap_libs (still version 1.4.2)
+- community.vmware (still version 5.7.1)
+- community.windows (still version 3.0.1)
+- community.zabbix (still version 4.1.0)
+- containers.podman (still version 1.17.0)
+- cyberark.conjur (still version 1.3.6)
+- cyberark.pas (still version 1.0.35)
+- dellemc.enterprise_sonic (still version 3.0.0)
+- dellemc.powerflex (still version 2.6.1)
+- dellemc.unity (still version 2.0.0)
+- f5networks.f5_modules (still version 1.37.1)
+- fortinet.fortimanager (still version 2.10.0)
+- fortinet.fortios (still version 2.4.0)
+- google.cloud (still version 1.6.0)
+- grafana.grafana (still version 6.0.3)
+- hetzner.hcloud (still version 5.1.0)
+- hitachivantara.vspone_block (still version 4.0.1)
+- ibm.qradar (still version 4.0.0)
+- ibm.storage_virtualize (still version 2.7.4)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.4.5)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 10.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.0.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.6.1)
+- microsoft.ad (still version 1.9.2)
+- microsoft.iis (still version 1.0.3)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.0.0)
+- netapp.storagegrid (still version 21.15.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.1)
+- purestorage.flasharray (still version 1.36.0)
+- purestorage.flashblade (still version 1.20.0)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.4.0)
+- theforeman.foreman (still version 5.4.0)
+- vmware.vmware (still version 2.2.0)
+- vmware.vmware_rest (still version 4.8.1)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v12.0.0b2
 =========
 
