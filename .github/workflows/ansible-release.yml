@@ -159,8 +159,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ARTIFACT_URL: ${{ steps.upload-artifact.outputs.artifact-url }}
+          IGNORE_FEATURE_FREEZE: ${{ inputs.ignore-feature-freeze }}
         run: |
           body="$(echo -e "${CI_COMMIT_MESSAGE}\nRelease artifacts: <${ARTIFACT_URL}>")"
+          if [ "${IGNORE_FEATURE_FREEZE}" = "true" ]; then
+            body+="$(echo -e "\nThis release was created with \`ignore-feature-freeze\`.")"
+          fi
           echo -n "pr_url=" >> "${GITHUB_OUTPUT}"
           gh pr create \
           --base main \
