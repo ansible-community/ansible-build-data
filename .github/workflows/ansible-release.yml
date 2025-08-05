@@ -23,6 +23,12 @@ name: Release Ansible package
           have been prepared manually!
         type: boolean
         default: true
+      ignore-feature-freeze:
+        description: >-
+          Whether to ignore feature freeze for beta-2 and later, and release candidates.
+          Only set this in special circumstances!
+        type: boolean
+        default: false
       existing-branch:
         description: >-
           If provided, assumes that a branch of this name exists in the ansible-build-data
@@ -121,6 +127,7 @@ jobs:
         env:
           PRESERVE_DEPS: ${{ inputs.preserve-deps }}
           ALLOW_RESET_BUILD_DEPS: ${{ inputs.allow-reset-build-deps }}
+          IGNORE_FEATURE_FREEZE: ${{ inputs.ignore-feature-freeze }}
           # Make result better readable
           ANSIBLE_CALLBACK_RESULT_FORMAT: yaml
         run: >-
@@ -129,6 +136,7 @@ jobs:
           -e "antsibull_build_reset=${ALLOW_RESET_BUILD_DEPS}"
           -e "antsibull_ansible_version=${ANSIBLE_VERSION}"
           -e "antsibull_preserve_deps=${PRESERVE_DEPS}"
+          -e "antsibull_ignore_feature_freeze=${IGNORE_FEATURE_FREEZE}"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -151,8 +159,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ARTIFACT_URL: ${{ steps.upload-artifact.outputs.artifact-url }}
+          IGNORE_FEATURE_FREEZE: ${{ inputs.ignore-feature-freeze }}
         run: |
           body="$(echo -e "${CI_COMMIT_MESSAGE}\nRelease artifacts: <${ARTIFACT_URL}>")"
+          if [ "${IGNORE_FEATURE_FREEZE}" = "true" ]; then
+            body+="$(echo -e "\nThis release was created with \`ignore-feature-freeze\`.")"
+          fi
           echo -n "pr_url=" >> "${GITHUB_OUTPUT}"
           gh pr create \
           --base main \
