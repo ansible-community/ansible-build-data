@@ -250,6 +250,11 @@ collections:
     repository: https://github.com/hitachi-vantara/vspone-block-ansible
   ibm.qradar:
     repository: https://github.com/ansible-collections/ibm.qradar
+    removal:
+      major_version: 13
+      reason: deprecated
+      announce_version: 11.9.0
+      discussion: https://forum.ansible.com/t/44259
   ibm.spectrum_virtualize:
     maintainers:
       - Shilpi-J
