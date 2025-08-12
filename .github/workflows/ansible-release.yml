@@ -55,7 +55,7 @@ jobs:
 
     steps:
       - name: Check out antsibull-build
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: ansible-community/antsibull-build
           ref: main
@@ -65,7 +65,7 @@ jobs:
         run: mkdir -p antsibull-build/build
 
       - name: Check out ansible-build-data under antsibull-build build directory
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           # This is where the antsibull-build build-release role expects it by default
           path: antsibull-build/build/ansible-build-data
@@ -228,7 +228,7 @@ jobs:
           echo "merge_commit=${MERGE_COMMIT}" >> "${GITHUB_OUTPUT}"
 
       - name: Check out ansible-build-data
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event.repository.default_branch }}
           fetch-depth: 0
