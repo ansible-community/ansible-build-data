@@ -816,6 +816,32 @@ Networking
 
 No notable changes
 
+Porting Guide for v12.0.0b4
+===========================
+
+Major Changes
+-------------
+
+dellemc.unity
+^^^^^^^^^^^^^
+
+- Adding support for Unity v5.5.
+
+Deprecated Features
+-------------------
+
+- The ``ibm.qradar`` collection has been deprecated.
+  It will be removed from Ansible 13 if no one starts maintaining it again before Ansible 13.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/44259 <https://forum.ansible.com/t/44259>`__).
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- bearychat - module is deprecated and will be removed in community.general 12.0.0 (https://github.com/ansible-collections/community.general/issues/10514).
+- cpanm - deprecate ``mode=compatibility``, ``mode=new`` should be used instead (https://github.com/ansible-collections/community.general/pull/10434).
+- github_repo - deprecate ``force_defaults=true`` (https://github.com/ansible-collections/community.general/pull/10435).
+- rocketchat - the default value for ``is_pre740``, currently ``true``, is deprecated and will change to ``false`` in community.general 13.0.0 (https://github.com/ansible-collections/community.general/pull/10490).
+
 Porting Guide for v12.0.0b3
 ===========================
 
