@@ -318,6 +318,8 @@ collections:
     repository: https://github.com/Pure-Storage-Ansible/FlashArray-Collection
   purestorage.flashblade:
     repository: https://github.com/Pure-Storage-Ansible/FlashBlade-Collection
+  ravendb.ravendb:
+    repository: https://github.com/ravendb/ansible-collection-ravendb
   splunk.es:
     repository: https://github.com/ansible-collections/splunk.es
   telekom_mms.icinga_director:
