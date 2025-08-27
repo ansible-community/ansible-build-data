@@ -58,18 +58,6 @@ collections:
     repository: https://github.com/ansible-collections/cisco.nxos
   cisco.ucs:
     repository: https://github.com/CiscoDevNet/ansible-ucs
-  cloud.common:
-    maintainers:
-      # - ansible-collections/cloud
-      - abikouo
-      - alinabuzachis
-      - GomathiselviS
-      - gravesm
-      - hakbailey
-      - jillr
-      - mandar242
-      - viciousprimate
-    repository: https://github.com/ansible-collections/cloud.common
   cloudscale_ch.cloud:
     repository: https://github.com/cloudscale-ch/ansible-collection-cloudscale
   community.aws:
@@ -377,6 +365,26 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/155
       announce_version: 8.0.0a1
+  cloud.common:
+    maintainers:
+      # - ansible-collections/cloud
+      - abikouo
+      - alinabuzachis
+      - GomathiselviS
+      - gravesm
+      - hakbailey
+      - jillr
+      - mandar242
+      - viciousprimate
+    repository: https://github.com/ansible-collections/cloud.common
+    removal:
+      version: 12.0.0b6
+      reason: other
+      reason_text: >-
+        The collection does not work with ansible-core 2.19,
+        and is no longer needed by any other collection included in Ansible 12.
+      announce_version: 11.10.0
+      discussion: https://forum.ansible.com/t/41507/24
   community.azure:
     repository: https://github.com/ansible-collections/community.azure
     removal:
