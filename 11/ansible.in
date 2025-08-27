@@ -85,7 +85,6 @@ openstack.cloud
 ovirt.ovirt
 purestorage.flasharray
 purestorage.flashblade
-ravendb.ravendb
 sensu.sensu_go
 splunk.es
 theforeman.foreman
