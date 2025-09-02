@@ -7,6 +7,220 @@ This changelog describes changes since Ansible 11.0.0.
 .. contents::
   :depth: 2
 
+v12.0.0rc1
+==========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-09-02
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Removed Collections
+-------------------
+
+- cloud.common (previously included version: 5.0.0)
+
+You can still install a removed collection manually with ``ansible-galaxy collection install <name-of-collection>``.
+
+Ansible-core
+------------
+
+Ansible 12.0.0rc1 contains ansible-core version 2.19.1.
+This is the same version of ansible-core as in the previous Ansible release.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------+------------------+-------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection             | Ansible 12.0.0b5 | Ansible 12.0.0rc1 | Notes                                                                                                                        |
++========================+==================+===================+==============================================================================================================================+
+| azure.azcollection     | 3.7.0            | 3.8.0             | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+------------------+-------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns          | 3.3.1            | 3.3.2             |                                                                                                                              |
++------------------------+------------------+-------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros     | 3.9.0            | 3.10.0            |                                                                                                                              |
++------------------------+------------------+-------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sops         | 2.2.1            | 2.2.2             |                                                                                                                              |
++------------------------+------------------+-------------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade | 1.20.0           | 1.21.0            |                                                                                                                              |
++------------------------+------------------+-------------------+------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware_rest     | 4.8.1            | 4.9.0             |                                                                                                                              |
++------------------------+------------------+-------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- Remove ``cloud.common`` as a dependency, so it will not be installed automatically anymore (https://github.com/ansible-collections/vmware.vmware_rest/pull/621).
+
+Minor Changes
+-------------
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info, api_modify - add ``show-at-cli-login`` property in ``system note`` (https://github.com/ansible-collections/community.routeros/pull/392).
+- api_info, api_modify - set default value for ``include`` and ``exclude`` properties in ``system note`` to an empty string (https://github.com/ansible-collections/community.routeros/pull/394).
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_ad - ``service`` parameter removed to comply with underlying API structure. ``service`` should be included in the ``service_principals`` strings as shown in the documentation.
+- purefb_saml - Added ``entity_id`` parameter
+- purefb_snap - Add support to delete/eradicate remote snapshots, including the latest replica
+- purefb_user - All AD users to have SSH keys and/or API tokens assigned, even if they have never accessed the FlashArray before. AD users must have ``ad_user`` set as ``true``.
+
+Bugfixes
+--------
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+- various DNS lookup plugins and modules - improve handling of invalid nameserver IPs/names (https://github.com/ansible-collections/community.dns/issues/282, https://github.com/ansible-collections/community.dns/pull/284).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_facts - also report interfaces that are inferred only by reference by IP addresses.
+  RouterOS's APIs have IPv4 and IPv6 addresses point at interfaces by their name, which can
+  change over time and in-between API calls, such that interfaces may have been enumerated
+  under another name, or not at all (for example when removed). Such interfaces are now reported
+  under their new or temporary name and with a synthetic ``type`` property set to differentiate
+  the more likely and positively confirmed removal case (with ``type: "ansible:unknown"``) from
+  the unlikely and probably transient naming mismatch (with ``type: "ansible:mismatch"``).
+  Previously, the api_facts module would have crashed with a ``KeyError`` exception
+  (https://github.com/ansible-collections/community.routeros/pull/391).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- Avoid deprecated functionality in ansible-core 2.20 (https://github.com/ansible-collections/community.sops/pull/260).
+- all modules and plugins - the default of ``enable_local_keyservice`` changed from ``false`` to ``true``, and explicitly setting it to ``false`` now passes ``--enable-local-keyservice=false``. SOPS' default has always been ``true``, and when setting this option to ``true`` so far it resulted in passing ``--enable-local-keyservice``, which is equivalent to ``--enable-local-keyservice=true`` and had no effect. This means that from now on, setting ``enable_local_keyservice`` explicitly to ``false`` has an effect. If ``enable_local_keyservice`` was not set before, or was set to ``true``, nothing will change (https://github.com/ansible-collections/community.sops/issues/261, https://github.com/ansible-collections/community.sops/pull/262).
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- puref_policy - Fixed typo when calling object store policy rule deletion
+- purefb_ad - Fixed issue where updating an AD account required unnecessary parameters.
+- purefb_bucket - Fix versioning control and access rules for public buckets
+- purefb_bucket - Fixed issue where a bucket with no versioning defined was incorrectly created.
+- purefb_bucket - Fixed issue with default retention parameter
+- purefb_bucket_access - Fixed typo in CORS rule definition
+- purefb_certs - Fixed issues with importing external certificates
+- purefb_certs - Updated email regex pattern to fix ``re`` failures
+- purefb_dns - Fixed multiple issues for data DNS configuration
+- purefb_fs - Ensured that NFS rules are emprty if requested filesystem is SMB only
+- purefb_info - Fixed error when ``default`` subset fails if SMD has been disabled on the FLashBlade
+- purefb_s3user - Fixed typo in imported keys code
+- purefb_subnet - Ensured prefix is required for subnet creation or update
+
+Known Issues
+------------
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- The lookup plugins use ``cloud.common``, but this collection does not support ansible-core 2.19 or higher (https://github.com/ansible-collections/vmware.vmware_rest/pull/621).
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.1.1)
+- ansible.netcommon (still version 8.1.0)
+- ansible.posix (still version 2.1.0)
+- ansible.utils (still version 6.0.0)
+- ansible.windows (still version 3.2.0)
+- arista.eos (still version 12.0.0)
+- awx.awx (still version 24.6.1)
+- check_point.mgmt (still version 6.4.1)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.12.0)
+- cisco.dnac (still version 6.39.0)
+- cisco.intersight (still version 2.2.0)
+- cisco.ios (still version 11.0.0)
+- cisco.iosxr (still version 12.0.0)
+- cisco.meraki (still version 2.21.4)
+- cisco.mso (still version 2.11.0)
+- cisco.nxos (still version 11.0.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.2)
+- community.aws (still version 10.0.0)
+- community.ciscosmb (still version 1.0.11)
+- community.crypto (still version 3.0.3)
+- community.digitalocean (still version 1.27.0)
+- community.docker (still version 4.7.0)
+- community.general (still version 11.2.1)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.0.0)
+- community.hrobot (still version 2.5.0)
+- community.library_inventory_filtering_v1 (still version 1.1.1)
+- community.libvirt (still version 2.0.0)
+- community.mongodb (still version 1.7.10)
+- community.mysql (still version 3.15.0)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.1.0)
+- community.proxmox (still version 1.3.0)
+- community.proxysql (still version 1.6.0)
+- community.rabbitmq (still version 1.6.0)
+- community.sap_libs (still version 1.4.2)
+- community.vmware (still version 5.7.2)
+- community.windows (still version 3.0.1)
+- community.zabbix (still version 4.1.0)
+- containers.podman (still version 1.17.0)
+- cyberark.conjur (still version 1.3.7)
+- cyberark.pas (still version 1.0.35)
+- dellemc.enterprise_sonic (still version 3.0.0)
+- dellemc.openmanage (still version 9.12.3)
+- dellemc.powerflex (still version 2.6.1)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.38.0)
+- fortinet.fortimanager (still version 2.10.0)
+- fortinet.fortios (still version 2.4.0)
+- google.cloud (still version 1.7.0)
+- grafana.grafana (still version 6.0.3)
+- hetzner.hcloud (still version 5.2.0)
+- hitachivantara.vspone_block (still version 4.1.0)
+- ibm.qradar (still version 4.0.0)
+- ibm.storage_virtualize (still version 2.7.4)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.6.3)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 11.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.1.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.7.0)
+- microsoft.ad (still version 1.9.2)
+- microsoft.iis (still version 1.0.3)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.1.0)
+- netapp.storagegrid (still version 21.15.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.1)
+- purestorage.flasharray (still version 1.36.0)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.4.0)
+- theforeman.foreman (still version 5.5.0)
+- vmware.vmware (still version 2.3.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v12.0.0b5
 =========
 
