@@ -3,3 +3,6 @@ cisco.dnac: <6.32.0
 
 # netapp.storagegrid 21.15.0 claims to have breaking changes
 netapp.storagegrid: <21.15.0
+
+# 1.21.0 has a potentially breaking change (https://github.com/Pure-Storage-Ansible/FlashBlade-Collection/pull/369#issuecomment-3246253862), restricting while we investigate
+purestorage.flashblade: <1.21.0

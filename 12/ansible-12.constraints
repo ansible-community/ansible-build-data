@@ -1,2 +1,5 @@
 # ERROR: grafana.grafana contains a node_modules folder
 grafana.grafana: !=6.0.0
+
+# 1.21.0 has a potentially breaking change (https://github.com/Pure-Storage-Ansible/FlashBlade-Collection/pull/369#issuecomment-3246253862), restricting while we investigate
+purestorage.flashblade: <1.21.0
