@@ -7,6 +7,327 @@ This changelog describes changes since Ansible 10.0.0.
 .. contents::
   :depth: 2
 
+v11.10.0
+========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-09-09
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- ravendb.ravendb (version 1.0.3)
+
+Ansible-core
+------------
+
+Ansible 11.10.0 contains ansible-core version 2.18.9.
+This is a newer version than version 2.18.8 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Collection             | Ansible 11.9.0 | Ansible 11.10.0 | Notes                                                                                                                                                                                                           |
++========================+================+=================+=================================================================================================================================================================================================================+
+| azure.azcollection     | 3.7.0          | 3.8.0           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                    |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| check_point.mgmt       | 6.4.1          | 6.5.0           |                                                                                                                                                                                                                 |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight       | 2.2.0          | 2.3.0           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                    |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.dns          | 3.3.0          | 3.3.3           |                                                                                                                                                                                                                 |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.general      | 10.7.3         | 10.7.4          |                                                                                                                                                                                                                 |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros     | 3.9.0          | 3.10.0          |                                                                                                                                                                                                                 |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.sops         | 2.2.1          | 2.2.2           |                                                                                                                                                                                                                 |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware       | 5.7.2          | 5.8.0           |                                                                                                                                                                                                                 |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.conjur        | 1.3.6          | 1.3.7           | You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`__. |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules  | 1.37.1         | 1.38.0          | There are no changes recorded in the changelog.                                                                                                                                                                 |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| kubernetes.core        | 5.3.0          | 5.4.0           |                                                                                                                                                                                                                 |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| lowlydba.sqlserver     | 2.6.1          | 2.7.0           |                                                                                                                                                                                                                 |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade | 1.20.0         | 1.21.2          |                                                                                                                                                                                                                 |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ravendb.ravendb        |                | 1.0.3           | The collection was added to Ansible                                                                                                                                                                             |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware_rest     | 4.8.1          | 4.9.0           |                                                                                                                                                                                                                 |
++------------------------+----------------+-----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- Remove ``cloud.common`` as a dependency, so it will not be installed automatically anymore (https://github.com/ansible-collections/vmware.vmware_rest/pull/621).
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Implement new authentication methods for accessing the Ansible Core CI service.
+- service_facts - handle keyerror exceptions with warning.
+- service_facts - warn user about missing service details instead of ignoring.
+
+check_point.mgmt
+~~~~~~~~~~~~~~~~
+
+- added new parameter 'ips_settings' to 'cp_mgmt_simple_cluster' and 'cp_mgmt_simple_gateway' modules.
+- added new parameter 'override_vpn_domains' to 'cp_mgmt_set_vpn_community_remote_access' module.
+- added new parameter 'show_installation_targets' to 'cp_mgmt_package_facts' module.
+- added new parameters (such as 'permanent_tunnels', excluded_services, etc.) to 'cp_mgmt_vpn_community_meshed' and 'cp_mgmt_vpn_community_star' modules.
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info, api_modify - add ``show-at-cli-login`` property in ``system note`` (https://github.com/ansible-collections/community.routeros/pull/392).
+- api_info, api_modify - set default value for ``include`` and ``exclude`` properties in ``system note`` to an empty string (https://github.com/ansible-collections/community.routeros/pull/394).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vcenter_license - Add support for VCF license keys. (https://github.com/ansible-collections/community.vmware/pull/2451)
+
+kubernetes.core
+~~~~~~~~~~~~~~~
+
+- Module ``helm_registry_auth`` does not support idempotency with ``helm >= 3.18.0`` (https://github.com/ansible-collections/kubernetes.core/pull/946).
+
+lowlydba.sqlserver
+~~~~~~~~~~~~~~~~~~
+
+- agent_job_step - Added ``output_file`` parameter to specify the output file path for SQL Agent job steps (https://github.com/lowlydba/lowlydba.sqlserver/pull/329).
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_ad - Revert removal of ``service`` parameter (breaking change). Added more logic to use of ``service`` parameter and recommend use of ``service_principals`` with service incorporated.
+- purefb_ad - ``service`` parameter removed to comply with underlying API structure. ``service`` should be included in the ``service_principals`` strings as shown in the documentation.
+- purefb_saml - Added ``entity_id`` parameter
+- purefb_snap - Add support to delete/eradicate remote snapshots, including the latest replica
+- purefb_user - All AD users to have SSH keys and/or API tokens assigned, even if they have never accessed the FlashArray before. AD users must have ``ad_user`` set as ``true``.
+
+Deprecated Features
+-------------------
+
+- The cloud.common collection will be removed from Ansible 12.
+  The collection does not work with ansible-core 2.19, and is no longer needed by any other collection included in Ansible 12.
+  See `the removal discussion for details <https://forum.ansible.com/t/41507/24>`__.
+  After removal, users can still install this collection with ``ansible-galaxy collection install cloud.common``.
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- dnf - Fail gracefully when an invalid ``conf_file`` is used instead of dumping raw exception and traceback. (https://github.com/ansible/ansible/issues/85681)
+- service_facts - skip lines which does not contain service names in openrc output (https://github.com/ansible/ansible/issues/84512).
+- user - Use higher precedence HOME_MODE as UMASK for path provided (https://github.com/ansible/ansible/pull/84482).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Avoid deprecated functionality in ansible-core 2.20 (https://github.com/ansible-collections/community.dns/pull/280).
+- Update Public Suffix List.
+- nameserver_record_info - removed type ``ALL``, which never worked (https://github.com/ansible-collections/community.dns/issues/278, https://github.com/ansible-collections/community.dns/pull/279).
+- various DNS lookup plugins and modules - improve handling of invalid nameserver IPs/names (https://github.com/ansible-collections/community.dns/issues/282, https://github.com/ansible-collections/community.dns/pull/284).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- Avoid deprecated functionality in ansible-core 2.20 (https://github.com/ansible-collections/community.general/pull/10687).
+- apache2_module - check the ``cgi`` module restrictions only during activation (https://github.com/ansible-collections/community.general/pull/10423).
+- kdeconfig - ``kwriteconfig`` executable could not be discovered automatically on systems with only ``kwriteconfig6`` installed. ``kwriteconfig6`` can now be discovered by Ansible (https://github.com/ansible-collections/community.general/issues/10746, https://github.com/ansible-collections/community.general/pull/10751).
+- monit - fix crash caused by an unknown status value returned from the monit service (https://github.com/ansible-collections/community.general/issues/10742, https://github.com/ansible-collections/community.general/pull/10743).
+- pids - prevent error when an empty string is provided for ``name`` (https://github.com/ansible-collections/community.general/issues/10672, https://github.com/ansible-collections/community.general/pull/10688).
+- selective callback plugin - specify ``ansible_loop_var`` instead of the explicit value ``item`` when printing task result (https://github.com/ansible-collections/community.general/pull/10752).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_facts - also report interfaces that are inferred only by reference by IP addresses.
+  RouterOS's APIs have IPv4 and IPv6 addresses point at interfaces by their name, which can
+  change over time and in-between API calls, such that interfaces may have been enumerated
+  under another name, or not at all (for example when removed). Such interfaces are now reported
+  under their new or temporary name and with a synthetic ``type`` property set to differentiate
+  the more likely and positively confirmed removal case (with ``type: "ansible:unknown"``) from
+  the unlikely and probably transient naming mismatch (with ``type: "ansible:mismatch"``).
+  Previously, the api_facts module would have crashed with a ``KeyError`` exception
+  (https://github.com/ansible-collections/community.routeros/pull/391).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- Avoid deprecated functionality in ansible-core 2.20 (https://github.com/ansible-collections/community.sops/pull/260).
+- all modules and plugins - the default of ``enable_local_keyservice`` changed from ``false`` to ``true``, and explicitly setting it to ``false`` now passes ``--enable-local-keyservice=false``. SOPS' default has always been ``true``, and when setting this option to ``true`` so far it resulted in passing ``--enable-local-keyservice``, which is equivalent to ``--enable-local-keyservice=true`` and had no effect. This means that from now on, setting ``enable_local_keyservice`` explicitly to ``false`` has an effect. If ``enable_local_keyservice`` was not set before, or was set to ``true``, nothing will change (https://github.com/ansible-collections/community.sops/issues/261, https://github.com/ansible-collections/community.sops/pull/262).
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_ad - Fixed issue where updating an AD account required unnecessary parameters.
+- purefb_bucket - Fix versioning control and access rules for public buckets
+- purefb_bucket - Fixed issue where a bucket with no versioning defined was incorrectly created.
+- purefb_bucket - Fixed issue with default retention parameter
+- purefb_bucket_access - Fixed typo in CORS rule definition
+- purefb_certs - Fixed issues with importing external certificates
+- purefb_certs - Updated email regex pattern to fix ``re`` failures
+- purefb_dns - Fixed multiple issues for data DNS configuration
+- purefb_fs - Ensured that NFS rules are emprty if requested filesystem is SMB only
+- purefb_info - Fixed error when ``default`` subset fails if SMD has been disabled on the FLashBlade
+- purefb_policy - Fixed typo when calling object store policy rule deletion
+- purefb_s3user - Fixed typo in imported keys code
+- purefb_subnet - Ensured prefix is required for subnet creation or update
+
+Known Issues
+------------
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- The lookup plugins use ``cloud.common``, but this collection does not support ansible-core 2.19 or higher (https://github.com/ansible-collections/vmware.vmware_rest/pull/621).
+
+New Modules
+-----------
+
+check_point.mgmt
+~~~~~~~~~~~~~~~~
+
+- check_point.mgmt.cp_mgmt_identity_provider - Manages identity-provider objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_identity_provider_facts - Get identity-provider objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_if_map_server - Manages if-map-server objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_if_map_server_facts - Get if-map-server objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_ldap_group - Manages ldap-group objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_ldap_group_facts - Get ldap-group objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_log_exporter - Manages log-exporter objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_log_exporter_facts - Get log-exporter objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_resource_mms - Manages resource-mms objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_resource_mms_facts - Get resource-mms objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_resource_tcp - Manages resource-tcp objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_resource_tcp_facts - Get resource-tcp objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_resource_uri_for_qos - Manages resource-uri-for-qos objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_resource_uri_for_qos_facts - Get resource-uri-for-qos objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_run_app_control_update - Runs Application Control & URL Filtering database update.
+- check_point.mgmt.cp_mgmt_securemote_dns_server - Manages securemote-dns-server objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_securemote_dns_server_facts - Get securemote-dns-server objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_securid_server - Manages securid-server objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_securid_server_facts - Get securid-server objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_set_anti_malware_update_schedule - Set both Anti-Bot and Anti-Virus update schedules.
+- check_point.mgmt.cp_mgmt_set_app_control_update_schedule - Set the Application Control and URL Filtering update schedule.
+- check_point.mgmt.cp_mgmt_show_anti_malware_update_schedule - Retrieve existing Anti-Bot and Anti-Virus update schedules.
+- check_point.mgmt.cp_mgmt_show_app_control_status - Get app-control-status objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_show_app_control_update_schedule - Get app-control-status objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_syslog_server - Manages syslog-server objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_syslog_server_facts - Get syslog-server objects facts on Checkpoint over Web Services API
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 9.5.1)
+- ansible.netcommon (still version 7.2.0)
+- ansible.posix (still version 1.6.2)
+- ansible.utils (still version 5.1.2)
+- ansible.windows (still version 2.8.0)
+- arista.eos (still version 10.1.1)
+- awx.awx (still version 24.6.1)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.12.0)
+- cisco.asa (still version 6.1.0)
+- cisco.dnac (still version 6.31.3)
+- cisco.ios (still version 9.2.0)
+- cisco.iosxr (still version 10.3.1)
+- cisco.ise (still version 2.10.0)
+- cisco.meraki (still version 2.21.4)
+- cisco.mso (still version 2.11.0)
+- cisco.nxos (still version 9.4.0)
+- cisco.ucs (still version 1.16.0)
+- cloud.common (still version 4.2.0)
+- cloudscale_ch.cloud (still version 2.5.2)
+- community.aws (still version 9.3.0)
+- community.ciscosmb (still version 1.0.11)
+- community.crypto (still version 2.26.5)
+- community.digitalocean (still version 1.27.0)
+- community.docker (still version 4.7.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 6.2.1)
+- community.hrobot (still version 2.5.0)
+- community.library_inventory_filtering_v1 (still version 1.1.1)
+- community.libvirt (still version 1.4.0)
+- community.mongodb (still version 1.7.10)
+- community.mysql (still version 3.15.0)
+- community.network (still version 5.1.0)
+- community.okd (still version 4.0.2)
+- community.postgresql (still version 3.14.2)
+- community.proxmox (still version 1.3.0)
+- community.proxysql (still version 1.6.0)
+- community.rabbitmq (still version 1.6.0)
+- community.sap_libs (still version 1.4.2)
+- community.windows (still version 2.4.0)
+- community.zabbix (still version 3.3.0)
+- containers.podman (still version 1.17.0)
+- cyberark.pas (still version 1.0.35)
+- dellemc.enterprise_sonic (still version 2.5.1)
+- dellemc.openmanage (still version 9.12.3)
+- dellemc.powerflex (still version 2.6.1)
+- dellemc.unity (still version 2.1.0)
+- fortinet.fortimanager (still version 2.10.0)
+- fortinet.fortios (still version 2.4.0)
+- google.cloud (still version 1.7.0)
+- grafana.grafana (still version 5.7.0)
+- hetzner.hcloud (still version 4.3.0)
+- hitachivantara.vspone_block (still version 3.5.1)
+- ibm.qradar (still version 4.0.0)
+- ibm.spectrum_virtualize (still version 2.0.0)
+- ibm.storage_virtualize (still version 2.7.4)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.6.3)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 9.1.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubevirt.core (still version 2.2.3)
+- microsoft.ad (still version 1.9.2)
+- microsoft.iis (still version 1.0.3)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 22.14.0)
+- netapp.storagegrid (still version 21.14.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.1)
+- purestorage.flasharray (still version 1.36.0)
+- sensu.sensu_go (still version 1.14.0)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.4.0)
+- theforeman.foreman (still version 4.2.0)
+- vmware.vmware (still version 1.11.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 5.0.0)
+- wti.remote (still version 1.0.10)
+
 v11.9.0
 =======
 
@@ -741,7 +1062,8 @@ dellemc.powerflex
 f5networks.f5_modules
 ~~~~~~~~~~~~~~~~~~~~~
 
-- bigip_virtual_server fix module crash issue
+- added github actions
+- fixed automation hub import log issues
 
 fortinet.fortimanager
 ~~~~~~~~~~~~~~~~~~~~~
@@ -1606,10 +1928,10 @@ hitachivantara.vspone_block
 kubernetes.core
 ~~~~~~~~~~~~~~~
 
-- Bump version of ansible-lint to 25.1.2 (https://github.com/ansible-collections/kubernetes.core/pull/919).
 - action/k8s_info - update templating mechanism with changes from ``ansible-core 2.19`` (https://github.com/ansible-collections/kubernetes.core/pull/888).
-- helm - add reset_then_reuse_values support to helm module (https://github.com/ansible-collections/kubernetes.core/issues/803).
-- helm - add support for ``insecure_skip_tls_verify`` option to helm and helm_repository(https://github.com/ansible-collections/kubernetes.core/issues/694).
+- helm - add ``reset_then_reuse_values`` support to helm module (https://github.com/ansible-collections/kubernetes.core/issues/803).
+- helm - add support for ``insecure_skip_tls_verify`` option to helm and ``helm_repository`` (https://github.com/ansible-collections/kubernetes.core/issues/694).
+- kubernetes.core - Bump version of ``ansible-lint`` to ``25.1.2`` (https://github.com/ansible-collections/kubernetes.core/pull/919).
 
 lowlydba.sqlserver
 ~~~~~~~~~~~~~~~~~~
