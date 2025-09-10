@@ -211,13 +211,6 @@ collections:
       - rsahuHitachi
       - tcng28
     repository: https://github.com/hitachi-vantara/vspone-block-ansible
-  ibm.qradar:
-    repository: https://github.com/ansible-collections/ibm.qradar
-    removal:
-      major_version: 13
-      reason: deprecated
-      announce_version: 12.0.0b4
-      discussion: https://forum.ansible.com/t/44259
   ibm.storage_virtualize:
     maintainers:
       - sumitguptaibm
@@ -494,6 +487,13 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/254
       announce_version: 9.0.0a1
+  ibm.qradar:
+    repository: https://github.com/ansible-collections/ibm.qradar
+    removal:
+      version: 13.0.0a1
+      reason: deprecated
+      announce_version: 12.0.0b4
+      discussion: https://forum.ansible.com/t/44259
   ibm.spectrum_virtualize:
     maintainers:
       - Shilpi-J
