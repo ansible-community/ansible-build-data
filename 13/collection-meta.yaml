@@ -39,13 +39,6 @@ collections:
     collection-directory: "./chocolatey"
   cisco.aci:
     repository: https://github.com/CiscoDevNet/ansible-aci
-  cisco.asa:
-    repository: https://github.com/ansible-collections/cisco.asa
-    removal:
-      major_version: 12
-      announce_version: 11.2.0
-      reason: deprecated
-      discussion: https://forum.ansible.com/t/38960
   cisco.dnac:
     maintainers:
       - racampos
@@ -57,17 +50,6 @@ collections:
     repository: https://github.com/ansible-collections/cisco.ios
   cisco.iosxr:
     repository: https://github.com/ansible-collections/cisco.iosxr
-  cisco.ise:
-    maintainers:
-      - wastorga
-      - racampos
-      - jbogarin
-    repository: https://github.com/CiscoISE/ansible-ise
-    removal:
-      major_version: 12
-      announce_version: 11.8.0
-      reason: considered-unmaintained
-      discussion: https://forum.ansible.com/t/43367
   cisco.meraki:
     repository: https://github.com/meraki/dashboard-api-ansible
   cisco.mso:
@@ -76,26 +58,6 @@ collections:
     repository: https://github.com/ansible-collections/cisco.nxos
   cisco.ucs:
     repository: https://github.com/CiscoDevNet/ansible-ucs
-  cloud.common:
-    maintainers:
-      # - ansible-collections/cloud
-      - abikouo
-      - alinabuzachis
-      - GomathiselviS
-      - gravesm
-      - hakbailey
-      - jillr
-      - mandar242
-      - viciousprimate
-    repository: https://github.com/ansible-collections/cloud.common
-    removal:
-      major_version: 12
-      reason: other
-      reason_text: >-
-        The collection does not work with ansible-core 2.19,
-        and is no longer needed by any other collection included in Ansible 12.
-      announce_version: 11.10.0
-      discussion: https://forum.ansible.com/t/41507/24
   cloudscale_ch.cloud:
     repository: https://github.com/cloudscale-ch/ansible-collection-cloudscale
   community.aws:
@@ -144,13 +106,6 @@ collections:
     repository: https://github.com/ansible-collections/community.mongodb
   community.mysql:
     repository: https://github.com/ansible-collections/community.mysql
-  community.network:
-    repository: https://github.com/ansible-collections/community.network
-    removal:
-      major_version: 12
-      announce_version: 11.0.0b1
-      reason: deprecated
-      discussion: https://forum.ansible.com/t/8030
   community.okd:
     maintainers:
       # - ansible-collections/cloud
@@ -234,17 +189,6 @@ collections:
     repository: https://github.com/fortinet-ansible-dev/ansible-galaxy-fortios-collection
   google.cloud:
     repository: https://github.com/ansible-collections/google.cloud
-    removal:
-      major_version: 12
-      announce_version: 11.0.0b1
-      reason: guidelines-violation
-      discussion: https://forum.ansible.com/t/8609
-      reason_text: >
-        The collection has
-        L(unresolved sanity test failures, https://github.com/ansible-collections/google.cloud/issues/613).
-      updates:
-        - cancelled_version: 11.9.0
-          reason_text: The sanity test failures have been addressed.
   grafana.grafana:
     maintainers:
       - ishanjainn
@@ -256,22 +200,6 @@ collections:
       - rsahuHitachi
       - tcng28
     repository: https://github.com/hitachi-vantara/vspone-block-ansible
-  ibm.qradar:
-    repository: https://github.com/ansible-collections/ibm.qradar
-    removal:
-      major_version: 13
-      reason: deprecated
-      announce_version: 11.9.0
-      discussion: https://forum.ansible.com/t/44259
-  ibm.spectrum_virtualize:
-    maintainers:
-      - Shilpi-J
-    repository: https://github.com/ansible-collections/ibm.spectrum_virtualize
-    removal:
-      major_version: 12
-      reason: renamed
-      announce_version: 11.1.0
-      new_name: ibm.storage_virtualize
   ibm.storage_virtualize:
     maintainers:
       - sumitguptaibm
@@ -345,14 +273,6 @@ collections:
       - jkandati
       - joshedmonds
     repository: https://github.com/ansible-collections/netapp.storagegrid
-    removal:
-      major_version: 11
-      reason: considered-unmaintained
-      discussion: https://forum.ansible.com/t/2811
-      updates:
-        - removed_version: 11.0.0a1
-        - readded_version: 11.0.0b2
-          reason_text: Maintenance of the collection has been taken over by another team at NetApp.
   netapp_eseries.santricity:
     repository: https://github.com/netapp-eseries/santricity
   netbox.netbox:
@@ -368,21 +288,6 @@ collections:
     repository: https://github.com/Pure-Storage-Ansible/FlashArray-Collection
   purestorage.flashblade:
     repository: https://github.com/Pure-Storage-Ansible/FlashBlade-Collection
-  ravendb.ravendb:
-    repository: https://github.com/ravendb/ansible-collection-ravendb
-  sensu.sensu_go:
-    maintainers:
-      - tadeboro
-      - mancabizjak
-    repository: https://github.com/sensu/sensu-go-ansible
-    removal:
-      major_version: 12
-      announce_version: 11.0.0a2
-      reason: guidelines-violation
-      discussion: https://forum.ansible.com/t/8380
-      reason_text: >
-        The collection has
-        L(unresolved sanity test failures, https://github.com/sensu/sensu-go-ansible/issues/362).
   splunk.es:
     repository: https://github.com/ansible-collections/splunk.es
   telekom_mms.icinga_director:
@@ -417,6 +322,24 @@ collections:
   wti.remote:
     repository: https://github.com/wtinetworkgear/wti-collection
 removed_collections:
+  cisco.asa:
+    repository: https://github.com/ansible-collections/cisco.asa
+    removal:
+      version: 12.0.0a1
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/38960
+      announce_version: 11.2.0
+  cisco.ise:
+    maintainers:
+      - wastorga
+      - racampos
+      - jbogarin
+    repository: https://github.com/CiscoISE/ansible-ise
+    removal:
+      version: 12.0.0a7
+      reason: considered-unmaintained
+      discussion: https://forum.ansible.com/t/43367
+      announce_version: 11.8.0
   cisco.nso:
     repository: https://github.com/CiscoDevNet/ansible-nso
     removal:
@@ -424,6 +347,26 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/155
       announce_version: 8.0.0a1
+  cloud.common:
+    maintainers:
+      # - ansible-collections/cloud
+      - abikouo
+      - alinabuzachis
+      - GomathiselviS
+      - gravesm
+      - hakbailey
+      - jillr
+      - mandar242
+      - viciousprimate
+    repository: https://github.com/ansible-collections/cloud.common
+    removal:
+      version: 12.0.0b6
+      reason: other
+      reason_text: >-
+        The collection does not work with ansible-core 2.19,
+        and is no longer needed by any other collection included in Ansible 12.
+      announce_version: 11.10.0
+      discussion: https://forum.ansible.com/t/41507/24
   community.azure:
     repository: https://github.com/ansible-collections/community.azure
     removal:
@@ -465,6 +408,12 @@ removed_collections:
         5.0.0, and unfortunately nobody managed to adjust the collection to work with
         kubernetes.core >= 2.0.0.
       discussion: https://github.com/ansible-community/community-topics/issues/92
+  community.network:
+    repository: https://github.com/ansible-collections/community.network
+    removal:
+      version: 12.0.0a1
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/8030
   community.sap:
     maintainers:
       - rainerleber
@@ -527,6 +476,21 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/254
       announce_version: 9.0.0a1
+  ibm.qradar:
+    repository: https://github.com/ansible-collections/ibm.qradar
+    removal:
+      version: 13.0.0a1
+      reason: deprecated
+      announce_version: 12.0.0b4
+      discussion: https://forum.ansible.com/t/44259
+  ibm.spectrum_virtualize:
+    maintainers:
+      - Shilpi-J
+    repository: https://github.com/ansible-collections/ibm.spectrum_virtualize
+    removal:
+      version: 12.0.0a1
+      reason: renamed
+      new_name: ibm.storage_virtualize
   inspur.sm:
     maintainers:
       - ISIB-Group
@@ -616,6 +580,18 @@ removed_collections:
       reason: deprecated
       discussion: https://forum.ansible.com/t/3712
       announce_version: 9.3.0
+  sensu.sensu_go:
+    maintainers:
+      - tadeboro
+      - mancabizjak
+    repository: https://github.com/sensu/sensu-go-ansible
+    removal:
+      version: 12.0.0a1
+      reason: guidelines-violation
+      discussion: https://forum.ansible.com/t/8380
+      reason_text: >
+        The collection has
+        L(unresolved sanity test failures, https://github.com/sensu/sensu-go-ansible/issues/362).
   servicenow.servicenow:
     repository: https://github.com/ServiceNowITOM/servicenow-ansible
     removal:

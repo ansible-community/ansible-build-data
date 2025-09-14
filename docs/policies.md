@@ -48,12 +48,12 @@ Then a `removal` subkey needs to be added to `foo.bar` with the following fields
          https://github.com/ansible-community/ansible-build-data/?tab=readme-ov-file#renaming-a-collection).)
 
     4. `guidelines-violation`: the collection has been removed by the Steering Committee due to guidelines violation.
-       Further details must be provided in `removal_text`.
+       Further details must be provided in `reason_text`.
        ([Official process](
         https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements).)
 
     5. `other`: the collection has been removed for other reasons.
-       Further explanation on why the collection will be removed must be provided in `removal_text`.
+       Further explanation on why the collection will be removed must be provided in `reason_text`.
 
 - `announce_version`: optional string to indicate in which release of this Ansible major version the removal should be announced.
   When adding a new removal, use the next version that will be used for a release.
@@ -97,7 +97,7 @@ collections:
     removal:
       major_version: 20
       reason: guidelines-violation
-      removal_text: >-
+      reason_text: >-
         Extra text that must specify what happened. Can use L(Ansible markup,
         https://docs.ansible.com/ansible/devel/dev_guide/developing_modules_documenting.html#linking-within-module-documentation).
       announce_version: 11.2.0
@@ -108,7 +108,7 @@ collections:
     removal:
       major_version: 20
       reason: other
-      removal_text: >-
+      reason_text: >-
         Text that must specify why the collection was removed. Can use L(Ansible markup,
         https://docs.ansible.com/ansible/devel/dev_guide/developing_modules_documenting.html#linking-within-module-documentation).
       announce_version: 11.2.0

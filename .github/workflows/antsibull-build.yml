@@ -29,6 +29,9 @@ jobs:
           - name: Ansible 12
             ansible_version: 12.99.0
             ansible_major_version: 12
+          - name: Ansible 13
+            ansible_version: 13.99.0
+            ansible_major_version: 13
 
     steps:
       - name: Check out antsibull-build

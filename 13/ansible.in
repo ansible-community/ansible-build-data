@@ -9,17 +9,14 @@ azure.azcollection
 check_point.mgmt
 chocolatey.chocolatey
 cisco.aci
-cisco.asa
 cisco.dnac
 cisco.intersight
 cisco.ios
 cisco.iosxr
-cisco.ise
 cisco.meraki
 cisco.mso
 cisco.nxos
 cisco.ucs
-cloud.common
 cloudscale_ch.cloud
 community.aws
 community.ciscosmb
@@ -35,7 +32,6 @@ community.library_inventory_filtering_v1
 community.libvirt
 community.mongodb
 community.mysql
-community.network
 community.okd
 community.postgresql
 community.proxmox
@@ -61,8 +57,6 @@ google.cloud
 grafana.grafana
 hetzner.hcloud
 hitachivantara.vspone_block
-ibm.qradar
-ibm.spectrum_virtualize
 ibm.storage_virtualize
 ieisystem.inmanage
 infinidat.infinibox
@@ -85,8 +79,6 @@ openstack.cloud
 ovirt.ovirt
 purestorage.flasharray
 purestorage.flashblade
-ravendb.ravendb
-sensu.sensu_go
 splunk.es
 theforeman.foreman
 telekom_mms.icinga_director
