@@ -403,6 +403,41 @@ The result of the corrected template remains a list:
     }
 
 
+Example - unintentional ``None`` result
+"""""""""""""""""""""""""""""""""""""""
+
+If a template evaluated to ``None``, it was implicitly converted to an empty string in previous versions of ansible-core.
+This can now result in the template evaluating to the *value* ``None``.
+
+The following example shows a case where this happens:
+
+.. code-block:: yaml+jinja
+
+    - set_fact:
+        # If 'foo' is not defined, the else branch basically evaluates to None.
+        # So value_none will not be an empty string, but None:
+        value_none: |-
+          {% if foo is defined %}foo is defined{% endif %}
+
+This example can be fixed as follows:
+
+.. code-block:: yaml+jinja
+
+    - set_fact:
+        # Explicitly return an empty string in the 'else' branch.
+        # The value is always a string: either "foo is defined" or "".
+        value_none: |-
+          {% if foo is defined %}foo is defined{% else %}{{ "" }}{% endif %}
+
+This adjustment is backward-compatible with older ansible-core versions.
+
+.. note::
+    Since ansible-core 2.19.1, module options of type string accept ``None`` and convert it
+    to an empty string. Before ansible-core 2.18, passing ``None`` to such options resulted
+    in an error. This means that in most cases, expressions in roles and playbooks do not need
+    to be adjusted because of unintentional ``None`` results.
+
+
 Lazy templating
 ^^^^^^^^^^^^^^^
 
@@ -874,6 +909,44 @@ Networking
 ==========
 
 No notable changes
+
+Porting Guide for v12.1.0
+=========================
+
+Added Collections
+-----------------
+
+- ravendb.ravendb (version 1.0.3)
+
+Major Changes
+-------------
+
+containers.podman
+^^^^^^^^^^^^^^^^^
+
+- Add inventory plugins for buildah and podman
+- Add podman system connection modules
+
+Deprecated Features
+-------------------
+
+community.general
+^^^^^^^^^^^^^^^^^
+
+- hiera lookup plugin - retrieving data with Hiera has been deprecated a long time ago; because of that this plugin will be removed from community.general 13.0.0. If you disagree with this deprecation, please create an issue in the community.general repository (https://github.com/ansible-collections/community.general/issues/4462, https://github.com/ansible-collections/community.general/pull/10779).
+- oci_utils module utils - utils is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
+- oci_vcn - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
+- oracle* doc fragments - fragments are deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
+
+community.zabbix
+^^^^^^^^^^^^^^^^
+
+- zabbix_maintenance module - Depreicated `minutes` argument for `time_periods`
+
+purestorage.flasharray
+^^^^^^^^^^^^^^^^^^^^^^
+
+- purefa_volume_tags - Deprecated due to removal of REST 1.x support. Will be removed in Collection 2.0.0
 
 Porting Guide for v12.0.0
 =========================

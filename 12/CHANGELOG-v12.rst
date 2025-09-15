@@ -7,6 +7,482 @@ This changelog describes changes since Ansible 11.0.0.
 .. contents::
   :depth: 2
 
+v12.1.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-09-15
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- ravendb.ravendb (version 1.0.3)
+
+Ansible-core
+------------
+
+Ansible 12.1.0 contains ansible-core version 2.19.2.
+This is a newer version than version 2.19.1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                  | Ansible 12.0.0 | Ansible 12.1.0 | Notes                                                                                                                        |
++=============================+================+================+==============================================================================================================================+
+| check_point.mgmt            | 6.4.1          | 6.5.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight            | 2.2.0          | 2.3.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki                | 2.21.4         | 2.21.5         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns               | 3.3.2          | 3.3.3          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general           | 11.2.1         | 11.3.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql             | 3.15.0         | 3.16.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware            | 5.7.2          | 5.8.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.zabbix            | 4.1.0          | 4.1.1          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman           | 1.17.0         | 1.18.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| google.cloud                | 1.7.0          | 1.8.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| hitachivantara.vspone_block | 4.1.0          | 4.2.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flasharray      | 1.36.0         | 1.37.1         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade      | 1.20.0         | 1.21.2         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ravendb.ravendb             |                | 1.0.3          | The collection was added to Ansible                                                                                          |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add inventory plugins for buildah and podman
+- Add podman system connection modules
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Implement new authentication methods for accessing the Ansible Core CI service.
+
+check_point.mgmt
+~~~~~~~~~~~~~~~~
+
+- added new parameter 'ips_settings' to 'cp_mgmt_simple_cluster' and 'cp_mgmt_simple_gateway' modules.
+- added new parameter 'override_vpn_domains' to 'cp_mgmt_set_vpn_community_remote_access' module.
+- added new parameter 'show_installation_targets' to 'cp_mgmt_package_facts' module.
+- added new parameters (such as 'permanent_tunnels', excluded_services, etc.) to 'cp_mgmt_vpn_community_meshed' and 'cp_mgmt_vpn_community_star' modules.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- android_sdk - minor refactor to improve readability (https://github.com/ansible-collections/community.general/pull/10712).
+- django module utils - simplify/consolidate the common settings for the command line (https://github.com/ansible-collections/community.general/pull/10684).
+- django_check - rename parameter ``database`` to ``databases``, add alias for compatibility (https://github.com/ansible-collections/community.general/pull/10700).
+- django_check - simplify/consolidate the common settings for the command line (https://github.com/ansible-collections/community.general/pull/10684).
+- django_createcachetable - simplify/consolidate the common settings for the command line (https://github.com/ansible-collections/community.general/pull/10684).
+- elasticsearch_plugin - minor refactor to improve readability (https://github.com/ansible-collections/community.general/pull/10712).
+- filesize - minor refactor to simplify string formatting (https://github.com/ansible-collections/community.general/pull/10727).
+- github_app_access_token lookup plugin - support both ``jwt`` and ``pyjwt`` to avoid conflict with other modules requirements (https://github.com/ansible-collections/community.general/issues/10299).
+- gitlab_group_access_token - add ``planner`` access level (https://github.com/ansible-collections/community.general/pull/10679).
+- gitlab_group_access_token - add missing scopes (https://github.com/ansible-collections/community.general/pull/10785).
+- gitlab_group_variable - support masked-and-hidden variables (https://github.com/ansible-collections/community.general/pull/10787).
+- gitlab_label - minor refactor to improve readability (https://github.com/ansible-collections/community.general/pull/10711).
+- gitlab_milestone - minor refactor to improve readability (https://github.com/ansible-collections/community.general/pull/10711).
+- gitlab_project_access_token - add ``planner`` access level (https://github.com/ansible-collections/community.general/pull/10679).
+- gitlab_project_access_token - add missing scopes (https://github.com/ansible-collections/community.general/pull/10785).
+- gitlab_project_variable - support masked-and-hidden variables (https://github.com/ansible-collections/community.general/pull/10787).
+- gitlab_protected_branch - add ``allow_force_push``, ``code_owner_approval_required`` (https://github.com/ansible-collections/community.general/pull/10795, https://github.com/ansible-collections/community.general/issues/6432, https://github.com/ansible-collections/community.general/issues/10289, https://github.com/ansible-collections/community.general/issues/10765).
+- gitlab_protected_branch - update protected branches if possible instead of recreating them (https://github.com/ansible-collections/community.general/pull/10795).
+- iocage inventory plugin - minor refactor to improve readability (https://github.com/ansible-collections/community.general/pull/10712).
+- ipa_host - minor refactor to improve readability (https://github.com/ansible-collections/community.general/pull/10711).
+- iptables_state - minor refactor to simplify string formatting (https://github.com/ansible-collections/community.general/pull/10727).
+- keycloak_realm - add support for WebAuthn policy configuration options, including both regular and passwordless WebAuthn policies (https://github.com/ansible-collections/community.general/pull/10791).
+- lvg_rename - minor refactor to improve readability (https://github.com/ansible-collections/community.general/pull/10711).
+- manageiq - minor refactor to improve readability (https://github.com/ansible-collections/community.general/pull/10712).
+- manageiq_alert_profiles - minor refactor to improve readability (https://github.com/ansible-collections/community.general/pull/10712).
+- manageiq_group - minor refactor to simplify string formatting (https://github.com/ansible-collections/community.general/pull/10727).
+- manageiq_tenant - minor refactor to simplify string formatting (https://github.com/ansible-collections/community.general/pull/10727).
+- mssql_db - minor refactor to simplify string formatting (https://github.com/ansible-collections/community.general/pull/10727).
+- one_vm - minor refactor to improve readability (https://github.com/ansible-collections/community.general/pull/10712).
+- openbsd_pkg - add ``autoremove`` parameter to remove unused dependencies (https://github.com/ansible-collections/community.general/pull/10705).
+- openbsd_pkg - minor refactor to simplify string formatting (https://github.com/ansible-collections/community.general/pull/10727).
+- pacemaker_resource - add ``state=cleanup`` for cleaning up pacemaker resources (https://github.com/ansible-collections/community.general/pull/10413)
+- pacemaker_resource - add ``state=cloned`` for cloning pacemaker resources or groups (https://github.com/ansible-collections/community.general/issues/10322, https://github.com/ansible-collections/community.general/pull/10665).
+- pacemaker_resource - the parameter ``name`` is no longer a required parameter in community.general 11.3.0 (https://github.com/ansible-collections/community.general/pull/10413)
+- parted - using safer mechanism to run external command (https://github.com/ansible-collections/community.general/pull/10642).
+- random_string lookup plugin - allow to specify seed while generating random string (https://github.com/ansible-collections/community.general/issues/5362, https://github.com/ansible-collections/community.general/pull/10710).
+- scaleway modules - add a ``scaleway`` group to use ``module_defaults`` (https://github.com/ansible-collections/community.general/pull/10647).
+- scaleway_container - add a ``cpu_limit`` argument (https://github.com/ansible-collections/community.general/pull/10646).
+- terraform - minor refactor to improve readability (https://github.com/ansible-collections/community.general/pull/10711).
+- ufw - minor refactor to simplify string formatting (https://github.com/ansible-collections/community.general/pull/10727).
+- xenserver module utils - remove redundant constructs from argument specs (https://github.com/ansible-collections/community.general/pull/10769).
+- xenserver_facts - minor refactor to simplify string formatting (https://github.com/ansible-collections/community.general/pull/10727).
+- zfs_facts - minor refactor to simplify string formatting (https://github.com/ansible-collections/community.general/pull/10727).
+- zypper - support the ``--gpg-auto-import-keys`` option in zypper (https://github.com/ansible-collections/community.general/issues/10660, https://github.com/ansible-collections/community.general/pull/10661).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- `mysql_query` - add new `session_vars` argument, similar to ansible-collections/community.mysql#489.
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vcenter_license - Add support for VCF license keys. (https://github.com/ansible-collections/community.vmware/pull/2451)
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- repo role - Added proxy support when downloading RedHat GPG key.
+- repo role - Added support for `zabbix_repo_deb_schema`
+- repo role - defaulting `zabbix_repo_apt_priority` to 1001
+- repo role - defaulting `zabbix_repo_version` to 7.4
+- repo role - defaulting `zabbix_repo_yum_gpgcheck` to 1
+- roles/agent, check to see if zabbix_agent_version_long is already supplied
+- roles/agent, swap uri with win_uri
+- server role - fixing zabbix_repo_package to repo role
+- zabbix_agent - Removed zabbix_win_install_dir variable and replaced with zabbix_agent_win_install_dir
+- zabbix_agent - Removed zabbix_win_install_dir_conf variable and replaced with zabbix_agent_win_install_dir_conf
+- zabbix_maintenance - Added support for multiple outage periods within a single event
+- zabbix_maintenance - Added support for recuring maintenance windows
+- zabbix_script - Added support for type 'url'
+- zabbix_script - Added support for user input.
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add building Podman from source
+- Add podman image scp option
+- Add unittests for podman_image
+- Improve docs and guides
+- Rewrite podman_image and add tests
+- Update docs and script
+
+google.cloud
+~~~~~~~~~~~~
+
+- iap - enable use of Identity Aware Proxy ssh connections to compute instances (https://github.com/ansible-collections/google.cloud/pull/709).
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Added a new `"hv_sds_block_capacity_management_settings_facts"` module to retrieve capacity management settings from SDS block cluster.
+- Added a new `"hv_sds_block_drive"` module to turn ON and Off the drive locator LED, remove a drive from SDS block cluster.
+- Added a new `"hv_sds_block_storage_controller"` module to edit storage controller settings on SDS block cluster.
+- Added a new `"hv_sds_block_storage_node_bmc_connection_facts"` module to retrieve BMC connection details from SDS block cluster.
+- Added a new `"hv_sds_block_storage_pool_estimated_capacity_facts"` module to retrieve storage pool estimated capacity from SDS block cluster on AWS.
+- Added a new `"hv_vsp_one_volume"` module to enable creation, modification, and deletion of volumes, as well as attaching and detaching to servers on VSP E series and VSP One B2X storages.
+- Added a new `"hv_vsp_one_volume_facts"` module to retrieve volumes information from servers on VSP E series and VSP One B2X storages.
+- Added support for SDS block cluster on Microsoft Azure.
+- Added support to "Edit storage pool settings" to hv_sds_block_storage_pool module.
+- Added support to "Edit the capacity balancing settings" to hv_sds_block_cluster module.
+- Added support with new parameters "start_ldev", "end_ldev", "external_parity_groups" to hv_resource_group module.
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_connect - Allow asynchronous FC-based replication
+- purefa_default_protection - Added Fusion support.
+- purefa_info - Added new subsets ``workloads`` and ``presets``
+- purefa_info - Converted to use REST 2
+- purefa_network - Converted to REST v2
+- purefa_ntp - Added Fusion support.
+- purefa_pod - Added support for SafeMode protection group configuration
+- purefa_syslog - Added Fusion support.
+- purefa_user - All AD users to have SSH keys and/or API tokens assigned, even if they have never accessed the FlashArray before. AD users must have ``ad_user`` set as ``true``.
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_ad - Revert removal of ``service`` parameter (breaking change). Added more logic to use of ``service`` parameter and recommend use of ``service_principals`` with service incorporated.
+- purefb_ad - ``service`` parameter removed to comply with underlying API structure. ``service`` should be included in the ``service_principals`` strings as shown in the documentation.
+- purefb_saml - Added ``entity_id`` parameter
+- purefb_snap - Add support to delete/eradicate remote snapshots, including the latest replica
+- purefb_user - All AD users to have SSH keys and/or API tokens assigned, even if they have never accessed the FlashArray before. AD users must have ``ad_user`` set as ``true``.
+
+Deprecated Features
+-------------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- hiera lookup plugin - retrieving data with Hiera has been deprecated a long time ago; because of that this plugin will be removed from community.general 13.0.0. If you disagree with this deprecation, please create an issue in the community.general repository (https://github.com/ansible-collections/community.general/issues/4462, https://github.com/ansible-collections/community.general/pull/10779).
+- oci_utils module utils - utils is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
+- oci_vcn - module is deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
+- oracle* doc fragments - fragments are deprecated and will be removed in community.general 13.0.0 (https://github.com/ansible-collections/community.general/issues/10318, https://github.com/ansible-collections/community.general/pull/10652).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- zabbix_maintenance module - Depreicated `minutes` argument for `time_periods`
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_volume_tags - Deprecated due to removal of REST 1.x support. Will be removed in Collection 2.0.0
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- The ``ansible_failed_task`` variable is now correctly exposed in a rescue section, even when a failing handler is triggered by the ``flush_handlers`` task in the corresponding ``block`` (https://github.com/ansible/ansible/issues/85682)
+- ``ternary`` filter - evaluate values lazily (https://github.com/ansible/ansible/issues/85743)
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- cisco.meraki.devices_appliance_uplinks_settings - fix idempotency error.
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- kdeconfig - ``kwriteconfig`` executable could not be discovered automatically on systems with only ``kwriteconfig6`` installed. ``kwriteconfig6`` can now be discovered by Ansible (https://github.com/ansible-collections/community.general/issues/10746, https://github.com/ansible-collections/community.general/pull/10751).
+- monit - fix crash caused by an unknown status value returned from the monit service (https://github.com/ansible-collections/community.general/issues/10742, https://github.com/ansible-collections/community.general/pull/10743).
+- pacemaker - use regex for matching ``maintenance-mode`` output to determine cluster maintenance status (https://github.com/ansible-collections/community.general/issues/10426, https://github.com/ansible-collections/community.general/pull/10707).
+- selective callback plugin - specify ``ansible_loop_var`` instead of the explicit value ``item`` when printing task result (https://github.com/ansible-collections/community.general/pull/10752).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- Proxy Role - Fixed a deprication error with `ProxyConfigFrequency`
+- web role - Fixed a value test in nginx_vhost.conf
+- zabbix_agent - Fix all variables related to windows installation paths
+- zabbix_agent role - Fix windows paths to download and install zabbix agent msi
+- zabbix_agent role - fixes too many requests to check latest zabbix release
+- zabbix_maintenance - Fixed a bug that caused start time to update across multiple runs
+- zabbix_template - Removed need for PY2
+- zabbix_template_info - Removed need for PY2
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Fix podman logout for newer Podman
+- Fix podman_image correct delimiter logic for version@digest tags
+- Remove quiet mode from pulling image
+
+google.cloud
+~~~~~~~~~~~~
+
+- gcp_compute_instance - add suppport for attaching disks to compute instances (https://github.com/ansible-collections/google.cloud/pull/711).
+- gcp_secret_manager - use service_account_contents instead of service_account_info (https://github.com/ansible-collections/google.cloud/pull/703).
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_connect - Ensured that encrypted connections use encrypted connection keys
+- purefa_eradication - Fixed idempotency issue
+- purefa_eula - Fix AttributeError when first sogning EULA
+- purefa_network - Resolve typo that causes network updates to not apply correctly
+- purefa_pg - Changing target for PG no longer requires a ``FixedReference``
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_ad - Fixed issue where updating an AD account required unnecessary parameters.
+- purefb_bucket - Fix versioning control and access rules for public buckets
+- purefb_bucket - Fixed issue where a bucket with no versioning defined was incorrectly created.
+- purefb_bucket - Fixed issue with default retention parameter
+- purefb_bucket_access - Fixed typo in CORS rule definition
+- purefb_certs - Fixed issues with importing external certificates
+- purefb_certs - Updated email regex pattern to fix ``re`` failures
+- purefb_dns - Fixed multiple issues for data DNS configuration
+- purefb_fs - Ensured that NFS rules are emprty if requested filesystem is SMB only
+- purefb_info - Fixed error when ``default`` subset fails if SMD has been disabled on the FLashBlade
+- purefb_policy - Fixed typo when calling object store policy rule deletion
+- purefb_s3user - Fixed typo in imported keys code
+- purefb_subnet - Ensured prefix is required for subnet creation or update
+
+New Plugins
+-----------
+
+Filter
+~~~~~~
+
+- community.general.to_nice_yaml - Convert variable to YAML string.
+- community.general.to_yaml - Convert variable to YAML string.
+
+Inventory
+~~~~~~~~~
+
+- containers.podman.buildah_containers - Inventory plugin that discovers Buildah working containers as hosts
+- containers.podman.podman_containers - Inventory plugin that discovers Podman containers as hosts
+
+New Modules
+-----------
+
+check_point.mgmt
+~~~~~~~~~~~~~~~~
+
+- check_point.mgmt.cp_mgmt_identity_provider - Manages identity-provider objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_identity_provider_facts - Get identity-provider objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_if_map_server - Manages if-map-server objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_if_map_server_facts - Get if-map-server objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_ldap_group - Manages ldap-group objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_ldap_group_facts - Get ldap-group objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_log_exporter - Manages log-exporter objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_log_exporter_facts - Get log-exporter objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_resource_mms - Manages resource-mms objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_resource_mms_facts - Get resource-mms objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_resource_tcp - Manages resource-tcp objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_resource_tcp_facts - Get resource-tcp objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_resource_uri_for_qos - Manages resource-uri-for-qos objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_resource_uri_for_qos_facts - Get resource-uri-for-qos objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_run_app_control_update - Runs Application Control & URL Filtering database update.
+- check_point.mgmt.cp_mgmt_securemote_dns_server - Manages securemote-dns-server objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_securemote_dns_server_facts - Get securemote-dns-server objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_securid_server - Manages securid-server objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_securid_server_facts - Get securid-server objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_set_anti_malware_update_schedule - Set both Anti-Bot and Anti-Virus update schedules.
+- check_point.mgmt.cp_mgmt_set_app_control_update_schedule - Set the Application Control and URL Filtering update schedule.
+- check_point.mgmt.cp_mgmt_show_anti_malware_update_schedule - Retrieve existing Anti-Bot and Anti-Virus update schedules.
+- check_point.mgmt.cp_mgmt_show_app_control_status - Get app-control-status objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_show_app_control_update_schedule - Get app-control-status objects facts on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_syslog_server - Manages syslog-server objects on Checkpoint over Web Services API
+- check_point.mgmt.cp_mgmt_syslog_server_facts - Get syslog-server objects facts on Checkpoint over Web Services API
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- community.general.django_dumpdata - Wrapper for C(django-admin dumpdata).
+- community.general.django_loaddata - Wrapper for C(django-admin loaddata).
+- community.general.pacemaker_stonith - Manage Pacemaker STONITH.
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- containers.podman.podman_system_connection - Manage Podman system connections
+- containers.podman.podman_system_connection_info - Get info about Podman system connections
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sds Block
+^^^^^^^^^
+
+- hitachivantara.vspone_block.hv_sds_block_capacity_management_settings_facts - Get capacity management settings from storage system.
+- hitachivantara.vspone_block.hv_sds_block_drive - Manages drive on Hitachi SDS Block storage systems.
+- hitachivantara.vspone_block.hv_sds_block_storage_controller - Edits the settings for the storage controller on Hitachi SDS Block storage systems.
+- hitachivantara.vspone_block.hv_sds_block_storage_node_bmc_connection_facts - Get storage node BMC access settings from storage system.
+- hitachivantara.vspone_block.hv_sds_block_storage_pool_estimated_capacity_facts - Obtains the preliminary calculation results of the storage pool logical capacity (unit TiB).
+
+Vsp
+^^^
+
+- hitachivantara.vspone_block.hv_vsp_one_volume - Manages volumes on Hitachi VSP One storage systems.
+- hitachivantara.vspone_block.hv_vsp_one_volume_facts - Retrieves facts about Hitachi VSP One storage system volumes.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.1.1)
+- ansible.netcommon (still version 8.1.0)
+- ansible.posix (still version 2.1.0)
+- ansible.utils (still version 6.0.0)
+- ansible.windows (still version 3.2.0)
+- arista.eos (still version 12.0.0)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.8.0)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.12.0)
+- cisco.dnac (still version 6.39.0)
+- cisco.ios (still version 11.0.0)
+- cisco.iosxr (still version 12.0.0)
+- cisco.mso (still version 2.11.0)
+- cisco.nxos (still version 11.0.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.2)
+- community.aws (still version 10.0.0)
+- community.ciscosmb (still version 1.0.11)
+- community.crypto (still version 3.0.3)
+- community.digitalocean (still version 1.27.0)
+- community.docker (still version 4.7.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.0.0)
+- community.hrobot (still version 2.5.0)
+- community.library_inventory_filtering_v1 (still version 1.1.1)
+- community.libvirt (still version 2.0.0)
+- community.mongodb (still version 1.7.10)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.1.0)
+- community.proxmox (still version 1.3.0)
+- community.proxysql (still version 1.6.0)
+- community.rabbitmq (still version 1.6.0)
+- community.routeros (still version 3.10.0)
+- community.sap_libs (still version 1.4.2)
+- community.sops (still version 2.2.2)
+- community.windows (still version 3.0.1)
+- cyberark.conjur (still version 1.3.7)
+- cyberark.pas (still version 1.0.35)
+- dellemc.enterprise_sonic (still version 3.0.0)
+- dellemc.openmanage (still version 9.12.3)
+- dellemc.powerflex (still version 2.6.1)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.38.0)
+- fortinet.fortimanager (still version 2.10.0)
+- fortinet.fortios (still version 2.4.0)
+- grafana.grafana (still version 6.0.3)
+- hetzner.hcloud (still version 5.2.0)
+- ibm.qradar (still version 4.0.0)
+- ibm.storage_virtualize (still version 2.7.4)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.6.3)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 11.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.1.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.7.0)
+- microsoft.ad (still version 1.9.2)
+- microsoft.iis (still version 1.0.3)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.1.0)
+- netapp.storagegrid (still version 21.15.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.1)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.4.0)
+- theforeman.foreman (still version 5.5.0)
+- vmware.vmware (still version 2.3.0)
+- vmware.vmware_rest (still version 4.9.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v12.0.0
 =======
 
