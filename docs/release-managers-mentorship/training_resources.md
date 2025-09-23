@@ -16,7 +16,7 @@ Here are two talks and blogpost can be helpful
 
 - [Building Ansible with Ansible](https://www.youtube.com/watch?v=5_QEhQRfKRo)
 - [Using Trusted Publishing to Ansible release](https://www.youtube.com/watch?v=V9xNuq3B69A)
-- [Collections signal major shift in Ansible ecosystem](https://www.youtube.com/watch?v=V9xNuq3B69A)
+- [Collections signal major shift in Ansible ecosystem](https://www.jeffgeerling.com/blog/2020/collections-signal-major-shift-ansible-ecosystem)
 
 ### Community Execution Environment Release
 
