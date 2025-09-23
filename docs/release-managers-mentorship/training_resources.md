@@ -39,3 +39,7 @@ Go through following Documents/Links:
 - Join Matrix: #community:ansible.com
 - Join Matrix: #release-management:ansible.com
 - Join Ansible Forum
+
+## Slides of the introductory call
+
+[Slides to Ansible Release Management, 2025](https://github.com/ansible-community/presentations/blob/main/release_management_mentorship/ansible_release_management_mentorship_program_2025.pdf)
