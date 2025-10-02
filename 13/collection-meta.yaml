@@ -200,6 +200,8 @@ collections:
       - rsahuHitachi
       - tcng28
     repository: https://github.com/hitachi-vantara/vspone-block-ansible
+  hitachivantara.vspone_object:
+    repository: https://github.com/hitachi-vantara/vspone-object-ansible
   ibm.storage_virtualize:
     maintainers:
       - sumitguptaibm
