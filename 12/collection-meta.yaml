@@ -213,6 +213,9 @@ collections:
     repository: https://github.com/hitachi-vantara/vspone-block-ansible
   hitachivantara.vspone_object:
     repository: https://github.com/hitachi-vantara/vspone-object-ansible
+    maintainers:
+      - nagbattula09
+      - huiwang100
   ibm.qradar:
     repository: https://github.com/ansible-collections/ibm.qradar
     removal:
