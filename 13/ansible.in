@@ -57,6 +57,7 @@ google.cloud
 grafana.grafana
 hetzner.hcloud
 hitachivantara.vspone_block
+hitachivantara.vspone_object
 ibm.storage_virtualize
 ieisystem.inmanage
 infinidat.infinibox

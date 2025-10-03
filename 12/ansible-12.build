@@ -60,6 +60,7 @@ google.cloud: >=1.6.0,<2.0.0
 grafana.grafana: >=6.0.0,<7.0.0
 hetzner.hcloud: >=5.1.0,<6.0.0
 hitachivantara.vspone_block: >=4.0.0,<5.0.0
+hitachivantara.vspone_object: >=1.0.0,<2.0.0
 ibm.qradar: >=4.0.0,<5.0.0
 ibm.storage_virtualize: >=2.7.0,<3.0.0
 ieisystem.inmanage: >=3.0.0,<4.0.0
