@@ -7,6 +7,460 @@ This changelog describes changes since Ansible 12.0.0.
 .. contents::
   :depth: 2
 
+v13.0.0a3
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-10-15
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 13.0.0a3 contains ansible-core version 2.20.0rc1.
+This is a newer version than version 2.20.0b2 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Collection                  | Ansible 13.0.0a2 | Ansible 13.0.0a3 | Notes                                                                                                                                                                                                           |
++=============================+==================+==================+=================================================================================================================================================================================================================+
+| cisco.ios                   | 11.1.0           | 11.1.1           |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot            | 2.5.2            | 2.6.1            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.proxysql          | 1.6.0            | 1.7.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.conjur             | 1.3.7            | 1.3.8            | You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`__. |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.enterprise_sonic    | 3.0.0            | 3.2.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| grafana.grafana             | 6.0.4            | 6.0.5            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| hitachivantara.vspone_block | 4.2.2            | 4.3.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ibm.storage_virtualize      | 3.0.0            | 3.1.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| kubernetes.core             | 6.1.0            | 6.2.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade      | 1.21.2           | 1.22.0           |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman          | 5.6.0            | 5.7.0            |                                                                                                                                                                                                                 |
++-----------------------------+------------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Fallback to empty dict in case grafana_ini is undefined by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/403
+- Fix Mimir config file validation task by @Windos in https://github.com/grafana/grafana-ansible-collection/pull/428
+- Fixes issue by @digiserg in https://github.com/grafana/grafana-ansible-collection/pull/421
+- Import custom dashboards only when directory exists by @mahendrapaipuri in https://github.com/grafana/grafana-ansible-collection/pull/430
+- Updated YUM repo urls from `packages.grafana.com` to `rpm.grafana.com` by @DejfCold in https://github.com/grafana/grafana-ansible-collection/pull/414
+- Use credentials from grafana_ini when importing dashboards by @root-expert in https://github.com/grafana/grafana-ansible-collection/pull/402
+- do not skip scrape latest github version even in check_mode by @cmehat in https://github.com/grafana/grafana-ansible-collection/pull/408
+- fix datasource documentation by @jeremad in https://github.com/grafana/grafana-ansible-collection/pull/437
+- fix mimir_download_url_deb & mimir_download_url_rpm by @germebl in https://github.com/grafana/grafana-ansible-collection/pull/400
+- update catalog info by @Duologic in https://github.com/grafana/grafana-ansible-collection/pull/434
+- use deb822 for newer debian versions by @Lukas-Heindl in https://github.com/grafana/grafana-ansible-collection/pull/440
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Default to Python 3.14 in the ``base`` and ``default`` test containers.
+- ansible-test - Filter out pylint messages for invalid filenames and display a notice when doing so.
+- ansible-test - Update astroid imports in custom pylint checkers.
+- ansible-test - Update pinned ``pip`` version to 25.2.
+- ansible-test - Update pinned sanity test requirements, including upgrading to pylint 4.0.0.
+
+community.proxysql
+~~~~~~~~~~~~~~~~~~
+
+- proxysql_mysql_users - Creating users with the ``caching_sha2_password`` plugin (https://github.com/ansible-collections/community.proxysql/pull/173).
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- bgp_af - Add support for 'dup-addr-detection' commands (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/452).
+- sonic_aaa - Add MFA support for AAA module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/532).
+- sonic_bgp - Add support for graceful restart attributes (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/538).
+- sonic_bgp - Added Ansible support for the bandwidth option (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/557).
+- sonic_bgp_neighbors - Add support for discard-extra option for BGP peer-group maximum-prefix(https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/545).
+- sonic_bgp_neighbors - Added Ansible support for the extended_link_bandwidth option (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/557).
+- sonic_bgp_neighbors - Remove mutual exclusion for peer_group allowas_in options (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/586).
+- sonic_bgp_neighbors_af - Add support for discard-extra option for BGP neighbor maximum-prefix(https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/545).
+- sonic_bgp_neighbors_af - Remove mutual exclusion for neighbor allowas_in options (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/586).
+- sonic_copp - Add 'copp_traps' to CoPP module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/461).
+- sonic_interfaces - Add support for configuring speed and advertised speed for 800 GB interfaces (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/590).
+- sonic_interfaces - Add support for speed 200GB (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/534).
+- sonic_interfaces - Enhancing port-group and interface speed error handling (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/487).
+- sonic_l3_interfaces - Add support for ipv6 'anycast_addresses' option (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/491).
+- sonic_l3_interfaces - Added support for Proxy-ARP/ND-Proxy feature (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/576).
+- sonic_lag_interfaces - Add support for 'fallback', 'fast_rate', 'graceful_shutdown', 'lacp_individual', 'min_links' and 'system_mac' options (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/475).
+- sonic_lldp_interfaces - Add playbook check and diff modes support for lldp_interfaces module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/524).
+- sonic_lldp_interfaces - Add support for LLDP TLVs i.e., 'port_vlan_id', 'vlan_name', 'link_aggregation', 'max_frame_size', and 'vlan_name_tlv' attributes (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/406).
+- sonic_lldp_interfaces - Add support for network policy configuration (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/582).
+- sonic_logging - Add support for 'security_profile' option (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/555).
+- sonic_logging - Adding the ability to delete a specific attribute of a logging server into the logging module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/486).
+- sonic_mclag - Added Ansible support for the yang leafs added as part of the  MCLAG Split Brain Detection and Recovery feature (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/496).
+- sonic_port_breakout - Add support for modes 1x800G, 2x400G, 4x200G, and 8x100G (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/585).
+- sonic_port_group - Add support for speed 200GB (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/534).
+- sonic_qos_interfaces - Add 'cable_length' attribute (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/468).
+- sonic_route_maps - Add support for set ARS object (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/581).
+- sonic_route_maps - Added Ansible support for bandwidth feature and suboptions bandwidth_value and transitive_value (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/557).
+- sonic_sflow - Add max header size support in sonic_sflow module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/419).
+- sonic_system - Add concurrent session limit support for sonic_system module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/505).
+- sonic_system - Add password complexity support for sonic_system module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/519).
+- sonic_system - Add support for Tx/Rx clock frequency adjustment (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/562).
+- sonic_system - Add switching-mode functionality to the sonic_system module (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/504).
+- sonic_users - Add support for user ssh key configuration (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/512).
+- sonic_vlans - Add support for autostate attribute configuration on a VLAN (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/533).
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Added a new "hv_sds_block_compute_port" module to change the settings and protocol of the compute port on Hitachi SDS Block storage systems.
+- Added a new "hv_sds_block_remote_iscsi_port" module to register a remote iSCSI port and delete information about registered remote iSCSI ports on Hitachi SDS Block storage systems.
+- Added a new "hv_sds_block_remote_iscsi_port_facts" module to retrieve remote iSCSI ports from Hitachi SDS Block storage systems.
+- Added a new "hv_sds_block_software_update_file_facts" module to retrieve information of the update file of the storage software which performed transfer (upload) in the Hitachi SDS Block storage systems.
+- Added a new "hv_sds_block_storage_node_bmc_connection" module allows to update the BMC connection settings of Hitachi SDS Block storage systems.
+- Added a new "hv_sds_block_storage_software_update" module allows software update and downgrade on Hitachi SDS Block storage systems.
+- Added a new "hv_vsp_one_port" module to retrieve volume's information from servers on VSP E series and VSP One B2X storages.
+- Added a new "hv_vsp_one_port_facts" module to retrieve port information from VSP E series and VSP One B2X storages.
+- Added a new "hv_vsp_one_server" module enables register, modification, and deletion of servers, as well as various server operations on VSP E series and VSP One B2X storages.
+- Added a new "hv_vsp_one_server_facts" module to retrieve information about servers from servers on VSP E series and VSP One B2X storages.
+- Added a new "hv_vsp_one_server_hba_facts" module to retrieve HBA (Host Bus Adapter) information about servers from servers on VSP E series and VSP One B2X storages.
+- Added support for latest software version 1.18.1 for SDS block on AWS, GCP and Bare metal.
+- Added support for listing storage node primary role status in the output to hv_sds_block_storage_node_facts module.
+- Added support to "Add storage node to the SDS cluster on AWS cloud" to hv_sds_block_cluster module.
+- Added support to "Allow CHAP users to access the compute port" to hv_sds_block_compute_port_authentication module
+- Added support to "Attach multiple volumes to multiple servers in one operation" to hv_vsp_one_volume module.
+- Added support to "Cancel compute port access permission for CHAP users" to hv_sds_block_compute_port_authentication module
+- Added support to "Get Drive by ID" to hv_sds_block_drives_facts module
+- Added support to "Get Protection Domain Information by ID" to hv_sds_block_protection_domain_facts module
+- Added support to "Stop removing storage nodes" to hv_sds_block_cluster module.
+- Added support to take ldev input in HEX value in all hitachivantara.vspone_block.vsp modules.
+- Updated input parameter name from "saving_setting" to "capacity_saving" in hv_vsp_one_volume module.
+
+ibm.storage_virtualize
+~~~~~~~~~~~~~~~~~~~~~~
+
+- ibm_svc_manage_ip - Changes for updating VLAN, gateway and IP address
+- ibm_svc_utils - Improved error message for unreachable systems
+
+kubernetes.core
+~~~~~~~~~~~~~~~
+
+- Add support of skip-schema-validation in ``helm`` module (https://github.com/ansible-collections/kubernetes.core/pull/995)
+- kustomize - Add support of local environ (https://github.com/ansible-collections/kubernetes.core/pull/786).
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- module_utils/purefb - Remove `get_blade()` function as not required for REST v2
+- purefb_admin - Remove references to unsupported API versions
+- purefb_alert - Add new ``state`` of ``test`` to check alert manager configuration
+- purefb_alert - Upgraded to REST v2
+- purefb_banner - Upgraded to REST v2
+- purefb_bladename - Upgraded to REST v2
+- purefb_bucket - Added Fusion support
+- purefb_bucket - Updated to REST v2
+- purefb_bucket_access - Fusion support added
+- purefb_bucket_replica - Add Fusion support
+- purefb_bucket_replica - Upgraded to REST v2
+- purefb_certgrp - Upgraded to REST v2
+- purefb_connect - Added Fusion support
+- purefb_connect - Remove references to unsupported API versions
+- purefb_connect - Upgraded to REST v2
+- purefb_ds - Added new state of ``test`` to enable directory services to run diagnostics test
+- purefb_ds - Updated to REST v2
+- purefb_dsrole - Upgraded to REST v2
+- purefb_eula - Converted to REST v2
+- purefb_fs - Added support for Fusion
+- purefb_fs - Upgraded to use REST 2
+- purefb_fs_replica - Upgraded to REST v2
+- purefb_groupquota - Fusion support added
+- purefb_groupquota - Upgraded to REST v2
+- purefb_info - Upgraded to REST v2
+- purefb_inventory - Upgraded to REST v2
+- purefb_lifecycle - Fusion support added
+- purefb_lifecycle - Upgraded to REST v2
+- purefb_network - Upgraded to REST v2
+- purefb_ntp - Upgraded to REST v2
+- purefb_phonehome - Add new ``state`` of ``test`` to check phonehome configuration
+- purefb_phonehome - Upgrwded to REST v2
+- purefb_pingtrace - Ehanced JSON response for ping
+- purefb_policy - Add Fusion support
+- purefb_policy - Remove references to unsupported API versions
+- purefb_policy - Upgraded to REST v2
+- purefb_ra - Add new ``state`` of ``test`` to check remote support configuration
+- purefb_remote_cred - Fusion support added
+- purefb_remote_cred - Upgraded to REST v2
+- purefb_s3acc - Fusion support added
+- purefb_s3acc - Remove references to unsupported API versions
+- purefb_s3user - Fusion support added
+- purefb_snamp_agent - Upgraded to REST v2
+- purefb_snap - Fusion support added
+- purefb_snap - Upgraded to REST v2
+- purefb_snmp_mgr - Add new ``state`` of ``test`` to check SNMP manager configuration
+- purefb_snmp_mgr - Upgraded to REST v2
+- purefb_subnet - Upgraded to REST v2
+- purefb_syslog - Converted to REST v2
+- purefb_target - Upgraded to REST v2
+- purefb_userpolicy - Fusion support added
+- purefb_userquota - Added Fusion support
+- purefb_userquota - Upgraded to REST v2
+- purefb_virtualhost - Fusion support added
+
+Deprecated Features
+-------------------
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- storagebox\* modules - membership in the ``community.hrobot.robot`` action group (module defaults group) is deprecated; the modules will be removed from the group in community.hrobot 3.0.0. Use ``community.hrobot.api`` instead (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox\* modules - the ``hetzner_token`` option for these modules will be required from community.hrobot 3.0.0 on (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox\* modules - the ``hetzner_user`` and ``hetzner_pass`` options for these modules are deprecated; support will be removed in community.hrobot 3.0.0. Use ``hetzner_token`` instead (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox_info - the ``storageboxes[].login``, ``storageboxes[].disk_quota``, ``storageboxes[].disk_usage``, ``storageboxes[].disk_usage_data``, ``storageboxes[].disk_usage_snapshot``, ``storageboxes[].webdav``, ``storageboxes[].samba``, ``storageboxes[].ssh``, ``storageboxes[].external_reachability``, and ``storageboxes[].zfs`` return values are deprecated and will be removed from community.routeros. Check out the documentation to find out their new names according to the new API (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox_snapshot_info - the ``snapshots[].timestamp``, ``snapshots[].size``, ``snapshots[].filesystem_size``, ``snapshots[].automatic``, and ``snapshots[].comment`` return values are deprecated and will be removed from community.routeros. Check out the documentation to find out their new names according to the new API (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox_snapshot_plan - the ``plans[].month`` return value is deprecated, since it only returns ``null`` with the new API and cannot be set to any other value (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox_snapshot_plan_info - the ``plans[].month`` return value is deprecated, since it only returns ``null`` with the new API and cannot be set to any other value (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox_subaccount - the ``subaccount.homedirectory``, ``subaccount.samba``, ``subaccount.ssh``, ``subaccount.external_reachability``, ``subaccount.webdav``, ``subaccount.readonly``, ``subaccount.createtime``, and ``subaccount.comment`` return values are deprecated and will be removed from community.routeros. Check out the documentation to find out their new names according to the new API (https://github.com/ansible-collections/community.hrobot/pull/178).
+- storagebox_subaccount_info - the ``subaccounts[].accountid``, ``subaccounts[].homedirectory``, ``subaccounts[].samba``, ``subaccounts[].ssh``, ``subaccounts[].external_reachability``, ``subaccounts[].webdav``, ``subaccounts[].readonly``, ``subaccounts[].createtime``, and ``subaccounts[].comment`` return values are deprecated and will be removed from community.routeros. Check out the documentation to find out their new names according to the new API (https://github.com/ansible-collections/community.hrobot/pull/178).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- SIGINT/SIGTERM Handling - Make SIGINT/SIGTERM handling more robust by splitting concerns between forks and the parent.
+
+cisco.ios
+~~~~~~~~~
+
+- cisco.ios.ios_bgp_address_family - Encrypted strings as password are not evaluated rather treated as string forcefully.
+- cisco.ios.ios_hsrp_interfaces - Fixed default values for version and priority.
+- cisco.ios.ios_hsrp_interfaces - Fixed overridden state to be idempotent with ipv6 configuration.
+- cisco.ios.ios_hsrp_interfaces - Fixed parsers to group HSRP configuration and optimize parsing time.
+- cisco.ios.ios_hsrp_interfaces - Fixed removal of HSRP configuration when state is deleted, replaced, overridden.
+- cisco.ios.ios_hsrp_interfaces - Fixed rendered output for standby redirect advertisement authentication key-chain.
+- cisco.ios.ios_hsrp_interfaces - Fixed rendered output for standby redirect advertisement authentication key-string with encryption.
+- cisco.ios.ios_hsrp_interfaces - Fixed rendered output for standby redirect advertisement authentication.
+- cisco.ios.ios_hsrp_interfaces - Handle operation of list attributes like ipv6, ip, track.
+- cisco.ios.ios_l2_interfaces - Add private-vlan support to switchport.
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- Avoid using ``ansible.module_utils.six`` in more places to avoid deprecation warnings with ansible-core 2.20 (https://github.com/ansible-collections/community.hrobot/pull/179).
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- sonic-vlan-mapping - Avoid sending a deletion REST API containing a comma-separated list of vlan IDs (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/563).
+- sonic_aaa - Update AAA module to account for SONiC code changes (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/495).
+- sonic_bgp - Remove CLI regression test cases for BGP (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/566).
+- sonic_bgp_nbr - Fix 'auth_pwd' diff calculation bug (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/583).
+- sonic_evpn_esi_multihome - Fix EVPN ESI multihome delete all bug (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/578).
+- sonic_interfaces - Fix port-group interface error handling for speed configuration (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/575).
+- sonic_l2_interfaces - Fix VLAN deletion bug (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/526).
+- sonic_l3_interfaces - Fix check mode behavior for ipv4 primary address (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/491).
+- sonic_lag_interfaces - Fix 'mode' value not retrieved in facts (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/475).
+- sonic_logging - Addressing bug found in https://github.com/ansible-collections/dellemc.enterprise_sonic/issues/508 where a traceback is thrown if the "severity" value is not specified in the incoming playbook or if the incoming playbook specifies a 'severity' value of None. (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/537).
+- sonic_mclag - Fix domain ID creation bug (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/591).
+- sonic_mirroring - Fix mirroring regression test failures (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/577).
+- sonic_ospf_area - Fix OSPF area bug (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/541).
+- sonic_qos_buffer - Modify buffer profile handling to match new CVL requirements (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/543).
+- sonic_stp - Add handling for removal of empty data structures for merge state (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/511).
+- sonic_stp - Fix STP check mode bug (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/518).
+- sonic_stp - Update request method to use post for enabled_protocol (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/587).
+- sonic_tacacs_server - Add sleep to allow TACACS server config updates to apply to SONiC PAM modules (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/509).
+- sonic_vrfs - Fix VRFs bug for overridden state (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/569).
+- sonic_vxlans - Fix evpn_nvo request bug (https://github.com/ansible-collections/dellemc.enterprise_sonic/pull/589).
+
+ibm.storage_virtualize
+~~~~~~~~~~~~~~~~~~~~~~
+
+- ibm_svc_manage_ip - Fixed issues with IP address probe
+- ibm_svc_manage_volume - Fixed data-type conversion issue for grainsize
+- ibm_svc_start_stop_flashcopy - Fixed flashcopy start issues when mapping belonged to flashcopy consistency group
+
+kubernetes.core
+~~~~~~~~~~~~~~~
+
+- Remove ``ansible.module_utils.six`` imports to avoid warnings (https://github.com/ansible-collections/kubernetes.core/pull/998).
+- Update the `k8s_cp` module to also work for init containers (https://github.com/ansible-collections/kubernetes.core/pull/971).
+
+New Modules
+-----------
+
+community.proxysql
+~~~~~~~~~~~~~~~~~~
+
+- community.proxysql.proxysql_mysql_hostgroup_attributes - Manages hostgroup attributes using the ProxySQL admin interface
+
+dellemc.enterprise_sonic
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- dellemc.enterprise_sonic.sonic_ars - Manage adaptive routing and switching (ARS) configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_br_l2pt - Manage L2PT configurations on SONiC.
+- dellemc.enterprise_sonic.sonic_dcbx - Manage DCBx configurations on SONiC.
+- dellemc.enterprise_sonic.sonic_drop_counter - Manage drop counter configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_ecmp_load_share - IP ECMP load share mode configuration handling for SONiC.
+- dellemc.enterprise_sonic.sonic_evpn_esi_multihome - Manage EVPN ESI multihoming configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_fbs_classifiers - Manage flow based services (FBS) classifiers configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_fbs_groups - Manage flow based services (FBS) groups configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_fbs_policies - Manage flow based services (FBS) policies configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_ip_neighbor_interfaces - Manage interface-specific IP neighbor configurations on SONiC.
+- dellemc.enterprise_sonic.sonic_ipv6_router_advertisement - Manage interface-specific IPv6 Router Advertisement configurations on SONiC.
+- dellemc.enterprise_sonic.sonic_lst - Manage link state tracking (LST) configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_mirroring - Manage port mirroring configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_network_policy - Manage network policy configuration on SONiC.
+- dellemc.enterprise_sonic.sonic_ospfv3 - Configure global OSPFv3 protocol settings on SONiC.
+- dellemc.enterprise_sonic.sonic_ospfv3_area - Configure OSPFv3 area settings on SONiC.
+- dellemc.enterprise_sonic.sonic_ospfv3_interfaces - Configure OSPFv3 interface mode protocol settings on SONiC.
+- dellemc.enterprise_sonic.sonic_pms - Configure interface mode port security settings on SONiC.
+- dellemc.enterprise_sonic.sonic_ptp_default_ds - Manage global PTP configurations on SONiC.
+- dellemc.enterprise_sonic.sonic_ptp_port_ds - Manage port specific PTP configurations on SONiC.
+- dellemc.enterprise_sonic.sonic_ssh_server - Manage SSH server configurations on SONiC.
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sds Block
+^^^^^^^^^
+
+- hitachivantara.vspone_block.hv_sds_block_compute_port - Manages compute port on Hitachi SDS Block storage systems.
+- hitachivantara.vspone_block.hv_sds_block_software_update_file_facts - Get the information of the update file of the storage software which performed transfer (upload) in the storage cluster.
+- hitachivantara.vspone_block.hv_sds_block_storage_node_bmc_connection - Manages BMC connection settings for a storage node on Hitachi SDS Block storage systems.
+- hitachivantara.vspone_block.hv_sds_block_storage_software_update - Manages software update and downgrade on Hitachi SDS Block storage systems.
+
+Vsp
+^^^
+
+- hitachivantara.vspone_block.hv_vsp_one_port - Manages port configuration on Hitachi VSP One storage systems.
+- hitachivantara.vspone_block.hv_vsp_one_port_facts - Retrieves port information from Hitachi VSP One storage systems.
+- hitachivantara.vspone_block.hv_vsp_one_server - Manages servers on Hitachi VSP One storage systems.
+- hitachivantara.vspone_block.hv_vsp_one_server_facts - Retrieves server information from Hitachi VSP One storage systems.
+- hitachivantara.vspone_block.hv_vsp_one_server_hba_facts - Retrieves server HBA information from Hitachi VSP One storage systems.
+
+ibm.storage_virtualize
+~~~~~~~~~~~~~~~~~~~~~~
+
+- ibm.storage_virtualize.ibm_sv_manage_system_certificate - Manages system certificates and truststore for replication, high availability and FlashSystem grid on IBM Storage Virtualize family systems
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purestorage.flashblade.purefb_kmip - Manage FlashBlade KMIP server objects
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- theforeman.foreman.content_view_history_info - Fetch history of a Content View
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.1.2)
+- ansible.netcommon (still version 8.1.0)
+- ansible.posix (still version 2.1.0)
+- ansible.utils (still version 6.0.0)
+- ansible.windows (still version 3.2.0)
+- arista.eos (still version 12.0.0)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.9.0)
+- check_point.mgmt (still version 6.5.0)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.12.0)
+- cisco.dnac (still version 6.40.0)
+- cisco.intersight (still version 2.6.0)
+- cisco.iosxr (still version 12.0.0)
+- cisco.meraki (still version 2.21.8)
+- cisco.mso (still version 2.11.0)
+- cisco.nxos (still version 11.0.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.2)
+- community.aws (still version 10.0.0)
+- community.ciscosmb (still version 1.0.11)
+- community.crypto (still version 3.0.4)
+- community.digitalocean (still version 1.27.0)
+- community.dns (still version 3.3.4)
+- community.docker (still version 4.8.1)
+- community.general (still version 11.4.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.0.0)
+- community.library_inventory_filtering_v1 (still version 1.1.4)
+- community.libvirt (still version 2.0.0)
+- community.mongodb (still version 1.7.10)
+- community.mysql (still version 4.0.0)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.1.0)
+- community.proxmox (still version 1.3.0)
+- community.rabbitmq (still version 1.6.0)
+- community.routeros (still version 3.12.1)
+- community.sap_libs (still version 1.5.0)
+- community.sops (still version 2.2.4)
+- community.vmware (still version 6.0.0)
+- community.windows (still version 3.0.1)
+- community.zabbix (still version 4.1.1)
+- containers.podman (still version 1.18.0)
+- cyberark.pas (still version 1.0.35)
+- dellemc.openmanage (still version 10.0.1)
+- dellemc.powerflex (still version 3.0.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.39.0)
+- fortinet.fortimanager (still version 2.11.0)
+- fortinet.fortios (still version 2.4.1)
+- google.cloud (still version 1.9.0)
+- hetzner.hcloud (still version 5.4.0)
+- hitachivantara.vspone_object (still version 1.0.0)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.6.3)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 11.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.7.0)
+- microsoft.ad (still version 1.9.2)
+- microsoft.iis (still version 1.0.3)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.1.0)
+- netapp.storagegrid (still version 21.15.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.1)
+- purestorage.flasharray (still version 1.39.0)
+- ravendb.ravendb (still version 1.0.3)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.4.0)
+- vmware.vmware (still version 2.4.0)
+- vmware.vmware_rest (still version 4.9.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v13.0.0a2
 =========
 
@@ -650,11 +1104,12 @@ Ansible-core
 - ansible-test - Replace FreeBSD 14.2 with 14.3.
 - ansible-test - Replace RHEL 9.5 with 9.6.
 - ansible-test - Update Ubuntu containers.
+- ansible-test - Update base/default containers to include Python 3.14.0.
 - ansible-test - Update pinned sanity test requirements.
 - ansible-test - Update test containers.
 - ansible-test - Upgrade Alpine 3.21 to 3.22.
 - ansible-test - Upgrade Fedora 41 to Fedora 42.
-- ansible-test - Upgrade to ``coverage`` version 7.10.6 for Python 3.9 and later.
+- ansible-test - Upgrade to ``coverage`` version 7.10.7 for Python 3.9 and later.
 - ansible-test - Use OS packages to satisfy controller requirements on FreeBSD 13.5 during managed instance bootstrapping.
 - apt_repository - use correct debug method to print debug message.
 - blockinfile - add new module option ``encoding`` to support files in encodings other than UTF-8 (https://github.com/ansible/ansible/pull/85291).
