@@ -7,6 +7,148 @@ This changelog describes changes since Ansible 12.0.0.
 .. contents::
   :depth: 2
 
+v13.0.0a4
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-10-21
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 13.0.0a4 contains ansible-core version 2.20.0rc2.
+This is a newer version than version 2.20.0rc1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection      | Ansible 13.0.0a3 | Ansible 13.0.0a4 | Notes                                                                                                                        |
++=================+==================+==================+==============================================================================================================================+
+| community.mysql | 4.0.0            | 4.0.1            |                                                                                                                              |
++-----------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.pas    | 1.0.35           | 1.0.36           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- psrp - ReadTimeout exceptions now mark host as unreachable instead of fatal (https://github.com/ansible/ansible/issues/85966)
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_info - Fix slave status for source terminology introduced in MySQL 8.0.23 (https://github.com/ansible-collections/community.mysql/issues/682).
+- mysql_user, mysql_role - fix not existent grant when revoking perms on user/role which do not have any other perms than grant option (https://github.com/ansible-collections/community.mysql/issues/664).
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.1.2)
+- ansible.netcommon (still version 8.1.0)
+- ansible.posix (still version 2.1.0)
+- ansible.utils (still version 6.0.0)
+- ansible.windows (still version 3.2.0)
+- arista.eos (still version 12.0.0)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.9.0)
+- check_point.mgmt (still version 6.5.0)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.12.0)
+- cisco.dnac (still version 6.40.0)
+- cisco.intersight (still version 2.6.0)
+- cisco.ios (still version 11.1.1)
+- cisco.iosxr (still version 12.0.0)
+- cisco.meraki (still version 2.21.8)
+- cisco.mso (still version 2.11.0)
+- cisco.nxos (still version 11.0.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.2)
+- community.aws (still version 10.0.0)
+- community.ciscosmb (still version 1.0.11)
+- community.crypto (still version 3.0.4)
+- community.digitalocean (still version 1.27.0)
+- community.dns (still version 3.3.4)
+- community.docker (still version 4.8.1)
+- community.general (still version 11.4.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.0.0)
+- community.hrobot (still version 2.6.1)
+- community.library_inventory_filtering_v1 (still version 1.1.4)
+- community.libvirt (still version 2.0.0)
+- community.mongodb (still version 1.7.10)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.1.0)
+- community.proxmox (still version 1.3.0)
+- community.proxysql (still version 1.7.0)
+- community.rabbitmq (still version 1.6.0)
+- community.routeros (still version 3.12.1)
+- community.sap_libs (still version 1.5.0)
+- community.sops (still version 2.2.4)
+- community.vmware (still version 6.0.0)
+- community.windows (still version 3.0.1)
+- community.zabbix (still version 4.1.1)
+- containers.podman (still version 1.18.0)
+- cyberark.conjur (still version 1.3.8)
+- dellemc.enterprise_sonic (still version 3.2.0)
+- dellemc.openmanage (still version 10.0.1)
+- dellemc.powerflex (still version 3.0.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.39.0)
+- fortinet.fortimanager (still version 2.11.0)
+- fortinet.fortios (still version 2.4.1)
+- google.cloud (still version 1.9.0)
+- grafana.grafana (still version 6.0.5)
+- hetzner.hcloud (still version 5.4.0)
+- hitachivantara.vspone_block (still version 4.3.0)
+- hitachivantara.vspone_object (still version 1.0.0)
+- ibm.storage_virtualize (still version 3.1.0)
+- ieisystem.inmanage (still version 3.0.0)
+- infinidat.infinibox (still version 1.6.3)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 11.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.2.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.7.0)
+- microsoft.ad (still version 1.9.2)
+- microsoft.iis (still version 1.0.3)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.1.0)
+- netapp.storagegrid (still version 21.15.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 2.5.0)
+- openstack.cloud (still version 2.4.1)
+- ovirt.ovirt (still version 3.2.1)
+- purestorage.flasharray (still version 1.39.0)
+- purestorage.flashblade (still version 1.22.0)
+- ravendb.ravendb (still version 1.0.3)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.4.0)
+- theforeman.foreman (still version 5.7.0)
+- vmware.vmware (still version 2.4.0)
+- vmware.vmware_rest (still version 4.9.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v13.0.0a3
 =========
 
@@ -696,11 +838,6 @@ vmware.vmware
 
 Deprecated Features
 -------------------
-
-Ansible-core
-~~~~~~~~~~~~
-
-- Deprecate the ``ansible.module_utils.six`` module. Use the Python standard library equivalent instead.
 
 dellemc.powerflex
 ~~~~~~~~~~~~~~~~~
