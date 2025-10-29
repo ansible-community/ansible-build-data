@@ -7,6 +7,338 @@ This changelog describes changes since Ansible 12.0.0.
 .. contents::
   :depth: 2
 
+v13.0.0a5
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-10-29
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 13.0.0a5 contains ansible-core version 2.20.0rc3.
+This is a newer version than version 2.20.0rc2 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                               | Ansible 13.0.0a4 | Ansible 13.0.0a5 | Notes                                                                                                                        |
++==========================================+==================+==================+==============================================================================================================================+
+| cisco.dnac                               | 6.40.0           | 6.41.0           |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight                         | 2.6.0            | 2.7.0            | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker                         | 4.8.1            | 5.0.0-a1         |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hashi_vault                    | 7.0.0            | 7.1.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot                         | 2.6.1            | 2.7.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.library_inventory_filtering_v1 | 1.1.4            | 1.1.5            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.proxmox                        | 1.3.0            | 1.4.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sops                           | 2.2.4            | 2.2.6            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortios                         | 2.4.1            | 2.4.2            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| grafana.grafana                          | 6.0.5            | 6.0.6            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| ieisystem.inmanage                       | 3.0.0            | 4.0.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| ngine_io.cloudstack                      | 2.5.0            | 3.0.0            |                                                                                                                              |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| openstack.cloud                          | 2.4.1            | 2.5.0            | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Supported default_group feature for the all of the modules.
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Restore default listen address and port in Mimir by @56quarters in https://github.com/grafana/grafana-ansible-collection/pull/456
+- fix broken Grafana apt repository addition by @kleini in https://github.com/grafana/grafana-ansible-collection/pull/454
+
+ieisystem.inmanage
+~~~~~~~~~~~~~~~~~~
+
+- The edit_m6_log_setting.py module has added the 'server_status' attribute; The edit_network_bond.py module modifies the attribute descriptions; The edit_snmp.py and edit_snmp_trap.py module modifies the allowable value ranges for the auth_protocol and priv_protocol attributes. (https://github.com/ieisystem/ieisystem.inmanage/pull/30).
+
+ngine_io.cloudstack
+~~~~~~~~~~~~~~~~~~~
+
+- Ensuring backwards compatibility and integration tests with CloudStack 4.17 and 4.18.
+- General overhaul (black code style) and renaming of all modules (dropping ``cs_`` prefix) (https://github.com/ngine-io/ansible-collection-cloudstack/pull/141).
+- Update cs dependency to >=3.4.0.
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Update default containers.
+- ansible-test - Update the pylint sanity test to pylint 4.0.2.
+
+cisco.dnac
+~~~~~~~~~~
+
+- Added attribute native_vlan_id and allowed_vlan_ranges in sda_host_port_onboarding_workflow_manager module
+- Changes in network_settings_workflow_manager module
+- Changes in path_trace_workflow_manager module
+- Changes in sda_fabric_virtual_networks_workflow_manager module
+- Changes in sda_host_port_onboarding_workflow_manager module
+- Changes in template_workflow_manager module
+- Changes limit and offset from float to int in all info modules
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_container - add ``driver_opts`` option in ``networks`` (https://github.com/ansible-collections/community.docker/issues/1142, https://github.com/ansible-collections/community.docker/pull/1143).
+- docker_container - add ``gw_priority`` option in ``networks`` (https://github.com/ansible-collections/community.docker/issues/1142, https://github.com/ansible-collections/community.docker/pull/1143).
+
+community.hashi_vault
+~~~~~~~~~~~~~~~~~~~~~
+
+- community.hashi_vault collection - add support for ``gcp`` auth method (https://github.com/ansible-collections/community.hashi_vault/pull/442).
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- storagebox_subaccount - filter by username when looking for existing accounts by username (https://github.com/ansible-collections/community.hrobot/pull/182).
+- storagebox_subaccount - use the new ``change_home_directory`` action to update a subaccount's home directory, instead of using the now deprecated way using the ``update_access_settings`` action (https://github.com/ansible-collections/community.hrobot/pull/181).
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- proxmox - Add delete parameter to delete settings (https://github.com/ansible-collections/community.proxmox/pull/195).
+- proxmox_cluster -  Add master_api_password for authentication against master node (https://github.com/ansible-collections/community.proxmox/pull/140).
+- proxmox_cluster - added link0 and link1 to join command (https://github.com/ansible-collections/community.proxmox/issues/168, https://github.com/ansible-collections/community.proxmox/pull/172).
+- proxmox_kvm - update description of machine parameter in proxmox_kvm.py (https://github.com/ansible-collections/community.proxmox/pull/186)
+- proxmox_storage - added `dir` and `zfspool` storage types (https://github.com/ansible-collections/community.proxmox/pull/184)
+- proxmox_tasks_info - add source option to specify tasks to consider (https://github.com/ansible-collections/community.proxmox/pull/179)
+- proxmox_template -  Add 'import' to allowed content types of proxmox_template, so disk images and can be used as disk images on VM creation (https://github.com/ansible-collections/community.proxmox/pull/162).
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- All doc fragments, module utils, and plugin utils are from now on private. They can change at any time, and have breaking changes even in bugfix releases (https://github.com/ansible-collections/community.docker/pull/1144).
+
+Deprecated Features
+-------------------
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- storagebox_subaccount - ``password_mode=set-to-random`` is deprecated and will be removed from community.hrobot 3.0.0. Hetzner's new API does not support this anyway, it can only be used with the legacy API (https://github.com/ansible-collections/community.hrobot/pull/183).
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- Remove support for Docker SDK for Python version 1.x.y, also known as ``docker-py``. Modules and plugins that use Docker SDK for Python require version 2.0.0+ (https://github.com/ansible-collections/community.docker/pull/1171).
+- The collection no longer supports Python 3.6 and before. Note that this coincides with the Python requirements of ansible-core 2.17+ (https://github.com/ansible-collections/community.docker/pull/1123).
+- The collection no longer supports ansible-core 2.15 and 2.16. You need ansible-core 2.17.0 or newer to use community.docker 5.x.y (https://github.com/ansible-collections/community.docker/pull/1123).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Windows - ignore temporary file cleanup warning when using AnsibleModule to compile C# utils. This should reduce the number of warnings that can safely be ignored when running PowerShell modules - https://github.com/ansible/ansible/issues/85976
+- config lookup now properly factors in variables and show_origin when checking entries from the global configuration.
+- option argument deprecations now have a proper alternative help text.
+- package_facts - typecast bytes to string while returning facts (https://github.com/ansible/ansible/issues/85937).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker connection plugin - fix crash instead of warning if Docker version does not support ``remote_user`` (https://github.com/ansible-collections/community.docker/pull/1161).
+- docker, nsenter connection plugins - fix handling of ``become`` plugin password prompt handling in case multiple events arrive at the same time (https://github.com/ansible-collections/community.docker/pull/1158).
+- docker_api connection plugin - fix bug that could lead to loss of data when waiting for ``become`` plugin prompt (https://github.com/ansible-collections/community.docker/pull/1152).
+- docker_compose_v2_exec - fix crash instead of reporting error if ``detach=true`` and ``stdin`` is provided (https://github.com/ansible-collections/community.docker/pull/1161).
+- docker_compose_v2_run - fix crash instead of reporting error if ``detach=true`` and ``stdin`` is provided (https://github.com/ansible-collections/community.docker/pull/1161).
+- docker_container_exec - fix bug that could lead to loss of stdout/stderr data (https://github.com/ansible-collections/community.docker/pull/1152).
+- docker_container_exec - make ``detach=true`` work. So far this resulted in no execution being done (https://github.com/ansible-collections/community.docker/pull/1145).
+- docker_plugin - fix diff mode for plugin options (https://github.com/ansible-collections/community.docker/pull/1146).
+
+community.library_inventory_filtering_v1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Improve and stricten typing information (https://github.com/ansible-collections/community.library_inventory_filtering/pull/42).
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- proxmox inventory plugin and proxmox module utils - avoid Python 2 compatibility imports (https://github.com/ansible-collections/community.proxmox/pull/175).
+- proxmox_kvm - remove limited choice for vga option in proxmox_kvm (https://github.com/ansible-collections/community.proxmox/pull/185)
+- proxmox_kvm, proxmox_template - remove ``ansible.module_utils.six`` dependency (https://github.com/ansible-collections/community.proxmox/pull/201).
+- proxmox_storage - fixed adding PBS-type storage by ensuring its parameters (server, datastore, etc.) are correctly sent to the Proxmox API (https://github.com/ansible-collections/community.proxmox/pull/171).
+- proxmox_user - added a third case when testing for not-yet-existant user (https://github.com/ansible-collections/community.proxmox/issues/163)
+- proxmox_vm_info - do not throw exception when iterating through machines and optional api results are missing (https://github.com/ansible-collections/community.proxmox/pull/191)
+
+community.sops
+~~~~~~~~~~~~~~
+
+- Clean up plugin code that does not run on the target (https://github.com/ansible-collections/community.sops/pull/275).
+- Note that the MIT licenced code in ``plugins/module_utils/_six.py`` has been removed (https://github.com/ansible-collections/community.sops/pull/275).
+- load_vars action - avoid another deprecated module utils from ansible-core (https://github.com/ansible-collections/community.sops/pull/270).
+- load_vars action - avoid deprecated import from ansible-core that will be removed in ansible-core 2.21 (https://github.com/ansible-collections/community.sops/pull/272).
+- sops vars plugin - ensure that loaded vars are evaluated also with ansible-core 2.19+ (https://github.com/ansible-collections/community.sops/pull/273).
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Fixed authentication issue in v7.6.4 when using access_token.
+
+ieisystem.inmanage
+~~~~~~~~~~~~~~~~~~
+
+- Modify the automated tests and add support for version 2.18. (https://github.com/ieisystem/ieisystem.inmanage/pull/28).
+- Modify the failure details returned in module_utils (https://github.com/ieisystem/ieisystem.inmanage/pull/26).
+- Modify the inmanage.py file in the module_utils directory, and change the reference path of iteritems to be a reference from within Python. (https://github.com/ieisystem/ieisystem.inmanage/pull/29).
+- Modify the method referenced in the support_info.py file to be support_info_nf . (https://github.com/ieisystem/ieisystem.inmanage/pull/31).
+
+ngine_io.cloudstack
+~~~~~~~~~~~~~~~~~~~
+
+- Ensure tags are applied when creating or updating a template (https://github.com/ngine-io/ansible-collection-cloudstack/pull/154).
+
+New Modules
+-----------
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- community.proxmox.proxmox_cluster_ha_rules - Management of HA rules.
+- community.proxmox.proxmox_firewall - Manage firewall rules in Proxmox.
+- community.proxmox.proxmox_firewall_info - Manage firewall rules in Proxmox.
+- community.proxmox.proxmox_ipam_info - Retrieve information about IPAMs.
+- community.proxmox.proxmox_subnet - Create/Update/Delete subnets from SDN.
+- community.proxmox.proxmox_vnet - Manage virtual networks in Proxmox SDN.
+- community.proxmox.proxmox_vnet_info - Retrieve information about one or more Proxmox VE SDN vnets.
+- community.proxmox.proxmox_zone - Manage Proxmox zone configurations.
+- community.proxmox.proxmox_zone_info - Get Proxmox zone info.
+
+ieisystem.inmanage
+~~~~~~~~~~~~~~~~~~
+
+- ieisystem.inmanage.generate_ssl - Generate SSL certificate
+- ieisystem.inmanage.ssl_info - Get SSL certificate information
+- ieisystem.inmanage.upload_ssl - Upload SSL certificate
+
+ngine_io.cloudstack
+~~~~~~~~~~~~~~~~~~~
+
+- ngine_io.cloudstack.configuration_info - Gathering information about configurations from Apache CloudStack based clouds.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.1.2)
+- ansible.netcommon (still version 8.1.0)
+- ansible.posix (still version 2.1.0)
+- ansible.utils (still version 6.0.0)
+- ansible.windows (still version 3.2.0)
+- arista.eos (still version 12.0.0)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.9.0)
+- check_point.mgmt (still version 6.5.0)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.12.0)
+- cisco.ios (still version 11.1.1)
+- cisco.iosxr (still version 12.0.0)
+- cisco.meraki (still version 2.21.8)
+- cisco.mso (still version 2.11.0)
+- cisco.nxos (still version 11.0.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.2)
+- community.aws (still version 10.0.0)
+- community.ciscosmb (still version 1.0.11)
+- community.crypto (still version 3.0.4)
+- community.digitalocean (still version 1.27.0)
+- community.dns (still version 3.3.4)
+- community.general (still version 11.4.0)
+- community.grafana (still version 2.3.0)
+- community.libvirt (still version 2.0.0)
+- community.mongodb (still version 1.7.10)
+- community.mysql (still version 4.0.1)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.1.0)
+- community.proxysql (still version 1.7.0)
+- community.rabbitmq (still version 1.6.0)
+- community.routeros (still version 3.12.1)
+- community.sap_libs (still version 1.5.0)
+- community.vmware (still version 6.0.0)
+- community.windows (still version 3.0.1)
+- community.zabbix (still version 4.1.1)
+- containers.podman (still version 1.18.0)
+- cyberark.conjur (still version 1.3.8)
+- cyberark.pas (still version 1.0.36)
+- dellemc.enterprise_sonic (still version 3.2.0)
+- dellemc.openmanage (still version 10.0.1)
+- dellemc.powerflex (still version 3.0.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.39.0)
+- fortinet.fortimanager (still version 2.11.0)
+- google.cloud (still version 1.9.0)
+- hetzner.hcloud (still version 5.4.0)
+- hitachivantara.vspone_block (still version 4.3.0)
+- hitachivantara.vspone_object (still version 1.0.0)
+- ibm.storage_virtualize (still version 3.1.0)
+- infinidat.infinibox (still version 1.6.3)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 11.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.2.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.7.0)
+- microsoft.ad (still version 1.9.2)
+- microsoft.iis (still version 1.0.3)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.1.0)
+- netapp.storagegrid (still version 21.15.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ovirt.ovirt (still version 3.2.1)
+- purestorage.flasharray (still version 1.39.0)
+- purestorage.flashblade (still version 1.22.0)
+- ravendb.ravendb (still version 1.0.3)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.4.0)
+- theforeman.foreman (still version 5.7.0)
+- vmware.vmware (still version 2.4.0)
+- vmware.vmware_rest (still version 4.9.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v13.0.0a4
 =========
 
