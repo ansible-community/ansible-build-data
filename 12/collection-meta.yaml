@@ -82,6 +82,11 @@ collections:
     repository: https://github.com/ansible-collections/community.crypto
   community.digitalocean:
     repository: https://github.com/ansible-collections/community.digitalocean
+    removal:
+      major_version: 13
+      announce_version: 12.2.0
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/44602
   community.dns:
     maintainers:
       - felixfontein
