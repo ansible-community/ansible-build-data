@@ -80,8 +80,6 @@ collections:
     repository: https://github.com/ansible-collections/community.ciscosmb
   community.crypto:
     repository: https://github.com/ansible-collections/community.crypto
-  community.digitalocean:
-    repository: https://github.com/ansible-collections/community.digitalocean
   community.dns:
     maintainers:
       - felixfontein
@@ -381,6 +379,13 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://github.com/ansible-community/community-topics/issues/263
       announce_version: 9.0.0a1
+  community.digitalocean:
+    repository: https://github.com/ansible-collections/community.digitalocean
+    removal:
+      version: 13.0.0b1
+      reason: deprecated
+      discussion: https://forum.ansible.com/t/44602
+      announce_version: 12.2.0
   community.fortios:
     repository: https://github.com/ansible-collections/community.fortios
     removal:
