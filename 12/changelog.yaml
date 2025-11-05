@@ -120,4 +120,11 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
     release_date: '2025-10-07'
+  12.2.0:
+    changes:
+      release_summary: 'Release Date: 2025-11-05
+
+
+        `Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_'
+    release_date: '2025-11-05'
 remove_collection_changelog_entries: {}
