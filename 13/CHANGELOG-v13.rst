@@ -7,6 +7,288 @@ This changelog describes changes since Ansible 12.0.0.
 .. contents::
   :depth: 2
 
+v13.0.0rc1
+==========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-11-11
+
+`Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 13.0.0rc1 contains ansible-core version 2.20.0.
+This is the same version of ansible-core as in the previous Ansible release.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-------------------+------------------+-------------------+-------+
+| Collection        | Ansible 13.0.0b1 | Ansible 13.0.0rc1 | Notes |
++===================+==================+===================+=======+
+| community.docker  | 5.0.0            | 5.0.1             |       |
++-------------------+------------------+-------------------+-------+
+| community.general | 12.0.0           | 12.0.1            |       |
++-------------------+------------------+-------------------+-------+
+
+Minor Changes
+-------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- datetime module utils - remove code for unsupported Python version (https://github.com/ansible-collections/community.general/pull/11048).
+- dnsimple_info - use Ansible construct to validate parameters (https://github.com/ansible-collections/community.general/pull/11052).
+- infinity - consolidate double and triple whitespaces (https://github.com/ansible-collections/community.general/pull/11029).
+- ipa_otptoken - consolidate double and triple whitespaces (https://github.com/ansible-collections/community.general/pull/11029).
+- irc - use proper boolean value in loops (https://github.com/ansible-collections/community.general/pull/11076).
+- jenkins_node - remove code for unsupported Python version (https://github.com/ansible-collections/community.general/pull/11048).
+- opendj_backendprop - use Ansible construct to perform check for external commands (https://github.com/ansible-collections/community.general/pull/11072).
+- rhevm - consolidate double and triple whitespaces (https://github.com/ansible-collections/community.general/pull/11029).
+- slack - consolidate double and triple whitespaces (https://github.com/ansible-collections/community.general/pull/11029).
+- tss lookup plugin - fixed ``AccessTokenAuthorizer`` initialization to include ``base_url`` parameter for proper token authentication (https://github.com/ansible-collections/community.general/pull/11031).
+- zfs_facts - use Ansible construct to check result of external command (https://github.com/ansible-collections/community.general/pull/11054).
+
+Bugfixes
+--------
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_compose_v2_run - when ``detach=true``, ensure that the returned container ID is not a bytes string (https://github.com/ansible-collections/community.docker/pull/1183).
+- docker_image - fix 'Cannot locate specified Dockerfile' error (https://github.com/ansible-collections/community.docker/pull/1184).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- _filelock module utils - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- aerospike_migrations - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- aix_lvol - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- ali_instance - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- ali_instance - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- ali_instance_info - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- apt_rpm - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- apt_rpm - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- btrfs module utils - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- btrfs module utils - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- btrfs_subvolume - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- btrfs_subvolume - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- chef_databag lookup plugin - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- consul - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- consul_kv lookup plugin - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- cronvar - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- discord - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- dnf_versionlock - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- dnsmadeeasy - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- dpkg_divert - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- elastic callback plugin - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- filesystem - avoid false positive change detection on XFS resize due to unusable slack space (https://github.com/ansible-collections/community.general/pull/11033).
+- gitlab module utils - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- gitlab_branch - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- gitlab_group_members - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- gitlab_issue - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- gitlab_merge_request - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- gitlab_project - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- gitlab_project_members - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- gitlab_protected_branch - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- gitlab_user - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- haproxy - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- homebrew - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- homebrew_services - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- hpilo_boot - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- infinity - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- ini_file - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- interfaces_file - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- ipa_group - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- ipa_otptoken - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- ipa_vault - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- ipmi_boot - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- jenkins_build - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- jenkins_build_info - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- jenkins_credential - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- jenkins_plugin - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- jenkins_plugin - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- json_patch filter plugin - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- kea_command - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- keycloak_authz_permission - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- keycloak_clientscope_type - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- keycloak_component - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- keycloak_realm_key - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- keycloak_user_execute_actions_email - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- keycloak_user_federation - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- keycloak_userprofile - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- launchd - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- linode inventory plugin - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- listen_ports_facts - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- listen_ports_facts - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- logentries callback plugin - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- lxc_container - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- lxd_container - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- manageiq_alert_profiles - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- manageiq_provider - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- manageiq_tenant - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- matrix - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- maven_artifact - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- memset_memstore_info - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- memset_server_info - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- memset_zone - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- module_helper module utils - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- monit - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- netcup_dns - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- nmcli - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- nomad_job - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- nosh - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- npm - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- odbc - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- one_host - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- one_image - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- one_service - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- one_template - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- one_vm - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- one_vm - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- one_vnet - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- oneandone module utils - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- onepassword_info - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- online inventory plugin - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- opendj_backendprop - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- opennebula module utils - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- opentelemetry callback plugin - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- ovh_monthly_billing - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- pamd - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- pkgin - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- portinstall - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- pulp_repo - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- redfish_utils module utils - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- redhat_subscription - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- redhat_subscription - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- redis_data_incr - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- rhevm - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- scaleway module utils - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- scaleway_sshkey - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- sensu_check - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- simpleinit_msb - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- sorcery - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- spectrum_model_attrs - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- spotinst_aws_elastigroup - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- svc - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- syslog_json callback plugin - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- terraform - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- timestamp callback plugin - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- timezone - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- to_* time filter plugins - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- to_prettytable filter plugin - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- vmadm - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- wsl connection plugin - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- wsl connection plugin - rename variable to fix type checking (https://github.com/ansible-collections/community.general/pull/11030).
+- xen_orchestra inventory plugin - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- xenserver module utils - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- xenserver_guest - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+- xenserver_guest - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- xfs_quota - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- xml - improve Python code by removing unnecessary variables (https://github.com/ansible-collections/community.general/pull/11049).
+- zypper_repository - improve Python code (https://github.com/ansible-collections/community.general/pull/11043).
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.1.2)
+- ansible.netcommon (still version 8.1.0)
+- ansible.posix (still version 2.1.0)
+- ansible.utils (still version 6.0.0)
+- ansible.windows (still version 3.2.0)
+- arista.eos (still version 12.0.0)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.10.1)
+- check_point.mgmt (still version 6.6.0)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.12.0)
+- cisco.dnac (still version 6.41.0)
+- cisco.intersight (still version 2.7.0)
+- cisco.ios (still version 11.1.1)
+- cisco.iosxr (still version 12.1.0)
+- cisco.meraki (still version 2.21.8)
+- cisco.mso (still version 2.11.0)
+- cisco.nxos (still version 11.0.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.2)
+- community.aws (still version 10.0.0)
+- community.ciscosmb (still version 1.0.11)
+- community.crypto (still version 3.0.5)
+- community.dns (still version 3.4.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.7.0)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.0.0)
+- community.mongodb (still version 1.7.10)
+- community.mysql (still version 4.0.1)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.1.0)
+- community.proxmox (still version 1.4.0)
+- community.proxysql (still version 1.7.0)
+- community.rabbitmq (still version 1.6.0)
+- community.routeros (still version 3.13.0)
+- community.sap_libs (still version 1.5.0)
+- community.sops (still version 2.2.7)
+- community.vmware (still version 6.1.0)
+- community.windows (still version 3.0.1)
+- community.zabbix (still version 4.1.1)
+- containers.podman (still version 1.18.0)
+- cyberark.conjur (still version 1.3.8)
+- cyberark.pas (still version 1.0.36)
+- dellemc.enterprise_sonic (still version 3.2.0)
+- dellemc.openmanage (still version 10.0.1)
+- dellemc.powerflex (still version 3.0.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.39.0)
+- fortinet.fortimanager (still version 2.11.0)
+- fortinet.fortios (still version 2.4.2)
+- google.cloud (still version 1.9.0)
+- grafana.grafana (still version 6.0.6)
+- hetzner.hcloud (still version 6.0.0)
+- hitachivantara.vspone_block (still version 4.4.0)
+- hitachivantara.vspone_object (still version 1.0.0)
+- ibm.storage_virtualize (still version 3.1.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infinidat.infinibox (still version 1.6.3)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.3)
+- junipernetworks.junos (still version 11.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.2.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.7.0)
+- microsoft.ad (still version 1.9.2)
+- microsoft.iis (still version 1.0.3)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.2.0)
+- netapp.storagegrid (still version 21.15.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 3.0.0)
+- openstack.cloud (still version 2.5.0)
+- ovirt.ovirt (still version 3.2.1)
+- purestorage.flasharray (still version 1.39.0)
+- purestorage.flashblade (still version 1.22.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.4.0)
+- theforeman.foreman (still version 5.7.0)
+- vmware.vmware (still version 2.4.0)
+- vmware.vmware_rest (still version 4.9.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v13.0.0b1
 =========
 
