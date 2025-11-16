@@ -30,11 +30,11 @@ Then a `removal` subkey needs to be added to `foo.bar` with the following fields
 
     1. `deprecated`: the collection has been deprecated by its maintainers.
        ([Official process](
-         https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#removing-a-collection-that-has-been-explicitly-deprecated-or-abandoned-by-its-former-maintainers).)
+         https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#removing-a-collection-that-has-been-explicitly-deprecated-or-abandoned-by-its-former-maintainers).)
 
     2. `considered-unmaintained`: the collection is considered unmaintained by the Steering Committee.
        ([Official process](
-        https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#identifying-and-removing-an-unmaintained-collection-that-has-not-been-deprecated-by-its-maintainers).)
+        https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#identifying-and-removing-an-unmaintained-collection-that-has-not-been-deprecated-by-its-maintainers).)
 
     3. `renamed`: the collection has been renamed.
        The new name of the collection should be specified in `new_name`.
@@ -50,7 +50,7 @@ Then a `removal` subkey needs to be added to `foo.bar` with the following fields
     4. `guidelines-violation`: the collection has been removed by the Steering Committee due to guidelines violation.
        Further details must be provided in `reason_text`.
        ([Official process](
-        https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements).)
+        https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements).)
 
     5. `other`: the collection has been removed for other reasons.
        Further explanation on why the collection will be removed must be provided in `reason_text`.
@@ -99,7 +99,7 @@ collections:
       reason: guidelines-violation
       reason_text: >-
         Extra text that must specify what happened. Can use L(Ansible markup,
-        https://docs.ansible.com/ansible/devel/dev_guide/developing_modules_documenting.html#linking-within-module-documentation).
+        https://docs.ansible.com/projects/ansible/devel/dev_guide/developing_modules_documenting.html#linking-within-module-documentation).
       announce_version: 11.2.0
       discussion: https://forum.ansible.com/t/.../
   foo.bar_other:
@@ -110,7 +110,7 @@ collections:
       reason: other
       reason_text: >-
         Text that must specify why the collection was removed. Can use L(Ansible markup,
-        https://docs.ansible.com/ansible/devel/dev_guide/developing_modules_documenting.html#linking-within-module-documentation).
+        https://docs.ansible.com/projects/ansible/devel/dev_guide/developing_modules_documenting.html#linking-within-module-documentation).
       announce_version: 11.2.0
       discussion: https://forum.ansible.com/t/.../
 ```
@@ -414,7 +414,7 @@ In case of violations, the release manager must preform the following steps:
     Hi! As part of the ansible community package release process, we've determined that version {VERSION} of {COLLECTION} was released to Ansible Galaxy but not properly tagged in this Git repository.
     This violates the [repository management][1] section of the Collection Requirements:
 
-    [1]: https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html#repository-management
+    [1]: https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_requirements.html#repository-management
 
     > Every collection MUST have a public git repository. Releases of the collection MUST be tagged in said repository. This means that releases MUST be `git tag`ed and that the tag name MUST exactly match the Galaxy version number. Tag names MAY have a `v` prefix, but a collection's tag names MUST have a consistent format from release to release.
     >
@@ -430,9 +430,9 @@ In case of violations, the release manager must preform the following steps:
    with a link to the issue.
 
 
-[1]: https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_package_removal.html
-[2]: https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html#repository-management
+[1]: https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html
+[2]: https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_requirements.html#repository-management
 [3]: https://github.com/ansible-community/antsibull-build/blob/main/playbooks/build-single-release.yaml
 [4]: https://github.com/ansible-community/ansible-build-data/blob/main/7/ansible-7.5.0-tags.yaml
 [4a]: https://github.com/ansible-community/ansible-build-data/blob/main/7/validate-tags-ignores
-[5]: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/default_callback.html#parameter-result_format
+[5]: https://docs.ansible.com/projects/ansible/latest/collections/ansible/builtin/default_callback.html#parameter-result_format

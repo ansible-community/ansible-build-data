@@ -34,7 +34,7 @@ Note that most of the following items cannot be done by yourself, but need someo
 - [Talk on Using Trusted Publishing to Ansible release](https://docs.pypi.org/trusted-publishers/)
 - Ask and show intention to be the Release Manager in the release-management working group.
 - Shadow the release manager for 2 releases.
-- [Release Roadmap](https://docs.ansible.com/ansible/devel/roadmap)
+- [Release Roadmap](https://docs.ansible.com/projects/ansible/devel/roadmap)
 
 ### Process summary
 
@@ -140,7 +140,7 @@ releases:
       release_summary: |
         Release Date: 2024-05-14
 
-        Porting Guide <https://docs.ansible.com/ansible/devel/porting_guides.html>`_
+        Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
 
         This is a special release because of ...
 ```

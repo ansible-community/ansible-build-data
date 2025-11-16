@@ -9,4 +9,4 @@
 - Make sure to add new docs to the `nav:` config in `mkdocs.yml`.
 
 [1]: https://sembr.org/
-[2]: https://docs.ansible.com/ansible/latest/dev_guide/style_guide/basic_rules.html
+[2]: https://docs.ansible.com/projects/ansible/devel/dev_guide/style_guide/basic_rules.html

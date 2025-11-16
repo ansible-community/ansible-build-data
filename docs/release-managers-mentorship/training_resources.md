@@ -1,9 +1,9 @@
 Ansible Release Cadence and versioning
 
 - [Understanding Semvar](https://semver.org/lang/sv/)
-- [Release and Maintenance](https://docs.ansible.com/ansible/latest/reference_appendices/release_and_maintenance.html#release-and-maintenance)
-- [Ansible Roadmap](https://docs.ansible.com/ansible/latest/roadmap/ansible_roadmap_index.html)
-- [Ansible-core Roadmap](https://docs.ansible.com/ansible/devel/roadmap/ansible_core_roadmap_index.html)
+- [Release and Maintenance](https://docs.ansible.com/projects/ansible/devel/reference_appendices/release_and_maintenance.html#release-and-maintenance)
+- [Ansible Roadmap](https://docs.ansible.com/projects/ansible/devel/roadmap/ansible_roadmap_index.html)
+- [Ansible-core Roadmap](https://docs.ansible.com/projects/ansible/devel/roadmap/ansible_core_roadmap_index.html)
 
 Github repositories
 
@@ -34,7 +34,7 @@ Go through following Documents/Links:
 
 ## Communication Channel
 
-- [Communicating with the Ansible community](https://docs.ansible.com/ansible/8/community/communication.html)
+- [Communicating with the Ansible community](https://docs.ansible.com/projects/ansible/devel/community/communication.html)
 - Join Matrix: #social:ansible.com
 - Join Matrix: #community:ansible.com
 - Join Matrix: #release-management:ansible.com
