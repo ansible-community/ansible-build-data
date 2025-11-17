@@ -1,6 +1,6 @@
 ---
 site_name: Ansible Package Release Management
-site_url: https://ansible.readthedocs.io/projects/ansible-build-data
+site_url: https://docs.ansible.com/projects/ansible-build-data/
 repo_url: https://github.com/ansible-community/ansible-build-data
 theme:
   name: ansible

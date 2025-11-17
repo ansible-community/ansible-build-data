@@ -1,6 +1,6 @@
 # ansible-build-data
 
-[![Documentation](https://img.shields.io/badge/docs-brightgreen.svg)](https://ansible.readthedocs.io/projects/ansible-build-data/)
+[![Documentation](https://img.shields.io/badge/docs-brightgreen.svg)](https://docs.ansible.com/projects/ansible-build-data/)
 [![Discuss on Matrix at #community:ansible.com](https://img.shields.io/matrix/community:ansible.com.svg?server_fqdn=ansible-accounts.ems.host&label=Discuss%20on%20Matrix%20at%20%23community:ansible.com&logo=matrix)](https://matrix.to/#/#community:ansible.com)
 
 
@@ -17,7 +17,7 @@ may be referred to by other projects and scripts.
 1. Tracking problems with a release related to the build process:
    - This includes problems that prevent the package to be installed or system packages to be built from the PyPI release;
 1. Tracking and discussing other problems with the `ansible` community package:
-   - This includes important problems with the included collections that are not acted on by the collection maintainers, for example largescale incompatibilities with the current ansible-core version, violations of semantic versioning, and general violations of the [Ansible inclusion requirements](https://docs.ansible.com/ansible/devel/community/collection_contributors/collection_requirements.html);
+   - This includes important problems with the included collections that are not acted on by the collection maintainers, for example largescale incompatibilities with the current ansible-core version, violations of semantic versioning, and general violations of the [Ansible inclusion requirements](https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_requirements.html);
    - This includes major or security bugs in collections with wide-reaching consequences that are not addressed by the collection maintainers, or cannot be addressed on the collection level for some reason.
 
 This issue tracker is **not** for tracking regular bugs or feature requests for `ansible-core` or the collections included in the `ansible` package or for user support. **Such issues will be closed.** Instead, check out the [`ansible-core` issue tracker](https://github.com/ansible/ansible), issue trackers of the respective collections, or consider [asking for help in the Ansible forum](https://forum.ansible.com/).
@@ -30,13 +30,13 @@ Release engineers check the [milestones](https://github.com/ansible-community/an
 
 In the context of the Ansible Community package release workflow, a **release blocker** is a situation which does not allow the package to be released.
 It might come with a new ``ansible-core`` release and affect many of the included collections or in any other way might severely affect consistent work with the ``ansible`` package.
-Severity of the impact is determined by the [Steering Committee](https://docs.ansible.com/ansible/devel/community/steering/community_steering_committee.html) in each particular case.
+Severity of the impact is determined by the [Steering Committee](https://docs.ansible.com/projects/ansible/devel/community/steering/community_steering_committee.html) in each particular case.
 The release blocker must be resolved before the release can proceed.
 
 In case of a potential release blocker, the following actions need to be done:
 
 * Create a [community topic](https://github.com/ansible-community/community-topics/issues) describing the potential blocker.
-* If the [Steering Committee](https://docs.ansible.com/ansible/devel/community/steering/community_steering_committee.html) considers the circumstances a release blocker, create an [issue](https://github.com/ansible-community/ansible-build-data/issues/new) in this repository.
+* If the [Steering Committee](https://docs.ansible.com/projects/ansible/devel/community/steering/community_steering_committee.html) considers the circumstances a release blocker, create an [issue](https://github.com/ansible-community/ansible-build-data/issues/new) in this repository.
 * Put the ``blocker`` label on the issue.
 * Add the issue to a milestone for the [affected release](https://github.com/ansible-community/ansible-build-data/milestones).
 
