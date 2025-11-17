@@ -381,7 +381,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * The <code>community\.digitalocean</code> collection has been deprecated\.
   It will be removed from Ansible 13 if no one starts maintaining it again before Ansible 13\.
-  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/44602](https\://forum\.ansible\.com/t/44602)\)\.
+  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/projects/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/44602](https\://forum\.ansible\.com/t/44602)\)\.
 
 <a id="community-hrobot-1"></a>
 #### community\.hrobot
@@ -1612,7 +1612,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * The <code>ibm\.qradar</code> collection has been deprecated\.
   It will be removed from Ansible 13 if no one starts maintaining it again before Ansible 13\.
-  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/44259](https\://forum\.ansible\.com/t/44259)\)\.
+  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/projects/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/44259](https\://forum\.ansible\.com/t/44259)\)\.
 
 <a id="community-hashi-vault"></a>
 #### community\.hashi\_vault
@@ -2094,7 +2094,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 ### Deprecated Features
 
 * The <code>cisco\.ise</code> collection is considered unmaintained and will be removed from Ansible 12 if no one starts maintaining it again before Ansible 12\.
-  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details\, including for how this can be cancelled \([https\://forum\.ansible\.com/t/43367](https\://forum\.ansible\.com/t/43367)\)\.
+  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/projects/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details\, including for how this can be cancelled \([https\://forum\.ansible\.com/t/43367](https\://forum\.ansible\.com/t/43367)\)\.
   After removal\, users can still install this collection with <code>ansible\-galaxy collection install cisco\.ise</code>\.
 
 <a id="vmware-vmware-rest-4"></a>
@@ -6045,7 +6045,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * The <code>cisco\.asa</code> collection has been deprecated\.
   It will be removed from Ansible 12 if no one starts maintaining it again before Ansible 12\.
-  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/38960](https\://forum\.ansible\.com/t/38960)\)\.
+  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/projects/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/38960](https\://forum\.ansible\.com/t/38960)\)\.
 
 <a id="amazon-aws-12"></a>
 #### amazon\.aws
@@ -8798,14 +8798,14 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * The <code>community\.network</code> collection has been deprecated\.
   It will be removed from Ansible 12 if no one starts maintaining it again before Ansible 12\.
-  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/8030](https\://forum\.ansible\.com/t/8030)\)\.
+  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/projects/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/8030](https\://forum\.ansible\.com/t/8030)\)\.
 * The google\.cloud collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements\.
   The collection has [unresolved sanity test failures](https\://github\.com/ansible\-collections/google\.cloud/issues/613)\.
-  See [Collections Removal Process for collections not satisfying the collection requirements](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#collections\-not\-satisfying\-the\-collection\-requirements) for more details\, including for how this can be cancelled \([https\://forum\.ansible\.com/t/8609](https\://forum\.ansible\.com/t/8609)\)\.
+  See [Collections Removal Process for collections not satisfying the collection requirements](https\://docs\.ansible\.com/projects/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#collections\-not\-satisfying\-the\-collection\-requirements) for more details\, including for how this can be cancelled \([https\://forum\.ansible\.com/t/8609](https\://forum\.ansible\.com/t/8609)\)\.
   After removal\, users can still install this collection with <code>ansible\-galaxy collection install google\.cloud</code>\.
 * The sensu\.sensu\_go collection will be removed from Ansible 12 due to violations of the Ansible inclusion requirements\.
   The collection has [unresolved sanity test failures](https\://github\.com/sensu/sensu\-go\-ansible/issues/362)\.
-  See [Collections Removal Process for collections not satisfying the collection requirements](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#collections\-not\-satisfying\-the\-collection\-requirements) for more details\, including for how this can be cancelled \([https\://forum\.ansible\.com/t/8380](https\://forum\.ansible\.com/t/8380)\)\.
+  See [Collections Removal Process for collections not satisfying the collection requirements](https\://docs\.ansible\.com/projects/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#collections\-not\-satisfying\-the\-collection\-requirements) for more details\, including for how this can be cancelled \([https\://forum\.ansible\.com/t/8380](https\://forum\.ansible\.com/t/8380)\)\.
   After removal\, users can still install this collection with <code>ansible\-galaxy collection install sensu\.sensu\_go</code>\.
 
 <a id="ansible-core-33"></a>

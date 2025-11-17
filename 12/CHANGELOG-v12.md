@@ -459,7 +459,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * The <code>community\.digitalocean</code> collection has been deprecated\.
   It will be removed from Ansible 13 if no one starts maintaining it again before Ansible 13\.
-  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/44602](https\://forum\.ansible\.com/t/44602)\)\.
+  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/projects/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/44602](https\://forum\.ansible\.com/t/44602)\)\.
 
 <a id="community-hrobot-1"></a>
 #### community\.hrobot
@@ -4456,7 +4456,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * The <code>ibm\.qradar</code> collection has been deprecated\.
   It will be removed from Ansible 13 if no one starts maintaining it again before Ansible 13\.
-  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/44259](https\://forum\.ansible\.com/t/44259)\)\.
+  See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/projects/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/44259](https\://forum\.ansible\.com/t/44259)\)\.
 
 <a id="ansible-core-9"></a>
 #### Ansible\-core
@@ -4719,7 +4719,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * The deprecated <code>community\.network</code> collection has been removed \([https\://forum\.ansible\.com/t/8030](https\://forum\.ansible\.com/t/8030)\)\.
 * The sensu\.sensu\_go collection has been removed from Ansible 12 due to violations of the Ansible inclusion requirements\.
   The collection has [unresolved sanity test failures](https\://github\.com/sensu/sensu\-go\-ansible/issues/362)\.
-  See [Collections Removal Process for collections not satisfying the collection requirements](https\://docs\.ansible\.com/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#collections\-not\-satisfying\-the\-collection\-requirements) for more details \([https\://forum\.ansible\.com/t/8380](https\://forum\.ansible\.com/t/8380)\)\.
+  See [Collections Removal Process for collections not satisfying the collection requirements](https\://docs\.ansible\.com/projects/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#collections\-not\-satisfying\-the\-collection\-requirements) for more details \([https\://forum\.ansible\.com/t/8380](https\://forum\.ansible\.com/t/8380)\)\.
   Users can still install this collection with <code>ansible\-galaxy collection install sensu\.sensu\_go</code>\.
 
 <a id="ansible-core-10"></a>
