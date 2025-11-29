@@ -302,6 +302,11 @@ collections:
     repository: https://github.com/ispim/inspur.ispim
   junipernetworks.junos:
     repository: https://github.com/ansible-collections/junipernetworks.junos
+    removal:
+      major_version: 14
+      reason: deprecated
+      announce_version: 11.13.0
+      discussion: https://forum.ansible.com/t/44869
   kaytus.ksmanage:
     maintainers:
       - ieisystem

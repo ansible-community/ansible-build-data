@@ -221,8 +221,6 @@ collections:
     maintainers:
       - ispim
     repository: https://github.com/ispim/inspur.ispim
-  junipernetworks.junos:
-    repository: https://github.com/ansible-collections/junipernetworks.junos
   kaytus.ksmanage:
     maintainers:
       - ieisystem
@@ -512,6 +510,13 @@ removed_collections:
       reason: considered-unmaintained
       discussion: https://forum.ansible.com/t/2854
       announce_version: 10.0.0a1
+  junipernetworks.junos:
+    repository: https://github.com/ansible-collections/junipernetworks.junos
+    removal:
+      version: 14.0.0a1
+      reason: deprecated
+      announce_version: 13.1.0
+      discussion: https://forum.ansible.com/t/44869
   mellanox.onyx:
     repository: https://github.com/ansible-collections/mellanox.onyx
     removal:
