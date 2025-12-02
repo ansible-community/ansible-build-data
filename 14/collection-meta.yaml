@@ -223,8 +223,8 @@ collections:
     repository: https://github.com/ispim/inspur.ispim
   kaytus.ksmanage:
     maintainers:
-      - ieisystem
-    repository: https://github.com/ieisystem/kaytus.ksmanage
+      - KSManageOSS
+    repository: https://github.com/KSManageOSS/kaytus.ksmanage
   kubernetes.core:
     maintainers:
       # - ansible-collections/cloud
