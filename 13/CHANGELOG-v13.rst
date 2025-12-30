@@ -7,6 +7,482 @@ This changelog describes changes since Ansible 12.0.0.
 .. contents::
   :depth: 2
 
+v13.2.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2025-12-30
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 13.2.0 contains ansible-core version 2.20.1.
+This is the same version of ansible-core as in the previous Ansible release.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| Collection                  | Ansible 13.1.0 | Ansible 13.2.0 | Notes                                                    |
++=============================+================+================+==========================================================+
+| check_point.mgmt            | 6.7.0          | 6.8.0          | The collection did not have a changelog in this version. |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| cisco.ios                   | 11.1.1         | 11.2.0         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| cisco.iosxr                 | 12.1.0         | 12.1.1         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| cisco.nxos                  | 11.1.0         | 11.1.1         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| community.crypto            | 3.0.5          | 3.1.0          |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| community.dns               | 3.4.1          | 3.4.2          |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| community.general           | 12.1.0         | 12.2.0         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| community.proxmox           | 1.4.0          | 1.5.0          |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| community.routeros          | 3.14.0         | 3.15.0         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| community.sap_libs          | 1.5.0          | 1.6.0          |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| fortinet.fortimanager       | 2.11.0         | 2.12.0         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| hetzner.hcloud              | 6.2.1          | 6.3.0          |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| hitachivantara.vspone_block | 4.5.0          | 4.5.1          |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| netapp.ontap                | 23.2.0         | 23.3.0         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| netapp.storagegrid          | 21.15.0        | 21.16.0        |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| purestorage.flasharray      | 1.40.0         | 1.41.0         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| purestorage.flashblade      | 1.22.0         | 1.23.1         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+
+Major Changes
+-------------
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_interface - AWS Lambda support added to the module.
+- na_ontap_lun - AWS Lambda support added to the module.
+- na_ontap_snapshot - AWS Lambda support added to the module.
+- na_ontap_svm - AWS Lambda support added to the module.
+
+Minor Changes
+-------------
+
+cisco.ios
+~~~~~~~~~
+
+- ios_l2_interfaces - Added xconnect and encapsulation attributes for L2VPN pseudowire and MPLS services configuration.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- luks_device - add support for TPM2 enrollment using ``systemd-cryptsetup`` (https://github.com/ansible-collections/community.crypto/issues/850, https://github.com/ansible-collections/community.crypto/pull/972).
+- luks_device - add support for keyslot priority (https://github.com/ansible-collections/community.crypto/issues/850, https://github.com/ansible-collections/community.crypto/pull/972).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- btrfs module utils - make execution of external commands safer by passing arguments as list (https://github.com/ansible-collections/community.general/pull/11240).
+- deps module utils - change the internal representaion of dependency state (https://github.com/ansible-collections/community.general/pull/11242).
+- keycloak_userprofile - add support for ``selector`` option (https://github.com/ansible-collections/community.general/pull/11309).
+- keycloak_userprofile - add support for additional user profile attribute-validations available in Keycloak (https://github.com/ansible-collections/community.general/issues/9048, https://github.com/ansible-collections/community.general/pull/11285).
+- lxc_container - refactor function ``create_script``, using ``subprocess.Popen()``, to a new module_utils ``_lxc`` (https://github.com/ansible-collections/community.general/pull/11204).
+- lxc_container - use ``tempfile.TemporaryDirectory()`` instead of ``mkdtemp()`` (https://github.com/ansible-collections/community.general/pull/11323).
+- monit - add ``monit_version`` return value also when the module has succeeded (https://github.com/ansible-collections/community.general/pull/11255).
+- monit - use ``Enum`` to represent the possible states (https://github.com/ansible-collections/community.general/pull/11245).
+- nmcli module - add ``vxlan_parent`` option required for multicast ``vxlan_remote`` addresses; add ``vxlan`` to list of bridgeable devices (https://github.com/ansible-collections/community.general/pull/11182).
+- scaleway inventory plugin - added support for ``SCW_PROFILE`` environment variable for the ``scw_profile`` option (https://github.com/ansible-collections/community.general/issues/11310, https://github.com/ansible-collections/community.general/pull/11311).
+- scaleway module utils - added ``scw_profile`` parameter with ``SCW_PROFILE`` environment variable support (https://github.com/ansible-collections/community.general/issues/11313, https://github.com/ansible-collections/community.general/pull/11314).
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- inventory plugin, plugin_utils - replace deprecated ``ansible.module_utils.common._collections_compat`` imports with ``collections.abc`` from the Python standard library (https://github.com/ansible-collections/community.proxmox/issues/241).
+- proxmox - change disk size units to GiB (https://github.com/ansible-collections/community.proxmox/pull/236).
+- proxmox_disk - change disk size units to GiB (https://github.com/ansible-collections/community.proxmox/pull/236).
+- proxmox_kvm - add option to migrate local disks as well (https://github.com/ansible-collections/community.proxmox/pull/240).
+- proxmox_kvm - change disk size units to GiB (https://github.com/ansible-collections/community.proxmox/pull/236).
+- proxmox_node_info - add information on node network interfaces to node information output (https://github.com/ansible-collections/community.proxmox/pull/220).
+- proxmox_node_info - add information on node's PVE version (https://github.com/ansible-collections/community.proxmox/pull/225).
+- proxmox_snap_info - Adds a new module to list snapshots or a specific snapshot for VM or container (https://github.com/ansible-collections/community.proxmox/issues/229).
+- proxmox_storage - add feature of subdirectory in CIFS share. (https://github.com/ansible-collections/community.proxmox/pull/214).
+- proxmox_storage - fix passing nfs_options to API payload (https://github.com/ansible-collections/community.proxmox/issues/203, https://github.com/ansible-collections/community.proxmox/pull/221).
+- proxmox_storage - fixed CIFS authentication by sending username and password parameters to proxmoxer (https://github.com/ansible-collections/community.proxmox/pull/214).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info, api_modify - add ``2g-probe-delay`` field to path ``interface wifi steering`` (https://github.com/ansible-collections/community.routeros/pull/428).
+- api_info, api_modify - add ``aaa.*``, ``channel.*``, ``datapath.*``, ``interworking.*``, ``security.*``, ``steering.*`` sub-fields to path ``interface wifi configuration`` (https://github.com/ansible-collections/community.routeros/pull/428).
+- api_info, api_modify - add ``deprioritize-unii-3-4``, ``reselect-interval``, ``reselect-time`` fields to path ``interface wifi channel`` (https://github.com/ansible-collections/community.routeros/pull/428).
+- api_info, api_modify - add ``multi-passphrase-group`` field to path ``interface wifi security`` (https://github.com/ansible-collections/community.routeros/pull/428).
+- api_info, api_modify - add ``send-email-from``, ``send-email-to`` and ``send-smtp-server`` to ``system watchdog`` (https://github.com/ansible-collections/community.routeros/pull/429).
+- api_info, api_modify - add ``traffic-processing`` field to path ``interface wifi datapath`` and ``interface wifi configuration`` (https://github.com/ansible-collections/community.routeros/pull/424).
+- api_info, api_modify - add ``use-bfd`` to ``routing ospf interface-template`` path (https://github.com/ansible-collections/community.routeros/pull/425).
+- api_info, api_modify - add ``vrf`` to ``ip service`` (https://github.com/ansible-collections/community.routeros/pull/426).
+- api_info, api_modify - add missing parameters to path ``interface bridge`` and ``interface bridge port`` (https://github.com/ansible-collections/community.routeros/pull/423).
+- api_info, api_modify - add support for path ``disk settings`` (https://github.com/ansible-collections/community.routeros/pull/422).
+
+community.sap_libs
+~~~~~~~~~~~~~~~~~~
+
+- sap_control_exec - Add local socket support (https://github.com/sap-linuxlab/community.sap_libs/pull/66)
+- sap_hostctrl_exec - Add new module and tests (https://github.com/sap-linuxlab/community.sap_libs/pull/67)
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Supported new modules to configure FortiProxy.
+- Supported new schemas in FortiManager 7.0.15, 7.4.8, 7.6.4.
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- storage_box - New module to create and manage Storage Boxes in Hetzner.
+- storage_box_info - New module to gather infos about Hetzner Storage Boxes.
+- storage_box_snapshot - New module to create and manage Storage Box Snapshots in Hetzner.
+- storage_box_snapshot_info - New module to gather infos about Hetzner Storage Box Snapshots.
+- storage_box_subaccount - New module to create and manage Storage Box Subaccounts in Hetzner.
+- storage_box_subaccount_info - New module to gather infos about Hetzner Storage Box Subaccounts.
+- storage_box_type_info - New module to gather infos about Hetzner Storage Box Types.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_ems_filter - new option `parameter_criteria` added in REST, requires ONTAP 9.13.1 or later.
+- na_ontap_net_ifgrp - Update `mode` parameter to specify allowed values.
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- all modules - add support for failure responses to include additional error details for easier troubleshooting.
+- na_sg_grid_alert_receiver - new option `smtp_username` and `smtp_password` added in place of `username` and `password`.
+- na_sg_grid_audit_destination - new option `access_logs_send`, `access_logs_facility`, and `access_logs_severity` added to manage access log settings for syslog server.
+- na_sg_grid_gateway - new option `closed_on_untrusted_client_network`. Requires StorageGRID 11.8 or later.
+- na_sg_grid_gateway - parameter `default_service_type` allows option for `management`. Requires StorageGRID 11.8 or later.
+- na_sg_grid_group - new option `manage_alerts` and `storage_admin` added to management policy.
+- na_sg_grid_info - Added new endpoints for the grid info.
+- na_sg_org_bucket - user input for `capacity_limit` option changed from bytes to GB.
+- na_sg_org_container - Enhanced the bucket policy.
+- na_sg_org_container - user input for `capacity_limit` option changed from bytes to GB.
+- na_sg_org_group - new options `s3_console` to control S3 console access and `view_all_containers` to view settings for all buckets added, requires StorageGRID version 11.8 or later.
+- na_sg_org_info - Added new endpoints for the org info.
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_ad - Added support for local servers using the ``server`` parameter.
+- purefb_ad - Added test and rotate states
+- purefb_ad - Remove doc references to FQDNs as SPNs are the required method.
+- purefb_ad - Updated encryption algorithms to use correct values
+- purefb_ds - Allow directory services to be modified for internal NFS servers
+- purefb_ds - Update test state to allow specific tests to be run
+- purefb_info - Added MAC address information for LAGs
+
+Deprecated Features
+-------------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- All module utils, plugin utils, and doc fragments will be made **private** in community.general 13.0.0. This means that they will no longer be part of the public API of the collection, and can have breaking changes even in bugfix releases. If you depend on importing code from the module or plugin utils, or use one of the doc fragments, please `comment in the issue to discuss this <https://github.com/ansible-collections/community.general/issues/11312>`__. Note that this does not affect any use of community.general in task files, roles, or playbooks (https://github.com/ansible-collections/community.general/issues/11312, https://github.com/ansible-collections/community.general/pull/11320).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_find_and_modify - the current defaults for ``ignore_dynamic`` and ``ignore_builtin`` (both ``false``) have been deprecated and will change to ``true`` in community.routeros 4.0.0. To avoid deprecation messages, please set the value explicitly to ``true`` or ``false``, if you have not already done so. We recommend to set them to ``true``, unless you have a good reason to set them to ``false`` (https://github.com/ansible-collections/community.routeros/pull/399).
+
+Bugfixes
+--------
+
+cisco.ios
+~~~~~~~~~
+
+- cisco.ios.ios_acls - Added support for converting numeric protocol values to real protocol options when gathered from the device.
+- cisco.ios.ios_acls - Gathered state showing incomplete configuration.
+- cisco.ios.ios_hsrp_intefaces - Considers version 1 as default if configuration does not specify version.
+- cisco.ios.ios_hsrp_intefaces - Corrects idempotency issue when version is not specified in configuration.
+- cisco.ios.ios_l2_interfaces - Moved mode parser to below the trunk parsers.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- iosxr_bgp_address_family - Fixed label generation command handling under `address_family` configuration.
+
+cisco.nxos
+~~~~~~~~~~
+
+- cisco.nxos.nxos_hsrp_intefaces - Considers version 1 as default if configuration does not specify version.
+- cisco.nxos.nxos_hsrp_intefaces - Corrects idempotency issue when version is not specified in configuration.
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- apk - fix ``packages`` return value for apk-tools >= 3 (Alpine 3.23) (https://github.com/ansible-collections/community.general/issues/11264).
+- iptables_state - refactor code to avoid writing unnecessary temporary files (https://github.com/ansible-collections/community.general/pull/11258).
+- keycloak_realm - fixed crash in ``sanitize_cr()`` when ``realmrep`` was ``None`` (https://github.com/ansible-collections/community.general/pull/11260).
+- keycloak_user_rolemapping module - fixed crash when assigning roles to users without an existing role (https://github.com/ansible-collections/community.general/issues/10960, https://github.com/ansible-collections/community.general/pull/11256).
+- listen_ports_facts - fix handling of empty PID lists when ``command=ss`` (https://github.com/ansible-collections/community.general/pull/11332).
+- monit - add delay of 0.5 seconds after state change and check for status (https://github.com/ansible-collections/community.general/pull/11255).
+- monit - internal state was not reflecting when operation is "pending" in ``monit`` (https://github.com/ansible-collections/community.general/pull/11245).
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- proxmox all - add missing timeout parameter to proxmoxer object creation (https://github.com/ansible-collections/community.proxmox/pull/218).
+- proxmox_ipam_info - fix bug where selecting by vmid did not work (https://github.com/ansible-collections/community.proxmox/pull/211).
+- proxmox_zone - fix validation logic for VXLAN zones to accept either ``fabric`` or ``peers`` parameter. Previously, only ``fabric`` was accepted, but Proxmox VE also supports creating VXLAN zones with a peer address list (https://github.com/ansible-collections/community.proxmox/issues/216).
+- remove wrong api endpoints and error messages from proxmod_node certificate management(https://github.com/ansible-collections/community.proxmox/pull/232).
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Improved the request sending logic in httpapi plugin.
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Resolved resource group creation with VSP 5XXX series storage systems.
+- Various playbook fixes and improvements.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_aggregate - fixed issue with disabling software encryption in REST.
+- na_ontap_cg_snapshot - fixed issue with ZAPI by removing default value for `consistency_type`.
+- na_ontap_cifs_local_group - fixed issue with idempotency.
+- na_ontap_firmware_upgrade - Updated documentation for `node` parameter and added examples.
+- na_ontap_job_schedule - Fix documentation formatting issue.
+- na_ontap_net_vlan - Fixed state detection when VLAN exists but is not in broadcast domain.
+- na_ontap_qtree - Updated documentation for 'unix_permissions' parameter to clarify its usage.
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- na_sg_grid_alert_receiver - correct example section in the module for better understanding.
+- na_sg_grid_autosupport - add support to handle error response from the API.
+- na_sg_grid_autosupport - fix issue with setting up `destinations` option in the module.
+- na_sg_grid_domain_name - fixed issue where additional domain names was not detected as changed.
+- na_sg_grid_group - fix issue where `activate_features` parameter was deprecated but still present in code.
+- na_sg_grid_group - fix typo in parameter mapping for `alarm_acknowledgement` option.
+- na_sg_grid_ha_group - correct documentation section in the module for better understanding.
+- na_sg_grid_identity_federation - fix issue with check mode response.
+- na_sg_grid_info - Fix issue where the module incorrectly reported tasks as changed.
+- na_sg_grid_regions - correct documentation section in the module for better understanding.
+- na_sg_org_identity_federation - fix issue with check mode response.
+- na_sg_org_info - Fix issue where the module incorrectly reported tasks as changed.
+- na_sg_org_user_s3_key - unique_user_name is fixed as in the documents
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_info - Added version check to ensure tags are only used in appropriate Purity versions
+- purefa_info - Fixed AttributeError when directory service role has no name
+- purefa_policy - Multiple syntax errors fixed in the password policy update section
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_alert - Fixed issue with syntax error in update function
+- purefb_bucket_replica - Fixed IndexError crash in check loop
+- purefb_bucket_replica - Fixed issue with ItemIterator error
+- purefb_pingtrace - Fiexed issue with XFM module when state is ping
+
+New Modules
+-----------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- community.general.ip2location_info - Retrieve IP geolocation information of a host's IP address.
+- community.general.sssd_info - Check SSSD domain status using D-Bus.
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- community.proxmox.proxmox_ceph_mds - Add or delete Ceph Mds.
+- community.proxmox.proxmox_ceph_mgr - Add or delete Ceph Manager.
+- community.proxmox.proxmox_ceph_mon - Add or delete Ceph Monitor.
+- community.proxmox.proxmox_sendkey - Send key presses to a Proxmox VM console.
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- fortinet.fortimanager.fmgr_devprof_log_syslogd_setting_logtemplates - System template log syslogd setting log templates
+- fortinet.fortimanager.fmgr_dynamic_log_npuserver_servergroup_dynamicmapping - Dynamic log npu server server group dynamic mapping
+- fortinet.fortimanager.fmgr_firewall_pfcp - Configure PFCP.
+- fortinet.fortimanager.fmgr_firewall_profileprotocoloptions_proxyredirect - Firewall profile protocol options proxy redirect
+- fortinet.fortimanager.fmgr_firewall_profileprotocoloptions_rtmp - RTMP.
+- fortinet.fortimanager.fmgr_firewall_proxyaddress6 - Firewall proxy address6
+- fortinet.fortimanager.fmgr_firewall_proxyaddress6_headergroup - Firewall proxy address6 header group
+- fortinet.fortimanager.fmgr_firewall_proxyaddress6_tagging - Firewall proxy address6 tagging
+- fortinet.fortimanager.fmgr_firewall_proxyaddrgrp6 - Firewall proxy addrgrp6
+- fortinet.fortimanager.fmgr_firewall_proxyaddrgrp6_tagging - Firewall proxy addrgrp6 tagging
+- fortinet.fortimanager.fmgr_firewall_shapingprofile_classes - Firewall shaping profile classes
+- fortinet.fortimanager.fmgr_firewall_sslsshprofile_sslclientcertificate - Firewall ssl ssh profile ssl client certificate
+- fortinet.fortimanager.fmgr_icap_remoteservergroup - Icap remote server group
+- fortinet.fortimanager.fmgr_icap_remoteservergroup_serverlist - Icap remote server group server list
+- fortinet.fortimanager.fmgr_isolator_profile - Isolator profile
+- fortinet.fortimanager.fmgr_isolator_profile_entries - Isolator profile entries
+- fortinet.fortimanager.fmgr_pkg_firewall_responseshapingpolicy - Policy package firewall response shaping policy
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_routerstatic - Configure static routes.
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_routervrf - Configure VRF.
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_systemdhcpserver - Configure DHCP servers.
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_systemdhcpserver_options - DHCP options.
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_systeminterface - Configure system interface on FortiSwitch.
+- fortinet.fortimanager.fmgr_switchcontroller_securitypolicy_localaccess - Configure allowaccess list for mgmt and internal interfaces on managed FortiSwitch units.
+- fortinet.fortimanager.fmgr_switchcontroller_switchprofile - Configure FortiSwitch switch profile.
+- fortinet.fortimanager.fmgr_system_dnsdatabase - Configure DNS databases.
+- fortinet.fortimanager.fmgr_system_dnsdatabase_dnsentry - DNS entry.
+- fortinet.fortimanager.fmgr_system_localinpolicy6_dport - Cli system local in policy6 dport
+- fortinet.fortimanager.fmgr_system_localinpolicy6_dst - Cli system local in policy6 dst
+- fortinet.fortimanager.fmgr_system_localinpolicy6_intf - Cli system local in policy6 intf
+- fortinet.fortimanager.fmgr_system_localinpolicy6_src - Cli system local in policy6 src
+- fortinet.fortimanager.fmgr_system_localinpolicy_dport - Cli system local in policy dport
+- fortinet.fortimanager.fmgr_system_localinpolicy_dst - Cli system local in policy dst
+- fortinet.fortimanager.fmgr_system_localinpolicy_intf - Cli system local in policy intf
+- fortinet.fortimanager.fmgr_system_localinpolicy_src - Cli system local in policy src
+- fortinet.fortimanager.fmgr_telemetrycontroller_agent - Configure FortiTelemetry agents managed by a FortiGate unit.
+- fortinet.fortimanager.fmgr_user_oidc - User oidc
+- fortinet.fortimanager.fmgr_vpn_certificate_hsmlocal - Local certificates whose keys are stored on HSM.
+- fortinet.fortimanager.fmgr_vpn_ipsec_manualkey - Configure IPsec manual keys.
+- fortinet.fortimanager.fmgr_vpn_ipsec_phase1 - Configure VPN remote gateway.
+- fortinet.fortimanager.fmgr_vpn_ipsec_phase1_ipv4excluderange - Configuration Method IPv4 exclude ranges.
+- fortinet.fortimanager.fmgr_vpn_ipsec_phase1_ipv6excluderange - Configuration method IPv6 exclude ranges.
+- fortinet.fortimanager.fmgr_vpn_kmipserver - KMIP server entry configuration.
+- fortinet.fortimanager.fmgr_vpn_kmipserver_serverlist - KMIP server list.
+- fortinet.fortimanager.fmgr_webfilter_domainlist - Webfilter domain list
+- fortinet.fortimanager.fmgr_webfilter_domainlist_entries - Webfilter domain list entries
+- fortinet.fortimanager.fmgr_webfilter_ftgdrisklevel - Configure FortiGuard Web Filter risk level.
+- fortinet.fortimanager.fmgr_webfilter_urllist - Webfilter url list
+- fortinet.fortimanager.fmgr_webfilter_urllist_entries - Webfilter url list entries
+- fortinet.fortimanager.fmgr_webproxy_explicitproxy - Web proxy explicit proxy
+- fortinet.fortimanager.fmgr_webproxy_redirectprofile - Web proxy redirect profile
+- fortinet.fortimanager.fmgr_webproxy_redirectprofile_entries - Web proxy redirect profile entries
+- fortinet.fortimanager.fmgr_ztna_serviceconnector - Ztna service connector
+- fortinet.fortimanager.fmgr_ztna_trafficforwardproxy - Configure ZTNA traffic forward proxy.
+- fortinet.fortimanager.fmgr_ztna_trafficforwardproxy_sslserverciphersuites - Ztna traffic forward proxy ssl server cipher suites
+- fortinet.fortimanager.fmgr_ztna_trafficforwardproxy_urlroute - Ztna traffic forward proxy url route
+- fortinet.fortimanager.fmgr_ztna_webportal - Configure ztna web-portal.
+- fortinet.fortimanager.fmgr_ztna_webportalbookmark - Configure ztna web-portal bookmark.
+- fortinet.fortimanager.fmgr_ztna_webportalbookmark_bookmarks - Bookmark table.
+- fortinet.fortimanager.fmgr_ztna_webproxy - Configure ZTNA web-proxy.
+- fortinet.fortimanager.fmgr_ztna_webproxy_apigateway - Set IPv4 API Gateway.
+- fortinet.fortimanager.fmgr_ztna_webproxy_apigateway6 - Set IPv6 API Gateway.
+- fortinet.fortimanager.fmgr_ztna_webproxy_apigateway6_realservers - Select the real servers that this Access Proxy will distribute traffic to.
+- fortinet.fortimanager.fmgr_ztna_webproxy_apigateway6_sslciphersuites - SSL/TLS cipher suites to offer to a server, ordered by priority.
+- fortinet.fortimanager.fmgr_ztna_webproxy_apigateway_realservers - Select the real servers that this Access Proxy will distribute traffic to.
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- netapp.storagegrid.na_sg_grid_firewall - NetApp StorageGRID manage node firewall.
+- netapp.storagegrid.na_sg_grid_login - Login to StorageGRID grid/tenant.
+- netapp.storagegrid.na_sg_grid_metrics - NetApp StorageGRID grab metrics.
+- netapp.storagegrid.na_sg_grid_recovery_package - Retrieve the recovery package from StorageGRID
+- netapp.storagegrid.na_sg_grid_ssh_security - Configure ssh security on StorageGRID.
+- netapp.storagegrid.na_sg_grid_untrusted_client_network - Configure untrusted Client Network on StorageGRID.
+- netapp.storagegrid.na_sg_org_cloud_mirror_replication - Manage Cloud Mirror Replication on StorageGRID.
+- netapp.storagegrid.na_sg_pge_info - NetApp StorageGRID node PGE information gatherer.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.1.2)
+- ansible.netcommon (still version 8.2.0)
+- ansible.posix (still version 2.1.0)
+- ansible.utils (still version 6.0.0)
+- ansible.windows (still version 3.3.0)
+- arista.eos (still version 12.0.0)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.12.0)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.13.0)
+- cisco.dnac (still version 6.43.0)
+- cisco.intersight (still version 2.12.0)
+- cisco.meraki (still version 2.21.9)
+- cisco.mso (still version 2.12.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.2)
+- community.aws (still version 10.0.0)
+- community.ciscosmb (still version 1.0.11)
+- community.docker (still version 5.0.4)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.7.0)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.0.0)
+- community.mongodb (still version 1.7.10)
+- community.mysql (still version 4.0.1)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxysql (still version 1.7.0)
+- community.rabbitmq (still version 1.6.0)
+- community.sops (still version 2.2.7)
+- community.vmware (still version 6.1.0)
+- community.windows (still version 3.1.0)
+- community.zabbix (still version 4.1.1)
+- containers.podman (still version 1.18.0)
+- cyberark.conjur (still version 1.3.9)
+- cyberark.pas (still version 1.0.36)
+- dellemc.enterprise_sonic (still version 3.2.0)
+- dellemc.openmanage (still version 10.0.1)
+- dellemc.powerflex (still version 3.0.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.39.0)
+- fortinet.fortios (still version 2.4.2)
+- google.cloud (still version 1.10.2)
+- grafana.grafana (still version 6.0.6)
+- hitachivantara.vspone_object (still version 1.1.1)
+- ibm.storage_virtualize (still version 3.1.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infinidat.infinibox (still version 1.6.3)
+- infoblox.nios_modules (still version 1.8.0)
+- inspur.ispim (still version 2.2.4)
+- junipernetworks.junos (still version 11.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.2.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.7.0)
+- microsoft.ad (still version 1.10.0)
+- microsoft.iis (still version 1.1.0)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.21.0)
+- ngine_io.cloudstack (still version 3.0.0)
+- openstack.cloud (still version 2.5.0)
+- ovirt.ovirt (still version 3.2.1)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.5.0)
+- theforeman.foreman (still version 5.7.0)
+- vmware.vmware (still version 2.6.0)
+- vmware.vmware_rest (still version 4.9.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v13.1.0
 =======
 
