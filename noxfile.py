@@ -17,3 +17,13 @@ def mkdocs(session: nox.Session):
 def lint(session: nox.Session):
     session.install("yamllint")
     session.run("yamllint", ".")
+
+
+@nox.session
+def zizmor(session: nox.Session):
+    args: list[str] = list(session.posargs)
+    if not any(a.startswith("--persona") for a in args):
+        args.append("--persona=regular")
+
+    session.install("zizmor")
+    session.run("zizmor", *args, ".github/workflows")
