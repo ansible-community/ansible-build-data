@@ -14,6 +14,9 @@ name: antsibull-build
     - cron: '0 4 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     name: 'Build Ansible community distribution (${{ matrix.name }})'
@@ -43,6 +46,7 @@ jobs:
           repository: ansible-community/antsibull-build
           ref: main
           path: antsibull-build
+          persist-credentials: false
 
       - name: Check out antsibull-core
         uses: actions/checkout@v6
@@ -50,6 +54,7 @@ jobs:
           repository: ansible-community/antsibull-core
           ref: main
           path: antsibull-core
+          persist-credentials: false
 
       - name: Check out antsibull-changelog
         uses: actions/checkout@v6
@@ -57,6 +62,7 @@ jobs:
           repository: ansible-community/antsibull-changelog
           ref: main
           path: antsibull-changelog
+          persist-credentials: false
 
       - name: Check out antsibull-docutils
         uses: actions/checkout@v6
@@ -64,6 +70,7 @@ jobs:
           repository: ansible-community/antsibull-docutils
           ref: main
           path: antsibull-docutils
+          persist-credentials: false
 
       - name: Check out antsibull-fileutils
         uses: actions/checkout@v6
@@ -71,6 +78,7 @@ jobs:
           repository: ansible-community/antsibull-fileutils
           ref: main
           path: antsibull-fileutils
+          persist-credentials: false
 
       - name: Pre-create build directory
         run: mkdir -p antsibull-build/build
@@ -80,6 +88,7 @@ jobs:
         uses: actions/checkout@v6
         with:
           path: antsibull-build/build/ansible-build-data
+          persist-credentials: false
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v6

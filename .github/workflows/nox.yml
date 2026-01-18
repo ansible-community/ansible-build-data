@@ -14,6 +14,9 @@ name: nox
     - cron: '15 4 * * 4'
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 env:
   FORCE_COLOR: "1"
 
@@ -29,12 +32,15 @@ jobs:
         include:
           - session: lint
             python-versions: "3.13"
+          - session: zizmor
+            python-versions: "3.13"
     name: "Run nox ${{ matrix.session }} session"
     steps:
       - name: Check out ansible-build-data
         uses: actions/checkout@v6
         with:
           path: ansible-build-data
+          persist-credentials: false
       - name: Setup nox
         uses: wntrblm/nox@2025.11.12
         with:
