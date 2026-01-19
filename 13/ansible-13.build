@@ -80,6 +80,7 @@ netbox.netbox: >=3.21.0,<4.0.0
 ngine_io.cloudstack: >=3.0.0,<4.0.0
 openstack.cloud: >=2.5.0,<3.0.0
 ovirt.ovirt: >=3.2.0,<4.0.0
+pcg.alpaca_operator: >=2.1.1,<3.0.0
 purestorage.flasharray: >=1.39.0,<2.0.0
 purestorage.flashblade: >=1.22.0,<2.0.0
 ravendb.ravendb: >=1.0.0,<2.0.0
