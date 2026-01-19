@@ -292,6 +292,10 @@ collections:
   ovirt.ovirt:
     repository: https://github.com/ovirt/ovirt-ansible-collection
     tag_version_regex: "^(.*)-1$"
+  pcg.alpaca_operator:
+    repository: https://github.com/Public-Cloud-Group/alpaca-operator-ansible
+    maintainers:
+      - JanKarstenHansmeyer
   purestorage.flasharray:
     repository: https://github.com/Pure-Storage-Ansible/FlashArray-Collection
   purestorage.flashblade:
