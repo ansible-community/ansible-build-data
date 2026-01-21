@@ -268,6 +268,11 @@ collections:
       - wenjun666
       - chuyich
     repository: https://github.com/ansible-collections/netapp.cloudmanager
+    removal:
+      major_version: 15
+      reason: considered-unmaintained
+      announce_version: 13.3.0
+      discussion: https://forum.ansible.com/t/44891
   netapp.ontap:
     maintainers:
       - carchi8py
