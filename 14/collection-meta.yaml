@@ -78,6 +78,8 @@ collections:
     maintainers:
       - qaxi
     repository: https://github.com/ansible-collections/community.ciscosmb
+  community.clickhouse:
+    repository: https://github.com/ansible-collections/community.clickhouse
   community.crypto:
     repository: https://github.com/ansible-collections/community.crypto
   community.dns:

@@ -20,6 +20,7 @@ cisco.ucs
 cloudscale_ch.cloud
 community.aws
 community.ciscosmb
+community.clickhouse
 community.crypto
 community.dns
 community.docker
