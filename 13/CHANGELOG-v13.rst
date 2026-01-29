@@ -7,6 +7,610 @@ This changelog describes changes since Ansible 12.0.0.
 .. contents::
   :depth: 2
 
+v13.3.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-01-29
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- community.clickhouse (version 2.0.0)
+- pcg.alpaca_operator (version 2.1.1)
+
+Ansible-core
+------------
+
+Ansible 13.3.0 contains ansible-core version 2.20.2.
+This is a newer version than version 2.20.1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                  | Ansible 13.2.0 | Ansible 13.3.0 | Notes                                                                                                                        |
++=============================+================+================+==============================================================================================================================+
+| amazon.aws                  | 10.1.2         | 10.2.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.netcommon           | 8.2.0          | 8.2.1          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.utils               | 6.0.0          | 6.0.1          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| azure.azcollection          | 3.12.0         | 3.14.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.dnac                  | 6.43.0         | 6.44.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki                | 2.21.9         | 2.22.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.nxos                  | 11.1.1         | 11.1.3         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cloudscale_ch.cloud         | 2.5.2          | 2.5.3          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.clickhouse        |                | 2.0.0          | The collection was added to Ansible                                                                                          |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns               | 3.4.2          | 3.5.1          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker            | 5.0.4          | 5.0.5          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general           | 12.2.0         | 12.3.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mongodb           | 1.7.10         | 1.7.11         | There are no changes recorded in the changelog.                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros          | 3.15.0         | 3.16.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware            | 6.1.0          | 6.2.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman           | 1.18.0         | 1.18.1         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| google.cloud                | 1.10.2         | 1.11.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| hetzner.hcloud              | 6.3.0          | 6.7.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ibm.storage_virtualize      | 3.1.0          | 3.2.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| infoblox.nios_modules       | 1.8.0          | 1.9.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netbox.netbox               | 3.21.0         | 3.22.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ovirt.ovirt                 | 3.2.1          | 3.2.2          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| pcg.alpaca_operator         |                | 2.1.1          | The collection was added to Ansible                                                                                          |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade      | 1.23.1         | 1.24.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| telekom_mms.icinga_director | 2.5.0          | 2.5.1          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman          | 5.7.0          | 5.8.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware               | 2.6.0          | 2.7.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- Bump required ``vmware.vmware`` collection version to 2.5.0 (https://github.com/ansible-collections/community.vmware/pull/2503).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Rewrite podman and buildah connections
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Replace RHEL 10.0 remote with 10.1.
+- ansible-test - Replace RHEL 9.6 remote with 9.7.
+
+amazon.aws
+~~~~~~~~~~
+
+- Add support for the io2 storage type for RDS (https://github.com/ansible-collections/amazon.aws/pull/2748).
+- ec2_launch_template - increase GP3 volume ``throughput`` limits in line with updated AWS limits (https://github.com/ansible-collections/amazon.aws/pull/2749).
+- ec2_vol - increase ``throughput`` and ``iops`` limits for GP3 volumes in line with updated AWS limits (https://github.com/ansible-collections/amazon.aws/pull/2749).
+- module_utils.s3 - added "501" to the list of error codes thrown by S3 replacements (https://github.com/ansible-collections/amazon.aws/issues/2447).
+- module_utils/_s3/common - use ``is_boto3_error_httpstatus`` to handle HTTP 403 and 501 status codes from S3-compatible services (https://github.com/ansible-collections/amazon.aws/pull/2776).
+- module_utils/botocore - add ``is_boto3_error_httpstatus`` helper function to catch boto3 exceptions based on HTTP status codes (https://github.com/ansible-collections/amazon.aws/pull/2776).
+- route53 - added ``record_values`` key to ``resource_record_sets`` return value that can be accessed using Jinja2 dot notation (https://github.com/ansible-collections/amazon.aws/pull/2772).
+- sts_assume_role - improve error handling for ``MalformedPolicyDocument`` errors by providing a clearer error message when an invalid policy document is provided (https://github.com/ansible-collections/amazon.aws/pull/2778).
+
+cisco.dnac
+~~~~~~~~~~
+
+- Added 'template_content_file_path'  attribute in template_workflow_manager module
+- Changes in accesspoint_location_workflow_manager module
+- Changes in accesspoint_workflow_manager module
+- Changes in application_policy_workflow_manager module
+- Changes in assurance_device_health_score_settings_workflow_manager module
+- Changes in assurance_icap_settings_workflow_manager module
+- Changes in device_conigs_backup_workflow_manager module
+- Changes in inventory_workflow_manager module
+- Changes in network_settings_workflow_manager module
+- Changes in provision_workflow_manager module
+- Changes in reports_workflow_manager module
+- Changes in sda_fabric_mulitcast_workflow_manager module
+- Changes in sda_fabric_sites_zones_workflow_manager module
+- Changes in site_workflow_manager module
+- Changes in swim_workflow_manager module
+- Changes in template_workflow_manager module
+- Changes in user_role_workflow_manager module
+- Changes in wireless_design_workflow_manager module
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- Updated with v1.66.0 dashboard API, adding new plugins and fixing bugs.
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- Added missing param when creating a health monitor
+
+community.dns
+~~~~~~~~~~~~~
+
+- Hetzner DNS modules and plugins - support the `new Hetzner DNS API <https://docs.hetzner.com/networking/dns/faq/beta/>`__ (https://github.com/ansible-collections/community.dns/pull/301).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- alicloud_ecs module utils - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- android_sdk - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- archive - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- bitbucket_pipeline_known_host - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- chroot connection plugin - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- cobbler inventory plugin - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- copr - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- cronvar - simplify handling unknown exceptions (https://github.com/ansible-collections/community.general/pull/11340).
+- cronvar - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- crypttab - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- elasticsearch_plugin - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- gitlab_group - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- gitlab_issue - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- gitlab_merge_request - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- gitlab_project - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- gunicorn - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- htpasswd - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- idrac_redfish_info - add multiple manager support to ``GetManagerAttributes`` command (https://github.com/ansible-collections/community.general/pull/11294).
+- imc_rest - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- incus connection plugin - improve code readability (https://github.com/ansible-collections/community.general/pull/11346).
+- incus connection plugin - simplify regular expression matching commands (https://github.com/ansible-collections/community.general/pull/11347).
+- ini_file - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- interfaces_file - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- iptables_state - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- jail connection plugin - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- jenkins_credential - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- jenkins_plugin - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- jenkins_script - move ``import`` statemetns to the top of the file (https://github.com/ansible-collections/community.general/pull/11396).
+- kdeconfig - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- known_hosts module utils - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- layman - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- linode - move ``import`` statemetns to the top of the file (https://github.com/ansible-collections/community.general/pull/11396).
+- linode inventory plugin - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- listen_ports_facts - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- locale_gen - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- logentries callback plugin - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- lvm_pv - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11343).
+- lxc connection plugin - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- lxd inventory plugin - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- lxd module utils - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- manageiq module utils - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- manageiq_alert_profiles - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- modprobe - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- mssql_db - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- nagios - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- netcup_dns - support diff mode (https://github.com/ansible-collections/community.general/pull/11376).
+- nmcli - add idempotency check (https://github.com/ansible-collections/community.general/pull/11114).
+- nmcli - add support for IPv6 routing rules (https://github.com/ansible-collections/community.general/issues/7094, https://github.com/ansible-collections/community.general/pull/11413).
+- nosh - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- nsupdate - add support for server FQDN and the GSS-TSIG key algorithm (https://github.com/ansible-collections/community.general/issues/5730, https://github.com/ansible-collections/community.general/pull/11425).
+- nsupdate modules plugin - replace aliased errors with proper Python error (https://github.com/ansible-collections/community.general/pull/11391).
+- oci_utils module utils - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- omapi_host - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- one_image - move ``import`` statemetns to the top of the file (https://github.com/ansible-collections/community.general/pull/11396).
+- one_image_info - move ``import`` statemetns to the top of the file (https://github.com/ansible-collections/community.general/pull/11396).
+- one_service - move ``import`` statemetns to the top of the file (https://github.com/ansible-collections/community.general/pull/11396).
+- one_vm - move ``import`` statemetns to the top of the file (https://github.com/ansible-collections/community.general/pull/11396).
+- one_vm - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- opennebula inventory plugin - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- pam_limits - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- pamd - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- parted - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- pmem - simplify text tests without using regular expression (https://github.com/ansible-collections/community.general/pull/11388).
+- pubnub_blocks - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- pulp_repo - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- read_csv - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- redfish_utils module utils - adds support of ``@Redfish.Settings`` in ``ComputerSystem`` attributes for ``set_boot_override`` function (https://github.com/ansible-collections/community.general/issues/11297, https://github.com/ansible-collections/community.general/pull/11322).
+- redhat_subscription - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- rhsm_repository - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- runit - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- scaleway_ip - added ``project`` parameter (https://github.com/ansible-collections/community.general/issues/11367, https://github.com/ansible-collections/community.general/pull/11368).
+- scaleway_security_group - added ``project`` parameter (https://github.com/ansible-collections/community.general/issues/11364, https://github.com/ansible-collections/community.general/pull/11366).
+- sensu_check - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- sensu_client - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- sensu_handler - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- sensu_subscription - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- seport - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- serverless - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- slackpkg - refactor function ``query_packages()`` (https://github.com/ansible-collections/community.general/pull/11390).
+- solaris_zone - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- sorcery - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- spotinst_aws_elastigroup - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- sudoers - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- svc - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- timestamp callback plugin - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- timezone - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- univention_umc module utils - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- wakeonlan - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- wsl connection plugin - add option ``wsl_remote_ssh_shell_type``. Support PowerShell in addition to cmd as the Windows shell (https://github.com/ansible-collections/community.general/issues/11307, https://github.com/ansible-collections/community.general/pull/11308).
+- wsl connection plugin - replace aliased errors with proper Python error (https://github.com/ansible-collections/community.general/pull/11391).
+- wsl connection plugin - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- xfs_quota - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- yaml cache plugin - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- zone connection plugin - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11341).
+- zypper - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+- zypper_repository - update to Python 3.7 idioms (https://github.com/ansible-collections/community.general/pull/11344).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info, api_modify - add ``prefix-pool`` field to and fix default of ``address-pool`` for ``ipv6 dhcp-server`` path (https://github.com/ansible-collections/community.routeros/pull/430).
+- api_info, api_modify - add support for path ``ip socks access`` (https://github.com/ansible-collections/community.routeros/pull/431).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add configuration for new Ansible release
+- Fix CI of Podman Search modul
+- add passthrough and none log driver options
+
+google.cloud
+~~~~~~~~~~~~
+
+- gcp_cloudbuildv2_* - added gcp_cloudbuildv2_connection and gcp_cloudbuildv2_repository modules (https://github.com/ansible-collections/google.cloud/pull/729).
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- All ``module_utils`` are now marked as **private**. None of the modules were intended for public use.
+- floating_ip - Unassign Floating IP before deleting it.
+- primary_ip - Added the Primary IP ``location`` name to the return values (``hcloud_primary_ip.location``).
+- primary_ip - Added the ``location`` argument to create a Primary IP in a specific location.
+- primary_ip - Unassign Primary IP before deleting it.
+- primary_ip_info - Added the Primary IPs ``location`` name to the return values (``hcloud_primary_ip_info[].location``).
+- server - Rebuilding a Server now supports the ``user_data`` argument.
+- storage_box - The module is no longer marked as experimental.
+- storage_box_info - The module is no longer marked as experimental.
+- storage_box_snapshot - The module is no longer marked as experimental.
+- storage_box_snapshot_info - The module is no longer marked as experimental.
+- storage_box_subaccount - Replace the label based name workaround, with the new Storage Box Subaccount name property in the API.
+- storage_box_subaccount - The module is no longer marked as experimental.
+- storage_box_subaccount_info - Replace the label based name workaround, with the new Storage Box Subaccount name property in the API.
+- storage_box_subaccount_info - The module is no longer marked as experimental.
+- storage_box_type_info - The module is no longer marked as experimental.
+
+ibm.storage_virtualize
+~~~~~~~~~~~~~~~~~~~~~~
+
+- ibm_sv_manage_replication_policy - Enabled support for logging in via partition ip
+- ibm_svc_manage_volume - Added support for autoexpand, preferrednode and cache parameters
+
+infoblox.nios_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- CI/CD - Added PyGObject support and improved dependency handling
+- nios_dtc_lbdn - Added support for auth_zones with enhanced change detection for string and object formats, including proper handling when entries are removed
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Add integration tests for contact groups
+- Add support for custom headers for all modules
+- Change `netbox_contact.contact_group` to `contact_groups`
+- Fix ansible-bad-import-from pylint errors
+- Fix broken code path when using old api path on old netbox systems
+- Make the unit-test data structures more flexible.
+- Remove abandoned unit-test data.
+- add workaround to _build_query_params for services and Netbox 4.3.0 - 4.4.3 (wrong parent_object_type data type)
+- add yamllint to project pipeline.
+- improve version_check_greater to be more universal
+- netbox_circuit_termination - Add parameters termination_id and termination_type for NetBox 4.2+
+- netbox_tag - Add support for object_types on tags
+- rename variable full_version to netbox_version.
+- rename variable version to api_version.
+- sanitize netbox versions received from api
+- test suite expanded to run on Python 3.11, 3.12, and 3.13.
+- user.groups, user.permissions, user_group.permissions, permission.actions, and permission.object_types are now treated as unordered sets for update comparison purposes.
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- Fix linting issues `(can only concatenate list (not "UndefinedMarker") to list)` (https://github.com/oVirt/ovirt-ansible-collection/pull/771)
+- Remove product type in engine_setup role as Red Hat Virtualization is no longer supported (https://github.com/oVirt/ovirt-ansible-collection/pull/779)
+- Rework hosted_engine_setup to support new ovirt-engine-appliance(s) built with kiwi  (https://github.com/oVirt/ovirt-ansible-collection/pull/778)
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- activation_key - add ``content_view_environments`` parameter to support multi CV (https://github.com/theforeman/foreman-ansible-modules/pull/1935)
+- job_invocation - add ``feature`` parameter (https://github.com/theforeman/foreman-ansible-modules/pull/1923)
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- Add module vm_snapshot_revert to revert a virtual machine to a snapshot. Fixes https://github.com/ansible-collections/vmware.vmware/issues/281
+
+Deprecated Features
+-------------------
+
+- The ``netapp.cloudmanager`` collection is considered unmaintained and will be removed from Ansible 15 if no one starts maintaining it again before Ansible 15.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/44891 <https://forum.ansible.com/t/44891>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install netapp.cloudmanager``.
+
+amazon.aws
+~~~~~~~~~~
+
+- ec2_vpc_dhcp_option - the ``dhcp_config`` return value has been deprecated and will be removed in a release after 2026-12-01. Use ``dhcp_options`` instead (https://github.com/ansible-collections/amazon.aws/pull/2772).
+- ec2_vpc_dhcp_option_info - the ``dhcp_config`` return value has been deprecated and will be removed in a release after 2026-12-01. Use ``dhcp_options`` instead (https://github.com/ansible-collections/amazon.aws/pull/2772).
+- route53 - the ``values`` key in the ``resource_record_sets`` return value has been deprecated in favor of ``record_values`` for Jinja2 compatibility. The ``values`` key will be removed in a release after 2026-12-01 (https://github.com/ansible-collections/amazon.aws/pull/2772).
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- hcloud inventory - The ``hcloud_datacenter`` host variable is deprecated and will be removed after 1 July 2026. Please use the ``hcloud_location`` host variable instead.
+- network_info - The ``hcloud_network_info[].servers[].datacenter`` return value is deprecated and will be removed after 1 July 2026. Please use the ``hcloud_network_info[].servers[].location`` return value instead.
+- primary_ip - The ``datacenter`` argument is deprecated and will be removed after 1 July 2026. Please use the ``location`` argument instead.
+- primary_ip - The ``hcloud_primary_ip.datacenter`` return value is deprecated and will be removed after 1 July 2026. Please use the ``hcloud_primary_ip.location`` return value instead.
+- primary_ip_info - The ``hcloud_primary_ip_info[].datacenter`` return value is deprecated and will be removed after 1 July 2026. Please use the ``hcloud_primary_ip_info[].location`` return value instead.
+- server - The ``datacenter`` argument is deprecated and will be removed after 1 July 2026. Please use the ``location`` argument instead.
+- server - The ``hcloud_server.datacenter`` return value is deprecated and will be removed after 1 July 2026. Please use the ``hcloud_server.location`` return value instead.
+- server_info - The ``hcloud_server_info[].datacenter`` return value is deprecated and will be removed after 1 July 2026. Please use the ``hcloud_server_info[].location`` return value instead.
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Fix Windows LIB env var corruption (https://github.com/ansible-collections/ansible.windows/issues/297).
+- ``ansible``, ``ansible-console`` - fix executing ``- meta: end_play`` tasks.
+- ansible-test - Upgrade ``expat`` during provisioning of Fedora 42 remote instances.
+- ansible_local will no longer trigger variable injection default value deprecation.
+- copy - when a single-file local directory was specified as the source, ``changed`` used to be ``false`` even when the source was actually copied. It now makes sure ``changed`` is ``true`` in this case. (https://github.com/ansible/ansible/issues/85833)
+- deb822_repository - Remove ``Install-Python-Debian`` from files outputed by the ``deb822_repository`` module (https://github.com/ansible/ansible/issues/86395)
+- dnf - When installing a dnf module, install and enable when missing, upgrade when present (https://github.com/ansible/ansible/issues/73457)
+- dnf - fix package installation when specifying architecture without version (e.g., ``libgcc.i686``) where a different architecture of the same package is already installed (https://github.com/ansible/ansible/issues/86156).
+- package, service, gather_facts - fix templating module_defaults for modules executed by these action plugins. (https://github.com/ansible/ansible/issues/85848)
+- winrm - Provide a better error message if a domain user is specified using a User Principal Name (``UPN``) but the ``pykerberos`` library is not installed so Kerberos is unavailable.
+
+amazon.aws
+~~~~~~~~~~
+
+- connection/aws_ssm - fixed ReferenceError in aws_ssm connection plugin destructor during interpreter shutdown (https://github.com/ansible-collections/amazon.aws/issues/2728).
+- lambda_info - fixed invalid return value documentation that used dot notation (``function.TheName``) which cannot be used in Jinja2 templates (https://github.com/ansible-collections/amazon.aws/pull/2772).
+- s3_bucket - fix error when configuring AES256 bucket encryption with ``bucket_key_enabled`` explicitly set to ``false`` (https://github.com/ansible-collections/amazon.aws/issues/2734).
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- Adds backward compatibility of handling src attributes, functional consistency with ansible-core >= 2.19
+- Adds deprecation warning for the jinja2 processing functionality for src attributes, src attributes in collections would still support considering file path but they would not process template files directly once the functionality is deprecated.
+- It is suggested to use ansible.builtin.template module to process templates and use the processed template path in src attributes.
+
+ansible.utils
+~~~~~~~~~~~~~
+
+- Add a cleanup step that removes empty {} and [] values from lists in keep_keys_from_dict_n_list()
+
+cisco.nxos
+~~~~~~~~~~
+
+- Fixed nxos_facts module so it can handle VLAN interface facts without any issue even if addr is not defined
+- Fixed nxos_static_routes module so to handle replaced and overridden state with vrf configuration.
+- cisco.nxos.nxos_facts - Fix AttributeError when interface has multiple IPv6 addrs and handle ROW_addr as list.
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+- converter module utils - add ``stacklevel=2`` to Python warnings. This affects third-party users of the module utils outside this collection (https://github.com/ansible-collections/community.dns/pull/310).
+- hetzner_dns_record_set, hosttech_dns_record_set - fix ``on_existing != 'replace'`` mis-triggering when ``state=absent`` and the values to delete do not show up in the list of records (https://github.com/ansible-collections/community.dns/pull/301).
+- hosttech_record_sets, hetzner_record_sets - ensure stable order also with Python < 3.6 (https://github.com/ansible-collections/community.dns/pull/301).
+- lookup_rfc8427 lookup plugin - remove unused code (https://github.com/ansible-collections/community.dns/pull/308).
+- remove_public_suffix filter plugin - fix plugin name in error message (https://github.com/ansible-collections/community.dns/pull/308).
+- remove_registrable_domain filter plugin - fix plugin name in error message (https://github.com/ansible-collections/community.dns/pull/308).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- modules and plugins using the Docker SDK for Python - do not automatically set ``tls_hostname`` when ``validate_certs=true`` for Docker SDK for Python 7.0.0+ (https://github.com/ansible-collections/community.docker/issues/1225, https://github.com/ansible-collections/community.docker/pull/1226).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- cloudflare_dns - also allow ``flag=128`` for CAA records (https://github.com/ansible-collections/community.general/issues/11355, https://github.com/ansible-collections/community.general/pull/11377).
+- gem - add compatibility with Ruby 4 rubygems (https://github.com/ansible-collections/community.general/issues/11397, https://github.com/ansible-collections/community.general/pull/11442).
+- incus connection plugin - fix parsing of commands for Windows, enforcing a ``\`` after the drive letter and colon symbol (https://github.com/ansible-collections/community.general/pull/11347).
+- keycloak_client - fix idempotency bug caused by ``null`` client attribute value differences for non-existing client attributes (https://github.com/ansible-collections/community.general/issues/11443, https://github.com/ansible-collections/community.general/pull/11444).
+- logstash_plugin - fix argument order when using ``version`` parameter. The plugin name must come after options like ``--version`` for the ``logstash-plugin`` CLI to work correctly (https://github.com/ansible-collections/community.general/issues/10745, https://github.com/ansible-collections/community.general/pull/11440).
+- pmem - fix test for invalid data input (https://github.com/ansible-collections/community.general/pull/11388).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_guest_storage_policy - Fix storage policy search to return None if no policies are found, instead of causing an exception. fixes https://github.com/ansible-collections/community.vmware/issues/2527
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Fix idempotency for tagging local images
+- Fix image idempotency in pull
+- Fix issue with --rm and service in Quadlet
+- fix(podman_prune) set top-level changed status
+
+google.cloud
+~~~~~~~~~~~~
+
+- connection plugin - fix attribute error when using reset_connection (https://github.com/ansible-collections/google.cloud/issues/737).
+- connection plugin - fix ssh error in tasks with loops (https://github.com/ansible-collections/google.cloud/issues/738).
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- Invalid redirects for Storage Box modules are now fixed by using fully qualified module names.
+
+infoblox.nios_modules
+~~~~~~~~~~~~~~~~~~~~~
+
+- Fixed sanity and unit test execution in CI pipeline
+- Fixed transform functions to handle ``None`` parameters and apply default values correctly
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Add netbox version check to support service creation for netbox version prior of 4.3
+- Fix integration test for circuit termination, missing assignment
+- Fix integration test for service
+- Fix task duplicate task name in documentation that cause ansible-lint error
+- Fix typos in tag integration tests.
+- Support for related_object_filter when related_object_type is "object"
+- Use dedicated function to check netbox version istead of self.full_version for rack.
+- add parent_object_type and parent_object_id to services ALLOWED_QUERY_PARAMS
+- nb_device_interface: Fix specifying primary_mac_address objects by id for disambiguation
+- nb_inventory - Fix service collection for version greater than 4.3
+- nb_inventory - Fixed empty inventory results when netbox server URL is a non-root path
+- netbox_service - Fix issue 1426 - broken netbox_service module
+
+ovirt.ovirt
+~~~~~~~~~~~
+
+- Fix missing cluster name when starting VM (https://github.com/oVirt/ovirt-ansible-collection/pull/780)
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefb_ad - Ensure encryption algorithms used match the GUI values
+- purefb_certs - Fix the syntax to generate a CSR
+- purefb_ds - Fixed issue when creating pre-enabled management directory service
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- deploy_folder_template - Fixed issue where the vm folder was being cached in the placement service, causing the module to skip the template folder lookup and fail. Fixes https://github.com/ansible-collections/vmware.vmware/issues/292
+- import_content_library_ovf - Fixed issue where OVFs with .nvram files failed to import Fixes https://github.com/ansible-collections/vmware.vmware/issues/257
+- vm - Fixed issue where error handling failed when state is absent
+- vm - Remove check that prevents memory from being decreased regardless of power state. Fixes https://github.com/ansible-collections/vmware.vmware/issues/298
+- vm_apply_customization - Fixed issue where the product ID, user name, and user org name were required by the API but not by the module
+
+New Plugins
+-----------
+
+Filter
+~~~~~~
+
+- community.general.to_toml - Convert variable to TOML string.
+
+New Modules
+-----------
+
+ibm.storage_virtualize
+~~~~~~~~~~~~~~~~~~~~~~
+
+- ibm.storage_virtualize.ibm_sv_manage_clone - This module manages clone and thinclone of volume and volumegroup.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- netbox.netbox.netbox_contact_assignment - Manage contact assignments in NetBox
+- netbox.netbox.netbox_data_source - Manage data sources in NetBox
+
+Unchanged Collections
+---------------------
+
+- ansible.posix (still version 2.1.0)
+- ansible.windows (still version 3.3.0)
+- arista.eos (still version 12.0.0)
+- awx.awx (still version 24.6.1)
+- check_point.mgmt (still version 6.8.0)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.13.0)
+- cisco.intersight (still version 2.12.0)
+- cisco.ios (still version 11.2.0)
+- cisco.iosxr (still version 12.1.1)
+- cisco.mso (still version 2.12.0)
+- cisco.ucs (still version 1.16.0)
+- community.aws (still version 10.0.0)
+- community.ciscosmb (still version 1.0.11)
+- community.crypto (still version 3.1.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.7.0)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.0.0)
+- community.mysql (still version 4.0.1)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxmox (still version 1.5.0)
+- community.proxysql (still version 1.7.0)
+- community.rabbitmq (still version 1.6.0)
+- community.sap_libs (still version 1.6.0)
+- community.sops (still version 2.2.7)
+- community.windows (still version 3.1.0)
+- community.zabbix (still version 4.1.1)
+- cyberark.conjur (still version 1.3.9)
+- cyberark.pas (still version 1.0.36)
+- dellemc.enterprise_sonic (still version 3.2.0)
+- dellemc.openmanage (still version 10.0.1)
+- dellemc.powerflex (still version 3.0.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.39.0)
+- fortinet.fortimanager (still version 2.12.0)
+- fortinet.fortios (still version 2.4.2)
+- grafana.grafana (still version 6.0.6)
+- hitachivantara.vspone_block (still version 4.5.1)
+- hitachivantara.vspone_object (still version 1.1.1)
+- ieisystem.inmanage (still version 4.0.0)
+- infinidat.infinibox (still version 1.6.3)
+- inspur.ispim (still version 2.2.4)
+- junipernetworks.junos (still version 11.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.2.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.7.0)
+- microsoft.ad (still version 1.10.0)
+- microsoft.iis (still version 1.1.0)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.3.0)
+- netapp.storagegrid (still version 21.16.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- ngine_io.cloudstack (still version 3.0.0)
+- openstack.cloud (still version 2.5.0)
+- purestorage.flasharray (still version 1.41.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 4.0.0)
+- vmware.vmware_rest (still version 4.9.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v13.2.0
 =======
 
