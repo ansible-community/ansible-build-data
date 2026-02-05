@@ -1,2 +1,0 @@
-# Until community.aws 11.0.0 has been released, restrict amazon.aws to 10.x.y
-amazon.aws: <11.0.0
