@@ -27,9 +27,6 @@ collections:
     repository: https://github.com/ansible-collections/ansible.windows
   arista.eos:
     repository: https://github.com/ansible-collections/arista.eos
-  awx.awx:
-    repository: https://github.com/ansible/awx
-    collection-directory: "./awx_collection"
   azure.azcollection:
     repository: https://github.com/ansible-collections/azure
   check_point.mgmt:
@@ -336,6 +333,17 @@ collections:
   wti.remote:
     repository: https://github.com/wtinetworkgear/wti-collection
 removed_collections:
+  awx.awx:
+    repository: https://github.com/ansible/awx
+    collection-directory: "./awx_collection"
+    removal:
+      version: 14.0.0a1
+      reason: other
+      discussion: https://forum.ansible.com/t/44706
+      reason_text: >
+        The collection is undergoing a heavy
+        L(refactoring, https://forum.ansible.com/t/7404) and currently does not align with the standards
+        for the community package.
   cisco.asa:
     repository: https://github.com/ansible-collections/cisco.asa
     removal:

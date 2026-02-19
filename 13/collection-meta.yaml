@@ -30,6 +30,15 @@ collections:
   awx.awx:
     repository: https://github.com/ansible/awx
     collection-directory: "./awx_collection"
+    removal:
+      major_version: 14
+      reason: other
+      announce_version: 13.4.0
+      discussion: https://forum.ansible.com/t/44706
+      reason_text: >
+        The collection is undergoing a heavy
+        L(refactoring, https://forum.ansible.com/t/7404) and currently does not align with the standards
+        for the community package.
   azure.azcollection:
     repository: https://github.com/ansible-collections/azure
   check_point.mgmt:

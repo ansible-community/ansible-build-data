@@ -4,7 +4,6 @@ ansible.posix
 ansible.utils
 ansible.windows
 arista.eos
-awx.awx
 azure.azcollection
 check_point.mgmt
 chocolatey.chocolatey
