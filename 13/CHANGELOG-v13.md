@@ -2,77 +2,811 @@
 
 This changelog describes changes since Ansible 12\.0\.0\.
 
-- <a href="#v13-3-0">v13\.3\.0</a>
+- <a href="#v13-4-0">v13\.4\.0</a>
     - <a href="#release-summary">Release Summary</a>
-    - <a href="#added-collections">Added Collections</a>
     - <a href="#ansible-core">Ansible\-core</a>
     - <a href="#changed-collections">Changed Collections</a>
     - <a href="#major-changes">Major Changes</a>
     - <a href="#minor-changes">Minor Changes</a>
     - <a href="#deprecated-features">Deprecated Features</a>
+    - <a href="#security-fixes">Security Fixes</a>
     - <a href="#bugfixes">Bugfixes</a>
     - <a href="#new-plugins">New Plugins</a>
     - <a href="#new-modules">New Modules</a>
     - <a href="#unchanged-collections">Unchanged Collections</a>
-- <a href="#v13-2-0">v13\.2\.0</a>
+- <a href="#v13-3-0">v13\.3\.0</a>
     - <a href="#release-summary-1">Release Summary</a>
+    - <a href="#added-collections">Added Collections</a>
     - <a href="#ansible-core-3">Ansible\-core</a>
     - <a href="#changed-collections-1">Changed Collections</a>
     - <a href="#major-changes-1">Major Changes</a>
     - <a href="#minor-changes-1">Minor Changes</a>
     - <a href="#deprecated-features-1">Deprecated Features</a>
     - <a href="#bugfixes-1">Bugfixes</a>
+    - <a href="#new-plugins-1">New Plugins</a>
     - <a href="#new-modules-1">New Modules</a>
     - <a href="#unchanged-collections-1">Unchanged Collections</a>
-- <a href="#v13-1-0">v13\.1\.0</a>
+- <a href="#v13-2-0">v13\.2\.0</a>
     - <a href="#release-summary-2">Release Summary</a>
-    - <a href="#ansible-core-4">Ansible\-core</a>
+    - <a href="#ansible-core-6">Ansible\-core</a>
     - <a href="#changed-collections-2">Changed Collections</a>
     - <a href="#major-changes-2">Major Changes</a>
     - <a href="#minor-changes-2">Minor Changes</a>
     - <a href="#deprecated-features-2">Deprecated Features</a>
     - <a href="#bugfixes-2">Bugfixes</a>
-    - <a href="#known-issues">Known Issues</a>
     - <a href="#new-modules-2">New Modules</a>
     - <a href="#unchanged-collections-2">Unchanged Collections</a>
-- <a href="#v13-0-0">v13\.0\.0</a>
+- <a href="#v13-1-0">v13\.1\.0</a>
     - <a href="#release-summary-3">Release Summary</a>
-    - <a href="#removed-collections">Removed Collections</a>
-    - <a href="#added-collections-1">Added Collections</a>
-    - <a href="#ansible-core-6">Ansible\-core</a>
-    - <a href="#included-collections">Included Collections</a>
+    - <a href="#ansible-core-7">Ansible\-core</a>
+    - <a href="#changed-collections-3">Changed Collections</a>
     - <a href="#major-changes-3">Major Changes</a>
     - <a href="#minor-changes-3">Minor Changes</a>
-    - <a href="#breaking-changes--porting-guide">Breaking Changes / Porting Guide</a>
     - <a href="#deprecated-features-3">Deprecated Features</a>
-    - <a href="#removed-features-previously-deprecated">Removed Features \(previously deprecated\)</a>
-    - <a href="#security-fixes">Security Fixes</a>
     - <a href="#bugfixes-3">Bugfixes</a>
-    - <a href="#known-issues-1">Known Issues</a>
-    - <a href="#new-plugins-1">New Plugins</a>
+    - <a href="#known-issues">Known Issues</a>
     - <a href="#new-modules-3">New Modules</a>
     - <a href="#unchanged-collections-3">Unchanged Collections</a>
+- <a href="#v13-0-0">v13\.0\.0</a>
+    - <a href="#release-summary-4">Release Summary</a>
+    - <a href="#removed-collections">Removed Collections</a>
+    - <a href="#added-collections-1">Added Collections</a>
+    - <a href="#ansible-core-9">Ansible\-core</a>
+    - <a href="#included-collections">Included Collections</a>
+    - <a href="#major-changes-4">Major Changes</a>
+    - <a href="#minor-changes-4">Minor Changes</a>
+    - <a href="#breaking-changes--porting-guide">Breaking Changes / Porting Guide</a>
+    - <a href="#deprecated-features-4">Deprecated Features</a>
+    - <a href="#removed-features-previously-deprecated">Removed Features \(previously deprecated\)</a>
+    - <a href="#security-fixes-1">Security Fixes</a>
+    - <a href="#bugfixes-4">Bugfixes</a>
+    - <a href="#known-issues-1">Known Issues</a>
+    - <a href="#new-plugins-2">New Plugins</a>
+    - <a href="#new-modules-4">New Modules</a>
+    - <a href="#unchanged-collections-4">Unchanged Collections</a>
+
+<a id="v13-4-0"></a>
+## v13\.4\.0
+
+- <a href="#release-summary">Release Summary</a>
+- <a href="#ansible-core">Ansible\-core</a>
+- <a href="#changed-collections">Changed Collections</a>
+- <a href="#major-changes">Major Changes</a>
+    - <a href="#containers-podman">containers\.podman</a>
+- <a href="#minor-changes">Minor Changes</a>
+    - <a href="#ansible-core-1">Ansible\-core</a>
+    - <a href="#ansible-netcommon">ansible\.netcommon</a>
+    - <a href="#cisco-dnac">cisco\.dnac</a>
+    - <a href="#cisco-ios">cisco\.ios</a>
+    - <a href="#community-aws">community\.aws</a>
+    - <a href="#community-general">community\.general</a>
+    - <a href="#community-libvirt">community\.libvirt</a>
+    - <a href="#community-mysql">community\.mysql</a>
+    - <a href="#containers-podman-1">containers\.podman</a>
+    - <a href="#hitachivantara-vspone-block">hitachivantara\.vspone\_block</a>
+    - <a href="#kubernetes-core">kubernetes\.core</a>
+    - <a href="#vmware-vmware-rest">vmware\.vmware\_rest</a>
+- <a href="#deprecated-features">Deprecated Features</a>
+    - <a href="#community-aws-1">community\.aws</a>
+    - <a href="#kubernetes-core-1">kubernetes\.core</a>
+    - <a href="#vmware-vmware-rest-1">vmware\.vmware\_rest</a>
+- <a href="#security-fixes">Security Fixes</a>
+    - <a href="#kubernetes-core-2">kubernetes\.core</a>
+- <a href="#bugfixes">Bugfixes</a>
+    - <a href="#ansible-core-2">Ansible\-core</a>
+    - <a href="#arista-eos">arista\.eos</a>
+    - <a href="#cisco-ios-1">cisco\.ios</a>
+    - <a href="#cisco-meraki">cisco\.meraki</a>
+    - <a href="#community-aws-2">community\.aws</a>
+    - <a href="#community-crypto">community\.crypto</a>
+    - <a href="#community-dns">community\.dns</a>
+    - <a href="#community-docker">community\.docker</a>
+    - <a href="#community-general-1">community\.general</a>
+    - <a href="#community-libvirt-1">community\.libvirt</a>
+    - <a href="#containers-podman-2">containers\.podman</a>
+    - <a href="#kubernetes-core-3">kubernetes\.core</a>
+    - <a href="#purestorage-flasharray">purestorage\.flasharray</a>
+- <a href="#new-plugins">New Plugins</a>
+    - <a href="#callback">Callback</a>
+- <a href="#new-modules">New Modules</a>
+    - <a href="#cisco-ios-2">cisco\.ios</a>
+    - <a href="#community-general-2">community\.general</a>
+    - <a href="#community-libvirt-2">community\.libvirt</a>
+    - <a href="#containers-podman-3">containers\.podman</a>
+    - <a href="#hitachivantara-vspone-block-1">hitachivantara\.vspone\_block</a>
+- <a href="#unchanged-collections">Unchanged Collections</a>
+
+<a id="release-summary"></a>
+### Release Summary
+
+Release Date\: 2026\-02\-24
+
+[Porting Guide](https\://docs\.ansible\.com/projects/ansible/devel/porting\_guides\.html)
+
+<a id="ansible-core"></a>
+### Ansible\-core
+
+Ansible 13\.4\.0 contains ansible\-core version 2\.20\.3\.
+This is a newer version than version 2\.20\.2 contained in the previous Ansible release\.
+
+The changes are reported in the combined changelog below\.
+
+<a id="changed-collections"></a>
+### Changed Collections
+
+If not mentioned explicitly\, the changes are reported in the combined changelog below\.
+
+| Collection                  | Ansible 13.3.0 | Ansible 13.4.0 | Notes                                                    |
+| --------------------------- | -------------- | -------------- | -------------------------------------------------------- |
+| ansible.netcommon           | 8.2.1          | 8.4.0          |                                                          |
+| arista.eos                  | 12.0.0         | 12.0.1         |                                                          |
+| cisco.dnac                  | 6.44.0         | 6.48.0         |                                                          |
+| cisco.ios                   | 11.2.0         | 11.3.0         |                                                          |
+| cisco.meraki                | 2.22.0         | 2.22.1         |                                                          |
+| community.aws               | 10.0.0         | 10.1.0         |                                                          |
+| community.crypto            | 3.1.0          | 3.1.1          |                                                          |
+| community.dns               | 3.5.1          | 3.5.2          |                                                          |
+| community.docker            | 5.0.5          | 5.0.6          |                                                          |
+| community.general           | 12.3.0         | 12.4.0         |                                                          |
+| community.libvirt           | 2.0.0          | 2.1.0          |                                                          |
+| community.mongodb           | 1.7.11         | 1.7.12         | There are no changes recorded in the changelog.          |
+| community.mysql             | 4.0.1          | 4.1.0          |                                                          |
+| containers.podman           | 1.18.1         | 1.19.0         |                                                          |
+| hitachivantara.vspone_block | 4.5.1          | 4.6.1          |                                                          |
+| kubernetes.core             | 6.2.0          | 6.3.0          |                                                          |
+| pcg.alpaca_operator         | 2.1.1          | 2.2.0          | The collection did not have a changelog in this version. |
+| purestorage.flasharray      | 1.41.0         | 1.42.0         |                                                          |
+| vmware.vmware_rest          | 4.9.0          | 4.10.0         |                                                          |
+
+<a id="major-changes"></a>
+### Major Changes
+
+<a id="containers-podman"></a>
+#### containers\.podman
+
+* Add podman Quadlet modules
+
+<a id="minor-changes"></a>
+### Minor Changes
+
+<a id="ansible-core-1"></a>
+#### Ansible\-core
+
+* ansible\-test \- Update URL used to download FreeBSD wheels for managed remotes\.
+* ansible\-test \- Use the new API endpoint for the Ansible Core CI service\.
+
+<a id="ansible-netcommon"></a>
+#### ansible\.netcommon
+
+* Option to use libssh as transport while using netconf\, is added\.
+* The ssh\-python module is needed\, which will ensure libssh as transport for netconf operations\. When use\_libssh is enabled\.
+
+<a id="cisco-dnac"></a>
+#### cisco\.dnac
+
+* Added \'802\_11\_be\_profiles\'  attribute in wireless\_design\_workflow\_manager module
+* Added build\_ignore configuration to optimize Ansible Galaxy collection packaging\.
+* Changes in accesspoint\_workflow\_manager module
+* Changes in device\_configs\_backup\_workflow\_manager module
+* Changes in inventory\_workflow\_manager module
+* Changes in lan\_automation\_workflow\_manager module
+* Changes in network\_profile\_wireless\_workflow\_manager module
+* Changes in pnp\_workflow\_manager module
+* Changes in provision\_workflow\_manager module
+* Changes in sda\_fabric\_devices\_workflow\_manager module
+* Changes in sda\_host\_port\_onboarding\_workflow\_manager module
+* Changes in swim\_workflow\_manager module
+* Changes in template\_workflow\_manager module
+* Changes in wireless\_design\_workflow\_manager module
+* Code formatting and ansible\-lint compliance updates for Red Hat standards
+* Standardized README format and content to match Catalyst Center Ansible collection documentation practices\.
+* access\_groups \- new module to manage access groups
+* access\_groups\_count\_info \- new module to retrieve access groups count
+* access\_groups\_info \- new module to retrieve access groups information
+* cisco\.dnac collection \- New service system\_software\_upgrade added for Catalyst Center 3\.1\.6\.0
+* cisco\.dnac collection \- SDK updated to dnacentersdk 2\.11\.0 with support for Cisco Catalyst Center 3\.1\.6\.0
+* client\_enrichment\_details\_v2\_info \- new module to retrieve client enrichment details \(v2\)
+* compliance\_network\_devices\_detail\_policys\_info \- new module to retrieve compliance policies for network devices
+* compliance\_network\_devices\_detail\_policys\_violations\_info \- new module to retrieve compliance policy violations for network devices
+* compliance\_policys \- new module to manage compliance policies
+* compliance\_policys\_count\_info \- new module to retrieve compliance policies count
+* compliance\_policys\_info \- new module to retrieve compliance policies information
+* compliance\_policys\_rules \- new module to manage compliance policy rules
+* compliance\_policys\_rules\_conditions \- new module to manage compliance policy rule conditions
+* compliance\_policys\_rules\_conditions\_count\_info \- new module to retrieve compliance policy rule conditions count
+* compliance\_policys\_rules\_conditions\_info \- new module to retrieve compliance policy rule conditions information
+* compliance\_policys\_rules\_count\_info \- new module to retrieve compliance policy rules count
+* compliance\_policys\_rules\_info \- new module to retrieve compliance policy rules information
+* compliance\_policys\_rules\_variables \- new module to manage compliance policy rule variables
+* compliance\_policys\_rules\_variables\_count\_info \- new module to retrieve compliance policy rule variables count
+* compliance\_policys\_rules\_variables\_info \- new module to retrieve compliance policy rule variables information
+* compliance\_policys\_site\_assignments \- new module to manage compliance policy site assignments
+* compliance\_policys\_site\_assignments\_info \- new module to retrieve compliance policy site assignments information
+* compliance\_policys\_sites\_rules\_variables \- new module to manage compliance policy site rule variables
+* compliance\_policys\_sites\_rules\_variables\_info \- new module to retrieve compliance policy site rule variables information
+* device\_enrichment\_details\_v2\_info \- new module to retrieve device enrichment details \(v2\)
+* discoverys \- new module to manage device discoveries
+* discoverys\_count\_info \- new module to retrieve device discoveries count
+* discoverys\_info \- new module to retrieve device discoveries information
+* discoverys\_jobs \- new module to manage discovery jobs
+* discoverys\_jobs\_count\_info \- new module to retrieve discovery jobs count
+* discoverys\_jobs\_discovered\_network\_devices\_count\_info \- new module to retrieve discovered network devices count
+* discoverys\_jobs\_discovered\_network\_devices\_info \- new module to retrieve discovered network devices from discovery jobs
+* discoverys\_jobs\_info \- new module to retrieve discovery jobs information
+* discoverys\_jobs\_stop\_create \- new module to stop discovery jobs
+* discoverys\_jobs\_summarys\_info \- new module to retrieve discovery jobs summaries
+* download\_software\_release\_create \- new module to download software releases
+* download\_software\_release\_delete \- new module to delete software release downloads
+* download\_software\_release\_update \- new module to update software release downloads
+* filter\_group\_aassociations\_delete \- new module to delete filter group associations
+* filter\_group\_associations \- new module to manage filter group associations
+* filter\_group\_associations\_info \- new module to retrieve filter group associations information
+* filter\_groups \- new module to manage filter groups
+* filter\_groups\_info \- new module to retrieve filter groups information
+* global\_credentials \- new module to manage global credentials
+* global\_credentials\_count\_info \- new module to retrieve global credentials count
+* global\_credentials\_info \- new module to retrieve global credentials information
+* images\_delete \- new module to delete software images
+* install\_optional\_packages\_create \- new module to install optional packages
+* installed\_release\_info \- new module to retrieve installed release information
+* iot\_fabric\_rep\_rings\_delete \- new module to delete IoT fabric REP rings
+* iot\_non\_fabric\_rep\_rings\_delete \- new module to delete IoT non\-fabric REP rings
+* issue\_enrichment\_details\_info \- new module to retrieve issue enrichment details
+* network\_devices\_create \- new module to create network devices
+* network\_devices\_export\_credentials\_create \- new module to export network device credentials
+* network\_devices\_update \- new module to update network devices
+* network\_devices\_update\_create \- new module to trigger network device updates
+* network\_devices\_validate\_device\_create \- new module to validate network devices
+* product\_series\_count\_info \- new module to retrieve product series count
+* releases\_info \- new module to retrieve available releases information
+* releases\_release\_summary\_info \- new module to retrieve release summary
+* roles\_permissions\_info \- new module to retrieve roles permissions
+* roles\_v2 \- new module to manage roles \(v2\)
+* roles\_v2\_info \- new module to retrieve roles information \(v2\)
+* sda\_layer3\_virtual\_networks\_delete \- new module to delete SDA layer 3 virtual networks
+* sda\_transit\_networks\_delete \- new module to delete SDA transit networks
+* site\_delete \- new module to delete sites
+* site\_update \- new module to update sites
+* software\_management\_executions\_info \- new module to retrieve software management execution details
+* uninstall\_optional\_packages\_create \- new module to uninstall optional packages
+* upgrade\_software\_release\_create \- new module to upgrade software releases
+* user\_enrichment\_details\_v2\_info \- new module to retrieve user enrichment details \(v2\)
+* wireless\_controllers\_certificate\_renewal\_create \- new module to trigger wireless controller certificate renewal
+* wireless\_controllers\_site\_tags\_info \- new module to retrieve wireless controller site tags
+* wireless\_profiles\_policy\_tags\_info \- new module to retrieve wireless profile policy tags
+* wireless\_settings\_certificate\_renewal\_profiles \- new module to manage wireless certificate renewal profiles
+* wireless\_settings\_certificate\_renewal\_profiles\_count\_info \- new module to retrieve wireless certificate renewal profiles count
+* wireless\_settings\_certificate\_renewal\_profiles\_info \- new module to retrieve wireless certificate renewal profiles information
+
+<a id="cisco-ios"></a>
+#### cisco\.ios
+
+* Adds a new Resource Module <em class="title-reference">ios\_bfd\_interfaces</em> to configure BFD on interfaces\.
+* Adds a new Resource Module <em class="title-reference">ios\_bfd\_templates</em> to configure BFD  using templates\.
+* ios\_l3\_interfaces \- Add support for \'redirects\' and \'unreachables\' attributes to configure ICMP redirect and unreachable messages\.
+
+<a id="community-aws"></a>
+#### community\.aws
+
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>active\_trusted\_signers</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>aliases</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>cache\_behaviors\.items\.allowed\_methods\.cached\_methods</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>cache\_behaviors\.items\.allowed\_methods</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>cache\_behaviors\.items\.forwarded\_values\.cookies\.whitelisted\_names</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>cache\_behaviors\.items\.forwarded\_values\.headers</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>cache\_behaviors\.items\.forwarded\_values\.query\_string\_cache\_keys</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>cache\_behaviors\.items\.lambda\_function\_associations</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>cache\_behaviors</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>custom\_error\_responses</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>default\_cache\_behavior\.allowed\_methods\.cached\_methods</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>default\_cache\_behavior\.allowed\_methods</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>default\_cache\_behavior\.forwarded\_values\.cookies\.whitelisted\_names</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>default\_cache\_behavior\.forwarded\_values\.headers</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>default\_cache\_behavior\.forwarded\_values\.query\_string\_cache\_keys</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>default\_cache\_behavior\.lambda\_function\_associations</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>origins\.items\.custom\_origin\_config\.origin\_ssl\_protocols</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>origins</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- Added <code>elements</code> key to <code>restrictions\.geo\_restriction</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- move misplaced options out of <code>forwarded\_values</code> <code>suboptions</code>\. \([https\://github\.com/ansible\-collections/community\.aws/pull/2342](https\://github\.com/ansible\-collections/community\.aws/pull/2342)\)\.
+* cloudfront\_invalidation \- Added <code>elements</code> key to <code>invalidation\.invalidation\_batch\.paths</code> \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+
+<a id="community-general"></a>
+#### community\.general
+
+* ModuleHelper module utils \- allow to ignore specific exceptions in <code>module\_fails\_on\_exception</code> decorator \([https\://github\.com/ansible\-collections/community\.general/pull/11488](https\://github\.com/ansible\-collections/community\.general/pull/11488)\)\.
+* from\_ini filter plugin \- add <code>delimiters</code> parameter to allow correctly parsing more INI documents \([https\://github\.com/ansible\-collections/community\.general/issues/11506](https\://github\.com/ansible\-collections/community\.general/issues/11506)\, [https\://github\.com/ansible\-collections/community\.general/pull/11512](https\://github\.com/ansible\-collections/community\.general/pull/11512)\)\.
+* keycloak\_client \- add <code>valid\_post\_logout\_redirect\_uris</code> option to configure post logout redirect URIs for a client\, and <code>backchannel\_logout\_url</code> option to configure the backchannel logout URL for a client \([https\://github\.com/ansible\-collections/community\.general/issues/6812](https\://github\.com/ansible\-collections/community\.general/issues/6812)\, [https\://github\.com/ansible\-collections/community\.general/issues/4892](https\://github\.com/ansible\-collections/community\.general/issues/4892)\, [https\://github\.com/ansible\-collections/community\.general/pull/11473](https\://github\.com/ansible\-collections/community\.general/pull/11473)\)\.
+* keycloak\_client\_rolemapping\, keycloak\_realm\_rolemapping\, keycloak\_group \- optimize retrieval of groups by name to use Keycloak search API with exact matching instead of fetching all groups \([https\://github\.com/ansible\-collections/community\.general/pull/11503](https\://github\.com/ansible\-collections/community\.general/pull/11503)\)\.
+* keycloak\_realm \- add support for <code>localizationTexts</code> option in Keycloak realms \([https\://github\.com/ansible\-collections/community\.general/pull/11513](https\://github\.com/ansible\-collections/community\.general/pull/11513)\)\.
+* keycloak\_realm\_key \- add support for auto\-generated key providers \(<code>rsa\-generated</code>\, <code>rsa\-enc\-generated</code>\, <code>hmac\-generated</code>\, <code>aes\-generated</code>\, <code>ecdsa\-generated</code>\, <code>ecdh\-generated</code>\, <code>eddsa\-generated</code>\)\, <code>java\-keystore</code> provider\, additional algorithms \(HMAC\, ECDSA\, ECDH\, EdDSA\, AES\)\, and new config options \(<code>secret\_size</code>\, <code>key\_size</code>\, <code>elliptic\_curve</code>\, <code>keystore</code>\, <code>keystore\_password</code>\, <code>key\_alias</code>\, <code>key\_password</code>\)\. Also makes <code>config\.private\_key</code> and <code>config\.certificate</code> optional as they are only required for imported key providers \([https\://github\.com/ansible\-collections/community\.general/pull/11468](https\://github\.com/ansible\-collections/community\.general/pull/11468)\)\.
+* redfish\_info \- add Redfish Root data to results of successful <code>CheckAvailability</code> command \([https\://github\.com/ansible\-collections/community\.general/pull/11504](https\://github\.com/ansible\-collections/community\.general/pull/11504)\)\.
+* seport \- adds support for DCCP and SCTP protocols \([https\://github\.com/ansible\-collections/community\.general/pull/11486](https\://github\.com/ansible\-collections/community\.general/pull/11486)\)\.
+
+<a id="community-libvirt"></a>
+#### community\.libvirt
+
+* virt\_install \- added support for memoryBacking source type configuration\, including memfd for shared memory \([https\://github\.com/ansible\-collections/community\.libvirt/issues/228](https\://github\.com/ansible\-collections/community\.libvirt/issues/228)\)\.
+* virt\_install \- added support for primary value attribute \(\_value or value\) in dynamic dict options that require a primary value alongside additional attributes\.
+* virt\_install \- enhanced cloud\_init configuration handling for sub\-options \(meta\-data\, user\-data\, and network\-config\) to support both string and dictionary inputs\.
+* virt\_install \- refactored common virt\-install functionality into module\_utils and doc\_fragments to enable code reuse between modules\.
+* virt\_volume \- New return key/value pairs \'Type\'\, \'Capacity\' and \'Allocation\' were added to command \'list\_volumes\' \([https\://github\.com/ansible\-collections/community\.libvirt/issues/187](https\://github\.com/ansible\-collections/community\.libvirt/issues/187)\)
+* virt\_volume \- added ability to resize volumes if defined capacity is different\. If volume already exists and defined capacity in XML differs a resize is attempted\.
+
+<a id="community-mysql"></a>
+#### community\.mysql
+
+* mysql\_role \- add <code>sql\_log\_bin</code> option to disable binary logging for the connection \([https\://github\.com/ansible\-collections/community\.mysql/issues/742](https\://github\.com/ansible\-collections/community\.mysql/issues/742)\)\.
+
+<a id="containers-podman-1"></a>
+#### containers\.podman
+
+* Fix tests for new Podman
+
+<a id="hitachivantara-vspone-block"></a>
+#### hitachivantara\.vspone\_block
+
+* Added \"playbooks/vsp\_direct/vsp\_storage\_connection\_session\_example\.yml\" as a sample playbook demonstrating session\-based storage operations\.
+* Added a new \"hv\_pav\_alias\" module to manage PAV \(Parallel Access Volume\) alias assignments for Mainframe based VSP block storage systems\.
+* Added a new \"hv\_pav\_alias\_facts\" module to gather facts about PAV aliases from Mainframe based VSP block storage systems\.
+* Added a new \"hv\_sds\_block\_audit\_log\_setting\" module to support configuration of audit log settings on VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_audit\_log\_setting\_facts\" module to retrieve audit log setting from VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_dump\_log\_file\" module to retrieve and dump log information from VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_dump\_log\_status\_facts\" module to retrieve and dump log status information from VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_event\_log\_setting\_facts\" module to retrieve event log setting from VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_event\_logs\_facts\" module to retrieve event logs with various filtering options from VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_journal\" module to create and update journals on VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_journal\_facts\" module to retrieve journal details from VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_license\" module to manage license on VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_license\_facts\" module to retrieve license from VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_license\_setting\" module to modify license warning threshold settings for VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_license\_setting\_facts\" module to retrieve license setting from VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_login\_message\" module to update the message configured to be displayed on the GUI login window and CLI warning banner of the VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_login\_message\_facts\" module to retrieve the message configured to be displayed on the GUI login window and CLI warning banner of the VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_storage\_external\_auth\_server\_setting\" module to configure external authentication server settings on VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_storage\_external\_auth\_server\_setting\_facts\" module to retrieve external authentication server settings from the VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_storage\_user\_auth\_setting\" module to configure external authentication server settings on VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_sds\_block\_storage\_user\_auth\_setting\_facts\" module to retrieve user authentication settings from VSP One SDS Block and Cloud systems\.
+* Added a new \"hv\_session\" module to generate and discard session on VSP block storage systems\.
+* Added a new \"hv\_session\_facts\" module to retrieve information about sessions on VSP block storage systems\.
+* Added a new \"hv\_snapshot\_family\_facts\" module to retrieve information about snapshot family of the provided LDEV ID from VSP block storage systems\.
+* Added a new \"hv\_supported\_host\_mode\_facts\" module to retrieve detailed information about supported host mode options available in a given VSP block storage system\.
+* Added a new \"hv\_vclone\_parent\_volume\_facts\" module to retrieve information about virtual clone parent volume from VSP block storage systems\.
+* Added notes to module documentation indicating that a few modules are not supported for BHE and higher models\.
+* Added support for Mainframe z16\.
+* Added support for SVOS 10\.5\.1\.
+* Added support to \"hv\_ddp\_pool\" module for DDP pool creation with RAID6\.
+* Added support to \"hv\_hg\" module for present/unpresent multiple LDEVs to/from hostgroups across multiple ports\.
+* Added support to \"hv\_hg\" module to support host group\'s lun paths\.
+* Added support to \"hv\_ldev\" module to create DRS LDEV without deduplication and compression\.
+* Added support to \"hv\_ldev\" module to create ESE Mainframe LDEV with cylinder and emulation type\.
+* Added support to \"hv\_ldev\" module to create Mainframe LDEV with cylinder and emulation type in a parity group\.
+* Added support to \"hv\_ldev\" module to create Mainframe LDEV with cylinder and emulation type\.
+* Added support to \"hv\_ldev\" module to create TSE Mainframe LDEV with cylinder and emulation type\.
+* Added support to \"hv\_ldev\" module to stop the normal format for all volumes\.
+* Added support to \"hv\_ldev\_facts\" module output to include Mainframe\, vClone and other new properties\.
+* Added support to \"hv\_ldev\_facts\" module to get information about multiple LDEVs by their IDs\.
+* Added support to \"hv\_paritygroup\_facts\" module output to include Mainframe and other new properties\.
+* Added support to \"hv\_resource\_group\_facts\" module to get basic information about all resource groups including meta resource group information\.
+* Added support to \"hv\_sds\_block\_cluster\" module to stop the storage cluster\.
+* Added support to \"hv\_snapshot\" module to create or convert a snapshot pair to vClone depending on the snapshot pair status\.
+* Added support to \"hv\_snapshot\" module to optionally delete secondary volume using should\_delete\_svol parameter\.
+* Added support to \"hv\_snapshot\" module to restore a snapshot pair from vClone\.
+* Added support to \"hv\_snapshot\_facts\" module output to include vClone\-related properties\.
+* Added support to \"hv\_snapshot\_group\" module to create or convert a snapshot pair to vClone by snapshot group name\.
+* Added support to \"hv\_snapshot\_group\" module to restore snapshot group from vClone\.
+* Added support to \"hv\_snapshot\_group\" module to restore the snapshot pairs using group name and wait for the final state of all snapshots\.
+* Added support to \"hv\_snapshot\_group\_facts\" module output to include vClone\-related properties\.
+* Added support to \"hv\_storage\_port\_facts\" module output to include Mainframe and other new properties\.
+* Added support to \"hv\_storagepool\" module output to include pool volumes information\.
+* Added support to \"hv\_storagepool\" module to create a mainframe HDP storage pool using parity group and cylinder\.
+* Added support to \"hv\_storagepool\" module to shrink a storage pool using list of pool volume IDs and delete pool volumes\.
+* Added support to \"hv\_storagepool\" module to shrink a storage pool using list of pool volume IDs\.
+* Added support to \"hv\_storagepool\" module to shrink a storage pool using start and end pool volume IDs\.
+* Added support to \"hv\_storagepool\" module to stop the shrink operation of a storage pool\.
+* Added support to \"hv\_storagepool\_facts\" module output to include pool volumes information\.
+* Added support to \"hv\_storagepool\_facts\" module to get all mainframe storage pools with cache info for VSP 5XXX series storage\.
+* Added support to \"hv\_storagepool\_facts\" module to get all mainframe storage pools with extended info\.
+* Added support to \"hv\_storagepool\_facts\" module to get all mainframe storage pools\.
+* Added support to \"hv\_storagesystem\_facts\" module output to include \"is\_compression\_acceleration\_available\" status\.
+* Added support to \"hv\_vsp\_one\_volume\" module to create DRS volume without deduplication and compression\.
+* Added support to \"hv\_vsp\_one\_volume\_facts\" module output to include Mainframe\, vClone and other new properties\.
+* Enhanced the performance of the \"hv\_gad\_facts\" module\'s task by implementing thread pool and batch processing\.
+* Enhanced the performance of the \"hv\_hg\_facts\" module\'s task by implementing parallel calls\.
+* Enhanced the performance of the \"hv\_ldev\_facts\" module\'s task by implementing thread pool and batch processing\.
+* Other minor bug fixes\.
+
+<a id="kubernetes-core"></a>
+#### kubernetes\.core
+
+* Remove deprecated import from <code>ansible\.module\_utils\.\_text</code> \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/1053](https\://github\.com/ansible\-collections/kubernetes\.core/pull/1053)\)\.
+* helm \- add <code>release\_values</code> key to <code>status</code> return value that can be accessed using Jinja2 dot notation \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/1056](https\://github\.com/ansible\-collections/kubernetes\.core/pull/1056)\)\.
+* helm\_info \- add <code>release\_values</code> key to <code>status</code> return value that can be accessed using Jinja2 dot notation \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/1056](https\://github\.com/ansible\-collections/kubernetes\.core/pull/1056)\)\.
+
+<a id="vmware-vmware-rest"></a>
+#### vmware\.vmware\_rest
+
+* Disable check mode for all non\-info modules in this collection\. Check mode was never supported for these modules\. Fixes [https\://github\.com/ansible\-collections/vmware\.vmware\_rest/issues/363](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/issues/363)
+
+<a id="deprecated-features"></a>
+### Deprecated Features
+
+* The awx\.awx collection will be removed from Ansible 14\.
+  The collection is undergoing a heavy [refactoring](https\://forum\.ansible\.com/t/7404) and currently does not align with the standards for the community package\.
+  See [the removal discussion for details](https\://forum\.ansible\.com/t/44706)\.
+  After removal\, users can still install this collection with <code>ansible\-galaxy collection install awx\.awx</code>\.
+
+<a id="community-aws-1"></a>
+#### community\.aws
+
+* The alias <code>aws\_acm\_info</code> for the <code>acm\_certificate\_info</code> module has been deprecated\. Please use <code>community\.aws\.acm\_certificate\_info</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_acm</code> for the <code>acm\_certificate</code> module has been deprecated\. Please use <code>community\.aws\.acm\_certificate</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_api\_gateway\_domain</code> for the <code>api\_gateway\_domain</code> module has been deprecated\. Please use <code>community\.aws\.api\_gateway\_domain</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_api\_gateway</code> for the <code>api\_gateway</code> module has been deprecated\. Please use <code>community\.aws\.api\_gateway</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_application\_scaling\_policy</code> for the <code>application\_autoscaling\_policy</code> module has been deprecated\. Please use <code>community\.aws\.application\_autoscaling\_policy</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_batch\_compute\_environment</code> for the <code>batch\_compute\_environment</code> module has been deprecated\. Please use <code>community\.aws\.batch\_compute\_environment</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_batch\_job\_definition</code> for the <code>batch\_job\_definition</code> module has been deprecated\. Please use <code>community\.aws\.batch\_job\_definition</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_batch\_job\_queue</code> for the <code>batch\_job\_queue</code> module has been deprecated\. Please use <code>community\.aws\.batch\_job\_queue</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_codebuild</code> for the <code>codebuild\_project</code> module has been deprecated\. Please use <code>community\.aws\.codebuild\_project</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_codecommit</code> for the <code>codecommit\_repository</code> module has been deprecated\. Please use <code>community\.aws\.codecommit\_repository</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_codepipeline</code> for the <code>codepipeline</code> module has been deprecated\. Please use <code>community\.aws\.codepipeline</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_config\_aggregation\_authorization</code> for the <code>config\_aggregation\_authorization</code> module has been deprecated\. Please use <code>community\.aws\.config\_aggregation\_authorization</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_config\_aggregator</code> for the <code>config\_aggregator</code> module has been deprecated\. Please use <code>community\.aws\.config\_aggregator</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_config\_delivery\_channel</code> for the <code>config\_delivery\_channel</code> module has been deprecated\. Please use <code>community\.aws\.config\_delivery\_channel</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_config\_recorder</code> for the <code>config\_recorder</code> module has been deprecated\. Please use <code>community\.aws\.config\_recorder</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_config\_rule</code> for the <code>config\_rule</code> module has been deprecated\. Please use <code>community\.aws\.config\_rule</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_direct\_connect\_confirm\_connection</code> for the <code>directconnect\_confirm\_connection</code> module has been deprecated\. Please use <code>community\.aws\.directconnect\_confirm\_connection</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_direct\_connect\_connection</code> for the <code>directconnect\_connection</code> module has been deprecated\. Please use <code>community\.aws\.directconnect\_connection</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_direct\_connect\_gateway</code> for the <code>directconnect\_gateway</code> module has been deprecated\. Please use <code>community\.aws\.directconnect\_gateway</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_direct\_connect\_link\_aggregation\_group</code> for the <code>directconnect\_link\_aggregation\_group</code> module has been deprecated\. Please use <code>community\.aws\.directconnect\_link\_aggregation\_group</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_direct\_connect\_virtual\_interface</code> for the <code>directconnect\_virtual\_interface</code> module has been deprecated\. Please use <code>community\.aws\.directconnect\_virtual\_interface</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_eks\_cluster</code> for the <code>eks\_cluster</code> module has been deprecated\. Please use <code>community\.aws\.eks\_cluster</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_elasticbeanstalk\_app</code> for the <code>elasticbeanstalk\_app</code> module has been deprecated\. Please use <code>community\.aws\.elasticbeanstalk\_app</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_glue\_connection</code> for the <code>glue\_connection</code> module has been deprecated\. Please use <code>community\.aws\.glue\_connection</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_glue\_crawler</code> for the <code>glue\_crawler</code> module has been deprecated\. Please use <code>community\.aws\.glue\_crawler</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_glue\_job</code> for the <code>glue\_job</code> module has been deprecated\. Please use <code>community\.aws\.glue\_job</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_inspector\_target</code> for the <code>inspector\_target</code> module has been deprecated\. Please use <code>community\.aws\.inspector\_target</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_kms\_info</code> for the <code>kms\_key\_info</code> module has been deprecated\. Please use <code>amazon\.aws\.kms\_key\_info</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_kms</code> for the <code>kms\_key</code> module has been deprecated\. Please use <code>amazon\.aws\.kms\_key</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_msk\_cluster</code> for the <code>msk\_cluster</code> module has been deprecated\. Please use <code>community\.aws\.msk\_cluster</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_msk\_config</code> for the <code>msk\_config</code> module has been deprecated\. Please use <code>community\.aws\.msk\_config</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_s3\_bucket\_info</code> for the <code>s3\_bucket\_info</code> module has been deprecated\. Please use <code>amazon\.aws\.s3\_bucket\_info</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_s3\_cors</code> for the <code>s3\_cors</code> module has been deprecated\. Please use <code>community\.aws\.s3\_cors</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_secret</code> for the <code>secretsmanager\_secret</code> module has been deprecated\. Please use <code>community\.aws\.secretsmanager\_secret</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_ses\_identity\_policy</code> for the <code>ses\_identity\_policy</code> module has been deprecated\. Please use <code>community\.aws\.ses\_identity\_policy</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_ses\_identity</code> for the <code>ses\_identity</code> module has been deprecated\. Please use <code>community\.aws\.ses\_identity</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_ses\_rule\_set</code> for the <code>ses\_rule\_set</code> module has been deprecated\. Please use <code>community\.aws\.ses\_rule\_set</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_sgw\_info</code> for the <code>storagegateway\_info</code> module has been deprecated\. Please use <code>community\.aws\.storagegateway\_info</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_ssm\_parameter\_store</code> for the <code>ssm\_parameter</code> module has been deprecated\. Please use <code>community\.aws\.ssm\_parameter</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_step\_functions\_state\_machine\_execution</code> for the <code>stepfunctions\_state\_machine\_execution</code> module has been deprecated\. Please use <code>community\.aws\.stepfunctions\_state\_machine\_execution</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_step\_functions\_state\_machine</code> for the <code>stepfunctions\_state\_machine</code> module has been deprecated\. Please use <code>community\.aws\.stepfunctions\_state\_machine</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_waf\_condition</code> for the <code>waf\_condition</code> module has been deprecated\. Please use <code>community\.aws\.waf\_condition</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_waf\_info</code> for the <code>waf\_info</code> module has been deprecated\. Please use <code>community\.aws\.waf\_info</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_waf\_rule</code> for the <code>waf\_rule</code> module has been deprecated\. Please use <code>community\.aws\.waf\_rule</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>aws\_waf\_web\_acl</code> for the <code>waf\_web\_acl</code> module has been deprecated\. Please use <code>community\.aws\.waf\_web\_acl</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>cloudfront\_info</code> for the <code>cloudfront\_distribution\_info</code> module has been deprecated\. Please use <code>community\.aws\.cloudfront\_distribution\_info</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>cloudtrail</code> for the <code>cloudtrail</code> module has been deprecated\. Please use <code>amazon\.aws\.cloudtrail</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>ec2\_asg\_info</code> for the <code>autoscaling\_group\_info</code> module has been deprecated\. Please use <code>amazon\.aws\.autoscaling\_group\_info</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>ec2\_asg\_instance\_refresh\_info</code> for the <code>autoscaling\_instance\_refresh\_info</code> module has been deprecated\. Please use <code>amazon\.aws\.autoscaling\_instance\_refresh\_info</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>ec2\_asg\_instance\_refresh</code> for the <code>autoscaling\_instance\_refresh</code> module has been deprecated\. Please use <code>amazon\.aws\.autoscaling\_instance\_refresh</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>ec2\_asg\_lifecycle\_hook</code> for the <code>autoscaling\_lifecycle\_hook</code> module has been deprecated\. Please use <code>community\.aws\.autoscaling\_lifecycle\_hook</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>ec2\_asg\_scheduled\_action</code> for the <code>autoscaling\_scheduled\_action</code> module has been deprecated\. Please use <code>community\.aws\.autoscaling\_scheduled\_action</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>ec2\_asg</code> for the <code>autoscaling\_group</code> module has been deprecated\. Please use <code>amazon\.aws\.autoscaling\_group</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>ec2\_lc\_find</code> for the <code>autoscaling\_launch\_config\_find</code> module has been deprecated\. Please use <code>community\.aws\.autoscaling\_launch\_config\_find</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>ec2\_lc\_info</code> for the <code>autoscaling\_launch\_config\_info</code> module has been deprecated\. Please use <code>community\.aws\.autoscaling\_launch\_config\_info</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>ec2\_lc</code> for the <code>autoscaling\_launch\_config</code> module has been deprecated\. Please use <code>community\.aws\.autoscaling\_launch\_config</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>ec2\_metric\_alarm</code> for the <code>cloudwatch\_metric\_alarm</code> module has been deprecated\. Please use <code>amazon\.aws\.cloudwatch\_metric\_alarm</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>ec2\_scaling\_policy</code> for the <code>autoscaling\_policy</code> module has been deprecated\. Please use <code>community\.aws\.autoscaling\_policy</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* The alias <code>execute\_lambda</code> for the <code>lambda\_execute</code> module has been deprecated\. Please use <code>amazon\.aws\.lambda\_execute</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2387](https\://github\.com/ansible\-collections/community\.aws/pull/2387)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>active\_trusted\_signers</code> has been deprecated and will be removed in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>aliases</code> has been deprecated and will be removed in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>cache\_behaviors\.items\.allowed\_methods\.cached\_methods</code> has been deprecated and will be removed in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>cache\_behaviors\.items\.allowed\_methods</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>cache\_behaviors\.items\.forwarded\_values\.cookies\.whitelisted\_names</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>cache\_behaviors\.items\.forwarded\_values\.headers</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>cache\_behaviors\.items\.forwarded\_values\.query\_string\_cache\_keys</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>cache\_behaviors\.items\.lambda\_function\_associations</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>cache\_behaviors</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>custom\_error\_responses</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>default\_cache\_behavior\.allowed\_methods\.cached\_methods</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>default\_cache\_behavior\.allowed\_methods</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>default\_cache\_behavior\.forwarded\_values\.cookies\.whitelisted\_names</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>default\_cache\_behavior\.forwarded\_values\.headers</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>default\_cache\_behavior\.forwarded\_values\.query\_string\_cache\_keys</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>default\_cache\_behavior\.lambda\_function\_associations</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>origins\.items\.custom\_origin\_config\.origin\_ssl\_protocols</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>origins</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_distribution \- The <code>items</code> return value in <code>restrictions\.geo\_restriction</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_invalidation \- The <code>items</code> return value in <code>invalidation\.invalidation\_batch\.paths</code> has been deprecated and will be remove in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* cloudfront\_invalidation \- The <code>items</code> return value in <code>invalidation\.invalidation\_batch\.paths</code> has been deprecated and will be removed in a release after 2026\-12\-15\. Use <code>elements</code> instead \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+* waf\_condition \- The module has been deprecated as Amazon has retired the <code>WAF Classic</code> service\. Please use the <code>AWS WAF \(WAFv2\)</code> service and modules instead\. The module will be removed in version 12\.0\.0 \([https\://github\.com/ansible\-collections/community\.aws/pull/2389](https\://github\.com/ansible\-collections/community\.aws/pull/2389)\)\.
+* waf\_info \- The module has been deprecated as Amazon has retired the <code>WAF Classic</code> service\. Please use the <code>AWS WAF \(WAFv2\)</code> service and modules instead\. The module will be removed in version 12\.0\.0 \([https\://github\.com/ansible\-collections/community\.aws/pull/2389](https\://github\.com/ansible\-collections/community\.aws/pull/2389)\)\.
+* waf\_rule \- The module has been deprecated as Amazon has retired the <code>WAF Classic</code> service\. Please use the <code>AWS WAF \(WAFv2\)</code> service and modules instead\. The module will be removed in version 12\.0\.0 \([https\://github\.com/ansible\-collections/community\.aws/pull/2389](https\://github\.com/ansible\-collections/community\.aws/pull/2389)\)\.
+* waf\_web\_acl \- The module has been deprecated as Amazon has retired the <code>WAF Classic</code> service\. Please use the <code>AWS WAF \(WAFv2\)</code> service and modules instead\. The module will be removed in version 12\.0\.0 \([https\://github\.com/ansible\-collections/community\.aws/pull/2389](https\://github\.com/ansible\-collections/community\.aws/pull/2389)\)\.
+
+<a id="kubernetes-core-1"></a>
+#### kubernetes\.core
+
+* helm \- the <code>status\.values</code> return value has been deprecated and will be removed in a release after 2027\-01\-08\. Use <code>status\.release\_values</code> instead \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/1056](https\://github\.com/ansible\-collections/kubernetes\.core/pull/1056)\)\.
+* helm\_info \- the <code>status\.values</code> return value has been deprecated and will be removed in a release after 2027\-01\-08\. Use <code>status\.release\_values</code> instead \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/1056](https\://github\.com/ansible\-collections/kubernetes\.core/pull/1056)\)\.
+
+<a id="vmware-vmware-rest-1"></a>
+#### vmware\.vmware\_rest
+
+* Deprecate modules that have been moved to the new vmware\.vmware collection\. Includes vcenter\_vm\_guest\_customization\, vcenter\_vm\_hardware\_adapter\_sata\, vcenter\_vm\_hardware\_adapter\_scsi\, vcenter\_vm\_hardware\_cdrom\, vcenter\_vm\_hardware\_cpu\, vcenter\_vm\_hardware\_disk\, vcenter\_vm\_hardware\_ethernet\, vcenter\_vm\_hardware\_memory\, vcenter\_vm
+
+<a id="security-fixes"></a>
+### Security Fixes
+
+<a id="kubernetes-core-2"></a>
+#### kubernetes\.core
+
+* Selectively redact sensitive info from kubeconfig instead of applying blanket <code>no\_log\=True</code> \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/1014](https\://github\.com/ansible\-collections/kubernetes\.core/pull/1014)\)\.
+
+<a id="bugfixes"></a>
+### Bugfixes
+
+<a id="ansible-core-2"></a>
+#### Ansible\-core
+
+* Fix interpreter discovery on delegated <code>async</code> tasks \([https\://github\.com/ansible/ansible/issues/86491](https\://github\.com/ansible/ansible/issues/86491)\)
+* Fix up the Action plugin <code>\_make\_tmp\_path</code> error to only include the command run rather than the shell\'s dataclass repr from <code>mkdtemp</code>\.
+* local connection \- Pass correct type to become plugins when checking password \([https\://github\.com/ansible/ansible/issues/86458](https\://github\.com/ansible/ansible/issues/86458)\)
+
+<a id="arista-eos"></a>
+#### arista\.eos
+
+* Fix eos\_vrf module to properly check existing interface configuration before making changes \([https\://github\.com/ansible\-collections/arista\.eos/issues/546](https\://github\.com/ansible\-collections/arista\.eos/issues/546)\)
+
+<a id="cisco-ios-1"></a>
+#### cisco\.ios
+
+* Fixed delete and purged state function for ios\_bfd\_templates
+
+<a id="cisco-meraki"></a>
+#### cisco\.meraki
+
+* Fix parameter naming in organizations\_inventory\_claim\.py to use camelCase for consistency with existing code\.
+
+<a id="community-aws-2"></a>
+#### community\.aws
+
+* Remove <code>ansible\.module\_utils\.six</code> imports to avoid warnings \([https\://github\.com/ansible\-collections/community\.aws/pull/2338](https\://github\.com/ansible\-collections/community\.aws/pull/2338)\)\.
+* ec2\_customer\_gateway \- Fix documentation for the return block \([https\://github\.com/ansible\-collections/community\.aws/pull/2354](https\://github\.com/ansible\-collections/community\.aws/pull/2354)\)\.
+
+<a id="community-crypto"></a>
+#### community\.crypto
+
+* crypto\_info\, openssl\_privatekey\, openssl\_privatekey\_pipe \- fix detection of EC support for cryptography 46\.0\.5\+ \([https\://github\.com/ansible\-collections/community\.crypto/pull/981](https\://github\.com/ansible\-collections/community\.crypto/pull/981)\)\.
+
+<a id="community-dns"></a>
+#### community\.dns
+
+* Update Public Suffix List\.
+
+<a id="community-docker"></a>
+#### community\.docker
+
+* docker\_image\_pull\, docker\_container \- fix pulled image change detection for Docker 29\.2\+ \([https\://github\.com/ansible\-collections/community\.docker/pull/1242](https\://github\.com/ansible\-collections/community\.docker/pull/1242)\)\.
+
+<a id="community-general-1"></a>
+#### community\.general
+
+* keycloak module utils \- fix <code>TypeError</code> crash when managing users whose username or email contains special characters such as <code>\+</code> \([https\://github\.com/ansible\-collections/community\.general/issues/10305](https\://github\.com/ansible\-collections/community\.general/issues/10305)\, [https\://github\.com/ansible\-collections/community\.general/pull/11472](https\://github\.com/ansible\-collections/community\.general/pull/11472)\)\.
+* keycloak module utils \- use proper URL encoding \(<code>urllib\.parse\.quote</code>\) for query parameters in authorization permission name searches\, replacing fragile manual space replacement \([https\://github\.com/ansible\-collections/community\.general/pull/11472](https\://github\.com/ansible\-collections/community\.general/pull/11472)\)\.
+* keycloak\_client \- fix idempotency bug caused by <code>null</code> flow overrides value differences for non\-existing flow overrides \([https\://github\.com/ansible\-collections/community\.general/issues/11430](https\://github\.com/ansible\-collections/community\.general/issues/11430)\, [https\://github\.com/ansible\-collections/community\.general/pull/11455](https\://github\.com/ansible\-collections/community\.general/pull/11455)\)\.
+* keycloak\_client \- remove IDs as change from diff result for protocol mappers \([https\://github\.com/ansible\-collections/community\.general/issues/11453](https\://github\.com/ansible\-collections/community\.general/issues/11453)\, [https\://github\.com/ansible\-collections/community\.general/pull/11454](https\://github\.com/ansible\-collections/community\.general/pull/11454)\)\.
+* keycloak\_realm\_key \- fix <code>KeyError</code> crash when managing realm keys where Keycloak does not return <code>active</code>\, <code>enabled</code>\, or <code>algorithm</code> fields in the config response \([https\://github\.com/ansible\-collections/community\.general/issues/11459](https\://github\.com/ansible\-collections/community\.general/issues/11459)\, [https\://github\.com/ansible\-collections/community\.general/pull/11470](https\://github\.com/ansible\-collections/community\.general/pull/11470)\)\.
+* keycloak\_user\_federation \- mapper config item can be an array \([https\://github\.com/ansible\-collections/community\.general/issues/11502](https\://github\.com/ansible\-collections/community\.general/issues/11502)\, [https\://github\.com/ansible\-collections/community\.general/pull/11515](https\://github\.com/ansible\-collections/community\.general/pull/11515)\)\.
+* keycloak\_user\_rolemapping \- fix <code>TypeError</code> crash when adding a client role to a user who has no existing roles for that client \([https\://github\.com/ansible\-collections/community\.general/issues/10960](https\://github\.com/ansible\-collections/community\.general/issues/10960)\, [https\://github\.com/ansible\-collections/community\.general/pull/11471](https\://github\.com/ansible\-collections/community\.general/pull/11471)\)\.
+* maven\_artifact \- fix SNAPSHOT version resolution to pick the newest matching <code>\<snapshotVersion\></code> entry by <code>\<updated\></code> timestamp instead of the first\. Repositories like GitHub Packages keep all historical entries in <code>\<snapshotVersions\></code> \(oldest first\)\, causing the module to resolve to the oldest snapshot instead of the latest \([https\://github\.com/ansible\-collections/community\.general/issues/5117](https\://github\.com/ansible\-collections/community\.general/issues/5117)\, [https\://github\.com/ansible\-collections/community\.general/issues/11489](https\://github\.com/ansible\-collections/community\.general/issues/11489)\, [https\://github\.com/ansible\-collections/community\.general/pull/11501](https\://github\.com/ansible\-collections/community\.general/pull/11501)\)\.
+* nsupdate \- fix <code>AttributeError</code> when using the module without TSIG authentication \([https\://github\.com/ansible\-collections/community\.general/issues/11460](https\://github\.com/ansible\-collections/community\.general/issues/11460)\, [https\://github\.com/ansible\-collections/community\.general/pull/11461](https\://github\.com/ansible\-collections/community\.general/pull/11461)\)\.
+* python\_requirements\_info \- use <code>importlib\.metadata</code> if <code>pkg\_resources</code> from <code>setuptools</code> cannot be imported\. That module has been removed from setuptools 82\.0\.0 \([https\://github\.com/ansible\-collections/community\.general/issues/11491](https\://github\.com/ansible\-collections/community\.general/issues/11491)\, [https\://github\.com/ansible\-collections/community\.general/pull/11492](https\://github\.com/ansible\-collections/community\.general/pull/11492)\)\.
+* splunk callback plugin \- replace deprecated callback function \([https\://github\.com/ansible\-collections/community\.general/pull/11485](https\://github\.com/ansible\-collections/community\.general/pull/11485)\)\.
+
+<a id="community-libvirt-1"></a>
+#### community\.libvirt
+
+* virt\_install \- fixed cloud\_init configuration handling for meta\-data\, user\-data\, and network\-config\.
+* virt\_install \- fixed the dict\-based options handling for events\, resource\, and sysinfo options\.
+
+<a id="containers-podman-2"></a>
+#### containers\.podman
+
+* Fix Ansible warning about test utils
+
+<a id="kubernetes-core-3"></a>
+#### kubernetes\.core
+
+* Add idempotency for <code>helm\_pull</code> module \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/1055](https\://github\.com/ansible\-collections/kubernetes\.core/pull/1055)\)\.
+* Fixed a bug where setting <code>K8S\_AUTH\_VERIFY\_SSL\=true</code> \(or any string value\) caused the value to be treated as a separate <code>kubectl</code> command argument\. \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/1049](https\://github\.com/ansible\-collections/kubernetes\.core/pull/1049)\)\.
+* Limit supported versions of Helm to \<4\.0\.0 \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/1039](https\://github\.com/ansible\-collections/kubernetes\.core/pull/1039)\)\.
+* Replace passing <code>warnings</code> to <code>exit\_json</code> with <code>AnsibleModule\.warn</code> in the <code>k8s\_drain</code>\, <code>k8s\_rollback\.py</code> and <code>k8s\_scale\.py</code> modules as it deprecated in <code>ansible\-core\>\=2\.19\.0</code> and will be removed in <code>ansible\-core\>\=2\.23\.0</code> \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/1033](https\://github\.com/ansible\-collections/kubernetes\.core/pull/1033)\)\.
+* k8s \- Fix return block from the module documentation \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/1056](https\://github\.com/ansible\-collections/kubernetes\.core/pull/1056)\)\.
+* meta \- Add <code>k8s\_cluster\_info</code>\, <code>k8s\_json\_patch</code> and <code>k8s\_rollback</code> to k8s action group \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/992](https\://github\.com/ansible\-collections/kubernetes\.core/pull/992)\)\.
+
+<a id="purestorage-flasharray"></a>
+#### purestorage\.flasharray
+
+* purefa\_certs \- Fix the syntax to generate a CSR
+* purefa\_connect \- Fixed issue where incorrect transport type was passed\.
+* purefa\_default\_protection \- Fixed issue adding new default protection group to the array scope
+* purefa\_dsrole\_old \- Fixed incorrect parameter name for old version of functions
+* purefa\_host \- Fixed AttributeError when deleting WWNs from a host
+* purefa\_info \- Fixed AttributeError when subnet has no VLAN
+* purefa\_info \- Fixed error with Resalms\-based API clients
+* purefa\_info \- Fixed issue with shelf controllers not supporting uptime
+* purefa\_info \- Resolved AttributeErrors in <code>default</code> info section
+* purefa\_network \- Fixes issue caused by None meaning change in SDK
+* purefa\_pgsched \- Fixed schedule deletion idempotency
+* purefa\_policy \- Fixed AttributeError when modifying a password policy
+
+<a id="new-plugins"></a>
+### New Plugins
+
+<a id="callback"></a>
+#### Callback
+
+* community\.general\.loganalytics\_ingestion \- Posts task results to an Azure Log Analytics workspace using the new Logs Ingestion API\.
+
+<a id="new-modules"></a>
+### New Modules
+
+<a id="cisco-ios-2"></a>
+#### cisco\.ios
+
+* cisco\.ios\.ios\_bfd\_interfaces \- Resource module to configure bfd in interfaces\.
+* cisco\.ios\.ios\_bfd\_templates \- Bidirectional Forwarding Detection \(BFD\) templates configurations
+
+<a id="community-general-2"></a>
+#### community\.general
+
+* community\.general\.icinga2\_downtime \- Manages Icinga 2 downtimes\.
+* community\.general\.keycloak\_realm\_localization \- Allows management of Keycloak realm localization overrides via the Keycloak API\.
+
+<a id="community-libvirt-2"></a>
+#### community\.libvirt
+
+* community\.libvirt\.virt\_cloud\_instance \- Provision new virtual machines from cloud images via libvirt
+
+<a id="containers-podman-3"></a>
+#### containers\.podman
+
+* containers\.podman\.podman\_quadlet \- Install or remove Podman Quadlets
+* containers\.podman\.podman\_quadlet\_info \- Gather information about Podman Quadlets
+
+<a id="hitachivantara-vspone-block-1"></a>
+#### hitachivantara\.vspone\_block
+
+<a id="sds-block"></a>
+##### Sds Block
+
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_audit\_log\_setting \- Manages Hitachi SDS block storage system audit log settings\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_audit\_log\_setting\_facts \- Get audit log setting from SDS Block storage system\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_dump\_log\_file \- Dumps log information from SDS Block storage system\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_dump\_log\_status\_facts \- Dumps log status information from SDS Block storage system\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_event\_log\_setting \- Manages Hitachi SDS block storage system event log settings\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_event\_log\_setting\_facts \- Get event log setting from SDS Block storage system\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_journal \- Create and update Journals from storage system\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_journal\_facts \- Retrieve journal information from storage SDS Block storage system\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_license \- Manage licenses on SDS Block storage system\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_license\_facts \- Get license\(s\) from SDS Block storage system\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_license\_setting \- Manage license settings for SDS Block storage system\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_license\_setting\_facts \- Get license setting from SDS Block storage system\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_login\_message \- Update the login message displayed in the GUI login window and CLI warning banner\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_login\_message\_facts \- Get the login message displayed in the GUI login window and CLI warning banner\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_storage\_external\_auth\_server\_setting \- Manages external authentication server settings on VSP One SDS Block and Cloud systems\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_storage\_external\_auth\_server\_setting\_facts \- Get external authentication server settings from the storage system\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_storage\_user\_auth\_setting \- Manages external authentication server settings on VSP One SDS Block and Cloud systems\.
+* hitachivantara\.vspone\_block\.hv\_sds\_block\_storage\_user\_auth\_setting\_facts \- Get user authentication settings from the storage system\.
+
+<a id="vsp"></a>
+##### Vsp
+
+* hitachivantara\.vspone\_block\.hv\_pav\_alias \- Manages PAV \(Parallel Access Volume\) alias assignments for VSP block storage systems\.
+* hitachivantara\.vspone\_block\.hv\_pav\_alias\_facts \- retrieves information about PAV aliases from VSP block storage systems\.
+* hitachivantara\.vspone\_block\.hv\_session \- Manages sessions on VSP block storage systems\.
+* hitachivantara\.vspone\_block\.hv\_session\_facts \- Retrieves information about sessions on VSP block storage systems\.
+* hitachivantara\.vspone\_block\.hv\_snapshot\_family\_facts \- Retrieves snapshot family information of the provided LDEV ID from VSP block storage systems\.
+* hitachivantara\.vspone\_block\.hv\_supported\_host\_mode\_facts \- Retrieves supported host mode options information from a specified VSP block storage system\.
+* hitachivantara\.vspone\_block\.hv\_vclone\_parent\_volume\_facts \- Retrieves virtual clone parent volume information from VSP block storage systems\.
+
+<a id="unchanged-collections"></a>
+### Unchanged Collections
+
+* amazon\.aws \(still version 10\.2\.0\)
+* ansible\.posix \(still version 2\.1\.0\)
+* ansible\.utils \(still version 6\.0\.1\)
+* ansible\.windows \(still version 3\.3\.0\)
+* awx\.awx \(still version 24\.6\.1\)
+* azure\.azcollection \(still version 3\.14\.0\)
+* check\_point\.mgmt \(still version 6\.8\.0\)
+* chocolatey\.chocolatey \(still version 1\.5\.3\)
+* cisco\.aci \(still version 2\.13\.0\)
+* cisco\.intersight \(still version 2\.12\.0\)
+* cisco\.iosxr \(still version 12\.1\.1\)
+* cisco\.mso \(still version 2\.12\.0\)
+* cisco\.nxos \(still version 11\.1\.3\)
+* cisco\.ucs \(still version 1\.16\.0\)
+* cloudscale\_ch\.cloud \(still version 2\.5\.3\)
+* community\.ciscosmb \(still version 1\.0\.11\)
+* community\.clickhouse \(still version 2\.0\.0\)
+* community\.grafana \(still version 2\.3\.0\)
+* community\.hashi\_vault \(still version 7\.1\.0\)
+* community\.hrobot \(still version 2\.7\.0\)
+* community\.library\_inventory\_filtering\_v1 \(still version 1\.1\.5\)
+* community\.okd \(still version 5\.0\.0\)
+* community\.postgresql \(still version 4\.2\.0\)
+* community\.proxmox \(still version 1\.5\.0\)
+* community\.proxysql \(still version 1\.7\.0\)
+* community\.rabbitmq \(still version 1\.6\.0\)
+* community\.routeros \(still version 3\.16\.0\)
+* community\.sap\_libs \(still version 1\.6\.0\)
+* community\.sops \(still version 2\.2\.7\)
+* community\.vmware \(still version 6\.2\.0\)
+* community\.windows \(still version 3\.1\.0\)
+* community\.zabbix \(still version 4\.1\.1\)
+* cyberark\.conjur \(still version 1\.3\.9\)
+* cyberark\.pas \(still version 1\.0\.36\)
+* dellemc\.enterprise\_sonic \(still version 3\.2\.0\)
+* dellemc\.openmanage \(still version 10\.0\.1\)
+* dellemc\.powerflex \(still version 3\.0\.0\)
+* dellemc\.unity \(still version 2\.1\.0\)
+* f5networks\.f5\_modules \(still version 1\.39\.0\)
+* fortinet\.fortimanager \(still version 2\.12\.0\)
+* fortinet\.fortios \(still version 2\.4\.2\)
+* google\.cloud \(still version 1\.11\.0\)
+* grafana\.grafana \(still version 6\.0\.6\)
+* hetzner\.hcloud \(still version 6\.7\.0\)
+* hitachivantara\.vspone\_object \(still version 1\.1\.1\)
+* ibm\.storage\_virtualize \(still version 3\.2\.0\)
+* ieisystem\.inmanage \(still version 4\.0\.0\)
+* infinidat\.infinibox \(still version 1\.6\.3\)
+* infoblox\.nios\_modules \(still version 1\.9\.0\)
+* inspur\.ispim \(still version 2\.2\.4\)
+* junipernetworks\.junos \(still version 11\.0\.0\)
+* kaytus\.ksmanage \(still version 2\.0\.0\)
+* kubevirt\.core \(still version 2\.2\.3\)
+* lowlydba\.sqlserver \(still version 2\.7\.0\)
+* microsoft\.ad \(still version 1\.10\.0\)
+* microsoft\.iis \(still version 1\.1\.0\)
+* netapp\.cloudmanager \(still version 21\.24\.0\)
+* netapp\.ontap \(still version 23\.3\.0\)
+* netapp\.storagegrid \(still version 21\.16\.0\)
+* netapp\_eseries\.santricity \(still version 1\.4\.1\)
+* netbox\.netbox \(still version 3\.22\.0\)
+* ngine\_io\.cloudstack \(still version 3\.0\.0\)
+* openstack\.cloud \(still version 2\.5\.0\)
+* ovirt\.ovirt \(still version 3\.2\.2\)
+* purestorage\.flashblade \(still version 1\.24\.0\)
+* ravendb\.ravendb \(still version 1\.0\.4\)
+* splunk\.es \(still version 4\.0\.0\)
+* telekom\_mms\.icinga\_director \(still version 2\.5\.1\)
+* theforeman\.foreman \(still version 5\.8\.0\)
+* vmware\.vmware \(still version 2\.7\.0\)
+* vultr\.cloud \(still version 1\.13\.0\)
+* vyos\.vyos \(still version 6\.0\.0\)
+* wti\.remote \(still version 1\.0\.10\)
 
 <a id="v13-3-0"></a>
 ## v13\.3\.0
 
-- <a href="#release-summary">Release Summary</a>
+- <a href="#release-summary-1">Release Summary</a>
 - <a href="#added-collections">Added Collections</a>
-- <a href="#ansible-core">Ansible\-core</a>
-- <a href="#changed-collections">Changed Collections</a>
-- <a href="#major-changes">Major Changes</a>
+- <a href="#ansible-core-3">Ansible\-core</a>
+- <a href="#changed-collections-1">Changed Collections</a>
+- <a href="#major-changes-1">Major Changes</a>
     - <a href="#community-vmware">community\.vmware</a>
-    - <a href="#containers-podman">containers\.podman</a>
-- <a href="#minor-changes">Minor Changes</a>
-    - <a href="#ansible-core-1">Ansible\-core</a>
+    - <a href="#containers-podman-4">containers\.podman</a>
+- <a href="#minor-changes-1">Minor Changes</a>
+    - <a href="#ansible-core-4">Ansible\-core</a>
     - <a href="#amazon-aws">amazon\.aws</a>
-    - <a href="#cisco-dnac">cisco\.dnac</a>
-    - <a href="#cisco-meraki">cisco\.meraki</a>
+    - <a href="#cisco-dnac-1">cisco\.dnac</a>
+    - <a href="#cisco-meraki-1">cisco\.meraki</a>
     - <a href="#cloudscale-ch-cloud">cloudscale\_ch\.cloud</a>
-    - <a href="#community-dns">community\.dns</a>
-    - <a href="#community-general">community\.general</a>
+    - <a href="#community-dns-1">community\.dns</a>
+    - <a href="#community-general-3">community\.general</a>
     - <a href="#community-routeros">community\.routeros</a>
-    - <a href="#containers-podman-1">containers\.podman</a>
+    - <a href="#containers-podman-5">containers\.podman</a>
     - <a href="#google-cloud">google\.cloud</a>
     - <a href="#hetzner-hcloud">hetzner\.hcloud</a>
     - <a href="#ibm-storage-virtualize">ibm\.storage\_virtualize</a>
@@ -81,20 +815,20 @@ This changelog describes changes since Ansible 12\.0\.0\.
     - <a href="#ovirt-ovirt">ovirt\.ovirt</a>
     - <a href="#theforeman-foreman">theforeman\.foreman</a>
     - <a href="#vmware-vmware">vmware\.vmware</a>
-- <a href="#deprecated-features">Deprecated Features</a>
+- <a href="#deprecated-features-1">Deprecated Features</a>
     - <a href="#amazon-aws-1">amazon\.aws</a>
     - <a href="#hetzner-hcloud-1">hetzner\.hcloud</a>
-- <a href="#bugfixes">Bugfixes</a>
-    - <a href="#ansible-core-2">Ansible\-core</a>
+- <a href="#bugfixes-1">Bugfixes</a>
+    - <a href="#ansible-core-5">Ansible\-core</a>
     - <a href="#amazon-aws-2">amazon\.aws</a>
-    - <a href="#ansible-netcommon">ansible\.netcommon</a>
+    - <a href="#ansible-netcommon-1">ansible\.netcommon</a>
     - <a href="#ansible-utils">ansible\.utils</a>
     - <a href="#cisco-nxos">cisco\.nxos</a>
-    - <a href="#community-dns-1">community\.dns</a>
-    - <a href="#community-docker">community\.docker</a>
-    - <a href="#community-general-1">community\.general</a>
+    - <a href="#community-dns-2">community\.dns</a>
+    - <a href="#community-docker-1">community\.docker</a>
+    - <a href="#community-general-4">community\.general</a>
     - <a href="#community-vmware-1">community\.vmware</a>
-    - <a href="#containers-podman-2">containers\.podman</a>
+    - <a href="#containers-podman-6">containers\.podman</a>
     - <a href="#google-cloud-1">google\.cloud</a>
     - <a href="#hetzner-hcloud-2">hetzner\.hcloud</a>
     - <a href="#infoblox-nios-modules-1">infoblox\.nios\_modules</a>
@@ -102,14 +836,14 @@ This changelog describes changes since Ansible 12\.0\.0\.
     - <a href="#ovirt-ovirt-1">ovirt\.ovirt</a>
     - <a href="#purestorage-flashblade">purestorage\.flashblade</a>
     - <a href="#vmware-vmware-1">vmware\.vmware</a>
-- <a href="#new-plugins">New Plugins</a>
+- <a href="#new-plugins-1">New Plugins</a>
     - <a href="#filter">Filter</a>
-- <a href="#new-modules">New Modules</a>
+- <a href="#new-modules-1">New Modules</a>
     - <a href="#ibm-storage-virtualize-1">ibm\.storage\_virtualize</a>
     - <a href="#netbox-netbox-2">netbox\.netbox</a>
-- <a href="#unchanged-collections">Unchanged Collections</a>
+- <a href="#unchanged-collections-1">Unchanged Collections</a>
 
-<a id="release-summary"></a>
+<a id="release-summary-1"></a>
 ### Release Summary
 
 Release Date\: 2026\-01\-29
@@ -122,7 +856,7 @@ Release Date\: 2026\-01\-29
 * community\.clickhouse \(version 2\.0\.0\)
 * pcg\.alpaca\_operator \(version 2\.1\.1\)
 
-<a id="ansible-core"></a>
+<a id="ansible-core-3"></a>
 ### Ansible\-core
 
 Ansible 13\.3\.0 contains ansible\-core version 2\.20\.2\.
@@ -130,7 +864,7 @@ This is a newer version than version 2\.20\.1 contained in the previous Ansible 
 
 The changes are reported in the combined changelog below\.
 
-<a id="changed-collections"></a>
+<a id="changed-collections-1"></a>
 ### Changed Collections
 
 If not mentioned explicitly\, the changes are reported in the combined changelog below\.
@@ -165,7 +899,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 | theforeman.foreman          | 5.7.0          | 5.8.0          |                                                                                                                              |
 | vmware.vmware               | 2.6.0          | 2.7.0          |                                                                                                                              |
 
-<a id="major-changes"></a>
+<a id="major-changes-1"></a>
 ### Major Changes
 
 <a id="community-vmware"></a>
@@ -173,15 +907,15 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * Bump required <code>vmware\.vmware</code> collection version to 2\.5\.0 \([https\://github\.com/ansible\-collections/community\.vmware/pull/2503](https\://github\.com/ansible\-collections/community\.vmware/pull/2503)\)\.
 
-<a id="containers-podman"></a>
+<a id="containers-podman-4"></a>
 #### containers\.podman
 
 * Rewrite podman and buildah connections
 
-<a id="minor-changes"></a>
+<a id="minor-changes-1"></a>
 ### Minor Changes
 
-<a id="ansible-core-1"></a>
+<a id="ansible-core-4"></a>
 #### Ansible\-core
 
 * ansible\-test \- Replace RHEL 10\.0 remote with 10\.1\.
@@ -199,7 +933,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * route53 \- added <code>record\_values</code> key to <code>resource\_record\_sets</code> return value that can be accessed using Jinja2 dot notation \([https\://github\.com/ansible\-collections/amazon\.aws/pull/2772](https\://github\.com/ansible\-collections/amazon\.aws/pull/2772)\)\.
 * sts\_assume\_role \- improve error handling for <code>MalformedPolicyDocument</code> errors by providing a clearer error message when an invalid policy document is provided \([https\://github\.com/ansible\-collections/amazon\.aws/pull/2778](https\://github\.com/ansible\-collections/amazon\.aws/pull/2778)\)\.
 
-<a id="cisco-dnac"></a>
+<a id="cisco-dnac-1"></a>
 #### cisco\.dnac
 
 * Added \'template\_content\_file\_path\'  attribute in template\_workflow\_manager module
@@ -221,7 +955,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * Changes in user\_role\_workflow\_manager module
 * Changes in wireless\_design\_workflow\_manager module
 
-<a id="cisco-meraki"></a>
+<a id="cisco-meraki-1"></a>
 #### cisco\.meraki
 
 * Updated with v1\.66\.0 dashboard API\, adding new plugins and fixing bugs\.
@@ -231,12 +965,12 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * Added missing param when creating a health monitor
 
-<a id="community-dns"></a>
+<a id="community-dns-1"></a>
 #### community\.dns
 
 * Hetzner DNS modules and plugins \- support the [new Hetzner DNS API](https\://docs\.hetzner\.com/networking/dns/faq/beta/) \([https\://github\.com/ansible\-collections/community\.dns/pull/301](https\://github\.com/ansible\-collections/community\.dns/pull/301)\)\.
 
-<a id="community-general"></a>
+<a id="community-general-3"></a>
 #### community\.general
 
 * alicloud\_ecs module utils \- update to Python 3\.7 idioms \([https\://github\.com/ansible\-collections/community\.general/pull/11341](https\://github\.com/ansible\-collections/community\.general/pull/11341)\)\.
@@ -342,7 +1076,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * api\_info\, api\_modify \- add <code>prefix\-pool</code> field to and fix default of <code>address\-pool</code> for <code>ipv6 dhcp\-server</code> path \([https\://github\.com/ansible\-collections/community\.routeros/pull/430](https\://github\.com/ansible\-collections/community\.routeros/pull/430)\)\.
 * api\_info\, api\_modify \- add support for path <code>ip socks access</code> \([https\://github\.com/ansible\-collections/community\.routeros/pull/431](https\://github\.com/ansible\-collections/community\.routeros/pull/431)\)\.
 
-<a id="containers-podman-1"></a>
+<a id="containers-podman-5"></a>
 #### containers\.podman
 
 * Add configuration for new Ansible release
@@ -425,7 +1159,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * Add module vm\_snapshot\_revert to revert a virtual machine to a snapshot\. Fixes [https\://github\.com/ansible\-collections/vmware\.vmware/issues/281](https\://github\.com/ansible\-collections/vmware\.vmware/issues/281)
 
-<a id="deprecated-features"></a>
+<a id="deprecated-features-1"></a>
 ### Deprecated Features
 
 * The <code>netapp\.cloudmanager</code> collection is considered unmaintained and will be removed from Ansible 15 if no one starts maintaining it again before Ansible 15\.
@@ -451,10 +1185,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * server \- The <code>hcloud\_server\.datacenter</code> return value is deprecated and will be removed after 1 July 2026\. Please use the <code>hcloud\_server\.location</code> return value instead\.
 * server\_info \- The <code>hcloud\_server\_info\[\]\.datacenter</code> return value is deprecated and will be removed after 1 July 2026\. Please use the <code>hcloud\_server\_info\[\]\.location</code> return value instead\.
 
-<a id="bugfixes"></a>
+<a id="bugfixes-1"></a>
 ### Bugfixes
 
-<a id="ansible-core-2"></a>
+<a id="ansible-core-5"></a>
 #### Ansible\-core
 
 * Fix Windows LIB env var corruption \([https\://github\.com/ansible\-collections/ansible\.windows/issues/297](https\://github\.com/ansible\-collections/ansible\.windows/issues/297)\)\.
@@ -475,7 +1209,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * lambda\_info \- fixed invalid return value documentation that used dot notation \(<code>function\.TheName</code>\) which cannot be used in Jinja2 templates \([https\://github\.com/ansible\-collections/amazon\.aws/pull/2772](https\://github\.com/ansible\-collections/amazon\.aws/pull/2772)\)\.
 * s3\_bucket \- fix error when configuring AES256 bucket encryption with <code>bucket\_key\_enabled</code> explicitly set to <code>false</code> \([https\://github\.com/ansible\-collections/amazon\.aws/issues/2734](https\://github\.com/ansible\-collections/amazon\.aws/issues/2734)\)\.
 
-<a id="ansible-netcommon"></a>
+<a id="ansible-netcommon-1"></a>
 #### ansible\.netcommon
 
 * Adds backward compatibility of handling src attributes\, functional consistency with ansible\-core \>\= 2\.19
@@ -494,7 +1228,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * Fixed nxos\_static\_routes module so to handle replaced and overridden state with vrf configuration\.
 * cisco\.nxos\.nxos\_facts \- Fix AttributeError when interface has multiple IPv6 addrs and handle ROW\_addr as list\.
 
-<a id="community-dns-1"></a>
+<a id="community-dns-2"></a>
 #### community\.dns
 
 * Update Public Suffix List\.
@@ -505,12 +1239,12 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * remove\_public\_suffix filter plugin \- fix plugin name in error message \([https\://github\.com/ansible\-collections/community\.dns/pull/308](https\://github\.com/ansible\-collections/community\.dns/pull/308)\)\.
 * remove\_registrable\_domain filter plugin \- fix plugin name in error message \([https\://github\.com/ansible\-collections/community\.dns/pull/308](https\://github\.com/ansible\-collections/community\.dns/pull/308)\)\.
 
-<a id="community-docker"></a>
+<a id="community-docker-1"></a>
 #### community\.docker
 
 * modules and plugins using the Docker SDK for Python \- do not automatically set <code>tls\_hostname</code> when <code>validate\_certs\=true</code> for Docker SDK for Python 7\.0\.0\+ \([https\://github\.com/ansible\-collections/community\.docker/issues/1225](https\://github\.com/ansible\-collections/community\.docker/issues/1225)\, [https\://github\.com/ansible\-collections/community\.docker/pull/1226](https\://github\.com/ansible\-collections/community\.docker/pull/1226)\)\.
 
-<a id="community-general-1"></a>
+<a id="community-general-4"></a>
 #### community\.general
 
 * cloudflare\_dns \- also allow <code>flag\=128</code> for CAA records \([https\://github\.com/ansible\-collections/community\.general/issues/11355](https\://github\.com/ansible\-collections/community\.general/issues/11355)\, [https\://github\.com/ansible\-collections/community\.general/pull/11377](https\://github\.com/ansible\-collections/community\.general/pull/11377)\)\.
@@ -525,7 +1259,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * vmware\_guest\_storage\_policy \- Fix storage policy search to return None if no policies are found\, instead of causing an exception\. fixes [https\://github\.com/ansible\-collections/community\.vmware/issues/2527](https\://github\.com/ansible\-collections/community\.vmware/issues/2527)
 
-<a id="containers-podman-2"></a>
+<a id="containers-podman-6"></a>
 #### containers\.podman
 
 * Fix idempotency for tagging local images
@@ -587,7 +1321,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * vm \- Remove check that prevents memory from being decreased regardless of power state\. Fixes [https\://github\.com/ansible\-collections/vmware\.vmware/issues/298](https\://github\.com/ansible\-collections/vmware\.vmware/issues/298)
 * vm\_apply\_customization \- Fixed issue where the product ID\, user name\, and user org name were required by the API but not by the module
 
-<a id="new-plugins"></a>
+<a id="new-plugins-1"></a>
 ### New Plugins
 
 <a id="filter"></a>
@@ -595,7 +1329,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * community\.general\.to\_toml \- Convert variable to TOML string\.
 
-<a id="new-modules"></a>
+<a id="new-modules-1"></a>
 ### New Modules
 
 <a id="ibm-storage-virtualize-1"></a>
@@ -609,7 +1343,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * netbox\.netbox\.netbox\_contact\_assignment \- Manage contact assignments in NetBox
 * netbox\.netbox\.netbox\_data\_source \- Manage data sources in NetBox
 
-<a id="unchanged-collections"></a>
+<a id="unchanged-collections-1"></a>
 ### Unchanged Collections
 
 * ansible\.posix \(still version 2\.1\.0\)
@@ -681,15 +1415,15 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="v13-2-0"></a>
 ## v13\.2\.0
 
-- <a href="#release-summary-1">Release Summary</a>
-- <a href="#ansible-core-3">Ansible\-core</a>
-- <a href="#changed-collections-1">Changed Collections</a>
-- <a href="#major-changes-1">Major Changes</a>
+- <a href="#release-summary-2">Release Summary</a>
+- <a href="#ansible-core-6">Ansible\-core</a>
+- <a href="#changed-collections-2">Changed Collections</a>
+- <a href="#major-changes-2">Major Changes</a>
     - <a href="#netapp-ontap">netapp\.ontap</a>
-- <a href="#minor-changes-1">Minor Changes</a>
-    - <a href="#cisco-ios">cisco\.ios</a>
-    - <a href="#community-crypto">community\.crypto</a>
-    - <a href="#community-general-2">community\.general</a>
+- <a href="#minor-changes-2">Minor Changes</a>
+    - <a href="#cisco-ios-3">cisco\.ios</a>
+    - <a href="#community-crypto-1">community\.crypto</a>
+    - <a href="#community-general-5">community\.general</a>
     - <a href="#community-proxmox">community\.proxmox</a>
     - <a href="#community-routeros-1">community\.routeros</a>
     - <a href="#community-sap-libs">community\.sap\_libs</a>
@@ -698,43 +1432,43 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#netapp-ontap-1">netapp\.ontap</a>
     - <a href="#netapp-storagegrid">netapp\.storagegrid</a>
     - <a href="#purestorage-flashblade-1">purestorage\.flashblade</a>
-- <a href="#deprecated-features-1">Deprecated Features</a>
-    - <a href="#community-general-3">community\.general</a>
+- <a href="#deprecated-features-2">Deprecated Features</a>
+    - <a href="#community-general-6">community\.general</a>
     - <a href="#community-routeros-2">community\.routeros</a>
-- <a href="#bugfixes-1">Bugfixes</a>
-    - <a href="#cisco-ios-1">cisco\.ios</a>
+- <a href="#bugfixes-2">Bugfixes</a>
+    - <a href="#cisco-ios-4">cisco\.ios</a>
     - <a href="#cisco-iosxr">cisco\.iosxr</a>
     - <a href="#cisco-nxos-1">cisco\.nxos</a>
-    - <a href="#community-dns-2">community\.dns</a>
-    - <a href="#community-general-4">community\.general</a>
+    - <a href="#community-dns-3">community\.dns</a>
+    - <a href="#community-general-7">community\.general</a>
     - <a href="#community-proxmox-1">community\.proxmox</a>
     - <a href="#fortinet-fortimanager-1">fortinet\.fortimanager</a>
-    - <a href="#hitachivantara-vspone-block">hitachivantara\.vspone\_block</a>
+    - <a href="#hitachivantara-vspone-block-2">hitachivantara\.vspone\_block</a>
     - <a href="#netapp-ontap-2">netapp\.ontap</a>
     - <a href="#netapp-storagegrid-1">netapp\.storagegrid</a>
-    - <a href="#purestorage-flasharray">purestorage\.flasharray</a>
+    - <a href="#purestorage-flasharray-1">purestorage\.flasharray</a>
     - <a href="#purestorage-flashblade-2">purestorage\.flashblade</a>
-- <a href="#new-modules-1">New Modules</a>
-    - <a href="#community-general-5">community\.general</a>
+- <a href="#new-modules-2">New Modules</a>
+    - <a href="#community-general-8">community\.general</a>
     - <a href="#community-proxmox-2">community\.proxmox</a>
     - <a href="#fortinet-fortimanager-2">fortinet\.fortimanager</a>
     - <a href="#netapp-storagegrid-2">netapp\.storagegrid</a>
-- <a href="#unchanged-collections-1">Unchanged Collections</a>
+- <a href="#unchanged-collections-2">Unchanged Collections</a>
 
-<a id="release-summary-1"></a>
+<a id="release-summary-2"></a>
 ### Release Summary
 
 Release Date\: 2025\-12\-30
 
 [Porting Guide](https\://docs\.ansible\.com/projects/ansible/devel/porting\_guides\.html)
 
-<a id="ansible-core-3"></a>
+<a id="ansible-core-6"></a>
 ### Ansible\-core
 
 Ansible 13\.2\.0 contains ansible\-core version 2\.20\.1\.
 This is the same version of ansible\-core as in the previous Ansible release\.
 
-<a id="changed-collections-1"></a>
+<a id="changed-collections-2"></a>
 ### Changed Collections
 
 If not mentioned explicitly\, the changes are reported in the combined changelog below\.
@@ -759,7 +1493,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 | purestorage.flasharray      | 1.40.0         | 1.41.0         |                                                          |
 | purestorage.flashblade      | 1.22.0         | 1.23.1         |                                                          |
 
-<a id="major-changes-1"></a>
+<a id="major-changes-2"></a>
 ### Major Changes
 
 <a id="netapp-ontap"></a>
@@ -770,21 +1504,21 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * na\_ontap\_snapshot \- AWS Lambda support added to the module\.
 * na\_ontap\_svm \- AWS Lambda support added to the module\.
 
-<a id="minor-changes-1"></a>
+<a id="minor-changes-2"></a>
 ### Minor Changes
 
-<a id="cisco-ios"></a>
+<a id="cisco-ios-3"></a>
 #### cisco\.ios
 
 * ios\_l2\_interfaces \- Added xconnect and encapsulation attributes for L2VPN pseudowire and MPLS services configuration\.
 
-<a id="community-crypto"></a>
+<a id="community-crypto-1"></a>
 #### community\.crypto
 
 * luks\_device \- add support for TPM2 enrollment using <code>systemd\-cryptsetup</code> \([https\://github\.com/ansible\-collections/community\.crypto/issues/850](https\://github\.com/ansible\-collections/community\.crypto/issues/850)\, [https\://github\.com/ansible\-collections/community\.crypto/pull/972](https\://github\.com/ansible\-collections/community\.crypto/pull/972)\)\.
 * luks\_device \- add support for keyslot priority \([https\://github\.com/ansible\-collections/community\.crypto/issues/850](https\://github\.com/ansible\-collections/community\.crypto/issues/850)\, [https\://github\.com/ansible\-collections/community\.crypto/pull/972](https\://github\.com/ansible\-collections/community\.crypto/pull/972)\)\.
 
-<a id="community-general-2"></a>
+<a id="community-general-5"></a>
 #### community\.general
 
 * btrfs module utils \- make execution of external commands safer by passing arguments as list \([https\://github\.com/ansible\-collections/community\.general/pull/11240](https\://github\.com/ansible\-collections/community\.general/pull/11240)\)\.
@@ -884,10 +1618,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * purefb\_ds \- Update test state to allow specific tests to be run
 * purefb\_info \- Added MAC address information for LAGs
 
-<a id="deprecated-features-1"></a>
+<a id="deprecated-features-2"></a>
 ### Deprecated Features
 
-<a id="community-general-3"></a>
+<a id="community-general-6"></a>
 #### community\.general
 
 * All module utils\, plugin utils\, and doc fragments will be made <strong>private</strong> in community\.general 13\.0\.0\. This means that they will no longer be part of the public API of the collection\, and can have breaking changes even in bugfix releases\. If you depend on importing code from the module or plugin utils\, or use one of the doc fragments\, please [comment in the issue to discuss this](https\://github\.com/ansible\-collections/community\.general/issues/11312)\. Note that this does not affect any use of community\.general in task files\, roles\, or playbooks \([https\://github\.com/ansible\-collections/community\.general/issues/11312](https\://github\.com/ansible\-collections/community\.general/issues/11312)\, [https\://github\.com/ansible\-collections/community\.general/pull/11320](https\://github\.com/ansible\-collections/community\.general/pull/11320)\)\.
@@ -897,10 +1631,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * api\_find\_and\_modify \- the current defaults for <code>ignore\_dynamic</code> and <code>ignore\_builtin</code> \(both <code>false</code>\) have been deprecated and will change to <code>true</code> in community\.routeros 4\.0\.0\. To avoid deprecation messages\, please set the value explicitly to <code>true</code> or <code>false</code>\, if you have not already done so\. We recommend to set them to <code>true</code>\, unless you have a good reason to set them to <code>false</code> \([https\://github\.com/ansible\-collections/community\.routeros/pull/399](https\://github\.com/ansible\-collections/community\.routeros/pull/399)\)\.
 
-<a id="bugfixes-1"></a>
+<a id="bugfixes-2"></a>
 ### Bugfixes
 
-<a id="cisco-ios-1"></a>
+<a id="cisco-ios-4"></a>
 #### cisco\.ios
 
 * cisco\.ios\.ios\_acls \- Added support for converting numeric protocol values to real protocol options when gathered from the device\.
@@ -920,12 +1654,12 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * cisco\.nxos\.nxos\_hsrp\_intefaces \- Considers version 1 as default if configuration does not specify version\.
 * cisco\.nxos\.nxos\_hsrp\_intefaces \- Corrects idempotency issue when version is not specified in configuration\.
 
-<a id="community-dns-2"></a>
+<a id="community-dns-3"></a>
 #### community\.dns
 
 * Update Public Suffix List\.
 
-<a id="community-general-4"></a>
+<a id="community-general-7"></a>
 #### community\.general
 
 * apk \- fix <code>packages</code> return value for apk\-tools \>\= 3 \(Alpine 3\.23\) \([https\://github\.com/ansible\-collections/community\.general/issues/11264](https\://github\.com/ansible\-collections/community\.general/issues/11264)\)\.
@@ -949,7 +1683,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * Improved the request sending logic in httpapi plugin\.
 
-<a id="hitachivantara-vspone-block"></a>
+<a id="hitachivantara-vspone-block-2"></a>
 #### hitachivantara\.vspone\_block
 
 * Resolved resource group creation with VSP 5XXX series storage systems\.
@@ -983,7 +1717,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * na\_sg\_org\_info \- Fix issue where the module incorrectly reported tasks as changed\.
 * na\_sg\_org\_user\_s3\_key \- unique\_user\_name is fixed as in the documents
 
-<a id="purestorage-flasharray"></a>
+<a id="purestorage-flasharray-1"></a>
 #### purestorage\.flasharray
 
 * purefa\_info \- Added version check to ensure tags are only used in appropriate Purity versions
@@ -998,10 +1732,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * purefb\_bucket\_replica \- Fixed issue with ItemIterator error
 * purefb\_pingtrace \- Fiexed issue with XFM module when state is ping
 
-<a id="new-modules-1"></a>
+<a id="new-modules-2"></a>
 ### New Modules
 
-<a id="community-general-5"></a>
+<a id="community-general-8"></a>
 #### community\.general
 
 * community\.general\.ip2location\_info \- Retrieve IP geolocation information of a host\'s IP address\.
@@ -1095,7 +1829,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * netapp\.storagegrid\.na\_sg\_org\_cloud\_mirror\_replication \- Manage Cloud Mirror Replication on StorageGRID\.
 * netapp\.storagegrid\.na\_sg\_pge\_info \- NetApp StorageGRID node PGE information gatherer\.
 
-<a id="unchanged-collections-1"></a>
+<a id="unchanged-collections-2"></a>
 ### Unchanged Collections
 
 * amazon\.aws \(still version 10\.1\.2\)
@@ -1175,73 +1909,73 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="v13-1-0"></a>
 ## v13\.1\.0
 
-- <a href="#release-summary-2">Release Summary</a>
-- <a href="#ansible-core-4">Ansible\-core</a>
-- <a href="#changed-collections-2">Changed Collections</a>
-- <a href="#major-changes-2">Major Changes</a>
+- <a href="#release-summary-3">Release Summary</a>
+- <a href="#ansible-core-7">Ansible\-core</a>
+- <a href="#changed-collections-3">Changed Collections</a>
+- <a href="#major-changes-3">Major Changes</a>
     - <a href="#vmware-vmware-2">vmware\.vmware</a>
-- <a href="#minor-changes-2">Minor Changes</a>
-    - <a href="#ansible-netcommon-1">ansible\.netcommon</a>
+- <a href="#minor-changes-3">Minor Changes</a>
+    - <a href="#ansible-netcommon-2">ansible\.netcommon</a>
     - <a href="#ansible-windows">ansible\.windows</a>
     - <a href="#cisco-aci">cisco\.aci</a>
-    - <a href="#cisco-dnac-1">cisco\.dnac</a>
+    - <a href="#cisco-dnac-2">cisco\.dnac</a>
     - <a href="#cisco-mso">cisco\.mso</a>
     - <a href="#cisco-nxos-2">cisco\.nxos</a>
-    - <a href="#community-general-6">community\.general</a>
+    - <a href="#community-general-9">community\.general</a>
     - <a href="#community-postgresql">community\.postgresql</a>
     - <a href="#community-routeros-3">community\.routeros</a>
     - <a href="#community-windows">community\.windows</a>
     - <a href="#google-cloud-2">google\.cloud</a>
     - <a href="#hetzner-hcloud-4">hetzner\.hcloud</a>
-    - <a href="#hitachivantara-vspone-block-1">hitachivantara\.vspone\_block</a>
+    - <a href="#hitachivantara-vspone-block-3">hitachivantara\.vspone\_block</a>
     - <a href="#hitachivantara-vspone-object">hitachivantara\.vspone\_object</a>
     - <a href="#microsoft-ad">microsoft\.ad</a>
     - <a href="#microsoft-iis">microsoft\.iis</a>
-    - <a href="#purestorage-flasharray-1">purestorage\.flasharray</a>
+    - <a href="#purestorage-flasharray-2">purestorage\.flasharray</a>
     - <a href="#telekom-mms-icinga-director">telekom\_mms\.icinga\_director</a>
     - <a href="#vmware-vmware-3">vmware\.vmware</a>
-- <a href="#deprecated-features-2">Deprecated Features</a>
-    - <a href="#community-general-7">community\.general</a>
-- <a href="#bugfixes-2">Bugfixes</a>
-    - <a href="#ansible-core-5">Ansible\-core</a>
-    - <a href="#ansible-netcommon-2">ansible\.netcommon</a>
+- <a href="#deprecated-features-3">Deprecated Features</a>
+    - <a href="#community-general-10">community\.general</a>
+- <a href="#bugfixes-3">Bugfixes</a>
+    - <a href="#ansible-core-8">Ansible\-core</a>
+    - <a href="#ansible-netcommon-3">ansible\.netcommon</a>
     - <a href="#ansible-windows-1">ansible\.windows</a>
     - <a href="#cisco-aci-1">cisco\.aci</a>
-    - <a href="#cisco-meraki-1">cisco\.meraki</a>
+    - <a href="#cisco-meraki-2">cisco\.meraki</a>
     - <a href="#cisco-mso-1">cisco\.mso</a>
     - <a href="#cisco-nxos-3">cisco\.nxos</a>
-    - <a href="#community-dns-3">community\.dns</a>
-    - <a href="#community-docker-1">community\.docker</a>
-    - <a href="#community-general-8">community\.general</a>
+    - <a href="#community-dns-4">community\.dns</a>
+    - <a href="#community-docker-2">community\.docker</a>
+    - <a href="#community-general-11">community\.general</a>
     - <a href="#community-postgresql-1">community\.postgresql</a>
     - <a href="#community-routeros-4">community\.routeros</a>
     - <a href="#community-windows-1">community\.windows</a>
     - <a href="#google-cloud-3">google\.cloud</a>
     - <a href="#hetzner-hcloud-5">hetzner\.hcloud</a>
-    - <a href="#hitachivantara-vspone-block-2">hitachivantara\.vspone\_block</a>
+    - <a href="#hitachivantara-vspone-block-4">hitachivantara\.vspone\_block</a>
     - <a href="#inspur-ispim">inspur\.ispim</a>
     - <a href="#microsoft-ad-1">microsoft\.ad</a>
     - <a href="#microsoft-iis-1">microsoft\.iis</a>
-    - <a href="#purestorage-flasharray-2">purestorage\.flasharray</a>
+    - <a href="#purestorage-flasharray-3">purestorage\.flasharray</a>
     - <a href="#telekom-mms-icinga-director-1">telekom\_mms\.icinga\_director</a>
     - <a href="#vmware-vmware-4">vmware\.vmware</a>
 - <a href="#known-issues">Known Issues</a>
-    - <a href="#community-docker-2">community\.docker</a>
-- <a href="#new-modules-2">New Modules</a>
+    - <a href="#community-docker-3">community\.docker</a>
+- <a href="#new-modules-3">New Modules</a>
     - <a href="#cisco-aci-2">cisco\.aci</a>
     - <a href="#cisco-mso-2">cisco\.mso</a>
-    - <a href="#community-general-9">community\.general</a>
-    - <a href="#hitachivantara-vspone-block-3">hitachivantara\.vspone\_block</a>
-- <a href="#unchanged-collections-2">Unchanged Collections</a>
+    - <a href="#community-general-12">community\.general</a>
+    - <a href="#hitachivantara-vspone-block-5">hitachivantara\.vspone\_block</a>
+- <a href="#unchanged-collections-3">Unchanged Collections</a>
 
-<a id="release-summary-2"></a>
+<a id="release-summary-3"></a>
 ### Release Summary
 
 Release Date\: 2025\-12\-09
 
 [Porting Guide](https\://docs\.ansible\.com/projects/ansible/devel/porting\_guides\.html)
 
-<a id="ansible-core-4"></a>
+<a id="ansible-core-7"></a>
 ### Ansible\-core
 
 Ansible 13\.1\.0 contains ansible\-core version 2\.20\.1\.
@@ -1249,7 +1983,7 @@ This is a newer version than version 2\.20\.0 contained in the previous Ansible 
 
 The changes are reported in the combined changelog below\.
 
-<a id="changed-collections-2"></a>
+<a id="changed-collections-3"></a>
 ### Changed Collections
 
 If not mentioned explicitly\, the changes are reported in the combined changelog below\.
@@ -1284,7 +2018,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 | telekom_mms.icinga_director  | 2.4.0          | 2.5.0          |                                                                                                                                                                                                              |
 | vmware.vmware                | 2.4.0          | 2.6.0          |                                                                                                                                                                                                              |
 
-<a id="major-changes-2"></a>
+<a id="major-changes-3"></a>
 ### Major Changes
 
 <a id="vmware-vmware-2"></a>
@@ -1293,10 +2027,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * Replace <code>ansible\.module\_utils\.\_text</code> \([https\://github\.com/ansible\-collections/vmware\.vmware/issues/268](https\://github\.com/ansible\-collections/vmware\.vmware/issues/268)\)\.
 * Replace <code>ansible\.module\_utils\.common\.\_collections\_compat</code> \([https\://github\.com/ansible\-collections/vmware\.vmware/issues/271](https\://github\.com/ansible\-collections/vmware\.vmware/issues/271)\)\.
 
-<a id="minor-changes-2"></a>
+<a id="minor-changes-3"></a>
 ### Minor Changes
 
-<a id="ansible-netcommon-1"></a>
+<a id="ansible-netcommon-2"></a>
 #### ansible\.netcommon
 
 * Exposes new libssh option to configure key\_exchange\_algorithms\. This requires ansible\-pylibssh v1\.3\.0 or higher\.
@@ -1315,7 +2049,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * Add normalize\_payload\_values option to aci\_rest for Ansible Core 2\.19 support\.
 * Add set\_communities\, set\_as\_path and set\_policy\_tag options to aci\_tenant\_action\_rule\_profile\.
 
-<a id="cisco-dnac-1"></a>
+<a id="cisco-dnac-2"></a>
 #### cisco\.dnac
 
 * Added \'ap\_authorization\_list\_name\'\, \'authorize\_mesh\_and\_non\_mesh\_aps\'\, \'feature\_template\'  attributes in provision\_workflow\_manager module
@@ -1365,7 +2099,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * Added alias for mode option as switchport\_mode for nxos\_l2\_interfaces
 
-<a id="community-general-6"></a>
+<a id="community-general-9"></a>
 #### community\.general
 
 * The last code included in the collection that was licensed under the PSF 2\.0 license was removed form the collection\. This means that now all code is either GPLv3\+ licensed\, MIT licensed\, or BSD\-2\-clause licensed \([https\://github\.com/ansible\-collections/community\.general/pull/11232](https\://github\.com/ansible\-collections/community\.general/pull/11232)\)\.
@@ -1736,7 +2470,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * server\_network \- Add <code>ip\_range</code> argument to attach a load balancer to a specific subnet\.
 * txt\_record \- Add new txt\_record filter to help format TXT \, e\.g\. <code>\"\{\{ \'v\=spf1 include\:\_spf\.example\.net \~all\' \| hetzner\.hcloud\.txt\_record \}\}\"</code>\.
 
-<a id="hitachivantara-vspone-block-1"></a>
+<a id="hitachivantara-vspone-block-3"></a>
 #### hitachivantara\.vspone\_block
 
 * Added a new \"hv\_sds\_block\_encryption\_environment\_setting\_facts\" module to retrieve encryption environment configuration settings from VSP One SDS Block and Cloud systems\.
@@ -1783,7 +2517,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * Add official support for Ansible 2\.20
 
-<a id="purestorage-flasharray-1"></a>
+<a id="purestorage-flasharray-2"></a>
 #### purestorage\.flasharray
 
 * purefa\_connection \- Add new parameters for key refresh and connection refresh\, as well as ability to update existing connection
@@ -1809,14 +2543,14 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * vm\_apply\_customization \- Added module to apply different customization specs to a VM
 * vms \- Added option to rename reserved variables to avoid potential conflicts with ansible\-core and resolve warnings\. fixes [https\://github\.com/ansible\-collections/vmware\.vmware/issues/273](https\://github\.com/ansible\-collections/vmware\.vmware/issues/273)
 
-<a id="deprecated-features-2"></a>
+<a id="deprecated-features-3"></a>
 ### Deprecated Features
 
 * The <code>junipernetworks\.junos</code> collection has been deprecated\.
   It will be removed from Ansible 14 if no one starts maintaining it again before Ansible 14\.
   See [Collections Removal Process for unmaintained collections](https\://docs\.ansible\.com/projects/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#unmaintained\-collections) for more details \([https\://forum\.ansible\.com/t/44869](https\://forum\.ansible\.com/t/44869)\)\.
 
-<a id="community-general-7"></a>
+<a id="community-general-10"></a>
 #### community\.general
 
 * cloud module utils \- this module utils is not used by community\.general and will thus be removed from community\.general 13\.0\.0\. If you are using it from another collection\, please copy it over \([https\://github\.com/ansible\-collections/community\.general/pull/11205](https\://github\.com/ansible\-collections/community\.general/pull/11205)\)\.
@@ -1829,10 +2563,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * saslprep module utils \- this module utils is not used by community\.general and will thus be removed from community\.general 13\.0\.0\. If you are using it from another collection\, please copy it over \([https\://github\.com/ansible\-collections/community\.general/pull/11205](https\://github\.com/ansible\-collections/community\.general/pull/11205)\)\.
 * spotinst\_aws\_elastigroup \- module relies on Python package supporting Python 2\.7 only\; the module will be removed from community\.general 13\.0\.0 \([https\://github\.com/ansible\-collections/community\.general/pull/11069](https\://github\.com/ansible\-collections/community\.general/pull/11069)\)\.
 
-<a id="bugfixes-2"></a>
+<a id="bugfixes-3"></a>
 ### Bugfixes
 
-<a id="ansible-core-5"></a>
+<a id="ansible-core-8"></a>
 #### Ansible\-core
 
 * Fix <code>AnsibleModule\.human\_to\_bytes\(\)</code>\, which was never adjusted after the standalone <code>human\_to\_bytes\(\)</code> got a new parameter <code>default\_unit</code> \([https\://github\.com/ansible/ansible/pull/85259](https\://github\.com/ansible/ansible/pull/85259)\)\.
@@ -1843,7 +2577,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * get\_url \- fix regex for GNU Digest line which is used in comparing checksums \([https\://github\.com/ansible/ansible/issues/86132](https\://github\.com/ansible/ansible/issues/86132)\)\.
 * local connection \- Fix <code>getuser</code> fallback error handling on Python 3\.13 and later\.
 
-<a id="ansible-netcommon-2"></a>
+<a id="ansible-netcommon-3"></a>
 #### ansible\.netcommon
 
 * Added support for private key passphrase in libssh connection plugin\, when using encrypted private keys specified by the C\(ansible\_private\_key\_file\) attribute\.
@@ -1866,7 +2600,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * Fix descriptions of options in aci\_maintenance\_policy\.
 * Fix querying description in aci\_l4l7\_service\_graph\_template\.
 
-<a id="cisco-meraki-1"></a>
+<a id="cisco-meraki-2"></a>
 #### cisco\.meraki
 
 * administered\_licensing\_subscription\_subscriptions\_bind \- Fixed parameter naming from \'subscription\_id\' to \'subscriptionId\' for proper API compatibility
@@ -1889,12 +2623,12 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * cisco\.nxos\.nxos\_snmp\_server \- fixed communities parsing issue
 * cisco\.nxos\.nxos\_static\_routes \- Fix facts parser to filter inline VRF routes from global route collection preventing incorrect VRF route deletion\.
 
-<a id="community-dns-3"></a>
+<a id="community-dns-4"></a>
 #### community\.dns
 
 * Update Public Suffix List\.
 
-<a id="community-docker-1"></a>
+<a id="community-docker-2"></a>
 #### community\.docker
 
 * CLI\-based modules \- when parsing JSON output fails\, also provide standard error output\. Also provide information on the command and its result in machine\-readable way \([https\://github\.com/ansible\-collections/community\.docker/issues/1216](https\://github\.com/ansible\-collections/community\.docker/issues/1216)\, [https\://github\.com/ansible\-collections/community\.docker/pull/1221](https\://github\.com/ansible\-collections/community\.docker/pull/1221)\)\.
@@ -1909,7 +2643,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * docker\_image\_pull \- fix idempotency with Docker 29\.0\.0 \([https\://github\.com/ansible\-collections/community\.docker/pull/1192](https\://github\.com/ansible\-collections/community\.docker/pull/1192)\)\.
 * docker\_network \- fix idempotency for IPv6 addresses and networks with Docker 29\.0\.0 \([https\://github\.com/ansible\-collections/community\.docker/pull/1201](https\://github\.com/ansible\-collections/community\.docker/pull/1201)\)\.
 
-<a id="community-general-8"></a>
+<a id="community-general-11"></a>
 #### community\.general
 
 * \_filelock module utils \- add type hints\. Fix bug if <code>set\_lock\(\)</code> is called with <code>lock\_timeout\=None</code> \([https\://github\.com/ansible\-collections/community\.general/pull/11222](https\://github\.com/ansible\-collections/community\.general/pull/11222)\)\.
@@ -1966,7 +2700,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * zone\_rrset \- Records order is not guaranteed\, the module will not generate a diff if the order of records changes\.
 * zone\_rrset \- Records without comments will not generate a diff anymore\.
 
-<a id="hitachivantara-vspone-block-2"></a>
+<a id="hitachivantara-vspone-block-4"></a>
 #### hitachivantara\.vspone\_block
 
 * Resolved issue during GAD pair creation when resource lock is enabled\.
@@ -1996,7 +2730,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * website\_info \- Fix error when retrieving website information but none exist \- [https\://github\.com/ansible\-collections/microsoft\.iis/issues/44](https\://github\.com/ansible\-collections/microsoft\.iis/issues/44)
 
-<a id="purestorage-flasharray-2"></a>
+<a id="purestorage-flasharray-3"></a>
 #### purestorage\.flasharray
 
 * purefa\_info \- Resolves issue with hosthgroup info when NVMe connected volumes are in a hostgroup
@@ -2018,12 +2752,12 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="known-issues"></a>
 ### Known Issues
 
-<a id="community-docker-2"></a>
+<a id="community-docker-3"></a>
 #### community\.docker
 
 * docker\_image\, docker\_image\_export \- idempotency for archiving images depends on whether the image IDs used by the image storage backend correspond to the IDs used in the tarball\'s <code>manifest\.json</code> files\. The new default backend in Docker 29 apparently uses image IDs that no longer correspond\, whence idempotency no longer works \([https\://github\.com/ansible\-collections/community\.docker/pull/1199](https\://github\.com/ansible\-collections/community\.docker/pull/1199)\)\.
 
-<a id="new-modules-2"></a>
+<a id="new-modules-3"></a>
 ### New Modules
 
 <a id="cisco-aci-2"></a>
@@ -2049,17 +2783,17 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * cisco\.mso\.ndo\_route\_map\_policy\_route\_control\_context \- Manage Route Map Policy for Route Control Context on Cisco Nexus Dashboard Orchestrator \(NDO\)\.
 * cisco\.mso\.ndo\_set\_rule\_policy \- Manage Tenant Set Rule Policies on Cisco Nexus Dashboard Orchestrator \(NDO\)\.
 
-<a id="community-general-9"></a>
+<a id="community-general-12"></a>
 #### community\.general
 
 * community\.general\.file\_remove \- Remove files matching a pattern from a directory\.
 * community\.general\.lxd\_storage\_pool\_info \- Retrieve information about LXD storage pools\.
 * community\.general\.lxd\_storage\_volume\_info \- Retrieve information about LXD storage volumes\.
 
-<a id="hitachivantara-vspone-block-3"></a>
+<a id="hitachivantara-vspone-block-5"></a>
 #### hitachivantara\.vspone\_block
 
-<a id="sds-block"></a>
+<a id="sds-block-1"></a>
 ##### Sds Block
 
 * hitachivantara\.vspone\_block\.hv\_sds\_block\_encryption\_environment\_setting\_facts \- Retrieves encryption environment settings from VSP One SDS Block and Cloud systems\.
@@ -2075,7 +2809,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * hitachivantara\.vspone\_block\.hv\_sds\_block\_web\_server \- Manages the web server access setting for VSP One SDS Block and Cloud systems\.
 * hitachivantara\.vspone\_block\.hv\_sds\_block\_web\_server\_facts \- Get the web server access setting from VSP One SDS Block and Cloud systems\.
 
-<a id="unchanged-collections-2"></a>
+<a id="unchanged-collections-3"></a>
 ### Unchanged Collections
 
 * amazon\.aws \(still version 10\.1\.2\)
@@ -2145,32 +2879,32 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="v13-0-0"></a>
 ## v13\.0\.0
 
-- <a href="#release-summary-3">Release Summary</a>
+- <a href="#release-summary-4">Release Summary</a>
 - <a href="#removed-collections">Removed Collections</a>
 - <a href="#added-collections-1">Added Collections</a>
-- <a href="#ansible-core-6">Ansible\-core</a>
+- <a href="#ansible-core-9">Ansible\-core</a>
 - <a href="#included-collections">Included Collections</a>
-- <a href="#major-changes-3">Major Changes</a>
-    - <a href="#ansible-core-7">Ansible\-core</a>
+- <a href="#major-changes-4">Major Changes</a>
+    - <a href="#ansible-core-10">Ansible\-core</a>
     - <a href="#community-vmware-2">community\.vmware</a>
-    - <a href="#containers-podman-3">containers\.podman</a>
+    - <a href="#containers-podman-7">containers\.podman</a>
     - <a href="#dellemc-openmanage">dellemc\.openmanage</a>
     - <a href="#fortinet-fortios">fortinet\.fortios</a>
     - <a href="#grafana-grafana">grafana\.grafana</a>
     - <a href="#ieisystem-inmanage">ieisystem\.inmanage</a>
     - <a href="#ngine-io-cloudstack">ngine\_io\.cloudstack</a>
-- <a href="#minor-changes-3">Minor Changes</a>
-    - <a href="#ansible-core-8">Ansible\-core</a>
+- <a href="#minor-changes-4">Minor Changes</a>
+    - <a href="#ansible-core-11">Ansible\-core</a>
     - <a href="#check-point-mgmt">check\_point\.mgmt</a>
-    - <a href="#cisco-dnac-2">cisco\.dnac</a>
-    - <a href="#cisco-ios-2">cisco\.ios</a>
+    - <a href="#cisco-dnac-3">cisco\.dnac</a>
+    - <a href="#cisco-ios-5">cisco\.ios</a>
     - <a href="#cisco-iosxr-1">cisco\.iosxr</a>
-    - <a href="#community-dns-4">community\.dns</a>
-    - <a href="#community-docker-3">community\.docker</a>
-    - <a href="#community-general-10">community\.general</a>
+    - <a href="#community-dns-5">community\.dns</a>
+    - <a href="#community-docker-4">community\.docker</a>
+    - <a href="#community-general-13">community\.general</a>
     - <a href="#community-hashi-vault">community\.hashi\_vault</a>
     - <a href="#community-hrobot">community\.hrobot</a>
-    - <a href="#community-mysql">community\.mysql</a>
+    - <a href="#community-mysql-1">community\.mysql</a>
     - <a href="#community-proxmox-3">community\.proxmox</a>
     - <a href="#community-proxysql">community\.proxysql</a>
     - <a href="#community-routeros-5">community\.routeros</a>
@@ -2178,63 +2912,63 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#community-sops">community\.sops</a>
     - <a href="#community-vmware-3">community\.vmware</a>
     - <a href="#community-zabbix">community\.zabbix</a>
-    - <a href="#containers-podman-4">containers\.podman</a>
+    - <a href="#containers-podman-8">containers\.podman</a>
     - <a href="#dellemc-enterprise-sonic">dellemc\.enterprise\_sonic</a>
     - <a href="#dellemc-openmanage-1">dellemc\.openmanage</a>
     - <a href="#dellemc-powerflex">dellemc\.powerflex</a>
     - <a href="#fortinet-fortimanager-3">fortinet\.fortimanager</a>
     - <a href="#google-cloud-4">google\.cloud</a>
     - <a href="#hetzner-hcloud-6">hetzner\.hcloud</a>
-    - <a href="#hitachivantara-vspone-block-4">hitachivantara\.vspone\_block</a>
+    - <a href="#hitachivantara-vspone-block-6">hitachivantara\.vspone\_block</a>
     - <a href="#ibm-storage-virtualize-2">ibm\.storage\_virtualize</a>
-    - <a href="#kubernetes-core">kubernetes\.core</a>
+    - <a href="#kubernetes-core-4">kubernetes\.core</a>
     - <a href="#netapp-ontap-3">netapp\.ontap</a>
-    - <a href="#purestorage-flasharray-3">purestorage\.flasharray</a>
+    - <a href="#purestorage-flasharray-4">purestorage\.flasharray</a>
     - <a href="#purestorage-flashblade-3">purestorage\.flashblade</a>
     - <a href="#theforeman-foreman-1">theforeman\.foreman</a>
     - <a href="#vmware-vmware-5">vmware\.vmware</a>
 - <a href="#breaking-changes--porting-guide">Breaking Changes / Porting Guide</a>
-    - <a href="#ansible-core-9">Ansible\-core</a>
-    - <a href="#community-docker-4">community\.docker</a>
-    - <a href="#community-general-11">community\.general</a>
-    - <a href="#community-mysql-1">community\.mysql</a>
+    - <a href="#ansible-core-12">Ansible\-core</a>
+    - <a href="#community-docker-5">community\.docker</a>
+    - <a href="#community-general-14">community\.general</a>
+    - <a href="#community-mysql-2">community\.mysql</a>
     - <a href="#community-vmware-4">community\.vmware</a>
     - <a href="#hetzner-hcloud-7">hetzner\.hcloud</a>
     - <a href="#ibm-storage-virtualize-3">ibm\.storage\_virtualize</a>
-- <a href="#deprecated-features-3">Deprecated Features</a>
-    - <a href="#ansible-core-10">Ansible\-core</a>
-    - <a href="#community-general-12">community\.general</a>
+- <a href="#deprecated-features-4">Deprecated Features</a>
+    - <a href="#ansible-core-13">Ansible\-core</a>
+    - <a href="#community-general-15">community\.general</a>
     - <a href="#community-hrobot-1">community\.hrobot</a>
     - <a href="#community-vmware-5">community\.vmware</a>
     - <a href="#community-zabbix-1">community\.zabbix</a>
     - <a href="#dellemc-powerflex-1">dellemc\.powerflex</a>
     - <a href="#hetzner-hcloud-8">hetzner\.hcloud</a>
-    - <a href="#purestorage-flasharray-4">purestorage\.flasharray</a>
+    - <a href="#purestorage-flasharray-5">purestorage\.flasharray</a>
 - <a href="#removed-features-previously-deprecated">Removed Features \(previously deprecated\)</a>
-    - <a href="#ansible-core-11">Ansible\-core</a>
-    - <a href="#community-docker-5">community\.docker</a>
-    - <a href="#community-general-13">community\.general</a>
-    - <a href="#community-vmware-6">community\.vmware</a>
-- <a href="#security-fixes">Security Fixes</a>
-    - <a href="#community-general-14">community\.general</a>
-- <a href="#bugfixes-3">Bugfixes</a>
-    - <a href="#ansible-core-12">Ansible\-core</a>
-    - <a href="#amazon-aws-3">amazon\.aws</a>
-    - <a href="#cisco-ios-3">cisco\.ios</a>
-    - <a href="#cisco-meraki-2">cisco\.meraki</a>
-    - <a href="#community-crypto-1">community\.crypto</a>
-    - <a href="#community-dns-5">community\.dns</a>
+    - <a href="#ansible-core-14">Ansible\-core</a>
     - <a href="#community-docker-6">community\.docker</a>
-    - <a href="#community-general-15">community\.general</a>
+    - <a href="#community-general-16">community\.general</a>
+    - <a href="#community-vmware-6">community\.vmware</a>
+- <a href="#security-fixes-1">Security Fixes</a>
+    - <a href="#community-general-17">community\.general</a>
+- <a href="#bugfixes-4">Bugfixes</a>
+    - <a href="#ansible-core-15">Ansible\-core</a>
+    - <a href="#amazon-aws-3">amazon\.aws</a>
+    - <a href="#cisco-ios-6">cisco\.ios</a>
+    - <a href="#cisco-meraki-3">cisco\.meraki</a>
+    - <a href="#community-crypto-2">community\.crypto</a>
+    - <a href="#community-dns-6">community\.dns</a>
+    - <a href="#community-docker-7">community\.docker</a>
+    - <a href="#community-general-18">community\.general</a>
     - <a href="#community-hrobot-2">community\.hrobot</a>
     - <a href="#community-library-inventory-filtering-v1">community\.library\_inventory\_filtering\_v1</a>
-    - <a href="#community-mysql-2">community\.mysql</a>
+    - <a href="#community-mysql-3">community\.mysql</a>
     - <a href="#community-proxmox-4">community\.proxmox</a>
     - <a href="#community-routeros-6">community\.routeros</a>
     - <a href="#community-sops-1">community\.sops</a>
     - <a href="#community-vmware-7">community\.vmware</a>
     - <a href="#community-zabbix-2">community\.zabbix</a>
-    - <a href="#containers-podman-5">containers\.podman</a>
+    - <a href="#containers-podman-9">containers\.podman</a>
     - <a href="#dellemc-enterprise-sonic-1">dellemc\.enterprise\_sonic</a>
     - <a href="#dellemc-openmanage-2">dellemc\.openmanage</a>
     - <a href="#fortinet-fortimanager-4">fortinet\.fortimanager</a>
@@ -2243,38 +2977,38 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
     - <a href="#hetzner-hcloud-9">hetzner\.hcloud</a>
     - <a href="#ibm-storage-virtualize-4">ibm\.storage\_virtualize</a>
     - <a href="#ieisystem-inmanage-1">ieisystem\.inmanage</a>
-    - <a href="#kubernetes-core-1">kubernetes\.core</a>
+    - <a href="#kubernetes-core-5">kubernetes\.core</a>
     - <a href="#netapp-ontap-4">netapp\.ontap</a>
     - <a href="#ngine-io-cloudstack-1">ngine\_io\.cloudstack</a>
-    - <a href="#purestorage-flasharray-5">purestorage\.flasharray</a>
+    - <a href="#purestorage-flasharray-6">purestorage\.flasharray</a>
     - <a href="#purestorage-flashblade-4">purestorage\.flashblade</a>
     - <a href="#vmware-vmware-6">vmware\.vmware</a>
 - <a href="#known-issues-1">Known Issues</a>
-    - <a href="#ansible-core-13">Ansible\-core</a>
+    - <a href="#ansible-core-16">Ansible\-core</a>
     - <a href="#community-sops-2">community\.sops</a>
     - <a href="#dellemc-openmanage-3">dellemc\.openmanage</a>
-- <a href="#new-plugins-1">New Plugins</a>
-    - <a href="#callback">Callback</a>
+- <a href="#new-plugins-2">New Plugins</a>
+    - <a href="#callback-1">Callback</a>
     - <a href="#filter-1">Filter</a>
     - <a href="#inventory">Inventory</a>
     - <a href="#lookup">Lookup</a>
-- <a href="#new-modules-3">New Modules</a>
+- <a href="#new-modules-4">New Modules</a>
     - <a href="#check-point-mgmt-1">check\_point\.mgmt</a>
-    - <a href="#community-general-16">community\.general</a>
+    - <a href="#community-general-19">community\.general</a>
     - <a href="#community-proxmox-5">community\.proxmox</a>
     - <a href="#community-proxysql-1">community\.proxysql</a>
-    - <a href="#containers-podman-6">containers\.podman</a>
+    - <a href="#containers-podman-10">containers\.podman</a>
     - <a href="#dellemc-enterprise-sonic-2">dellemc\.enterprise\_sonic</a>
     - <a href="#dellemc-powerflex-2">dellemc\.powerflex</a>
-    - <a href="#hitachivantara-vspone-block-5">hitachivantara\.vspone\_block</a>
+    - <a href="#hitachivantara-vspone-block-7">hitachivantara\.vspone\_block</a>
     - <a href="#ibm-storage-virtualize-5">ibm\.storage\_virtualize</a>
     - <a href="#ieisystem-inmanage-2">ieisystem\.inmanage</a>
     - <a href="#ngine-io-cloudstack-2">ngine\_io\.cloudstack</a>
     - <a href="#purestorage-flashblade-5">purestorage\.flashblade</a>
     - <a href="#theforeman-foreman-2">theforeman\.foreman</a>
-- <a href="#unchanged-collections-3">Unchanged Collections</a>
+- <a href="#unchanged-collections-4">Unchanged Collections</a>
 
-<a id="release-summary-3"></a>
+<a id="release-summary-4"></a>
 ### Release Summary
 
 Release Date\: 2025\-11\-19
@@ -2295,7 +3029,7 @@ You can still install a removed collection manually with <code>ansible\-galaxy c
 * hitachivantara\.vspone\_object \(version 1\.0\.0\)
 * ravendb\.ravendb \(version 1\.0\.4\)
 
-<a id="ansible-core-6"></a>
+<a id="ansible-core-9"></a>
 ### Ansible\-core
 
 Ansible 13\.0\.0 contains ansible\-core version 2\.20\.0\.
@@ -2359,10 +3093,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 | theforeman.foreman                       | 5.5.0          | 5.7.0          |                                                                                                                                                                                                              |
 | vmware.vmware                            | 2.3.0          | 2.4.0          |                                                                                                                                                                                                              |
 
-<a id="major-changes-3"></a>
+<a id="major-changes-4"></a>
 ### Major Changes
 
-<a id="ansible-core-7"></a>
+<a id="ansible-core-10"></a>
 #### Ansible\-core
 
 * ansible \- Add support for Python 3\.14\.
@@ -2377,7 +3111,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * Replace <code>ansible\.module\_utils\.common\.\_collections\_compat</code> \([https\://github\.com/ansible\-collections/community\.vmware/issues/2497](https\://github\.com/ansible\-collections/community\.vmware/issues/2497)\)\.
 * Replace <code>ansible\.module\_utils\.six</code> \([https\://github\.com/ansible\-collections/community\.vmware/pull/2495](https\://github\.com/ansible\-collections/community\.vmware/pull/2495)\)\.
 
-<a id="containers-podman-3"></a>
+<a id="containers-podman-7"></a>
 #### containers\.podman
 
 * Add inventory plugins for buildah and podman
@@ -2444,10 +3178,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * General overhaul \(black code style\) and renaming of all modules \(dropping <code>cs\_</code> prefix\) \([https\://github\.com/ngine\-io/ansible\-collection\-cloudstack/pull/141](https\://github\.com/ngine\-io/ansible\-collection\-cloudstack/pull/141)\)\.
 * Update cs dependency to \>\=3\.4\.0\.
 
-<a id="minor-changes-3"></a>
+<a id="minor-changes-4"></a>
 ### Minor Changes
 
-<a id="ansible-core-8"></a>
+<a id="ansible-core-11"></a>
 #### Ansible\-core
 
 * Add tech preview play argument spec validation\, which can be enabled by setting the play keyword <code>validate\_argspec</code> to <code>True</code> or the name of an argument spec\. When <code>validate\_argspec</code> is set to <code>True</code>\, a play <code>name</code> is required and used as the argument spec name\. When enabled\, the argument spec is loaded from a file matching the pattern \<playbook\_name\>\.meta\.yml\. At minimum\, this file should contain <code>\{\"argument\_specs\"\: \{\"name\"\: \{\"options\"\: \{\}\}\}\}</code>\, where \"name\" is the name of the play or configured argument spec\.
@@ -2510,7 +3244,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * added new parameters \(such as \'permanent\_tunnels\'\, excluded\_services\, etc\.\) to \'cp\_mgmt\_vpn\_community\_meshed\' and \'cp\_mgmt\_vpn\_community\_star\' modules\.
 * check\_point\.mgmt\.cp\_mgmt\_access\_rule\_facts \- support async\-response with customized HF\.
 
-<a id="cisco-dnac-2"></a>
+<a id="cisco-dnac-3"></a>
 #### cisco\.dnac
 
 * Added attribute \'slots\' in assurance\_icap\_settings\_workflow\_manager module
@@ -2533,7 +3267,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * Changes limit and offset from float to int in all info modules
 * Removed attribute \'slot\' in assurance\_icap\_settings\_workflow\_manager module
 
-<a id="cisco-ios-2"></a>
+<a id="cisco-ios-5"></a>
 #### cisco\.ios
 
 * ios\_config \- added answering prompt functionality while working in config mode on ios device
@@ -2544,7 +3278,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * Added few parameters to iosxr\_l3\_interface module to support new features\.
 
-<a id="community-dns-4"></a>
+<a id="community-dns-5"></a>
 #### community\.dns
 
 * Note that some new code in <code>plugins/module\_utils/\_six\.py</code> is MIT licensed \([https\://github\.com/ansible\-collections/community\.dns/pull/287](https\://github\.com/ansible\-collections/community\.dns/pull/287)\)\.
@@ -2554,7 +3288,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * wait\_for\_txt \- the option <code>records\[\]\.values</code> now has an alias <code>records\[\]\.entries</code> \([https\://github\.com/ansible\-collections/community\.dns/pull/298](https\://github\.com/ansible\-collections/community\.dns/pull/298)\)\.
 * wait\_for\_txt \- the return value <code>records\[\]\.values</code> has been renamed to <code>records\[\]\.entries</code>\. The old name will still be available for a longer time \([https\://github\.com/ansible\-collections/community\.dns/issues/289](https\://github\.com/ansible\-collections/community\.dns/issues/289)\, [https\://github\.com/ansible\-collections/community\.dns/pull/298](https\://github\.com/ansible\-collections/community\.dns/pull/298)\)\.
 
-<a id="community-docker-3"></a>
+<a id="community-docker-4"></a>
 #### community\.docker
 
 * Note that some new code in <code>plugins/module\_utils/\_six\.py</code> is MIT licensed \([https\://github\.com/ansible\-collections/community\.docker/pull/1138](https\://github\.com/ansible\-collections/community\.docker/pull/1138)\)\.
@@ -2562,7 +3296,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * docker\_container \- add <code>gw\_priority</code> option in <code>networks</code> \([https\://github\.com/ansible\-collections/community\.docker/issues/1142](https\://github\.com/ansible\-collections/community\.docker/issues/1142)\, [https\://github\.com/ansible\-collections/community\.docker/pull/1143](https\://github\.com/ansible\-collections/community\.docker/pull/1143)\)\.
 * docker\_container \- support missing fields and new mount types in <code>mounts</code> \([https\://github\.com/ansible\-collections/community\.docker/issues/1129](https\://github\.com/ansible\-collections/community\.docker/issues/1129)\, [https\://github\.com/ansible\-collections/community\.docker/pull/1134](https\://github\.com/ansible\-collections/community\.docker/pull/1134)\)\.
 
-<a id="community-general-10"></a>
+<a id="community-general-13"></a>
 #### community\.general
 
 * Modernize code for Python 3\.7\+\. This includes code reformatting\, and adding new checks to CI\, including a type checker \(mypy\)\. Most of the code does not have type hints yet\, but now it is possible to add typing hints and have these validated \([https\://github\.com/ansible\-collections/community\.general/pull/10285](https\://github\.com/ansible\-collections/community\.general/pull/10285)\, [https\://github\.com/ansible\-collections/community\.general/pull/10886](https\://github\.com/ansible\-collections/community\.general/pull/10886)\, [https\://github\.com/ansible\-collections/community\.general/pull/10891](https\://github\.com/ansible\-collections/community\.general/pull/10891)\, [https\://github\.com/ansible\-collections/community\.general/pull/10892](https\://github\.com/ansible\-collections/community\.general/pull/10892)\, [https\://github\.com/ansible\-collections/community\.general/pull/10897](https\://github\.com/ansible\-collections/community\.general/pull/10897)\, [https\://github\.com/ansible\-collections/community\.general/pull/10899](https\://github\.com/ansible\-collections/community\.general/pull/10899)\, [https\://github\.com/ansible\-collections/community\.general/pull/10902](https\://github\.com/ansible\-collections/community\.general/pull/10902)\, [https\://github\.com/ansible\-collections/community\.general/pull/10903](https\://github\.com/ansible\-collections/community\.general/pull/10903)\, [https\://github\.com/ansible\-collections/community\.general/pull/10904](https\://github\.com/ansible\-collections/community\.general/pull/10904)\, [https\://github\.com/ansible\-collections/community\.general/pull/10907](https\://github\.com/ansible\-collections/community\.general/pull/10907)\, [https\://github\.com/ansible\-collections/community\.general/pull/10908](https\://github\.com/ansible\-collections/community\.general/pull/10908)\, [https\://github\.com/ansible\-collections/community\.general/pull/10909](https\://github\.com/ansible\-collections/community\.general/pull/10909)\, [https\://github\.com/ansible\-collections/community\.general/pull/10939](https\://github\.com/ansible\-collections/community\.general/pull/10939)\, [https\://github\.com/ansible\-collections/community\.general/pull/10940](https\://github\.com/ansible\-collections/community\.general/pull/10940)\, [https\://github\.com/ansible\-collections/community\.general/pull/10941](https\://github\.com/ansible\-collections/community\.general/pull/10941)\, [https\://github\.com/ansible\-collections/community\.general/pull/10942](https\://github\.com/ansible\-collections/community\.general/pull/10942)\, [https\://github\.com/ansible\-collections/community\.general/pull/10945](https\://github\.com/ansible\-collections/community\.general/pull/10945)\, [https\://github\.com/ansible\-collections/community\.general/pull/10947](https\://github\.com/ansible\-collections/community\.general/pull/10947)\, [https\://github\.com/ansible\-collections/community\.general/pull/10958](https\://github\.com/ansible\-collections/community\.general/pull/10958)\, [https\://github\.com/ansible\-collections/community\.general/pull/10959](https\://github\.com/ansible\-collections/community\.general/pull/10959)\, [https\://github\.com/ansible\-collections/community\.general/pull/10968](https\://github\.com/ansible\-collections/community\.general/pull/10968)\, [https\://github\.com/ansible\-collections/community\.general/pull/10969](https\://github\.com/ansible\-collections/community\.general/pull/10969)\, [https\://github\.com/ansible\-collections/community\.general/pull/10970](https\://github\.com/ansible\-collections/community\.general/pull/10970)\, [https\://github\.com/ansible\-collections/community\.general/pull/10971](https\://github\.com/ansible\-collections/community\.general/pull/10971)\, [https\://github\.com/ansible\-collections/community\.general/pull/10973](https\://github\.com/ansible\-collections/community\.general/pull/10973)\, [https\://github\.com/ansible\-collections/community\.general/pull/10974](https\://github\.com/ansible\-collections/community\.general/pull/10974)\, [https\://github\.com/ansible\-collections/community\.general/pull/10975](https\://github\.com/ansible\-collections/community\.general/pull/10975)\, [https\://github\.com/ansible\-collections/community\.general/pull/10976](https\://github\.com/ansible\-collections/community\.general/pull/10976)\, [https\://github\.com/ansible\-collections/community\.general/pull/10977](https\://github\.com/ansible\-collections/community\.general/pull/10977)\, [https\://github\.com/ansible\-collections/community\.general/pull/10978](https\://github\.com/ansible\-collections/community\.general/pull/10978)\, [https\://github\.com/ansible\-collections/community\.general/pull/10979](https\://github\.com/ansible\-collections/community\.general/pull/10979)\, [https\://github\.com/ansible\-collections/community\.general/pull/10980](https\://github\.com/ansible\-collections/community\.general/pull/10980)\, [https\://github\.com/ansible\-collections/community\.general/pull/10981](https\://github\.com/ansible\-collections/community\.general/pull/10981)\, [https\://github\.com/ansible\-collections/community\.general/pull/10992](https\://github\.com/ansible\-collections/community\.general/pull/10992)\, [https\://github\.com/ansible\-collections/community\.general/pull/10993](https\://github\.com/ansible\-collections/community\.general/pull/10993)\, [https\://github\.com/ansible\-collections/community\.general/pull/10997](https\://github\.com/ansible\-collections/community\.general/pull/10997)\, [https\://github\.com/ansible\-collections/community\.general/pull/10999](https\://github\.com/ansible\-collections/community\.general/pull/10999)\, [https\://github\.com/ansible\-collections/community\.general/pull/11015](https\://github\.com/ansible\-collections/community\.general/pull/11015)\, [https\://github\.com/ansible\-collections/community\.general/pull/11016](https\://github\.com/ansible\-collections/community\.general/pull/11016)\, [https\://github\.com/ansible\-collections/community\.general/pull/11017](https\://github\.com/ansible\-collections/community\.general/pull/11017)\)\.
@@ -2868,7 +3602,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * storagebox\_subaccount \- filter by username when looking for existing accounts by username \([https\://github\.com/ansible\-collections/community\.hrobot/pull/182](https\://github\.com/ansible\-collections/community\.hrobot/pull/182)\)\.
 * storagebox\_subaccount \- use the new <code>change\_home\_directory</code> action to update a subaccount\'s home directory\, instead of using the now deprecated way using the <code>update\_access\_settings</code> action \([https\://github\.com/ansible\-collections/community\.hrobot/pull/181](https\://github\.com/ansible\-collections/community\.hrobot/pull/181)\)\.
 
-<a id="community-mysql"></a>
+<a id="community-mysql-1"></a>
 #### community\.mysql
 
 * <em class="title-reference">mysql\_query</em> \- add new <em class="title-reference">session\_vars</em> argument\, similar to ansible\-collections/community\.mysql\#489\.
@@ -2938,7 +3672,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * zabbix\_script \- Added support for type \'url\'
 * zabbix\_script \- Added support for user input\.
 
-<a id="containers-podman-4"></a>
+<a id="containers-podman-8"></a>
 #### containers\.podman
 
 * Add building Podman from source
@@ -3018,7 +3752,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * zone\_rrset \- New module to manage DNS Zone RRSets in the Hetzner Cloud\.
 * zone\_rrset\_info \- New module to fetch DNS RRSets details\.
 
-<a id="hitachivantara-vspone-block-4"></a>
+<a id="hitachivantara-vspone-block-6"></a>
 #### hitachivantara\.vspone\_block
 
 * Added a new \"hv\_sds\_block\_compute\_port\" module to change the settings and protocol of the compute port on Hitachi SDS Block storage systems\.
@@ -3097,7 +3831,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * ibm\_svc\_manage\_volume \- Added support for HA volumes volume expansion\, volumegroup\, volume rename and grainsize
 * ibm\_svc\_utils \- Improved error message for unreachable systems
 
-<a id="kubernetes-core"></a>
+<a id="kubernetes-core-4"></a>
 #### kubernetes\.core
 
 * Add support of skip\-schema\-validation in <code>helm</code> module \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/995](https\://github\.com/ansible\-collections/kubernetes\.core/pull/995)\)
@@ -3130,7 +3864,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * na\_ontap\_volume\_clone \- new options <em class="title-reference">time\_out</em>\, <em class="title-reference">wait\_for\_completion</em> added in REST\.
 * updated <em class="title-reference">README</em> template\; added \'Support\' section\.
 
-<a id="purestorage-flasharray-3"></a>
+<a id="purestorage-flasharray-4"></a>
 #### purestorage\.flasharray
 
 * plugins/module\_utils/purefa\.py \- Removed <code>get\_system</code> function as REST v1 no longer supported by Collection
@@ -3249,24 +3983,24 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="breaking-changes--porting-guide"></a>
 ### Breaking Changes / Porting Guide
 
-<a id="ansible-core-9"></a>
+<a id="ansible-core-12"></a>
 #### Ansible\-core
 
 * powershell \- Removed code that tried to remote quotes from paths when performing Windows operations like copying and fetching file\. This should not affect normal playbooks unless a value is quoted too many times\.
 
-<a id="community-docker-4"></a>
+<a id="community-docker-5"></a>
 #### community\.docker
 
 * All doc fragments\, module utils\, and plugin utils are from now on private\. They can change at any time\, and have breaking changes even in bugfix releases \([https\://github\.com/ansible\-collections/community\.docker/pull/1144](https\://github\.com/ansible\-collections/community\.docker/pull/1144)\)\.
 
-<a id="community-general-11"></a>
+<a id="community-general-14"></a>
 #### community\.general
 
 * mh\.base module utils \- <code>debug</code> will now always be delegated to the underlying <code>AnsibleModule</code> object \([https\://github\.com/ansible\-collections/community\.general/pull/10883](https\://github\.com/ansible\-collections/community\.general/pull/10883)\)\.
 * oneview module utils \- remove import of standard library <code>os</code> \([https\://github\.com/ansible\-collections/community\.general/pull/10644](https\://github\.com/ansible\-collections/community\.general/pull/10644)\)\.
 * slack \- the default of <code>prepend\_hash</code> changed from <code>auto</code> to <code>never</code> \([https\://github\.com/ansible\-collections/community\.general/pull/10883](https\://github\.com/ansible\-collections/community\.general/pull/10883)\)\.
 
-<a id="community-mysql-1"></a>
+<a id="community-mysql-2"></a>
 #### community\.mysql
 
 * Since version 4\.0\.0\, the collection accepts code written in Python 3\. Modules aren\'t tested against Python 2 and might not work in Python 2 environments\.
@@ -3294,10 +4028,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * ibm\_sv\_manage\_flashsystem\_grid \- The flashsystem grid module now uses newer FlashSystem REST APIs to perform tasks\.
 
-<a id="deprecated-features-3"></a>
+<a id="deprecated-features-4"></a>
 ### Deprecated Features
 
-<a id="ansible-core-10"></a>
+<a id="ansible-core-13"></a>
 #### Ansible\-core
 
 * Deprecated the shell plugin\'s <code>wrap\_for\_exec</code> function\. This API is not used in Ansible or any known collection and is being removed to simplify the plugin API\. Plugin authors should wrap their command to execute within an explicit shell or other known executable\.
@@ -3306,7 +4040,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * include\_vars \- Specifying \'ignore\_files\' as a string is deprecated\.
 * vars\, the internal variable cache will be removed in 2\.24\. This cache\, once used internally exposes variables in inconsistent states\, the \'vars\' and \'varnames\' lookups should be used instead\.
 
-<a id="community-general-12"></a>
+<a id="community-general-15"></a>
 #### community\.general
 
 * catapult \- module is deprecated and will be removed in community\.general 13\.0\.0 \([https\://github\.com/ansible\-collections/community\.general/issues/10318](https\://github\.com/ansible\-collections/community\.general/issues/10318)\, [https\://github\.com/ansible\-collections/community\.general/pull/10329](https\://github\.com/ansible\-collections/community\.general/pull/10329)\)\.
@@ -3367,7 +4101,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * server\_type\_info \- Deprecate Server Type <code>deprecation</code> property\.
 
-<a id="purestorage-flasharray-4"></a>
+<a id="purestorage-flasharray-5"></a>
 #### purestorage\.flasharray
 
 * purefa\_volume\_tags \- Deprecated due to removal of REST 1\.x support\. Will be removed in Collection 2\.0\.0
@@ -3378,7 +4112,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * The deprecated <code>community\.digitalocean</code> collection has been removed \([https\://forum\.ansible\.com/t/44602](https\://forum\.ansible\.com/t/44602)\)\.
 * The deprecated <code>ibm\.qradar</code> collection has been removed \([https\://forum\.ansible\.com/t/44259](https\://forum\.ansible\.com/t/44259)\)\.
 
-<a id="ansible-core-11"></a>
+<a id="ansible-core-14"></a>
 #### Ansible\-core
 
 * Removed the option to set the <code>DEFAULT\_TRANSPORT</code> configuration to <code>smart</code> that selects the default transport as either <code>ssh</code> or <code>paramiko</code> based on the underlying platform configuraton\.
@@ -3393,14 +4127,14 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * vars plugins \- removed the deprecated <code>get\_host\_vars</code> or <code>get\_group\_vars</code> fallback for vars plugins that do not inherit from <code>BaseVarsPlugin</code> and define a <code>get\_vars</code> method\.
 * yum\_repository \- remove deprecated <code>keepcache</code> option\.
 
-<a id="community-docker-5"></a>
+<a id="community-docker-6"></a>
 #### community\.docker
 
 * Remove support for Docker SDK for Python version 1\.x\.y\, also known as <code>docker\-py</code>\. Modules and plugins that use Docker SDK for Python require version 2\.0\.0\+ \([https\://github\.com/ansible\-collections/community\.docker/pull/1171](https\://github\.com/ansible\-collections/community\.docker/pull/1171)\)\.
 * The collection no longer supports Python 3\.6 and before\. Note that this coincides with the Python requirements of ansible\-core 2\.17\+ \([https\://github\.com/ansible\-collections/community\.docker/pull/1123](https\://github\.com/ansible\-collections/community\.docker/pull/1123)\)\.
 * The collection no longer supports ansible\-core 2\.15 and 2\.16\. You need ansible\-core 2\.17\.0 or newer to use community\.docker 5\.x\.y \([https\://github\.com/ansible\-collections/community\.docker/pull/1123](https\://github\.com/ansible\-collections/community\.docker/pull/1123)\)\.
 
-<a id="community-general-13"></a>
+<a id="community-general-16"></a>
 #### community\.general
 
 * Ansible\-core 2\.16 is no longer supported\. This also means that the collection now requires Python 3\.7\+ \([https\://github\.com/ansible\-collections/community\.general/pull/10884](https\://github\.com/ansible\-collections/community\.general/pull/10884)\)\.
@@ -3424,18 +4158,18 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * vmware\_cluster\_drs\_recommendations \- The deprecated module has been removed\. Use <code>vmware\.vmware\.cluster\_drs\_recommendations</code> instead \([https\://github\.com/ansible\-collections/community\.vmware/pull/2455](https\://github\.com/ansible\-collections/community\.vmware/pull/2455)\)\.
 * vmware\_cluster\_vcls \- The deprecated module has been removed\. Use <code>vmware\.vmware\.cluster\_vcls</code> instead \([https\://github\.com/ansible\-collections/community\.vmware/pull/2455](https\://github\.com/ansible\-collections/community\.vmware/pull/2455)\)\.
 
-<a id="security-fixes"></a>
+<a id="security-fixes-1"></a>
 ### Security Fixes
 
-<a id="community-general-14"></a>
+<a id="community-general-17"></a>
 #### community\.general
 
 * keycloak\_user \- the parameter <code>credentials\[\]\.value</code> is now marked as <code>no\_log\=true</code>\. Before it was logged by Ansible\, unless the task was marked as <code>no\_log\: true</code>\. Since this parameter can be used for passwords\, this resulted in credential leaking \([https\://github\.com/ansible\-collections/community\.general/issues/11000](https\://github\.com/ansible\-collections/community\.general/issues/11000)\, [https\://github\.com/ansible\-collections/community\.general/pull/11005](https\://github\.com/ansible\-collections/community\.general/pull/11005)\)\.
 
-<a id="bugfixes-3"></a>
+<a id="bugfixes-4"></a>
 ### Bugfixes
 
-<a id="ansible-core-12"></a>
+<a id="ansible-core-15"></a>
 #### Ansible\-core
 
 * Do not re\-add <code>tags</code> on blocks from within <code>import\_tasks</code>\.
@@ -3496,7 +4230,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * ec2\_vpc\_nacl \- Fix issue when trying to update existing Network ACL rule \([https\://github\.com/ansible\-collections/amazon\.aws/issues/2592](https\://github\.com/ansible\-collections/amazon\.aws/issues/2592)\)\.
 * s3\_object \- Honor headers for content and content\_base64 uploads by promoting supported keys \(e\.g\. ContentType\, ContentDisposition\, CacheControl\) to top\-level S3 arguments and placing remaining keys under Metadata\. This makes content uploads consistent with src uploads\. \([https\://github\.com/ansible\-collections/amazon\.aws](https\://github\.com/ansible\-collections/amazon\.aws)\)
 
-<a id="cisco-ios-3"></a>
+<a id="cisco-ios-6"></a>
 #### cisco\.ios
 
 * Fixed an issue where configuration within an address family \(ipv6\) was ignored by the parser\.
@@ -3515,7 +4249,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * ios\_hsrp\_interfaces \- Fixed operation for ipv6 standby configuration\.
 * ios\_static\_routes \- Fix parsing of static routes with interface and distance in gathered state
 
-<a id="cisco-meraki-2"></a>
+<a id="cisco-meraki-3"></a>
 #### cisco\.meraki
 
 * Enhanced networks\_switch\_qos\_rules\_order object lookup logic to properly match QoS rules by vlan\, protocol\, srcPort\, and dstPort parameters
@@ -3530,20 +4264,20 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * cisco\.meraki\.devices\_appliance\_uplinks\_settings \- fix idempotency error\.
 * networks\_switch\_qos\_rules\_order\: extend object lookup to include srcPortRange and dstPortRange when matching existing QoS rules to improve idempotency
 
-<a id="community-crypto-1"></a>
+<a id="community-crypto-2"></a>
 #### community\.crypto
 
 * Avoid deprecated functionality in ansible\-core 2\.20 \([https\://github\.com/ansible\-collections/community\.crypto/pull/953](https\://github\.com/ansible\-collections/community\.crypto/pull/953)\)\.
 * Smaller code cleanup \([https\://github\.com/ansible\-collections/community\.crypto/pull/963](https\://github\.com/ansible\-collections/community\.crypto/pull/963)\)\.
 
-<a id="community-dns-5"></a>
+<a id="community-dns-6"></a>
 #### community\.dns
 
 * Avoid using <code>ansible\.module\_utils\.six</code> in more places to avoid deprecation warnings with ansible\-core 2\.20 \([https\://github\.com/ansible\-collections/community\.dns/pull/291](https\://github\.com/ansible\-collections/community\.dns/pull/291)\)\.
 * Avoid using <code>ansible\.module\_utils\.six</code> to avoid deprecation warnings with ansible\-core 2\.20 \([https\://github\.com/ansible\-collections/community\.dns/pull/287](https\://github\.com/ansible\-collections/community\.dns/pull/287)\)\.
 * Update Public Suffix List\.
 
-<a id="community-docker-6"></a>
+<a id="community-docker-7"></a>
 #### community\.docker
 
 * Avoid deprecated functionality in ansible\-core 2\.20 \([https\://github\.com/ansible\-collections/community\.docker/pull/1117](https\://github\.com/ansible\-collections/community\.docker/pull/1117)\)\.
@@ -3561,7 +4295,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * docker\_image \- fix \'Cannot locate specified Dockerfile\' error \([https\://github\.com/ansible\-collections/community\.docker/pull/1184](https\://github\.com/ansible\-collections/community\.docker/pull/1184)\)\.
 * docker\_plugin \- fix diff mode for plugin options \([https\://github\.com/ansible\-collections/community\.docker/pull/1146](https\://github\.com/ansible\-collections/community\.docker/pull/1146)\)\.
 
-<a id="community-general-15"></a>
+<a id="community-general-18"></a>
 #### community\.general
 
 * Avoid deprecated functionality in ansible\-core 2\.20 \([https\://github\.com/ansible\-collections/community\.general/pull/10687](https\://github\.com/ansible\-collections/community\.general/pull/10687)\)\.
@@ -3764,7 +4498,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * Improve and stricten typing information \([https\://github\.com/ansible\-collections/community\.library\_inventory\_filtering/pull/42](https\://github\.com/ansible\-collections/community\.library\_inventory\_filtering/pull/42)\)\.
 * Stop using <code>ansible\.module\_utils\.six</code> to avoid user\-facing deprecation messages with ansible\-core 2\.20\, while still supporting older ansible\-core versions \([https\://github\.com/ansible\-collections/community\.library\_inventory\_filtering/pull/39](https\://github\.com/ansible\-collections/community\.library\_inventory\_filtering/pull/39)\)\.
 
-<a id="community-mysql-2"></a>
+<a id="community-mysql-3"></a>
 #### community\.mysql
 
 * mysql\_info \- Fix slave status for source terminology introduced in MySQL 8\.0\.23 \([https\://github\.com/ansible\-collections/community\.mysql/issues/682](https\://github\.com/ansible\-collections/community\.mysql/issues/682)\)\.
@@ -3816,7 +4550,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * zabbix\_template \- Removed need for PY2
 * zabbix\_template\_info \- Removed need for PY2
 
-<a id="containers-podman-5"></a>
+<a id="containers-podman-9"></a>
 #### containers\.podman
 
 * Fix podman logout for newer Podman
@@ -3898,7 +4632,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * Modify the inmanage\.py file in the module\_utils directory\, and change the reference path of iteritems to be a reference from within Python\. \([https\://github\.com/ieisystem/ieisystem\.inmanage/pull/29](https\://github\.com/ieisystem/ieisystem\.inmanage/pull/29)\)\.
 * Modify the method referenced in the support\_info\.py file to be support\_info\_nf \. \([https\://github\.com/ieisystem/ieisystem\.inmanage/pull/31](https\://github\.com/ieisystem/ieisystem\.inmanage/pull/31)\)\.
 
-<a id="kubernetes-core-1"></a>
+<a id="kubernetes-core-5"></a>
 #### kubernetes\.core
 
 * Remove <code>ansible\.module\_utils\.six</code> imports to avoid warnings \([https\://github\.com/ansible\-collections/kubernetes\.core/pull/998](https\://github\.com/ansible\-collections/kubernetes\.core/pull/998)\)\.
@@ -3918,7 +4652,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * Ensure tags are applied when creating or updating a template \([https\://github\.com/ngine\-io/ansible\-collection\-cloudstack/pull/154](https\://github\.com/ngine\-io/ansible\-collection\-cloudstack/pull/154)\)\.
 
-<a id="purestorage-flasharray-5"></a>
+<a id="purestorage-flasharray-6"></a>
 #### purestorage\.flasharray
 
 * purefa\_certs \- Resolved error with incorrect use of <code>key\_size</code> for imported certificates
@@ -3967,7 +4701,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="known-issues-1"></a>
 ### Known Issues
 
-<a id="ansible-core-13"></a>
+<a id="ansible-core-16"></a>
 #### Ansible\-core
 
 * templating \- Exceptions raised in a Jinja <code>set</code> or <code>with</code> block which are not accessed by the template are ignored in the same manner as undefined values\.
@@ -3995,10 +4729,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * redfish\_storage\_volume \- Encryption type and block\_io\_size bytes will be read only property in iDRAC 9 and iDRAC 10 and hence the module ignores these parameters\.
 * redfish\_storage\_volume \- Encryption type and block\_io\_size bytes will be read only property in iDRAC9 and iDRAC10 and hence the module ignores these parameters\.
 
-<a id="new-plugins-1"></a>
+<a id="new-plugins-2"></a>
 ### New Plugins
 
-<a id="callback"></a>
+<a id="callback-1"></a>
 #### Callback
 
 * community\.general\.tasks\_only \- Only show tasks\.
@@ -4022,7 +4756,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * community\.dns\.lookup\_rfc8427 \- Look up DNS records and return RFC 8427 JSON format\.
 * community\.general\.binary\_file \- Read binary file and return it Base64 encoded\.
 
-<a id="new-modules-3"></a>
+<a id="new-modules-4"></a>
 ### New Modules
 
 <a id="check-point-mgmt-1"></a>
@@ -4055,7 +4789,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * check\_point\.mgmt\.cp\_mgmt\_syslog\_server \- Manages syslog\-server objects on Checkpoint over Web Services API
 * check\_point\.mgmt\.cp\_mgmt\_syslog\_server\_facts \- Get syslog\-server objects facts on Checkpoint over Web Services API
 
-<a id="community-general-16"></a>
+<a id="community-general-19"></a>
 #### community\.general
 
 * community\.general\.django\_dumpdata \- Wrapper for <code>django\-admin dumpdata</code>\.
@@ -4085,7 +4819,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * community\.proxysql\.proxysql\_mysql\_hostgroup\_attributes \- Manages hostgroup attributes using the ProxySQL admin interface
 
-<a id="containers-podman-6"></a>
+<a id="containers-podman-10"></a>
 #### containers\.podman
 
 * containers\.podman\.podman\_system\_connection \- Manage Podman system connections
@@ -4126,10 +4860,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * dellemc\.powerflex\.storagepool\_v2 \- Managing Dell PowerFlex storage pool Gen2
 * dellemc\.powerflex\.volume\_v2 \- Manage volumes on Dell PowerFlex Gen2
 
-<a id="hitachivantara-vspone-block-5"></a>
+<a id="hitachivantara-vspone-block-7"></a>
 #### hitachivantara\.vspone\_block
 
-<a id="sds-block-1"></a>
+<a id="sds-block-2"></a>
 ##### Sds Block
 
 * hitachivantara\.vspone\_block\.hv\_sds\_block\_capacity\_management\_settings\_facts \- Get capacity management settings from storage system\.
@@ -4142,7 +4876,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * hitachivantara\.vspone\_block\.hv\_sds\_block\_storage\_pool\_estimated\_capacity\_facts \- Obtains the preliminary calculation results of the storage pool logical capacity \(unit TiB\)\.
 * hitachivantara\.vspone\_block\.hv\_sds\_block\_storage\_software\_update \- Manages software update and downgrade on Hitachi SDS Block storage systems\.
 
-<a id="vsp"></a>
+<a id="vsp-1"></a>
 ##### Vsp
 
 * hitachivantara\.vspone\_block\.hv\_vsp\_one\_port \- Manages port configuration on Hitachi VSP One storage systems\.
@@ -4184,7 +4918,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * theforeman\.foreman\.content\_view\_history\_info \- Fetch history of a Content View
 
-<a id="unchanged-collections-3"></a>
+<a id="unchanged-collections-4"></a>
 ### Unchanged Collections
 
 * ansible\.netcommon \(still version 8\.1\.0\)
