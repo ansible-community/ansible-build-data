@@ -7,6 +7,704 @@ This changelog describes changes since Ansible 12.0.0.
 .. contents::
   :depth: 2
 
+v13.4.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-02-24
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 13.4.0 contains ansible-core version 2.20.3.
+This is a newer version than version 2.20.2 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| Collection                  | Ansible 13.3.0 | Ansible 13.4.0 | Notes                                                    |
++=============================+================+================+==========================================================+
+| ansible.netcommon           | 8.2.1          | 8.4.0          |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| arista.eos                  | 12.0.0         | 12.0.1         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| cisco.dnac                  | 6.44.0         | 6.48.0         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| cisco.ios                   | 11.2.0         | 11.3.0         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| cisco.meraki                | 2.22.0         | 2.22.1         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| community.aws               | 10.0.0         | 10.1.0         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| community.crypto            | 3.1.0          | 3.1.1          |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| community.dns               | 3.5.1          | 3.5.2          |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| community.docker            | 5.0.5          | 5.0.6          |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| community.general           | 12.3.0         | 12.4.0         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| community.libvirt           | 2.0.0          | 2.1.0          |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| community.mongodb           | 1.7.11         | 1.7.12         | There are no changes recorded in the changelog.          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| community.mysql             | 4.0.1          | 4.1.0          |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| containers.podman           | 1.18.1         | 1.19.0         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| hitachivantara.vspone_block | 4.5.1          | 4.6.1          |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| kubernetes.core             | 6.2.0          | 6.3.0          |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| pcg.alpaca_operator         | 2.1.1          | 2.2.0          | The collection did not have a changelog in this version. |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| purestorage.flasharray      | 1.41.0         | 1.42.0         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+| vmware.vmware_rest          | 4.9.0          | 4.10.0         |                                                          |
++-----------------------------+----------------+----------------+----------------------------------------------------------+
+
+Major Changes
+-------------
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add podman Quadlet modules
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Update URL used to download FreeBSD wheels for managed remotes.
+- ansible-test - Use the new API endpoint for the Ansible Core CI service.
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- Option to use libssh as transport while using netconf, is added.
+- The ssh-python module is needed, which will ensure libssh as transport for netconf operations. When use_libssh is enabled.
+
+cisco.dnac
+~~~~~~~~~~
+
+- Added '802_11_be_profiles'  attribute in wireless_design_workflow_manager module
+- Added build_ignore configuration to optimize Ansible Galaxy collection packaging.
+- Changes in accesspoint_workflow_manager module
+- Changes in device_configs_backup_workflow_manager module
+- Changes in inventory_workflow_manager module
+- Changes in lan_automation_workflow_manager module
+- Changes in network_profile_wireless_workflow_manager module
+- Changes in pnp_workflow_manager module
+- Changes in provision_workflow_manager module
+- Changes in sda_fabric_devices_workflow_manager module
+- Changes in sda_host_port_onboarding_workflow_manager module
+- Changes in swim_workflow_manager module
+- Changes in template_workflow_manager module
+- Changes in wireless_design_workflow_manager module
+- Code formatting and ansible-lint compliance updates for Red Hat standards
+- Standardized README format and content to match Catalyst Center Ansible collection documentation practices.
+- access_groups - new module to manage access groups
+- access_groups_count_info - new module to retrieve access groups count
+- access_groups_info - new module to retrieve access groups information
+- cisco.dnac collection - New service system_software_upgrade added for Catalyst Center 3.1.6.0
+- cisco.dnac collection - SDK updated to dnacentersdk 2.11.0 with support for Cisco Catalyst Center 3.1.6.0
+- client_enrichment_details_v2_info - new module to retrieve client enrichment details (v2)
+- compliance_network_devices_detail_policys_info - new module to retrieve compliance policies for network devices
+- compliance_network_devices_detail_policys_violations_info - new module to retrieve compliance policy violations for network devices
+- compliance_policys - new module to manage compliance policies
+- compliance_policys_count_info - new module to retrieve compliance policies count
+- compliance_policys_info - new module to retrieve compliance policies information
+- compliance_policys_rules - new module to manage compliance policy rules
+- compliance_policys_rules_conditions - new module to manage compliance policy rule conditions
+- compliance_policys_rules_conditions_count_info - new module to retrieve compliance policy rule conditions count
+- compliance_policys_rules_conditions_info - new module to retrieve compliance policy rule conditions information
+- compliance_policys_rules_count_info - new module to retrieve compliance policy rules count
+- compliance_policys_rules_info - new module to retrieve compliance policy rules information
+- compliance_policys_rules_variables - new module to manage compliance policy rule variables
+- compliance_policys_rules_variables_count_info - new module to retrieve compliance policy rule variables count
+- compliance_policys_rules_variables_info - new module to retrieve compliance policy rule variables information
+- compliance_policys_site_assignments - new module to manage compliance policy site assignments
+- compliance_policys_site_assignments_info - new module to retrieve compliance policy site assignments information
+- compliance_policys_sites_rules_variables - new module to manage compliance policy site rule variables
+- compliance_policys_sites_rules_variables_info - new module to retrieve compliance policy site rule variables information
+- device_enrichment_details_v2_info - new module to retrieve device enrichment details (v2)
+- discoverys - new module to manage device discoveries
+- discoverys_count_info - new module to retrieve device discoveries count
+- discoverys_info - new module to retrieve device discoveries information
+- discoverys_jobs - new module to manage discovery jobs
+- discoverys_jobs_count_info - new module to retrieve discovery jobs count
+- discoverys_jobs_discovered_network_devices_count_info - new module to retrieve discovered network devices count
+- discoverys_jobs_discovered_network_devices_info - new module to retrieve discovered network devices from discovery jobs
+- discoverys_jobs_info - new module to retrieve discovery jobs information
+- discoverys_jobs_stop_create - new module to stop discovery jobs
+- discoverys_jobs_summarys_info - new module to retrieve discovery jobs summaries
+- download_software_release_create - new module to download software releases
+- download_software_release_delete - new module to delete software release downloads
+- download_software_release_update - new module to update software release downloads
+- filter_group_aassociations_delete - new module to delete filter group associations
+- filter_group_associations - new module to manage filter group associations
+- filter_group_associations_info - new module to retrieve filter group associations information
+- filter_groups - new module to manage filter groups
+- filter_groups_info - new module to retrieve filter groups information
+- global_credentials - new module to manage global credentials
+- global_credentials_count_info - new module to retrieve global credentials count
+- global_credentials_info - new module to retrieve global credentials information
+- images_delete - new module to delete software images
+- install_optional_packages_create - new module to install optional packages
+- installed_release_info - new module to retrieve installed release information
+- iot_fabric_rep_rings_delete - new module to delete IoT fabric REP rings
+- iot_non_fabric_rep_rings_delete - new module to delete IoT non-fabric REP rings
+- issue_enrichment_details_info - new module to retrieve issue enrichment details
+- network_devices_create - new module to create network devices
+- network_devices_export_credentials_create - new module to export network device credentials
+- network_devices_update - new module to update network devices
+- network_devices_update_create - new module to trigger network device updates
+- network_devices_validate_device_create - new module to validate network devices
+- product_series_count_info - new module to retrieve product series count
+- releases_info - new module to retrieve available releases information
+- releases_release_summary_info - new module to retrieve release summary
+- roles_permissions_info - new module to retrieve roles permissions
+- roles_v2 - new module to manage roles (v2)
+- roles_v2_info - new module to retrieve roles information (v2)
+- sda_layer3_virtual_networks_delete - new module to delete SDA layer 3 virtual networks
+- sda_transit_networks_delete - new module to delete SDA transit networks
+- site_delete - new module to delete sites
+- site_update - new module to update sites
+- software_management_executions_info - new module to retrieve software management execution details
+- uninstall_optional_packages_create - new module to uninstall optional packages
+- upgrade_software_release_create - new module to upgrade software releases
+- user_enrichment_details_v2_info - new module to retrieve user enrichment details (v2)
+- wireless_controllers_certificate_renewal_create - new module to trigger wireless controller certificate renewal
+- wireless_controllers_site_tags_info - new module to retrieve wireless controller site tags
+- wireless_profiles_policy_tags_info - new module to retrieve wireless profile policy tags
+- wireless_settings_certificate_renewal_profiles - new module to manage wireless certificate renewal profiles
+- wireless_settings_certificate_renewal_profiles_count_info - new module to retrieve wireless certificate renewal profiles count
+- wireless_settings_certificate_renewal_profiles_info - new module to retrieve wireless certificate renewal profiles information
+
+cisco.ios
+~~~~~~~~~
+
+- Adds a new Resource Module `ios_bfd_interfaces` to configure BFD on interfaces.
+- Adds a new Resource Module `ios_bfd_templates` to configure BFD  using templates.
+- ios_l3_interfaces - Add support for 'redirects' and 'unreachables' attributes to configure ICMP redirect and unreachable messages.
+
+community.aws
+~~~~~~~~~~~~~
+
+- cloudfront_distribution - Added ``elements`` key to ``active_trusted_signers`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``aliases`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``cache_behaviors.items.allowed_methods.cached_methods`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``cache_behaviors.items.allowed_methods`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``cache_behaviors.items.forwarded_values.cookies.whitelisted_names`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``cache_behaviors.items.forwarded_values.headers`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``cache_behaviors.items.forwarded_values.query_string_cache_keys`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``cache_behaviors.items.lambda_function_associations`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``cache_behaviors`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``custom_error_responses`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``default_cache_behavior.allowed_methods.cached_methods`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``default_cache_behavior.allowed_methods`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``default_cache_behavior.forwarded_values.cookies.whitelisted_names`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``default_cache_behavior.forwarded_values.headers`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``default_cache_behavior.forwarded_values.query_string_cache_keys`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``default_cache_behavior.lambda_function_associations`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``origins.items.custom_origin_config.origin_ssl_protocols`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``origins`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - Added ``elements`` key to ``restrictions.geo_restriction`` (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - move misplaced options out of ``forwarded_values`` ``suboptions``. (https://github.com/ansible-collections/community.aws/pull/2342).
+- cloudfront_invalidation - Added ``elements`` key to ``invalidation.invalidation_batch.paths`` (https://github.com/ansible-collections/community.aws/pull/2354).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- ModuleHelper module utils - allow to ignore specific exceptions in ``module_fails_on_exception`` decorator (https://github.com/ansible-collections/community.general/pull/11488).
+- from_ini filter plugin - add ``delimiters`` parameter to allow correctly parsing more INI documents (https://github.com/ansible-collections/community.general/issues/11506, https://github.com/ansible-collections/community.general/pull/11512).
+- keycloak_client - add ``valid_post_logout_redirect_uris`` option to configure post logout redirect URIs for a client, and ``backchannel_logout_url`` option to configure the backchannel logout URL for a client (https://github.com/ansible-collections/community.general/issues/6812, https://github.com/ansible-collections/community.general/issues/4892, https://github.com/ansible-collections/community.general/pull/11473).
+- keycloak_client_rolemapping, keycloak_realm_rolemapping, keycloak_group - optimize retrieval of groups by name to use Keycloak search API with exact matching instead of fetching all groups (https://github.com/ansible-collections/community.general/pull/11503).
+- keycloak_realm - add support for ``localizationTexts`` option in Keycloak realms (https://github.com/ansible-collections/community.general/pull/11513).
+- keycloak_realm_key - add support for auto-generated key providers (``rsa-generated``, ``rsa-enc-generated``, ``hmac-generated``, ``aes-generated``, ``ecdsa-generated``, ``ecdh-generated``, ``eddsa-generated``), ``java-keystore`` provider, additional algorithms (HMAC, ECDSA, ECDH, EdDSA, AES), and new config options (``secret_size``, ``key_size``, ``elliptic_curve``, ``keystore``, ``keystore_password``, ``key_alias``, ``key_password``). Also makes ``config.private_key`` and ``config.certificate`` optional as they are only required for imported key providers (https://github.com/ansible-collections/community.general/pull/11468).
+- redfish_info - add Redfish Root data to results of successful ``CheckAvailability`` command (https://github.com/ansible-collections/community.general/pull/11504).
+- seport - adds support for DCCP and SCTP protocols (https://github.com/ansible-collections/community.general/pull/11486).
+
+community.libvirt
+~~~~~~~~~~~~~~~~~
+
+- virt_install - added support for memoryBacking source type configuration, including memfd for shared memory (https://github.com/ansible-collections/community.libvirt/issues/228).
+- virt_install - added support for primary value attribute (_value or value) in dynamic dict options that require a primary value alongside additional attributes.
+- virt_install - enhanced cloud_init configuration handling for sub-options (meta-data, user-data, and network-config) to support both string and dictionary inputs.
+- virt_install - refactored common virt-install functionality into module_utils and doc_fragments to enable code reuse between modules.
+- virt_volume - New return key/value pairs 'Type', 'Capacity' and 'Allocation' were added to command 'list_volumes' (https://github.com/ansible-collections/community.libvirt/issues/187)
+- virt_volume - added ability to resize volumes if defined capacity is different. If volume already exists and defined capacity in XML differs a resize is attempted.
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_role - add ``sql_log_bin`` option to disable binary logging for the connection (https://github.com/ansible-collections/community.mysql/issues/742).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Fix tests for new Podman
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Added "playbooks/vsp_direct/vsp_storage_connection_session_example.yml" as a sample playbook demonstrating session-based storage operations.
+- Added a new "hv_pav_alias" module to manage PAV (Parallel Access Volume) alias assignments for Mainframe based VSP block storage systems.
+- Added a new "hv_pav_alias_facts" module to gather facts about PAV aliases from Mainframe based VSP block storage systems.
+- Added a new "hv_sds_block_audit_log_setting" module to support configuration of audit log settings on VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_audit_log_setting_facts" module to retrieve audit log setting from VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_dump_log_file" module to retrieve and dump log information from VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_dump_log_status_facts" module to retrieve and dump log status information from VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_event_log_setting_facts" module to retrieve event log setting from VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_event_logs_facts" module to retrieve event logs with various filtering options from VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_journal" module to create and update journals on VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_journal_facts" module to retrieve journal details from VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_license" module to manage license on VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_license_facts" module to retrieve license from VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_license_setting" module to modify license warning threshold settings for VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_license_setting_facts" module to retrieve license setting from VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_login_message" module to update the message configured to be displayed on the GUI login window and CLI warning banner of the VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_login_message_facts" module to retrieve the message configured to be displayed on the GUI login window and CLI warning banner of the VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_storage_external_auth_server_setting" module to configure external authentication server settings on VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_storage_external_auth_server_setting_facts" module to retrieve external authentication server settings from the VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_storage_user_auth_setting" module to configure external authentication server settings on VSP One SDS Block and Cloud systems.
+- Added a new "hv_sds_block_storage_user_auth_setting_facts" module to retrieve user authentication settings from VSP One SDS Block and Cloud systems.
+- Added a new "hv_session" module to generate and discard session on VSP block storage systems.
+- Added a new "hv_session_facts" module to retrieve information about sessions on VSP block storage systems.
+- Added a new "hv_snapshot_family_facts" module to retrieve information about snapshot family of the provided LDEV ID from VSP block storage systems.
+- Added a new "hv_supported_host_mode_facts" module to retrieve detailed information about supported host mode options available in a given VSP block storage system.
+- Added a new "hv_vclone_parent_volume_facts" module to retrieve information about virtual clone parent volume from VSP block storage systems.
+- Added notes to module documentation indicating that a few modules are not supported for BHE and higher models.
+- Added support for Mainframe z16.
+- Added support for SVOS 10.5.1.
+- Added support to "hv_ddp_pool" module for DDP pool creation with RAID6.
+- Added support to "hv_hg" module for present/unpresent multiple LDEVs to/from hostgroups across multiple ports.
+- Added support to "hv_hg" module to support host group's lun paths.
+- Added support to "hv_ldev" module to create DRS LDEV without deduplication and compression.
+- Added support to "hv_ldev" module to create ESE Mainframe LDEV with cylinder and emulation type.
+- Added support to "hv_ldev" module to create Mainframe LDEV with cylinder and emulation type in a parity group.
+- Added support to "hv_ldev" module to create Mainframe LDEV with cylinder and emulation type.
+- Added support to "hv_ldev" module to create TSE Mainframe LDEV with cylinder and emulation type.
+- Added support to "hv_ldev" module to stop the normal format for all volumes.
+- Added support to "hv_ldev_facts" module output to include Mainframe, vClone and other new properties.
+- Added support to "hv_ldev_facts" module to get information about multiple LDEVs by their IDs.
+- Added support to "hv_paritygroup_facts" module output to include Mainframe and other new properties.
+- Added support to "hv_resource_group_facts" module to get basic information about all resource groups including meta resource group information.
+- Added support to "hv_sds_block_cluster" module to stop the storage cluster.
+- Added support to "hv_snapshot" module to create or convert a snapshot pair to vClone depending on the snapshot pair status.
+- Added support to "hv_snapshot" module to optionally delete secondary volume using should_delete_svol parameter.
+- Added support to "hv_snapshot" module to restore a snapshot pair from vClone.
+- Added support to "hv_snapshot_facts" module output to include vClone-related properties.
+- Added support to "hv_snapshot_group" module to create or convert a snapshot pair to vClone by snapshot group name.
+- Added support to "hv_snapshot_group" module to restore snapshot group from vClone.
+- Added support to "hv_snapshot_group" module to restore the snapshot pairs using group name and wait for the final state of all snapshots.
+- Added support to "hv_snapshot_group_facts" module output to include vClone-related properties.
+- Added support to "hv_storage_port_facts" module output to include Mainframe and other new properties.
+- Added support to "hv_storagepool" module output to include pool volumes information.
+- Added support to "hv_storagepool" module to create a mainframe HDP storage pool using parity group and cylinder.
+- Added support to "hv_storagepool" module to shrink a storage pool using list of pool volume IDs and delete pool volumes.
+- Added support to "hv_storagepool" module to shrink a storage pool using list of pool volume IDs.
+- Added support to "hv_storagepool" module to shrink a storage pool using start and end pool volume IDs.
+- Added support to "hv_storagepool" module to stop the shrink operation of a storage pool.
+- Added support to "hv_storagepool_facts" module output to include pool volumes information.
+- Added support to "hv_storagepool_facts" module to get all mainframe storage pools with cache info for VSP 5XXX series storage.
+- Added support to "hv_storagepool_facts" module to get all mainframe storage pools with extended info.
+- Added support to "hv_storagepool_facts" module to get all mainframe storage pools.
+- Added support to "hv_storagesystem_facts" module output to include "is_compression_acceleration_available" status.
+- Added support to "hv_vsp_one_volume" module to create DRS volume without deduplication and compression.
+- Added support to "hv_vsp_one_volume_facts" module output to include Mainframe, vClone and other new properties.
+- Enhanced the performance of the "hv_gad_facts" module's task by implementing thread pool and batch processing.
+- Enhanced the performance of the "hv_hg_facts" module's task by implementing parallel calls.
+- Enhanced the performance of the "hv_ldev_facts" module's task by implementing thread pool and batch processing.
+- Other minor bug fixes.
+
+kubernetes.core
+~~~~~~~~~~~~~~~
+
+- Remove deprecated import from ``ansible.module_utils._text`` (https://github.com/ansible-collections/kubernetes.core/pull/1053).
+- helm - add ``release_values`` key to ``status`` return value that can be accessed using Jinja2 dot notation (https://github.com/ansible-collections/kubernetes.core/pull/1056).
+- helm_info - add ``release_values`` key to ``status`` return value that can be accessed using Jinja2 dot notation (https://github.com/ansible-collections/kubernetes.core/pull/1056).
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- Disable check mode for all non-info modules in this collection. Check mode was never supported for these modules. Fixes https://github.com/ansible-collections/vmware.vmware_rest/issues/363
+
+Deprecated Features
+-------------------
+
+- The awx.awx collection will be removed from Ansible 14.
+  The collection is undergoing a heavy \ `refactoring <https://forum.ansible.com/t/7404>`__ and currently does not align with the standards for the community package.
+  See `the removal discussion for details <https://forum.ansible.com/t/44706>`__.
+  After removal, users can still install this collection with ``ansible-galaxy collection install awx.awx``.
+
+community.aws
+~~~~~~~~~~~~~
+
+- The alias ``aws_acm_info`` for the ``acm_certificate_info`` module has been deprecated. Please use ``community.aws.acm_certificate_info`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_acm`` for the ``acm_certificate`` module has been deprecated. Please use ``community.aws.acm_certificate`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_api_gateway_domain`` for the ``api_gateway_domain`` module has been deprecated. Please use ``community.aws.api_gateway_domain`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_api_gateway`` for the ``api_gateway`` module has been deprecated. Please use ``community.aws.api_gateway`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_application_scaling_policy`` for the ``application_autoscaling_policy`` module has been deprecated. Please use ``community.aws.application_autoscaling_policy`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_batch_compute_environment`` for the ``batch_compute_environment`` module has been deprecated. Please use ``community.aws.batch_compute_environment`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_batch_job_definition`` for the ``batch_job_definition`` module has been deprecated. Please use ``community.aws.batch_job_definition`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_batch_job_queue`` for the ``batch_job_queue`` module has been deprecated. Please use ``community.aws.batch_job_queue`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_codebuild`` for the ``codebuild_project`` module has been deprecated. Please use ``community.aws.codebuild_project`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_codecommit`` for the ``codecommit_repository`` module has been deprecated. Please use ``community.aws.codecommit_repository`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_codepipeline`` for the ``codepipeline`` module has been deprecated. Please use ``community.aws.codepipeline`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_config_aggregation_authorization`` for the ``config_aggregation_authorization`` module has been deprecated. Please use ``community.aws.config_aggregation_authorization`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_config_aggregator`` for the ``config_aggregator`` module has been deprecated. Please use ``community.aws.config_aggregator`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_config_delivery_channel`` for the ``config_delivery_channel`` module has been deprecated. Please use ``community.aws.config_delivery_channel`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_config_recorder`` for the ``config_recorder`` module has been deprecated. Please use ``community.aws.config_recorder`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_config_rule`` for the ``config_rule`` module has been deprecated. Please use ``community.aws.config_rule`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_direct_connect_confirm_connection`` for the ``directconnect_confirm_connection`` module has been deprecated. Please use ``community.aws.directconnect_confirm_connection`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_direct_connect_connection`` for the ``directconnect_connection`` module has been deprecated. Please use ``community.aws.directconnect_connection`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_direct_connect_gateway`` for the ``directconnect_gateway`` module has been deprecated. Please use ``community.aws.directconnect_gateway`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_direct_connect_link_aggregation_group`` for the ``directconnect_link_aggregation_group`` module has been deprecated. Please use ``community.aws.directconnect_link_aggregation_group`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_direct_connect_virtual_interface`` for the ``directconnect_virtual_interface`` module has been deprecated. Please use ``community.aws.directconnect_virtual_interface`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_eks_cluster`` for the ``eks_cluster`` module has been deprecated. Please use ``community.aws.eks_cluster`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_elasticbeanstalk_app`` for the ``elasticbeanstalk_app`` module has been deprecated. Please use ``community.aws.elasticbeanstalk_app`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_glue_connection`` for the ``glue_connection`` module has been deprecated. Please use ``community.aws.glue_connection`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_glue_crawler`` for the ``glue_crawler`` module has been deprecated. Please use ``community.aws.glue_crawler`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_glue_job`` for the ``glue_job`` module has been deprecated. Please use ``community.aws.glue_job`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_inspector_target`` for the ``inspector_target`` module has been deprecated. Please use ``community.aws.inspector_target`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_kms_info`` for the ``kms_key_info`` module has been deprecated. Please use ``amazon.aws.kms_key_info`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_kms`` for the ``kms_key`` module has been deprecated. Please use ``amazon.aws.kms_key`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_msk_cluster`` for the ``msk_cluster`` module has been deprecated. Please use ``community.aws.msk_cluster`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_msk_config`` for the ``msk_config`` module has been deprecated. Please use ``community.aws.msk_config`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_s3_bucket_info`` for the ``s3_bucket_info`` module has been deprecated. Please use ``amazon.aws.s3_bucket_info`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_s3_cors`` for the ``s3_cors`` module has been deprecated. Please use ``community.aws.s3_cors`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_secret`` for the ``secretsmanager_secret`` module has been deprecated. Please use ``community.aws.secretsmanager_secret`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_ses_identity_policy`` for the ``ses_identity_policy`` module has been deprecated. Please use ``community.aws.ses_identity_policy`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_ses_identity`` for the ``ses_identity`` module has been deprecated. Please use ``community.aws.ses_identity`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_ses_rule_set`` for the ``ses_rule_set`` module has been deprecated. Please use ``community.aws.ses_rule_set`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_sgw_info`` for the ``storagegateway_info`` module has been deprecated. Please use ``community.aws.storagegateway_info`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_ssm_parameter_store`` for the ``ssm_parameter`` module has been deprecated. Please use ``community.aws.ssm_parameter`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_step_functions_state_machine_execution`` for the ``stepfunctions_state_machine_execution`` module has been deprecated. Please use ``community.aws.stepfunctions_state_machine_execution`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_step_functions_state_machine`` for the ``stepfunctions_state_machine`` module has been deprecated. Please use ``community.aws.stepfunctions_state_machine`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_waf_condition`` for the ``waf_condition`` module has been deprecated. Please use ``community.aws.waf_condition`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_waf_info`` for the ``waf_info`` module has been deprecated. Please use ``community.aws.waf_info`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_waf_rule`` for the ``waf_rule`` module has been deprecated. Please use ``community.aws.waf_rule`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``aws_waf_web_acl`` for the ``waf_web_acl`` module has been deprecated. Please use ``community.aws.waf_web_acl`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``cloudfront_info`` for the ``cloudfront_distribution_info`` module has been deprecated. Please use ``community.aws.cloudfront_distribution_info`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``cloudtrail`` for the ``cloudtrail`` module has been deprecated. Please use ``amazon.aws.cloudtrail`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``ec2_asg_info`` for the ``autoscaling_group_info`` module has been deprecated. Please use ``amazon.aws.autoscaling_group_info`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``ec2_asg_instance_refresh_info`` for the ``autoscaling_instance_refresh_info`` module has been deprecated. Please use ``amazon.aws.autoscaling_instance_refresh_info`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``ec2_asg_instance_refresh`` for the ``autoscaling_instance_refresh`` module has been deprecated. Please use ``amazon.aws.autoscaling_instance_refresh`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``ec2_asg_lifecycle_hook`` for the ``autoscaling_lifecycle_hook`` module has been deprecated. Please use ``community.aws.autoscaling_lifecycle_hook`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``ec2_asg_scheduled_action`` for the ``autoscaling_scheduled_action`` module has been deprecated. Please use ``community.aws.autoscaling_scheduled_action`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``ec2_asg`` for the ``autoscaling_group`` module has been deprecated. Please use ``amazon.aws.autoscaling_group`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``ec2_lc_find`` for the ``autoscaling_launch_config_find`` module has been deprecated. Please use ``community.aws.autoscaling_launch_config_find`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``ec2_lc_info`` for the ``autoscaling_launch_config_info`` module has been deprecated. Please use ``community.aws.autoscaling_launch_config_info`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``ec2_lc`` for the ``autoscaling_launch_config`` module has been deprecated. Please use ``community.aws.autoscaling_launch_config`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``ec2_metric_alarm`` for the ``cloudwatch_metric_alarm`` module has been deprecated. Please use ``amazon.aws.cloudwatch_metric_alarm`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``ec2_scaling_policy`` for the ``autoscaling_policy`` module has been deprecated. Please use ``community.aws.autoscaling_policy`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- The alias ``execute_lambda`` for the ``lambda_execute`` module has been deprecated. Please use ``amazon.aws.lambda_execute`` instead (https://github.com/ansible-collections/community.aws/pull/2387).
+- cloudfront_distribution - The ``items`` return value in ``active_trusted_signers`` has been deprecated and will be removed in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``aliases`` has been deprecated and will be removed in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``cache_behaviors.items.allowed_methods.cached_methods`` has been deprecated and will be removed in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``cache_behaviors.items.allowed_methods`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``cache_behaviors.items.forwarded_values.cookies.whitelisted_names`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``cache_behaviors.items.forwarded_values.headers`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``cache_behaviors.items.forwarded_values.query_string_cache_keys`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``cache_behaviors.items.lambda_function_associations`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``cache_behaviors`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``custom_error_responses`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``default_cache_behavior.allowed_methods.cached_methods`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``default_cache_behavior.allowed_methods`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``default_cache_behavior.forwarded_values.cookies.whitelisted_names`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``default_cache_behavior.forwarded_values.headers`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``default_cache_behavior.forwarded_values.query_string_cache_keys`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``default_cache_behavior.lambda_function_associations`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``origins.items.custom_origin_config.origin_ssl_protocols`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``origins`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_distribution - The ``items`` return value in ``restrictions.geo_restriction`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_invalidation - The ``items`` return value in ``invalidation.invalidation_batch.paths`` has been deprecated and will be remove in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- cloudfront_invalidation - The ``items`` return value in ``invalidation.invalidation_batch.paths`` has been deprecated and will be removed in a release after 2026-12-15. Use ``elements`` instead (https://github.com/ansible-collections/community.aws/pull/2354).
+- waf_condition - The module has been deprecated as Amazon has retired the ``WAF Classic`` service. Please use the ``AWS WAF (WAFv2)`` service and modules instead. The module will be removed in version 12.0.0 (https://github.com/ansible-collections/community.aws/pull/2389).
+- waf_info - The module has been deprecated as Amazon has retired the ``WAF Classic`` service. Please use the ``AWS WAF (WAFv2)`` service and modules instead. The module will be removed in version 12.0.0 (https://github.com/ansible-collections/community.aws/pull/2389).
+- waf_rule - The module has been deprecated as Amazon has retired the ``WAF Classic`` service. Please use the ``AWS WAF (WAFv2)`` service and modules instead. The module will be removed in version 12.0.0 (https://github.com/ansible-collections/community.aws/pull/2389).
+- waf_web_acl - The module has been deprecated as Amazon has retired the ``WAF Classic`` service. Please use the ``AWS WAF (WAFv2)`` service and modules instead. The module will be removed in version 12.0.0 (https://github.com/ansible-collections/community.aws/pull/2389).
+
+kubernetes.core
+~~~~~~~~~~~~~~~
+
+- helm - the ``status.values`` return value has been deprecated and will be removed in a release after 2027-01-08. Use ``status.release_values`` instead (https://github.com/ansible-collections/kubernetes.core/pull/1056).
+- helm_info - the ``status.values`` return value has been deprecated and will be removed in a release after 2027-01-08. Use ``status.release_values`` instead (https://github.com/ansible-collections/kubernetes.core/pull/1056).
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- Deprecate modules that have been moved to the new vmware.vmware collection. Includes vcenter_vm_guest_customization, vcenter_vm_hardware_adapter_sata, vcenter_vm_hardware_adapter_scsi, vcenter_vm_hardware_cdrom, vcenter_vm_hardware_cpu, vcenter_vm_hardware_disk, vcenter_vm_hardware_ethernet, vcenter_vm_hardware_memory, vcenter_vm
+
+Security Fixes
+--------------
+
+kubernetes.core
+~~~~~~~~~~~~~~~
+
+- Selectively redact sensitive info from kubeconfig instead of applying blanket ``no_log=True`` (https://github.com/ansible-collections/kubernetes.core/pull/1014).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Fix interpreter discovery on delegated ``async`` tasks (https://github.com/ansible/ansible/issues/86491)
+- Fix up the Action plugin ``_make_tmp_path`` error to only include the command run rather than the shell's dataclass repr from ``mkdtemp``.
+- local connection - Pass correct type to become plugins when checking password (https://github.com/ansible/ansible/issues/86458)
+
+arista.eos
+~~~~~~~~~~
+
+- Fix eos_vrf module to properly check existing interface configuration before making changes (https://github.com/ansible-collections/arista.eos/issues/546)
+
+cisco.ios
+~~~~~~~~~
+
+- Fixed delete and purged state function for ios_bfd_templates
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- Fix parameter naming in organizations_inventory_claim.py to use camelCase for consistency with existing code.
+
+community.aws
+~~~~~~~~~~~~~
+
+- Remove ``ansible.module_utils.six`` imports to avoid warnings (https://github.com/ansible-collections/community.aws/pull/2338).
+- ec2_customer_gateway - Fix documentation for the return block (https://github.com/ansible-collections/community.aws/pull/2354).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- crypto_info, openssl_privatekey, openssl_privatekey_pipe - fix detection of EC support for cryptography 46.0.5+ (https://github.com/ansible-collections/community.crypto/pull/981).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_image_pull, docker_container - fix pulled image change detection for Docker 29.2+ (https://github.com/ansible-collections/community.docker/pull/1242).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- keycloak module utils - fix ``TypeError`` crash when managing users whose username or email contains special characters such as ``+`` (https://github.com/ansible-collections/community.general/issues/10305, https://github.com/ansible-collections/community.general/pull/11472).
+- keycloak module utils - use proper URL encoding (``urllib.parse.quote``) for query parameters in authorization permission name searches, replacing fragile manual space replacement (https://github.com/ansible-collections/community.general/pull/11472).
+- keycloak_client - fix idempotency bug caused by ``null`` flow overrides value differences for non-existing flow overrides (https://github.com/ansible-collections/community.general/issues/11430, https://github.com/ansible-collections/community.general/pull/11455).
+- keycloak_client - remove IDs as change from diff result for protocol mappers (https://github.com/ansible-collections/community.general/issues/11453, https://github.com/ansible-collections/community.general/pull/11454).
+- keycloak_realm_key - fix ``KeyError`` crash when managing realm keys where Keycloak does not return ``active``, ``enabled``, or ``algorithm`` fields in the config response (https://github.com/ansible-collections/community.general/issues/11459, https://github.com/ansible-collections/community.general/pull/11470).
+- keycloak_user_federation - mapper config item can be an array (https://github.com/ansible-collections/community.general/issues/11502, https://github.com/ansible-collections/community.general/pull/11515).
+- keycloak_user_rolemapping - fix ``TypeError`` crash when adding a client role to a user who has no existing roles for that client (https://github.com/ansible-collections/community.general/issues/10960, https://github.com/ansible-collections/community.general/pull/11471).
+- maven_artifact - fix SNAPSHOT version resolution to pick the newest matching ``<snapshotVersion>`` entry by ``<updated>`` timestamp instead of the first. Repositories like GitHub Packages keep all historical entries in ``<snapshotVersions>`` (oldest first), causing the module to resolve to the oldest snapshot instead of the latest (https://github.com/ansible-collections/community.general/issues/5117, https://github.com/ansible-collections/community.general/issues/11489, https://github.com/ansible-collections/community.general/pull/11501).
+- nsupdate - fix ``AttributeError`` when using the module without TSIG authentication (https://github.com/ansible-collections/community.general/issues/11460, https://github.com/ansible-collections/community.general/pull/11461).
+- python_requirements_info - use ``importlib.metadata`` if ``pkg_resources`` from ``setuptools`` cannot be imported. That module has been removed from setuptools 82.0.0 (https://github.com/ansible-collections/community.general/issues/11491, https://github.com/ansible-collections/community.general/pull/11492).
+- splunk callback plugin - replace deprecated callback function (https://github.com/ansible-collections/community.general/pull/11485).
+
+community.libvirt
+~~~~~~~~~~~~~~~~~
+
+- virt_install - fixed cloud_init configuration handling for meta-data, user-data, and network-config.
+- virt_install - fixed the dict-based options handling for events, resource, and sysinfo options.
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Fix Ansible warning about test utils
+
+kubernetes.core
+~~~~~~~~~~~~~~~
+
+- Add idempotency for ``helm_pull`` module (https://github.com/ansible-collections/kubernetes.core/pull/1055).
+- Fixed a bug where setting ``K8S_AUTH_VERIFY_SSL=true`` (or any string value) caused the value to be treated as a separate ``kubectl`` command argument. (https://github.com/ansible-collections/kubernetes.core/pull/1049).
+- Limit supported versions of Helm to <4.0.0 (https://github.com/ansible-collections/kubernetes.core/pull/1039).
+- Replace passing ``warnings`` to ``exit_json`` with ``AnsibleModule.warn`` in the ``k8s_drain``, ``k8s_rollback.py`` and ``k8s_scale.py`` modules as it deprecated in ``ansible-core>=2.19.0`` and will be removed in ``ansible-core>=2.23.0`` (https://github.com/ansible-collections/kubernetes.core/pull/1033).
+- k8s - Fix return block from the module documentation (https://github.com/ansible-collections/kubernetes.core/pull/1056).
+- meta - Add ``k8s_cluster_info``, ``k8s_json_patch`` and ``k8s_rollback`` to k8s action group (https://github.com/ansible-collections/kubernetes.core/pull/992).
+
+purestorage.flasharray
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purefa_certs - Fix the syntax to generate a CSR
+- purefa_connect - Fixed issue where incorrect transport type was passed.
+- purefa_default_protection - Fixed issue adding new default protection group to the array scope
+- purefa_dsrole_old - Fixed incorrect parameter name for old version of functions
+- purefa_host - Fixed AttributeError when deleting WWNs from a host
+- purefa_info - Fixed AttributeError when subnet has no VLAN
+- purefa_info - Fixed error with Resalms-based API clients
+- purefa_info - Fixed issue with shelf controllers not supporting uptime
+- purefa_info - Resolved AttributeErrors in ``default`` info section
+- purefa_network - Fixes issue caused by None meaning change in SDK
+- purefa_pgsched - Fixed schedule deletion idempotency
+- purefa_policy - Fixed AttributeError when modifying a password policy
+
+New Plugins
+-----------
+
+Callback
+~~~~~~~~
+
+- community.general.loganalytics_ingestion - Posts task results to an Azure Log Analytics workspace using the new Logs Ingestion API.
+
+New Modules
+-----------
+
+cisco.ios
+~~~~~~~~~
+
+- cisco.ios.ios_bfd_interfaces - Resource module to configure bfd in interfaces.
+- cisco.ios.ios_bfd_templates - Bidirectional Forwarding Detection (BFD) templates configurations
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- community.general.icinga2_downtime - Manages Icinga 2 downtimes.
+- community.general.keycloak_realm_localization - Allows management of Keycloak realm localization overrides via the Keycloak API.
+
+community.libvirt
+~~~~~~~~~~~~~~~~~
+
+- community.libvirt.virt_cloud_instance - Provision new virtual machines from cloud images via libvirt
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- containers.podman.podman_quadlet - Install or remove Podman Quadlets
+- containers.podman.podman_quadlet_info - Gather information about Podman Quadlets
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sds Block
+^^^^^^^^^
+
+- hitachivantara.vspone_block.hv_sds_block_audit_log_setting - Manages Hitachi SDS block storage system audit log settings.
+- hitachivantara.vspone_block.hv_sds_block_audit_log_setting_facts - Get audit log setting from SDS Block storage system.
+- hitachivantara.vspone_block.hv_sds_block_dump_log_file - Dumps log information from SDS Block storage system.
+- hitachivantara.vspone_block.hv_sds_block_dump_log_status_facts - Dumps log status information from SDS Block storage system.
+- hitachivantara.vspone_block.hv_sds_block_event_log_setting - Manages Hitachi SDS block storage system event log settings.
+- hitachivantara.vspone_block.hv_sds_block_event_log_setting_facts - Get event log setting from SDS Block storage system.
+- hitachivantara.vspone_block.hv_sds_block_journal - Create and update Journals from storage system.
+- hitachivantara.vspone_block.hv_sds_block_journal_facts - Retrieve journal information from storage SDS Block storage system.
+- hitachivantara.vspone_block.hv_sds_block_license - Manage licenses on SDS Block storage system.
+- hitachivantara.vspone_block.hv_sds_block_license_facts - Get license(s) from SDS Block storage system.
+- hitachivantara.vspone_block.hv_sds_block_license_setting - Manage license settings for SDS Block storage system.
+- hitachivantara.vspone_block.hv_sds_block_license_setting_facts - Get license setting from SDS Block storage system.
+- hitachivantara.vspone_block.hv_sds_block_login_message - Update the login message displayed in the GUI login window and CLI warning banner.
+- hitachivantara.vspone_block.hv_sds_block_login_message_facts - Get the login message displayed in the GUI login window and CLI warning banner.
+- hitachivantara.vspone_block.hv_sds_block_storage_external_auth_server_setting - Manages external authentication server settings on VSP One SDS Block and Cloud systems.
+- hitachivantara.vspone_block.hv_sds_block_storage_external_auth_server_setting_facts - Get external authentication server settings from the storage system.
+- hitachivantara.vspone_block.hv_sds_block_storage_user_auth_setting - Manages external authentication server settings on VSP One SDS Block and Cloud systems.
+- hitachivantara.vspone_block.hv_sds_block_storage_user_auth_setting_facts - Get user authentication settings from the storage system.
+
+Vsp
+^^^
+
+- hitachivantara.vspone_block.hv_pav_alias - Manages PAV (Parallel Access Volume) alias assignments for VSP block storage systems.
+- hitachivantara.vspone_block.hv_pav_alias_facts - retrieves information about PAV aliases from VSP block storage systems.
+- hitachivantara.vspone_block.hv_session - Manages sessions on VSP block storage systems.
+- hitachivantara.vspone_block.hv_session_facts - Retrieves information about sessions on VSP block storage systems.
+- hitachivantara.vspone_block.hv_snapshot_family_facts - Retrieves snapshot family information of the provided LDEV ID from VSP block storage systems.
+- hitachivantara.vspone_block.hv_supported_host_mode_facts - Retrieves supported host mode options information from a specified VSP block storage system.
+- hitachivantara.vspone_block.hv_vclone_parent_volume_facts - Retrieves virtual clone parent volume information from VSP block storage systems.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.2.0)
+- ansible.posix (still version 2.1.0)
+- ansible.utils (still version 6.0.1)
+- ansible.windows (still version 3.3.0)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.14.0)
+- check_point.mgmt (still version 6.8.0)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.13.0)
+- cisco.intersight (still version 2.12.0)
+- cisco.iosxr (still version 12.1.1)
+- cisco.mso (still version 2.12.0)
+- cisco.nxos (still version 11.1.3)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.3)
+- community.ciscosmb (still version 1.0.11)
+- community.clickhouse (still version 2.0.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.7.0)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxmox (still version 1.5.0)
+- community.proxysql (still version 1.7.0)
+- community.rabbitmq (still version 1.6.0)
+- community.routeros (still version 3.16.0)
+- community.sap_libs (still version 1.6.0)
+- community.sops (still version 2.2.7)
+- community.vmware (still version 6.2.0)
+- community.windows (still version 3.1.0)
+- community.zabbix (still version 4.1.1)
+- cyberark.conjur (still version 1.3.9)
+- cyberark.pas (still version 1.0.36)
+- dellemc.enterprise_sonic (still version 3.2.0)
+- dellemc.openmanage (still version 10.0.1)
+- dellemc.powerflex (still version 3.0.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.39.0)
+- fortinet.fortimanager (still version 2.12.0)
+- fortinet.fortios (still version 2.4.2)
+- google.cloud (still version 1.11.0)
+- grafana.grafana (still version 6.0.6)
+- hetzner.hcloud (still version 6.7.0)
+- hitachivantara.vspone_object (still version 1.1.1)
+- ibm.storage_virtualize (still version 3.2.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infinidat.infinibox (still version 1.6.3)
+- infoblox.nios_modules (still version 1.9.0)
+- inspur.ispim (still version 2.2.4)
+- junipernetworks.junos (still version 11.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubevirt.core (still version 2.2.3)
+- lowlydba.sqlserver (still version 2.7.0)
+- microsoft.ad (still version 1.10.0)
+- microsoft.iis (still version 1.1.0)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.3.0)
+- netapp.storagegrid (still version 21.16.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.22.0)
+- ngine_io.cloudstack (still version 3.0.0)
+- openstack.cloud (still version 2.5.0)
+- ovirt.ovirt (still version 3.2.2)
+- purestorage.flashblade (still version 1.24.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.5.1)
+- theforeman.foreman (still version 5.8.0)
+- vmware.vmware (still version 2.7.0)
+- vultr.cloud (still version 1.13.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.10)
+
 v13.3.0
 =======
 
