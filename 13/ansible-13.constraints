@@ -1,0 +1,5 @@
+# junipernetworks.junos is not tagged in the original repository, moved their
+# repository to somewhere else and introduced a dependency to a collection
+# that is not part of the Ansible Community Package
+# https://github.com/ansible-community/ansible-build-data/issues/223#issuecomment-3995935946
+junipernetworks.junos: <11.1.0
