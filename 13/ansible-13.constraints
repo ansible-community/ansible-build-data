@@ -3,3 +3,6 @@
 # that is not part of the Ansible Community Package
 # https://github.com/ansible-community/ansible-build-data/issues/223#issuecomment-3995935946
 junipernetworks.junos: <11.1.0
+
+# netapp.ontap 23.4.0 is not tagged: https://github.com/ansible-collections/netapp.ontap/issues/328
+netapp.ontap: <23.4.0
