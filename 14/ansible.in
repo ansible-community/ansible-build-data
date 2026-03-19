@@ -54,6 +54,7 @@ fortinet.fortimanager
 fortinet.fortios
 google.cloud
 grafana.grafana
+graphiant.naas
 hetzner.hcloud
 hitachivantara.vspone_block
 hitachivantara.vspone_object
