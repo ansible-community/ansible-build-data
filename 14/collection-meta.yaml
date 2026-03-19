@@ -190,6 +190,8 @@ collections:
     maintainers:
       - ishanjainn
     repository: https://github.com/grafana/grafana-ansible-collection
+  graphiant.naas:
+    repository: https://github.com/Graphiant-Inc/graphiant-playbooks
   hetzner.hcloud:
     repository: https://github.com/ansible-collections/hetzner.hcloud
   hitachivantara.vspone_block:
