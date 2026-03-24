@@ -7,6 +7,1085 @@ This changelog describes changes since Ansible 12.0.0.
 .. contents::
   :depth: 2
 
+v13.5.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-03-24
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- graphiant.naas (version 26.2.4)
+
+Ansible-core
+------------
+
+Ansible 13.5.0 contains ansible-core version 2.20.4.
+This is a newer version than version 2.20.3 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection            | Ansible 13.4.0 | Ansible 13.5.0 | Notes                                                                                                                        |
++=======================+================+================+==============================================================================================================================+
+| amazon.aws            | 10.2.0         | 10.3.0         |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.windows       | 3.3.0          | 3.5.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| azure.azcollection    | 3.14.0         | 3.15.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| check_point.mgmt      | 6.8.0          | 6.9.0          | The collection did not have a changelog in this version.                                                                     |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.dnac            | 6.48.0         | 6.48.2         |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight      | 2.12.0         | 2.15.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki          | 2.22.1         | 2.23.1         |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.mso             | 2.12.0         | 2.13.0         |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.clickhouse  | 2.0.0          | 2.1.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns         | 3.5.2          | 3.5.3          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker      | 5.0.6          | 5.1.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general     | 12.4.0         | 12.5.0         |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot      | 2.7.0          | 2.7.1          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql       | 4.1.0          | 4.2.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.proxmox     | 1.5.0          | 1.6.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros    | 3.16.0         | 3.18.0         |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sap_libs    | 1.6.0          | 1.7.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortimanager | 2.12.0         | 2.13.0         |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortios      | 2.4.2          | 2.5.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| google.cloud          | 1.11.0         | 1.12.0         |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| graphiant.naas        |                | 26.2.4         | The collection was added to Ansible                                                                                          |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| kubevirt.core         | 2.2.3          | 2.2.4          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap          | 23.3.0         | 23.4.0         |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman    | 5.8.0          | 5.10.0         |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware         | 2.7.0          | 2.8.0          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| vultr.cloud           | 1.13.0         | 1.14.0         |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| wti.remote            | 1.0.10         | 1.0.11         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- proxmox - Add ca_path option to specify a ca-certificate for tls validation (https://github.com/ansible-collections/community.proxmox/pull/256).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info, api_modify - multiple parameters can no longer be disabled for the``tool netwatch`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - parameter ``name-format`` can no longer be disabled for the ``interface wifi provisioning`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - parameter ``script`` can no longer be disabled for the ``ip dhcp-client`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Supported new versions 7.6.5 and 7.6.6.
+- Updated the Q&A for using the default_group feature in modules.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_autoupdate_config - REST only support for managing configurations for automatic updates, requires ONTAP 9.10.1 or later.
+- na_ontap_cg - REST only support for managing consistency groups, requires ONTAP 9.10.1 or later.
+- na_ontap_cifs - AWS Lambda support added to the module.
+- na_ontap_cifs_acl - AWS Lambda support added to the module.
+- na_ontap_cifs_local_group - AWS Lambda support added to the module.
+- na_ontap_cifs_local_group_member - AWS Lambda support added to the module.
+- na_ontap_cifs_local_user - AWS Lambda support added to the module.
+- na_ontap_cifs_local_user_set_password - AWS Lambda support added to the module.
+- na_ontap_cifs_privileges - AWS Lambda support added to the module.
+- na_ontap_cifs_server - AWS Lambda support added to the module.
+- na_ontap_cifs_unix_symlink_mapping - AWS Lambda support added to the module.
+- na_ontap_cluster_peer - AWS Lambda support added to the module.
+- na_ontap_igroup - AWS Lambda support added to the module.
+- na_ontap_igroup_initiator - AWS Lambda support added to the module.
+- na_ontap_lun_copy - AWS Lambda support added to the module.
+- na_ontap_lun_map - AWS Lambda support added to the module.
+- na_ontap_lun_map_reporting_nodes - AWS Lambda support added to the module.
+- na_ontap_s3_buckets - AWS Lambda support added to the module.
+- na_ontap_s3_groups - AWS Lambda support added to the module.
+- na_ontap_s3_policies - AWS Lambda support added to the module.
+- na_ontap_s3_services - AWS Lambda support added to the module.
+- na_ontap_s3_users - AWS Lambda support added to the module.
+- na_ontap_snapmirror - AWS Lambda support added to the module.
+- na_ontap_volume_autosize - AWS Lambda support added to the module.
+- na_ontap_volume_clone - AWS Lambda support added to the module.
+- na_ontap_vserver_peer - AWS Lambda support added to the module.
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Add container/remote aliases for more loosely specifying managed test environments.
+- ansible-test - Add support for using the Ansible Core CI service from GitHub Actions.
+
+amazon.aws
+~~~~~~~~~~
+
+- meta/runtime.yml - Lowered the ``ansible-core`` minimum version to ``2.16``. This expands compatibility and does not change or remove existing functionality.
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- PowerShell 7 - Add initial support for running modules against PowerShell 7 interpreters. Support for PowerShell 7 varies across each module, see module documentation for more information.
+- ansible.windows.win_package - Add optional Authenticode signature validation for installer files via the new ``verify_signature`` parameter.
+- win_file - is aligned with ``ansible.builtin.file`` and now supports options ``access_time``, ``access_time_format``, ``modification_time``, and ``modification_time_format``. (https://github.com/ansible-collections/ansible.windows/issues/798)
+- win_shell - Add ``cmd`` module option that can be used instead of the free form input. This aligns the options to the POSIX ``shell`` module.
+- win_shell - Support using ``pwsh.exe`` as the executable in a mode similar to how ``powershell.exe`` is run.
+
+cisco.dnac
+~~~~~~~~~~
+
+- Changes in events_and_notifications_workflow_manager module
+- Changes in lan_automation_workflow_manager module
+- Changes in reports_workflow_manager module
+- Changes in sda_extranet_policies_workflow_manager module
+- Changes in site_workflow_manager module
+- Changes in template_workflow_manager module
+- Changes in wired_campus_automation_workflow_manager module
+- Changes in wireless_design_workflow_manager module
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- Added new modules and action plugins for Cisco Umbrella account connect/disconnect, Wireless AutoRF (RRM) settings, third-party VPN peers, organization integrations, inventory EoX overview, network moves, SASE eligible networks, and wireless device provisioning deployments.
+- networks_wireless_settings: added multicast-to-unicast conversion support.
+- organizations_inventory_devices_info: added eoxStatuses filtering and included EoX fields in returned inventory device data.
+
+cisco.mso
+~~~~~~~~~
+
+- Add support to deploy and undeploy non-schema templates in ndo_template_deploy (formerly ndo_schema_template_deploy).
+
+community.clickhouse
+~~~~~~~~~~~~~~~~~~~~
+
+- clickhouse_user - added new ``authentication`` dict parameter supporting LDAP, hashed, and plain-text password authentication for created users. Cannot be used together with the existing ``type_password`` and ``password`` parameters (https://github.com/ansible-collections/community.clickhouse/issues/142).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_compose_v2_pull - adds ``ignore_pull_failures`` parameter that passes ``--ignore-pull-failures`` to the ``docker compose pull`` call when set to ``true`` (https://github.com/ansible-collections/community.docker/pull/1248).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- ansible_galaxy_install - add parameter ``executable`` (https://github.com/ansible-collections/community.general/issues/7261, https://github.com/ansible-collections/community.general/pull/11646).
+- api module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561).
+- bitbucket module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561).
+- consul module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561, https://github.com/ansible-collections/community.general/pull/11573).
+- doas become plugin - add new option ``allow_pipelining`` to explicitly allow the use of pipelining with this plugin. This should only be set to ``true`` with ansible-core 2.19+ when ``doas`` does not require a password (https://github.com/ansible-collections/community.general/issues/11411, https://github.com/ansible-collections/community.general/pull/11481).
+- gandi_livedns_api module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561).
+- github_app_access_token lookup plugin - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561).
+- hwc_utils module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561, https://github.com/ansible-collections/community.general/pull/11573).
+- icinga2 inventory plugin - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561, https://github.com/ansible-collections/community.general/pull/11573).
+- incus inventory plugin - add support for constructing project-independent FQDNs (https://github.com/ansible-collections/community.general/pull/11555).
+- ipa module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561).
+- keycloak module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561).
+- keycloak_realm - add ``first_broker_login_flow`` parameter (https://github.com/ansible-collections/community.general/pull/11622).
+- ldap_attrs - add ``binary_attributes`` and ``honor_binary`` parameters to handle binary attribute values (https://github.com/ansible-collections/community.general/pull/11558).
+- ldap_entry - add ``binary_attributes`` and ``honor_binary`` parameters to handle creating objects with attributes set to binary values (https://github.com/ansible-collections/community.general/pull/11558).
+- lookup plugin passwordstore - modernize internal ``check_output2()`` helper using ``subprocess.run()`` and rename it to ``run_backend_cmd()`` (https://github.com/ansible-collections/community.general/pull/11655).
+- memset module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561).
+- merge_variables lookup plugin - extended merging capabilities added (https://github.com/ansible-collections/community.general/pull/11536).
+- nmcli - fix idempotency for MAC VLAN interfaces when using ``macvlan.tap`` (https://github.com/ansible-collections/community.general/pull/11551).
+- nsupdate - replace ``list(map(...))`` constructs with Python comprehensions (https://github.com/ansible-collections/community.general/pull/11590).
+- ocapi_utils module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561).
+- oci_utils module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561).
+- online module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561).
+- osx_defaults - add support for ``dict`` type values, including ``dict_mode`` option to merge keys into an existing dictionary (https://github.com/ansible-collections/community.general/issues/238, https://github.com/ansible-collections/community.general/pull/11659).
+- redfish_utils module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561, https://github.com/ansible-collections/community.general/pull/11573).
+- rundeck module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561, https://github.com/ansible-collections/community.general/pull/11573).
+- scaleway module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561).
+- supervisorctl - added an additional condition for generating the error 'no such process' (https://github.com/ansible-collections/community.general/issues/11621, https://github.com/ansible-collections/community.general/pull/11632).
+- timezone - replace ``list(map(...))`` constructs with Python comprehensions (https://github.com/ansible-collections/community.general/pull/11590).
+- utm_utils module utils - use Python-defined constants for HTTP return codes (https://github.com/ansible-collections/community.general/pull/11561, https://github.com/ansible-collections/community.general/pull/11573).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- Update imports from ansible.module_utils._text to use ansible.module_utils.common.text.converters
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- inventory plugin - add want_post_filtering_facts to delay fact gathering until filtering has completed (https://github.com/ansible-collections/community.proxmox/pull/261).
+- proxmox - Add api_timeout option for all modules (https://github.com/ansible-collections/community.proxmox/pull/253).
+- proxmox_role - add role's privs on the return data (https://github.com/ansible-collections/community.proxmox/pull/283).
+- proxmox_storage - Add support for ZFS thin-provisioning (https://github.com/ansible-collections/community.proxmox/pull/265).
+- proxmox_storage - Add the option namespace for PBS storage (https://github.com/ansible-collections/community.proxmox/pull/282)
+- proxmox_storage - refactor the validation of storage options (https://github.com/ansible-collections/community.proxmox/pull/266).
+- proxmox_storage_contents_info - Add support for content type ``import`` (https://github.com/ansible-collections/community.proxmox/pull/260).
+- proxmox_zone, proxmox_vnet, proxmox_subnet - make sdn modules compatible with pve8 (https://github.com/ansible-collections/community.proxmox/pull/254).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info - adds support for the ``app`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``caps-man actual-interface-configuration`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``disk btrfs filesystem`` path for RouterOS >=7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``dude ros health`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``dude ros interface`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``dude ros neighbor`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``dude ros resource`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``dude ros routerboard`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``interface bridge port-controller port`` path for RouterOS >= 7.15, < 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``interface ethernet switch qos port`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/319, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``interface ethernet switch qos tx-manager queue`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/319, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``interface lte`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/282, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``interface wifi steering neighbor-group`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``interface wireless manual-tx-power-table`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``interface wireless nstreme`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``interface`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``iot bluetooth advertisers`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``iot bluetooth peripheral-devices`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``iot bluetooth scanners`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``iot bluetooth`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``iot lora channels`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``iot lora radios`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``iot lora`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``ip ipsec key`` path for RouterOS >= 7.15, < 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``ip pool used`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``ip proxy connections`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``ip socks connections`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``lcd screen`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``lora channels`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``lora radios`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``lora`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``partitions`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``port`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``routing isis interface`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/356, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``routing isis lsp`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/356, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``routing isis neighbor`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/356, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``routing ospf neighbor`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``routing pimsm igmp-interface-template`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``routing route rule`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``routing route`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``system package local-update`` path for RouterOS >= 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``system routerboard usb`` path for RouterOS >= 7.15, < 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``system script environment`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``system script job`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info - adds support for the ``system upgrade`` path for RouterOS >= 7.15, < 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - add default values for fields ``ciphers`` in ``ip ssh``, ``mvrp`` in  ``interface vlan``, and ``mvrp-forbidden`` in ``interface bridge vlan`` (https://github.com/ansible-collections/community.routeros/pull/439/).
+- api_info, api_modify - adds default value and removes required being true for parameter ``address-pool`` in the ``ipv6 dhcp-server`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the  ``lacp-mode`` (>= 7.19), ``lacp-system-id`` (>= 7.21) and ``lacp-system-priority`` (>= 7.21) parameters in the ``interface bonding`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``3gpp-info-raw`` (>= 7.21), and ``realms-raw`` (>= 7.21) parameters in the ``interface wifi interworking`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``accept-prefix-without-address`` (>= 7.20), ``allow-reconfigure`` (>= 7.17), ``check-gateway`` (>= 7.19), ``custom-iana-id`` (>= 7.20), ``custom-iapd-id`` (>= 7.20), ``default-route-tables`` (>= 7.19), ``prefix-address-lists`` (>= 7.17) and ``rapid-commit`` (>= 7.17) parameters in the ``ipv6 dhcp-client`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``accept-proto-version``, ``accept-pseudowire-type``, ``l2tpv3-circuit-id``, ``l2tpv3-cookie-length``, ``l2tpv3-digest-hash`` and ``l2tpv3-ether-interface-list`` parameters in the ``interface l2tp-server server`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``accept-router-advertisements-on`` parameters in the ``ipv6 settings`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``accept-untagged`` (>= 7.20), and ``pppoe-over-vlan-range`` (>= 7.17) parameters in the ``interface pppoe-server server`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``add-arp`` (>= 7.15), ``address-lists`` (>= 7.17) and ``use-reconfigure`` (>= 7.19) parameters in the ``ip dhcp-server`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``address-list-extra-time`` and ``vrf`` parameters in the ``ip dns`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``address-lists`` (>= 7.17), ``ignore-ia-na-bindings`` (>= 7.20), ``prefix-pool`` (>= 7.17) and ``use-reconfigure`` (>= 7.17) parameters in the ``ipv6 dhcp-server`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``agent-circuit-id`` and ``agent-remote-id`` parameters in the ``ip dhcp-server lease`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``allow-dual-stack-queue``, ``block-access``, ``dhcp-option-set``, ``lease-time``, ``parent-queue``, ``queue-type``, ``rate-limit``, ``routes`` and ``use-src-mac`` parameters in the ``ip dhcp-server lease`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``allow-reconfigure`` (>= 7.19), ``check-gateway`` (>= 7.19), ``default-route-tables`` (>= 7.18), ``dscp`` (>= 7.20), ``use-broadcast`` (>= 7.20) and ``vlan-priority`` (>= 7.20) parameters in the ``ip dhcp-client`` path (https://github.com/ansible-collections/community.routeros/issues/407, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``allowed-addresses4`` and ``allowed-addresses6`` parameters in the ``tool bandwidth-server`` path for RouterOS >= 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``app settings`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``authentication``, ``comment``, ``ip-type``, ``ipv6-interface``, ``passthrough-interface``, ``passthrough-mac``, ``passthrough-subnet-size``, ``password``, ``use-network-apn`` and ``user`` parameters in the ``interface lte apn`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/282, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``auto-link-local`` parameter in the ``ipv6 address`` path for RouterOS >= 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``back-to-home-vpn`` and ``vpn-prefer-relay-code`` parameters in the ``ip cloud`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``beacon-protection`` parameter in the ``interface wifi security`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``boot-os``, ``cpu-mode``, ``disable-pci``, ``etherboot-port``, ``gpio-function``, ``init-delay`` and ``regulatory-domain-ce`` parameters in the ``system routerboard settings`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``bridge-port-trusted`` (>= 7.17), ``bridge-port-vid`` (>= 7.217), ``comment`` (>= 7.15), ``dhcpv6-lease-time`` (>= 7.20), ``dhcpv6-pd-pool (>= 7.15)``, ``dhcpv6-use-radius`` (>= 7.20), ``remote-ipv6-prefix-pool`` (>= 7.15) and ``remote-ipv6-prefix-reuse`` (>= 7.20) parameters in the ``ppp profile`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``broadcast`` and ``netmask`` parameters in the ``ip address`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``builtin-trust-anchors`` (>= 7.19) and ``builtin-trust-store`` (>= 7.21) parameters in the ``certificate settings`` path (https://github.com/ansible-collections/community.routeros/issues/379, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``burst-time``, ``prism-cardtype``, ``vht-basic-mcs`` and ``vht-supported-mcs`` parameters in the ``interface wireless`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``cable-settings`` (>= 7.15.3), ``disable-running-check`` (>= 7.15.3), ``numbers`` (>= 7.15), ``sfp-ignore-rx-los`` (>= 7.15) parameters in the ``interface ethernet`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``caps-man interface`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``caps-man rates`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``certificate crl`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``certificate scep-server ra`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``certificate scep-server`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``certificate-verification`` parameters in the ``tool e-mail`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``certificate`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``certificate``, ``enable-tun-ipv6``, ``ipv6-prefix-len``, ``push-routes``, ``redirect-gateway``, ``reneg-sec``, ``tls-version`` and ``certtun-server-ipv6ificate`` parameters in the ``interface ovpn-server server`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``channel.deprioritize-unii-3-4`` (>= 7.20), ``channel.reselect-interval`` (>= 7.15), ``channel.reselect-time`` (>= 7.19), ``configuration.distance`` (>= 7.15), ``configuration.installation`` (>= 7.17), ``configuration.max-clients`` (>=7.18), ``configuration.station-roaming`` (>= 7.17), ``configuration.tx-chains`` (>= 7.15), ``datapath.openflow-switch`` (>= 7.20), ``security.multi-passphrase-group`` (>= 7.17) and ``steering.2g-probe-delay`` (>=7.18) parameters in the ``interface wifi`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ciphers`` parameter in the ``ip ssh`` path for RouterOS >= 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ciphers`` parameters in the ``interface sstp-server server`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``client-address``, ``client-dns``, ``client-endpoint``, ``client-keepalive``, ``client-listen-port``, and ``private-key`` parameters in the ``interface wireguard peers`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``client-allowed-address`` parameter in the ``interface wireguard peers`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``comment`` and ``pref64`` parameters in the ``ipv6 nd`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``comment`` parameter in the ``interface wireless security-profiles`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/388, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``comment`` parameter in the ``ip dhcp-client option`` path for RouterOS >= 7.16 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``comment`` parameter in the ``ip ipsec policy group`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``comment`` parameter in the ``ip ipsec proposal`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``comment`` parameter in the ``ip smb users`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``comment`` parameter in the ``ipv6 dhcp-server option`` path for RouterOS >= 7.16 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``comment`` parameter in the ``port remote-access`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``comment`` parameter in the ``ppp secret`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``comment`` parameter in the ``tool romon port`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``configuration.hw-protection-mode``, ``interworking.3gpp-info-raw``, ``interworking.realms-raw``, ``security.beacon-protection``, ``steering.transition-request-count``, ``steering.transition-request-period``, ``steering.transition-threshold``, ``steering.transition-threshold-time`` and ``steering.transition-time`` parameters in the ``interface wifi`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``connection-mark`` and ``use-responder-dns`` parameters in the ``ip ipsec mode-config`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``connection-nat-state`` parameter in the ``ipv6 firewall mangle`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``connection-nat-state``, ``routing-mark`` and ``tls-host`` parameters in the ``ipv6 firewall filter`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``connection-tracking-mode`` (>= 7.20), ``connection-tracking-port`` (>= 7.20), and ``group-authority`` (>= 7.15) parameters in the ``interface vrrp`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``console settings`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``container config`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``container envs`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``container mounts`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``container`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``datapath.openflow-switch`` (>= 7.20), ``distance`` (>= 7.15), ``installation`` (>= 7.17), ``interworking.wan-symmetric`` (>= 7.15), ``max-clients`` (>=7.18) and ``station-roaming`` (>= 7.17) parameters in the ``interface wifi configuration`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``days`` (>= 7.21) and  ``multi-passphrase-group`` (>= 7.17) parameters in the ``interface wifi access-list`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dhcp-server-vrf`` (>= 7.15) and ``local-address-as-src-ip`` (>= 7.17) parameters in the ``ip dhcp-relay`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``disable-security-rules`` parameter in the ``iot modbus`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``disk btrfs subvolume`` path for RouterOS >=7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``disk btrfs transfer`` path for RouterOS >=7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``disk`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dns-server`` (>= 7.16), ``early-failure-detection`` (>= 7.20), ``early-success-detection`` (>= 7.205), ``ignore-initial-down`` (>= 7.17), ``ignore-initial-up`` (>= 7.17) and ``record-type`` (>= 7.16) parameters in the ``tool netwatch`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dont-fragment`` parameter in the ``interface gre6`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dude agent`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dude device-type`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dude device`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dude notification`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dude probe`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dude ros address`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dude ros arp`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dude ros lease`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dude ros queue`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dude ros route`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dude service`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dude`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dynamic-lease-identifiers`` and ``support-broadband-tr101`` parameters in the ``ip dhcp-server`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dynamic`` and ``timeout`` parameters in the ``ip firewall address-list`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``dynamic`` and ``timeout`` parameters in the ``ipv6 firewall address-list`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``egress-rate``, ``ingress-rate``, ``l3-hw-offloading``, ``limit-broadcasts``, ``limit-unknown-multicasts``, ``limit-unknown-unicasts``, ``mirror-egress``, ``mirror-ingress``, ``mirror-ingress-target``, ``numbers`` and ``storm-rate`` parameters in the ``interface ethernet switch port`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``enable-ipv6-accounting`` parameter in the ``port aaa`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``file rsync-daemon`` path for RouterOS >= 7.16 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``file sync`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``file`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``filter-dst-ip-address`` (>= 7.15), ``filter-dst-ipv6-address`` (>= 7.15), ``filter-dst-mac-address`` (>= 7.15), ``filter-dst-port`` (>= 7.15), ``filter-src-ip-address`` (>= 7.15), ``filter-src-ipv6-address`` (>= 7.15), ``filter-src-mac-address`` (>= 7.15), ``filter-src-port`` (>= 7.15), ``filter-vlan`` (>= 7.15), ``max-packet-size`` (>= 7.19), ``quick-rows`` (>= 7.15) and ``quick-show-frame`` (>= 7.15) parameters in the ``tool sniffer`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``headers``, ``hop-limit``, ``nth`` and ``to-address`` parameters in the ``ipv6 firewall nat`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``heartbeat`` (>= 7.18) and ``priority`` (>= 7.17) parameters in the ``interface bridge mlag`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``hw-protection-mode``, ``distance``, ``interworking.3gpp-info-raw``, ``interworking.realms-raw``, ``security.beacon-protection``, ``steering.transition-request-coun``, ``steering.transition-request-period``, ``steering.transition-threshold``, ``steering.transition-threshold-time`` and ``steering.transition-time`` parameters in the ``interface wifi configuration`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``icmp-errors-use-inbound-interface-address`` and ``tcp-timestamps`` parameters in the ``ip settings`` path for RouterOS >= 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``inactivity-policy`` (>= 7.16) and ``inactivity-timeout`` (>= 7.16) parameters in the ``user`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``input.attr-error-handling`` (>= 7.21.2), ``input.filter-communities`` (>= 7.19), ``input.filter-ext-communities`` (>= 7.19), ``input.filter-large-communities`` (>= 7.19), ``input.filter-nlri`` (>= 7.20), ``input.filter-unknown`` (>= 7.19), ``output.as-override`` (>= 7.15), ``output.default-prepend`` (>= 7.15) and ``output.network-blackhole`` (>= 7.20.1) parameters in the ``routing bgp template`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``input.attr-error-handling`` parameter in the ``routing bgp connection`` path for RouterOS >= 7.21.2 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``input`` parameter in the ``mpls interface`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface amt`` for RotuerOS 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface bridge calea`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface bridge filter`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface bridge host`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface bridge mdb`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface bridge msti`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface bridge nat`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface bridge port mst-override`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface bridge port-controller device`` path for RouterOS >= 7.15, < 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface eoipv6`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ethernet switch host`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ethernet switch l3hw-settings advanced`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ethernet switch l3hw-settings`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ethernet switch qos map ip`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/319, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ethernet switch qos map vlan`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/319, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ethernet switch qos map`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/319, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ethernet switch qos priority-flow-control`` path for RouterOS >= 7.15, < 7.16 (https://github.com/ansible-collections/community.routeros/issues/319, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ethernet switch qos profile`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/319, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ethernet switch qos settings`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/319, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ethernet switch qos tx-manager`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/319, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ethernet switch rule`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/319, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ethernet switch vlan`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ipip`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/365, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ipipv6`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface l2tp-ether`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface l2tp-server`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface lte settings`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/282, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface macsec profile`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface macsec`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface macvlan`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface mesh port`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface mesh`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ovpn-server`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface ppp-server`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface pppoe-server`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface pptp-client`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface pptp-server`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface sstp-client`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface sstp-server`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface veth`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface vpls`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface vxlan vteps`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface vxlan`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface wifi radio settings`` path for RouterOS >= 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface wifi security multi-passphrase`` path for RouterOS >= 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface wireless channels`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface wireless interworking-profiles`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface wireless nstreme-dual`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``interface wireless wds`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``invalid-users``,``read-only``,``require-encryption`` and ``valid-users`` parameters in the ``ip smb shares`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``iot bluetooth advertisers ad-structures`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``iot bluetooth whitelist`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``iot lora joineui`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``iot lora netid`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``iot lora servers`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``iot lora traffic options`` path for RouterOS >= 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``iot modbus security-rules`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``iot mqtt brokers`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``iot mqtt subscriptions`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip cloud back-to-home-file settings`` path for RouterOS >= 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip cloud back-to-home-file`` path for RouterOS >= 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip cloud back-to-home-user`` path for RouterOS >= 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip cloud back-to-home-users`` path for RouterOS >= 7.15, < 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip dhcp-server alert`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip firewall calea`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip hotspot ip-binding`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip ipsec key psk`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip ipsec key qkd`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip ipsec key rsa`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip kid-control device`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip kid-control`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip media settings`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip media`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip nat-pmp interfaces`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip nat-pmp`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip packing`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip proxy access`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip proxy cache`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip proxy direct`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip service webserver`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip socks users`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip socksify`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ip tftp`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ipv6 dhcp-client option`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ipv6 dhcp-relay option`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ipv6 dhcp-relay`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ipv6 dhcp-server binding`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ipv6 dhcp-server option sets`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ipv6 nd proxy`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ipv6 neighbor`` path for RouterOS >= 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ipv6 pool`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``l2tpv3-circuit-id`` (>= 7.15) and ``random-source-port`` (>=7.18) parameters in the ``interface gre6`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``l3-hw-offloading``, ``mirror-egress-target``, ``numbers``, ``qos-hw-offloading``, ``rspan``, ``rspan-egress-vlan-id``, ``rspan-ingress-vlan-id`` and ``switch-all-ports`` parameters in the ``interface ethernet switch`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``lcd interface pages`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``lcd interface`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``lcd pin`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``lcd`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``liberal-tcp-tracking`` parameters in the ``ip firewall connection tracking`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``lldp-dcbx`` (>= 7.17), ``lldp-max-frame-size`` (>= 7.15) and ``lldp-poe-power`` (>= 7.15) parameters in the ``ip neighbor discovery-settings`` (https://github.com/ansible-collections/community.routeros/issues/363, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``local-address`` parameter in the ``port remote-access`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``lora joineui`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``lora netid`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``lora servers`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``lora traffic options`` path for RouterOS >= 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``mpls ldp local-mapping`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``mpls ldp neighbor`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``mpls ldp remote-mapping`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``mpls mangle`` path for RouterOS >= 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``mpls settings`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``mpls traffic-eng interface`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``mpls traffic-eng path`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``mpls traffic-eng tunnel`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``mvrp-forbidden`` parameter in the ``interface bridge vlan`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``mvrp`` (>= 7.15) and ``l3-hw-offloading`` (>= 7.21) parameters in the ``interface vlan`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``network-mode`` (>= 7.20) and ``remote-address`` (>= 7.15) parameters in the ``interface ppp-client`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ntp-none`` parameter in the ``ip dhcp-server network`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``numbers`` parameters in the ``interface ethernet poe`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``numbers`` parameters in the ``interface ethernet switch port-isolation`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``numbers`` parameters in the ``ip firewall service-port`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``numbers`` parameters in the ``ip hotspot service-port`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``numbers`` parameters in the ``ip service`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``numbers`` parameters in the ``queue interface`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``numbers`` parameters in the ``system resource irq rps`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``on-login`` and ``on-logout`` parameters in the ``ip hotspot user profile`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``openflow port`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``openflow-switch`` parameter in the ``interface wifi datapath`` for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``openflow`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``password-authentication`` and ``publickey-authentication-options`` parameters in the ``ip ssh`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``password`` parameter in the ``interface dot1x client`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``polling`` (>= 7.16), ``remove-sent-sms-after-send`` (>= 7.20) and ``sms-storage`` (>= 7.15) parameters in the ``tool sms`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ppk-secret`` parameter in the ``ip ipsec peer`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ppk`` parameter in the ``ip ipsec profile`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``ppp l2tp-secret`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``pref-src`` (>= 7.20), ``suppress-hw-offload`` (>= 7.15) parameters in the ``ipv6 route`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``push-routes-ipv6`` parameter in the ``interface ovpn-server server`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``radius-password`` parameters in the ``ip dhcp-server config`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``regex`` (>= 7.17) parameter in the ``system logging`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing bgp evpn`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing bgp instance`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/issues/437, https://github.com/ansible-collections/community.routeros/pull/438).
+- api_info, api_modify - adds support for the ``routing bgp vpls`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing bgp vpn`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing fantasy`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing filter community-ext-list`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing filter community-large-list`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing gmp`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing igmp-proxy mfc`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing isis instance`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/356, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing isis interface-template`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/issues/356, https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing pimsm bsr candidate`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing pimsm bsr rp-candidate`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing pimsm static-rp`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing rip instance`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing rip interface-template`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing rip keys`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing rip static-neighbor`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing rpki`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``routing settings`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``rsync-daemon`` path for RouterOS >= 7.15, < 7.16 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``rx-switch-offset`` parameter in the ``iot modbus`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``sa-dst-address``, ``sa-src-address`` parameters in the ``ip ipsec policy`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``slave-name-format`` parameter in the ``interface wifi interworking`` path for RouterOS >= 7.16 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``socks5-port`` (>= 7.20), ``socks5-server`` (>= 7.20) and ``socksify-service`` (>= 7.20) parameters in the ``ip firewall nat`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``special-login`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``src-port`` parameter in the ``ip socks access`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``stale-neighbor-detect-interval`` parameters in the ``ipv6 settings`` path for RouterOS >= 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system console screen`` path for RouterOS >= 7.15, < 7.16.1 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system console`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system gps`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system hardware`` path for RouterOS >= 7.15, < 7.16.1 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system health`` path for RouterOS >= 7.15.3, < 7.16.1 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system leds`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system ntp key`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system package local-update mirror`` path for RouterOS >= 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system package local-update update-package-source`` path for RouterOS >= 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system resource hardware usb-settings`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system resource usb settings`` path for RouterOS >= 7.15, < 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system resource usb`` path for RouterOS >= 7.15, < 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system routerboard mode-button`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system routerboard reset-button`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system routerboard wps-button`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system swos`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``system upgrade upgrade-package-source`` path for RouterOS >= 7.15, < 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``task`` path for RouterOS >= 7.15, < 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tool calea`` path for RouterOS >= 7.15, < 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tool graphing queue`` path for RouterOS >= 7.15, < 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tool mac-server sessions`` path for RouterOS >= 7.15, < 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tool traffic-generator packet-template`` path for RouterOS >= 7.15, < 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tool traffic-generator port`` path for RouterOS >= 7.15, < 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tool traffic-generator raw-packet-template`` path for RouterOS >= 7.15, < 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tool traffic-generator stream`` path for RouterOS >= 7.15, < 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tool traffic-monitor`` path for RouterOS >= 7.15, < 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tos`` parameter in the ``ip firewall filter`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tos`` parameter in the ``ip firewall mangle`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tos`` parameter in the ``ip firewall nat`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tos`` parameter in the ``ip firewall raw`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tos`` parameter in the ``ipv6 firewall filter`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tos`` parameter in the ``ipv6 firewall mangle`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tos`` parameter in the ``ipv6 firewall nat`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tos`` parameter in the ``ipv6 firewall raw`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``total-bucket-size``, ``total-burst-limit``, ``total-burst-threshold``, ``total-burst-time``, ``total-limit-at``, ``total-max-limit``, ``total-priority`` and ``total-queue`` parameters in the ``queue simple`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``totp-secret`` parameter in the ``ip hotspot user`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``tr069-client`` path for RouterOS >= 7.15, < 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``transition-request-count``, ``transition-request-period``, ``transition-threshold``, ``transition-threshold-time`` and ``transition-time`` parameters in the ``interface wifi steering`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``user ssh-keys`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``user-manager advanced`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``user-manager attribute`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``user-manager database`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``user-manager limitation`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``user-manager payment`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``user-manager profile-limitation`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``user-manager profile`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``user-manager router`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``user-manager user group`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``user-manager user-profile`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``user-manager user`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``user-manager`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``vrf`` parameter in the ``interface wireguard`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``vrf`` parameters in the ``ip socks`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``vrf`` parameters in the ``radius incoming`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``vrf`` parameters in the ``tool e-mail`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``zerotier controller member`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``zerotier controller`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``zerotier interface`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - adds support for the ``zerotier`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow multiple parameters to be disabled in the ``interface wifi configuration`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameter ``forwarding-override`` to be disabled in the ``interface ethernet switch port-isolation`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameter ``mac-cookie-timeout`` to be disabled for the ``ip hotspot user profile`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameter ``mpls-mtu`` to be disabled for the ``mpls interface`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameter ``multi-passphrase-group`` to be disabled for the ``interface wifi security`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameter ``relay-info-remote-id`` to be disabled for the ``ip dhcp-relay`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameter ``sfp-shutdown-temperature`` to be disabled in the ``interface ethernet`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameter ``time`` to be disabled for the ``interface wireless access-list`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameter ``traffic-processing`` to be disabled for the ``interface wifi datapath`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameter ``use-bfd`` to be disabled for the ``routing ospf interface-template`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameters ``action`` to be disabled for the ``interface wifi access-list`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameters ``ca-certificate``, ``certificate`` and ``interfaces`` to be disabled for the ``interface wifi capsman`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameters ``caps-man-addresses``, ``caps-man-certificate-common-names``, ``caps-man-names``, ``certificate``, ``discovery-interfaces``, ``lock-to-caps-man``, ``slaves-datapath`` and ``slaves-static`` to be disabled for the ``interface wifi cap`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameters ``certificate``, ``down-script``, ``http-codes``, ``interval``, ``packet-interval``, ``port``, ``src-address``, ``start-delay``, ``startup-delay``, ``test-script``, ``thr-avg``, ``thr-http-time``, ``thr-jitter``, ``thr-loss-count``, ``thr-loss-percent``, ``thr-max``, ``thr-stdev``, ``thr-tcp-conn-time``, ``timeout`` and ``up-script`` to be disabled in the ``tool netwatch`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameters ``datapath.traffic-processing``, ``l2mtu``, ``master-interface``, ``mtu`` and ``radio-mac`` to be disabled for the ``interface wifi`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameters ``deprioritize-unii-3-4``, ``reselect-interval`` and ``reselect-time`` to be disabled for the ``interface wifi channel`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - allow the parameters ``internal-path-cost`` and ``path-cost`` to be disabled in the ``interface bridge port`` path for RouterOS >= 7.13 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - changed support for the parameter ``group-master`` in the ``interface vrrp`` path to write-only for RouterOS >= 7.11 (deprecated and replaced by ``group-authority``) (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - fix default value for field ``mvrp-forbidden`` in ``interface bridge vlan`` (https://github.com/ansible-collections/community.routeros/issues/440, https://github.com/ansible-collections/community.routeros/pull/441/).
+- api_info, api_modify - parameters ``copy-from`` and ``place-before`` are now write-only for the ``routing bfd configuration`` path (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed default value for parameters ``internal-path-cost`` and ``path-cost`` in the ``interface bridge port`` path for RouterOS >= 7.13 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the ``interface bridge port port-controller`` path for RouterOS >= 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the ``interface bridge port-extender`` path for RouterOS >= 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the ``ip accounting web-access`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the ``ip accounting`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the ``mpls`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the ``port firmware`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the ``routing bgp aggregate`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the ``routing bgp instance`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the ``routing bgp network`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the ``routing bgp peer`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the ``routing mme`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the ``routing rip`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the ``system upgrade mirror`` path for RouterOS >= 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``address`` in the ``ip traffic-flow target`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``allow-guests`` in the ``ip smb`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``allow-none-crypto`` in the ``ip ssh`` path for RouterOS >= 7.17 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``always-allow-password-login`` in the ``ip ssh`` path for RouterOS >= 7.21 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``auto-erase`` in the ``tool sms`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``bsd-syslog`` in the ``system logging action`` path for RouterOS >= 7.18 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``comment`` in the ``ip ipsec mode-config`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``default-mount-point-template`` in the ``disk settings`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``default`` in the ``caps-man manager interface`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``default`` in the ``interface lte apn`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``default`` in the ``ip ipsec policy group`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``default`` in the ``ip smb users`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``default`` in the ``snmp community`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``disabled`` in the ``interface wireless security-profiles`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``force-aes`` in the ``interface sstp-server server`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``full-duplex`` in the ``interface ethernet`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``gmt-offset`` in the ``system clock`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``info`` in the ``mpls interface`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``input.accept-unknown`` in the ``routing bgp connection`` path for RouterOS >= 7.19 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``input.accept-unknown`` in the ``routing bgp template`` path for RouterOS >= 7.19 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``memory-frequency`` in the ``system routerboard settings`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``mtu`` in the ``interface vrrp`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``route-cache`` in the ``ip settings`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``routing-table`` in the ``ip firewall filter`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``routing-table`` in the ``ip firewall mangle`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``tls-host`` in the ``ip firewall nat`` path for RouterOS >= 7.16 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameter ``tls-host`` in the ``ipv6 firewall nat`` path for RouterOS >= 7.16 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameters ``as-override``, ``input.limit-nlri-diversity`` and ``output.default-prepent`` in the ``routing bgp template`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameters ``cluster-id`` and ``input.ignore-as-path-len`` in the ``routing bgp connection`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameters ``cluster-id`` and ``input.ignore-as-path-len`` in the ``routing bgp template`` path for RouterOS >= 7.20 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameters ``default`` and ``max-sessions`` in the ``ip smb shares`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameters ``installed-version``, ``latest-version`` and ``status`` in the ``system package update`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameters ``layer7-protocol`` and ``to-addresses`` in the ``ipv6 firewall nat`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameters ``primary-ntp``, ``secondary-ntp`` and ``server-dns-names`` in the ``system ntp client`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - removed support for the parameters ``route-tag``, ``routing-mark`` and ``type`` in the ``ip route`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/433).
+- api_info, api_modify - treat parameters ``list`` and ``key`` as primary keys for the ``container envs`` path on RouterOS versions >= 7.20 (https://github.com/ansible-collections/community.routeros/issues/449, https://github.com/ansible-collections/community.routeros/pull/451).
+- api_modify - defined ``name`` as primary key, added default for ``container-mac-address``, allowed ``comment`` to be disabled for RouterOS path ``interface veth`` (https://github.com/ansible-collections/community.routeros/issues/454, https://github.com/ansible-collections/community.routeros/pull/455).
+- api_modify - make ``name`` a primary key (and thus required) for the ``container`` path for RouterOS >=7.19 (https://github.com/ansible-collections/community.routeros/issues/443, https://github.com/ansible-collections/community.routeros/pull/445).
+
+community.sap_libs
+~~~~~~~~~~~~~~~~~~
+
+- collection - Update all license headers (https://github.com/sap-linuxlab/community.sap_libs/pull/82)
+- sap_control_exec, sap_hostctrl_exec - QoL and Error handling (https://github.com/sap-linuxlab/community.sap_libs/pull/81)
+- sap_control_exec, sap_hostctrl_exec - Refactor to use shared utilities (https://github.com/sap-linuxlab/community.sap_libs/pull/78)
+- sap_hdbsql - Add error handling and secure flags for hdbsql (https://github.com/sap-linuxlab/community.sap_libs/pull/75)
+- sap_hdbsql - Add new parameter named properties (https://github.com/sap-linuxlab/community.sap_libs/pull/79)
+- sap_system_facts - Add SID and permission check to facts module (https://github.com/sap-linuxlab/community.sap_libs/pull/73)
+- sapcar_extract - Add overwrite mode and improve exist validation (https://github.com/sap-linuxlab/community.sap_libs/pull/77)
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Supported new environment variable "ANSIBLE_FORTIMANAGER_ENABLE_LOG" to enable/disable logging for FortiManager Ansible Collection.
+- Supported new environment variable "ANSIBLE_FORTIMANAGER_VERSION_CHECK" to enable/disable version checking performed by the FortiManager Ansible Collection.
+- Supported new schemas in FortiManager 7.0.16, 7.2.12, 7.4.9, 7.4.10, 7.6.5, 7.6.6
+
+google.cloud
+~~~~~~~~~~~~
+
+- gcp_sql_instance - add `allocated_ip_range` to `settings.ip_configuration` for private IP Cloud SQL instances (name of the allocated IP range in the VPC) (https://github.com/ansible-collections/google.cloud/pull/744).
+- gcp_vertexai_* - added 18 Vertex AI modules (gcp_vertexai_dataset, gcp_vertexai_deployment_resource_pool, gcp_vertexai_endpoint, gcp_vertexai_endpoint_with_model_garden_deployment, gcp_vertexai_feature_group, gcp_vertexai_feature_group_feature, gcp_vertexai_feature_online_store, gcp_vertexai_feature_online_store_featureview, gcp_vertexai_featurestore, gcp_vertexai_featurestore_entitytype, gcp_vertexai_featurestore_entitytype_feature, gcp_vertexai_index, gcp_vertexai_index_endpoint, gcp_vertexai_index_endpoint_deployed_index, gcp_vertexai_metadata_store, gcp_vertexai_rag_engine_config, gcp_vertexai_reasoning_engine, gcp_vertexai_tensorboard) (https://github.com/ansible-collections/google.cloud/pull/743).
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_lun - updated documentation for unsupported REST parameters.
+- na_ontap_nfs - new option `credential_cache` added in REST.
+- na_ontap_snapmirror - new options `time_out`, `wait_for_completion` added in REST.
+- na_ontap_snapmirror - updated documentation for `identity_preserve` and `max_transfer_rate`.
+- na_ontap_volume_efficiency- AWS Lambda support added to the module.
+- na_ontap_volume_efficiency- Added `wait_for_completion` and `time_out` parameters to fix time out errors for long running operations.
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- content_view - add support for lifecycle environments in rolling content views
+- convert2rhel role - removed subscription support as it's been unused since Katello 4.12 (05/2024)
+- locations role - Added ``state`` parameter to manage resource presence.
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- cluster_ha - Add value to allow disabling admission control policy Fixes https://github.com/ansible-collections/vmware.vmware/issues/227
+- vm - Add the ability to set the annotation of a VM. Fixes https://github.com/ansible-collections/vmware.vmware/issues/310
+- vm_list_group_by_clusters_info - Add the ability to use the absolute path for the group name. This can be used to avoid group name collisions. Fixes https://github.com/ansible-collections/vmware.vmware/issues/297
+- vms - Add setting to disable population of ansible_host to the inventory Fixes https://github.com/ansible-collections/vmware.vmware/pull/317
+
+vultr.cloud
+~~~~~~~~~~~
+
+- Added pagination support by adding ``api_results_per_page`` to the common attributes.
+- bare_metal - Added support for multi-disk operation mode by adding ``mdisk_mode`` to the attributes (https://github.com/vultr/ansible-collection-vultr/issues/165).
+- object_storage - Object storage subscriptions require specifying a tier upon creation, added ``tier`` to the attributes (https://github.com/vultr/ansible-collection-vultr/issues/135).
+- snapshot - Added UEFI support adding ``uefi`` to the attributes (https://github.com/vultr/ansible-collection-vultr/pull/160).
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- Update imports from ansible.module_utils.six to use their python3 equivalent. This change will make this collection incompatible for managed hosts on python2.7.
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- proxmox - set ``state`` as not ``optional`` and assign default value ``present`` (https://github.com/ansible-collections/community.proxmox/pull/292).
+
+Deprecated Features
+-------------------
+
+cisco.dnac
+~~~~~~~~~~
+
+- All modules now emit a deprecation warning at runtime directing users to cisco.catalystcenter.
+- The cisco.dnac collection is now deprecated. Please migrate to cisco.catalystcenter, which provides the same functionality under the updated Cisco Catalyst Center branding.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- aix_devices - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- aix_filesystem - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- aix_inittab - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- aix_lvg - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- aix_lvol - module is superseded by equivalent in ``ibm.power_aix`` collection. It will be removed from community.general 15.0.0 (https://github.com/ansible-collections/community.general/issues/11290, https://github.com/ansible-collections/community.general/pull/11540).
+- monit - support for Monit version 5.18 or older is deprecated and will be removed in community.general 14.0.0 (https://github.com/ansible-collections/community.general/pull/11254).
+- puppet - the ``timeout`` parameter is deprecated and will be removed in community.general 14.0.0. (https://github.com/ansible-collections/community.general/pull/11658).
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- proxmox - Certificate verification default changes from ``false`` to ``true`` with version 2.0.0 (https://github.com/ansible-collections/community.proxmox/pull/256).
+
+Security Fixes
+--------------
+
+amazon.aws
+~~~~~~~~~~
+
+- arn - fix potential ReDoS vulnerability in ARN parsing regex by using negated character class instead of non-greedy quantifier (https://github.com/ansible-collections/amazon.aws/pull/2884).
+- ec2_security_group - fix potential ReDoS vulnerability in security group ID parsing regex by using negated character classes and adding end anchor (https://github.com/ansible-collections/amazon.aws/pull/2884).
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- win_dns_record - Fixed a security risk where ``AllowUpdateAny`` was hardcoded for non-SRV records, allowing any authenticated user to update DNS records. Added a new parameter ``allow_update_any`` which defaults to ``false`` (https://issues.redhat.com/browse/ACA-5193).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Fix up ``powershell`` shell commands when using a connection plugin that does not support stdin/pipeline input - https://github.com/ansible/ansible/issues/86397
+- ansible-connection - Prevent unpickling failures in module contexts by ensuring that AnsibleTaggedObjects in pickled responses are converted to plain types in ``JsonRpcServer``.
+- config lookup now uses preexisting constants for templating when needed.
+- rpm_key - Use librpm library API instead of gpg utility to support version 6 PGP keys (https://github.com/ansible/ansible/issues/86157).
+- yaml loading - Fix traceback when parsing YAML strings (not files) when using the pure Python implementation of PyYAML.
+
+amazon.aws
+~~~~~~~~~~
+
+- aws_ssm - Fixed connection being re-established on every loop iteration. The plugin now properly establishes a single connection for a loop (https://github.com/ansible-collections/amazon.aws/pull/2869).
+- elb_application_lb - fixed comparison of multi-rule default actions to properly handle the ``Order`` field when determining if listener modifications are needed (https://github.com/ansible-collections/amazon.aws/issues/2537).
+- elb_application_lb - fixed error where creating a new application load balancer with listener rules would fail with ``Parameter validation failed: Invalid type for parameter ListenerArn, value: None`` (https://github.com/ansible-collections/amazon.aws/issues/2400).
+- s3_object - fixed error when using PUT with an empty ``content`` string (https://github.com/ansible-collections/amazon.aws/pull/2810)
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- Stop using the deprecated text module_utils in Ansible that will be removed in Ansible ``2.24``.
+- win_dhcp_lease - when creating a reservation, the dns_name will be used as reservation_name in case that is not provided; will be discarded otherwise as the parameter HostName is not supported by Add-DhcpServerv4Reservation (https://github.com/ansible-collections/ansible.windows/issues/813)
+- win_file - Fix idempotency issues when using ``state: touch`` (https://github.com/ansible-collections/ansible.windows/issues/798)
+- win_hotfix - Fix a bug in Get-HotfixMetadataFromKB fallback logic where it would fail to return metadata even if the hotfix was found.
+- win_hotfix - Fix idempotency issue where some multi-package MSUs (e.g. SSU + CU) were incorrectly reported as installed by DISM even if the CU was missing. Added a secondary check using Get-Hotfix to verify installation.
+- win_products_facts - return string for all the license related facts (https://github.com/ansible-collections/community.windows/issues/661).
+- win_reboot - fix unhandled error when ``.exe`` not present in ``PATHEXT`` environment variable
+- win_shell - Ensure the default ``executable`` uses the absolute path to ``powershell.exe`` rather than looking it up in the ``PATH`` environment.
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- Fixing problem of naming in organizations_appliance_vpn_third_party_vpnpeers_info.
+- Restructuring README.md file.
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+- hetzner_* modules and hetzner_dns_records inventory plugin - retry on network problems and certain HTTP codes (502, 503, 504) (https://github.com/ansible-collections/community.dns/pull/313).
+- hetzner_dns_record_sets - when doing batch updates, do not request status updates for too many actions at once (https://github.com/ansible-collections/community.dns/issues/312, https://github.com/ansible-collections/community.dns/pull/313).
+- hosttech_* modules and hosttech_dns_records inventory plugin - when using the JSON API, retry on network problems and certain HTTP codes (502, 503, 504) (https://github.com/ansible-collections/community.dns/pull/313).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- counter_enabled callback plugin - fix plugin not observing ``display_ok_hosts`` option (https://github.com/ansible-collections/community.general/issues/3978, https://github.com/ansible-collections/community.general/pull/11656).
+- ipa_dnsrecord - fix idempotency bug when using ``dnsttl`` due to wrong Python types (https://github.com/ansible-collections/community.general/pull/11559).
+- keycloak_authentication - fix ``TypeError`` crash when a flow is defined without ``authenticationExecutions`` (https://github.com/ansible-collections/community.general/issues/11547, https://github.com/ansible-collections/community.general/pull/11548).
+- nictagadm - add a condition to the if statement so that ``is_valid_mac()`` does not get called if ``etherstub`` is false (https://github.com/ansible-collections/community.general/pull/11589).
+- nmcli - add missing ``ipv6.routing-rules`` to ``settings_type()`` list type, preventing ``routing_rules6`` list from being corrupted (https://github.com/ansible-collections/community.general/issues/11630, https://github.com/ansible-collections/community.general/pull/11635).
+- open_iscsi - fix IPv6 portal address formatting; iscsiadm requires bracket notation for IPv6 addresses but the module was producing an incorrect format (https://github.com/ansible-collections/community.general/issues/4467, https://github.com/ansible-collections/community.general/pull/11657).
+- xfconf - representation of boolean properties was not consistent between Python and ``xfconf-query``, leading to broken idempotency (https://github.com/ansible-collections/community.general/pull/11645).
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- Remove unnecessary Python 2 compatibilty code (https://github.com/ansible-collections/community.hrobot/pull/187).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_user - When creating a new user, and specifying parsec as plugin it wil generate the wrong SQL query. It should be added to the same plugin check as ed25519 so that it generates a query using USING PASSWORDS(%s) instead of BY %s (https://github.com/ansible-collections/community.mysql/pull/779).
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- proxmox_cluster - make cluster join idempotent (https://github.com/ansible-collections/community.proxmox/pull/244).
+- proxmox_disk - make none iso disk idempotent (https://github.com/ansible-collections/community.proxmox/pull/288).
+- proxmox_firewall - Enable ipsets on vm level and fix bugs regarding the cidr notation the proxmox api expects (https://github.com/ansible-collections/community.proxmox/pull/248).
+- proxmox_role - when privs is omitted, keep existing role privileges unchanged instead of treating it as no privileges (https://github.com/ansible-collections/community.proxmox/pull/284).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info, api_modify - removed support for several parameters (``shared-buffers-color``, ``shared-pool0``-``shared-pool7``, ``treat-yellow-as``, ``wred-shared-threshold``, ``wred-threshold``) in the ``interface ethernet switch qos settings`` path for RouterOS <7.16 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``color`` in the ``interface ethernet switch qos profile`` path for RouterOS <7.16 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``ecn`` in the ``interface ethernet switch qos tx-manager`` path for RouterOS <7.16 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``enabled`` in the ``interface ovpn-server server`` path for RouterOS >=7.17 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``envlist`` (replaced by ``envlists``) in the ``container`` path for RouterOS <7.20 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``fasttrack-hw`` in the ``interface ethernet switch l3hw-settings`` path for RouterOS <7.16 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``import.router-id`` in the ``routing bgp vpn`` path for RouterOS <7.20 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``min-echo-rx`` in the ``routing bfd configuration`` path for RouterOS <7.15 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``mounts`` (replaced by ``mount``) in the ``container`` path for RouterOS <7.21 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``name`` in the ``container envs`` path for RouterOS <7.20 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``name`` in the ``container mounts`` path for RouterOS <7.21 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``nvme-tcp-name`` in the ``disk`` path for RouterOS <7.21 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``partial-offload-chunk`` in the ``interface ethernet switch l3hw-settings advanced`` path for RouterOS <7.18 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``pfc`` in the ``interface ethernet switch qos port`` path for RouterOS <7.16 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``port`` in the ``interface vxlan vteps`` path for RouterOS <7.18 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``ports`` in the ``interface bridge mdb`` path for RouterOS <7.19 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``ram-high`` in the ``container config`` path for RouterOS <7.20 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``remote-addrs`` (replaced by ``remote-address``) and ``status`` in the ``file sync`` path for RouterOS <7.16 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``src-address`` in the ``iot lora`` and ``lora`` paths for RouterOS <7.19 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``start-tls`` (default ``False``) in the ``tool e-mail`` path for RouterOS <7.15 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameter ``vrf`` in the ``interface vxlan`` path for RouterOS <7.20 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameters ``rssi-off`` and ``tx-enabled`` in the ``iot lora radios`` and ``lora radios`` paths for RouterOS <7.17 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_info, api_modify - removed support for the parameters ``shared-pool-index`` and ``wred`` in the ``interface ethernet switch qos tx-manager queue`` path for RouterOS <7.16 (https://github.com/ansible-collections/community.routeros/pull/450).
+- api_modify - fix idempotency for ``container mounts`` path on RouterOS 7.22+ where for ``dst`` and ``src``, values without a leading ``/`` (e.g. ``TEST``) were not recognised as matching the normalised value returned by RouterOS (``/TEST``), causing spurious updates on every run (https://github.com/ansible-collections/community.routeros/issues/449, https://github.com/ansible-collections/community.routeros/pull/452).
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Fixed an issue where users were required to specify a password confirmation when using the system_admin and system_api_user modules in FortiOS 7.6.5 and later.
+- Fixed the issue that getting an error "BadGzipFile" when using token for authentication in new versions of FortiOS.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_export_policy_rule - Fixed issue where rule_index was not being applied to create body, and added logic to detect when a create action is actually a re-index of an existing rule.
+- na_ontap_lun - Updated module with alias `volume_name` for `flexvol_name`.
+- na_ontap_qtree - Updated module with alias `volume_name` for `flexvol_name`.
+- na_ontap_service_processor_network - fixed issue with interface state not being applied correctly, resolved ipv6 comparison issue and idempotency issue with ZAPI abd REST.
+- na_ontap_snapmirror_policy - updated examples for creating and modifying snapmirror policy.
+- na_ontap_user_role - Removed special handling of `DEFAULT` path and normalized empty query in privileges to None for consistency.
+- na_ontap_volume - Fixed issue with volume rename.
+- na_ontap_vserver_audit - updated documentation for `log`.
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- content_view_filter_rule - fix content_filter_rule_deb_spec to take into account desired versions
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- cluster_info - When a user does not specify a cluster name, the module will now search recursively for clusters in the datacenter. Fixes https://github.com/ansible-collections/vmware.vmware/issues/303
+- cluster_info - When a user specifies a datacenter name, the module will now fail if that datacenter is not found instead of silently continuing. Fixes https://github.com/ansible-collections/vmware.vmware/issues/303
+- inventory plugins - fix handling of encrypted strings in inventory plugin username and password options for ansible-core<=2.19 fixes https://github.com/ansible-collections/vmware.vmware/issues/304
+
+vultr.cloud
+~~~~~~~~~~~
+
+- dns_domain - Removed requirement for the ``ip`` argument when creating a new domain (https://github.com/vultr/ansible-collection-vultr/issues/140).
+- instance, bare_metal - Fixed an issue where the ``user_data`` response returned a JSON serialization error (https://github.com/vultr/ansible-collection-vultr/issues/156).
+- startup_script - Fixed an issue where the ``script`` response returned a JSON serialization error (https://github.com/vultr/ansible-collection-vultr/pull/162).
+
+Known Issues
+------------
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_modify - to create or modify entries in the ``container`` path, you need librouteros 4.0.0 or newer due to a bug preventing older versions from setting or modifying properties named ``cmd`` (https://github.com/ansible-collections/community.routeros/issues/442).
+
+New Modules
+-----------
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- ansible.windows.dsc3 - Sets or checks DSC v3 configuration state
+
+cisco.mso
+~~~~~~~~~
+
+- cisco.mso.ndo_endpoint_ip_tag_policy - Manage Endpoint IP Tag Policies on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_endpoint_mac_tag_policy - Manage Endpoint MAC Tag Policies on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_template_deploy - Deploy templates to sites on Cisco Nexus Dashboard Orchestrator (NDO).
+- cisco.mso.ndo_tenant_netflow_record - Manage NetFlow Record on Cisco Nexus Dashboard Orchestrator (NDO).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- community.general.github_secrets - Manage GitHub repository or organization secrets.
+- community.general.github_secrets_info - List GitHub repository or organization secrets.
+- community.general.keycloak_authentication_v2 - Configure authentication flows in Keycloak in an idempotent and safe manner.
+- community.general.logrotate - Manage logrotate configurations.
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- community.proxmox.proxmox_role - Role management for Proxmox VE cluster.
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- fortinet.fortimanager.fmgr_devprof_system_template_interface - System template system template interface
+- fortinet.fortimanager.fmgr_devprof_system_template_interface_iprange - System template system template interface ip range
+- fortinet.fortimanager.fmgr_fmg_script - Fmg script
+- fortinet.fortimanager.fmgr_fmg_script_schedule - Fmg script schedule
+- fortinet.fortimanager.fmgr_securityconsole_template_validate - Securityconsole template validate
+- fortinet.fortimanager.fmgr_system_locallog_tacacsaccounting_filter - Cli system locallog tacacs+accounting filter
+- fortinet.fortimanager.fmgr_system_locallog_tacacsaccounting_setting - Cli system locallog tacacs+accounting setting
+- fortinet.fortimanager.fmgr_system_log_apiratelimit - Cli system log api ratelimit
+- fortinet.fortimanager.fmgr_system_log_settings_clientcertauth - Cli system log settings client cert auth
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- netapp.ontap.na_ontap_autoupdate_config - NetApp ONTAP module to manage configurations for automatic updates.
+- netapp.ontap.na_ontap_cg - NetApp ONTAP module to manage operations related to consistency groups.
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- theforeman.foreman.smart_proxy_refresh - Refresh Smart Proxy features
+
+vultr.cloud
+~~~~~~~~~~~
+
+- vultr.cloud.load_balancer - Manages load balancers on Vultr
+- vultr.cloud.load_balancer_info - Get information about Vultr load balancers
+- vultr.cloud.object_storage_cluster_info - Get information about the Vultr object storage clusters
+- vultr.cloud.object_storage_info - Get information about the Vultr object stores
+
+Unchanged Collections
+---------------------
+
+- ansible.netcommon (still version 8.4.0)
+- ansible.posix (still version 2.1.0)
+- ansible.utils (still version 6.0.1)
+- arista.eos (still version 12.0.1)
+- awx.awx (still version 24.6.1)
+- chocolatey.chocolatey (still version 1.5.3)
+- cisco.aci (still version 2.13.0)
+- cisco.ios (still version 11.3.0)
+- cisco.iosxr (still version 12.1.1)
+- cisco.nxos (still version 11.1.3)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.3)
+- community.aws (still version 10.1.0)
+- community.ciscosmb (still version 1.0.11)
+- community.crypto (still version 3.1.1)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.1.0)
+- community.mongodb (still version 1.7.12)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxysql (still version 1.7.0)
+- community.rabbitmq (still version 1.6.0)
+- community.sops (still version 2.2.7)
+- community.vmware (still version 6.2.0)
+- community.windows (still version 3.1.0)
+- community.zabbix (still version 4.1.1)
+- containers.podman (still version 1.19.0)
+- cyberark.conjur (still version 1.3.9)
+- cyberark.pas (still version 1.0.36)
+- dellemc.enterprise_sonic (still version 3.2.0)
+- dellemc.openmanage (still version 10.0.1)
+- dellemc.powerflex (still version 3.0.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.39.0)
+- grafana.grafana (still version 6.0.6)
+- hetzner.hcloud (still version 6.7.0)
+- hitachivantara.vspone_block (still version 4.6.1)
+- hitachivantara.vspone_object (still version 1.1.1)
+- ibm.storage_virtualize (still version 3.2.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infinidat.infinibox (still version 1.6.3)
+- infoblox.nios_modules (still version 1.9.0)
+- inspur.ispim (still version 2.2.4)
+- junipernetworks.junos (still version 11.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.3.0)
+- lowlydba.sqlserver (still version 2.7.0)
+- microsoft.ad (still version 1.10.0)
+- microsoft.iis (still version 1.1.0)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.storagegrid (still version 21.16.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.22.0)
+- ngine_io.cloudstack (still version 3.0.0)
+- openstack.cloud (still version 2.5.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- purestorage.flasharray (still version 1.42.0)
+- purestorage.flashblade (still version 1.24.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.5.1)
+- vmware.vmware_rest (still version 4.10.0)
+- vyos.vyos (still version 6.0.0)
+
 v13.4.0
 =======
 
@@ -2916,7 +3995,6 @@ dellemc.openmanage
 fortinet.fortios
 ~~~~~~~~~~~~~~~~
 
-- Supported default_group feature for the all of the modules.
 - Supported new versions 7.6.3 and 7.6.4.
 - Supported the authentication method when using username and password in v7.6.4.
 
@@ -3511,6 +4589,11 @@ fortinet.fortimanager
 ~~~~~~~~~~~~~~~~~~~~~
 
 - Supported new schemas in FortiManager 7.0.14, 7.2.10, 7.2.11.
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Supported default_group feature for all of the modules.
 
 google.cloud
 ~~~~~~~~~~~~
