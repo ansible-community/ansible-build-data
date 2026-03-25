@@ -3,3 +3,10 @@
 # that is not part of the Ansible Community Package
 # https://github.com/ansible-community/ansible-build-data/issues/223#issuecomment-3995935946
 junipernetworks.junos: <11.1.0
+# cisco.dnac was renamed to cisco.catalystcenter without following the renaming process.
+# The new collection is not part of the ansible package but is mentioned in module and
+# plugin deprecation warnings which creates friction for users.
+# Pin cisco.dnac to the last version without the warnings until we figure out
+# how to proceed.
+# https://github.com/cisco-en-programmability/dnacenter-ansible/issues/327
+cisco.dnac: <6.48.1

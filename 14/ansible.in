@@ -8,6 +8,7 @@ azure.azcollection
 check_point.mgmt
 chocolatey.chocolatey
 cisco.aci
+cisco.dnac
 cisco.intersight
 cisco.ios
 cisco.iosxr
