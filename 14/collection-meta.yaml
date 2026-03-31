@@ -36,11 +36,6 @@ collections:
     collection-directory: "./chocolatey"
   cisco.aci:
     repository: https://github.com/CiscoDevNet/ansible-aci
-  cisco.dnac:
-    maintainers:
-      - racampos
-      - wastorga
-    repository: https://github.com/cisco-en-programmability/dnacenter-ansible
   cisco.intersight:
     repository: https://github.com/CiscoDevNet/intersight-ansible
   cisco.ios:
@@ -353,6 +348,16 @@ removed_collections:
       reason: deprecated
       discussion: https://forum.ansible.com/t/38960
       announce_version: 11.2.0
+  cisco.dnac:
+    maintainers:
+      - racampos
+      - wastorga
+    repository: https://github.com/cisco-en-programmability/dnacenter-ansible
+    removal:
+      version: 14.0.0a2
+      reason: deprecated
+      announce_version: 13.6.0
+      discussion: https://forum.ansible.com/t/45609
   cisco.ise:
     maintainers:
       - wastorga
