@@ -7,6 +7,264 @@ This changelog describes changes since Ansible 13.0.0.
 .. contents::
   :depth: 2
 
+v14.0.0a2
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-04-14
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 14.0.0a2 contains ansible-core version 2.21.0b2.
+This is a newer version than version 2.21.0b1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection         | Ansible 14.0.0a1 | Ansible 14.0.0a2 | Notes                                                                                                                        |
++====================+==================+==================+==============================================================================================================================+
+| ansible.netcommon  | 8.4.0            | 8.5.0            |                                                                                                                              |
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.utils      | 6.0.1            | 6.0.2            |                                                                                                                              |
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight   | 2.17.0           | 2.18.0           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki       | 2.23.1           | 2.23.2           |                                                                                                                              |
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker   | 5.1.0            | 5.2.0            |                                                                                                                              |
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros | 3.18.0           | 3.19.0           |                                                                                                                              |
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman  | 1.19.0           | 1.19.2           |                                                                                                                              |
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| lowlydba.sqlserver | 2.7.0            | 2.8.1            |                                                                                                                              |
++--------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Generate ``dist_info`` when running tests.
+- ansible-test - Upgrade the distro-specific test containers.
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- The dependency on ansible-pylibssh (for ssh_type=libssh / network_cli) is now ansible-pylibssh>=1.4.0 in requirements.txt, raised from the previous >=0.2.0 requirement. Installations still on ansible-pylibssh 0.x or 1.x below 1.4.0 must upgrade to use the libssh connection path with this collection release.
+- libssh connection - When log_path is set (e.g. via ANSIBLE_LOG_PATH or log_path in ansible.cfg), the plugin now routes ansible-pylibssh (libssh) logs into the same Ansible log file. Log level is derived from display.verbosity using Python standard logging: verbosity 0 -> WARNING, 1-2 -> INFO, 3+ -> DEBUG. This allows SSH/libssh debug and trace output to appear in the configured log file for troubleshooting without changing ansible-pylibssh configuration manually.
+- network_cli - The in-collection paramiko path supports the same host key policy behavior (including host_key_auto_add and known_hosts handling) and persistent connection caching as the previous ansible-core paramiko integration.
+- network_cli - When ssh_type is set to paramiko, the connection plugin now uses an in-collection paramiko implementation instead of loading ansible-core's paramiko connection plugin. This allows network_cli to work with versions of ansible-core, where the paramiko connection plugin was removed.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_image_export - adds ``platform`` parameter to allow exporting a specific platform variant from a multi-arch image (https://github.com/ansible-collections/community.docker/issues/1064, https://github.com/ansible-collections/community.docker/pull/1251).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info - add missing ``numbers`` parameter across numerous existing paths for RouterOS >= 7.15.2 (https://github.com/ansible-collections/community.routeros/pull/458).
+- api_info - add support for the ``interface dot1x server active``, ``ip hotspot active``, ``ip ipsec active-peers``, ``ip proxy cache-contents``, ``ip socks connections``, ``user active``, and ``user-manager session`` paths as info-only (read-only) paths (https://github.com/ansible-collections/community.routeros/pull/458).
+- api_info - adds support for additional read-only parameters in the ``app`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - add ``color`` parameter to the ``zerotier interface`` path for RouterOS >= 7.22.1 (https://github.com/ansible-collections/community.routeros/pull/459).
+- api_info, api_modify - add ``current-defaults`` parameter to the ``ip dns`` path for RouterOS >= 7.22.1 (https://github.com/ansible-collections/community.routeros/pull/459).
+- api_info, api_modify - add ``mld-datapath`` parameter to the ``interface wifi cap`` path for RouterOS >= 7.22.1 (https://github.com/ansible-collections/community.routeros/pull/459).
+- api_info, api_modify - adds support for multiple ``healthcheck-*`` parameters in the ``container`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for new ``input.add-path`` and ``output.add-path`` parameters replacing ``add-path-out`` in BGP-related paths for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``add-topics-string`` and ``script`` parameters in the ``system logging action`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``app-store-urls`` parameter in the ``app settings`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``chain``, ``realm``, and ``vrf`` parameters in the ``routing rule`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``channel.preamble-puncturing`` parameter in the ``interface wifi configuration`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``channel.preamble-puncturing``, ``mld-interface``, and ``mld-name`` parameters in the ``interface wifi`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``comment`` parameter in the ``system logging`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``ddos-cookie-threshold`` parameter in the ``ip ipsec settings`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``dhcp6-pd-preferred`` parameter in the ``ipv6 nd prefix`` and ``ipv6 nd prefix default`` paths for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``from-pool`` parameter in the ``ipv6 pool`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``interface wifi network`` and ``interface wifi network radio`` paths for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``interframe-gap`` parameter in the ``iot modbus`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``ip reverse-proxy`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``mlag-heartbeat``, ``mlag-peer-port``, ``mlag-priority``, and ``ra-guard`` parameters in the ``interface bridge`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``mld-static`` parameter in the ``interface wifi cap`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``multi-link-mode`` and ``supported-hw-caps`` parameters in the ``interface wifi provisioning`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``multipath`` parameter in the ``routing bgp instance`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``name`` parameter in the ``ip dhcp-client`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``otp-secret`` parameter in the ``ip hotspot user`` path for RouterOS >= 7.21.3 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``password`` parameter in the ``system package local-update update-package-source`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``policy-rules`` parameter in the ``routing settings`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``preamble-puncturing`` parameter in the ``interface wifi channel`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``preferred-architecture`` parameter in the ``system routerboard settings`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``pvid``, ``use-https``, and ``yaml`` parameters in the ``app`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``request-interval`` parameter in the ``interface detect-internet`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``trusted-ra`` parameter in the ``interface bridge port`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adjusts handling of required parameters in the ``interface wifi`` path by removing ``default-name`` from ``required_one_of`` for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - removed support for the ``add-path-out`` parameter in BGP-related paths for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - removed support for the ``system package local-update`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_modify, api_info - sort versioned buckets numerically so tighter bounds match before broader ones (https://github.com/ansible-collections/community.routeros/pull/456).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add --platform option to podman_image
+
+lowlydba.sqlserver
+~~~~~~~~~~~~~~~~~~
+
+- user_role - Added ``roles`` parameter with ``add``/``remove``/``set`` pattern to manage multiple roles. The existing ``role`` parameter is deprecated and will be removed in 3.0.0. (#352)
+
+Deprecated Features
+-------------------
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- network_cli - The in-collection paramiko support (used when ssh_type is paramiko) is a compatibility layer for environments where ansible-core's paramiko connection is no longer available. This layer is deprecated and will be removed in a release after 2028-02-01. Migrate to ssh_type=libssh by installing the ansible-pylibssh package.
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_modify - all existing ``numbers`` fields are deprecated for writing and support for them will be removed in community.routeros 4.0.0 (https://github.com/ansible-collections/community.routeros/pull/460).
+- api_modify - in ``routing bfd configuration``, the fields ``copy-from`` and ``place-before`` are deprecated for writing and support for them will be removed in community.routeros 4.0.0 (https://github.com/ansible-collections/community.routeros/pull/460).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Fix ``validate_argspec`` when tags are defined on the play. The ``always`` tag is only added if the play has no tags.
+- ``--start-at-task`` - fix starting at the requested task instead of starting at the next block or play. Play level tasks run first. (https://github.com/ansible/ansible/issues/86268)
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- filter plugins - Add plugin_routing redirects for ``ipaddr``, ``ipv4``, and ``ipv6`` to ``ansible.utils`` so short names work when ``ansible.netcommon`` is in the play's collection list (https://github.com/ansible-collections/ansible.utils/issues/404).
+- filter plugins - Convert filter arguments to native Python types before ``AnsibleArgSpecValidator`` so filters work with Ansible 2.19+ lazy containers that cannot be deep-copied (e.g. ``vlan_parser``, ``vlan_expander``, ``hash_salt``, ``type5_pw``, ``comp_type5``, ``parse_cli``, ``parse_cli_textfsm``, ``parse_xml``, ``pop_ace``).
+- libssh connection - Fixed test_libssh_put_file unit test so the put_file code path (used by net_put, copy module, and other file transfer over libssh) is properly tested in CI. The test now sets connection options and mocks Session so put_file does not trigger a real connection attempt with an unset host (was failing with "Hostname required").
+- network action plugin - Fall back when remove_internal_keys is not importable from ansible.vars.clean (e.g. some ansible-core builds), so direct module execution still cleans module return data.
+- network_cli - Fixed file transfer (net_put / net_get) when ssh_type=libssh. For put_file, no longer call_connect_uncached() before delegating to the libssh connection the libssh plugin's put_file() calls _connect() internally. For fetch_file, call _connect() then fetch_file() for libssh instead of _connect_uncached(), so connection caching and the correct flow are used. Paramiko branch unchanged (still uses _connect_uncached() for scp/sftp).
+
+ansible.utils
+~~~~~~~~~~~~~
+
+- cidr_merge - Fix filter failing when used inside a Jinja2 macro called with ``with context`` by unwrapping Ansible lazy template lists before validation.
+- cli_parse - Honor ttp_results.results flat_list in TTP parser so output is a single-level list instead of double-wrapped (https://github.com/ansible-collections/ansible.utils/issues/402).
+- ipaddress_utils - Support Python 3.14+ by using the public ``version`` attribute instead of the removed private ``_version`` on ``ipaddress`` network objects (bpo-118710).
+- update_fact - Use task_vars at top-level instead of the deprecated ``vars`` key for compatibility with ansible-core 2.24 (ansible/ansible issue
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- devices_switch_ports - Fixed AttributeError crash in ``update()`` caused by ``get_object_by_name`` returning the full port list instead of ``None`` when no port matched by name. Added ``isinstance(prev_obj_name, dict)`` guard to prevent calling ``.get()`` on a list.
+- devices_switch_ports - Fixed idempotency regression where the module always reported ``changed`` due to ``serial`` (a path parameter absent from the API response) and ``portId`` (int/string type mismatch) being incorrectly included in the ``requires_update`` comparison.
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- podman_container - Fix quadlet_options placement when restart_policy is set
+- podman_network - Add diff and idempotency to ip_ranges in net_config
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 11.2.0)
+- ansible.posix (still version 2.1.0)
+- ansible.windows (still version 3.5.0)
+- arista.eos (still version 12.0.1)
+- azure.azcollection (still version 3.16.0)
+- check_point.mgmt (still version 6.9.0)
+- chocolatey.chocolatey (still version 1.6.0)
+- cisco.aci (still version 2.13.0)
+- cisco.ios (still version 11.3.0)
+- cisco.iosxr (still version 12.1.1)
+- cisco.mso (still version 2.13.0)
+- cisco.nxos (still version 11.1.3)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.3)
+- community.aws (still version 11.0.0)
+- community.ciscosmb (still version 1.0.11)
+- community.clickhouse (still version 2.1.0)
+- community.crypto (still version 3.1.1)
+- community.dns (still version 3.5.3)
+- community.general (still version 12.5.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.7.1)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.2.0)
+- community.mongodb (still version 1.7.12)
+- community.mysql (still version 4.2.0)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxmox (still version 2.0.0-beta1)
+- community.proxysql (still version 1.7.0)
+- community.rabbitmq (still version 1.6.0)
+- community.sap_libs (still version 1.7.0)
+- community.sops (still version 2.3.0-b1)
+- community.vmware (still version 6.2.0)
+- community.windows (still version 3.1.0)
+- community.zabbix (still version 4.1.1)
+- cyberark.conjur (still version 1.3.9)
+- cyberark.pas (still version 1.0.39)
+- dellemc.enterprise_sonic (still version 4.1.0)
+- dellemc.openmanage (still version 10.0.2)
+- dellemc.powerflex (still version 3.0.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.39.0)
+- fortinet.fortimanager (still version 2.13.0)
+- fortinet.fortios (still version 2.5.0)
+- google.cloud (still version 1.13.0)
+- grafana.grafana (still version 6.0.6)
+- graphiant.naas (still version 26.3.0)
+- hetzner.hcloud (still version 6.8.0)
+- hitachivantara.vspone_block (still version 4.6.1)
+- hitachivantara.vspone_object (still version 1.1.1)
+- ibm.storage_virtualize (still version 3.3.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infinidat.infinibox (still version 1.6.3)
+- infoblox.nios_modules (still version 1.9.0)
+- inspur.ispim (still version 2.2.4)
+- kaytus.ksmanage (still version 4.0.0)
+- kubernetes.core (still version 6.3.0)
+- kubevirt.core (still version 2.2.4)
+- microsoft.ad (still version 1.10.0)
+- microsoft.iis (still version 1.1.0)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.4.0)
+- netapp.storagegrid (still version 21.16.0)
+- netapp_eseries.santricity (still version 2.0.1)
+- netbox.netbox (still version 3.22.0)
+- ngine_io.cloudstack (still version 3.0.0)
+- openstack.cloud (still version 2.5.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- purestorage.flasharray (still version 1.42.0)
+- purestorage.flashblade (still version 1.24.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 5.1.0)
+- telekom_mms.icinga_director (still version 2.5.1)
+- theforeman.foreman (still version 5.10.0)
+- vmware.vmware (still version 2.8.0)
+- vmware.vmware_rest (still version 4.10.0)
+- vultr.cloud (still version 1.14.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.11)
+
 v14.0.0a1
 =========
 
