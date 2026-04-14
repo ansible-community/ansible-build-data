@@ -10,3 +10,5 @@ junipernetworks.junos: <11.1.0
 # how to proceed.
 # https://github.com/cisco-en-programmability/dnacenter-ansible/issues/327
 cisco.dnac: <6.48.1
+# hitachivantara.vspone_block 4.7.0 contains breaking changes
+hitachivantara.vspone_block: <4.7.0
