@@ -7,6 +7,659 @@ This changelog describes changes since Ansible 12.0.0.
 .. contents::
   :depth: 2
 
+v13.6.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-04-21
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 13.6.0 contains ansible-core version 2.20.5.
+This is a newer version than version 2.20.4 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection             | Ansible 13.5.0 | Ansible 13.6.0 | Notes                                                                                                                        |
++========================+================+================+==============================================================================================================================+
+| ansible.netcommon      | 8.4.0          | 8.5.0          |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.utils          | 6.0.1          | 6.0.2          |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| chocolatey.chocolatey  | 1.5.3          | 1.6.0          |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight       | 2.16.0         | 2.18.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.iosxr            | 12.1.1         | 12.2.1         |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki           | 2.23.1         | 2.23.2         |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto       | 3.1.1          | 3.2.0          |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns          | 3.5.3          | 3.5.4          |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker       | 5.1.0          | 5.2.0          |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general      | 12.5.0         | 12.6.0         |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.libvirt      | 2.1.0          | 2.2.0          |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros     | 3.18.0         | 3.20.0         |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sops         | 2.2.7          | 2.3.0          |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.zabbix       | 4.1.1          | 4.2.0          |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman      | 1.19.0         | 1.19.2         |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.openmanage     | 10.0.1         | 10.0.2         |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortios       | 2.5.0          | 2.5.1          |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| google.cloud           | 1.12.0         | 1.13.0         |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| graphiant.naas         | 26.2.4         | 26.3.0         |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ibm.storage_virtualize | 3.2.0          | 3.3.0          |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| lowlydba.sqlserver     | 2.7.0          | 2.8.1          |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman     | 5.10.0         | 5.11.0         |                                                                                                                              |
++------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+chocolatey.chocolatey
+~~~~~~~~~~~~~~~~~~~~~
+
+- win_chocolatey - add option to ignore pinned status of pinned packages
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Added a generic `headers` parameter to `fortios_json_generic` to support admin-password confirmation headers and future custom request headers.
+- Updated FAQ to illustrate the use of `headers` in `fortios_json_generic` module.
+- Updated deprecated import of to_text from ansible.module_utils._text to the supported implementation.
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Generate ``dist_info`` when running tests.
+- ansible-test - Replace the ``parallels`` managed macOS provider with a new ``mac`` provider.
+- ansible-test - Switch managed macOS remotes from x86_64 to aarch64.
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- The dependency on ansible-pylibssh (for ssh_type=libssh / network_cli) is now ansible-pylibssh>=1.4.0 in requirements.txt, raised from the previous >=0.2.0 requirement. Installations still on ansible-pylibssh 0.x or 1.x below 1.4.0 must upgrade to use the libssh connection path with this collection release.
+- libssh connection - When log_path is set (e.g. via ANSIBLE_LOG_PATH or log_path in ansible.cfg), the plugin now routes ansible-pylibssh (libssh) logs into the same Ansible log file. Log level is derived from display.verbosity using Python standard logging: verbosity 0 -> WARNING, 1-2 -> INFO, 3+ -> DEBUG. This allows SSH/libssh debug and trace output to appear in the configured log file for troubleshooting without changing ansible-pylibssh configuration manually.
+- network_cli - The in-collection paramiko path supports the same host key policy behavior (including host_key_auto_add and known_hosts handling) and persistent connection caching as the previous ansible-core paramiko integration.
+- network_cli - When ssh_type is set to paramiko, the connection plugin now uses an in-collection paramiko implementation instead of loading ansible-core's paramiko connection plugin. This allows network_cli to work with versions of ansible-core, where the paramiko connection plugin was removed.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- iosxr_l3_interfaces - Added support for `flow.ipv4.direction` and `flow.ipv6.direction` value `bidirectional`. The module now expands bidirectional flow configuration into both ingress and egress IOS-XR flow monitor commands.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme_* modules - experimentally support ``dns-account-01`` challenge type according to `acme-dns-account-label draft 02 <https://datatracker.ietf.org/doc/html/draft-ietf-acme-dns-account-label-02>`__. Note that breaking changes to this challenge type can also happen in minor releases until the acme-dns-account-label draft has been finalized as an RFC (https://github.com/ansible-collections/community.crypto/pull/996).
+- acme_* modules - experimentally support ``dns-persist-01`` challenge type according to `acme-dns-persist draft 01 <https://www.ietf.org/archive/id/draft-ietf-acme-dns-persist-01.html>`__. Note that breaking changes to this challenge type can also happen in minor releases until the acme-dns-persist draft has been finalized as an RFC (https://github.com/ansible-collections/community.crypto/pull/997).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_image_export - adds ``platform`` parameter to allow exporting a specific platform variant from a multi-arch image (https://github.com/ansible-collections/community.docker/issues/1064, https://github.com/ansible-collections/community.docker/pull/1251).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- cobbler_sync - minor code cleanup (https://github.com/ansible-collections/community.general/pull/11879).
+- cobbler_system - minor code cleanup (https://github.com/ansible-collections/community.general/pull/11879).
+- composer - add ``force`` parameter; when ``command=create-project``, the module now checks whether a ``composer.json`` already exists in ``working_dir`` and skips the command if so, making the task idempotent. Set ``force=true`` to always run the command regardless (https://github.com/ansible-collections/community.general/issues/725, https://github.com/ansible-collections/community.general/pull/11689).
+- consul_kv - add ``ca_path`` option to specify a CA bundle for HTTPS connections (https://github.com/ansible-collections/community.general/pull/11817).
+- consul_kv lookup plugin - add ``ca_path`` option to specify a CA bundle for HTTPS connections (https://github.com/ansible-collections/community.general/issues/2876, https://github.com/ansible-collections/community.general/pull/11817).
+- dconf - add support for C(dbus-broker) (https://github.com/ansible-collections/community.general/issues/495, https://github.com/ansible-collections/community.general/pull/11772).
+- filesystem - migrate ``LVM.get_fs_size()`` to use ``CmdRunner``, ensuring locale-independent output parsing (https://github.com/ansible-collections/community.general/pull/11888).
+- flatpak - add new parameter ``from_url`` to install a flatpak from a ``.flatpakref`` URL (https://github.com/ansible-collections/community.general/issues/4000, https://github.com/ansible-collections/community.general/pull/11748).
+- gem - refactor module to use ``CmdRunner`` (https://github.com/ansible-collections/community.general/pull/11733).
+- homebrew_services - remove various redundancies including dead state validation, unused return values, and unnecessary locale environment variables (https://github.com/ansible-collections/community.general/pull/11839).
+- homebrew_tap - avoid redundant ``brew tap`` calls when processing multiple taps by fetching the tap list once upfront (https://github.com/ansible-collections/community.general/pull/11848).
+- ipa_dnsrecord - add ``exclusive`` parameter to allow appending values to existing records without replacing them (https://github.com/ansible-collections/community.general/issues/682, https://github.com/ansible-collections/community.general/pull/11694).
+- java_cert - support proxy authentication when ``https_proxy`` environment variable includes credentials (https://github.com/ansible-collections/community.general/issues/4126, https://github.com/ansible-collections/community.general/pull/11753).
+- jira - add ``cloud`` option to support Jira Cloud's new search endpoint ``/rest/api/2/search/jql``, since the legacy ``/rest/api/2/search`` endpoint has been removed on Jira Cloud (https://github.com/ansible-collections/community.general/issues/10786, https://github.com/ansible-collections/community.general/pull/11701).
+- jira - when ``cloud=true``, user-type fields (``assignee``, ``reporter``, and any listed in the new ``custom_user_fields`` parameter) containing an email address are automatically resolved to Jira Cloud account IDs (https://github.com/ansible-collections/community.general/issues/11734, https://github.com/ansible-collections/community.general/pull/11735).
+- logrotate - adds optional ``backup`` parameter to create a backup of the existing configuration file before writing changes (https://github.com/ansible-collections/community.general/pull/11764).
+- lvg - migrate to ``CmdRunner``, removing direct ``run_command`` calls and ``run_command_environ_update`` (https://github.com/ansible-collections/community.general/pull/11835).
+- lvm_pv - migrate to ``CmdRunner`` using shared runners from ``module_utils/_lvm`` (https://github.com/ansible-collections/community.general/pull/11811).
+- lvol - migrate to ``CmdRunner`` (https://github.com/ansible-collections/community.general/pull/11887).
+- manageiq module utils - minor code cleanup (https://github.com/ansible-collections/community.general/pull/11879).
+- manageiq_alert_profiles - minor code cleanup (https://github.com/ansible-collections/community.general/pull/11879).
+- manageiq_alerts - minor code cleanup (https://github.com/ansible-collections/community.general/pull/11879).
+- oneview module utils - minor code cleanup (https://github.com/ansible-collections/community.general/pull/11879).
+- oneview_san_manager - minor code cleanup (https://github.com/ansible-collections/community.general/pull/11879).
+- opendj_backendprop - refactor to use ``CmdRunner`` (https://github.com/ansible-collections/community.general/pull/11728).
+- packet_device - minor code cleanup (https://github.com/ansible-collections/community.general/pull/11879).
+- packet_ip_subnet - minor code cleanup (https://github.com/ansible-collections/community.general/pull/11879).
+- pacman - add ``root``, ``cachedir``, and ``config`` options to support installing packages into an alternative root directory (https://github.com/ansible-collections/community.general/issues/438, https://github.com/ansible-collections/community.general/pull/11681).
+- parted - add ``unit_preserve_case`` option to control the case of the ``unit`` field in the return value, fixing the round-trip use case where the returned unit is fed back as input (https://github.com/ansible-collections/community.general/issues/1860, https://github.com/ansible-collections/community.general/pull/11813).
+- pubnub_blocks - minor code cleanup (https://github.com/ansible-collections/community.general/pull/11879).
+- terraform - minor code cleanup (https://github.com/ansible-collections/community.general/pull/11879).
+- xenserver_guest - use ``enumerate()`` instead of manual index variable in ``for`` loop (https://github.com/ansible-collections/community.general/pull/11721).
+
+community.libvirt
+~~~~~~~~~~~~~~~~~
+
+- virt_cloud_instance - added commands return field to provide visibility into executed commands during VM provisioning.
+- virt_install - added commands return field to provide visibility into executed commands during VM provisioning.
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info - add missing ``numbers`` parameter across numerous existing paths for RouterOS >= 7.15.2 (https://github.com/ansible-collections/community.routeros/pull/458).
+- api_info - add support for the ``interface dot1x server active``, ``ip hotspot active``, ``ip ipsec active-peers``, ``ip proxy cache-contents``, ``ip socks connections``, ``user active``, and ``user-manager session`` paths as info-only (read-only) paths (https://github.com/ansible-collections/community.routeros/pull/458).
+- api_info - adds support for additional read-only parameters in the ``app`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - add 46 new parameters to the ``interface ethernet switch port`` path for RouterOS >= 7.15 (CRS1xx/2xx variant) including QoS, mirroring, VLAN, and learning control parameters (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add ``color`` parameter to the ``zerotier interface`` path for RouterOS >= 7.22.1 (https://github.com/ansible-collections/community.routeros/pull/459).
+- api_info, api_modify - add ``comment``, ``disabled``, ``independent-learning``, ``qos-group``, ``svl``, and ``switch`` parameters to the ``interface ethernet switch vlan`` path for RouterOS >= 7.15 (CRS1xx/2xx variant) (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add ``current-defaults`` parameter to the ``ip dns`` path for RouterOS >= 7.22.1 (https://github.com/ansible-collections/community.routeros/pull/459).
+- api_info, api_modify - add ``mld-datapath`` parameter to the ``interface wifi cap`` path for RouterOS >= 7.22.1 (https://github.com/ansible-collections/community.routeros/pull/459).
+- api_info, api_modify - add ``switch-all-ports`` parameter in the ``interface ethernet switch`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch acl policer`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch acl`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch dscp-qos-map`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch dscp-to-dscp`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch egress-vlan-tag`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch egress-vlan-translation`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch ingress-port-policer`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch ingress-vlan-translation`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch mac-based-vlan`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch multicast-fdb`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch one2one-vlan-switching`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch policer-qos-map`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch port-leakage`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch protocol-based-vlan`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch qos-group`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch reserved-fdb`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch shaper`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch stats`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch trunk`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for ``interface ethernet switch unicast-fdb`` path for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - add support for dynamic hardware detection of CRS1xx/2xx switch variants. Operations on ``interface ethernet switch`` and ``interface ethernet switch port-isolation`` paths now automatically adapt to detected hardware (single-entry vs multi-entry switch chips) (https://github.com/ansible-collections/community.routeros/pull/463).
+- api_info, api_modify - adds support for multiple ``healthcheck-*`` parameters in the ``container`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for new ``input.add-path`` and ``output.add-path`` parameters replacing ``add-path-out`` in BGP-related paths for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``add-topics-string`` and ``script`` parameters in the ``system logging action`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``app-store-urls`` parameter in the ``app settings`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``chain``, ``realm``, and ``vrf`` parameters in the ``routing rule`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``channel.preamble-puncturing`` parameter in the ``interface wifi configuration`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``channel.preamble-puncturing``, ``mld-interface``, and ``mld-name`` parameters in the ``interface wifi`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``comment`` parameter in the ``system logging`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``ddos-cookie-threshold`` parameter in the ``ip ipsec settings`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``dhcp6-pd-preferred`` parameter in the ``ipv6 nd prefix`` and ``ipv6 nd prefix default`` paths for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``from-pool`` parameter in the ``ipv6 pool`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``interface wifi network`` and ``interface wifi network radio`` paths for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``interframe-gap`` parameter in the ``iot modbus`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``ip reverse-proxy`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``mlag-heartbeat``, ``mlag-peer-port``, ``mlag-priority``, and ``ra-guard`` parameters in the ``interface bridge`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``mld-static`` parameter in the ``interface wifi cap`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``multi-link-mode`` and ``supported-hw-caps`` parameters in the ``interface wifi provisioning`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``multipath`` parameter in the ``routing bgp instance`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``name`` parameter in the ``ip dhcp-client`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``otp-secret`` parameter in the ``ip hotspot user`` path for RouterOS >= 7.21.3 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``password`` parameter in the ``system package local-update update-package-source`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``policy-rules`` parameter in the ``routing settings`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``preamble-puncturing`` parameter in the ``interface wifi channel`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``preferred-architecture`` parameter in the ``system routerboard settings`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``pvid``, ``use-https``, and ``yaml`` parameters in the ``app`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``request-interval`` parameter in the ``interface detect-internet`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adds support for the ``trusted-ra`` parameter in the ``interface bridge port`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - adjusts handling of required parameters in the ``interface wifi`` path by removing ``default-name`` from ``required_one_of`` for RouterOS >= 7.15 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - removed support for the ``add-path-out`` parameter in BGP-related paths for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_info, api_modify - removed support for the ``system package local-update`` path for RouterOS >= 7.22 (https://github.com/ansible-collections/community.routeros/pull/457).
+- api_modify, api_info - sort versioned buckets numerically so tighter bounds match before broader ones (https://github.com/ansible-collections/community.routeros/pull/456).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- all modules and plugins - allow retrieving private age keys and private SSH keys through commands with the new ``age_key_cmd`` and ``age_ssh_private_key_cmd`` options (https://github.com/ansible-collections/community.sops/issues/282, https://github.com/ansible-collections/community.sops/pull/286).
+- all modules and plugins - allow to configure GCP access with the ``gcp_oauth_access_token`` and ``gcp_kms_client_type`` options (https://github.com/ansible-collections/community.sops/issues/282, https://github.com/ansible-collections/community.sops/pull/286).
+- load_vars - now supports ansible-core 2.21's way of actually loading variables, instead of returning ``ansible_facts``. The behavior for this can be controlled through the new ``return_method`` option, which is by default set to ``auto``. On ansible-core 2.21+, ``auto`` behaves the same as ``vars-only`` (return proper variables), and for ansible-core before 2.21 the same as ``facts-only`` (return ``ansible_facts``) (https://github.com/ansible-collections/community.sops/pull/283).
+- sops_encrypt - support providing HuaweiCloud KMS key IDs with the ``huawei_cloud_kms`` option (https://github.com/ansible-collections/community.sops/issues/282, https://github.com/ansible-collections/community.sops/pull/286).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- host - Added support for vault passwords.
+- web role - added support for IPv6
+- zabbix frontend and server encryption support: https://www.zabbix.com/documentation/7.4/en/manual/introduction/whatsnew#tls-encryption-between-frontend-and-server & https://www.zabbix.com/documentation/current/en/manual/appendix/install/frontend_encrypt
+- zabbix_agent - [WINDOWS] Add INSTALLFOLDER parameter to msi install
+- zabbix_agent - add variable for customizing releases url (https://services.zabbix.com/updates/v1)
+- zabbix_triggerprototype - use templated and templateid=0 when host_name is given, only templated for template_name
+- zabbix_valuemap - add value mappings type suboption which specifies the mapping match type (https://github.com/ansible-collections/community.zabbix/issues/1636).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Add --platform option to podman_image
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- Added support for OpenManage Enterprise version 4.4 and 4.5.
+- The OpenManage Enterprise, OpenManage Enterprise Modular and OpenManage Enterprise Integration for VMware vCenter modules are now compatible with Ansible Core version 2.20.
+
+google.cloud
+~~~~~~~~~~~~
+
+- gcp_colab_* - added four new modules (gcp_colab_notebook_execution, gcp_colab_runtime, gcp_colab_runtime_template, and gcp_colab_schedule) (https://github.com/ansible-collections/google.cloud/pull/747).
+- gcp_compute_instance_* - renamed the `tags.items` field to `tags.tag_values`. The old naming is still available but will be removed in a future release. (https://github.com/ansible-collections/google.cloud/pull/750).
+
+graphiant.naas
+~~~~~~~~~~~~~~
+
+- Minimum ``graphiant-sdk`` raised to ``>= 26.3.0`` (see ``_version.py`` ``DEPENDENCIES``)
+- Portal authentication: optional ``access_token`` module option and ``GRAPHIANT_ACCESS_TOKEN`` environment variable (e.g. after ``graphiant login``); invalid or missing token falls back to username/password when provided
+
+ibm.storage_virtualize
+~~~~~~~~~~~~~~~~~~~~~~
+
+- ibm_svc_initial_setup - Added support for managing anomaly settings
+- ibm_svc_manage_volume - Added support for addressing volume via UID
+
+lowlydba.sqlserver
+~~~~~~~~~~~~~~~~~~
+
+- user_role - Added ``roles`` parameter with ``add``/``remove``/``set`` pattern to manage multiple roles. The existing ``role`` parameter is deprecated and will be removed in 3.0.0. (#352)
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- Support OAuth1 authentication by passing ``oauth1_consumer_key`` and ``oauth1_consumer_secret`` instead of ``username`` and ``password``.
+- registration_command - add support for the setup_container_registry_certs parameter (https://github.com/theforeman/foreman-ansible-modules/pull/1966)
+
+Deprecated Features
+-------------------
+
+- The ``cisco.dnac`` collection has been deprecated.
+  It will be removed from Ansible 14 if no one starts maintaining it again before Ansible 14.
+  See `Collections Removal Process for unmaintained collections <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#unmaintained-collections>`__ for more details (`https://forum.ansible.com/t/45609 <https://forum.ansible.com/t/45609>`__).
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- network_cli - The in-collection paramiko support (used when ssh_type is paramiko) is a compatibility layer for environments where ansible-core's paramiko connection is no longer available. This layer is deprecated and will be removed in a release after 2028-02-01. Migrate to ssh_type=libssh by installing the ansible-pylibssh package.
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_modify - all existing ``numbers`` fields are deprecated for writing and support for them will be removed in community.routeros 4.0.0 (https://github.com/ansible-collections/community.routeros/pull/460).
+- api_modify - in ``routing bfd configuration``, the fields ``copy-from`` and ``place-before`` are deprecated for writing and support for them will be removed in community.routeros 4.0.0 (https://github.com/ansible-collections/community.routeros/pull/460).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Fix ``validate_argspec`` when tags are defined on the play. The ``always`` tag is only added if the play has no tags.
+- ``--start-at-task`` - fix starting at the requested task instead of starting at the next block or play. Play level tasks run first. (https://github.com/ansible/ansible/issues/86268)
+- ansible-galaxy collection - Fix using the server configuration for ``validate_certs`` when downloading collections. (https://github.com/ansible/ansible/issues/86694)
+- ansible_facts[os_*] - Contained wrong information, if ClearLinux parsing was tried before falling back to general os-release parsing
+- templating - Fix traceback when using ``deepcopy`` on an imported template (https://github.com/ansible/ansible/issues/86723).
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- filter plugins - Add plugin_routing redirects for ``ipaddr``, ``ipv4``, and ``ipv6`` to ``ansible.utils`` so short names work when ``ansible.netcommon`` is in the play's collection list (https://github.com/ansible-collections/ansible.utils/issues/404).
+- filter plugins - Convert filter arguments to native Python types before ``AnsibleArgSpecValidator`` so filters work with Ansible 2.19+ lazy containers that cannot be deep-copied (e.g. ``vlan_parser``, ``vlan_expander``, ``hash_salt``, ``type5_pw``, ``comp_type5``, ``parse_cli``, ``parse_cli_textfsm``, ``parse_xml``, ``pop_ace``).
+- libssh connection - Fixed test_libssh_put_file unit test so the put_file code path (used by net_put, copy module, and other file transfer over libssh) is properly tested in CI. The test now sets connection options and mocks Session so put_file does not trigger a real connection attempt with an unset host (was failing with "Hostname required").
+- network action plugin - Fall back when remove_internal_keys is not importable from ansible.vars.clean (e.g. some ansible-core builds), so direct module execution still cleans module return data.
+- network_cli - Fixed file transfer (net_put / net_get) when ssh_type=libssh. For put_file, no longer call_connect_uncached() before delegating to the libssh connection the libssh plugin's put_file() calls _connect() internally. For fetch_file, call _connect() then fetch_file() for libssh instead of _connect_uncached(), so connection caching and the correct flow are used. Paramiko branch unchanged (still uses _connect_uncached() for scp/sftp).
+
+ansible.utils
+~~~~~~~~~~~~~
+
+- cidr_merge - Fix filter failing when used inside a Jinja2 macro called with ``with context`` by unwrapping Ansible lazy template lists before validation.
+- cli_parse - Honor ttp_results.results flat_list in TTP parser so output is a single-level list instead of double-wrapped (https://github.com/ansible-collections/ansible.utils/issues/402).
+- ipaddress_utils - Support Python 3.14+ by using the public ``version`` attribute instead of the removed private ``_version`` on ``ipaddress`` network objects (bpo-118710).
+- update_fact - Use task_vars at top-level instead of the deprecated ``vars`` key for compatibility with ansible-core 2.24 (ansible/ansible issue
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- Fixed iosxr_user module to correctly handle MD5 hashed passwords when updating user credentials.
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- devices_switch_ports - Fixed AttributeError crash in ``update()`` caused by ``get_object_by_name`` returning the full port list instead of ``None`` when no port matched by name. Added ``isinstance(prev_obj_name, dict)`` guard to prevent calling ``.get()`` on a list.
+- devices_switch_ports - Fixed idempotency regression where the module always reported ``changed`` due to ``serial`` (a path parameter absent from the API response) and ``portId`` (int/string type mismatch) being incorrectly included in the ``requires_update`` comparison.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme_* modules - improve handling of authz deactivation, and improve error message in case of bad authz states (https://github.com/ansible-collections/community.crypto/pull/998).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- alternatives - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11738).
+- apache2_module - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11768).
+- apk - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11738).
+- apt_repo - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11782).
+- apt_rpm - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11738).
+- awall - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11784).
+- beadm - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11780).
+- bower - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11783).
+- btrfs module_utils - set ``LANGUAGE`` and ``LC_ALL`` environment variables to ``C`` in all ``run_command()`` calls (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11787).
+- bundler - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11783).
+- bzr - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11785).
+- capabilities - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11779).
+- cargo - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11738).
+- composer - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11768).
+- cronvar - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11773).
+- dconf - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11765).
+- dnf_versionlock - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11773).
+- dpkg_divert - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11773).
+- easy_install - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11782).
+- etcd3 lookup plugin - improve HTTPS endpoint handling by stripping URL schemes from the ``host`` option and warning when ``ca_cert`` is not provided for HTTPS endpoints (https://github.com/ansible-collections/community.general/issues/1664, https://github.com/ansible-collections/community.general/pull/11861).
+- facter_facts - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11768).
+- filesystem - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11738).
+- flatpak - fix removal of runtimes, which was broken because the module was filtering the installed flatpak list to apps only, so runtimes could never be matched for uninstallation (https://github.com/ansible-collections/community.general/issues/553, https://github.com/ansible-collections/community.general/pull/11688).
+- flatpak - support new output message when an update resulted in no action that appears on Fedora 44 (https://github.com/ansible-collections/community.general/pull/11836).
+- flatpak_remote - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11773).
+- git_config - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11738).
+- git_config_info - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11738).
+- gitlab_project_members - fail with a clear error when multiple projects match the given name, instead of silently operating on the first result (https://github.com/ansible-collections/community.general/issues/2767, https://github.com/ansible-collections/community.general/pull/11851).
+- gitlab_project_variable - use ``find_project()`` from module utils for project lookup, consistent with all other GitLab modules in the collection (https://github.com/ansible-collections/community.general/issues/3157, https://github.com/ansible-collections/community.general/pull/11878).
+- hg - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11773).
+- homebrew - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11740).
+- homebrew_cask - fix ``sudo_password`` failing when the password contains single quotes or other special shell characters (https://github.com/ansible-collections/community.general/issues/4957, https://github.com/ansible-collections/community.general/pull/11850).
+- homebrew_cask - fix failure when ``brew --version`` returns a placeholder version string (https://github.com/ansible-collections/community.general/issues/4708, https://github.com/ansible-collections/community.general/pull/11849).
+- homebrew_cask - fix false task failure when upgrading casks with ``version=latest``; the post-upgrade check incorrectly re-ran ``brew outdated`` (which always lists ``latest`` casks as outdated under ``--greedy``), now uses the command exit code instead (https://github.com/ansible-collections/community.general/issues/1647, https://github.com/ansible-collections/community.general/pull/11838).
+- homebrew_cask - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11740).
+- homebrew_tap - fix ``None`` being passed as a command argument when adding a tap without a URL (https://github.com/ansible-collections/community.general/pull/11848).
+- homectl - allow to use passlib instead of legacycrypt for Python 3.13+ (https://github.com/ansible-collections/community.general/pull/11860).
+- homectl - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11774).
+- icinga2_feature - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11740).
+- imgadm - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11781).
+- incus connection plugin - work when the active become plugin sets ``require_tty`` instead of failing silently (https://github.com/ansible-collections/community.general/pull/11771).
+- ip_netns - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11779).
+- ipa module utils - fix failure to detect errors reported in the ``failed`` field of the IPA API response, which is returned with HTTP 200 on partial or full failures in member add/remove operations (https://github.com/ansible-collections/community.general/issues/1239, https://github.com/ansible-collections/community.general/pull/11698).
+- ipa_dnsrecord - fix errors when module is used with existing record with default TTL (https://github.com/ansible-collections/community.general/pull/11717).
+- ipa_host - fix logic to disable existing hosts (https://github.com/ansible-collections/community.general/issues/11483, https://github.com/ansible-collections/community.general/pull/11487).
+- iptables_state - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11740).
+- iso_extract - retry ``umount`` up to 5 times preventing ``OSError`` on cleanup (https://github.com/ansible-collections/community.general/issues/5333, https://github.com/ansible-collections/community.general/pull/11837).
+- iso_extract - strip leading path separator from file entries so files with a leading ``/`` are extracted correctly (https://github.com/ansible-collections/community.general/issues/5283, https://github.com/ansible-collections/community.general/pull/11825).
+- java_cert - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11774).
+- java_keystore - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11740).
+- keyring - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11774).
+- keyring_info - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11786).
+- kibana_plugin - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11783).
+- known_hosts module utils - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11768).
+- launchd - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11774).
+- lbu - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11781).
+- listen_ports_facts - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11774).
+- lldp - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11785).
+- locale_gen - add missing locale entries to ``/etc/locale.gen`` when not already present (https://github.com/ansible-collections/community.general/issues/2399, https://github.com/ansible-collections/community.general/pull/11824).
+- logrotate - adds missing default values for ``state`` and ``config_dir`` parameters, and adds ``required_by`` declarations for shred and compression parameters (https://github.com/ansible-collections/community.general/pull/11764).
+- logrotate - fixes ``TypeError`` when ``shred_cycles`` is ``None`` and corrects ``enabled=None`` handling in ``get_config_path()`` (https://github.com/ansible-collections/community.general/pull/11764).
+- logrotate - writes configuration files to a temporary file first and validates before atomically moving to the destination, and properly wraps all ``os.remove()`` and ``atomic_move()`` calls in error handling (https://github.com/ansible-collections/community.general/pull/11764).
+- logstash_plugin - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11775).
+- lvg - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11775).
+- lvol - fix LVM version parsing (https://github.com/ansible-collections/community.general/issues/5445, https://github.com/ansible-collections/community.general/pull/11823).
+- lvol - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11740).
+- lxc_container - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11779).
+- machinectl become plugin - prevent printing ANSI terminal color sequences (https://github.com/ansible-collections/community.general/pull/11771).
+- macports - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11768).
+- mas - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11775).
+- modprobe - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11768).
+- monit - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11768).
+- mssql_db - fail with a clear error message when a named instance (``server\instance`` format) is used together with ``login_port``, since these are mutually exclusive connection methods (https://github.com/ansible-collections/community.general/issues/5693, https://github.com/ansible-collections/community.general/pull/11664).
+- mssql_script - fail with a clear error message when a named instance (``server\instance`` format) is used together with ``login_port``, since these are mutually exclusive connection methods (https://github.com/ansible-collections/community.general/issues/5693, https://github.com/ansible-collections/community.general/pull/11664).
+- mssql_script - only passes ``params`` to ``cursor.execute()`` when the user actually provides them (https://github.com/ansible-collections/community.general/issues/11699, https://github.com/ansible-collections/community.general/pull/11754).
+- nmcli - use ``get_best_parsable_locale()`` to set locale environment for ``run_command()`` calls, fixing UTF-8 connection names being corrupted to ``????`` under ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/10384, https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11742).
+- nsupdate - fix GSS-TSIG support (accidentally broken by https://github.com/ansible-collections/community.general/pull/11461, https://github.com/ansible-collections/community.general/pull/11712)
+- ohai - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11785).
+- onepassword_info - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11786).
+- open_iscsi - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11768).
+- openbsd_pkg - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11767).
+- openwrt_init - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11784).
+- osx_defaults - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11775).
+- pacemaker_resource, pacemaker_stonith - fix resource and stonith creation race condition by polling PCS status (https://github.com/ansible-collections/community.general/issues/11574, https://github.com/ansible-collections/community.general/pull/11750).
+- pacman - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11740).
+- pacman_key - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11768).
+- parted - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11740).
+- pear - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11782).
+- pip_package_info - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11784).
+- pkg5 - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11780).
+- pkg5_publisher - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11780).
+- pkgin - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11741).
+- pkgng - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11765).
+- pkgutil - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11775).
+- pnpm - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11776).
+- portage - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11781).
+- portinstall - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11781).
+- redhat_subscription - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11741).
+- rhsm_release - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11768).
+- rhsm_repository - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11741).
+- riak - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11786).
+- rpm_ostree_pkg - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11768).
+- run0 become plugin - mark the plugin as incompatible with connection pipelining (see https://github.com/ansible/ansible/issues/81254, https://github.com/ansible-collections/community.general/pull/11771).
+- run0 become plugin - prevent printing ANSI terminal color sequences (https://github.com/ansible-collections/community.general/pull/11771).
+- runit - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11741).
+- sefcontext - flush the in-process ``matchpathcon`` cache after applying changes, so subsequent tasks running in the same process (for example via the Mitogen connection plugin) see the updated SELinux file context rules instead of stale cached data (https://github.com/ansible-collections/community.general/issues/888, https://github.com/ansible-collections/community.general/pull/11812).
+- smartos_image_info - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11781).
+- snmp_facts - the module now also supports pysnmp >= 7.1 (https://github.com/ansible-collections/community.general/issues/8852, https://github.com/ansible-collections/community.general/pull/11683).
+- sorcery - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11767).
+- supervisorctl - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11741).
+- svc - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11741).
+- swdepot - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11780).
+- syspatch - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11781).
+- sysrc - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11776).
+- sysupgrade - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11768).
+- terraform - ensure ``LANGUAGE=C`` and ``LC_ALL=C`` are set when running commands that parse output (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11765).
+- timezone - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11776).
+- udm_user - allow to use passlib instead of legacycrypt for Python 3.13+ (https://github.com/ansible-collections/community.general/issues/4690, https://github.com/ansible-collections/community.general/pull/11860).
+- udm_user - fix alias-to-canonical parameter name mismatch that caused all camelCase-aliased parameters such as ``display_name`` and ``primary_group`` to be silently ignored (https://github.com/ansible-collections/community.general/issues/2950, https://github.com/ansible-collections/community.general/issues/3691, https://github.com/ansible-collections/community.general/pull/11859).
+- ufw - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11741).
+- xattr - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11776).
+- xbps - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11781).
+- xenserver_guest - fix an issue where booting from ISO is not possible because CD-ROM device is placed in position above number 3. Position number 3 is now reserved for CD-ROM device and cannot be occupied by a disk (https://github.com/ansible-collections/community.general/issues/11624, https://github.com/ansible-collections/community.general/pull/11702).
+- yarn - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11776).
+- yum_versionlock - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11777).
+- zfs - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11778).
+- zfs_delegate_admin - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11778).
+- zfs_facts - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11778).
+- zpool_facts - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11778).
+- zypper - normalize locale environment for ``run_command()`` calls to ``LANGUAGE=C``, ``LC_ALL=C`` (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11741).
+- zypper_repository - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11777).
+- zypper_repository_info - set ``LANGUAGE`` and ``LC_ALL`` to ``C`` in ``run_command()`` calls to ensure locale-independent output parsing (https://github.com/ansible-collections/community.general/issues/11737, https://github.com/ansible-collections/community.general/pull/11782).
+
+community.libvirt
+~~~~~~~~~~~~~~~~~
+
+- libvirt_qemu - Vendor ``_parse_clixml`` locally to fix ``ImportError`` on ansible-core devel (2.21+).
+
+community.zabbix
+~~~~~~~~~~~~~~~~
+
+- Added 'status' handling to sanatize_params in zabbix_itemprototype module to allow for 'enabled'/'disabled' values.
+- Updated tests to reflect the change in parameter handling.
+- add zabbix_agent 7.4 as valid for windows
+- all modules - fixed password handeling
+- fix zabbix_agent_version_long version comparison
+- server role - fixed issues with mysql import
+- use architecture2 in map for amd64/i386
+- web role - Fixed ownership of `/etc/zabbix/web` directory to match Debian distributions packages
+- zabbix_agent - add fallback to first ipv4 address if default cant be determined for zabbix_agent_ip
+- zabbix_proxy - add fallback to first ipv4 address if default cant be determined for zabbix_proxy_ip
+- zabbix_server - Adapt all the PostgresDB related task to be schema aware (https://github.com/ansible-collections/community.zabbix/issues/1647).
+- zabbix_template - prevent false reporting of password change
+- zabbix_trigger - add selectDependencies and selectTags when requesting triggers to detect changes to those values
+- zabbix_valuemap - add missing host_name option which is required by the Zabbix API (https://github.com/ansible-collections/community.zabbix/issues/1636).
+- zabbix_web - define zabbix_server_dbschema default value
+- zabbix_web - nginx vhost template did not support http2 configuration (https://github.com/ansible-collections/community.zabbix/issues/1668).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- podman_container - Fix quadlet_options placement when restart_policy is set
+- podman_network - Add diff and idempotency to ip_ranges in net_config
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- idrac_job_queue - (Issue 1067) - Fails to find the file in role due to incorrect name (https://github.com/dell/dellemc-openmanage-ansible-modules/issues/1067)
+- idrac_system_info - (Issue 1044) - FC section is missing (https://github.com/dell/dellemc-openmanage-ansible-modules/issues/1044)
+- idrac_system_info - powersupply.get_red_type_set fails with TypeError due to unhandled None values when joining mapped redundancy types
+- idrac_user - (Issue 1059) - Bad User Privileges when creating idrac user using "custom_privilege" (https://github.com/dell/dellemc-openmanage-ansible-modules/issues/1059)
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Fixed an issue where parameters ending with _dict always returned changed, even in check mode or when no changes were made.
+- Fixed an issue where some modules could not be configured globally.
+- Fixed an issue where the generate-key.system.api-user selector in the fortios_monitor module required an admin password to function.
+
+ibm.storage_virtualize
+~~~~~~~~~~~~~~~~~~~~~~
+
+- ibm_svc_manage_ip - Fixed issue related to VLAN while updating
+
+Known Issues
+------------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- Formal qualification of module ome_smart_fabric_info for Ansible Core version 2.19 is still pending.
+- idrac_diagnostics - This module does not support export of diagnostics file to HTTP and HTTPS share via SOCKS proxy.
+- idrac_license - Due to API limitation, proxy parameters are ignored during the import operation.
+- idrac_license - The module will give different error messages for iDRAC9 and iDRAC10 when user imports license with invalid share name.
+- idrac_os_deployment - The module continues to return a 200 response and marks the job as completed, even when an outdated date is supplied in the Expose duration.
+- idrac_redfish_storage_controller - PatrolReadRatePercent attribute cannot be set in iDRAC10.
+- idrac_server_config_profile - When attempting to revert iDRAC settings using a previously exported SCP file, the import operation will complete with errors if a new user was created after the export (Instead of restoring the system to its previous state, including the removal of newly added users).
+- ome_smart_fabric_uplink - The module supported by OpenManage Enterprise Modular, however it does not allow the creation of multiple uplinks of the same name. If an uplink is created using the same name as an existing uplink, then the existing uplink is modified.
+- redfish_storage_volume - Encryption type and block_io_size bytes will be read only property in iDRAC9 and iDRAC10 and hence the module ignores these parameters.
+
+New Plugins
+-----------
+
+Filter
+~~~~~~
+
+- community.crypto.acme_dns_persist_record - Craft a DNS record for ACME :literal:`dns\-persist\-01` challenges.
+- community.crypto.acme_dns_persist_record_parse - Parse a DNS record for ACME :literal:`dns\-persist\-01` challenges.
+
+New Modules
+-----------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- community.general.snap_connect - Manages snap interface connections.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 10.3.0)
+- ansible.posix (still version 2.1.0)
+- ansible.windows (still version 3.5.0)
+- arista.eos (still version 12.0.1)
+- awx.awx (still version 24.6.1)
+- azure.azcollection (still version 3.16.0)
+- check_point.mgmt (still version 6.9.0)
+- cisco.aci (still version 2.13.0)
+- cisco.dnac (still version 6.48.0)
+- cisco.ios (still version 11.3.0)
+- cisco.mso (still version 2.13.0)
+- cisco.nxos (still version 11.1.3)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.3)
+- community.aws (still version 10.1.0)
+- community.ciscosmb (still version 1.0.11)
+- community.clickhouse (still version 2.1.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.7.1)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.mongodb (still version 1.7.12)
+- community.mysql (still version 4.2.0)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxmox (still version 1.6.0)
+- community.proxysql (still version 1.7.0)
+- community.rabbitmq (still version 1.6.0)
+- community.sap_libs (still version 1.7.0)
+- community.vmware (still version 6.2.0)
+- community.windows (still version 3.1.0)
+- cyberark.conjur (still version 1.3.9)
+- cyberark.pas (still version 1.0.39)
+- dellemc.enterprise_sonic (still version 3.2.0)
+- dellemc.powerflex (still version 3.0.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.39.0)
+- fortinet.fortimanager (still version 2.13.0)
+- grafana.grafana (still version 6.0.6)
+- hetzner.hcloud (still version 6.8.0)
+- hitachivantara.vspone_block (still version 4.6.1)
+- hitachivantara.vspone_object (still version 1.1.1)
+- ieisystem.inmanage (still version 4.0.0)
+- infinidat.infinibox (still version 1.6.3)
+- infoblox.nios_modules (still version 1.9.0)
+- inspur.ispim (still version 2.2.4)
+- junipernetworks.junos (still version 11.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.3.0)
+- kubevirt.core (still version 2.2.4)
+- microsoft.ad (still version 1.10.0)
+- microsoft.iis (still version 1.1.0)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.4.0)
+- netapp.storagegrid (still version 21.16.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.22.0)
+- ngine_io.cloudstack (still version 3.0.0)
+- openstack.cloud (still version 2.5.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- purestorage.flasharray (still version 1.42.0)
+- purestorage.flashblade (still version 1.24.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.5.1)
+- vmware.vmware (still version 2.8.0)
+- vmware.vmware_rest (still version 4.10.0)
+- vultr.cloud (still version 1.14.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.11)
+
 v13.5.0
 =======
 
