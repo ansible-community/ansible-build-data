@@ -10,3 +10,5 @@ junipernetworks.junos: <11.1.0
 # how to proceed.
 # https://github.com/cisco-en-programmability/dnacenter-ansible/issues/327
 cisco.dnac: <6.48.1
+# cyberark.pas 1.0.40 is not tagged in https://github.com/cyberark/ansible-security-automation-collection
+cyberark.pas: <1.0.40
