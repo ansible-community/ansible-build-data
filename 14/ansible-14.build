@@ -2,6 +2,7 @@ _ansible_version: 14
 _ansible_core_version: 2.21.0rc1
 _python: >=3.12
 amazon.aws: >=11.2.0,<12.0.0
+ansible.mysql: >=4.2.1,<5.0.0
 ansible.netcommon: >=8.5.0,<9.0.0
 ansible.posix: >=2.1.0,<3.0.0
 ansible.utils: >=6.0.0,<7.0.0
