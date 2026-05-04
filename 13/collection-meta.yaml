@@ -13,6 +13,8 @@ collections:
       - jillr
       - mandar242
       - viciousprimate
+  ansible.mysql:
+    repository: https://github.com/ansible-collections/ansible.mysql
   ansible.netcommon:
     repository: https://github.com/ansible-collections/ansible.netcommon
   ansible.posix:
