@@ -123,7 +123,7 @@ collections:
   community.mysql:
     repository: https://github.com/ansible-collections/community.mysql
     removal:
-      major_version: 15
+      major_version: 16
       reason: renamed
       new_name: ansible.mysql
       redirect_replacement_major_version: 14
