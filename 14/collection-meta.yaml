@@ -106,7 +106,7 @@ collections:
       new_name: ansible.mysql
       redirect_replacement_major_version: 14
       announce_version: 14.0.0a5
-      discussion: https://forum.ansible.com/t/certification-of-community-mysql-collection-on-automation-hub/45709
+      discussion: https://forum.ansible.com/t/45798
   community.okd:
     maintainers:
       # - ansible-collections/cloud
