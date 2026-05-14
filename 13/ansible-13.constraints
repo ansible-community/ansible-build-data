@@ -12,3 +12,6 @@ junipernetworks.junos: <11.1.0
 cisco.dnac: <6.48.1
 # cyberark.pas 1.0.40 is not tagged in https://github.com/cyberark/ansible-security-automation-collection
 cyberark.pas: <1.0.40
+# community.mysql 4.3.0 deprecates all modules and suggests users to use ansible.mysql.
+# Since ansible.mysql was just added to Ansible, let's wait with this to avoid runtime deprecation warnings.
+community.mysql: <4.3.0
