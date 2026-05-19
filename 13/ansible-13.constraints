@@ -15,3 +15,6 @@ cyberark.pas: <1.0.40
 # community.mysql 4.3.0 deprecates all modules and suggests users to use ansible.mysql.
 # Since ansible.mysql was just added to Ansible, let's wait with this to avoid runtime deprecation warnings.
 community.mysql: <4.3.0
+# Potentially breaking change in changelog for 3.23.0
+# - This changes the behavior for generating slugs. If you were relying on the previous behavior, you need to be aware that this behavior has changed.
+netbox.netbox: <3.23.0
