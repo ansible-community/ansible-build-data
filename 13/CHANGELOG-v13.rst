@@ -7,6 +7,709 @@ This changelog describes changes since Ansible 12.0.0.
 .. contents::
   :depth: 2
 
+v13.7.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-05-19
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- ansible.mysql (version 4.2.1)
+
+Ansible-core
+------------
+
+Ansible 13.7.0 contains ansible-core version 2.20.6.
+This is a newer version than version 2.20.5 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                  | Ansible 13.6.0 | Ansible 13.7.0 | Notes                                                                                                                        |
++=============================+================+================+==============================================================================================================================+
+| amazon.aws                  | 10.3.0         | 10.3.1         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.mysql               |                | 4.2.1          | The collection was added to Ansible                                                                                          |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.netcommon           | 8.5.0          | 8.5.2          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.posix               | 2.1.0          | 2.2.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| arista.eos                  | 12.0.1         | 12.1.1         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| azure.azcollection          | 3.16.0         | 3.18.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios                   | 11.3.0         | 11.4.1         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.iosxr                 | 12.2.1         | 12.3.1         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.nxos                  | 11.1.3         | 11.2.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto            | 3.2.0          | 3.2.1          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns               | 3.5.4          | 3.5.5          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general           | 12.6.0         | 12.6.1         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot            | 2.7.1          | 2.7.2          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mysql             | 4.2.0          | 4.2.1          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.proxysql          | 1.7.0          | 1.8.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman           | 1.19.2         | 1.20.1         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortimanager       | 2.13.0         | 2.14.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| grafana.grafana             | 6.0.6          | 6.1.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| graphiant.naas              | 26.3.0         | 26.4.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| hetzner.hcloud              | 6.8.0          | 6.9.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| hitachivantara.vspone_block | 4.6.1          | 4.8.1          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| kubernetes.core             | 6.3.0          | 6.4.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap                | 23.4.0         | 23.5.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netbox.netbox               | 3.22.0         | 3.23.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+grafana.grafana
+~~~~~~~~~~~~~~~
+
+- Run molecule only when required by @voidquark in https://github.com/grafana/grafana-ansible-collection/pull/441
+- migrate stack create/update/delete to stacks-api by @KucicM in https://github.com/grafana/grafana-ansible-collection/pull/494
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- Updated ONTAP personality check functionality.
+- na_ontap_debug - AWS Lambda support added to the module.
+- na_ontap_dns - AWS Lambda support added to the module.
+- na_ontap_domain_tunnel - AWS Lambda support added to the module.
+- na_ontap_efficiency_policy - AWS Lambda support added to the module.
+- na_ontap_export_policy - AWS Lambda support added to the module.
+- na_ontap_export_policy_rule - AWS Lambda support added to the module.
+- na_ontap_flexcache - AWS Lambda support added to the module.
+- na_ontap_iscsi - AWS Lambda support added to the module.
+- na_ontap_iscsi_security - AWS Lambda support added to the module.
+- na_ontap_job_schedule - AWS Lambda support added to the module.
+- na_ontap_ldap_client - AWS Lambda support added to the module.
+- na_ontap_local_hosts - AWS Lambda support added to the module.
+- na_ontap_name_mappings - AWS Lambda support added to the module.
+- na_ontap_name_service_switch - AWS Lambda support added to the module.
+- na_ontap_nfs - AWS Lambda support added to the module.
+- na_ontap_qos_policy_group - AWS Lambda support added to the module.
+- na_ontap_qtree - AWS Lambda support added to the module.
+- na_ontap_quotas - AWS Lambda support added to the module.
+- na_ontap_rest_info - AWS Lambda support added to the module.
+- na_ontap_restit - AWS Lambda support added to the module.
+- na_ontap_snapmirror_policy - AWS Lambda support added to the module.
+- na_ontap_snapshot_policy - AWS Lambda support added to the module.
+- na_ontap_vserver_peer_permissions - AWS Lambda support added to the module.
+- na_ontap_wait_for_condition - AWS Lambda support added to the module.
+
+Minor Changes
+-------------
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- acl - fix deprecated ``ansible.module_utils._text`` import (https://github.com/ansible-collections/ansible.posix/issues/686).
+- authorized_key - fix deprecated ``ansible.module_utils._text`` and ``ansible.module_utils.six`` imports (https://github.com/ansible-collections/ansible.posix/issues/686).
+- cgroup_perf_recap callback - fix deprecated ``ansible.module_utils._text`` and ``ansible.module_utils.six`` imports (https://github.com/ansible-collections/ansible.posix/issues/686).
+- csh shell plugin - fix deprecated ``ansible.module_utils.six`` imports (https://github.com/ansible-collections/ansible.posix/issues/686).
+- firewalld_info - fix deprecated ``ansible.module_utils._text`` import (https://github.com/ansible-collections/ansible.posix/issues/686).
+- firewalld_info - use module.warn instead of passing ``warnings`` to ``exit_json`` (https://github.com/ansible-collections/ansible.posix/issues/710).
+- fish shell plugin - fix deprecated ``ansible.module_utils.six`` imports (https://github.com/ansible-collections/ansible.posix/issues/686).
+- json callback - fix deprecated ``ansible.module_utils._text`` import (https://github.com/ansible-collections/ansible.posix/issues/686).
+- jsonl callback - fix deprecated ``ansible.module_utils._text`` import (https://github.com/ansible-collections/ansible.posix/issues/686).
+- mount - fix deprecated ``ansible.module_utils._text`` and ``ansible.module_utils.six`` imports (https://github.com/ansible-collections/ansible.posix/issues/686).
+- patch - fix deprecated ``ansible.module_utils._text`` import (https://github.com/ansible-collections/ansible.posix/issues/686).
+- profile_roles callback - fix deprecated ``ansible.module_utils.six`` import (https://github.com/ansible-collections/ansible.posix/issues/686).
+- profile_tasks - Add option to provide a different date/time format (https://github.com/ansible-collections/ansible.posix/issues/279).
+- profile_tasks callback - fix deprecated ``ansible.module_utils.six`` import (https://github.com/ansible-collections/ansible.posix/issues/686).
+- removed ANSIBLE_METADATA from remaining plugins.
+- rhel_rpm_ostree - fix deprecated ``ansible.module_utils._text`` import (https://github.com/ansible-collections/ansible.posix/issues/686).
+- rpm_ostree_upgrade - fix deprecated ``ansible.module_utils._text`` import (https://github.com/ansible-collections/ansible.posix/issues/686).
+- seboolean - fix deprecated ``ansible.module_utils._text`` import (https://github.com/ansible-collections/ansible.posix/issues/686).
+- synchronize - fix deprecated ``ansible.module_utils._text``, ``ansible.module_utils.common._collections_compat``, and ``ansible.module_utils.six`` imports (https://github.com/ansible-collections/ansible.posix/issues/686).
+- sysctl - fix deprecated ``ansible.module_utils._text`` and ``ansible.module_utils.six`` imports (https://github.com/ansible-collections/ansible.posix/issues/686).
+
+arista.eos
+~~~~~~~~~~
+
+- Added ``content`` parameter to support pre-rendered template configurations in eos_config module
+- Replace deprecated imports from ansible.module_utils._text with ansible.module_utils.common.text.converters.
+- Updated ansible.netcommon dependency minimum required version from >=8.1.0 to >=8.5.2.
+- which provides a cleaner alternative to the deprecated template auto-processing behavior of the ``src`` parameter.
+
+cisco.ios
+~~~~~~~~~
+
+- Updated ansible.netcommon dependency minimum required version from >=8.1.0 to >=8.5.1.
+- Updated ansible.netcommon dependency minimum required version from >=8.5.1 to >=8.5.2.
+- ci - Updated integration test matrix to add stable-2.20 coverage and drop stable-2.16 for libssh integration tests.
+- ios_config - Add ``content`` parameter to support pre-rendered template configurations. This provides a cleaner alternative to the deprecated template auto-processing behavior of the ``src`` parameter.
+- ios_user module adds purge_keys parameter to manage multiple SSH keys per user. Cisco IOS devices support maximum 2 SSH keys per user. The purge_keys parameter enables removal of existing keys not in the sshkey list when provisioning new keys.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- Added ``content`` parameter to support pre-rendered template configurations in iosxr_config module which provides a cleaner alternative to the deprecated template auto-processing behavior of the ``src`` parameter.
+- Bump minimum ``ansible.netcommon`` dependency from ``>=8.1.0`` to ``>=8.5.1`` in ``galaxy.yml``.
+- Updated ansible.netcommon dependency minimum required version from >=8.5.1 to >=8.5.2.
+
+cisco.nxos
+~~~~~~~~~~
+
+- Added ``content`` parameter to support pre-rendered template configurations in nxos_config module
+- Updated ansible.netcommon dependency minimum required version from >=8.1.0 to >=8.5.1.
+- Updated ansible.netcommon dependency minimum required version from >=8.5.1 to >=8.5.2.
+- nxos_l2_interfaces - Add `trunk.allowed_vlans_none` option to explicitly configure `switchport trunk allowed vlan none` on interfaces.
+- which provides a cleaner alternative to the deprecated template auto-processing behavior of the ``src`` parameter.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- mattermost, rocketchat, slack - update default ``icon_url`` to ansible favicon (https://github.com/ansible-collections/community.general/pull/11909).
+
+community.proxysql
+~~~~~~~~~~~~~~~~~~
+
+- Add PostgreSQL support with the new ``proxysql_pgsql_users``, ``proxysql_pgsql_servers``, ``proxysql_pgsql_hostgroup_attributes``, ``proxysql_pgsql_query_rules``, ``proxysql_pgsql_query_rules_fast_routing``, and ``proxysql_pgsql_replication_hostgroups`` modules.
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- Fix version in galaxy
+- podman_prune - Add idempotency support
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Added 22 new modules.
+
+graphiant.naas
+~~~~~~~~~~~~~~
+
+- Collection version bumped to 26.4.0
+- Documentation: version and dependency examples refreshed in ``docs/guides/VERSION_MANAGEMENT.md``, ``docs/guides/RELEASE.md``, repository ``README.md``, ``ANSIBLE_INCLUSION_CHECKLIST.md``, and ``scripts/bump_version.py``
+- Minimum ``graphiant-sdk`` raised to ``>= 26.4.0`` (see ``_version.py`` ``DEPENDENCIES``); Ansible module ``requirements`` entries updated accordingly
+- New ``graphiant_device_system`` module and ``device_system_management.yml`` playbook to set device ``name``, ``regionName``, and ``site`` fields; sample ``sample_device_system.yaml``
+- ``SECURITY.md``: supported release lines updated for ``26.4.x`` and ``26.3.x``
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- primary_ip - Primary IP support upcoming ``assignee_type`` behavior change.
+- server_type_info - Added the Server Type Location ``available`` property to the return values (``hcloud_server_type_info[].locations[].available``).
+- server_type_info - Added the Server Type Location ``recommended`` property to the return values (``hcloud_server_type_info[].locations[].recommended``).
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Added a new "hv_gad_bulk" module for batch creation of multiple GAD pairs on VSP block storage systems.
+- Added a new "hv_hg_bulk" module for bulk host group management operations with multithreading support for parallel processing across multiple ports on VSP block storage systems.
+- Added a new "hv_hur_bulk" module for bulk creation of HUR pairs on VSP block storage systems.
+- Added a new "hv_iscsi_target_bulk" module for bulk iSCSI target management operations with multithreading support for parallel processing across multiple ports on VSP block storage systems.
+- Added a new "hv_ldev_bulk" module for bulk operations on logical devices (LDEVs) on VSP block storage systems.
+- Added a new "hv_truecopy_bulk" module for bulk creation of TrueCopy pairs in VSP block storage systems.
+- Added a new "hv_vsp_one_gad" module for creation, suspend, resync and delete of GAD pairs on VSP one BHE storages.
+- Added a new "hv_vsp_one_gad_consistency_group" module for suspend and resync of GAD pairs in a consistency group on VSP one BHE storages.
+- Added a new "hv_vsp_one_gad_consistency_group_facts" module for getting the GAD pair details in a consistency group on VSP one BHE Storages.
+- Added a new "hv_vsp_one_gad_facts" module for getting the GAD pair details on VSP one BHE Storages.
+- Added following tasks to "hv_gad_bulk" module - Batch create GAD pairs with host groups with matching volume IDs
+- Added following tasks to "hv_hur_bulk" module - Create HUR pair in bulk mode with matching volume IDs
+- Added new "hv_vsp_create_primary_and_secondary_diskless_quorum_disk" role for automated diskless quorum disk creation on VSP block storage systems.
+- Added new "hv_vsp_create_primary_and_secondary_quorum_disk" role for automated disk-based quorum disk creation on VSP block storage systems.
+- Added new "hv_vsp_gad_pairs_creation" role to automate GAD pairs provisioning on VSP block storage systems.
+- Added new "hv_vsp_hur_pairs_creation" role to automate HUR pairs provisioning on VSP block storage systems.
+- Added new "hv_vsp_primary_secondary_journal_creation" role for automated journal creation on VSP block storage systems.
+- Added support for Ansible core version 2.20.
+- Added support for SVOS 10.5.2 for VSP One B24/B26/B28 storage models.
+- Added support for SVOS 10.5.3 for VSP One BHE storage models.
+- Added support for SVOS 9.8.7 for VSP 5100/5500 & VSP 5200/5600 storage models.
+- Added support for VSP One SDS Block version 1.19.00.
+- Added support for input parameter "copy_pace" to the "hv_shadow_image_pair", "hv_gad", "hv_hur", "hv_truecopy", and "hv_journal" modules.
+- Added support to "hv_ldev" module to create ldev on a specific resource group.
+- Added support to "hv_resource_group" module to add multiple hostgroups by ids of a port to an existing Resource Group by ID.
+- Added support to "hv_resource_group" module to add multiple hostgroups by providing a range of IDs of a port to an existing Resource Group by ID.
+- Added support to "hv_resource_group" module to remove multiple hostgroups by ids of a port from an existing Resource Group by ID.
+- Added support to "hv_resource_group" module to remove multiple hostgroups by providing a range of IDs of a port from an existing Resource Group by ID.
+- Added support to "hv_storagepool" module to stop the shrink operation of a storage pool.
+- Adjusted galaxy.yml to exclude development configurations (like .ansible-lint) from the collection tarball.
+- Modified .ansible-lint configuration to remove the 'command-instead-of-module' skip-list rule to comply with Red Hat standards.
+- Updated README.md to reference meta/runtime.yml for ansible-core versioning.
+
+kubernetes.core
+~~~~~~~~~~~~~~~
+
+- helm_info - Ensure compatibility with Helm v4 (https://github.com/ansible-collections/kubernetes.core/issues/1038).
+- helm_plugin - Ensure compatibility with Helm v4 (https://github.com/ansible-collections/kubernetes.core/issues/1038).
+- helm_plugin_info - Ensure compatibility with Helm v4 (https://github.com/ansible-collections/kubernetes.core/issues/1038).
+- helm_pull - Ensure compatibility with Helm v4 (https://github.com/ansible-collections/kubernetes.core/issues/1038).
+- helm_registry_auth - Ensure compatibility with Helm v4 (https://github.com/ansible-collections/kubernetes.core/issues/1038).
+- helm_registry_auth - add new option plain_http to allow insecure http connection when running ``helm registry login`` (https://github.com/ansible-collections/kubernetes.core/pull/1090).
+- helm_repository - Ensure compatibility with Helm v4 (https://github.com/ansible-collections/kubernetes.core/issues/1038).
+- k8s_drain - Add support for ``check_mode`` (https://github.com/ansible-collections/kubernetes.core/pull/1086).
+- k8s_drain - Convert module warnings into informational displays when users explicitly request the deletion of unmanaged pods, pods with local storage, or those managed by a ``DaemonSet`` (https://github.com/ansible-collections/kubernetes.core/issues/1037).
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_s3_users - new options `access_key` & `secret_key` added.
+- na_ontap_security_certificates - Added support to generate certificate signing requests (CSRs) in REST.
+- na_ontap_svm - Added option `anti_ransomware_default_volume_state` in REST.
+- na_ontap_volume - new option `anti_ransomware.state` added in REST, requires ONTAP 9.10 or later.
+- na_ontap_volume - updated docs for `tiering_policy`.
+- updated `README` with information on ASA r2 support.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Add NetBox v4.4 integration tests to CI matrix
+- Add NetBox v4.5 support to CI matrix (netbox-docker 4.0.2)
+- Add `module_type` as supported to `netbox_front_port_template`
+- Add `module_type` as supported to `netbox_rear_port_template`
+- Add local integration test runner (hacking/integration-test.sh)
+- Fix linting issues with newly released black version
+- Update netbox_front_port and netbox_front_port_template modules to handle v4.5 removal of rear_port/rear_port_position fields (replaced by PortMapping model)
+- Update netbox_token module to support v4.5 v2 tokens with description-based lookup
+- Update netbox_user module to strip is_staff field on v4.5+ (removed from User model)
+- Use `ansible.module_utils.common.text.converters` instead of the deprecated `ansible.module_utils._text`
+- netbox_vlan_group - Add tenant field support (https://github.com/netbox-community/ansible_modules/issues/1446)
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Renamed the following input and output parameters in the "hv_gad" module - "mu_number" to "mirror_unit_number".
+- Renamed the following input and output parameters in the "hv_hg" module - "nick_name" to "nickname", "ports" to "port_ids", "port" to "port_id", "should_delete_all_ldevs" to "should_delete_all_volumes".
+- Renamed the following input and output parameters in the "hv_hg_facts" module - "nick_name" to "nickname", "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_hur" module - "mirror_unit_id" to "mirror_unit_number", "primary_journal_pool" to "primary_journal_id", "secondary_journal_pool" to "secondary_journal_id".
+- Renamed the following input and output parameters in the "hv_iscsi_target" module - "nick_name" to "nickname", "ports" to "port_ids", "port" to "port_id", "should_delete_all_ldevs" to "should_delete_all_volumes".
+- Renamed the following input and output parameters in the "hv_iscsi_target_facts" module - "nick_name" to "nickname", "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_ldev" module - "parity_group" to "parity_group_id".
+- Renamed the following input and output parameters in the "hv_resource_group" module - "start_ldev" to "begin_ldev_id", "end_ldev" to "end_ldev_id", "parity_groups" to "parity_group_ids", "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_resource_group_facts" module - "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_sds_block_compute_port" module - "nick_name" to "nickname".
+- Renamed the following input and output parameters in the "hv_sds_block_journal" module - "mirror_unit" to "mirror_unit_number".
+- Renamed the following input and output parameters in the "hv_sds_block_remote_iscsi_port" module - "remote_ip_address" to "remote_storage_port_ip_address".
+- Renamed the following input and output parameters in the "hv_shadow_image_pair" module - "pvol_mu_number" to "mirror_unit_number" , "copy_pace_track_size" to "copy_pace".
+- Renamed the following input and output parameters in the "hv_snapshot" module - "mirror_unit_id" to "mirror_unit_number".
+- Renamed the following input and output parameters in the "hv_snapshot_group" module - "mirror_unit_id" to "mirror_unit_number".
+- Renamed the following input and output parameters in the "hv_storage_port" module - "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_storage_port_facts" module - "ports" to "port_ids", "port" to "port_id".
+- Renamed the following input and output parameters in the "hv_vsp_one_server" module - "nick_name" to "nickname".
+- Renamed the following input and output parameters in the "hv_vsp_one_server_facts" module - "nick_name" to "nickname".
+- Renamed the following input and output parameters in the "hv_vsp_one_server_hba_facts" module - "nick_name" to "nickname".
+- Renamed the following output parameters in the "hv_gad" module - "primary_volume_storage_id" to "primary_volume_storage_serial_number", "secondary_volume_storage_id" to "secondary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_gad_facts" module - "primary_volume_storage_id" to "primary_volume_storage_serial_number", "secondary_volume_storage_id" to "secondary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_hur" module - "pvol_status" to "primary_volume_status", "svol_status" to "secondary_volume_status", "storage_serial_number" to "primary_volume_storage_serial_number", "secondary_storage_serial" to "secondary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_hur_facts" module - "mirror_unit_id" to "mirror_unit_number", "primary_journal_pool" to "primary_journal_id", "secondary_journal_pool" to "secondary_journal_id", "pvol_status" to "primary_volume_status", "svol_status" to "secondary_volume_status", "primary_storage_serial" to "primary_volume_storage_serial_number", "secondary_storage_serial" to "secondary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_ldev_facts" module - "parity_group" to "parity_group_id".
+- Renamed the following output parameters in the "hv_resource_group_facts" module - "start_ldev" to "begin_ldev_id", "end_ldev" to "end_ldev_id", "parity_groups" to "parity_group_ids", "ports" to "port_ids", "port" to "port_id".
+- Renamed the following output parameters in the "hv_shadow_image_pair_facts" module - "mirror_unit_id" to "mirror_unit_number", "pvol_host_groups" to "primary_volume_host_groups", "pvol_iscsi_targets" to "primary_volume_iscsi_targets", "pvol_nvm_subsystem_name" to "primary_volume_nvm_subsystem_name", "svol_host_groups" to "secondary_volume_host_groups", "svol_iscsi_targets" to "secondary_volume_iscsi_targets", "svol_nvm_subsystem_name" to "secondary_volume_nvm_subsystem_name".
+- Renamed the following output parameters in the "hv_snapshot_facts" module - "mirror_unit_id" to "mirror_unit_number", "pvol_host_groups" to "primary_volume_host_groups", "pvol_iscsi_targets" to "primary_volume_iscsi_targets", "pvol_nvm_subsystem_name" to "primary_volume_nvm_subsystem_name", "svol_host_groups" to "secondary_volume_host_groups", "svol_iscsi_targets" to "secondary_volume_iscsi_targets", "svol_nvm_subsystem_name" to "secondary_volume_nvm_subsystem_name", "pvol_processing_status" to "primary_volume_processing_status", "svol_processing_status" to "secondary_volume_processing_status".
+- Renamed the following output parameters in the "hv_snapshot_group_facts" module - "mirror_unit_id" to "mirror_unit_number".
+- Renamed the following output parameters in the "hv_truecopy" module - "pvol_status" to "primary_volume_status", "svol_status" to "secondary_volume_status", "storage_serial_number" to "primary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_truecopy_facts" module - "pvol_status" to "primary_volume_status", "svol_status" to "secondary_volume_status", "storage_serial_number" to "primary_volume_storage_serial_number".
+- Renamed the following output parameters in the "hv_vsp_one_volume_facts" module - "start_volume_id" to "begin_volume_id".
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- This changes the behavior for generating slugs. If you were relying on the previous behavior, you need to be aware that this behavior has changed.
+
+Deprecated Features
+-------------------
+
+- The collection ``community.mysql`` was renamed to ``ansible.mysql``.
+  For now both collections are included in Ansible.
+  The content in ``community.mysql`` will be replaced by deprecated redirects in Ansible 14.0.0.
+  The collection will be completely removed from Ansible 16.
+  Please update your FQCNs from ``community.mysql`` to ``ansible.mysql`` (`https://forum.ansible.com/t/45798 <https://forum.ansible.com/t/45798>`__).
+
+arista.eos
+~~~~~~~~~~
+
+- The ``src`` parameter's automatic Jinja2 template processing is deprecated and will be removed in march 2028 from eos_config module
+- Use the ``content`` parameter with ``ansible.builtin.template`` lookup instead.
+
+cisco.ios
+~~~~~~~~~
+
+- ios_config - The ``src`` parameter's automatic Jinja2 template processing is deprecated and will be removed in March 2028. Use the ``content`` parameter with ``ansible.builtin.template`` lookup instead.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- The ``src`` parameter's automatic Jinja2 template processing is deprecated and will be removed in March 2028 from iosxr_config module. Use the ``content`` parameter with ``ansible.builtin.template`` lookup instead.
+
+cisco.nxos
+~~~~~~~~~~
+
+- The ``src`` parameter's automatic Jinja2 template processing is deprecated and will be removed in March 2028 from nxos_config module
+- Use the ``content`` parameter with ``ansible.builtin.template`` lookup instead.
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- datacenter_info - The ``hcloud_datacenter_info[].server_types`` return value is deprecated and will be removed after 1 October 2026. Please use the ``hcloud_server_type_info[].locations[].available`` return value instead.
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- The old parameter names renamed in this release are retained as aliases for backward compatibility but will be removed in the next major release. Affected parameters across modules are - "start_ldev", "end_ldev", "parity_groups", "ports", "port" (hv_resource_group, hv_resource_group_facts), "ports", "port" (hv_storage_port, hv_storage_port_facts), "mirror_unit" (hv_sds_block_journal), "nick_name", "should_delete_all_ldevs" (hv_hg, hv_iscsi_target), "nick_name" (hv_hg_facts, hv_iscsi_target_facts, hv_sds_block_compute_port, hv_vsp_one_server, hv_vsp_one_server_facts, hv_vsp_one_server_hba_facts), "parity_group" (hv_ldev, hv_ldev_facts), "remote_ip_address" (hv_sds_block_remote_iscsi_port), "start_volume_id" (hv_vsp_one_volume_facts), "mirror_unit_id", "primary_journal_pool", "secondary_journal_pool" (hv_hur), "mirror_unit_id", "pvol_status", "svol_status", "primary_storage_serial", "secondary_storage_serial", "primary_journal_pool", "secondary_journal_pool" (hv_hur_facts), "mu_number" (hv_gad), "pvol_status", "svol_status", "storage_serial_number" (hv_truecopy, hv_truecopy_facts, hv_hur), "secondary_storage_serial" (hv_hur), "primary_volume_storage_id", "secondary_volume_storage_id" (hv_gad, hv_gad_facts), "mirror_unit_id" (hv_snapshot, hv_snapshot_group, hv_snapshot_facts, hv_snapshot_group_facts), "pvol_host_groups", "pvol_iscsi_targets", "pvol_nvm_subsystem_name", "svol_host_groups", "svol_iscsi_targets", "svol_nvm_subsystem_name", "pvol_processing_status", "svol_processing_status" (hv_snapshot_facts), "pvol_mu_number", "copy_pace_track_size" (hv_shadow_image_pair), "mirror_unit_id", "pvol_host_groups", "pvol_iscsi_targets", "pvol_nvm_subsystem_name", "svol_host_groups", "svol_iscsi_targets", "svol_nvm_subsystem_name" (hv_shadow_image_pair_facts).
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Removed playbooks "ddp_pool.yml" and "ddp_pool_facts.yml".
+
+Security Fixes
+--------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- psrp - Do not log raw stdout/stderr on verbosity 5 when task has ``no_log: true`` set
+- winrm - Do not log raw stdout/stderr on verbosity 5 when task has ``no_log: true`` set
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test remote alias - Alias values for ``--controller`` and ``--target`` are properly resolved for ``remote``. Previously, remote alias values (e.g. ``fedora/latest``) resolved to the correct name only for the legacy ``--remote`` arg, failing with an unknown image error for the newer args.
+- git - use the branch configured in ``.gitmodules`` or the remote HEAD instead of hardcoding ``master`` when ``track_submodules=yes`` (https://github.com/ansible/ansible/issues/77691).
+- module_utils/basic.py - Fix ``AnsibleModule.run_command()`` to handle ``None`` return from non-blocking pipe reads (https://github.com/ansible/ansible/issues/86920).
+
+amazon.aws
+~~~~~~~~~~
+
+- autoscaling_group - Fixed duplicate default_cooldown assignment in properties dict (https://github.com/ansible-collections/amazon.aws/pull/2923).
+- kms_key - Fixed parameter reassignment by using passed alias parameter instead of re-fetching from module params (https://github.com/ansible-collections/amazon.aws/pull/2923).
+- module_utils/cloudfront_facts - fix TypeError in CloudFrontFactsServiceManager.describe_cloudfront_property (https://github.com/ansible-collections/community.aws/issues/1915).
+- s3_object_info - Fixed duplicate dictionary key assignments when retrieving object facts (https://github.com/ansible-collections/amazon.aws/pull/2923).
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- network action plugin - initialize ``_PARSED_MODULE_ARGS`` in ``DirectExecutionModule._load_params`` to avoid ``AttributeError`` on ansible-core 2.21+ when ``fail_json`` or ``exit_json`` is called.
+
+ansible.posix
+~~~~~~~~~~~~~
+
+- acl - correctly assert needed changes when pointing to a directory and recursive is set to true.
+- ansible.posix.authorized_key - fixes error on permission denied in authorized_key module (https://github.com/ansible-collections/ansible.posix/issues/462).
+- firewalld_info - stop returning warnings as return values; this has been deprecated by ansible-core (https://github.com/ansible-collections/ansible.posix/pull/670).
+- mount - stop returning warnings as return values; this has been deprecated by ansible-core (https://github.com/ansible-collections/ansible.posix/pull/670).
+- patch - removed use of deprecated ``_AnsibleActionDone`` API (https://github.com/ansible-collections/ansible.posix/pull/687).
+
+arista.eos
+~~~~~~~~~~
+
+- Added runtime routing in ``meta/runtime.yml`` to map old plugin names to the new ``eos_``-prefixed ones.
+- Removed deprecated action plugins for modules that no longer exist (static_route, vlan, linkagg, l2_interface, l3_interface, logging, interface, bgp).
+- Removed sanity ignore files for EOL ansible-core versions (2.14 through 2.22).
+- Renamed all remaining action plugins with ``eos_`` prefix to follow naming conventions.
+- Trimmed obsolete entries from remaining sanity ignore files.
+- eos_bgp_global - Support specifying both incoming and outgoing route-maps per BGP neighbor. Added ``route_maps`` (list of dicts with ``name`` and ``direction``) so users can set e.g. ``route-map MAP_IN in`` and ``route-map MAP_OUT out`` for the same neighbor. The single ``route_map`` option is deprecated in favor of ``route_maps``. Fixes https://github.com/ansible-collections/arista.eos/issues/538.
+- eos_static_routes - Fix issue where ``state: replaced`` did not delete routes not present in the config (https://github.com/ansible-collections/arista.eos/issues/532).
+
+cisco.ios
+~~~~~~~~~
+
+- action plugins - Remove orphaned legacy action plugins ``bgp.py``, ``linkagg.py``, ``lldp.py`` and ``logging.py`` that had no corresponding module.
+- action plugins - Rename multiple resource module action plugins to use the ``ios_`` prefix to match their module names and fix ``action-plugin-docs`` sanity failures blocking Automation Hub certification.
+- ios_acls - Fixed ``'int' object has no attribute 'split'`` error when processing ACL configurations with TCP entries. The parser regex for ``icmp_igmp_protocol`` could capture trailing numeric values for non-ICMP/IGMP protocols. Fixed by restricting ``icmp_igmp_protocol`` to only apply when the protocol is ``icmp`` or ``igmp`` in the parser template, with a defensive type check in facts processing.
+- ios_config - Fix multi-range interface commands for ios_config module.
+- ios_snmp_users - Fixed authentication option to correctly handle authentication protocol configuration.
+- ios_static_routes - Fix gather crash when "ip route static bfd" is present on the device.
+- meta/runtime.yml - Add ``plugin_routing.action`` redirects for all short-name aliases so alias-based invocations continue to resolve the renamed action plugins.
+- plugins/action/ios.py - Remove unused ``warnings`` list and unreachable dead code block that never executed due to ``warnings`` always being empty.
+- sanity - Remove stale ``action-plugin-docs`` ignore entries and delete ``ignore-2.14.txt`` and ``ignore-2.15.txt`` as the collection requires ``ansible>=2.16.0``.
+- terminal_stderr_re - Updated to support variation of command rejected error from appliance.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- action plugins - Remove orphaned legacy action plugins ``bgp.py``, ``interface.py``, and ``logging.py`` that had no corresponding module.
+- action plugins - Rename all 32 resource module action plugins to use the ``iosxr_`` prefix to match their module names and fix ``action-plugin-docs`` sanity failures blocking Automation Hub certification.
+- iosxr_bgp_global, iosxr_bgp_templates, iosxr_facts - treat BGP neighbor ``remote_as`` as a string so ASDOT notation (e.g. ``5467.8`` per RFC 5396) is not coerced to float and rejected during facts or resource validation (https://github.com/ansible-collections/cisco.iosxr/issues). This is not a deprecation of ``remote_as`` — existing playbooks passing integer ASPLAIN values (e.g. ``remote_as: 65001``) continue to work because Ansible automatically coerces integers to strings. However, the module now returns ``remote_as`` as a string in parsed/gathered facts, so any playbook assertions comparing ``remote_as`` against an integer literal (e.g. ``result.after.remote_as == 65001``) should be updated to compare against a string (``"65001"``) instead.
+- meta/runtime.yml - Add ``plugin_routing.action`` redirects for all short-name aliases so alias-based invocations continue to resolve the renamed action plugins.
+- plugins/action/iosxr.py - Remove unused ``warnings`` list and unreachable dead code block that never executed due to ``warnings`` always being empty.
+- sanity - Remove 35 stale ``action-plugin-docs`` ignore entries and delete ``ignore-2.15.txt`` as the collection requires ``ansible>=2.16.0``.
+
+cisco.nxos
+~~~~~~~~~~
+
+- action plugins - Remove orphaned legacy action plugins ``acl_interface.py acl.py bgp_af.py``, ``bgp_neighbor_af.py bgp_neighbor.py bgp.py interface.py l2_interface.py l3_interface.py``, ``linkagg.py lldp.py logging.py ntp_auth.py ntp_options.py ntp.py ospf_vrf.py smu.py``, ``snmp_community.py snmp_contact.py snmp_host.py snmp_location.py snmp_traps.py snmp_user.py``, ``static_route.py vlan.py ospf.py`` that had no corresponding module.
+- action plugins - Rename multiple resource module action plugins to use the ``nxos_`` prefix to match their module names and fix ``action-plugin-docs`` sanity failures blocking Automation Hub certification.
+- meta/runtime.yml - Add ``plugin_routing.action`` redirects for all short-name aliases so alias-based invocations continue to resolve the renamed action plugins.
+- nxos_l2_interfaces - Fix VLAN range sorting to use numeric order instead of lexicographic string sorting, which caused incorrect range generation (e.g., "1,10,100,11" instead of "1-100").
+- nxos_l2_interfaces - Fix default allowed VLANs handling - trunk interfaces now correctly assume 1-4094 as default when no explicit allowed_vlans is configured.
+- nxos_l2_interfaces - Fix state handling logic for merged, replaced, overridden, and deleted states to correctly add/remove VLANs based on the desired state.
+- nxos_l2_interfaces - Fix to facts parsing when multiple vlan add lines are sent/parsed. These lines are now instead merged into a single command first via _flatten_vlan function, and then sent as data to be parsed
+- nxos_static_routes - Fixed incorrect deletion of route in VRF even when VRF is not specified.
+- plugins/action/nxos.py - Remove unused ``warnings`` list and unreachable dead code block that never executed due to ``warnings`` always being empty.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- acme_* modules - adjust OpenSSL RSA private key output parsing to OpenSSL 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1005).
+- acme_challenge_cert_helper - adjust private key check for new private key types in cryptography 47.0.0 (https://github.com/ansible-collections/community.crypto/pull/1007).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+- nameserver_info, nameserver_record_info, wait_for_txt - fix handling of DNSPython ``Nameserver`` objects when default resolver addresses are used (https://github.com/ansible-collections/community.dns/pull/321).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- apt_rpm - do not fail when ``update_kernel`` finds no new kernel available (https://github.com/ansible-collections/community.general/issues/10055, https://github.com/ansible-collections/community.general/pull/11949).
+- apt_rpm - fix upgrade of local RPM not present in repository (https://github.com/ansible-collections/community.general/issues/9161, https://github.com/ansible-collections/community.general/pull/12039).
+- bundler - replace deprecated ``--deployment``, ``--without``, ``--path``, ``--clean``, and ``--binstubs`` flags with ``BUNDLE_*`` environment variables, fixing compatibility with Bundler 4 (https://github.com/ansible-collections/community.general/issues/4583, https://github.com/ansible-collections/community.general/issues/11380, https://github.com/ansible-collections/community.general/pull/12024).
+- cargo - fix ``state=latest`` always reporting ``changed`` due to greedy regex capturing description text instead of version string (https://github.com/ansible-collections/community.general/issues/8949, https://github.com/ansible-collections/community.general/pull/12064).
+- cobbler_system - fix ``KeyError`` when adding a new interface to an existing system that does not yet have it defined (https://github.com/ansible-collections/community.general/issues/7007, https://github.com/ansible-collections/community.general/pull/11995).
+- crypttab - fix parsing of options whose value contains an equal sign (https://github.com/ansible-collections/community.general/issues/4963, https://github.com/ansible-collections/community.general/pull/11926).
+- datadog_downtime - fix ``TypeError`` when returning API response with ``datadog-api-client`` >= 2.28.0 (https://github.com/ansible-collections/community.general/issues/9079, https://github.com/ansible-collections/community.general/pull/12019).
+- flatpak - fix reporting ``changed`` on already present flatpaks with a dash in the last part of the ID (https://github.com/ansible-collections/community.general/issues/12062, https://github.com/ansible-collections/community.general/pull/12063).
+- gitlab_hook - now properly passes the ``releases_events`` parameter to the GitLab API on hook creation, fixing a 500 Internal Server Error when the parameter was not specified (https://github.com/ansible-collections/community.general/issues/11269, https://github.com/ansible-collections/community.general/pull/11917).
+- ipa_group - fix idempotency when ``external: false`` on an existing non-external group (https://github.com/ansible-collections/community.general/issues/5061, https://github.com/ansible-collections/community.general/pull/11933).
+- ldap_attrs - fix ``state=exact`` incorrectly issuing ``MOD_ADD`` instead of ``MOD_REPLACE`` for attributes returned by the server with different casing (https://github.com/ansible-collections/community.general/issues/1624, https://github.com/ansible-collections/community.general/pull/11990).
+- logstash_plugin - use ``http_proxy``/``https_proxy`` environment variables for proxy support instead of broken JVM flags; expose ``stderr`` on failure (https://github.com/ansible-collections/community.general/issues/8650, https://github.com/ansible-collections/community.general/pull/11951).
+- lvol - fix thin-pool creation when ``size`` is a percentage (https://github.com/ansible-collections/community.general/issues/11923, https://github.com/ansible-collections/community.general/pull/11925).
+- odbc - fetch rows before committing to fix ``HY010`` function sequence error (https://github.com/ansible-collections/community.general/issues/5395, https://github.com/ansible-collections/community.general/pull/11972).
+- pam_limits - only create backup file when the target file is actually modified (https://github.com/ansible-collections/community.general/issues/12011, https://github.com/ansible-collections/community.general/pull/12014).
+- puppet - fix ``TypeError`` when writing facts data (https://github.com/ansible-collections/community.general/issues/7932, https://github.com/ansible-collections/community.general/pull/11954).
+- scaleway_image_info, scaleway_ip_info, scaleway_organization_info, scaleway_security_group_info, scaleway_server_info, scaleway_snapshot_info, scaleway_volume_info - fix ``NoneType`` error when the Scaleway API returns an empty or non-JSON response body (https://github.com/ansible-collections/community.general/issues/11361, https://github.com/ansible-collections/community.general/pull/11918).
+- selective callback plugin - align host names in stats output by padding to the longest name (https://github.com/ansible-collections/community.general/issues/8797, https://github.com/ansible-collections/community.general/pull/12065).
+- seport - fix idempotency when a requested port is already covered by an existing range registered for the same setype (https://github.com/ansible-collections/community.general/issues/10105, https://github.com/ansible-collections/community.general/pull/11994).
+- xml - emit an error when ``value`` is not a string, pointing to the offending xpath (https://github.com/ansible-collections/community.general/issues/7171, https://github.com/ansible-collections/community.general/pull/11959).
+- xml - fix ``print_match`` not populating the ``matches`` return value (https://github.com/ansible-collections/community.general/issues/9125, https://github.com/ansible-collections/community.general/pull/12013).
+- yarn - skip Node.js runtime warning lines (starting with ``(node:``) in stderr before JSON parsing, fixing failures with Node.js 24 which emits ``DeprecationWarning`` to stderr. The warnings are passed on to the user (https://github.com/ansible-collections/community.general/pull/11943).
+- zypper_repository - allow unreachable ``.repo`` URLs and missing local paths when using ``state=absent`` (https://github.com/ansible-collections/community.general/issues/5769, https://github.com/ansible-collections/community.general/pull/11947).
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- storagebox* modules - improve error reporting to ensure that method and URL of the failed request are always mentioned (https://github.com/ansible-collections/community.hrobot/pull/190).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- mysql_query - fix ``Value of unknown type`` error when query results contain non-JSON-serializable types such as ``decimal.Decimal`` or ``datetime``. Results are now round-tripped through ``json.dumps(default=str)`` before being returned, coercing unserializable values to their string representation (https://github.com/ansible-collections/community.mysql/issues/783).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- podman_pod - Fix check mode support
+- podman_quadlet_build - Fix and add unittests
+- podman_secret - Fix ignoring 'data' if it's an empty string
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Improved the login logic.
+- Reduced the number of requests sent when workspace mode is enabled.
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Fixed performance for "hv_snapshot_group_facts" module.
+
+kubernetes.core
+~~~~~~~~~~~~~~~
+
+- Helm - Allow taking ownership of existing Kubernetes resources on the first installation of a Helm release. Previously, the ``take_ownership`` parameter was always disabled during the initial install, preventing resource adoption (https://github.com/ansible-collections/kubernetes.core/pull/1034).
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_cifs_server - Fixed issue with updating comments when using REST API.
+- na_ontap_export_policy_rule - Fixed issue in re-indexing of an existing rule.
+- na_ontap_user_role - fixed issue when creating user role privileges with empty or null query.
+- na_ontap_volume_efficiency - Fixed issue with GET timeout by adding new `rest_timeout` option.
+- na_ontap_vserver_delete - Added `check_mode` to the task that deletes the vserver to ensure support for dry-run mode.
+- na_ontap_vserver_delete - Added `retry_count` variable to the task that collects and deletes volumes to ensure support for retries when errors are encountered during volume deletion.
+- na_ontap_vserver_delete- Added gathering of NVMe subsystems and deletion of them before deleting the vserver to fix errors when NVMe subsystems are present.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Adjust regex pattern for character conversion for slugs
+- Automatically include device and virtual_machine scoping in sub-object queries to prevent "More than one result returned" errors
+- Fix specifying primary_mac_address objects by id on vm interfaces for disambiguation
+- Make slug generation optional by providing `slug` key
+- Only do slug generation in netbox_secret if needed
+- Preserve the Authorization header when creating a custom NetBox API session, fixing authenticated requests with `validate_certs=false`
+- nb_inventory - Fix AttributeError when `ip_address` is None during DNS name lookup
+
+New Modules
+-----------
+
+community.proxysql
+~~~~~~~~~~~~~~~~~~
+
+- community.proxysql.proxysql_pgsql_hostgroup_attributes - Manages PostgreSQL hostgroup attributes using the ProxySQL admin interface
+- community.proxysql.proxysql_pgsql_query_rules - Modifies pgsql query rules using the proxysql admin interface
+- community.proxysql.proxysql_pgsql_query_rules_fast_routing - Modifies query rules for fast routing policies using the proxysql admin interface
+- community.proxysql.proxysql_pgsql_replication_hostgroups - Manages replication hostgroups using the proxysql admin interface
+- community.proxysql.proxysql_pgsql_servers - Adds or removes pgsql hosts from proxysql admin interface
+- community.proxysql.proxysql_pgsql_users - Adds or removes postgresql users from proxysql admin interface
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- containers.podman.podman_quadlet_build - Build images for use by Podman Quadlets
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- fortinet.fortimanager.fmgr_casb_profile_saasapplication_advancedtenantcontrol - CASB profile advanced tenant control.
+- fortinet.fortimanager.fmgr_casb_profile_saasapplication_advancedtenantcontrol_attribute - CASB advanced tenant control attribute.
+- fortinet.fortimanager.fmgr_casb_saasapplication_inputattributes - SaaS application input attributes.
+- fortinet.fortimanager.fmgr_casb_saasapplication_outputattributes - SaaS application output attributes.
+- fortinet.fortimanager.fmgr_casb_useractivity_match_tenantextraction - CASB user activity tenant extraction.
+- fortinet.fortimanager.fmgr_casb_useractivity_match_tenantextraction_filters - CASB user activity tenant extraction filters.
+- fortinet.fortimanager.fmgr_dynamic_log_npuserver_servergroup - Dynamic log npu server server group
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_lanextension_downlinks - Config FortiExtender downlink interface for LAN extension.
+- fortinet.fortimanager.fmgr_extensioncontroller_extenderprofile_lanextension_trafficsplitservices - Config FortiExtender traffic split interface for LAN extension.
+- fortinet.fortimanager.fmgr_switchcontroller_managedswitch_systemdhcpserver_iprange - DHCP IP range configuration.
+- fortinet.fortimanager.fmgr_system_externalresource_dynamicmapping - System external resource dynamic mapping
+- fortinet.fortimanager.fmgr_system_npu_icmperrorratectrl - Configure the rate of ICMP errors generated by this FortiGate, which is achieved by token bucket algorithm.
+- fortinet.fortimanager.fmgr_vpn_qkd - Configure Quantum Key Distribution servers
+- fortinet.fortimanager.fmgr_wanprof_system_sdwan_healthcheckfortiguard - SD-WAN status checking or health checking.
+- fortinet.fortimanager.fmgr_wanprof_system_sdwan_healthcheckfortiguard_sla - Service level agreement
+- fortinet.fortimanager.fmgr_webfilter_profile_ftgdwf_risk - FortiGuard risk level settings.
+- fortinet.fortimanager.fmgr_webproxy_isolatorserver - Configure forward-server addresses.
+- fortinet.fortimanager.fmgr_ztna_trafficforwardproxy_quic - Ztna traffic forward proxy quic
+- fortinet.fortimanager.fmgr_ztna_trafficforwardproxy_sslciphersuites - Ztna traffic forward proxy ssl cipher suites
+- fortinet.fortimanager.fmgr_ztna_webproxy_apigateway6_quic - QUIC setting.
+- fortinet.fortimanager.fmgr_ztna_webproxy_apigateway_quic - QUIC setting.
+- fortinet.fortimanager.fmgr_ztna_webproxy_apigateway_sslciphersuites - SSL/TLS cipher suites to offer to a server, ordered by priority.
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Vsp
+^^^
+
+- hitachivantara.vspone_block.hv_gad_bulk - Manages batch GAD pairs on VSP block storage systems.
+- hitachivantara.vspone_block.hv_hg_bulk - Manages host groups in bulk on VSP block storage system with parallel processing.
+- hitachivantara.vspone_block.hv_iscsi_target_bulk - Manages iscsi targets in bulk mode on VSP block storage systems.
+- hitachivantara.vspone_block.hv_ldev_bulk - Manages multiple logical devices (LDEVs) in bulk on VSP block storage systems.
+- hitachivantara.vspone_block.hv_truecopy_bulk - Manages bulk TrueCopy pairs on VSP block storage systems.
+- hitachivantara.vspone_block.hv_vsp_one_gad - Manages GAD pairs on VSP One block storage systems.
+- hitachivantara.vspone_block.hv_vsp_one_gad_consistency_group - Manages GAD pairs in a consistency group on VSP One block storage systems.
+- hitachivantara.vspone_block.hv_vsp_one_gad_consistency_group_facts - Retrieves consistency group of GAD pairs from VSP One storage systems.
+- hitachivantara.vspone_block.hv_vsp_one_gad_facts - Retrieves GAD (Global\-Active Device) information from VSP One storage systems.
+
+Unchanged Collections
+---------------------
+
+- ansible.utils (still version 6.0.2)
+- ansible.windows (still version 3.5.0)
+- awx.awx (still version 24.6.1)
+- check_point.mgmt (still version 6.9.0)
+- chocolatey.chocolatey (still version 1.6.0)
+- cisco.aci (still version 2.13.0)
+- cisco.dnac (still version 6.48.0)
+- cisco.intersight (still version 2.18.0)
+- cisco.meraki (still version 2.23.2)
+- cisco.mso (still version 2.13.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.3)
+- community.aws (still version 10.1.0)
+- community.ciscosmb (still version 1.0.11)
+- community.clickhouse (still version 2.1.0)
+- community.docker (still version 5.2.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.2.0)
+- community.mongodb (still version 1.7.12)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxmox (still version 1.6.0)
+- community.rabbitmq (still version 1.6.0)
+- community.routeros (still version 3.20.0)
+- community.sap_libs (still version 1.7.0)
+- community.sops (still version 2.3.0)
+- community.vmware (still version 6.2.0)
+- community.windows (still version 3.1.0)
+- community.zabbix (still version 4.2.0)
+- cyberark.conjur (still version 1.3.9)
+- cyberark.pas (still version 1.0.39)
+- dellemc.enterprise_sonic (still version 3.2.0)
+- dellemc.openmanage (still version 10.0.2)
+- dellemc.powerflex (still version 3.0.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.39.0)
+- fortinet.fortios (still version 2.5.1)
+- google.cloud (still version 1.13.0)
+- hitachivantara.vspone_object (still version 1.1.1)
+- ibm.storage_virtualize (still version 3.3.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infinidat.infinibox (still version 1.6.3)
+- infoblox.nios_modules (still version 1.9.0)
+- inspur.ispim (still version 2.2.4)
+- junipernetworks.junos (still version 11.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubevirt.core (still version 2.2.4)
+- lowlydba.sqlserver (still version 2.8.1)
+- microsoft.ad (still version 1.10.0)
+- microsoft.iis (still version 1.1.0)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.storagegrid (still version 21.16.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- ngine_io.cloudstack (still version 3.0.0)
+- openstack.cloud (still version 2.5.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- purestorage.flasharray (still version 1.42.0)
+- purestorage.flashblade (still version 1.24.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.5.1)
+- theforeman.foreman (still version 5.11.0)
+- vmware.vmware (still version 2.8.0)
+- vmware.vmware_rest (still version 4.10.0)
+- vultr.cloud (still version 1.14.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.11)
+
 v13.6.0
 =======
 
