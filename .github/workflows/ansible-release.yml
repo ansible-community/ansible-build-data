@@ -171,19 +171,20 @@ jobs:
           IGNORE_VERSION_REGRESSIONS: ${{ inputs.ignore-version-regressions }}
           ACTOR: "${{ github.actor }}"
         run: |
-          body="$(echo -e "${CI_COMMIT_MESSAGE}\nRelease artifacts: <${ARTIFACT_URL}>\n")"
+          body="./pr-body"
+          echo -e "${CI_COMMIT_MESSAGE}\nRelease artifacts: <${ARTIFACT_URL}>\n" >>$body
           if [ "${IGNORE_FEATURE_FREEZE}" = "true" ]; then
-            body+="$(echo -e "- This release was created with \`ignore-feature-freeze\`.")"
+            echo -e '- This release was created with `ignore-feature-freeze`.' >>$body
           fi
           if [ "${IGNORE_VERSION_REGRESSIONS}" = "true" ]; then
-            body+="$(echo -e "- This release was created with \`ignore-version-regressions\`.")"
+            echo -e '- This release was created with `ignore-version-regressions`.' >>$body
           fi
           echo -n "pr_url=" >> "${GITHUB_OUTPUT}"
           gh pr create \
           --base main \
           --head "${ANSIBLE_BRANCH_NAME}" \
           --title "Release Ansible ${ANSIBLE_VERSION}" \
-          --body "${body}" \
+          --body-file "${body}" \
           --assignee "${ACTOR}" \
           | tee -a "$GITHUB_OUTPUT"
 
