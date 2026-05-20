@@ -29,6 +29,10 @@ name: Release Ansible package
           Only set this in special circumstances!
         type: boolean
         default: false
+      ignore-version-regressions:
+        description: Whether to ignore version regressions
+        type: boolean
+        default: false
       existing-branch:
         description: >-
           If provided, assumes that a branch of this name exists in the ansible-build-data
@@ -130,6 +134,7 @@ jobs:
           PRESERVE_DEPS: ${{ inputs.preserve-deps }}
           ALLOW_RESET_BUILD_DEPS: ${{ inputs.allow-reset-build-deps }}
           IGNORE_FEATURE_FREEZE: ${{ inputs.ignore-feature-freeze }}
+          IGNORE_VERSION_REGRESSIONS: ${{ inputs.ignore-version-regressions }}
           # Make result better readable
           ANSIBLE_CALLBACK_RESULT_FORMAT: yaml
         run: >-
@@ -139,6 +144,7 @@ jobs:
           -e "antsibull_ansible_version=${ANSIBLE_VERSION}"
           -e "antsibull_preserve_deps=${PRESERVE_DEPS}"
           -e "antsibull_ignore_feature_freeze=${IGNORE_FEATURE_FREEZE}"
+          -e "antsibull_ignore_version_regressions=${IGNORE_VERSION_REGRESSIONS}"
 
       - name: Upload artifact
         uses: actions/upload-artifact@v7
