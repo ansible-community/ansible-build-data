@@ -1,2 +1,4 @@
 # cyberark.pas 1.0.40 is not tagged in https://github.com/cyberark/ansible-security-automation-collection
 cyberark.pas: <1.0.40
+# community.mysql 5.0.x is incompatible with ansible.mysql 5.x.y
+community.mysql: <5.0.0
