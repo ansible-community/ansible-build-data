@@ -101,10 +101,10 @@ collections:
   community.mysql:
     repository: https://github.com/ansible-collections/community.mysql
     removal:
-      major_version: 16
+      major_version: 17
       reason: renamed
       new_name: ansible.mysql
-      redirect_replacement_major_version: 14
+      redirect_replacement_major_version: 15
       announce_version: 14.0.0b1
       discussion: https://forum.ansible.com/t/45798
   community.okd:
