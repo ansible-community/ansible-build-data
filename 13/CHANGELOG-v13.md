@@ -458,7 +458,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * The collection <code>community\.mysql</code> was renamed to <code>ansible\.mysql</code>\.
   For now both collections are included in Ansible\.
-  The content in <code>community\.mysql</code> will be replaced by deprecated redirects in Ansible 15\.0\.0\.
+  The content in <code>community\.mysql</code> will be replaced by deprecated redirects in Ansible 14\.0\.0\.
   The collection will be completely removed from Ansible 17\.
   Please update your FQCNs from <code>community\.mysql</code> to <code>ansible\.mysql</code> \([https\://forum\.ansible\.com/t/45798](https\://forum\.ansible\.com/t/45798)\)\.
 
