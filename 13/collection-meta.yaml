@@ -126,7 +126,7 @@ collections:
       major_version: 17
       reason: renamed
       new_name: ansible.mysql
-      redirect_replacement_major_version: 15
+      redirect_replacement_major_version: 14
       announce_version: 13.7.0
       discussion: https://forum.ansible.com/t/45798
   community.okd:
