@@ -36,4 +36,11 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_'
     release_date: '2026-05-22'
+  14.0.0rc1:
+    changes:
+      release_summary: 'Release Date: 2026-05-26
+
+
+        `Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_'
+    release_date: '2026-05-26'
 remove_collection_changelog_entries: {}

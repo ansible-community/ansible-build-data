@@ -7,6 +7,187 @@ This changelog describes changes since Ansible 13.0.0.
 .. contents::
   :depth: 2
 
+v14.0.0rc1
+==========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-05-26
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 14.0.0rc1 contains ansible-core version 2.21.0.
+This is the same version of ansible-core as in the previous Ansible release.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-------------------+------------------+-------------------+-------+
+| Collection        | Ansible 14.0.0b1 | Ansible 14.0.0rc1 | Notes |
++===================+==================+===================+=======+
+| community.general | 13.0.0           | 13.0.1            |       |
++-------------------+------------------+-------------------+-------+
+| community.mysql   | 4.3.0            | 5.0.2             |       |
++-------------------+------------------+-------------------+-------+
+
+Minor Changes
+-------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- homebrew_services - replace ``NamedTuple`` with dataclass (https://github.com/ansible-collections/community.general/pull/12094).
+- one_service - replace function-local ``namedtuple`` with module-level dataclass (https://github.com/ansible-collections/community.general/pull/12094).
+- one_vm - replace function-local ``namedtuple`` with module-level dataclass (https://github.com/ansible-collections/community.general/pull/12094).
+- opennebula inventory plugin - replace function-local ``namedtuple`` with module-level dataclass (https://github.com/ansible-collections/community.general/pull/12094).
+- pacman - replace ``namedtuple`` with dataclass for ``VersionTuple`` (https://github.com/ansible-collections/community.general/pull/12094).
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- All modules and plugins have been removed from this collection. They have been migrated to the `ansible.mysql <https://galaxy.ansible.com/ui/repo/published/ansible/mysql/>`_ collection. Redirections have been provided.
+  Please install ``ansible.mysql`` and adjust the FQCNs in your playbooks (``community.mysql.mysql_info`` → ``ansible.mysql.mysql_info``).
+
+Deprecated Features
+-------------------
+
+- The collection ``community.mysql`` was renamed to ``ansible.mysql``.
+  For now both collections are included in Ansible.
+  The content in ``community.mysql`` has been replaced by deprecated redirects in Ansible 14.0.0.
+  The collection will be completely removed from Ansible 17.
+  Please update your FQCNs from ``community.mysql`` to ``ansible.mysql`` (`https://forum.ansible.com/t/45798 <https://forum.ansible.com/t/45798>`__).
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- All modules and plugins have been removed from this collection. They have been migrated to the `ansible.mysql <https://galaxy.ansible.com/ui/repo/published/ansible/mysql/>`_ collection. Redirections have been provided.
+  Please install ``ansible.mysql`` and adjust the FQCNs in your playbooks (``community.mysql.mysql_info`` → ``ansible.mysql.mysql_info``).
+
+Bugfixes
+--------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- iptables_state - refactor code to avoid unnecessary unused variables and improve internal state handling (https://github.com/ansible-collections/community.general/pull/12093).
+- nmcli - fix check/diff reporting changes for bond ``arp_interval`` and ``arp_ip_target`` options when they are already configured (https://github.com/ansible-collections/community.general/issues/11588, https://github.com/ansible-collections/community.general/pull/12085).
+- nmcli - fix incorrectly reports diff for bond connections when ``mtu`` is unset and NetworkManager reports no explicit MTU value (https://github.com/ansible-collections/community.general/pull/12085).
+- snap - enforce ``snap refresh --hold`` after installing at a specific revision (https://github.com/ansible-collections/community.general/issues/12088, https://github.com/ansible-collections/community.general/pull/12097).
+
+community.mysql
+~~~~~~~~~~~~~~~
+
+- Add action_groups to meta/runtime.yml to ensure that if the community.mysql action group is used, it also applies to ansible.mysql's action group.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 11.3.0)
+- ansible.mysql (still version 5.0.1)
+- ansible.netcommon (still version 8.5.2)
+- ansible.posix (still version 2.2.0)
+- ansible.utils (still version 6.0.2)
+- ansible.windows (still version 3.5.0)
+- arista.eos (still version 12.1.1)
+- azure.azcollection (still version 3.18.0)
+- check_point.mgmt (still version 6.9.0)
+- chocolatey.chocolatey (still version 1.6.0)
+- cisco.aci (still version 2.13.0)
+- cisco.intersight (still version 2.18.0)
+- cisco.ios (still version 11.4.1)
+- cisco.iosxr (still version 12.3.1)
+- cisco.meraki (still version 2.23.2)
+- cisco.mso (still version 2.13.0)
+- cisco.nxos (still version 11.2.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.3)
+- community.aws (still version 11.0.0)
+- community.ciscosmb (still version 1.0.11)
+- community.clickhouse (still version 2.1.0)
+- community.crypto (still version 3.2.1)
+- community.dns (still version 4.0.0)
+- community.docker (still version 5.2.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.7.2)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.2.0)
+- community.mongodb (still version 1.7.12)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxmox (still version 2.0.0)
+- community.proxysql (still version 1.8.0)
+- community.rabbitmq (still version 1.6.0)
+- community.routeros (still version 3.20.0)
+- community.sap_libs (still version 1.7.0)
+- community.sops (still version 2.3.0)
+- community.vmware (still version 6.2.0)
+- community.windows (still version 3.1.0)
+- community.zabbix (still version 4.2.0)
+- containers.podman (still version 1.20.1)
+- cyberark.conjur (still version 1.3.9)
+- cyberark.pas (still version 1.0.39)
+- dellemc.enterprise_sonic (still version 4.1.0)
+- dellemc.openmanage (still version 10.0.2)
+- dellemc.powerflex (still version 3.0.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.41.0)
+- fortinet.fortimanager (still version 2.14.0)
+- fortinet.fortios (still version 2.5.1)
+- google.cloud (still version 1.13.0)
+- grafana.grafana (still version 6.1.0)
+- graphiant.naas (still version 26.4.0)
+- hetzner.hcloud (still version 6.9.0)
+- hitachivantara.vspone_block (still version 4.8.1)
+- hitachivantara.vspone_object (still version 1.1.1)
+- ibm.storage_virtualize (still version 3.3.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infinidat.infinibox (still version 1.6.3)
+- infoblox.nios_modules (still version 1.9.0)
+- inspur.ispim (still version 2.2.4)
+- kaytus.ksmanage (still version 4.0.0)
+- kubernetes.core (still version 6.4.0)
+- kubevirt.core (still version 2.2.4)
+- lowlydba.sqlserver (still version 2.8.1)
+- microsoft.ad (still version 1.10.0)
+- microsoft.iis (still version 1.1.0)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.5.0)
+- netapp.storagegrid (still version 21.16.0)
+- netapp_eseries.santricity (still version 2.0.1)
+- netbox.netbox (still version 3.23.0)
+- ngine_io.cloudstack (still version 3.0.0)
+- openstack.cloud (still version 2.5.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- purestorage.flasharray (still version 1.42.0)
+- purestorage.flashblade (still version 1.24.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 6.0.0)
+- telekom_mms.icinga_director (still version 2.5.1)
+- theforeman.foreman (still version 5.11.0)
+- vmware.vmware (still version 2.8.0)
+- vmware.vmware_rest (still version 4.10.0)
+- vultr.cloud (still version 1.14.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.11)
+
 v14.0.0b1
 =========
 
@@ -857,12 +1038,6 @@ netbox.netbox
 
 Deprecated Features
 -------------------
-
-- The collection ``community.mysql`` was renamed to ``ansible.mysql``.
-  For now both collections are included in Ansible.
-  The content in ``community.mysql`` will be replaced by deprecated redirects in Ansible 15.0.0.
-  The collection will be completely removed from Ansible 17.
-  Please update your FQCNs from ``community.mysql`` to ``ansible.mysql`` (`https://forum.ansible.com/t/45798 <https://forum.ansible.com/t/45798>`__).
 
 arista.eos
 ~~~~~~~~~~
