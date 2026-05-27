@@ -196,7 +196,7 @@ collections:
     repository: https://github.com/grafana/grafana-ansible-collection
   graphiant.naas:
     repository: https://github.com/Graphiant-Inc/graphiant-playbooks
-    collection-directory: "ansible_collections/graphiant/naas"
+    collection-directory: "./ansible_collections/graphiant/naas"
   hetzner.hcloud:
     repository: https://github.com/ansible-collections/hetzner.hcloud
   hitachivantara.vspone_block:
