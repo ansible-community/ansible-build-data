@@ -228,6 +228,7 @@ grafana.grafana:
   tag: 6.1.0
   version: 6.1.0
 graphiant.naas:
+  collection_directory: ./ansible_collections/graphiant/naas
   repository: https://github.com/Graphiant-Inc/graphiant-playbooks
   tag: v26.4.0
   version: 26.4.0
