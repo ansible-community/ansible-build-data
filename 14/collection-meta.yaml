@@ -152,6 +152,15 @@ collections:
     repository: https://github.com/cyberark/ansible-conjur-collection
   cyberark.pas:
     repository: https://github.com/cyberark/ansible-security-automation-collection
+    removal:
+      announce_version: 14.0.0
+      reason: guidelines-violation
+      reason_text: >-
+        The collection has violated the inclusion requirements multiple times,
+        including those surrounding repository management.
+        The collection maintainers did not respond to the latest violation report.
+      discussion: https://forum.ansible.com/t/45816
+      major_version: 15
   dellemc.enterprise_sonic:
     maintainers:
       - javeedf
