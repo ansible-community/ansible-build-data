@@ -7,6 +7,674 @@ This changelog describes changes since Ansible 12.0.0.
 .. contents::
   :depth: 2
 
+v13.8.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-06-18
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 13.8.0 contains ansible-core version 2.20.7.
+This is a newer version than version 2.20.6 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Collection                   | Ansible 13.7.0 | Ansible 13.8.0 | Notes                                                                                                                                                                                                           |
++==============================+================+================+=================================================================================================================================================================================================================+
+| amazon.aws                   | 10.3.1         | 10.3.2         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ansible.netcommon            | 8.5.2          | 8.5.3          |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ansible.utils                | 6.0.2          | 6.0.3          |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ansible.windows              | 3.5.0          | 3.6.1          |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| arista.eos                   | 12.1.1         | 12.1.2         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| azure.azcollection           | 3.18.0         | 3.19.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                    |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight             | 2.18.0         | 2.19.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                    |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios                    | 11.4.1         | 11.4.2         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.iosxr                  | 12.3.1         | 12.3.2         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki                 | 2.23.2         | 2.24.0         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.aws                | 10.1.0         | 10.1.1         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.ciscosmb           | 1.0.11         | 1.0.12         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.clickhouse         | 2.1.0          | 2.2.0          |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto             | 3.2.1          | 3.2.2          |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.dns                | 3.5.5          | 3.5.6          |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.docker             | 5.2.0          | 5.2.1          |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.general            | 12.6.1         | 12.6.2         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros           | 3.20.0         | 3.21.0         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.sops               | 2.3.0          | 2.4.0          |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.windows            | 3.1.0          | 3.2.0          |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman            | 1.20.1         | 1.20.2         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.conjur              | 1.3.9          | 1.3.12         | You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`__. |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules        | 1.39.0         | 1.42.0         | The collection did not have a changelog in this version.                                                                                                                                                        |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| graphiant.naas               | 26.4.0         | 26.5.0         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| hetzner.hcloud               | 6.9.0          | 6.10.0         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| hitachivantara.vspone_block  | 4.8.1          | 4.8.2          |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| hitachivantara.vspone_object | 1.1.1          | 1.2.0          |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| infinidat.infinibox          | 1.6.3          | 1.8.1          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                    |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| kubevirt.core                | 2.2.4          | 2.3.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                    |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| microsoft.ad                 | 1.10.0         | 1.11.0         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| microsoft.iis                | 1.1.0          | 1.2.0          |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| openstack.cloud              | 2.5.0          | 2.6.0          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                    |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade       | 1.24.0         | 1.25.1         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware                | 2.8.0          | 2.9.0          |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware_rest           | 4.10.0         | 4.11.0         |                                                                                                                                                                                                                 |
++------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+community.clickhouse
+~~~~~~~~~~~~~~~~~~~~
+
+- clickhouse_named_collection - new module to add/modify/delete named collections in database.
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- Update minimum required ansible-core version to 2.16 in meta/runtime.yml
+
+Minor Changes
+-------------
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- win_dhcp_lease - add support for computername parameter.
+- win_ping - Added support for running on non-Windows targets
+- win_powershell - Added support for running on non-Windows targets
+- win_powershell - Allow sensitive_parameters entries with neither ``value`` nor ``username``/``password`` specified, passing ``$null`` as the parameter value instead of an empty SecureString.
+- win_tempfile - Added support for running on non-Windows targets
+- win_tempfile - Changed the default for ``path`` to be ``None`` rather than ``%TEMP%``. The module will instead use the result of ``[System.IO.Path]::GetTempPath()`` to determine the temporary directory to use which on Windows will typically be the same as ``%TEMP%``.
+- windows - Validated that the collection works correctly with Python 3.12 (https://issues.redhat.com/browse/ACA-5197).
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- devices_camera_clip_info - Added new plugin to retrieve camera clip information.
+- networks_appliance_uplinks_nat - Added new plugin to manage appliance uplink NAT settings.
+- organizations_api_rest_provisioning_pipelines_jobs_info - Added new plugin to retrieve REST API provisioning pipeline job information.
+- organizations_api_rest_provisioning_pipelines_jobs_overviews_by_pipeline_info - Added new plugin.
+- organizations_appliance_uplinks_nat_by_network_info - Added new plugin.
+- organizations_policies_global_firewall_application_categories_info - Added new plugin.
+- organizations_policies_global_firewall_rulesets - Added new plugin to manage global firewall rulesets.
+- organizations_policies_global_firewall_rulesets_info - Added new plugin.
+- organizations_policies_global_firewall_rulesets_rules - Added new plugin.
+- organizations_policies_global_firewall_rulesets_rules_info - Added new plugin.
+- organizations_policies_global_group_policies - Added new plugin to manage global group policies.
+- organizations_policies_global_group_policies_adaptive_policy_groups_assign - Added new plugin.
+- organizations_policies_global_group_policies_adaptive_policy_groups_assignments_info - Added new plugin.
+- organizations_policies_global_group_policies_adaptive_policy_groups_remove - Added new plugin.
+- organizations_policies_global_group_policies_appliance_vlans_assign - Added new plugin.
+- organizations_policies_global_group_policies_appliance_vlans_assignments_by_vlan_info - Added new plugin.
+- organizations_policies_global_group_policies_appliance_vlans_assignments_info - Added new plugin.
+- organizations_policies_global_group_policies_appliance_vlans_remove - Added new plugin.
+- organizations_policies_global_group_policies_firewall_rulesets_assignments - Added new plugin.
+- organizations_policies_global_group_policies_firewall_rulesets_assignments_info - Added new plugin.
+- organizations_policies_global_group_policies_info - Added new plugin to retrieve global group policies.
+- organizations_sase_connectors_batch_create - Added new plugin to batch create SASE connectors.
+- organizations_sase_connectors_batch_delete - Added new plugin to batch delete SASE connectors.
+- organizations_sase_connectors_info - Added new plugin to retrieve SASE connector information.
+- organizations_sase_regions_info - Added new plugin to retrieve SASE region information.
+- organizations_sase_sites - Added new plugin to manage SASE sites.
+- organizations_sase_sites_attach - Added new plugin to attach networks to SASE sites.
+- organizations_sase_sites_connectivity_history_by_site_info - Added new plugin to retrieve SASE site connectivity history.
+- organizations_sase_sites_connectivity_overview_info - Added new plugin to retrieve SASE site connectivity overview.
+- organizations_sase_sites_detach - Added new plugin to detach networks from SASE sites.
+- organizations_sase_sites_info - Added new plugin to retrieve SASE site information.
+
+community.ciscosmb
+~~~~~~~~~~~~~~~~~~
+
+- Solve CI doesn't satisfy ACP requirements
+- Update unit tests to use collection-local helpers instead of community.internal_test_tools, and make set_module_args compatible with current Ansible module argument serialization.
+
+community.clickhouse
+~~~~~~~~~~~~~~~~~~~~
+
+- Added warning about using unsupported server version.
+- Fetch server version only once during opening connection to a database.
+- Refactored user/role settings for better maintainability and improved idempotency. Since now settings option accepts both list(old) argument or dictionary(new). Profiles are moved to a separate option. (https://github.com/ansible-collections/community.clickhouse/pull/178).
+- clickhouse_client - Change how server errors are handled. Previously, error code 497 (ACCESS_DENIED / not enough privileges) was always treated as success with no way to disable this behavior. Old behavior is preserved by default. It is now possible to control which error codes are treated as success using the new ``success_on`` parameter (https://github.com/ansible-collections/community.clickhouse/issues/117).
+- clickhouse_db - support for changing database comment. Requires ClickHouse server version >= 25.8 (https://github.com/ansible-collections/community.clickhouse/issues/189).
+- clickhouse_named_collection - improve SQL injection protection with parameterized queries, identifier validation, and new `query_parameters` output.
+- clickhouse_role - added the ``profile`` argument to apply settings profiles to role (https://github.com/ansible-collections/community.clickhouse/pull/196).
+- clickhouse_user - added the ``profile`` argument to apply settings profiles to user (https://github.com/ansible-collections/community.clickhouse/pull/196).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info, api_modify - add support for the ``dhcp-agent-circuit-id``, ``dhcp-agent-remote-id``, ``dhcpv6-agent-circuit-id``, ``dhcpv6-agent-remote-id``, and ``dhcpv6-snooping`` parameters in the ``interface bridge`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/468).
+- api_info, api_modify - add support for the ``trusted-dhcpv6`` parameter in the ``interface bridge port`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/468).
+- api_info, api_modify - add the ``from-pool-policy`` field to the ``ipv6 address`` path for RouterOS 7.23 and newer (https://github.com/ansible-collections/community.routeros/pull/469).
+- api_info, api_modify - remove support for the deprecated ``add-dhcp-option82`` parameter in the ``interface bridge`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/468).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- Support OpenSuSE Tumbleweed (and probably also Leap) in the community.sops.install role. Right now only Tumbleweed is tested in CI, so support for Leap has not been verified (https://github.com/ansible-collections/community.sops/pull/299).
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- PowerShell 7 - Add initial support for running modules against PowerShell 7 interpreters. Support for PowerShell 7 varies across each module, see module documentation for more information.
+- win_unzip - Use ``tar.exe`` from ``%SystemRoot%\System32`` on Windows 10 build 17063 and later and Windows Server 2019 and later to extract tar-based archives (``.tar``, ``.tar.gz``/``.tgz``, ``.tar.bz2``/``.tbz2``, ``.tar.xz``/``.txz``) without requiring PSCX. On older systems where ``tar.exe`` is not available, PSCX remains the fallback. PSCX is still required for passwords, recursive extraction, and non-tar formats other than ``.zip``.
+- win_xml - add new option ``content`` to be able to return the content of nodes (https://github.com/ansible-collections/community.windows/issues/54).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- podman_quadlet - Add support for aliases for Quadlets
+
+graphiant.naas
+~~~~~~~~~~~~~~
+
+- Backbone operations: ``configure`` / ``deconfigure`` (orchestrate sites + tunnel-underlay phasing + per-device push), ``configure_core_to_core_interfaces`` / ``deconfigure_core_to_core_interfaces`` (with VLAN sub-interface support), ``configure_core_to_core_tunnel_interfaces`` / ``deconfigure_core_to_core_tunnel_interfaces``, ``configure_wan_circuits`` / ``deconfigure_wan_circuits``, ``configure_direct_peer_interfaces`` / ``deconfigure_direct_peer_interfaces``, ``configure_syslog_targets`` / ``deconfigure_syslog_targets``
+- Collection version bumped to 26.5.0
+- Deconfigure workflows are idempotent: parent and VLAN sub-interface existence checked via ``gsdk.get_device_info`` before issuing deletes; per-VRF ``syslogTargets`` existence checked against ``device.segments[*].syslog_targets[*].name``
+- Minimum ``graphiant-sdk`` raised to ``>= 26.5.0`` (see ``_version.py`` ``DEPENDENCIES``)
+- New ``backbone_interface_template.yaml`` Jinja2 template covering Core ``interface_type`` flavors: ``loopback``, ``core_to_core_link`` (with VLAN sub-interfaces + ``ospf`` block rendered to ``coreNeighbor``), ``core_to_core_ipsec_tunnel``, ``p2mp_tunnel``, ``isp_circuit``, ``direct_peer``, ``disabled``
+- New ``graphiant_backbone`` module and ``backbone_management.yml`` playbook for managing Graphiant Core (backbone) device configuration; samples ``sample_backbone_config.yaml`` and ``sample_backbone_direct_peer_config.yaml``
+- New ``graphiant_edge_services`` module and ``edge_services_management.yml`` playbook for Edge/Gateway DHCP subnets, DNS mode, LLDP, and local web server password; sample ``sample_edge_services.yaml``
+- New ``graphiant_macsec`` and ``graphiant_macsec_info`` modules and ``macsec_management.yml`` playbook for interface MACsec configuration and monitoring; sample ``sample_macsec.yaml``
+- New ``graphiant_prefix_port_list`` module and ``prefix_port_list_mangement.yml`` playbook for managing Prefix and Port Lists on Edge devices; sample ``sample_prefix_and_port_list.yaml``
+- ``BackboneManager`` registered on ``GraphiantConfig.backbone``; payloads build the ``core`` branch (counterpart to ``graphiant_interfaces`` on ``edge``). ``ConfigTemplates.render_backbone_interface()`` and ``ConfigUtils.device_backbone_interface()`` render the new template
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- load_balancer_info - Added the HTTP idle timeout property to the services return values (``hcloud_load_balancer_info[].services[].http.timeout_idle``).
+- load_balancer_service - Added the ``http.timeout_idle`` argument to configure the idle timeout in seconds for HTTP services.
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Added a new input parameter “force_create” in the “gad_bulk” module to allow GAD pair creation even when resources are locked, must be used only within the “resource_management_with_lock” module.
+- Added a new playbook “remote_replication_gad” in the resource_management_with_lock module.
+- Added a new state “forced_present” in the gad module to allow GAD pair creation even when resources are locked, must be used only within the “resource_management_with_lock” module.
+- Added support for SVOS 10.5.3 NVMe_FC management “nvm_subsystems” and “nvm_subsystem_facts”,( with the limitation that port configuration migration from FC to NVMe_FC) for VSP One BHE storage models.
+- Added support for input parameter wait_for_final_state for following module hv_snapshot.
+- Removed the input parameters “delete_mode” and “allow_volume_access_after_force_delete” from the “hv_vsp_one_gad” module.
+
+hitachivantara.vspone_object
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Added role `hv_vspone_object_certificate_upload_role` to upload certificate files from a folder to VSP One Object.
+- Added role `hv_vspone_object_kmip_server_role` to update HTTPS cipher strings for existing KMIP servers.
+- Added role `hv_vspone_object_license_role` to set serial number and upload a license file.
+- Added role `hv_vspone_object_storage_component_role` to activate storage components and retrieve components filtered by used capacity.
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- PowerShell 7 - Add initial support for running modules against PowerShell 7 interpreters. Support for PowerShell 7 varies across each module, see module documentation for more information.
+- microsoft.ad.ldap - Added new option ``domain_realm`` that can be used to set the Kerberos realm in the SRV lookup. This option provides a way to override the ``krb5.conf`` or avoid the requirement on Kerberos for the LDAP lookup entirely.
+
+microsoft.iis
+~~~~~~~~~~~~~
+
+- microsoft.iis.website - Add preload support for websites using the ``preload_enabled`` option
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- Add comprehensive testing infrastructure with pytest framework (#502)
+- Add comprehensive unit tests for purefb.py utilities (get_system, purefb_argument_spec)
+- Add coverage reporting with HTML and XML artifacts (#503)
+- Add coverage summary to GitHub Actions job output (#503)
+- Add pytest configuration and shared test fixtures (#502)
+- Add test requirements and directory structure (#502)
+- Add unit test execution to GitHub Actions CI workflow (#503)
+- Add unit tests for common module utilities (#502)
+- Add unit tests for purefb_eula module
+- Add unit tests for purefb_info module
+- Add unit tests for purefb_timeout module
+- Add unit tests for simple modules (purefb_bladename, purefb_timeout, purefb_eula)
+- Add unit tests for time_utils module with 100% coverage (#502)
+- Expand test coverage from 15% to improve code quality and prevent regressions
+- Removed multiple un-pythonic range iterations
+- Standardize all import checks of Pure SDK to use the same variable name
+- common - Add comprehensive docstrings to human_to_bytes, human_to_real, and get_local_tz functions (#494)
+- common - Add get_error_message() utility function for safe API error extraction (#496)
+- purefb - Add comprehensive docstrings to get_system and purefb_argument_spec functions (#494)
+- purefb_fs - Added ``realm`` parameter to support creating filesystems in realms (requires Purity//FB 4.6.1+)
+- purefb_info - Updated to use get_policies_all() method and added policy type breakdown to default output
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- cluster_drs_vm_overrides - add module to manage DRS VM override settings on vSphere clusters
+- cluster_drs_vm_overrides_info - add module to gather DRS VM override settings for a cluster
+- cluster_ha_vm_overrides - add module to manage HA VM override settings on vSphere clusters
+- cluster_ha_vm_overrides_info - add module to gather HA VM override settings for a cluster
+- inventory plugins - Improve how properties are gathered to decrease execution time (https://github.com/ansible-collections/vmware.vmware/issues/318).
+- key_provider_info - add module to gather information about key providers in vCenter
+- key_provider_native - add module to manage native key providers in vCenter
+- key_provider_standard - add module to manage standard key providers and KMS servers in vCenter
+- vm - Add enable_vtpm parameter to enable or disable virtual Trusted Platform Module (vTPM) on virtual machines.
+- vm_snapshot - Add a timeout parameter to define how long the module will wait for the task to finish (https://github.com/ansible-collections/vmware.vmware/issues/361).
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- Add support for ansible-core 2.21
+
+Deprecated Features
+-------------------
+
+- The cyberark.pas collection will be removed from Ansible 15 due to violations of the Ansible inclusion requirements.
+  The collection has violated the inclusion requirements multiple times, including those surrounding repository management. The collection maintainers did not respond to the latest violation report.
+  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/45816 <https://forum.ansible.com/t/45816>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install cyberark.pas``.
+
+community.clickhouse
+~~~~~~~~~~~~~~~~~~~~
+
+- clickhouse_user - ``password`` and ``type_password`` are deprecated and will be removed in ``community.clickhouse 3.0.0``, use the ``authentication`` instead.
+
+hetzner.hcloud
+~~~~~~~~~~~~~~
+
+- datacenter_info - The ``datacenter_info`` module is deprecated and will be removed after 1 Oct. 2026. Please use the ``location_info`` module instead.
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- turbo mode and the associated environment variable ``VMWARE_ENABLE_TURBO`` are deprecated and will be removed from ``vmware.vmware_rest`` 5.0.0 (https://github.com/ansible-collections/vmware.vmware_rest/pull/639).
+
+Security Fixes
+--------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-galaxy install - Ensure role requirements are passed as positional arguments to :command:`git clone`. Previously, a malicious role author could inject arbitrary git configuration in role dependencies. (CVE-2026-11332)
+
+graphiant.naas
+~~~~~~~~~~~~~~
+
+- Mask API keys in ``_SENSITIVE_LOG_KEYS`` (``device_config_common``) in ``gcsdk_client`` ``put_device_config`` / ``put_device_config_raw`` and ``show_validated_payload`` log output
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- module_utils sanitize_keys and remove_value functions now sort their input to ensure matching subsets are always obscured.
+
+amazon.aws
+~~~~~~~~~~
+
+- Add retry state for 404 in S3 waiters to avoid failure on s3 bucket 404 if bucket is not immediately visible (https://github.com/ansible-collections/amazon.aws/issues/2984#issuecomment-4603538914) (https://github.com/ansible-collections/amazon.aws/pull/2987)
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- memory cache plugin - Add missing ``_persistent`` attribute to ``CacheModule`` to fix ``'CacheModule' object has no attribute '_persistent'`` error with ansible-core 2.19+ when ``single_user_mode`` caching is enabled (https://github.com/ansible-collections/ansible.netcommon/issues/781).
+- network_cli - Fix ``proxy_command`` silently ignored with ``ssh_type=paramiko`` (https://github.com/ansible-collections/ansible.netcommon/issues/776).
+- vlan_parser - Fix ``IndexError`` when an empty list is passed as input by returning an empty list instead of crashing (https://github.com/ansible-collections/ansible.netcommon/issues/302).
+
+ansible.utils
+~~~~~~~~~~~~~
+
+- Fix update_fact to update a fact where a key in the referenced path contains a bracket.
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- setup - Fix admin checks to ensure facts that require administrator access actually run - https://github.com/ansible-collections/ansible.windows/issues/900
+- setup - Fix failure when attempting to retrieve ``ansible_processor_cores`` and ``ansible_processor_threads_per_core`` on a host without the required SMBIOS data. Admin users can still retrieve this through WMI but non-admin users will set these facts as null and avoid the lengthy timeout and failure.
+- win_dhcp_lease - Fix scope filtering when searching for existing leases or reservations: ensure the query is limited to the specified scope. This prevents ambiguity when the same MAC address exists in multiple scopes (e.g. a device with reservations in different scopes).
+- win_find - Fix depth and recursion logic that resulted in directories being skipped or depth being ignored - https://github.com/ansible-collections/ansible.windows/issues/839
+- win_reboot - Display warning if the reboot command returned ``A system shutdown is in progress. (1115)``. This can be triggered by a service external to Ansible triggers the shutdown and Ansible attempts to reboot by running ``shutdown.exe``.
+- win_stat / win_find - try/catch Access Denied when querying Win32_Share for share info. Non-admin users now get warning instead of failure. Fixes 809.
+
+arista.eos
+~~~~~~~~~~
+
+- eos_acls - Fix issue where ``state: replaced`` did not generate the ``standard`` keyword for standard ACLs (https://github.com/ansible-collections/arista.eos/issues/608).
+
+cisco.ios
+~~~~~~~~~
+
+- ios_acls - Fix incorrect CLI command generation for IPv6 ACL remarks. The module now correctly generates ``sequence N remark`` syntax for IPv6 instead of the IPv4-style ``N remark`` format. Negation also correctly uses ``no sequence N remark``.
+- plugins/modules/ios_user.py - Fix matching existing SSH keys in running configurations while allowing optional trailing whitespace  when using the purge_keys parameter.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- iosxr_ospfv2 - Enhanced max-metric router-lsa support with comprehensive configuration options (external-lsa, summary-lsa, on-startup with wait_for_bgp/wait_period, include-stub), added mutual exclusivity validation for conflicting parameters, corrected on_startup.wait_for_bgp parameter type from integer to boolean, and fixed idempotency across all states.
+
+community.aws
+~~~~~~~~~~~~~
+
+- autoscaling_policy - allow float type for ``step_adjustments`` ``lower_bound`` and ``upper_bound`` parameters (https://github.com/ansible-collections/community.aws/issues/2355)
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- gpg_fingerprint lookup plugin, gpg_fingerprint filter plugin - prevent GnuPG from unnecessarily starting gpg-agent (https://github.com/ansible-collections/community.crypto/issues/1026, https://github.com/ansible-collections/community.crypto/pull/1029).
+- openssh_* modules - prevent use of currently unsupported MLDSA private keys in the cryptography backend (https://github.com/ansible-collections/community.crypto/pull/1044).
+- openssl_pkcs12 - prevent use of MLDSA private keys, which are not supported by PKCS#12, or at least cryptography's implementation (https://github.com/ansible-collections/community.crypto/pull/1044).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_container_exec module, docker_api connection plugin - ensure that when a command is run in a container with stdin provided, that the actual response is closed and not a socket derived from it. The old behavior causes warnings to be shown on Python 3.13+ under certain conditions (https://github.com/ansible-collections/community.docker/issues/1247, https://github.com/ansible-collections/community.docker/pull/1260).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- aix_devices - fix ``chdev`` command failures being incorrectly reported as successful results, now properly fails the task when device attribute changes cannot be applied (https://github.com/ansible-collections/community.general/pull/12185).
+- composer - the ``--working-dir`` option is now always placed first on the command line, before the subcommand, to ensure consistent behavior across all composer commands (https://github.com/ansible-collections/community.general/issues/5204, https://github.com/ansible-collections/community.general/pull/12084).
+- composer - use file checksum to determine ``changed`` status when ``command=config``, instead of relying on the command return output. The module now compares SHA256 checksums of relevant configuration files (``composer.json``, ``auth.json``, or their global equivalents) before and after running the command (https://github.com/ansible-collections/community.general/pull/12084).
+- counter_enabled callback - fix missing output for looped tasks, including tasks using ``delegate_to`` (https://github.com/ansible-collections/community.general/issues/8187, https://github.com/ansible-collections/community.general/pull/12067).
+- dnf_config_manager - fix incompatibility with DNF5. The module was crashing on systems with DNF5 due to CLI changes since DNF4 (https://github.com/ansible-collections/community.general/issues/9127, https://github.com/ansible-collections/community.general/pull/12206).
+- filesystem - handle BusyBox ``blkid`` output to correctly detect existing filesystems on systems like Alpine Linux (https://github.com/ansible-collections/community.general/issues/7283, https://github.com/ansible-collections/community.general/pull/12235).
+- filetree lookup plugin - raise ``AnsibleLookupError`` when the ``exclude`` option contains an invalid regular expression instead of an uncaught ``re.error`` (https://github.com/ansible-collections/community.general/pull/12140).
+- htpasswd - fix ``hash_scheme`` aliases and Apache-compatible ``bcrypt`` hashes (https://github.com/ansible-collections/community.general/issues/6135, https://github.com/ansible-collections/community.general/pull/12123).
+- incus connection plugin - improve Windows PowerShell argv handling by stripping wrapper quotes from payload arguments for ``-enc``, ``-encodedcommand``, ``-command``, ``-c``, ``-file`` and ``-f`` (https://github.com/ansible-collections/community.general/issues/12161, https://github.com/ansible-collections/community.general/pull/12158).
+- incus connection plugin - return ``stdout``/``stderr`` as bytes instead of strings to restore compatibility with ansible-core 2.21 module execution (https://github.com/ansible-collections/community.general/issues/12161, https://github.com/ansible-collections/community.general/pull/12158).
+- java_cert - detect silent ``keytool`` failures by verifying the import outcome after the command exits with ``rc=0`` (https://github.com/ansible-collections/community.general/issues/6685, https://github.com/ansible-collections/community.general/pull/12238).
+- java_cert - fix ``NullPointerException`` when importing from a PKCS12 file with a password on Java 8 (https://github.com/ansible-collections/community.general/issues/3023, https://github.com/ansible-collections/community.general/pull/12151).
+- launchd - fix ``restarted`` and ``reloaded`` states always reporting ``changed=False`` (https://github.com/ansible-collections/community.general/issues/6199, https://github.com/ansible-collections/community.general/pull/12122).
+- lxc_container - fix ``create_script`` to accept a single tuple argument, resolving a ``TypeError`` that silently prevented ``container_command`` from being executed (https://github.com/ansible-collections/community.general/issues/11360, https://github.com/ansible-collections/community.general/pull/12106).
+- nmcli - fix check/diff reporting changes for bond ``arp_interval`` and ``arp_ip_target`` options when they are already configured (https://github.com/ansible-collections/community.general/issues/11588, https://github.com/ansible-collections/community.general/pull/12085).
+- nmcli - fix incorrectly reports diff for bond connections when ``mtu`` is unset and NetworkManager reports no explicit MTU value (https://github.com/ansible-collections/community.general/pull/12085).
+- opkg - correctly set executable search path (https://github.com/ansible-collections/community.general/pull/12182).
+- pamd - handle non-PAM lines such as authselect template directives without crashing (https://github.com/ansible-collections/community.general/issues/5850, https://github.com/ansible-collections/community.general/pull/12137).
+- parted - ignore MBR partition type codes (for example ``type=8e``) reported as flags by some parted builds (for example on SUSE), which cannot be managed via the ``set`` command (https://github.com/ansible-collections/community.general/issues/6292, https://github.com/ansible-collections/community.general/pull/12121).
+- portage - fix ``depclean: true`` crashing with ``AnsibleModule.fail_json() missing 1 required positional argument: 'msg'`` instead of reporting the actual emerge failure (https://github.com/ansible-collections/community.general/pull/12168).
+- redfish_config - fix ``KeyError: 'ret'`` when ``SetManagerNic`` cannot find a matching NIC (https://github.com/ansible-collections/community.general/issues/5892, https://github.com/ansible-collections/community.general/pull/12124).
+- udm_dns_record - normalize IPv6 addresses in ``data`` to expanded form to fix idempotency (https://github.com/ansible-collections/community.general/issues/317, https://github.com/ansible-collections/community.general/pull/12149).
+- unixy callback - handle missing ``ansible_host`` in delegated vars when a task is delegated to a host without it set, such as ``localhost`` (https://github.com/ansible-collections/community.general/issues/12112, https://github.com/ansible-collections/community.general/pull/12113).
+- xml - preserve DOCTYPE declaration when writing modified XML files (https://github.com/ansible-collections/community.general/issues/2762, https://github.com/ansible-collections/community.general/pull/12148).
+- zypper_repository - fix ``enabled``, ``autorefresh``, and ``gpgcheck`` module parameters being overridden by values read from a ``.repo`` file (https://github.com/ansible-collections/community.general/issues/8783, https://github.com/ansible-collections/community.general/pull/12022).
+
+community.windows
+~~~~~~~~~~~~~~~~~
+
+- win_psrepository_copy - handle profiles with no ProfileImagePath (https://github.com/ansible-collections/community.windows/issues/604).
+- win_pssession_configuration - Fix compatibility with Ansible 2.21.
+- win_pssession_configuration - Fix type errors for parameters passed in New-PSSessionConfigurationFile
+- win_regmerge - Ensure ``reg.exe`` uses the absolute location ``C:\Windows\Systme32\reg.exe``. This ensures that misconfigured hosts won't use a different executable.
+- win_unzip - Use ``-LiteralPath`` when calling PSCX ``Expand-Archive`` so paths containing PowerShell wildcard characters (e.g. ``[``, ``]``) are not glob-expanded and silently resolved to an empty array.
+- win_xml - allow users to preserve whitespace while updating XML file (https://github.com/ansible-collections/community.windows/issues/210).
+- win_xml - handle attribute removal correctly (https://github.com/ansible-collections/community.windows/issues/631).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- podman_image - Fix build ignoring arch option
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- Fix bug when creating a new AD object with an attribute set to an empty value. For example using ``allowed_to_retrieve_password: {set: []}`` on ``microsoft.ad.service_account`` will be treated like the value was not specified at all - https://github.com/ansible-collections/microsoft.ad/issues/229
+- Removed use of deprecated ``_encode_script`` function used by the internal reboot functionality of the AD plugins.
+- domain - Fix PowerShell 7 compatibility
+- domain_child - Fix PowerShell 7 compatibility
+- domain_controller - Fix PowerShell 7 compatibility
+- object_info - Fix PowerShell 7 compatibility when specified property does not match the same case as the property on the found AD object
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- common - Add remove_duplicates() utility function for list deduplication
+- common - Consolidate duplicate _findstr implementations to prevent UnboundLocalError
+- common - Remove deprecated time conversion functions (replaced by time_utils)
+- purefb - Fix unsafe res.errors[0].message access that could cause IndexError (#496)
+- purefb_ad - Correct encryption type from ``arcfour-hma`` to ``arcfour-hmac``
+- purefb_ad - Fix unsafe res.errors[0].message access that could cause IndexError (#497)
+- purefb_admin - Fix unsafe res.errors[0].message access that could cause IndexError (#497)
+- purefb_alert - Fix unsafe res.errors[0].message access that could cause IndexError (#497)
+- purefb_apiclient - Fix unsafe res.errors[0].message access that could cause IndexError (#497)
+- purefb_banner - Fix unsafe res.errors[0].message access that could cause IndexError (#497)
+- purefb_bladename - Fix unsafe res.errors[0].message access that could cause IndexError (#497)
+- purefb_bucket - Fix unsafe res.errors[0].message access that could cause IndexError (#497)
+- purefb_bucket - Fixed issue creating bucket with no versioning incorrectly failing
+- purefb_bucket - Fixed module.warn() calls to be compatible with Ansible 2.15+ by removing msg= parameter
+- purefb_bucket_access - Fix unsafe res.errors[0].message access that could cause IndexError (#497)
+- purefb_bucket_replica - Added safety checks for empty lists before accessing [0] index
+- purefb_bucket_replica - Added validation for missing target parameter when creating new replica links
+- purefb_bucket_replica - Check actual list length instead of unreliable total_item_count
+- purefb_bucket_replica - Fix unsafe res.errors[0].message access that could cause IndexError (#497)
+- purefb_bucket_replica - Fixed IndexError 'list index out of range' in get_connected() function
+- purefb_bucket_replica - Fixed iteration anti-pattern using range(len()) that could cause IndexError
+- purefb_certgrp - Fix unsafe res.errors[0].message access that could cause IndexError (#497)
+- purefb_certs - Corrects typos in the parameter name.
+- purefb_certs - Fix unsafe res.errors[0].message access that could cause IndexError (#498)
+- purefb_certs - Fixes certificate_type name from array to appliance
+- purefb_certs - Fixes issue where intermediate_certificate was not be applied to certificates.
+- purefb_certs - Removes immutable field certificate_type for the patch operation.
+- purefb_connect - Fix unsafe res.errors[0].message access that could cause IndexError (#498)
+- purefb_connect - Use unified time conversion from time_utils module
+- purefb_dns - Fix unsafe res.errors[0].message access that could cause IndexError (#498)
+- purefb_dns - Use remove_duplicates() from common instead of local remove() function
+- purefb_ds - Fix unsafe res.errors[0].message access that could cause IndexError (#498)
+- purefb_dsrole - Fix unsafe res.errors[0].message access that could cause IndexError (#498)
+- purefb_export - Fix unsafe res.errors[0].message access that could cause IndexError (#498)
+- purefb_fleet - Fix unsafe res.errors[0].message access that could cause IndexError (#498)
+- purefb_fs - Consolidated duplicate get_fs() function and fixed unsafe list access (#493)
+- purefb_fs - Fix unsafe res.errors[0].message access that could cause IndexError (#498)
+- purefb_fs - Fixed failure to apply policies to existing filesystems due to incorrect API check and non-existent patch method
+- purefb_fs - Fixed issue where NFS export policies were applied even when both nfsv3 and nfsv4 were disabled
+- purefb_fs - Fixed issue where SMB policies were applied even when smb parameter was set to false
+- purefb_fs_replica - Fix unsafe res.errors[0].message access that could cause IndexError (#498)
+- purefb_groupquota - Consolidated duplicate get_fs() function and fixed unsafe list access (#493)
+- purefb_groupquota - Fix unsafe res.errors[0].message access that could cause IndexError (#498)
+- purefb_hardware - Fix unsafe res.errors[0].message access that could cause IndexError (#499)
+- purefb_info - Fixed bucket AttributeError
+- purefb_info - Use unified time conversion from time_utils module
+- purefb_keytabs - Fix unsafe res.errors[0].message access that could cause IndexError (#499)
+- purefb_kmip - Fix unsafe res.errors[0].message access that could cause IndexError (#499)
+- purefb_lag - Fix unsafe res.errors[0].message access that could cause IndexError (#499)
+- purefb_lifecycle - Fix unsafe res.errors[0].message access that could cause IndexError (#499)
+- purefb_lifecycle - Use unified time conversion from time_utils module with proper None handling
+- purefb_messages - Fix unsafe res.errors[0].message access that could cause IndexError (#499)
+- purefb_network - Fix unsafe res.errors[0].message access that could cause IndexError (#499)
+- purefb_ntp - Fix unsafe res.errors[0].message access that could cause IndexError (#499)
+- purefb_ntp - Use remove_duplicates() from common instead of local remove() function
+- purefb_phonehome - Fix unsafe res.errors[0].message access that could cause IndexError (#499)
+- purefb_pingtrace - Fix unsafe res.errors[0].message access that could cause IndexError (#499)
+- purefb_policy - Fix UnboundLocalError when policy string is not found
+- purefb_policy - Fix unsafe res.errors[0].message access that could cause IndexError (#499)
+- purefb_policy - Fixed AttributeError with empty policy rules
+- purefb_policy - Use unified time conversion from time_utils module
+- purefb_proxy - Fix unsafe res.errors[0].message access that could cause IndexError (#500)
+- purefb_ra - Fix unsafe res.errors[0].message access that could cause IndexError (#500)
+- purefb_remote_cred - Fix unsafe res.errors[0].message access that could cause IndexError (#500)
+- purefb_s3acc - Fix unsafe res.errors[0].message access that could cause IndexError (#500)
+- purefb_s3user - Fix unsafe res.errors[0].message access that could cause IndexError (#500)
+- purefb_saml - Fix unsafe res.errors[0].message access that could cause IndexError (#500)
+- purefb_saml - Fixed typo in model name
+- purefb_server - Fix unsafe res.errors[0].message access that could cause IndexError (#500)
+- purefb_smtp - Fix unsafe res.errors[0].message access that could cause IndexError (#500)
+- purefb_snap - Consolidated duplicate get_fs() function and fixed unsafe list access (#493)
+- purefb_snap - Fix unsafe res.errors[0].message access that could cause IndexError (#500)
+- purefb_snmp_agent - Fix unsafe res.errors[0].message access that could cause IndexError (#500)
+- purefb_snmp_mgr - Fix unsafe res.errors[0].message access that could cause IndexError (#500)
+- purefb_subnet - Fix unsafe res.errors[0].message access that could cause IndexError (#500)
+- purefb_syslog - Fix unsafe res.errors[0].message access that could cause IndexError (#501)
+- purefb_target - Fix unsafe res.errors[0].message access that could cause IndexError (#501)
+- purefb_tz - Fix UnboundLocalError when timezone string is not found
+- purefb_tz - Fix unsafe res.errors[0].message access that could cause IndexError (#501)
+- purefb_user - Fix unsafe res.errors[0].message access that could cause IndexError (#501)
+- purefb_user - Fixed NameError by replacing deprecated AdminRole with ReferenceWritable when changing user roles
+- purefb_user - Use unified time conversion from time_utils module
+- purefb_userpolicy - Fix unsafe res.errors[0].message access that could cause IndexError (#501)
+- purefb_userquota - Consolidated duplicate get_fs() function and fixed unsafe list access (#493)
+- purefb_userquota - Fix unsafe res.errors[0].message access that could cause IndexError (#501)
+- time_utils - Add unified time conversion module with proper error handling and input validation
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- inventory plugins - Fix a bug where the customValue property was always gathered, even when not requested
+- module_utils/vmware_rest_client - correct python syntax and proxy url syntax.
+- tag_associations - Fix error when using the object_name parameter to lookup an object Fixes - https://github.com/ansible-collections/vmware.vmware/issues/315
+- vm - Fix incorrect parameter name in error when neither datastore nor datastore_cluster is provided for VM creation. Follow-up to https://github.com/ansible-collections/vmware.vmware/issues/334.
+- vm - Fix issue where datastore was always a required parameter for creating new vms. Fixes https://github.com/ansible-collections/vmware.vmware/issues/334
+- vm - correct O(delete_from_inventory) documentation for C(state=absent) to match module behavior. Fixes https://github.com/ansible-collections/vmware.vmware/issues/322
+- vm_snapshot_revert - search the snapshot tree fully to find a matching snapshot Fixes https://github.com/ansible-collections/vmware.vmware/issues/330
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- module_utils - Avoid importing cloud.common turbo exceptions unless turbo mode is explicitly enabled, preventing a cloud.common Ansible 2.20 support warning in module runs when turbo is off (https://github.com/ansible-collections/vmware.vmware_rest/issues/637).
+
+New Modules
+-----------
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- ansible.windows.win_capability - Manage Windows capabilities
+- ansible.windows.win_capability_info - Get information about Windows capabilities
+
+community.clickhouse
+~~~~~~~~~~~~~~~~~~~~
+
+- community.clickhouse.clickhouse_named_collection - Creates, removes or modify a ClickHouse named collection using the clickhouse\-driver Client interface
+- community.clickhouse.clickhouse_row_policy - Creates, removes or modify a ClickHouse row policy using the clickhouse\-driver Client interface
+- community.clickhouse.clickhouse_script - Run SQL queries from a file
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- microsoft.ad.cs_authority - Manage CA CRL Distribution Points and Authority Information Access
+- microsoft.ad.cs_template - Manage AD Certificate Services certificate templates
+- microsoft.ad.domain_trust - Manage Active Directory domain trusts
+- microsoft.ad.fs_claim_rule - Manage AD FS claim rules on a Relying Party Trust
+- microsoft.ad.fs_trust - Manage AD FS Relying Party Trusts
+- microsoft.ad.kds_root_key - Manages a KDS root key in a domain
+- microsoft.ad.kds_root_key_info - Gather information about one or more KDS root keys in a domain.
+- microsoft.ad.site - Manage Active Directory replication sites
+- microsoft.ad.site_link - Manage Active Directory replication site links
+- microsoft.ad.site_subnet - Manage Active Directory replication subnets
+
+purestorage.flashblade
+~~~~~~~~~~~~~~~~~~~~~~
+
+- purestorage.flashblade.purefb_export - Manage filesystem exports on Everpure FlashBlade`
+- purestorage.flashblade.purefb_realm - Manage realms on Everpure FlashBlades
+
+Unchanged Collections
+---------------------
+
+- ansible.mysql (still version 4.2.1)
+- ansible.posix (still version 2.2.0)
+- awx.awx (still version 24.6.1)
+- check_point.mgmt (still version 6.9.0)
+- chocolatey.chocolatey (still version 1.6.0)
+- cisco.aci (still version 2.13.0)
+- cisco.dnac (still version 6.48.0)
+- cisco.mso (still version 2.13.0)
+- cisco.nxos (still version 11.2.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.3)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.7.2)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.2.0)
+- community.mongodb (still version 1.7.12)
+- community.mysql (still version 4.2.1)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxmox (still version 1.6.0)
+- community.proxysql (still version 1.8.0)
+- community.rabbitmq (still version 1.6.0)
+- community.sap_libs (still version 1.7.0)
+- community.vmware (still version 6.2.0)
+- community.zabbix (still version 4.2.0)
+- cyberark.pas (still version 1.0.39)
+- dellemc.enterprise_sonic (still version 3.2.0)
+- dellemc.openmanage (still version 10.0.2)
+- dellemc.powerflex (still version 3.0.0)
+- dellemc.unity (still version 2.1.0)
+- fortinet.fortimanager (still version 2.14.0)
+- fortinet.fortios (still version 2.5.1)
+- google.cloud (still version 1.13.0)
+- grafana.grafana (still version 6.1.0)
+- ibm.storage_virtualize (still version 3.3.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infoblox.nios_modules (still version 1.9.0)
+- inspur.ispim (still version 2.2.4)
+- junipernetworks.junos (still version 11.0.0)
+- kaytus.ksmanage (still version 2.0.0)
+- kubernetes.core (still version 6.4.0)
+- lowlydba.sqlserver (still version 2.8.1)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.5.0)
+- netapp.storagegrid (still version 21.16.0)
+- netapp_eseries.santricity (still version 1.4.1)
+- netbox.netbox (still version 3.22.0)
+- ngine_io.cloudstack (still version 3.0.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- purestorage.flasharray (still version 1.42.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 4.0.0)
+- telekom_mms.icinga_director (still version 2.5.1)
+- theforeman.foreman (still version 5.11.0)
+- vultr.cloud (still version 1.14.0)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.11)
+
 v13.7.0
 =======
 
@@ -1024,7 +1692,9 @@ cisco.meraki
 ~~~~~~~~~~~~
 
 - devices_switch_ports - Fixed AttributeError crash in ``update()`` caused by ``get_object_by_name`` returning the full port list instead of ``None`` when no port matched by name. Added ``isinstance(prev_obj_name, dict)`` guard to prevent calling ``.get()`` on a list.
-- devices_switch_ports - Fixed idempotency regression where the module always reported ``changed`` due to ``serial`` (a path parameter absent from the API response) and ``portId`` (int/string type mismatch) being incorrectly included in the ``requires_update`` comparison.
+- devices_switch_ports - Fixed idempotency regression where the module always reported ``changed`` due to ``serial`` and ``portId`` being incorrectly included in the ``requires_update`` comparison.
+- networks_appliance_static_routes - Added new plugin.
+- networks_appliance_static_routes_info - Added new plugin.
 
 community.crypto
 ~~~~~~~~~~~~~~~~
