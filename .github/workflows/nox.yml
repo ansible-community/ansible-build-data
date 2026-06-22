@@ -37,7 +37,7 @@ jobs:
     name: "Run nox ${{ matrix.session }} session"
     steps:
       - name: Check out ansible-build-data
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: ansible-build-data
           persist-credentials: false

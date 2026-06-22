@@ -38,7 +38,7 @@ jobs:
 
     steps:
       - name: Check out antsibull-build
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ansible-community/antsibull-build
           ref: main
@@ -46,7 +46,7 @@ jobs:
           persist-credentials: false
 
       - name: Check out antsibull-core
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ansible-community/antsibull-core
           ref: main
@@ -54,7 +54,7 @@ jobs:
           persist-credentials: false
 
       - name: Check out antsibull-changelog
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ansible-community/antsibull-changelog
           ref: main
@@ -62,7 +62,7 @@ jobs:
           persist-credentials: false
 
       - name: Check out antsibull-docutils
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ansible-community/antsibull-docutils
           ref: main
@@ -70,7 +70,7 @@ jobs:
           persist-credentials: false
 
       - name: Check out antsibull-fileutils
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: ansible-community/antsibull-fileutils
           ref: main
@@ -82,7 +82,7 @@ jobs:
 
       # This is where the antsibull build-release role expects it by default
       - name: Check out ansible-build-data under antsibull build directory
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: antsibull-build/build/ansible-build-data
           persist-credentials: false
