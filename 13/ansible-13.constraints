@@ -18,3 +18,5 @@ community.mysql: <4.3.0
 # Potentially breaking change in changelog for 3.23.0
 # - This changes the behavior for generating slugs. If you were relying on the previous behavior, you need to be aware that this behavior has changed.
 netbox.netbox: <3.23.0
+# purestorage.flashblade 1.28.0 replaced all contents by redirects, and added a new dependency
+purestorage.flashblade: <1.28.0
