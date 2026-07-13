@@ -13,8 +13,6 @@ collections:
       - jillr
       - mandar242
       - viciousprimate
-  ansible.mariadb:
-    repository: https://github.com/ansible-collections/ansible.mariadb
   ansible.mysql:
     repository: https://github.com/ansible-collections/ansible.mysql
   ansible.netcommon:

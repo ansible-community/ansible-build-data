@@ -1,5 +1,4 @@
 amazon.aws
-ansible.mariadb
 ansible.mysql
 ansible.netcommon
 ansible.posix
