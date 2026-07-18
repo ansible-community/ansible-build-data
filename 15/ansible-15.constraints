@@ -1,2 +1,4 @@
 # purestorage.flashblade 1.28.0 replaced all contents by redirects, and added a new dependency
 purestorage.flashblade: <1.28.0
+# purestorage.flasharray 1.45.0 replaced all contents by redirects, and added a new dependency; also there is no corresponding tag
+purestorage.flasharray: <1.45.0
