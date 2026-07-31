@@ -6,3 +6,5 @@ cyberark.pas: <1.0.40
 purestorage.flashblade: <1.28.0
 # purestorage.flasharray 1.45.0 replaced all contents by redirects, and added a new dependency; also there is no corresponding tag
 purestorage.flasharray: <1.45.0
+# cyberark.conjur 1.3.13 is not tagged in https://github.com/cyberark/ansible-conjur-collection
+cyberark.conjur: <1.3.13
