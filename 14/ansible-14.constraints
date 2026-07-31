@@ -6,3 +6,5 @@ purestorage.flashblade: <1.28.0
 purestorage.flasharray: <1.45.0
 # ibm.storage_virtualize 3.4.0 is not tagged in the repository
 ibm.storage_virtualize: <3.4.0
+# cyberark.conjur 1.3.13 is not tagged in https://github.com/cyberark/ansible-conjur-collection
+cyberark.conjur: <1.3.13
