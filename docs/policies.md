@@ -422,7 +422,7 @@ In case of violations, the release manager must preform the following steps:
 
     Until this issue is fixed, ansible package releases will contain {OLD VERSION}, the previous version of this collection that was properly tagged. If the collection maintainers do not respond to this issue within a reasonable amount of time, the collection is subject to [Removal from ansible][2].
 
-    [2]: https://github.com/ansible-collections/overview/blob/main/removal_from_ansible.rst#collections-not-satisfying-the-collection-requirements
+    [2]: https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements
 
     ```
 
