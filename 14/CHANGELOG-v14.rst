@@ -7,6 +7,683 @@ This changelog describes changes since Ansible 13.0.0.
 .. contents::
   :depth: 2
 
+v14.3.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-08-11
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- ansible.mariadb (version 6.0.2)
+
+Ansible-core
+------------
+
+Ansible 14.3.0 contains ansible-core version 2.21.3.
+This is a newer version than version 2.21.2 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                  | Ansible 14.2.0 | Ansible 14.3.0 | Notes                                                                                                                        |
++=============================+================+================+==============================================================================================================================+
+| ansible.mariadb             |                | 6.0.2          | The collection was added to Ansible                                                                                          |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.mysql               | 5.1.0          | 5.2.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.netcommon           | 8.6.0          | 8.6.1          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.utils               | 6.0.3          | 6.1.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| arista.eos                  | 12.1.2         | 12.2.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| azure.azcollection          | 3.20.0         | 3.21.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight            | 2.20.0         | 2.21.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios                   | 11.4.2         | 11.5.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.iosxr                 | 12.3.2         | 12.4.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki                | 2.24.1         | 2.25.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns               | 4.0.2          | 4.1.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker            | 5.2.1          | 5.2.2          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general           | 13.2.0         | 13.3.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules       | 1.42.0         | 1.43.0         | The collection did not have a changelog in this version.                                                                     |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| google.cloud                | 1.13.0         | 1.14.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| graphiant.naas              | 26.6.0         | 26.7.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ibm.storage_virtualize      | 3.3.0          | 3.4.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| infinidat.infinibox         | 1.8.1          | 1.8.4          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap                | 23.5.0         | 23.6.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| telekom_mms.icinga_director | 2.5.1          | 2.6.1          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+ansible.mysql
+~~~~~~~~~~~~~
+
+- MariaDB support is deprecated and is scheduled for removal in version 6.0.0 of this collection. If you already use this collection with MariaDB, please install the `ansible.mariadb` collection from Ansible Galaxy and change FQCNs in tasks in your playbooks to use ansible.mariadb equivalents, for example, `ansible.mysql.mysql_info` -> `ansible.mariadb.mariadb_info`, etc. No other changes are needed. This collection was cloned to the `ansible.mariadb` collection to allow its contributors and maintainers to focus on MariaDB-related automation development. This `ansible.mysql` collection still supports MariaDB (only bugfixes and security fixes) until its release 6.0.0 (not earlier than mid 2027), then its support will be dropped!
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_cg_snapshot - AWS Lambda support added to the module.
+- na_ontap_cli_timeout - AWS Lambda support added to the module.
+- na_ontap_ems_config - AWS Lambda support added to the module.
+- na_ontap_ems_destination - AWS Lambda support added to the module.
+- na_ontap_ems_filter - AWS Lambda support added to the module.
+- na_ontap_fdsd - AWS Lambda support added to the module.
+- na_ontap_fdsp - AWS Lambda support added to the module.
+- na_ontap_fdspt - AWS Lambda support added to the module.
+- na_ontap_fdss - AWS Lambda support added to the module.
+- na_ontap_file_security_permissions_acl - AWS Lambda support added to the module.
+- na_ontap_fpolicy_event - AWS Lambda support added to the module.
+- na_ontap_fpolicy_ext_engine - AWS Lambda support added to the module.
+- na_ontap_fpolicy_policy - AWS Lambda support added to the module.
+- na_ontap_fpolicy_scope - AWS Lambda support added to the module.
+- na_ontap_fpolicy_status - AWS Lambda support added to the module.
+- na_ontap_kerberos_interface - AWS Lambda support added to the module.
+- na_ontap_kerberos_realm - AWS Lambda support added to the module.
+- na_ontap_login_messages - AWS Lambda support added to the module.
+- na_ontap_nvme_namespace - AWS Lambda support added to the module.
+- na_ontap_publickey - AWS Lambda support added to the module.
+- na_ontap_rest_cli - AWS Lambda support added to the module.
+- na_ontap_security_key_manager - AWS Lambda support added to the module.
+- na_ontap_security_ssh - AWS Lambda support added to the module.
+- na_ontap_snaplock_clock - AWS Lambda support added to the module.
+- na_ontap_unix_group - AWS Lambda support added to the module.
+- na_ontap_unix_user - AWS Lambda support added to the module.
+- na_ontap_user - AWS Lambda support added to the module.
+- na_ontap_user_role - AWS Lambda support added to the module.
+- na_ontap_vscan - AWS Lambda support added to the module.
+- na_ontap_vscan_on_access_policy - AWS Lambda support added to the module.
+- na_ontap_vscan_on_demand_task - AWS Lambda support added to the module.
+- na_ontap_vscan_scanner_pool - AWS Lambda support added to the module.
+- na_ontap_vserver_audit - AWS Lambda support added to the module.
+
+Minor Changes
+-------------
+
+ansible.mysql
+~~~~~~~~~~~~~
+
+- modules - add a warning to redirect users to use ansible.mariadb when a MariaDB server is detected (https://github.com/ansible-collections/ansible.mysql/issues/845).
+
+ansible.utils
+~~~~~~~~~~~~~
+
+- remove warning message about potential instability of ipaddr (it has been stable for years)
+
+arista.eos
+~~~~~~~~~~
+
+- Remediate deprecated ``warnings`` parameter in ``exit_json`` calls by using ``emit_warnings`` from ``ansible.netcommon`` across all arista.eos modules to address deprecation warning from ansible-core 2.23.
+- Remediate deprecated `ansible.module_utils.common._collections_compat` module and replaced with `collections.abc` from the Python standard library.
+- Updated all ``ConfigBase``-based resource modules (``eos_acl_interfaces``, ``eos_acls``, ``eos_interfaces``, ``eos_l2_interfaces``, ``eos_l3_interfaces``, ``eos_lacp``, ``eos_lacp_interfaces``, ``eos_lag_interfaces``, ``eos_lldp_global``, ``eos_lldp_interfaces``, ``eos_ospfv2``, ``eos_static_routes``, ``eos_vlans``) to emit warnings via ``AnsibleModule.warn()`` before calling ``exit_json``.
+- Updated all standalone modules (``eos_banner``, ``eos_command``, ``eos_config``, ``eos_eapi``, ``eos_facts``, ``eos_lldp``, ``eos_user``, ``eos_vrf``) to emit warnings via ``AnsibleModule.warn()`` before calling ``exit_json``.
+
+cisco.ios
+~~~~~~~~~
+
+- Remediate deprecated ``warnings`` parameter in ``exit_json`` calls by using ``emit_warnings`` from ``ansible.netcommon`` across cisco.ios modules to address deprecation warning from ansible-core 2.23.
+- Remove ``ansible.module_utils.six`` usage in favour of Python 3 builtins to prepare for ansible-core 2.24 removal.
+- Replace deprecated ``ansible.module_utils._text`` imports with ``ansible.module_utils.common.text.converters``.
+- Replace deprecated ``ansible.module_utils.common._collections_compat`` with ``collections.abc`` from the Python standard library.
+- Updated all ``ResourceModule``-based resource modules to emit warnings via ``AnsibleModule.warn()`` before calling ``exit_json``.
+- Updated standalone modules (``ios_banner``, ``ios_command``, ``ios_config``, ``ios_facts``, ``ios_ping``, ``ios_system``, ``ios_user``, ``ios_vrf``) to emit warnings via ``AnsibleModule.warn()`` before calling ``exit_json``.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- Fixed for iosxr_lldp_interfaces, iosxr_lldp_global, iosxr_lag_interfaces, iosxr_lacp_interfaces, iosxr_lacp, iosxr_l3_interfaces, iosxr_l2_interfaces, iosxr_interfaces, iosxr_acls, iosxr_static_routes, iosxr_ping, iosxr_banner, iosxr_config, iosxr_system, iosxr_command, iosxr_user, iosxr_netconf
+- For iosxr_vrf_interfaces, iosxr_vrf_global, iosxr_vrf_address_family, iosxr_snmp_server, iosxr_route_maps, iosxr_prefix_lists, iosxr_ospfv3, iosxr_ospfv2, iosxr_ospf_interfaces, iosxr_ntp_global, iosxr_logging_global, iosxr_hostname, iosxr_bgp_templates, iosxr_bgp_neighbor_address_family, iosxr_bgp_global, iosxr_bgp_address_family, iosxr_acl_interfaces modules, fix will be done via netcommon ResourceModule.result change (Upstream to iosxr)
+- No changes for fail_json since it uses msg format already, except for ping module where currently warning is not being set.
+- Remediate deprecated 'to_bytes' from 'ansible.module_utils._text' and replaced with ansible.module_utils.common.text.converters.
+- Remediate deprecated 'to_text' from 'ansible.module_utils._text' and replaced with ansible.module_utils.common.text.converters.
+- Remediate deprecated ``warnings`` parameter in ``exit_json`` calls by using ``AnsibleModule.warn()`` across all iosxr modules to address deprecation warning from ansible-core 2.23.
+- Remediate deprecated `ansible.module_utils.common._collections_compat` module and replaced with `collections.abc` from the Python standard library.
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- devices_appliance_interfaces_ports_update - Added new plugin to update appliance interface port settings on a device.
+- devices_appliance_performance_info - Updated documentation terminology from `MX` to `Secure Appliance or Secure Router`.
+- devices_appliance_uplinks_settings - Updated documentation terminology from `MX appliance` to `secure router or security appliance`.
+- devices_camera_clip_info - Clarified the `imagerId` parameter documentation for multi-imager cameras.
+- devices_cellular_geolocations - Added new plugin to update cellular geolocation settings on a device.
+- devices_cellular_uplinks_bands_masks_update - Added new plugin to update cellular uplink band masks on a device.
+- devices_live_tools_ports_cycle - Added new plugin to request a live port cycle on a device.
+- devices_live_tools_ports_cycle_info - Added new plugin to retrieve the results of a live port cycle request.
+- devices_live_tools_ports_status - Added new plugin to request live port status information for a device.
+- devices_live_tools_ports_status_info - Added new plugin to retrieve the results of a live port status request.
+- devices_live_tools_power_usage - Added new plugin to request live power usage information for a device.
+- devices_live_tools_power_usage_info - Added new plugin to retrieve the results of a live power usage request.
+- devices_live_tools_routing_table_lookups - Added new plugin to request a live routing table lookup on a device.
+- devices_live_tools_routing_table_lookups_info - Added new plugin to retrieve the results of a routing table lookup request.
+- devices_live_tools_routing_table_summaries - Added new plugin to request a live routing table summary on a device.
+- devices_live_tools_routing_table_summaries_info - Added new plugin to retrieve the results of a routing table summary request.
+- devices_switch_ports_cycle - Clarified that this module targets non-Catalyst MS devices; use devices_live_tools_ports_cycle for Catalyst support.
+- devices_switch_routing_interfaces - Added support for the new `mtu` parameter on switch routing interfaces.
+- networks_appliance_devices_redundancy - Added new plugin to manage appliance device redundancy settings.
+- networks_appliance_devices_redundancy_swap - Added new plugin to swap the primary and warm spare appliance in a redundant pair.
+- networks_appliance_firewall_l7_firewall_rules - Documented the `rules.value` shape per rule type, including the new allowedCountries/blockedCountries values and their backward-compatible whitelistedCountries/blacklistedCountries aliases.
+- networks_appliance_interfaces_l3 - Added new plugin to manage layer 3 appliance interfaces.
+- networks_appliance_ports - Added support for the new `sgt` (Security Group Tag) parameter.
+- networks_appliance_prefixes_delegated_statics - Clarified that the `interfaces` suboption is required when the prefix origin type is `internet`.
+- networks_appliance_umbrella_domains_exclusions - Added new plugin to manage Cisco Umbrella domain exclusions.
+- networks_appliance_umbrella_policies_add - Added new plugin to add Cisco Umbrella protection policies.
+- networks_appliance_umbrella_policies_remove - Added new plugin to remove Cisco Umbrella protection policies.
+- networks_appliance_umbrella_protection - Added new plugin to manage Cisco Umbrella protection settings.
+- networks_appliance_vlans - Added support for the new `sgt` (Security Group Tag) and `vrf` configuration options on VLANs.
+- networks_appliance_vpn_bgp - Clarified that the `asNumber` setting is only configurable for Auto VPN BGP networks.
+- networks_appliance_vpn_site_to_site_vpn - Added support for the new `sgt` (Security Group Tag) parameter for site-to-site VPN peers.
+- networks_camera_quality_retention_profiles - Added quality and retention support for additional camera models (MV14, MV24, MV34, MV44X, MV54N, MV64, MV74, MV94) and documented the new `axisVideoQuality` response field.
+- networks_devices_syslog_servers - Added new plugin to update network device syslog server settings.
+- networks_snmp - Added support for the new `authentication` and `privacy` SNMPv3 parameters.
+- networks_switch_settings - Added support for the new `portChannelFallback` parameter.
+- networks_switch_stacks - Added support for the new `members` parameter to manage switch stack membership.
+- networks_switch_stacks_routing_interfaces - Added support for the new `mtu` parameter on switch stack routing interfaces.
+- networks_syslog_servers - Documented that this plugin is deprecated in favor of networks_devices_syslog_servers.
+- networks_syslog_servers_info - Documented that this plugin is deprecated in favor of organizations_devices_syslog_servers_by_network_info.
+- networks_webhooks_http_servers - Documented the new built-in Push payload template (`wpt_00008`).
+- networks_wireless_rf_profiles - Added support for the new 320 MHz channel width option on the 6 GHz radio band.
+- networks_wireless_ssids - Added support for the new `security` parameter, including WPA3 encryption settings (`akms` and `ciphers`).
+- networks_wireless_ssids_info - Documented additional read-only SSID response fields, including `psk`, `dot11w`, `dot11r`, RADIUS server `id`/`radsecEnabled`, and the new `security` block.
+- networks_wireless_ssids_splash_settings - Added support for the new `userConsent` parameter (consent message and required flag).
+- organizations - Added support for the new `privacy` parameter.
+- organizations_api_rest_provisioning_pipelines_jobs_overviews_by_pipeline_info - Documented the new `byJobOperation` breakdown in the pipeline jobs overview response.
+- organizations_appliance_devices_interfaces_l3_info - Added new plugin to retrieve layer 3 appliance interfaces across an organization.
+- organizations_appliance_devices_interfaces_ports_by_device_info - Added new plugin to retrieve appliance interface ports by device across an organization.
+- organizations_appliance_devices_ports_transceivers_readings_history_by_device_info - Added new plugin to retrieve appliance port transceiver reading history by device.
+- organizations_appliance_devices_redundancy_by_network_info - Added new plugin to retrieve appliance device redundancy status by network.
+- organizations_appliance_interfaces_packets_overviews_by_device_info - Added new plugin to retrieve appliance interface packet overviews by device.
+- organizations_appliance_routing_vrfs_settings - Added new plugin to manage appliance VRF routing settings.
+- organizations_appliance_routing_vrfs_settings_info - Added new plugin to retrieve appliance VRF routing settings.
+- organizations_appliance_vpn_third_party_vpn_peers - Added the new umbrella_short_lived and secure IPsec policy presets, and documented the new BGP `receiveLimit` field.
+- organizations_assurance_alerts_dismiss - Clarified that missing or inaccessible alert IDs return a 404.
+- organizations_assurance_alerts_overview_by_type_info - Added the new `includeDeviceTags` and `includeNetworks` query parameters and documented the expanded alert overview response fields.
+- organizations_assurance_alerts_restore - Clarified that missing or inaccessible alert IDs return a 404.
+- organizations_devices_cellular_data_devices_info - Added new plugin to retrieve devices eligible for cellular data plans.
+- organizations_devices_cellular_data_profiles - Added new plugin to manage cellular data profiles.
+- organizations_devices_cellular_data_profiles_assignments_batch_create - Added new plugin to batch create cellular data profile assignments.
+- organizations_devices_cellular_data_profiles_assignments_bulk_delete - Added new plugin to bulk delete cellular data profile assignments.
+- organizations_devices_cellular_data_profiles_assignments_info - Added new plugin to retrieve cellular data profile assignments.
+- organizations_devices_cellular_data_profiles_info - Added new plugin to retrieve cellular data profiles.
+- organizations_devices_cellular_data_usage_by_device_info - Added new plugin to retrieve current cellular data usage by device.
+- organizations_devices_cellular_data_usage_history_by_device_by_interval_info - Added new plugin to retrieve historical cellular data usage by device and interval.
+- organizations_devices_cellular_geolocations_info - Added new plugin to retrieve the latest cellular geolocation for devices.
+- organizations_devices_cellular_uplinks_bands_by_device_info - Added new plugin to retrieve cellular uplink bands by device.
+- organizations_devices_cellular_uplinks_towers_by_device_info - Added new plugin to retrieve cellular uplink tower information by device.
+- organizations_devices_syslog_servers_by_network_info - Added new plugin to retrieve device syslog servers by network.
+- organizations_devices_syslog_servers_roles_by_network_info - Added new plugin to retrieve device syslog server roles by network.
+- organizations_inventory_orders_preview - Documented the new `resolution` field in the inventory order preview response.
+- organizations_login_security - Added support for the new `enforceLockedIpSessions` parameter.
+- organizations_policy_objects - Documented that the `ipAndMask` policy object type is deprecated in favor of `cidr`.
+- organizations_sase_integrations - Added new plugin to manage SASE integrations.
+- organizations_sase_integrations_info - Added new plugin to retrieve SASE integrations.
+
+community.dns
+~~~~~~~~~~~~~
+
+- hetzner_dns_record_info, hetzner_dns_record_set_info - if ``zone_name`` is provided together with ``record`` for the new JSON API, and ``what`` is not ``all_records``, also filter by prefix. This was already done if ``prefix`` had been specified (https://github.com/ansible-collections/community.dns/pull/340)."
+- unquote_txt filter plugin - a new ``lenient`` option allows to be more lenient when decoding TXT values. Right now this allows missing ending double quotation marks (https://github.com/ansible-collections/community.dns/pull/339).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- archive - add ``zstd`` as a format choice (https://github.com/ansible-collections/community.general/issues/3455, https://github.com/ansible-collections/community.general/pull/12497).
+- consul_kv - refactored KV store helpers into shared ``_ConsulModule`` methods to prepare for the ``consul_kv_info`` module (https://github.com/ansible-collections/community.general/pull/12515).
+- filesystem - print a warning if ``blkid -c`` probe fails and show the error message from ``blkid`` (https://github.com/ansible-collections/community.general/pull/12500).
+- gitlab_hook - add ``custom_webhook_template`` option to configure a custom webhook payload template on project hooks (https://github.com/ansible-collections/community.general/issues/11233, https://github.com/ansible-collections/community.general/pull/12496).
+- homebrew_tap - add ``trust`` option to control whether Homebrew trusts the tapped repositories (https://github.com/ansible-collections/community.general/issues/12220, https://github.com/ansible-collections/community.general/pull/12503).
+- ini_file - use named groups in the internal option-matching regular expressions (https://github.com/ansible-collections/community.general/pull/12493).
+- kopia_repository, kopia_repository_info - normalize handling of CLI parameters across all ``kopia_*`` modules (https://github.com/ansible-collections/community.general/pull/12360).
+- mail - add the ``inline`` option to embed images in the message body via ``Content-ID``, so an HTML body can reference them with ``cid:...`` instead of an external URL (https://github.com/ansible-collections/community.general/pull/12480).
+- maven_artifact - use Ansible construct to express the default value of parameter (https://github.com/ansible-collections/community.general/pull/12411).
+- one_vm - add ``update_attributes`` parameter to merge USER_TEMPLATE key/value pairs onto existing VMs via the ``one.vm.update`` API with append/merge semantics, enabling idempotent attribute updates on running VMs without teardown (https://github.com/ansible-collections/community.general/issues/12498, https://github.com/ansible-collections/community.general/pull/12536).
+- opennebula inventory plugin - add ``prefer_existing_ansible_host`` option to skip setting ``ansible_host`` when the host already has one from an earlier inventory source (https://github.com/ansible-collections/community.general/pull/12417).
+- opennebula inventory plugin - expose ``UNAME`` (VM owner) and ``GNAME`` (VM group) as host variables, enabling ``keyed_groups`` based on ownership (https://github.com/ansible-collections/community.general/pull/12417).
+- pacemaker_cluster - add support for unmaintenance state (https://github.com/ansible-collections/community.general/issues/12362, https://github.com/ansible-collections/community.general/pull/12364).
+- slack - add ``reply_broadcast`` option to allow a threaded reply (``thread_id``) to also be broadcast to the main channel (https://github.com/ansible-collections/community.general/pull/12535).
+
+google.cloud
+~~~~~~~~~~~~
+
+- gcp_alloydb_*, gcp_cloudbuild_*, gcp_colab_*, gcp_vertexai_* - update to use `plugins/module_utils/gcp_v2.py` (https://github.com/ansible-collections/google.cloud/pull/763)
+
+graphiant.naas
+~~~~~~~~~~~~~~
+
+- New ``graphiant_dhcp_relay`` module and ``dhcp_relay_interface_management.yml`` playbook for DHCP relay (IPv4/IPv6) on main interfaces and VLAN subinterfaces; sample ``sample_dhcp_relay_config.yaml``; operations ``configure`` / ``deconfigure``; idempotent comparison to live device relay server lists; interface/subinterface existence validation before push; deep merge when multiple VLAN subinterfaces on the same parent are configured in one run; full check mode and diff mode (``--check --diff`` returns accurate ``changed``, ``details.diff_plan``, and Ansible ``diff`` with per-interface relay server ``before``/``after`` under ``edge.interfaces``); integration tests in ``tests/test.py``
+- New ``graphiant_nat_policy`` module and ``nat_policy_management.yml`` playbook for device-level NAT policy rulesets (``edge.natPolicy.natRulesets``) and LAN segment ruleset attachments (``edge.segments.<name>.natRuleset``); sample ``sample_device_nat_policies.yaml``; operations ``configure`` / ``deconfigure`` / ``attach_to_lan_segments`` / ``detach_from_lan_segments``; idempotent comparison to live device state (reads ``natPolicyRulesets`` from GET response); ``state: absent`` on ruleset or rule entries (under ``configure``) to delete a single object without a full deconfigure; ``state: absent`` on segment entries (under ``attach_to_lan_segments``) to detach a segment from its ruleset; pre-flight safety check refuses to delete a ruleset still referenced by LAN segments with a clear error pointing to the detach path; absent no-op pruning skips payloads for rulesets/rules not present on the device; check mode (``--check``) bypasses the safety check and pruning so full deconfigure workflows can be previewed with ``--check --diff``; full diff mode with per-ruleset rule diffs under ``edge.natPolicy.natRulesets`` and per-segment diffs under ``edge.segments``; inline module params (``device``, ``natRulesets``, ``segments``) allow single-device and loop use without a config file; integration tests in ``tests/test.py``
+- New ``graphiant_ospfv2`` module and ``ospfv2_management.yml`` playbook for OSPFv2 process configuration under ``edge.segments.*.ospfv2`` (areas, interfaces, redistribution); sample ``sample_ospfv2.yaml``; operations ``configure`` / ``deconfigure``; LAN segment and interface existence validation against live device state before push; idempotent comparison to live device state; full check mode and diff mode (``--check --diff`` returns accurate ``changed``, ``details.diff_plan``, and Ansible ``diff`` with per-segment ``before``/``after``); integration tests in ``tests/test.py``, ``graphiant_ospfv2``: new ``vault_ospf_md5_passwords`` module param (configure only, ``no_log: true``) fills interface ``authentication.key`` from Ansible Vault (device name -> ``interfaceName``) when the YAML leaves it null; YAML value still wins when non-null
+- ``graphiant_bgp``: new BGP route aggregation support — ``bgp_aggregations`` list per segment entry in the config file; fields ``prefix`` (required), ``as_set`` (optional, default false), ``summary_only`` (optional, default false); aggregations and neighbors are independent — a segment may define either or both; ``state: present`` / ``operation: configure`` pushes ``bgpAggregations`` to ``edge.segments.<name>.bgpAggregations``; ``state: absent`` / ``operation: deconfigure`` nulls out listed aggregations alongside neighbors; ``detach_policies`` leaves aggregations untouched; ``sample_bgp_peering.yaml`` updated with aggregation examples
+- ``graphiant_data_exchange``: migrated ``create_services``, ``update_services``, customer create/get/edit/delete/summary, ``match_service_to_customers``, and ``accept_invitation`` from the peering-specific ``/v1/extranets-b2b-peering/*``/``/v1/extranets-b2b-general/*`` endpoints to the generic ``/v1/extranet/b2b/*`` API (``graphiant-sdk >= 26.7.0``), with check mode now validating payloads against real SDK request models. Sample config files document the API-aligned keys as primary — ``sites`` (was ``site``), ``invite.adminEmails`` (was ``invite.adminEmail``), ``natTranslationMode.peerToPeer.prefixes`` (was ``nat``, ``peering_service`` only) — with the old keys still accepted as backward-compatible aliases, including for ``accept_invitation``: its recommended config shape now mirrors the API payload directly (everything nests under a top-level ``policy`` key — ``policy.sites``, ``policy.consumerLanSegments``, ``policy.siteToSiteVpn``, ``policy.natTranslationMode``, ``policy.globalObjectOps``; ``routingPolicyTable`` stays a top-level sibling of ``policy``), while the old flat structure (top-level ``siteInformation``, ``policy`` as a list, ``nat``, ``siteToSiteVpn``) is auto-detected and translated internally — not a breaking change. See ``sample_data_exchange_acceptance.yaml`` for the recommended shape and ``sample_data_exchange_acceptance_legacy.yaml`` for the old shape and key mapping
+- ``graphiant_data_exchange``: new ``client_to_server`` service type for ``create_services`` / ``update_services`` / ``delete_services`` / ``match_service_to_customers`` / ``accept_invitation``, with per-edge NAT pools configured via ``policy.natTranslationMode`` (validated for NAT pool coverage, per-device prefix uniqueness, and CIDR alignment) and a new ``consumerPrefixes`` match key in place of ``peering_service``'s NAT translation; ``get_data_exchange_services_summary`` now lists both ``peering_service`` and ``client_to_server`` with a new ``Type`` column, fetched entirely via ``GET /v1/extranet/b2b/services/summary?serviceType=<type>`` (confirmed to cover both types) — the old ``/v1/extranets-b2b-general/services-summary`` endpoint is no longer called; samples ``sample_data_exchange_services_client_to_server.yaml``/``_update.yaml``, ``sample_data_exchange_matches_client_to_server.yaml``, and ``sample_data_exchange_acceptance_client_to_server.yaml``
+- ``graphiant_data_exchange``: new ``client_to_server`` service type for ``create_services`` / ``update_services`` / ``delete_services``, with per-edge NAT pools configured via ``policy.natTranslationMode`` and validation for NAT pool coverage, per-device prefix uniqueness, and CIDR alignment; ``get_data_exchange_services_summary`` now lists both ``peering_service`` and ``client_to_server`` with a new ``Type`` column; new ``/v1/extranet/b2b/*`` endpoints called via raw API requests pending ``graphiant-sdk`` bindings (migration planned for a follow-up MR); samples ``sample_data_exchange_services_client_to_server.yaml`` and ``_update.yaml``
+
+ibm.storage_virtualize
+~~~~~~~~~~~~~~~~~~~~~~
+
+- ibm_sv_manage_fcportsetmember - Added support for adding autozone-incapable port into autozone-capable portset.
+- ibm_sv_manage_snapshotpolicy - Added support for renaming snapshot policy.
+- ibm_svc_host - Added support for creating host using SAS protocol and automated storage rescans at known intervals.
+- ibm_svc_initial_setup - Added support for system-wide autozone prefix option.
+- ibm_svc_manage_portset - Added support for enabling autozoning functionality.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_ems_filter - Added support for rule deletion in REST.
+- na_ontap_user - added support for `amqp` application in user management.
+- na_ontap_volume - new REST only options added under `event_log` and `attack_detection_parameters`.
+- na_ontap_volume - updated docs for volume `type`.
+
+telekom_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- add support for managing and querying Icinga Director import sources, jobs, and sync rules (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/312)
+
+Deprecated Features
+-------------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- keycloak_authentication - the module is moved to ``middleware_automation.keycloak.keycloak_authentication``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_authentication_required_actions - the module is moved to ``middleware_automation.keycloak.keycloak_authentication_required_actions``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_authentication_v2 - the module is moved to ``middleware_automation.keycloak.keycloak_authentication_v2``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_authz_authorization_scope - the module is moved to ``middleware_automation.keycloak.keycloak_authz_authorization_scope``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_authz_custom_policy - the module is moved to ``middleware_automation.keycloak.keycloak_authz_custom_policy``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_authz_permission - the module is moved to ``middleware_automation.keycloak.keycloak_authz_permission``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_authz_permission_info - the module is moved to ``middleware_automation.keycloak.keycloak_authz_permission_info``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_client - the module is moved to ``middleware_automation.keycloak.keycloak_client``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_client_rolemapping - the module is moved to ``middleware_automation.keycloak.keycloak_client_rolemapping``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_client_rolescope - the module is moved to ``middleware_automation.keycloak.keycloak_client_rolescope``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_clientscope - the module is moved to ``middleware_automation.keycloak.keycloak_client_scope``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_clientscope_rolemappings - the module is moved to ``middleware_automation.keycloak.keycloak_client_scope_rolemappings``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_clientscope_type - the module is moved to ``middleware_automation.keycloak.keycloak_client_scope_type``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_clientsecret_info - the module is moved to ``middleware_automation.keycloak.keycloak_clientsecret_info``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_clientsecret_regenerate - the module is moved to ``middleware_automation.keycloak.keycloak_clientsecret_regenerate``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_clienttemplate - the module is moved to ``middleware_automation.keycloak.keycloak_clienttemplate``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_component - the module is moved to ``middleware_automation.keycloak.keycloak_component``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_component_info - the module is moved to ``middleware_automation.keycloak.keycloak_component_info``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_group - the module is moved to ``middleware_automation.keycloak.keycloak_group``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_identity_provider - the module is moved to ``middleware_automation.keycloak.keycloak_identity_provider``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_realm - the module is moved to ``middleware_automation.keycloak.keycloak_realm``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_realm_key - the module is moved to ``middleware_automation.keycloak.keycloak_realm_key``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_realm_keys_metadata_info - the module is moved to ``middleware_automation.keycloak.keycloak_realm_keys_metadata_info``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_realm_localization - the module is moved to ``middleware_automation.keycloak.keycloak_realm_localization``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_realm_rolemapping - the module is moved to ``middleware_automation.keycloak.keycloak_realm_rolemapping``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_role - the module is moved to ``middleware_automation.keycloak.keycloak_role``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_user - the module is moved to ``middleware_automation.keycloak.keycloak_user``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_user_execute_actions_email - the module is moved to ``middleware_automation.keycloak.keycloak_user_execute_actions_email``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_user_federation - the module is moved to ``middleware_automation.keycloak.keycloak_user_federation``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_user_rolemapping - the module is moved to ``middleware_automation.keycloak.keycloak_user_rolemapping``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+- keycloak_userprofile - the module is moved to ``middleware_automation.keycloak.keycloak_userprofile``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``middleware_automation.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12484).
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- Add deprecation status to the tree and oneline callback DOCUMENTATION. (https://github.com/ansible/ansible/issues/87020)
+- ansible-galaxy - Fix attempting to download the collection again if the response from the server is shorter than expected, instead of failing due to the mismatched artifact hash on the first attempt. (https://github.com/ansible/ansible/pull/86025)
+- ansible-test - Fix target filtering to preserve user-specified versions that are not in the completion configuration.
+- collection loader - Fix the collection loader logic to correctly return Python module when calling ``pkgutil.iter_modules`` with a package that is inside a collection path and contains compiled Python extension modules.
+- powershell exec_wrapper - fix handling when multiple pwsh executables match by selecting the first result (https://github.com/ansible/ansible/issues/87228).
+- rpm_key - ensure a trailing newline is present on PGP armor data before passing it to librpm for parsing, fixing failures on systems where ``pgpParsePkts`` requires it (https://github.com/ansible/ansible/issues/87303).
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- cli_config: Apply C(diff_ignore_lines) when comparing the before/after running-config snapshots on platforms that support neither onbox diff nor generate diff, so volatile configuration lines no longer cause C(changed=true) on every run (https://github.com/ansible-collections/ansible.netcommon/issues/156).
+- cli_config: Fail with a clear error instead of silently pushing configuration when the connection plugin's capabilities cannot be determined (for example due to a malformed or empty response), rather than treating that failure the same as a platform explicitly declaring no diff support (https://github.com/ansible-collections/ansible.netcommon/issues/156).
+- cli_config: Push configuration and detect changes by comparing running-config snapshots taken before and after the change, for platforms whose cliconf plugin supports neither onbox diff nor generate diff. Previously the configuration was silently never pushed to the device in this scenario (https://github.com/ansible-collections/ansible.netcommon/issues/156).
+
+arista.eos
+~~~~~~~~~~
+
+- eos_config - extend multiline eAPI block detection to include ``code`` and ``code unit`` (Routing Control Functions / RCF) in addition to ``banner``; also bypass ``NetworkConfig`` in config-replace mode which was dropping closing brace lines from RCF function bodies, causing EOS compilation failures (https://github.com/ansible-collections/arista.eos/issues/632).
+
+cisco.ios
+~~~~~~~~~
+
+- ios_acls - Fixed ACL option fields with multi-word names (e.g, any_options, stream_id , no_op) failing due to missing underscore to hyphen conversion and vice-versa in setval and getval respectively
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- bgp_global - Fixed neighbor shutdown state parsing to correctly handle 'no shutdown' command, ensuring proper idempotency when toggling neighbor shutdown state.
+- bgp_global - Removed stale `_build_key` function present in `_bgp_list_to_dict` within the config py file.
+
+cisco.meraki
+~~~~~~~~~~~~
+
+- Invocation parameter added to the result.
+- devices - Renamed `organization_id` to `organizationId` in the request object and dropped the `serial`/`organizationId` entries from the update-comparison logic.
+- devices_cellular_sims - Corrected the eSIM documentation, replacing the fixed reference to `sim3` with guidance to use the device's actual raw eSIM slot (e.g., sim2 or sim3).
+- devices_live_tools_leds_blink - Renamed `leds_blink_id` to `ledsBlinkId` and removed the `ledsBlinkId` entry from the update-comparison logic.
+- devices_live_tools_mac_table - Renamed `mac_table_id` to `macTableId` and removed it from the update-comparison logic.
+- devices_live_tools_multicast_routing - Fixed the internal `multicastRoutingId` key mapping (previously stored as `multicast_routing_id`) and removed it from the update-comparison logic.
+- devices_live_tools_ping - Removed the `id` entry from the update-comparison logic.
+- devices_live_tools_ping_device - Removed the `id` entry from the update-comparison logic.
+- devices_sensor_commands - Renamed `command_id` to `commandId` and removed the `commandId` entry from the update-comparison logic.
+- devices_switch_ports - Renamed `port_id` to `portId` and removed the `portId` entry from the update-comparison logic.
+- devices_switch_routing_interfaces - Removed the erroneous `interfaceId` entry from the update-comparison logic.
+- devices_switch_routing_interfaces_dhcp - Renamed `interface_id` to `interfaceId` and removed the `interfaceId` entry from the update-comparison logic.
+- devices_switch_routing_static_routes - Removed the `staticRouteId` entry from the update-comparison logic.
+- devices_wireless_bluetooth_settings - Fixed a malformed UUID in the module's EXAMPLES block.
+- devices_wireless_zigbee_enrollments - Fixed the internal `enrollmentId` key mapping (previously stored as `enrollment_id`) and removed it from the update-comparison logic.
+- networks_appliance_content_filtering_categories_info - Corrected the RETURN type from `dict` to `list`.
+- networks_appliance_firewall_cellular_firewall_rules_info - Corrected the RETURN type from `dict` to `list`.
+- networks_appliance_firewall_firewalled_services - Removed the `service` entry from the update-comparison logic.
+- networks_appliance_firewall_l3_firewall_rules_info - Corrected the RETURN type from `dict` to `list`.
+- networks_appliance_firewall_l7_firewall_rules_info - Corrected the RETURN type from `dict` to `list`.
+- networks_appliance_firewall_one_to_many_nat_rules_info - Corrected the RETURN type from `dict` to `list`.
+- networks_appliance_firewall_one_to_one_nat_rules_info - Corrected the RETURN type from `dict` to `list`.
+- networks_appliance_ports - Fixed the internal `portId` parameter key mapping (previously stored as `port_id`) and removed it from the update-comparison logic since it is a path identifier.
+- networks_appliance_prefixes_delegated_statics - Removed the `staticDelegatedPrefixId` entry from the update-comparison logic.
+- networks_appliance_ssids - Removed the `number` entry from the update-comparison logic.
+- networks_appliance_static_routes - Corrected the `gatewayVlanId` argument type from `str` to `int`, and removed the path-identifier `staticRouteId` field from the update-comparison logic.
+- networks_appliance_traffic_shaping_custom_performance_classes - Fixed the internal `customPerformanceClassId` key mapping and removed it from the update-comparison logic since it is a path identifier.
+- networks_appliance_vlans - Removed `vlanId` from the update-comparison logic since it is the path identifier, not a body field to compare.
+- networks_camera_wireless_profiles - Removed the `wirelessProfileId` entry from the update-comparison logic.
+- networks_clients_policy - Renamed `client_id` to `clientId` and removed the `clientId` entry from the update-comparison logic.
+- networks_clients_splash_authorization_status - Renamed `client_id` to `clientId` and removed the `clientId` entry from the update-comparison logic.
+- networks_firmware_upgrades_staged_groups - Removed the `groupId` entry from the update-comparison logic.
+- networks_floor_plans - Removed the `floorPlanId` entry from the update-comparison logic.
+- networks_group_policies - Removed the `groupPolicyId` entry from the update-comparison logic.
+- networks_meraki_auth_users - Removed the `merakiAuthUserId` entry from the update-comparison logic.
+- networks_sensor_alerts_profiles - Removed the `id` entry from the update-comparison logic.
+- networks_sensor_mqtt_brokers - Renamed `mqtt_broker_id` to `mqttBrokerId` and removed the `mqttBrokerId` entry from the update-comparison logic.
+- networks_sm_bypass_activation_lock_attempts - Fixed the internal `networkId`/`attemptId` key mapping and removed `attemptId` from the update-comparison logic.
+- networks_sm_target_groups - Removed the `targetGroupId` entry from the update-comparison logic.
+- networks_sm_user_access_devices_delete - Renamed `user_access_device_id` to `userAccessDeviceId` in the request object.
+- networks_switch_access_policies - Removed the `accessPolicyNumber` entry from the update-comparison logic.
+- networks_switch_dhcp_server_policy_arp_inspection_trusted_servers - Removed the `trustedServerId` entry from the update-comparison logic.
+- networks_switch_link_aggregations - Removed `linkAggregationId` from the update-comparison logic since it is a path identifier.
+- networks_switch_port_schedules - Removed the `portScheduleId` entry from the update-comparison logic.
+- networks_switch_qos_rules_order - Removed the `qosRuleId` entry from the update-comparison logic and deleted the line that force-overwrote `current_obj["networkId"]` before comparison.
+- networks_switch_routing_multicast_rendezvous_points - Removed the `rendezvousPointId` entry from the update-comparison logic.
+- networks_switch_stacks - Fixed `update()` so switch stack updates are now actually sent via updateNetworkSwitchStack instead of silently returning the unmodified previous object, and corrected a lowercase `switchstackid` key typo in `delete()`.
+- networks_switch_stacks_add - Renamed `switch_stack_id` to `switchStackId` in the request object.
+- networks_switch_stacks_remove - Renamed `switch_stack_id` to `switchStackId` in the request object.
+- networks_switch_stacks_routing_interfaces - Removed `switchStackId` and `interfaceId` from the update-comparison logic since they are path identifiers, not body fields.
+- networks_switch_stacks_routing_interfaces_dhcp - Fixed the internal `switchStackId`/`interfaceId` key mapping and removed them from the update-comparison logic.
+- networks_switch_stacks_routing_static_routes - Removed the `switchStackId` and `staticRouteId` entries from the update-comparison logic.
+- networks_traffic_shaping_application_categories_info - Corrected the RETURN type from `dict` to `list`.
+- networks_webhooks_http_servers - Removed the `httpServerId` entry from the update-comparison logic.
+- networks_webhooks_payload_templates - Fixed an invalid `headers` argument type declaration (`"['array', 'null']"` corrected to `list`) and removed the `payloadTemplateId` entry from the update-comparison logic.
+- networks_wireless_air_marshal_rules - Renamed `rule_id` to `ruleId` and removed the `ruleId` entry from the update-comparison logic.
+- networks_wireless_bluetooth_settings - Fixed a malformed UUID in the module's EXAMPLES block.
+- networks_wireless_ethernet_ports_profiles - Fixed the internal `networkId`/`profileId` key mapping and removed `profileId` from the update-comparison logic.
+- networks_wireless_location_scanning - Renamed `network_id` to `networkId` in the request object.
+- networks_wireless_rf_profiles - Removed the `rfProfileId` entry from the update-comparison logic.
+- networks_wireless_ssids - Corrected "RADSEC" casing to "RadSec" throughout the RADIUS accounting/authentication and RadSec tunnel documentation.
+- networks_wireless_ssids_bonjour_forwarding - Removed the `number` entry from the update-comparison logic.
+- networks_wireless_ssids_device_type_group_policies - Removed the `number` entry from the update-comparison logic.
+- networks_wireless_ssids_eap_override - Removed the `number` entry from the update-comparison logic.
+- networks_wireless_ssids_firewall_l3_firewall_rules - Removed the `number` entry from the update-comparison logic.
+- networks_wireless_ssids_firewall_l7_firewall_rules - Removed the `number` entry from the update-comparison logic.
+- networks_wireless_ssids_hotspot20 - Removed the `number` entry from the update-comparison logic.
+- networks_wireless_ssids_identity_psks - Removed the `number` and `identityPskId` entries from the update-comparison logic.
+- networks_wireless_ssids_schedules - Removed the `number` entry from the update-comparison logic.
+- networks_wireless_ssids_traffic_shaping_rules - Removed the `number` entry from the update-comparison logic.
+- networks_wireless_ssids_vpn - Removed the `number` entry from the update-comparison logic.
+- organizations - Removed `organizationId` from the update-comparison logic since it is a path identifier.
+- organizations_action_batches - Removed the `organizationId` and `actionBatchId` entries from the update-comparison logic.
+- organizations_adaptive_policy_acls - Removed the `aclId` entry from the update-comparison logic.
+- organizations_adaptive_policy_groups - Removed the `id` entry from the update-comparison logic.
+- organizations_adaptive_policy_policies - Removed the `id` entry from the update-comparison logic.
+- organizations_admins - Removed the `adminId` entry from the update-comparison logic.
+- organizations_alerts_profiles - Fixed the internal `organizationId`/`alertConfigId` key mapping and removed them from the update-comparison logic.
+- organizations_appliance_dns_local_profiles - Removed the `organizationId` and `profileId` entries from the update-comparison logic.
+- organizations_appliance_dns_local_records - Removed the `organizationId` and `recordId` entries from the update-comparison logic.
+- organizations_appliance_dns_split_profiles - Removed the `organizationId` and `profileId` entries from the update-comparison logic.
+- organizations_appliance_security_intrusion - Removed the `organizationId` entry from the update-comparison logic.
+- organizations_appliance_vpn_site_to_site_ipsec_peers_slas - Renamed `organization_id` to `organizationId` and removed the `organizationId` entry from the update-comparison logic.
+- organizations_appliance_vpn_third_party_vpn_peers - Removed the `organizationId` entry from the update-comparison logic.
+- organizations_appliance_vpn_vpn_firewall_rules - Removed the `organizationId` entry from the update-comparison logic.
+- organizations_branding_policies - Removed the `brandingPolicyId` entry from the update-comparison logic.
+- organizations_camera_custom_analytics_artifacts - Renamed `artifact_id` to `artifactId` and removed the `artifactId` entry from the update-comparison logic.
+- organizations_cellular_gateway_esims_inventory - Renamed `organization_id` to `organizationId` and removed the `id` entry from the update-comparison logic.
+- organizations_cellular_gateway_esims_service_providers_accounts - Fixed a duplicate `accountId` keyword argument that caused a Python syntax error and prevented the plugin from loading, and removed the redundant `id` entry from the update-comparison logic.
+- organizations_config_templates_switch_profiles_ports - Fixed the internal `configTemplateId`/`profileId`/`portId` key mapping and removed `profileId`/`portId` from the update-comparison logic.
+- organizations_devices_controller_migrations - Removed the `organizationId` entry from the update-comparison logic.
+- organizations_devices_packet_capture_captures - Fixed the internal `organizationId`/`captureId` key mapping and removed them from the update-comparison logic.
+- organizations_devices_packet_capture_captures_download_url_generate - Renamed `capture_id` to `captureId` in the request object.
+- organizations_devices_packet_capture_captures_stop - Renamed `capture_id` to `captureId` in the request object.
+- organizations_devices_packet_capture_schedules - Removed the `organizationId` and `scheduleId` entries from the update-comparison logic.
+- organizations_early_access_features_opt_ins - Removed the `optInId` entry from the update-comparison logic.
+- organizations_insight_monitored_media_servers - Removed `monitoredMediaServerId` from the update-comparison logic since it is a path identifier.
+- organizations_inventory_onboarding_cloud_monitoring_imports - Removed the `organizationId` entry from the update-comparison logic.
+- organizations_licenses - Fixed the internal `organizationId`/`licenseId` key mapping and removed them from the update-comparison logic.
+- organizations_networks_moves - Removed the `organizationId` entry from the update-comparison logic.
+- organizations_policies_global_firewall_rulesets - Removed the `organizationId` and `rulesetId` entries from the update-comparison logic.
+- organizations_policies_global_firewall_rulesets_rules - Removed the `organizationId` and `ruleId` entries from the update-comparison logic.
+- organizations_policies_global_group_policies - Removed the `organizationId` and `policyId` entries from the update-comparison logic.
+- organizations_policies_global_group_policies_firewall_rulesets_assignments - Removed the `organizationId` and `assignmentId` entries from the update-comparison logic.
+- organizations_policy_objects - Removed the `policyObjectId` entry from the update-comparison logic.
+- organizations_policy_objects_groups - Removed the `policyObjectGroupId` entry from the update-comparison logic.
+- organizations_saml_idps - Removed the `idpId` entry from the update-comparison logic.
+- organizations_saml_roles - Removed the `samlRoleId` entry from the update-comparison logic.
+- organizations_sase_sites - Fixed a duplicate `siteId` keyword argument in the request object that caused a Python syntax error and prevented the plugin from loading.
+- organizations_sm_admins_roles - Removed the `organizationId` entry from the update-comparison logic.
+- organizations_splash_assets - Fixed the internal `organizationId` key mapping and removed the erroneous `id` comparison from the update-comparison logic.
+- organizations_splash_themes - Removed the `id` entry from the update-comparison logic.
+- organizations_splash_themes_assets - Renamed `theme_identifier` to `themeIdentifier` in the request object.
+- organizations_switch_ports_by_switch_info - Corrected the RETURN type from `dict` to `list` to accurately reflect that the API returns one entry per switch.
+- organizations_webhooks_logs_info - Corrected the documented maximum lookback/timespan window from 90/31 days to the actual 30-day limit.
+- organizations_wireless_devices_provisioning_deployments - Removed the `organizationId` and `deploymentId` entries from the update-comparison logic.
+- organizations_wireless_devices_radsec_certificates_authorities - Corrected "RADSEC" casing to "RadSec" in the module description.
+- organizations_wireless_devices_radsec_certificates_authorities - Removed the `organizationId` entry from the update-comparison logic.
+- organizations_wireless_location_scanning_receivers - Removed the `organizationId` and `receiverId` entries from the update-comparison logic.
+- organizations_wireless_mqtt_settings - Renamed `organization_id` to `organizationId` and removed the `organizationId` entry from the update-comparison logic.
+- organizations_wireless_ssids_firewall_isolation_allowlist_entries - Removed the `organizationId` and `entryId` entries from the update-comparison logic.
+- organizations_wireless_zigbee_devices - Renamed `organization_id` to `organizationId` and removed the `organizationId` and `id` entries from the update-comparison logic.
+- organizations_wireless_zigbee_disenrollments - Fixed the internal `organizationId`/`disenrollmentId` key mapping and removed them from the update-comparison logic.
+- organizations_wireless_zigbee_door_locks - Fixed the internal `organizationId`/`doorLockId` key mapping and removed them from the update-comparison logic.
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+- various DNS modules - if ``zone_id`` was combined with an IDN ``prefix``, the prefix was not converted to punycode (https://github.com/ansible-collections/community.dns/pull/340).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- Handle empty 'docker compose images' stdout in case of errors (https://github.com/ansible-collections/community.docker/pull/1305).
+- docker_api connection plugin - the environment fallbacks for ``docker_host``, ``tls_hostname``, ``api_version``, ``timeout``, ``tls``, and ``validate_certs`` now finally work (https://github.com/ansible-collections/community.docker/issues/1298, https://github.com/ansible-collections/community.docker/pull/1299).
+- docker_containers inventory plugin - the environment fallbacks for ``docker_host``, ``tls_hostname``, ``api_version``, ``timeout``, ``tls``, and ``validate_certs`` now finally work (https://github.com/ansible-collections/community.docker/issues/1298, https://github.com/ansible-collections/community.docker/pull/1299).
+- docker_image, docker_image_pull, docker_container - also handle errors if only ``errorDetail`` is set, but not ``error``. The ``error`` field has been `deprecated in Moby apparently a very long time ago <https://github.com/moby/moby/commit/3043c2641990d94298c6377b7ef14709263a4709>`__ (https://github.com/ansible-collections/community.docker/pull/1302).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- apk - the ``upgrade`` operation no longer reports ``changed=true`` when nothing was upgraded but an apk commit hook (for example ``mrtest``, or anything installed in ``/etc/apk/commit_hooks.d/``) printed output before the trailing ``OK:`` summary line; the change status is now derived from the packages apk actually reports upgrading (https://github.com/ansible-collections/community.general/issues/12223, https://github.com/ansible-collections/community.general/pull/12376).
+- incus connection plugin - detect failed ``incus file push``/``incus file pull`` transfers and raise a clear error naming the instance and the CLI stderr, instead of silently reporting success and failing later with a misleading ``chmod: No such file or directory`` error (https://github.com/ansible-collections/community.general/pull/12464).
+- ini_file - do not delete comment-only lines that contain the option name (https://github.com/ansible-collections/community.general/issues/11919, https://github.com/ansible-collections/community.general/pull/12083).
+- lxd connection plugin - detect failed ``lxc file push``/``lxc file pull`` transfers and raise a clear error naming the instance and the CLI stderr, instead of silently reporting success and failing later with a misleading ``chmod: No such file or directory`` error (https://github.com/ansible-collections/community.general/pull/12464).
+- nmcli - add ``bond_mode_behavior`` to control whether omitted ``mode`` preserves the existing bond mode or uses the legacy ``balance-rr`` default on existing connections (https://github.com/ansible-collections/community.general/issues/9201, https://github.com/ansible-collections/community.general/pull/12114).
+- opennebula inventory plugin - coerce ``SSH_PORT`` to an integer before setting ``ansible_port`` (https://github.com/ansible-collections/community.general/pull/12437).
+- pacemaker_cluster - skip ``pcs cluster start`` in ``state=online`` when the cluster is already running, improving idempotency and allowing maintenance mode to be disabled without pcsd connectivity (https://github.com/ansible-collections/community.general/issues/12362, https://github.com/ansible-collections/community.general/pull/12403).
+- pkgng - fix failure to install packages when the package repository has never been updated (https://github.com/ansible-collections/community.general/pull/12507).
+- terraform - fix return value ``command``, showing terraform plan name twice (https://github.com/ansible-collections/community.general/issues/12530, https://github.com/ansible-collections/community.general/pull/12540).
+- timezone - no longer requires the ``hwclock`` executable for name-only changes on non-systemd systems (https://github.com/ansible-collections/community.general/issues/12516, https://github.com/ansible-collections/community.general/pull/12526).
+
+ibm.storage_virtualize
+~~~~~~~~~~~~~~~~~~~~~~
+
+- ibm_sv_manage_snapshot - Improved pool probe for idempotency
+- ibm_sv_manage_system_certificate - Added a fix for invalid certificate export on specific builds.
+- ibm_svc_manage_drive - Improved SVC error messaging.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_nvme_namespace - Fixed issue with NVME Namespace get operation.
+- na_ontap_qtree - Fixed issue with timeout in DELETE operation and added option `rest_timeout` to avoid timeout in GET.
+- na_ontap_volume - Updated code to check for `aggr_list` and return an error if `aggr_list_multiplier` is used without `aggr_list` in ONTAP REST 9.17 or later.
+- na_ontap_vserver_create - fixed undefined variable error.
+
+telekom_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- fix: prevent simultaneous deploy handler (https://github.com/telekom-mms/ansible-collection-icinga-director/pull/323)
+
+New Plugins
+-----------
+
+Inventory
+~~~~~~~~~
+
+- community.dns.infomaniak_dns_records - Create inventory from Infomaniak DNS records.
+
+New Modules
+-----------
+
+ansible.mysql
+~~~~~~~~~~~~~
+
+- ansible.mysql.mysql_partition - Manage MySQL table partitions
+- ansible.mysql.mysql_password_policy - Manage MySQL or MariaDB password policy settings
+- ansible.mysql.mysql_replication_filter - Manage MySQL or MariaDB replication filters
+- ansible.mysql.mysql_tablespace - Manage MySQL InnoDB general tablespaces
+- ansible.mysql.mysql_tablespace_info - Gather MySQL tablespace information
+- ansible.mysql.mysql_tls - Manage MySQL TLS runtime settings
+
+community.dns
+~~~~~~~~~~~~~
+
+- community.dns.infomaniak_dns_record - Add or delete a single record in Infomaniak DNS service.
+- community.dns.infomaniak_dns_record_info - Retrieve records in Infomaniak DNS service.
+- community.dns.infomaniak_dns_record_set - Add or delete record sets in Infomaniak DNS service.
+- community.dns.infomaniak_dns_record_set_info - Retrieve record sets in Infomaniak DNS service.
+- community.dns.infomaniak_dns_record_sets - Bulk synchronize DNS record sets in Infomaniak DNS service.
+- community.dns.infomaniak_dns_zone_info - Retrieve zone information in Infomaniak DNS service.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- community.general.consul_kv_info - Retrieve entries from the key/value store of a Consul cluster.
+- community.general.write_binary_file - Write binary file from Base64 encoded input.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- netapp.ontap.na_ontap_user_role_config - NetApp ONTAP local user account restrictions
+
+telekom_mms.icinga_director
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- telekom_mms.icinga_director.icinga_importsource - Manage import sources in Icinga2 Director
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 11.4.0)
+- ansible.posix (still version 2.2.2)
+- ansible.windows (still version 3.7.0)
+- check_point.mgmt (still version 6.9.0)
+- chocolatey.chocolatey (still version 1.6.0)
+- cisco.aci (still version 2.13.0)
+- cisco.mso (still version 2.13.0)
+- cisco.nxos (still version 11.2.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.3)
+- community.aws (still version 11.1.0)
+- community.ciscosmb (still version 1.0.12)
+- community.clickhouse (still version 2.3.0)
+- community.crypto (still version 3.3.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.7.2)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.3.0)
+- community.mongodb (still version 1.8.0)
+- community.mysql (still version 5.0.2)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxmox (still version 2.0.0)
+- community.proxysql (still version 1.8.0)
+- community.rabbitmq (still version 1.7.0)
+- community.routeros (still version 3.21.0)
+- community.sap_libs (still version 1.7.0)
+- community.sops (still version 2.4.0)
+- community.vmware (still version 6.2.1)
+- community.windows (still version 3.3.0)
+- community.zabbix (still version 4.2.0)
+- containers.podman (still version 1.20.2)
+- cyberark.conjur (still version 1.3.12)
+- cyberark.pas (still version 1.0.39)
+- dellemc.enterprise_sonic (still version 4.1.0)
+- dellemc.openmanage (still version 10.0.3)
+- dellemc.powerflex (still version 3.1.0)
+- dellemc.unity (still version 2.1.0)
+- fortinet.fortimanager (still version 2.14.0)
+- fortinet.fortios (still version 2.5.1)
+- grafana.grafana (still version 6.1.0)
+- hetzner.hcloud (still version 6.10.0)
+- hitachivantara.vspone_block (still version 4.8.2)
+- hitachivantara.vspone_object (still version 1.2.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infoblox.nios_modules (still version 1.9.0)
+- inspur.ispim (still version 2.2.4)
+- kaytus.ksmanage (still version 4.0.0)
+- kubernetes.core (still version 6.5.0)
+- kubevirt.core (still version 2.3.0)
+- lowlydba.sqlserver (still version 2.8.1)
+- microsoft.ad (still version 1.12.0)
+- microsoft.iis (still version 1.2.1)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.storagegrid (still version 21.16.0)
+- netapp_eseries.santricity (still version 2.0.1)
+- netbox.netbox (still version 3.23.0)
+- ngine_io.cloudstack (still version 3.0.0)
+- openstack.cloud (still version 2.6.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- purestorage.flasharray (still version 1.43.0)
+- purestorage.flashblade (still version 1.26.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 6.0.1)
+- theforeman.foreman (still version 5.11.0)
+- vmware.vmware (still version 2.9.0)
+- vmware.vmware_rest (still version 4.11.0)
+- vultr.cloud (still version 1.14.1)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.11)
+
 v14.2.0
 =======
 
