@@ -115,3 +115,15 @@ remove_collection_changelog_entries:
           - server_info - The deprecated ``hcloud_server_info[].datacenter`` return value
             was removed. Please use the ``hcloud_server_info[].location`` return value
             instead.
+  ngine_io.cloudstack:
+    3.1.0:
+      changes:
+        removed_features:
+          - The deprecated routing to module names with ``cs_`` prefix has been removed.
+            Use the new module names instead.
+    3.2.0:
+      changes:
+        bugfixes:
+          - The removed routing to module names with ``cs_`` prefix instroduced in 3.1.0
+            has been restored. Backwards compatibility with existing playbooks is now
+            ensured.
