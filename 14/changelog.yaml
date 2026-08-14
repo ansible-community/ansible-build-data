@@ -89,7 +89,7 @@ remove_collection_changelog_entries:
   hetzner.hcloud:
     6.11.0:
       changes:
-        # All changes from the 6.11.0 changelog, since they were all reverted in 3.12.0.
+        # All changes from the 6.11.0 changelog, since they were all reverted in 6.12.0.
         minor_changes:
           - load_balancer - Print warning when creating a Load Balancer with a deprecated
             or unavailable Load Balancer Type.
