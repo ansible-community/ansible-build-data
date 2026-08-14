@@ -7,6 +7,137 @@ This changelog describes changes since Ansible 13.0.0.
 .. contents::
   :depth: 2
 
+v14.3.1
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-08-14
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 14.3.1 contains ansible-core version 2.21.3.
+This is the same version of ansible-core as in the previous Ansible release.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++---------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection          | Ansible 14.3.0 | Ansible 14.3.1 | Notes                                                                                                                        |
++=====================+================+================+==============================================================================================================================+
+| infinidat.infinibox | 1.8.4          | 1.8.5          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++---------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Bugfixes
+--------
+
+- The infinidat.infinibox 1.8.4 release contained in Ansible 14.3.0 contained a recursive symlink loop. For unknown reasons, setuptools expanded this loop 41 levels deep without returning an error. This caused many copies of the collection to appear in the Ansible 14.3.0 release. The Ansible 14.3.1 release contains infinidat.infinibox 1.8.5, which is identical to infinidat.infinibox 1.8.4 except that it does not contain the symlink loop.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 11.4.0)
+- ansible.mariadb (still version 6.0.2)
+- ansible.mysql (still version 5.2.0)
+- ansible.netcommon (still version 8.6.1)
+- ansible.posix (still version 2.2.2)
+- ansible.utils (still version 6.1.0)
+- ansible.windows (still version 3.7.0)
+- arista.eos (still version 12.2.0)
+- azure.azcollection (still version 3.21.0)
+- check_point.mgmt (still version 6.9.0)
+- chocolatey.chocolatey (still version 1.6.0)
+- cisco.aci (still version 2.13.0)
+- cisco.intersight (still version 2.21.0)
+- cisco.ios (still version 11.5.0)
+- cisco.iosxr (still version 12.4.0)
+- cisco.meraki (still version 2.25.0)
+- cisco.mso (still version 2.13.0)
+- cisco.nxos (still version 11.2.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.3)
+- community.aws (still version 11.1.0)
+- community.ciscosmb (still version 1.0.12)
+- community.clickhouse (still version 2.3.0)
+- community.crypto (still version 3.3.0)
+- community.dns (still version 4.1.0)
+- community.docker (still version 5.2.2)
+- community.general (still version 13.3.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.7.2)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.3.0)
+- community.mongodb (still version 1.8.0)
+- community.mysql (still version 5.0.2)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxmox (still version 2.0.0)
+- community.proxysql (still version 1.8.0)
+- community.rabbitmq (still version 1.7.0)
+- community.routeros (still version 3.21.0)
+- community.sap_libs (still version 1.7.0)
+- community.sops (still version 2.4.0)
+- community.vmware (still version 6.2.1)
+- community.windows (still version 3.3.0)
+- community.zabbix (still version 4.2.0)
+- containers.podman (still version 1.20.2)
+- cyberark.conjur (still version 1.3.12)
+- cyberark.pas (still version 1.0.39)
+- dellemc.enterprise_sonic (still version 4.1.0)
+- dellemc.openmanage (still version 10.0.3)
+- dellemc.powerflex (still version 3.1.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.43.0)
+- fortinet.fortimanager (still version 2.14.0)
+- fortinet.fortios (still version 2.5.1)
+- google.cloud (still version 1.14.0)
+- grafana.grafana (still version 6.1.0)
+- graphiant.naas (still version 26.7.0)
+- hetzner.hcloud (still version 6.10.0)
+- hitachivantara.vspone_block (still version 4.8.2)
+- hitachivantara.vspone_object (still version 1.2.0)
+- ibm.storage_virtualize (still version 3.4.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infoblox.nios_modules (still version 1.9.0)
+- inspur.ispim (still version 2.2.4)
+- kaytus.ksmanage (still version 4.0.0)
+- kubernetes.core (still version 6.5.0)
+- kubevirt.core (still version 2.3.0)
+- lowlydba.sqlserver (still version 2.8.1)
+- microsoft.ad (still version 1.12.0)
+- microsoft.iis (still version 1.2.1)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.6.0)
+- netapp.storagegrid (still version 21.16.0)
+- netapp_eseries.santricity (still version 2.0.1)
+- netbox.netbox (still version 3.23.0)
+- ngine_io.cloudstack (still version 3.0.0)
+- openstack.cloud (still version 2.6.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- purestorage.flasharray (still version 1.43.0)
+- purestorage.flashblade (still version 1.26.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 6.0.1)
+- telekom_mms.icinga_director (still version 2.6.1)
+- theforeman.foreman (still version 5.11.0)
+- vmware.vmware (still version 2.9.0)
+- vmware.vmware_rest (still version 4.11.0)
+- vultr.cloud (still version 1.14.1)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.11)
+
 v14.3.0
 =======
 

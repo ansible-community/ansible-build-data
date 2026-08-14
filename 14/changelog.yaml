@@ -74,10 +74,15 @@ releases:
   14.3.1:
     changes:
       bugfixes:
-        - >-
-          The infinidat.infinibox 1.8.4 release contained in Ansible 14.3.0 contained a recursive symlink loop.
-          For unknown reasons, setuptools expanded this loop 41 levels deep without returning an error.
-          This caused many copies of the collection to appear in the Ansible 14.3.0 release.
-          The Ansible 14.3.1 release contains infinidat.infinibox 1.8.5, which is identical to infinidat.infinibox 1.8.4
-          except that it does not contain the symlink loop.
+        - The infinidat.infinibox 1.8.4 release contained in Ansible 14.3.0 contained
+          a recursive symlink loop. For unknown reasons, setuptools expanded this
+          loop 41 levels deep without returning an error. This caused many copies
+          of the collection to appear in the Ansible 14.3.0 release. The Ansible 14.3.1
+          release contains infinidat.infinibox 1.8.5, which is identical to infinidat.infinibox
+          1.8.4 except that it does not contain the symlink loop.
+      release_summary: 'Release Date: 2026-08-14
+
+
+        `Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_'
+    release_date: '2026-08-14'
 remove_collection_changelog_entries: {}
