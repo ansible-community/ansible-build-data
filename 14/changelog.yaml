@@ -127,3 +127,15 @@ remove_collection_changelog_entries:
           - The removed routing to module names with ``cs_`` prefix instroduced in 3.1.0
             has been restored. Backwards compatibility with existing playbooks is now
             ensured.
+  netapp_eseries.santricity:
+    2.0.2:
+      changes:
+        breaking_changes:
+          - na_santricity_volume and nar_santricity_host - Rename volume option raid_level
+            to ddp_raid_level for dynamic disk pool volumes.
+    2.0.3:
+      changes:
+        bugfixes:
+          - na_santricity_volume and nar_santricity_host - Restore backwards compatibility
+            for the renamed ``raid_level`` volume option by accepting it as an alias of
+            ``ddp_raid_level``.
