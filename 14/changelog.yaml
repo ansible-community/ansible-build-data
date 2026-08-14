@@ -85,4 +85,45 @@ releases:
 
         `Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_'
     release_date: '2026-08-14'
-remove_collection_changelog_entries: {}
+remove_collection_changelog_entries:
+  hetzner.hcloud:
+    6.11.0:
+      changes:
+        # All changes from the 6.11.0 changelog, since they were all reverted in 6.12.0.
+        minor_changes:
+          - load_balancer - Print warning when creating a Load Balancer with a deprecated
+            or unavailable Load Balancer Type.
+          - load_balancer_type_info - Added the Load Balancer Type ``deprecation`` object
+            to the return values (``load_balancer_type_info[].deprecation``).
+        removed_features:
+          - hcloud inventory - The deprecated ``hcloud_datacenter`` host variable was
+            removed. Please use the ``hcloud_location`` host variable instead.
+          - network_info - The deprecated ``hcloud_network_info[].servers[].datacenter``
+            return value was removed. Please use the ``hcloud_network_info[].servers[].location``
+            return value instead.
+          - primary_ip - The deprecated ``datacenter`` argument was removed. Please use
+            the ``location`` argument instead.
+          - primary_ip - The deprecated ``hcloud_primary_ip.datacenter`` return value
+            was removed. Please use the ``hcloud_primary_ip.location`` return value instead.
+          - primary_ip_info - The deprecated ``hcloud_primary_ip_info[].datacenter`` return
+            value was removed. Please use the ``hcloud_primary_ip_info[].location`` return
+            value instead.
+          - server - The deprecated ``datacenter`` argument was removed. Please use the
+            ``location`` argument instead.
+          - server - The deprecated ``hcloud_server.datacenter`` return value was removed.
+            Please use the ``hcloud_server.location`` return value instead.
+          - server_info - The deprecated ``hcloud_server_info[].datacenter`` return value
+            was removed. Please use the ``hcloud_server_info[].location`` return value
+            instead.
+  ngine_io.cloudstack:
+    3.1.0:
+      changes:
+        removed_features:
+          - The deprecated routing to module names with ``cs_`` prefix has been removed.
+            Use the new module names instead.
+    3.2.0:
+      changes:
+        bugfixes:
+          - The removed routing to module names with ``cs_`` prefix instroduced in 3.1.0
+            has been restored. Backwards compatibility with existing playbooks is now
+            ensured.
