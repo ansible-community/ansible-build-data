@@ -7,6 +7,197 @@ This changelog describes changes since Ansible 13.0.0.
 .. contents::
   :depth: 2
 
+v14.3.1
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-08-14
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 14.3.1 contains ansible-core version 2.21.3.
+This is the same version of ansible-core as in the previous Ansible release.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection            | Ansible 14.3.0 | Ansible 14.3.1 | Notes                                                                                                                        |
++=======================+================+================+==============================================================================================================================+
+| ansible.netcommon     | 8.6.1          | 8.6.2          |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios             | 11.5.0         | 11.5.1         |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.iosxr           | 12.4.0         | 12.4.2         |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortimanager | 2.14.0         | 2.15.0         |                                                                                                                              |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| infinidat.infinibox   | 1.8.4          | 1.8.5          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Added 19 new modules.
+- Reduced the overall project size.
+- Supported FortiManager schemas 7.4.11, 7.6.7, 8.0.0
+
+Bugfixes
+--------
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- libssh - Use ``persistent_connect_timeout`` option for the SSH connect timeout instead of the generic play context timeout, ensuring that ``ansible_connect_timeout`` / ``ANSIBLE_PERSISTENT_CONNECT_TIMEOUT`` is respected (https://github.com/ansible-collections/ansible.netcommon/issues/798).
+- netconf - Enable ``huge_tree=True`` for all XML parsing operations to support NETCONF responses containing text nodes larger than 10MB (lxml's default ``XML_MAX_TEXT_LENGTH`` limit). Fixes ``XMLSyntaxError: Resource limit exceeded`` when fetching or pushing large configurations via ``netconf_get`` or ``netconf_config`` (https://github.com/ansible-collections/ansible.netcommon/issues/255).
+
+cisco.ios
+~~~~~~~~~
+
+- ios_acls - Correct port to protocol mapping for port 5001 and 5002.
+- ios_bgp_address_family - Add ``vpls`` as a valid ``safi`` choice for the ``l2vpn`` address family configuration.
+- ios_user - fixed hashed_password idempotency so that re-applying the same type/value pair against an already-configured user produces no commands, preventing unnecessary password updates on repeat runs.
+- ios_user - parse_hashed_password  helper now extracts the stored hash type, hash value from running config, enabling proper diff-based idempotency checks for hashed_password.
+- ios_user - update_password and password_type are now resolved per aggregate item via get_param_value, allowing each entry in the aggregate list to independently override the module-level defaults
+- terminal - Add ``% IPv6 routing not enabled`` to ``terminal_stderr_re`` so that configuring BGP IPv6/VPNv6 address-family without ``ipv6 unicast-routing`` correctly raises an error instead of silently succeeding (https://github.com/ansible-collections/cisco.ios/issues/1301).
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- iosxr_bgp_neighbor_address_family - Fix fact gathering crash when neighbors use ``default-originate route-policy`` or ``default-originate inheritance-disable`` by only setting ``set`` for the bare ``default-originate`` form.
+- netconf - Parse large XML config strings with ``huge_tree=True`` in ``edit_config`` to prevent lxml from rejecting payloads exceeding the default 10MB text-node limit.
+
+New Modules
+-----------
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- fortinet.fortimanager.fmgr_antivirus_profile_websocket - Configure WEBSOCKET AntiVirus options.
+- fortinet.fortimanager.fmgr_casb_useractivity_match_tenantsessionextraction - CASB user activity tenant session extraction.
+- fortinet.fortimanager.fmgr_casb_useractivity_match_tenantsessionextraction_filters - CASB user activity session extraction filters.
+- fortinet.fortimanager.fmgr_deployment_get_controller_status - Refresh status of AP/Switch/Extender controller.
+- fortinet.fortimanager.fmgr_firewall_customtag - Define custom tag table.
+- fortinet.fortimanager.fmgr_firewall_profileprotocoloptions_websocket - Configure WebSocket protocol options.
+- fortinet.fortimanager.fmgr_pm_config_pblock_firewall_localinpolicy - Configure user defined IPv4 local-in policies.
+- fortinet.fortimanager.fmgr_pm_config_pblock_firewall_localinpolicy6 - Configure user defined IPv6 local-in policies.
+- fortinet.fortimanager.fmgr_switchcontroller_securitypolicy_admin - Configure fortiswitchs admin security-policy.
+- fortinet.fortimanager.fmgr_sys_backup - Backup FortiManager configuration.
+- fortinet.fortimanager.fmgr_system_csf_trustedlist_adom - Cli system csf trusted list adom
+- fortinet.fortimanager.fmgr_user_aci - User aci
+- fortinet.fortimanager.fmgr_user_azure - User azure
+- fortinet.fortimanager.fmgr_user_azure_rule - User azure rule
+- fortinet.fortimanager.fmgr_user_guardicore - User guardicore
+- fortinet.fortimanager.fmgr_user_local_dynamicmapping - Configure local users.
+- fortinet.fortimanager.fmgr_vpn_ipsec_fec_mappings_tos - FEC redundancy mapping table for specific type of service
+- fortinet.fortimanager.fmgr_wireless_lwprofile - Configure LoRaWAN profile.
+- fortinet.fortimanager.fmgr_ztna_destination - Configure ZTNA destination.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 11.4.0)
+- ansible.mariadb (still version 6.0.2)
+- ansible.mysql (still version 5.2.0)
+- ansible.posix (still version 2.2.2)
+- ansible.utils (still version 6.1.0)
+- ansible.windows (still version 3.7.0)
+- arista.eos (still version 12.2.0)
+- azure.azcollection (still version 3.21.0)
+- check_point.mgmt (still version 6.9.0)
+- chocolatey.chocolatey (still version 1.6.0)
+- cisco.aci (still version 2.13.0)
+- cisco.intersight (still version 2.21.0)
+- cisco.meraki (still version 2.25.0)
+- cisco.mso (still version 2.13.0)
+- cisco.nxos (still version 11.2.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.5.3)
+- community.aws (still version 11.1.0)
+- community.ciscosmb (still version 1.0.12)
+- community.clickhouse (still version 2.3.0)
+- community.crypto (still version 3.3.0)
+- community.dns (still version 4.1.0)
+- community.docker (still version 5.2.2)
+- community.general (still version 13.3.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.7.2)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.3.0)
+- community.mongodb (still version 1.8.0)
+- community.mysql (still version 5.0.2)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxmox (still version 2.0.0)
+- community.proxysql (still version 1.8.0)
+- community.rabbitmq (still version 1.7.0)
+- community.routeros (still version 3.21.0)
+- community.sap_libs (still version 1.7.0)
+- community.sops (still version 2.4.0)
+- community.vmware (still version 6.2.1)
+- community.windows (still version 3.3.0)
+- community.zabbix (still version 4.2.0)
+- containers.podman (still version 1.20.2)
+- cyberark.conjur (still version 1.3.12)
+- cyberark.pas (still version 1.0.39)
+- dellemc.enterprise_sonic (still version 4.1.0)
+- dellemc.openmanage (still version 10.0.3)
+- dellemc.powerflex (still version 3.1.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.43.0)
+- fortinet.fortios (still version 2.5.1)
+- google.cloud (still version 1.14.0)
+- grafana.grafana (still version 6.1.0)
+- graphiant.naas (still version 26.7.0)
+- hetzner.hcloud (still version 6.10.0)
+- hitachivantara.vspone_block (still version 4.8.2)
+- hitachivantara.vspone_object (still version 1.2.0)
+- ibm.storage_virtualize (still version 3.4.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infoblox.nios_modules (still version 1.9.0)
+- inspur.ispim (still version 2.2.4)
+- kaytus.ksmanage (still version 4.0.0)
+- kubernetes.core (still version 6.5.0)
+- kubevirt.core (still version 2.3.0)
+- lowlydba.sqlserver (still version 2.8.1)
+- microsoft.ad (still version 1.12.0)
+- microsoft.iis (still version 1.2.1)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.6.0)
+- netapp.storagegrid (still version 21.16.0)
+- netapp_eseries.santricity (still version 2.0.1)
+- netbox.netbox (still version 3.23.0)
+- ngine_io.cloudstack (still version 3.0.0)
+- openstack.cloud (still version 2.6.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- purestorage.flasharray (still version 1.43.0)
+- purestorage.flashblade (still version 1.26.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 6.0.1)
+- telekom_mms.icinga_director (still version 2.6.1)
+- theforeman.foreman (still version 5.11.0)
+- vmware.vmware (still version 2.9.0)
+- vmware.vmware_rest (still version 4.11.0)
+- vultr.cloud (still version 1.14.1)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.11)
+
 v14.3.0
 =======
 
