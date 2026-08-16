@@ -55,7 +55,7 @@ jobs:
       pull-requests: write
       contents: write
     outputs:
-      pr_url: ${{ steps.create-pr.outputs.pr_url }}
+      pr-url: ${{ steps.create-pr.outputs.pr-url }}
 
     steps:
       - name: Check out antsibull-build
@@ -179,7 +179,7 @@ jobs:
           if [ "${IGNORE_VERSION_REGRESSIONS}" = "true" ]; then
             echo -e '- This release was created with `ignore-version-regressions`.' >>$body
           fi
-          echo -n "pr_url=" >> "${GITHUB_OUTPUT}"
+          echo -n "pr-url=" >> "${GITHUB_OUTPUT}"
           gh pr create \
           --base main \
           --head "${ANSIBLE_BRANCH_NAME}" \
@@ -200,13 +200,13 @@ jobs:
     permissions:
       id-token: write
     outputs:
-      pr_url: ${{ needs.build.outputs.pr_url }}
+      pr-url: ${{ needs.build.outputs.pr-url }}
 
     steps:
       - name: Ensure that the PR was merged
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: ${{ needs.build.outputs.pr_url }}
+          PR_URL: ${{ needs.build.outputs.pr-url }}
         run: |
           STATE="$(gh pr view "${PR_URL}" --json state --template "{{.state}}")"
           if [ "${STATE}" != "MERGED" ]; then
@@ -223,11 +223,11 @@ jobs:
       - name: Upload Ansible sdist and wheel to PyPI
         uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33  # v1.14.2
 
-  # git-tag job creates the git tag
+  # git-tag job creates the Git tag
 
   git-tag:
     needs: publish
-    name: Creates git tag for Ansible (${{ inputs.ansible-version }})
+    name: Creates Git tag for Ansible (${{ inputs.ansible-version }})
 
     runs-on: ubuntu-latest
     permissions:
@@ -238,10 +238,10 @@ jobs:
         id: merge-commit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: ${{ needs.publish.outputs.pr_url }}
+          PR_URL: ${{ needs.publish.outputs.pr-url }}
         run: |
           MERGE_COMMIT="$(gh pr view "${PR_URL}" --json mergeCommit --template "{{.mergeCommit.oid}}")"
-          echo "merge_commit=${MERGE_COMMIT}" >> "${GITHUB_OUTPUT}"
+          echo "merge-commit=${MERGE_COMMIT}" >> "${GITHUB_OUTPUT}"
 
       - name: Check out ansible-build-data
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
@@ -252,7 +252,7 @@ jobs:
 
       - name: Create git tag
         env:
-          MERGE_COMMIT: ${{steps.merge-commit.outputs.merge_commit}}
+          MERGE_COMMIT: ${{steps.merge-commit.outputs.merge-commit}}
         run: |
           git config --global user.name "Github Actions"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
