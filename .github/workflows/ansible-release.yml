@@ -52,10 +52,11 @@ jobs:
     name: Build Ansible (${{ inputs.ansible-version }})
     runs-on: ubuntu-latest
     permissions:
-      pull-requests: write
-      contents: write
+      contents: read
     outputs:
-      pr-url: ${{ steps.create-pr.outputs.pr-url }}
+      major-version: ${{ steps.extract-version.outputs.major-version }}
+      build-data-url: ${{ steps.upload-build-data.outputs.artifact-url }}
+      artifact-url: ${{ steps.upload-artifact.outputs.artifact-url }}
 
     steps:
       - name: Check out antsibull-build
@@ -75,7 +76,7 @@ jobs:
           # This is where the antsibull-build build-release role expects it by default
           path: antsibull-build/build/ansible-build-data
           ref: ${{ inputs.existing-branch || '' }}
-          persist-credentials: true
+          persist-credentials: false
 
       - name: Set up Python 3.14
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
@@ -115,17 +116,6 @@ jobs:
 
           set_output('major-version', version.major)
 
-      - name: Checking out to a new branch
-        if: inputs.existing-branch == ''
-        working-directory: antsibull-build/build/ansible-build-data
-        run: |
-          git checkout -b "${ANSIBLE_BRANCH_NAME}"
-
-      - name: Setting the user details
-        run: |
-          git config --global user.name "Github Actions"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
       # Run the playbook according to the current release process
 
       - name: Building a release with the defaults
@@ -146,6 +136,13 @@ jobs:
           -e "antsibull_ignore_feature_freeze=${IGNORE_FEATURE_FREEZE}"
           -e "antsibull_ignore_version_regressions=${IGNORE_VERSION_REGRESSIONS}"
 
+      - name: Upload build data
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        id: upload-build-data
+        with:
+          name: ansible-build-data
+          path: antsibull-build/build/ansible-build-data/${{ step.extract-version.outputs.major-version }}/*
+
       - name: Upload artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
         id: upload-artifact
@@ -153,9 +150,50 @@ jobs:
           name: sdist-and-wheel
           path: antsibull-build/build/ansible-*.*
 
+  # create-pr job creates the release PR
+
+  create-pr:
+    needs: build
+    name: Create Ansible (${{ inputs.ansible-version }}) release PR
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    outputs:
+      pr-url: ${{ steps.create-pr.outputs.pr-url }}
+
+    steps:
+      - name: Pre-create build directory
+        run: mkdir -p antsibull-build/build
+
+      - name: Check out ansible-build-data under antsibull-build build directory
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          # This is where the antsibull-build build-release role expects it by default
+          path: antsibull-build/build/ansible-build-data
+          ref: ${{ inputs.existing-branch || '' }}
+          persist-credentials: true
+
+      - name: Checking out to a new branch
+        if: inputs.existing-branch == ''
+        working-directory: antsibull-build/build/ansible-build-data
+        run: |
+          git checkout -b "${ANSIBLE_BRANCH_NAME}"
+
+      - name: Download build data
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c  # v8.0.1
+        with:
+          name: ansible-build-data
+          path: antsibull-build/build/ansible-build-data/${{ needs.build.outputs.major-version }}
+
+      - name: Setting the user details
+        run: |
+          git config --global user.name "Github Actions"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
       - name: Commit ansible-build-data and push the changes to github
         working-directory: >-
-          antsibull-build/build/ansible-build-data/${{ steps.extract-version.outputs.major-version }}
+          antsibull-build/build/ansible-build-data/${{ needs.build.outputs.major-version }}
         run: |
           git add .
           git commit -m "${CI_COMMIT_MESSAGE}"
@@ -166,7 +204,7 @@ jobs:
         working-directory: antsibull-build/build/ansible-build-data
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ARTIFACT_URL: ${{ steps.upload-artifact.outputs.artifact-url }}
+          ARTIFACT_URL: ${{ needs.build.outputs.artifact-url }}
           IGNORE_FEATURE_FREEZE: ${{ inputs.ignore-feature-freeze }}
           IGNORE_VERSION_REGRESSIONS: ${{ inputs.ignore-version-regressions }}
           ACTOR: "${{ github.actor }}"
@@ -191,7 +229,7 @@ jobs:
   # publish job downloads the arifacts and publish it to PyPI
 
   publish:
-    needs: build
+    needs: create-pr
     name: Upload Ansible (${{ inputs.ansible-version }}) to PyPI
     runs-on: ubuntu-latest
     environment:
@@ -200,13 +238,13 @@ jobs:
     permissions:
       id-token: write
     outputs:
-      pr-url: ${{ needs.build.outputs.pr-url }}
+      pr-url: ${{ needs.create-pr.outputs.pr-url }}
 
     steps:
       - name: Ensure that the PR was merged
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: ${{ needs.build.outputs.pr-url }}
+          PR_URL: ${{ needs.create-pr.outputs.pr-url }}
         run: |
           STATE="$(gh pr view "${PR_URL}" --json state --template "{{.state}}")"
           if [ "${STATE}" != "MERGED" ]; then
