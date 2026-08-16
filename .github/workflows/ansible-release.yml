@@ -47,6 +47,8 @@ env:
   ANSIBLE_VERSION: ${{ inputs.ansible-version }}
   ANSIBLE_BRANCH_NAME: ${{ inputs.existing-branch || format('publish-{0}', inputs.ansible-version) }}
 
+permissions: {}
+
 jobs:
   build:
     name: Build Ansible (${{ inputs.ansible-version }})
