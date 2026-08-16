@@ -210,20 +210,20 @@ jobs:
           ACTOR: "${{ github.actor }}"
         run: |
           body="./pr-body"
-          echo -e "${CI_COMMIT_MESSAGE}\nRelease artifacts: <${ARTIFACT_URL}>\n" >>$body
+          echo -e "${CI_COMMIT_MESSAGE}\nRelease artifacts: <${ARTIFACT_URL}>\n" >> "${body}"
           if [ "${IGNORE_FEATURE_FREEZE}" = "true" ]; then
-            echo -e '- This release was created with `ignore-feature-freeze`.' >>$body
+            echo -e '- This release was created with `ignore-feature-freeze`.' >> "${body}"
           fi
           if [ "${IGNORE_VERSION_REGRESSIONS}" = "true" ]; then
-            echo -e '- This release was created with `ignore-version-regressions`.' >>$body
+            echo -e '- This release was created with `ignore-version-regressions`.' >> "${body}"
           fi
           echo -n "pr-url=" >> "${GITHUB_OUTPUT}"
           gh pr create \
-          --base main \
-          --head "${ANSIBLE_BRANCH_NAME}" \
-          --title "Release Ansible ${ANSIBLE_VERSION}" \
-          --body-file "${body}" \
-          --assignee "${ACTOR}" \
+            --base main \
+            --head "${ANSIBLE_BRANCH_NAME}" \
+            --title "Release Ansible ${ANSIBLE_VERSION}" \
+            --body-file "${body}" \
+            --assignee "${ACTOR}" \
           | tee -a "$GITHUB_OUTPUT"
 
   # publish job downloads the arifacts and publish it to PyPI
