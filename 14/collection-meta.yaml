@@ -192,6 +192,12 @@ collections:
       - Previnkumar-G
       - trisha-dell
     repository: https://github.com/dell/ansible-unity
+    removal:
+      major_version: 16
+      reason: guidelines-violation
+      reason_text: No CI runs / sanity tests for 10 months.
+      announce_version: 14.4.0
+      discussion: https://forum.ansible.com/t/46085
   f5networks.f5_modules:
     repository: https://github.com/F5Networks/f5-ansible-f5modules
     collection-directory: "./ansible_collections/f5networks/f5_modules"
