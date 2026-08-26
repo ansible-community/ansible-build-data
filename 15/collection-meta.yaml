@@ -185,7 +185,7 @@ collections:
       major_version: 16
       reason: guidelines-violation
       reason_text: No CI runs / sanity tests for 10 months.
-      announce_version: 14.4.0
+      announce_version: 15.0.0a1
       discussion: https://forum.ansible.com/t/46085
   f5networks.f5_modules:
     repository: https://github.com/F5Networks/f5-ansible-f5modules
