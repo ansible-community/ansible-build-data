@@ -7,6 +7,547 @@ This changelog describes changes since Ansible 13.0.0.
 .. contents::
   :depth: 2
 
+v14.4.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-09-08
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 14.4.0 contains ansible-core version 2.21.4.
+This is a newer version than version 2.21.3 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                | Ansible 14.3.1 | Ansible 14.4.0 | Notes                                                                                                                        |
++===========================+================+================+==============================================================================================================================+
+| ansible.netcommon         | 8.6.1          | 8.6.2          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.windows           | 3.7.0          | 3.8.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios                 | 11.5.0         | 11.5.1         |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.iosxr               | 12.4.0         | 12.4.2         |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.meraki              | 2.25.0         | 2.25.1         | The collection did not have a changelog in this version.                                                                     |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cloudscale_ch.cloud       | 2.5.3          | 2.7.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto          | 3.3.0          | 3.4.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns             | 4.1.0          | 4.1.1          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.docker          | 5.2.2          | 5.3.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general         | 13.3.0         | 13.4.0         |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros        | 3.21.0         | 3.22.0         |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.sap_libs        | 1.7.0          | 1.7.1          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware          | 6.2.1          | 6.3.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortimanager     | 2.14.0         | 2.15.0         |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| fortinet.fortios          | 2.5.1          | 2.6.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| graphiant.naas            | 26.7.0         | 26.8.0         |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| hetzner.hcloud            | 6.10.0         | 6.12.0         |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| infinidat.infinibox       | 1.8.5          | 1.8.6          | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| microsoft.ad              | 1.12.0         | 1.12.1         |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| microsoft.iis             | 1.2.1          | 1.3.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp_eseries.santricity | 2.0.1          | 2.0.3          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ngine_io.cloudstack       | 3.0.0          | 3.3.0          |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman        | 5.11.0         | 5.12.0         |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware             | 2.9.0          | 2.10.0         |                                                                                                                              |
++---------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- Bump required ``vmware.vmware`` collection version to 2.10.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Supported multiple versions of log fact modules.
+- Supported new versions 7.6.7 and 8.0.0.
+- Updated the Q&A for importing a certificate in the fortios_certificate_remote module.
+
+Minor Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- mask_url function in module_utils to allow for masking of auth data embedded in urls.
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- win_copy - Add diff support to win_copy and win_template when copying single files only. Copying multiple files will still not produce any diff output - https://github.com/ansible-collections/ansible.windows/issues/16
+- win_updates - Add maximum_retries_on_failed_updates option to control how many attempts the module can take at installing a rolled back update. (Fixes https://github.com/ansible-collections/ansible.windows/issues/762)
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- Add missing load_balancer parameter to the floating IP module.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_swarm_service - add ``command_as_args`` option. When set to ``true``, ``command`` and ``args`` are concatenated and mapped to ``ContainerSpec.Args`` (matching ``docker service create IMAGE [COMMAND] [ARG...]``), preserving the image ``ENTRYPOINT``. The default remains ``false`` (historical mapping of ``command`` to ``ContainerSpec.Command`` and ``args`` to ``ContainerSpec.Args``) for backward compatibility (https://github.com/ansible-collections/community.docker/issues/1044, https://github.com/ansible-collections/community.docker/issues/212, https://github.com/ansible-collections/community.docker/pull/1307).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- archive - use context managers when reading tar checksums (https://github.com/ansible-collections/community.general/pull/12569).
+- consul modules - add a ``url`` option taking the address of the Consul agent as a whole; the existing ``host``, ``port`` and ``scheme`` options each override the matching component of it. This does not cover ``community.general.consul`` (https://github.com/ansible-collections/community.general/pull/12216).
+- consul modules - connection options now fall back to the ``CONSUL_HTTP_ADDR``, ``CONSUL_HTTP_SSL``, ``CONSUL_HTTP_SSL_VERIFY``, ``CONSUL_HTTP_TOKEN`` and ``CONSUL_CACERT`` environment variables when not specified. This applies to all consul modules except ``community.general.consul``, which does not use the shared connection option handling yet (https://github.com/ansible-collections/community.general/pull/12216).
+- github_repo - added ``visibility`` option to set repository visibility to ``public``, ``private``, or ``internal`` (https://github.com/ansible-collections/community.general/issues/6219, https://github.com/ansible-collections/community.general/pull/12557).
+- gitlab_hook - add ``branch_filter_strategy`` option to control how ``push_events_branch_filter`` filters push events, which allows filtering branches by a regular expression (https://github.com/ansible-collections/community.general/pull/12618).
+- incus connection plugin - add ``remote_user_id_command`` option to configure the command used to retrieve the UID and GID of the remote user (https://github.com/ansible-collections/community.general/pull/12646).
+- influxdb_user - add ``force_password_update`` option to always update the password when ``user_password`` is set, working around InfluxDB installations that do not enforce authentication (https://github.com/ansible-collections/community.general/issues/3824, https://github.com/ansible-collections/community.general/pull/12654).
+- maven_artifact - add ``keep_name_only_when_resolved`` option to opt in to the documented scope of ``keep_name``, where it only controls the destination filename when ``version`` is resolved dynamically (``latest`` or ``version_by_spec``); previously ``keep_name`` also affected the filename with a fixed ``version``, contradicting its documentation (https://github.com/ansible-collections/community.general/pull/12606, https://github.com/ansible-collections/community.general/issues/4796).
+- odbc - add ``autocommit`` option to support statements that must run outside of a transaction (https://github.com/ansible-collections/community.general/issues/4173, https://github.com/ansible-collections/community.general/issues/8577, https://github.com/ansible-collections/community.general/pull/12595).
+- passwordstore lookup plugin - add ``keep_trailing_newline`` option to preserve the trailing newline when ``returnall=true`` (https://github.com/ansible-collections/community.general/pull/12589, https://github.com/ansible-collections/community.general/issues/3616).
+- vmadm - add ``bootrom`` option to support UEFI boot for ``bhyve`` VMs (https://github.com/ansible-collections/community.general/pull/12601, https://github.com/ansible-collections/community.general/issues/4282).
+- zypper - add ``install_recommends`` option to explicitly control installation of recommended packages (https://github.com/ansible-collections/community.general/issues/3497, https://github.com/ansible-collections/community.general/pull/12648).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info, api_modify - adds support for multiple ``restart-*`` and ``stop-on-unhealthy`` parameters in the ``container`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/474).
+- api_info, api_modify - adds support for the ``privileged`` parameter in the ``container`` path for RouterOS >= 7.24 (https://github.com/ansible-collections/community.routeros/pull/474).
+- api_info, api_modify - removed support for the ``auto-restart-interval`` parameter in the ``container`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/474).
+- api_info, api_modify - the ``address`` parameter in the ``ip service`` path was renamed to ``available-from`` for RouterOS >= 7.24. The old name is still supported for RouterOS < 7.24 (https://github.com/ansible-collections/community.routeros/pull/475).
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- Added 19 new modules.
+- Reduced the overall project size.
+- Supported FortiManager schemas 7.4.11, 7.6.7, 8.0.0
+
+graphiant.naas
+~~~~~~~~~~~~~~
+
+- New ``graphiant_data_assurance`` module and ``data_assurance_management.yml`` playbook for managing Data Assurance policies via the portal API; a single YAML config file drives both ``DataAssurancePolicies`` (assurance policies with ``flexAlgo`` and block-by-URL/app policies) sent to ``/v1/data/assurance/assurances/global`` and ``ContentFilterPolicies`` (block-by-category policies) sent to ``/v1/global/content-filters``; operations ``configure`` / ``deconfigure`` (idempotent — compares intended config against live portal state and skips unchanged policies; deconfigure detaches sites and clears apps/rules before delete); name-based fields are validated against live portal state before push — ``flexAlgo``, ``siteListName``, and ``lanNames`` each fail with an error listing the available values when a name is not found; app names are validated and ``isDomain``/``builtinAppId``/``customAppId``/``servers`` auto-filled from bucket telemetry; sample ``sample_data_assurance_policies.yaml``; full check mode and diff mode (``--check --diff`` returns ``details.diff_plan``); unit tests for the manager and module
+- New ``graphiant_local_extranet_info`` module for querying Local Extranet policy state — ``policies_summary``, ``policy_device_status`` (requires ``policy_name``), ``lan_segments_usage`` (optional ``policy_name``/``is_provider``), ``nat_usage`` (requires ``policy_name``); tabulated output
+- New ``graphiant_local_extranet`` module and ``local_extranet_management.yml`` playbook for single-tenant intra-enterprise LAN segment sharing across sites/branches; operations ``create_policies`` / ``update_policies`` / ``delete_policies``; policy is auto-applied to devices after create/update (no separate apply step); sample ``sample_local_extranet_policies.yaml`` and update sample ``sample_local_extranet_policies_update.yaml``; idempotent create/delete and before/after comparison on update (prefix sets, sites, excluded devices, target segments all normalized); full check mode and diff mode (``--check --diff`` returns ``details.diff_plan``); unit tests for the manager and both modules plus integration tests in ``tests/test.py`` covering create/update/delete idempotency
+- New ``graphiant_public_vif_info`` module for querying Public VIF service state — ``services_summary`` and ``service_details`` (requires ``service_name``); tabulated output
+- New ``graphiant_public_vif`` module and ``public_vif_management.yml`` playbook for gateway Public VIF management; operations ``create_services`` / ``update_services`` / ``delete_services``; sample ``sample_public_vif_services.yaml``; idempotent create/delete (skip already-existing/-absent); ``update_services`` always re-sends the full payload and reports ``changed: true`` (no live-state comparison); full check mode and diff mode (``--check --diff`` returns ``details.diff_plan``); unit tests for the manager and both modules; optional ``vault_public_vif_bgp_md5_passwords`` param (``create_services``/``update_services`` only, ``no_log: true``) fills a neighbor's ``gatewayBgpNeighbors[].md5Password`` from Ansible Vault (keyed by service name -> device name) when left null/absent in the YAML; YAML non-null value always wins; ``md5Password`` is redacted as ``********`` in logs and ``--diff`` output regardless of source; ``gatewayBgpNeighbors`` devices validated against the current gateway appliances; ``gatewayBgpNeighbors``'s optional entry``localInterface`` validated against that device's actual interfaces/subinterfaces, the resolved ``lanSegment`` validated against the LAN segments actually configured on the ``gatewayBgpNeighbors`` devices for the resolved ``storageProvider``
+- ``00_dataex_lan_segments_prerequisites.yml``, ``00_dataex_lan_interface_prerequisites.yml``, and ``00_dataex_vpn_profile_prerequisites.yml`` accept ``-e config_file=`` to override the default sample config
+- ``graphiant_data_exchange``: ``accept_invitation`` no longer requires ``policy.siteToSiteVpn`` when the matched customer is a Graphiant customer (``type: graphiant_peer``, resolved via ``get_matching_customers_for_service``) — it still is for a non-Graphiant customer (``type: non_graphiant_peer``); new sample files ``sample_data_exchange_customers_graphiant_peer.yaml``, ``sample_data_exchange_services_graphiant_peer_client_to_server.yaml``, ``sample_data_exchange_matches_graphiant_peer_client_to_server.yaml``, and ``sample_data_exchange_acceptance_graphiant_peer_client_to_server.yaml`` demonstrate the full flow
+- ``graphiant_data_exchange``: ``create_services``/``update_services`` accept ``serviceType`` as the primary key for a service's type, matching the API field name directly; ``type`` is still accepted as a legacy alias
+
+netapp_eseries.santricity
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- na_santricity_facts - Add block_size_kb to netapp_volumes_by_initiators facts.
+
+ngine_io.cloudstack
+~~~~~~~~~~~~~~~~~~~
+
+- firewall - Implemented support for ``dest_cidrs`` (https://github.com/ngine-io/ansible-collection-cloudstack/issues/76).
+- instance - Added a new argument ``match_display_name`` to control whether to find instances by display name (https://github.com/ngine-io/ansible-collection-cloudstack/pull/164).
+- instance - Improved return values related to user data (https://github.com/ngine-io/ansible-collection-cloudstack/pull/168).
+- instance - Optimized API query with keyword filtering resulting in reduced time consumption in larger environments (https://github.com/ngine-io/ansible-collection-cloudstack/pull/164).
+- inventory - Added option to use public ip as hostname (https://github.com/ngine-io/ansible-collection-cloudstack/pull/116).
+- inventory - Extended projects filter to allow project=-1, added project to returns (https://github.com/ngine-io/ansible-collection-cloudstack/pull/176).
+- network - Extended returns with ``public_ips`` and ``snat_ip`` (https://github.com/ngine-io/ansible-collection-cloudstack/issues/121).
+- role_permissions - Removed version check for EOL CloudStack version (https://github.com/ngine-io/ansible-collection-cloudstack/pull/168).
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- activation_key - internally convert deprecated ``content_view``/``lifecycle_environment`` to content view environment labels for compatibility with newer Katello API versions (https://github.com/theforeman/foreman-ansible-modules/pull/1982)
+- auth_source_ldap - add ``cacert`` parameter to set CA certificates for LDAP server verification (https://github.com/theforeman/foreman-ansible-modules/pull/1985)
+- host, hostgroup - internally convert ``content_view``/``lifecycle_environment`` to content view environment ID for compatibility with newer Katello API versions (https://github.com/theforeman/foreman-ansible-modules/pull/1977)
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- esxi_service - add module to manage the state and startup policy of services on an ESXi host (migrated from community.vmware.vmware_host_service_manager) (https://github.com/ansible-collections/vmware.vmware/pull/396).
+- esxi_service_info - add module to gather information about the services on an ESXi host or every host in a cluster (migrated from community.vmware.vmware_host_service_info) (https://github.com/ansible-collections/vmware.vmware/pull/396).
+- guest_info - renamed to ``vm_info``. A redirect was added so ``vmware.vmware.guest_info`` continues to work
+- vcenter_event_manager - Create EDA plugin for events in vCenter Event Manager
+- vm_custom_attributes - add module to manage custom attributes for the given virtual machine (https://github.com/ansible-collections/vmware.vmware/pull/381).
+- vm_info - Add ``vms`` output key to mirror ``guests`` for consistency
+- vm_snapshot - Add relevant parent and child snapshot IDs to the returned snapshot value.
+- vm_snapshot_info - Add module to gather information about snapshots and the snapshot tree.
+
+Deprecated Features
+-------------------
+
+- The dellemc.unity collection will be removed from Ansible 16 due to violations of the Ansible inclusion requirements.
+  No CI runs / sanity tests for 10 months.
+  See `Collections Removal Process for collections not satisfying the collection requirements <https://docs.ansible.com/projects/ansible/devel/community/collection_contributors/collection_package_removal.html#collections-not-satisfying-the-collection-requirements>`__ for more details, including for how this can be cancelled (`https://forum.ansible.com/t/46085 <https://forum.ansible.com/t/46085>`__).
+  After removal, users can still install this collection with ``ansible-galaxy collection install dellemc.unity``.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- get_certificate - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_csr - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_csr_info - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_csr_pipe - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_pkcs12 - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_privatekey - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_privatekey_info - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_privatekey_pipe - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_publickey - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_publickey_info - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_signature - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- openssl_signature_info - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- x509_certificate - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- x509_certificate_info - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+- x509_certificate_pipe - the ``select_crypto_backend`` option is deprecated and will be removed from community.crypto 4.0.0 (https://github.com/ansible-collections/community.crypto/pull/1072).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- keycloak_realm_users_info - the module is moved to ``middleware_automation.keycloak.keycloak_realm_users_info``. The module will be replaced by a deprecated redirect to that module in community.general 14.0.0, and the redirect will be removed in community.general 16.0.0. If you are using the module, please consider installing and using ``ansible_middleware.keycloak`` now (https://github.com/ansible-collections/community.general/pull/12525).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vcenter_standard_key_provider - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+- vmware_guest_snapshot_info - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+- vmware_host_facts - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+- vmware_host_powerstate - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+- vmware_host_service_info - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+- vmware_host_service_manager - the module has been deprecated and will be removed in community.vmware 8.0.0
+- vmware_tag - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+- vmware_tag_manager - the module has been deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2568).
+- vmware_vcenter_settings - The defaults are deprecated and will be removed where possible in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/issues/2559).
+
+netapp_eseries.santricity
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- na_santricity_volume and nar_santricity_host - The ``raid_level`` volume option alias is deprecated and will be removed in version 3.0.0. Use ``ddp_raid_level`` instead.
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- activation_key - the ``content_view`` and ``lifecycle_environment`` parameters are deprecated, please use ``content_view_environments`` instead (https://github.com/theforeman/foreman-ansible-modules/pull/1982)
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- apt_key module now masks authentication information in all displays and returns of uri information.
+- get_url module now masks authentication information in all displays and returns of uri information.
+- module_utils - ``mask_url`` now masks the password in URLs that contain a password but no username, such as ``redis://:password@host``, instead of returning them unmasked.
+- module_utils.urls now all errors mask in line url authentication information.
+- rpm_key module now masks authentication information in all displays and returns of uri information.
+- tempfile - reject prefix and suffix values that contain path components to prevent path traversal.
+- uri module now masks authentication information in all displays and returns of uri information.
+- url lookup now masks authentication information in all displays and returns of uri information.
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- libssh - Use ``persistent_connect_timeout`` option for the SSH connect timeout instead of the generic play context timeout, ensuring that ``ansible_connect_timeout`` / ``ANSIBLE_PERSISTENT_CONNECT_TIMEOUT`` is respected (https://github.com/ansible-collections/ansible.netcommon/issues/798).
+- netconf - Enable ``huge_tree=True`` for all XML parsing operations to support NETCONF responses containing text nodes larger than 10MB (lxml's default ``XML_MAX_TEXT_LENGTH`` limit). Fixes ``XMLSyntaxError: Resource limit exceeded`` when fetching or pushing large configurations via ``netconf_get`` or ``netconf_config`` (https://github.com/ansible-collections/ansible.netcommon/issues/255).
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- win_copy - Fix error when setting ``dest`` to just the filename. The destination in this case will be the working directory set by the connection plugin.
+
+cisco.ios
+~~~~~~~~~
+
+- ios_acls - Correct port to protocol mapping for port 5001 and 5002.
+- ios_bgp_address_family - Add ``vpls`` as a valid ``safi`` choice for the ``l2vpn`` address family configuration.
+- ios_user - fixed hashed_password idempotency so that re-applying the same type/value pair against an already-configured user produces no commands, preventing unnecessary password updates on repeat runs.
+- ios_user - parse_hashed_password  helper now extracts the stored hash type, hash value from running config, enabling proper diff-based idempotency checks for hashed_password.
+- ios_user - update_password and password_type are now resolved per aggregate item via get_param_value, allowing each entry in the aggregate list to independently override the module-level defaults
+- terminal - Add ``% IPv6 routing not enabled`` to ``terminal_stderr_re`` so that configuring BGP IPv6/VPNv6 address-family without ``ipv6 unicast-routing`` correctly raises an error instead of silently succeeding (https://github.com/ansible-collections/cisco.ios/issues/1301).
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- iosxr_bgp_neighbor_address_family - Fix fact gathering crash when neighbors use ``default-originate route-policy`` or ``default-originate inheritance-disable`` by only setting ``set`` for the bare ``default-originate`` form.
+- netconf - Parse large XML config strings with ``huge_tree=True`` in ``edit_config`` to prevent lxml from rejecting payloads exceeding the default 10MB text-node limit.
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- cloudscale action group - fix a typo (``loaad_balancer_listener``) that excluded the ``load_balancer_listener`` module from the ``cloudscale_ch.cloud.cloudscale`` action group, and add the missing ``volume_snapshot`` module to the group.
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- apache2_module - fix false failures when ``ignore_configcheck`` is set and the configuration is broken for a reason unrelated to the module being changed (https://github.com/ansible-collections/community.general/issues/4592, https://github.com/ansible-collections/community.general/pull/12597).
+- haproxy - fix ``state=disabled`` with ``drain=true`` timing out instead of putting a server that is already down into maintenance mode (https://github.com/ansible-collections/community.general/issues/9020, https://github.com/ansible-collections/community.general/pull/12640).
+- homebrew_cask - fix ``brew --version`` parsing to handle version strings with more than three dot-separated segments (for example, some vendor Homebrew builds report a fourth segment). The previous regex could silently drop the leading segment, misjudging whether the deprecated ``brew cask`` command syntax is still required and causing installs to fail with an unknown-command error (https://github.com/ansible-collections/community.general/pull/12559).
+- icinga2_host - fix ``JSONDecodeError`` raised when the Icinga2 API returns an HTTP error response (https://github.com/ansible-collections/community.general/pull/12687, https://github.com/ansible-collections/community.general/issues/4948).
+- influxdb_retention_policy - fix ``TypeError`` when altering a retention policy without ``shard_group_duration`` set (https://github.com/ansible-collections/community.general/issues/3897, https://github.com/ansible-collections/community.general/pull/12652).
+- jabber - do not send an unnecessary ``muc#user`` tag on groupchat messages (https://github.com/ansible-collections/community.general/pull/12658, https://github.com/ansible-collections/community.general/issues/5343).
+- keycloak_user - fix attributes always reporting ``changed=true`` due to a type mismatch between the raw Keycloak representation and the module's list representation (https://github.com/ansible-collections/community.general/pull/12642).
+- ldap_attrs - when the server raises ``INAPPROPRIATE_MATCHING`` because an attribute has no EQUALITY matching rule (for example, certain ``olcTLS*`` attributes on older OpenLDAP versions), the module now falls back to Python-side value comparison instead of crashing (https://github.com/ansible-collections/community.general/issues/3559, https://github.com/ansible-collections/community.general/issues/12596, https://github.com/ansible-collections/community.general/pull/12628).
+- npm - fix ``JSONDecodeError`` when npm's stdout output contains warnings or notices alongside the JSON payload (https://github.com/ansible-collections/community.general/pull/12665, https://github.com/ansible-collections/community.general/issues/4960).
+- onepassword lookup plugin - the ``op://`` secret reference lookup returned raw bytes instead of a string, which broke passing the value into other modules (https://github.com/ansible-collections/community.general/pull/11958).
+- redfish_command - add workaround in ``VirtualMediaInsert`` for Supermicro systems to treat slots marked as ``NotConnected`` as empty (https://github.com/ansible-collections/community.general/issues/6969, https://github.com/ansible-collections/community.general/pull/12537).
+- sefcontext - fix idempotence of ``<<none>>`` file contexts (https://github.com/ansible-collections/community.general/pull/12561)
+- snap - fix ``IndexError`` when a single snap does not exist (https://github.com/ansible-collections/community.general/issues/12375, https://github.com/ansible-collections/community.general/pull/12570).
+- supervisorctl - treat the ``BACKOFF`` process state as active so that ``state=started`` does not fail on a program still being retried by ``supervisord`` (https://github.com/ansible-collections/community.general/issues/5599, https://github.com/ansible-collections/community.general/pull/12688).
+- ufw - do not reload the default policy when it is already set to the requested value (https://github.com/ansible-collections/community.general/issues/1843, https://github.com/ansible-collections/community.general/pull/12590).
+- ufw - fix IPv6 rule determination and ``insert_relative_to`` (https://github.com/ansible-collections/community.general/pull/12531).
+- zypper - fix version specifier parsing when the version contains non-numeric characters, which caused packages to not be removed or installed (https://github.com/ansible-collections/community.general/pull/12588, https://github.com/ansible-collections/community.general/issues/6564).
+
+community.sap_libs
+~~~~~~~~~~~~~~~~~~
+
+- sapcar_extract - Update SAPCAR command from PATH and add explanation with HANA limitations (https://github.com/sap-linuxlab/community.sap_libs/pull/86)
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_guest_network - Fix an issue with trunked / PVLAN portgroups (https://github.com/ansible-collections/community.vmware/issues/2567).
+
+fortinet.fortios
+~~~~~~~~~~~~~~~~
+
+- Fixed an issue to throw an user-friendly error message when the users make the Connection protocol mismatch. Github issue
+- Fixed an issue where forwarder always returns diff when using check_mode in the system_dns_database module even when no changes were made. Github Issue
+- Fixed the Github issue
+
+graphiant.naas
+~~~~~~~~~~~~~~
+
+- ``graphiant_data_exchange``: fixed ``accept_invitation`` raising ``No VPN profiles found in acceptances`` for a Graphiant customer that legitimately needs no Site-to-Site VPN (issue #154)
+- ``graphiant_ospfv2``: BFD ``multiplier`` renamed to ``localMultiplier`` in ``sample_ospfv2.yaml`` and the interface payload to match the field name the API expects on write; the device GET response still stays the same; stopped sending the legacy flat fields when creating a new interface.
+- ``graphiant_ospfv2``: ensure that the SDK model is used to build and validate the payload.
+
+microsoft.ad
+~~~~~~~~~~~~
+
+- group - Treat the ``name`` value as part of the object's distinguished name to avoid any false matches for a ``userPrincipalName`` or ``sAMAccountName`` pattern - https://github.com/ansible-collections/microsoft.ad/issues/198
+
+microsoft.iis
+~~~~~~~~~~~~~
+
+- website - fix failure to set bindings (unsupported protocols result in partial filtering) (https://github.com/ansible-collections/microsoft.iis/pull/71)
+
+netapp_eseries.santricity
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- nar_santricity_common - Improve system API URL validation by forcing URL checks to run outside check mode and ignoring skipped URI results.
+
+ngine_io.cloudstack
+~~~~~~~~~~~~~~~~~~~
+
+- portforward - Fixed rule creation for primary IP of default NIC (https://github.com/ngine-io/ansible-collection-cloudstack/issues/108)
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- content_view - scope lifecycle_environments by organization to avoid errors with duplicate names across organizations (https://github.com/theforeman/foreman-ansible-modules/pull/1980)
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- folder - Add check mode support for create and delete operations (https://github.com/ansible-collections/vmware.vmware/issues/387).
+- import_content_library_iso - Fix OOM error when uploading large local ISO files by streaming the file instead of loading it into memory (https://github.com/ansible-collections/vmware.vmware/issues/385).
+- key_provider_native - Fix an ``AttributeError`` when gathering the default KMS cluster and no default cluster is configured.
+- vm_powerstate - only attempt to answer VM questions when a question is actually pending. Previously, supplying the question_answers parameter while no question had appeared yet caused the module to error out before it could wait for and answer the question, leaving the VM stuck. Fixes https://github.com/ansible-collections/vmware.vmware/issues/224
+- vm_powerstate - read the authoritative live C(runtime.powerState) instead of the lazily-updated C(summary.runtime.powerState) so the module reliably waits for the VM to reach the powered off state when using the shutdown-guest state. Fixes https://github.com/ansible-collections/vmware.vmware/issues/224
+- vm_snapshot - fix snapshot lookup so entire snapshot tree is accessible, and not just the first branch.
+- vm_snapshot - remove empty string default for the description field. Descriptions will only be updated if you specify one. Fixes https://github.com/ansible-collections/vmware.vmware/issues/395
+
+New Plugins
+-----------
+
+Callback
+~~~~~~~~
+
+- community.general.oneline - One\-line Ansible screen output.
+
+New Modules
+-----------
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- ansible.windows.win_reboot_info - Get reboot status information for a Windows host
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- cloudscale_ch.cloud.interface - Manages network interfaces on the cloudscale.ch IaaS service
+- cloudscale_ch.cloud.router - Manages routers on the cloudscale.ch IaaS service
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- community.crypto.openssl_pkcs12_extract - Extract certificate and private key from PKCS#12 archive.
+- community.crypto.openssl_pkcs12_info - Return certificates and (optionally) private key of a PKCS#12 file.
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- community.general.appimage - Manage AppImage packages.
+
+fortinet.fortimanager
+~~~~~~~~~~~~~~~~~~~~~
+
+- fortinet.fortimanager.fmgr_antivirus_profile_websocket - Configure WEBSOCKET AntiVirus options.
+- fortinet.fortimanager.fmgr_casb_useractivity_match_tenantsessionextraction - CASB user activity tenant session extraction.
+- fortinet.fortimanager.fmgr_casb_useractivity_match_tenantsessionextraction_filters - CASB user activity session extraction filters.
+- fortinet.fortimanager.fmgr_deployment_get_controller_status - Refresh status of AP/Switch/Extender controller.
+- fortinet.fortimanager.fmgr_firewall_customtag - Define custom tag table.
+- fortinet.fortimanager.fmgr_firewall_profileprotocoloptions_websocket - Configure WebSocket protocol options.
+- fortinet.fortimanager.fmgr_pm_config_pblock_firewall_localinpolicy - Configure user defined IPv4 local-in policies.
+- fortinet.fortimanager.fmgr_pm_config_pblock_firewall_localinpolicy6 - Configure user defined IPv6 local-in policies.
+- fortinet.fortimanager.fmgr_switchcontroller_securitypolicy_admin - Configure fortiswitchs admin security-policy.
+- fortinet.fortimanager.fmgr_sys_backup - Backup FortiManager configuration.
+- fortinet.fortimanager.fmgr_system_csf_trustedlist_adom - Cli system csf trusted list adom
+- fortinet.fortimanager.fmgr_user_aci - User aci
+- fortinet.fortimanager.fmgr_user_azure - User azure
+- fortinet.fortimanager.fmgr_user_azure_rule - User azure rule
+- fortinet.fortimanager.fmgr_user_guardicore - User guardicore
+- fortinet.fortimanager.fmgr_user_local_dynamicmapping - Configure local users.
+- fortinet.fortimanager.fmgr_vpn_ipsec_fec_mappings_tos - FEC redundancy mapping table for specific type of service
+- fortinet.fortimanager.fmgr_wireless_lwprofile - Configure LoRaWAN profile.
+- fortinet.fortimanager.fmgr_ztna_destination - Configure ZTNA destination.
+
+microsoft.iis
+~~~~~~~~~~~~~
+
+- microsoft.iis.authentication - Configures authentication options in IIS.
+- microsoft.iis.page_order - Configures default document order in IIS.
+
+ngine_io.cloudstack
+~~~~~~~~~~~~~~~~~~~
+
+- ngine_io.cloudstack.api_request - Executes ad\-hoc Apache CloudStack API requests.
+- ngine_io.cloudstack.cluster_info - Gathering information about clusters from Apache CloudStack based clouds.
+- ngine_io.cloudstack.internal_lb_vm - Manages internal load balancer instances on Apache CloudStack based clouds.
+- ngine_io.cloudstack.lb_internal - Manages internal load balancers on Apache CloudStack based clouds.
+- ngine_io.cloudstack.lb_internal_member - Manages internal load balancer members on Apache CloudStack based clouds.
+- ngine_io.cloudstack.pod_info - Gathering information about pods from Apache CloudStack based clouds.
+- ngine_io.cloudstack.ssl_cert - Manages SSL certificates on Apache CloudStack based clouds.
+- ngine_io.cloudstack.user_data - Manages user data on Apache CloudStack based clouds.
+- ngine_io.cloudstack.vpc_private_gateway - Manages private gateways for VPCs on Apache CloudStack based clouds.
+- ngine_io.cloudstack.vpn_user - Manages VPN users on Apache CloudStack based clouds.
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- vmware.vmware.esxi_info - Gathers information about one or more ESXi hosts
+- vmware.vmware.esxi_powerstate - Manages power states of ESXi hosts in vCenter
+- vmware.vmware.esxi_service - Manage the state and startup policy of a service on an ESXi host
+- vmware.vmware.esxi_service_info - Gather information about the services on an ESXi host
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 11.4.0)
+- ansible.mariadb (still version 6.0.2)
+- ansible.mysql (still version 5.2.0)
+- ansible.posix (still version 2.2.2)
+- ansible.utils (still version 6.1.0)
+- arista.eos (still version 12.2.0)
+- azure.azcollection (still version 3.21.0)
+- check_point.mgmt (still version 6.9.0)
+- chocolatey.chocolatey (still version 1.6.0)
+- cisco.aci (still version 2.13.0)
+- cisco.intersight (still version 2.21.0)
+- cisco.mso (still version 2.13.0)
+- cisco.nxos (still version 11.2.0)
+- cisco.ucs (still version 1.16.0)
+- community.aws (still version 11.1.0)
+- community.ciscosmb (still version 1.0.12)
+- community.clickhouse (still version 2.3.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.7.2)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.3.0)
+- community.mongodb (still version 1.8.0)
+- community.mysql (still version 5.0.2)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxmox (still version 2.0.0)
+- community.proxysql (still version 1.8.0)
+- community.rabbitmq (still version 1.7.0)
+- community.sops (still version 2.4.0)
+- community.windows (still version 3.3.0)
+- community.zabbix (still version 4.2.0)
+- containers.podman (still version 1.20.2)
+- cyberark.conjur (still version 1.3.12)
+- cyberark.pas (still version 1.0.39)
+- dellemc.enterprise_sonic (still version 4.1.0)
+- dellemc.openmanage (still version 10.0.3)
+- dellemc.powerflex (still version 3.1.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.43.0)
+- google.cloud (still version 1.14.0)
+- grafana.grafana (still version 6.1.0)
+- hitachivantara.vspone_block (still version 4.8.2)
+- hitachivantara.vspone_object (still version 1.2.0)
+- ibm.storage_virtualize (still version 3.4.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infoblox.nios_modules (still version 1.9.0)
+- inspur.ispim (still version 2.2.4)
+- kaytus.ksmanage (still version 4.0.0)
+- kubernetes.core (still version 6.5.0)
+- kubevirt.core (still version 2.3.0)
+- lowlydba.sqlserver (still version 2.8.1)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.6.0)
+- netapp.storagegrid (still version 21.16.0)
+- netbox.netbox (still version 3.23.0)
+- openstack.cloud (still version 2.6.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- purestorage.flasharray (still version 1.43.0)
+- purestorage.flashblade (still version 1.26.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 6.0.1)
+- telekom_mms.icinga_director (still version 2.6.1)
+- vmware.vmware_rest (still version 4.11.0)
+- vultr.cloud (still version 1.14.1)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.11)
+
 v14.3.1
 =======
 
@@ -2388,7 +2929,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | netapp.storagegrid           | 21.15.0        | 21.16.0        |                                                                                                                                                                                                                 |
 +------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| netapp_eseries.santricity    | 1.4.1          | 2.0.1          | The collection did not have a changelog in this version.                                                                                                                                                        |
+| netapp_eseries.santricity    | 1.4.1          | 2.0.1          |                                                                                                                                                                                                                 |
 +------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | netbox.netbox                | 3.21.0         | 3.23.0         |                                                                                                                                                                                                                 |
 +------------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -4371,6 +4912,16 @@ netapp.storagegrid
 - na_sg_org_group - new options `s3_console` to control S3 console access and `view_all_containers` to view settings for all buckets added, requires StorageGRID version 11.8 or later.
 - na_sg_org_info - Added new endpoints for the org info.
 
+netapp_eseries.santricity
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Fixed pep8 issues.
+- Improved code style and compliance with PEP8.
+- Renamed variable to avoid using a reserved name.
+- Require ansible-core 2.19 or later.
+- Updated plugins to use ``dataDriveCount`` for pool drive count.
+- Updated unit test utilities import paths and context manager usage for better reliability.
+
 netbox.netbox
 ~~~~~~~~~~~~~
 
@@ -5872,6 +6423,11 @@ netapp.storagegrid
 - na_sg_org_identity_federation - fix issue with check mode response.
 - na_sg_org_info - Fix issue where the module incorrectly reported tasks as changed.
 - na_sg_org_user_s3_key - unique_user_name is fixed as in the documents
+
+netapp_eseries.santricity
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Refactored URL port validation logic.
 
 netbox.netbox
 ~~~~~~~~~~~~~
