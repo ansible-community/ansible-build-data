@@ -8,3 +8,5 @@ purestorage.flashblade: <1.28.0
 purestorage.flasharray: <1.45.0
 # cyberark.conjur 1.3.13 is not tagged in https://github.com/cyberark/ansible-conjur-collection
 cyberark.conjur: <1.3.13
+# f5networks.f5_modules 1.44.0 requires ansible.netcommon >= 8.6.1
+f5networks.f5_modules: <1.44.0
