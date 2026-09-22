@@ -1,3 +1,11 @@
 ---
 ancestor: 14.0.0
-releases: {}
+releases:
+  15.0.0a1:
+    changes:
+      release_summary: 'Release Date: 2026-09-22
+
+
+        `Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_'
+    release_date: '2026-09-22'
+remove_collection_changelog_entries: {}
