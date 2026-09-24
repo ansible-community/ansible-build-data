@@ -54,6 +54,12 @@ collections:
     repository: https://github.com/ansible-collections/cisco.nxos
   cisco.ucs:
     repository: https://github.com/CiscoDevNet/ansible-ucs
+    removal:
+      major_version: 16
+      reason: other
+      reason_text: No active development, this has moved to the intersight collection which is also part of the ACP.
+      announce_version: 15.0.0a2
+      discussion: https://forum.ansible.com/t/46220
   cloudscale_ch.cloud:
     repository: https://github.com/cloudscale-ch/ansible-collection-cloudscale
   community.aws:
