@@ -57,7 +57,9 @@ collections:
     removal:
       major_version: 16
       reason: other
-      reason_text: No active development, this has moved to the intersight collection which is also part of the ACP.
+      reason_text: >-
+        There is no active development happening on the collection.
+        This has moved to cisco.intersight which is also part of the ACP.
       announce_version: 14.5.0
       discussion: https://forum.ansible.com/t/46220
   cloudscale_ch.cloud:
