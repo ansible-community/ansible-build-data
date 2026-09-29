@@ -2,12 +2,10 @@
 
 This changelog describes changes since Ansible 14\.0\.0\.
 
-- <a href="#v15-0-0a1">v15\.0\.0a1</a>
+- <a href="#v15-0-0a2">v15\.0\.0a2</a>
     - <a href="#release-summary">Release Summary</a>
-    - <a href="#removed-collections">Removed Collections</a>
-    - <a href="#added-collections">Added Collections</a>
     - <a href="#ansible-core">Ansible\-core</a>
-    - <a href="#included-collections">Included Collections</a>
+    - <a href="#changed-collections">Changed Collections</a>
     - <a href="#major-changes">Major Changes</a>
     - <a href="#minor-changes">Minor Changes</a>
     - <a href="#breaking-changes--porting-guide">Breaking Changes / Porting Guide</a>
@@ -15,30 +13,603 @@ This changelog describes changes since Ansible 14\.0\.0\.
     - <a href="#removed-features-previously-deprecated">Removed Features \(previously deprecated\)</a>
     - <a href="#security-fixes">Security Fixes</a>
     - <a href="#bugfixes">Bugfixes</a>
-    - <a href="#known-issues">Known Issues</a>
-    - <a href="#new-plugins">New Plugins</a>
     - <a href="#new-modules">New Modules</a>
     - <a href="#unchanged-collections">Unchanged Collections</a>
+- <a href="#v15-0-0a1">v15\.0\.0a1</a>
+    - <a href="#release-summary-1">Release Summary</a>
+    - <a href="#removed-collections">Removed Collections</a>
+    - <a href="#added-collections">Added Collections</a>
+    - <a href="#ansible-core-3">Ansible\-core</a>
+    - <a href="#included-collections">Included Collections</a>
+    - <a href="#major-changes-1">Major Changes</a>
+    - <a href="#minor-changes-1">Minor Changes</a>
+    - <a href="#breaking-changes--porting-guide-1">Breaking Changes / Porting Guide</a>
+    - <a href="#deprecated-features-1">Deprecated Features</a>
+    - <a href="#removed-features-previously-deprecated-1">Removed Features \(previously deprecated\)</a>
+    - <a href="#security-fixes-1">Security Fixes</a>
+    - <a href="#bugfixes-1">Bugfixes</a>
+    - <a href="#known-issues">Known Issues</a>
+    - <a href="#new-plugins">New Plugins</a>
+    - <a href="#new-modules-1">New Modules</a>
+    - <a href="#unchanged-collections-1">Unchanged Collections</a>
+
+<a id="v15-0-0a2"></a>
+## v15\.0\.0a2
+
+- <a href="#release-summary">Release Summary</a>
+- <a href="#ansible-core">Ansible\-core</a>
+- <a href="#changed-collections">Changed Collections</a>
+- <a href="#major-changes">Major Changes</a>
+    - <a href="#ansible-core-1">Ansible\-core</a>
+    - <a href="#dellemc-openmanage">dellemc\.openmanage</a>
+    - <a href="#netapp-ontap">netapp\.ontap</a>
+    - <a href="#vmware-vmware-rest">vmware\.vmware\_rest</a>
+- <a href="#minor-changes">Minor Changes</a>
+    - <a href="#community-clickhouse">community\.clickhouse</a>
+    - <a href="#community-vmware">community\.vmware</a>
+    - <a href="#dellemc-openmanage-1">dellemc\.openmanage</a>
+    - <a href="#dellemc-powerflex">dellemc\.powerflex</a>
+    - <a href="#netapp-ontap-1">netapp\.ontap</a>
+    - <a href="#netapp-storagegrid">netapp\.storagegrid</a>
+    - <a href="#theforeman-foreman">theforeman\.foreman</a>
+    - <a href="#vmware-vmware">vmware\.vmware</a>
+    - <a href="#vmware-vmware-rest-1">vmware\.vmware\_rest</a>
+- <a href="#breaking-changes--porting-guide">Breaking Changes / Porting Guide</a>
+    - <a href="#community-vmware-1">community\.vmware</a>
+    - <a href="#vmware-vmware-rest-2">vmware\.vmware\_rest</a>
+- <a href="#deprecated-features">Deprecated Features</a>
+    - <a href="#community-vmware-2">community\.vmware</a>
+    - <a href="#vmware-vmware-rest-3">vmware\.vmware\_rest</a>
+- <a href="#removed-features-previously-deprecated">Removed Features \(previously deprecated\)</a>
+    - <a href="#community-vmware-3">community\.vmware</a>
+    - <a href="#dellemc-openmanage-2">dellemc\.openmanage</a>
+    - <a href="#vmware-vmware-rest-4">vmware\.vmware\_rest</a>
+- <a href="#security-fixes">Security Fixes</a>
+    - <a href="#dellemc-powerflex-1">dellemc\.powerflex</a>
+- <a href="#bugfixes">Bugfixes</a>
+    - <a href="#ansible-core-2">Ansible\-core</a>
+    - <a href="#community-clickhouse-1">community\.clickhouse</a>
+    - <a href="#dellemc-powerflex-2">dellemc\.powerflex</a>
+    - <a href="#netapp-ontap-2">netapp\.ontap</a>
+    - <a href="#netapp-storagegrid-1">netapp\.storagegrid</a>
+    - <a href="#vmware-vmware-1">vmware\.vmware</a>
+    - <a href="#vmware-vmware-rest-5">vmware\.vmware\_rest</a>
+- <a href="#new-modules">New Modules</a>
+    - <a href="#dellemc-openmanage-3">dellemc\.openmanage</a>
+    - <a href="#dellemc-powerflex-3">dellemc\.powerflex</a>
+    - <a href="#netapp-storagegrid-2">netapp\.storagegrid</a>
+    - <a href="#vmware-vmware-rest-6">vmware\.vmware\_rest</a>
+- <a href="#unchanged-collections">Unchanged Collections</a>
+
+<a id="release-summary"></a>
+### Release Summary
+
+Release Date\: 2026\-09\-29
+
+[Porting Guide](https\://docs\.ansible\.com/projects/ansible/devel/porting\_guides\.html)
+
+<a id="ansible-core"></a>
+### Ansible\-core
+
+Ansible 15\.0\.0a2 contains ansible\-core version 2\.22\.0b2\.
+This is a newer version than version 2\.22\.0b1 contained in the previous Ansible release\.
+
+The changes are reported in the combined changelog below\.
+
+<a id="changed-collections"></a>
+### Changed Collections
+
+If not mentioned explicitly\, the changes are reported in the combined changelog below\.
+
+| Collection           | Ansible 15.0.0a1 | Ansible 15.0.0a2 | Notes                                                                                                                        |
+| -------------------- | ---------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| azure.azcollection   | 4.0.0            | 4.1.0            | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
+| community.clickhouse | 2.3.0            | 2.4.0            |                                                                                                                              |
+| community.vmware     | 6.4.0            | 7.0.0            |                                                                                                                              |
+| dellemc.openmanage   | 10.0.3           | 11.0.0           |                                                                                                                              |
+| dellemc.powerflex    | 3.1.0            | 3.2.0            |                                                                                                                              |
+| netapp.ontap         | 23.6.0           | 24.0.0           |                                                                                                                              |
+| netapp.storagegrid   | 21.16.0          | 21.17.0          |                                                                                                                              |
+| theforeman.foreman   | 5.12.0           | 5.13.0           |                                                                                                                              |
+| vmware.vmware        | 2.10.0           | 2.11.0           |                                                                                                                              |
+| vmware.vmware_rest   | 4.11.0           | 5.0.0            |                                                                                                                              |
+
+<a id="major-changes"></a>
+### Major Changes
+
+<a id="ansible-core-1"></a>
+#### Ansible\-core
+
+* callback plugins \- task results passed to callback plugins now always have any registered secrets replaced with <code>\$REDACTED\$</code>\, so callbacks no longer need to mask the result themselves\. The <code>ANSIBLE\_SUPPORTS\_MASKING</code> callback class attribute introduced in ansible\-core 2\.22\.0b1 to opt into receiving unmasked results has been removed and is now ignored\.
+
+<a id="dellemc-openmanage"></a>
+#### dellemc\.openmanage
+
+* Added BIOS registry info module\: idrac\_bios\_registry\_info\.
+* Added network attributes info modules\: idrac\_network\_attributes\_info\, and idrac\_network\_info\.
+* Added session info module\: idrac\_session\_info\.
+* Complete removal of OMSDK library dependency from the collection\.
+* Enhanced idrac\_certificates module with SCEP\_CA\_CERT support for ACME and SCEP enrollment\.
+* Enhanced idrac\_lifecycle\_controller\_logs module with pagination\, filtering\, and export capabilities\.
+* Enhanced idrac\_session module with self\-session protection to prevent accidental lockout when deleting sessions\.
+* Removed 8 deprecated OMSDK\-dependent modules\: dellemc\_configure\_idrac\_eventing\, dellemc\_configure\_idrac\_services\, dellemc\_idrac\_lc\_attributes\, dellemc\_system\_lockdown\_mode\, idrac\_network\, idrac\_timezone\_ntp\, dellemc\_idrac\_storage\_volume\, and idrac\_syslog\.
+* Removed OMSDK requirement from idrac\_system\_info module\.
+* Removed OMSDK\-specific code from dellemc\_idrac\.py utility module\.
+* Removed deprecated parameters from idrac\_bios module \(share\_name\, share\_user\, share\_password\, share\_mnt\, boot\_sources\)\.
+
+<a id="netapp-ontap"></a>
+#### netapp\.ontap
+
+* na\_ontap\_active\_directory \- AWS Lambda support added to the module\.
+* na\_ontap\_active\_directory\_domain\_controllers \- AWS Lambda support added to the module\.
+* na\_ontap\_dns \- GCNV support added to the module\.
+* na\_ontap\_ems\_filter \- GCNV support added to the module\.
+* na\_ontap\_export\_policy \- GCNV support added to the module\.
+* na\_ontap\_export\_policy\_rule \- GCNV support added to the module\.
+* na\_ontap\_ldap\_client \- GCNV support added to the module\.
+* na\_ontap\_license \- GCNV support added to the module\.
+* na\_ontap\_nvme \- AWS Lambda support added to the module\.
+* na\_ontap\_nvme\_subsystem \- AWS Lambda support added to the module\.
+* na\_ontap\_qtree \- GCNV support added to the module\.
+* na\_ontap\_quotas \- GCNV support added to the module\.
+* na\_ontap\_rest\_cli \- GCNV support added to the module\.
+* na\_ontap\_rest\_info \- GCNV support added to the module\.
+* na\_ontap\_restit \- GCNV support added to the module\.
+* na\_ontap\_security\_certificates \- AWS Lambda support added to the module\.
+* na\_ontap\_security\_ipsec\_config \- AWS Lambda support added to the module\.
+* na\_ontap\_security\_ipsec\_policy \- AWS Lambda support added to the module\.
+* na\_ontap\_snapshot \- GCNV support added to the module\.
+* na\_ontap\_snapshot\_policy \- GCNV support added to the module\.
+* na\_ontap\_volume \- GCNV support added to the module\.
+
+<a id="vmware-vmware-rest"></a>
+#### vmware\.vmware\_rest
+
+* vcenter\_vm\_guest\_filesystem\_directories \- The module now raises an error when the vSphere API request fails \(for example when creating a directory that already exists\) instead of silently returning a successful\, unchanged result\. Playbooks that relied on the previous behavior should handle the failure explicitly\.
+
+<a id="minor-changes"></a>
+### Minor Changes
+
+<a id="community-clickhouse"></a>
+#### community\.clickhouse
+
+* clickhouse\_grants \- added the <code>partial\_revokes</code> option to support partial revokes\. Requires ClickHouse 25\.8 or later \([https\://github\.com/ansible\-collections/community\.clickhouse/issues/161](https\://github\.com/ansible\-collections/community\.clickhouse/issues/161)\)\.
+* clickhouse\_grants \- the <code>privileges</code> option is no longer required when <code>state\=present</code> and the <code>partial\_revokes</code> option is set\. It stays required when <code>exclusive\=true</code> \([https\://github\.com/ansible\-collections/community\.clickhouse/issues/161](https\://github\.com/ansible\-collections/community\.clickhouse/issues/161)\)\.
+* clickhouse\_quota \- lazy loading of exists property only once at module execution time\. This is to avoid multiple queries to system\.quotas table when checking for existence of the quota\.
+* clickhouse\_quota \- refactor fetching current state of existing quota\. Move fully to system tables instead of parsing create query\.
+* settings \- convert data size short formats to bytes\. It makes system settings\, user and role module idempotent when passing values like Gi\, G etc\.
+
+<a id="community-vmware"></a>
+#### community\.vmware
+
+* vmware\_host\_kernel\_manager \- Remove the deprecated <code>community\.vmware\.vmware\_host\_powerstate</code> module from the documentation \([https\://github\.com/ansible\-collections/community\.vmware/pull/2607](https\://github\.com/ansible\-collections/community\.vmware/pull/2607)\)\.
+
+<a id="dellemc-openmanage-1"></a>
+#### dellemc\.openmanage
+
+* Enhanced idrac\_firmware module with improved error handling and cleanup\.
+* Enhanced idrac\_lifecycle\_controller\_job\_status\_info module with improved status reporting\.
+* Enhanced idrac\_lifecycle\_controller\_jobs module with improved job tracking\.
+* Enhanced idrac\_lifecycle\_controller\_status\_info module with improved status reporting\.
+* Enhanced idrac\_storage\_volume module with improved error handling\.
+
+<a id="dellemc-powerflex"></a>
+#### dellemc\.powerflex
+
+* Added the <code>powerflex\_common\_v2</code> role providing automatic PowerFlex Gen2 version detection\, module compatibility validation\, and graceful degradation on Gen1 systems\. It is a prerequisite for the <code>powerflex\_provisioning\_v2</code> and <code>powerflex\_system\_v2</code> roles\.
+* Added the <code>powerflex\_provisioning\_v2</code> role for Gen2 infrastructure provisioning\, including volume lifecycle management and snapshot/thin clone workflows\.
+* Added the <code>powerflex\_system\_v2</code> role for Gen2 system\-level configuration validation\, diagnostics\, and system queries\.
+* Added the <code>storage\_node</code> gather\_subset to the <code>info\_v2</code> module for bulk storage node discovery\.
+* Added the <code>storage\_node</code> module to manage PowerFlex Gen2 storage nodes\. The module supports querying storage node details by name or ID\, adding and removing IP addresses with role assignment\, changing IP roles\, updating device pathnames\, and renaming a storage node\. Storage node creation and deletion are not supported\.
+* Extended the <code>force</code> parameter of the <code>replication\_consistency\_group</code> module to also apply to failover operations\, matching the existing behavior for switchover\. Added state\-transition validation and a wait for initial\-copy completion before failover/switchover operations\, with <code>force</code> available to bypass the wait when needed\.
+
+<a id="netapp-ontap-1"></a>
+#### netapp\.ontap
+
+* Replaced deprecated imports across collection\.
+* na\_ontap\_cifs\_server \- Added new REST only option <em class="title-reference">advertised\_kdc\_encryptions</em>\, requires ONTAP 9\.13\.1 or later\.
+* na\_ontap\_export\_policy\_rule \- New REST only option <em class="title-reference">allow\_nfs\_tls\_only</em>\, requires ONTAP 9\.19\.1 or later\.
+* na\_ontap\_log\_forward \- Added rest only option <em class="title-reference">message\_format</em>\, requires ONTAP 9\.13\.1 or later\.
+* na\_ontap\_rest\_info \- Support added for <code>security</code> endpoints\.
+* na\_ontap\_rest\_info \- Support added for <em class="title-reference">protocols/nfs/tls/interfaces</em>\.
+* na\_ontap\_security\_config \- New REST only option <em class="title-reference">software\_data\_encryption</em>\.
+* na\_ontap\_snapmirror \- updated example for initializing a snapmirror relationship\.
+* na\_ontap\_svm \- New REST only options <em class="title-reference">is\_space\_reporting\_logical</em>\, <em class="title-reference">is\_space\_enforcement\_logical</em>\, requires ONTAP 9\.11\.1 or later\.
+
+<a id="netapp-storagegrid"></a>
+#### netapp\.storagegrid
+
+* all modules \- add support for <em class="title-reference">api\_url</em> to be specified with or without \"[https\://](https\://)\" prefix\.
+* na\_sg\_grid\_info \- retrieve information for autosupport\, proxy\, node\-health and syslog on StorageGRID\.
+* na\_sg\_grid\_login \- added <em class="title-reference">api\_url</em> as an alias for the <em class="title-reference">hostname</em> parameter to improve usability\.
+
+<a id="theforeman-foreman"></a>
+#### theforeman\.foreman
+
+* Ansible 2\.22 support
+* Support inventory reports from Foreman 5\.1\+
+
+<a id="vmware-vmware"></a>
+#### vmware\.vmware
+
+* esxi\_hosts inventory \- add <code>gather\_path</code> option \(default <code>true</code>\) with the same semantics as the vms inventory plugin \([https\://github\.com/ansible\-collections/vmware\.vmware/pull/XXX](https\://github\.com/ansible\-collections/vmware\.vmware/pull/XXX)\)\.
+* esxi\_hosts inventory \- same bulk tag\-fetching optimisation as the vms plugin\, using C\(get\_tags\_for\_host\_moids\_bulk\) with object type C\(HostSystem\) \([https\://github\.com/ansible\-collections/vmware\.vmware/pull/XXX](https\://github\.com/ansible\-collections/vmware\.vmware/pull/XXX)\)\.
+* event\_query \- added <code>tests/unit/extensions/audit/test\_event\_query\_contract\.py</code>\, which asserts the constraints the controller imposes on this file \([https\://github\.com/ansible\-collections/vmware\.vmware/pull/414](https\://github\.com/ansible\-collections/vmware\.vmware/pull/414)\)\.
+* event\_query \- removed the entries for <code>folder\_template\_from\_vm</code>\, <code>license\_info</code>\, <code>vm\_portgroup\_info</code>\, <code>vcsa\_settings</code>\, <code>vcsa\_backup\_schedule</code> and <code>vcsa\_backup\_schedule\_info</code>\. None of these modules returns an identifier that can distinguish one node from another\, so none of them could report a node regardless of the query used \([https\://github\.com/ansible\-collections/vmware\.vmware/pull/414](https\://github\.com/ansible\-collections/vmware\.vmware/pull/414)\)\.
+* folder\_info \- Added module to collect information about folders in vSphere
+* vms inventory \- add <code>gather\_path</code> option \(default <code>true</code>\) to omit the C\(path\) host variable when it is not needed\. Path computation traverses the parent folder chain via pyVmomi lazy loading\, which issues one synchronous vCenter RPC per folder level per object\; setting <code>gather\_path</code> to <code>false</code> saves roughly 1\-2 seconds per object on a local network connection \([https\://github\.com/ansible\-collections/vmware\.vmware/pull/XXX](https\://github\.com/ansible\-collections/vmware\.vmware/pull/XXX)\)\.
+* vms inventory \- fetch tags for all VMs in a single REST call using C\(list\_attached\_tags\_on\_objects\) instead of one call per VM\. Resolves each unique tag object exactly once\. Replaces the two\-loop structure with a single loop over a materialised source list\, satisfying the constraint that C\(initialize\_rest\_client\) must be called before iteration \([https\://github\.com/ansible\-collections/vmware\.vmware/pull/XXX](https\://github\.com/ansible\-collections/vmware\.vmware/pull/XXX)\)\.
+
+<a id="vmware-vmware-rest-1"></a>
+#### vmware\.vmware\_rest
+
+* appliance\_networking\_interfaces\_info \- The redundant <code>id</code> return value is no longer emitted\. It only ever echoed back the <code>interface\_name</code> input\, which callers already know\. Use the <code>value</code> or <code>info</code> return values for interface details\.
+* vcenter\_vm\_hardware\_floppy \- The non\-operational <code>label</code> parameter has been removed\. This parameter was accepted but never used by the vSphere API as an input\.
+* vcenter\_vm\_hardware\_floppy\_info \- The non\-operational <code>label</code> parameter has been removed\. This parameter was accepted but never used by the vSphere API as an input\.
+
+<a id="breaking-changes--porting-guide"></a>
+### Breaking Changes / Porting Guide
+
+<a id="community-vmware-1"></a>
+#### community\.vmware
+
+* Removed support for ansible\-core \< 2\.21\.0\.
+
+<a id="vmware-vmware-rest-2"></a>
+#### vmware\.vmware\_rest
+
+* appliance\_monitoring\_query \- The <code>interval</code>\, <code>function</code>\, <code>start\_time</code> and <code>end\_time</code> parameters have been grouped under a new required <code>item</code> dictionary parameter to match the vSphere 9\.1\.0 API specification\. The module will not work with older versions of the API\.
+* appliance\_networking\_interfaces\_ipv4 \- The <code>state</code> parameter now accepts <code>present</code> instead of <code>set</code>\. Playbooks that explicitly set <code>state\: set</code> must be updated to <code>state\: present</code>\.
+* appliance\_networking\_interfaces\_ipv6 \- The <code>state</code> parameter now accepts <code>present</code> instead of <code>set</code>\. Playbooks that explicitly set <code>state\: set</code> must be updated to <code>state\: present</code>\.
+* appliance\_system\_storage \- The <code>state</code> parameter now accepts <code>resize\-ex</code> instead of <code>resize\_ex</code>\. This was done to better align with the API expectations\.
+* vcenter\_folder\_info \- The <code>type</code> parameter \(and its <code>filter\_type</code> alias\) has been moved into a new <code>filter</code> dictionary as <code>filter\.type</code>\, reflecting the <code>Vcenter\.Folder\.FilterSpec</code> object introduced in the vSphere 9\.1\.0 API specification\. Playbooks that set <code>type</code> or <code>filter\_type</code> at the top level must now use <code>filter\.type</code>\. The <code>folders</code>\, <code>names</code>\, <code>parent\_folders</code>\, and <code>datacenters</code> filters remain top\-level parameters\.
+* vcenter\_folder\_info and vcenter\_network\_info \- The \'value\' return is not guaranteed to be a list\. If a list is desired\, the \'info\' return will always be a list \(as documented\)
+* vcenter\_host\_info \- The <code>standalone</code> parameter has been moved into a new <code>filter</code> dictionary as <code>filter\.standalone</code>\, reflecting the <code>Vcenter\.Host\.FilterSpec</code> object introduced in the vSphere 9\.1\.0 API specification\. Playbooks that set <code>standalone</code> at the top level must now use <code>filter\.standalone</code>\. The other host filters remain top\-level parameters\.
+* vcenter\_ovf\_libraryitem \- The <code>deployment\_spec\.accept\_all\_EULA</code> parameter has been renamed to <code>deployment\_spec\.accept\_all\_eula</code> \(snake\_case\) in the vSphere 9\.1\.0 API specification and module arguments\. The module will not work with older versions of the API\.
+* vcenter\_vm\_guest\_filesystem\_directories \- The \'present\'\, \'absent\'\, \'create\_temporary\' states have been removed and replaced with options that better reflect the action taken by the API\.
+* vcenter\_vm\_guest\_filesystem\_directories \- The state option has no default value and must be specified\.
+
+<a id="deprecated-features"></a>
+### Deprecated Features
+
+* The cisco\.ucs collection will be removed from Ansible 16\.
+  There is no active development happening on the collection\. This has moved to cisco\.intersight which is also part of the ACP\.
+  See [the removal discussion for details](https\://forum\.ansible\.com/t/46220)\.
+  After removal\, users can still install this collection with <code>ansible\-galaxy collection install cisco\.ucs</code>\.
+
+<a id="community-vmware-2"></a>
+#### community\.vmware
+
+* module\_utils\.vmware \- The <code>ansible\_date\_time\_facts</code> funtion is deprecated and will be removed in community\.vmware 8\.0\.0 \([https\://github\.com/ansible\-collections/community\.vmware/pull/2607](https\://github\.com/ansible\-collections/community\.vmware/pull/2607)\)\.
+* module\_utils\.vmware\_rest\_client \- The <code>VmwareRestClient\.get\_tag\_by\_name</code> method is deprecated and will be removed in community\.vmware 8\.0\.0 \([https\://github\.com/ansible\-collections/community\.vmware/pull/2607](https\://github\.com/ansible\-collections/community\.vmware/pull/2607)\)\.
+* module\_utils\.vmware\_rest\_client \- The <code>VmwareRestClient\.get\_tags\_for\_hostsystem</code> method is deprecated and will be removed in community\.vmware 8\.0\.0 \([https\://github\.com/ansible\-collections/community\.vmware/pull/2607](https\://github\.com/ansible\-collections/community\.vmware/pull/2607)\)\.
+
+<a id="vmware-vmware-rest-3"></a>
+#### vmware\.vmware\_rest
+
+* Deprecate appliance\_health\_applmgmt\_info module\. Use vmware\.vmware\.appliance\_info
+* Deprecate appliance\_health\_databasestorage\_info module\. Use vmware\.vmware\.appliance\_info
+* Deprecate appliance\_health\_load\_info module\. Use vmware\.vmware\.appliance\_info
+* Deprecate appliance\_health\_mem\_info module\. Use vmware\.vmware\.appliance\_info
+* Deprecate appliance\_health\_storage\_info module\. Use vmware\.vmware\.appliance\_info
+* Deprecate appliance\_health\_swap\_info module\. Use vmware\.vmware\.appliance\_info
+* Deprecate appliance\_health\_system\_info module\. Use vmware\.vmware\.appliance\_info
+* Deprecate appliance\_networking\_info module\. Use vmware\.vmware\.appliance\_info
+* Deprecate appliance\_networking\_interfaces\_info module\. Use vmware\.vmware\.appliance\_info
+* Deprecate appliance\_networking\_interfaces\_ipv4\_info module\. Use vmware\.vmware\.appliance\_info
+* Deprecate appliance\_networking\_interfaces\_ipv6\_info module\. Use vmware\.vmware\.appliance\_info
+* Deprecate appliance\_system\_time\_info module\. Use vmware\.vmware\.appliance\_info
+* Deprecate appliance\_system\_version\_info module\. Use vmware\.vmware\.appliance\_info
+* Deprecate appliance\_vmon\_service and appliance\_vmon\_service\_info modules as the endpoint has been removed\. Use appliance\_services and appliance\_services\_info instead\.
+* Deprecate vcenter\_folder\_info module\. Use vmware\.vmware\.folder\_info
+* Deprecate vcenter\_host\_info module\. Use vmware\.vmware\.esxi\_info
+* Deprecate vcenter\_vm\_guest\_filesystem\_directories module\. Use ansible\.builtin\.file
+* Deprecate vcenter\_vm\_hardware\_floppy and vcenter\_vm\_hardware\_floppy\_info modules as floppy drives are legacy hardware\.
+* Deprecate vcenter\_vm\_info module\. Use vmware\.vmware\.vm\_info
+* Deprecate vcenter\_vm\_power\_info module\. Use vmware\.vmware\.vm\_info
+* Deprecate vcenter\_vmtemplate\_libraryitems module\. Use vmware\.vmware\.deploy\_content\_library\_template or vmware\.vmware\.content\_template
+
+<a id="removed-features-previously-deprecated"></a>
+### Removed Features \(previously deprecated\)
+
+<a id="community-vmware-3"></a>
+#### community\.vmware
+
+* module\_utils\.vm\_device\_helper \- The deprecated <code>PyVmomiDeviceHelper\.is\_nvdimm\_controller</code> method has been removed \([https\://github\.com/ansible\-collections/community\.vmware/pull/2314](https\://github\.com/ansible\-collections/community\.vmware/pull/2314)\)\.
+* module\_utils\.vm\_device\_helper \- The deprecated <code>PyVmomiDeviceHelper\.is\_nvdimm\_device</code> method has been removed \([https\://github\.com/ansible\-collections/community\.vmware/pull/2314](https\://github\.com/ansible\-collections/community\.vmware/pull/2314)\)\.
+* module\_utils\.vmware \- The deprecated <code>PyVmomi\.find\_vmdk\_file</code> method has been removed \([https\://github\.com/ansible\-collections/community\.vmware/pull/2314](https\://github\.com/ansible\-collections/community\.vmware/pull/2314)\)\.
+* module\_utils\.vmware \- The deprecated <code>PyVmomi\.host\_version\_at\_least</code> method has been removed \([https\://github\.com/ansible\-collections/community\.vmware/issues/2309](https\://github\.com/ansible\-collections/community\.vmware/issues/2309)\)\.
+* module\_utils\.vmware \- The deprecated <code>PyVmomi\.network\_exists\_by\_name</code> method has been removed \([https\://github\.com/ansible\-collections/community\.vmware/pull/2314](https\://github\.com/ansible\-collections/community\.vmware/pull/2314)\)\.
+* module\_utils\.vmware \- The deprecated <code>PyVmomi\.vmdk\_disk\_path\_split</code> method has been removed \([https\://github\.com/ansible\-collections/community\.vmware/pull/2314](https\://github\.com/ansible\-collections/community\.vmware/pull/2314)\)\.
+* module\_utils\.vmware \- The deprecated <code>connect\_to\_api</code> function has been removed\. \([https\://github\.com/ansible\-collections/community\.vmware/issues/2465](https\://github\.com/ansible\-collections/community\.vmware/issues/2465)\)\.
+* module\_utils\.vmware \- The deprecated <code>find\_host\_portgroup\_by\_name</code> function and <code>PyVmomi\.find\_host\_portgroup\_by\_name</code> method have been removed \([https\://github\.com/ansible\-collections/community\.vmware/pull/2314](https\://github\.com/ansible\-collections/community\.vmware/pull/2314)\)\.
+* module\_utils\.vmware\_rest\_client \- The deprecated <code>VmwareRestClient\.get\_folder\_by\_name</code> method has been removed \([https\://github\.com/ansible\-collections/community\.vmware/pull/2314](https\://github\.com/ansible\-collections/community\.vmware/pull/2314)\)\.
+* plugin\_utils\.inventory \- The deprecated plugin util has been removed \([https\://github\.com/ansible\-collections/community\.vmware/issues/2292](https\://github\.com/ansible\-collections/community\.vmware/issues/2292)\)\.
+* plugins\.httpapi \- The deprecated <code>plugins\.httpapi</code> has been removed \([https\://github\.com/ansible\-collections/community\.vmware/issues/2310](https\://github\.com/ansible\-collections/community\.vmware/issues/2310)\)\.
+* vcenter\_folder \- The deprecated module has been removed\. Use <code>vmware\.vmware\.folder</code> instead \([https\://github\.com/ansible\-collections/community\.vmware/issues/2358](https\://github\.com/ansible\-collections/community\.vmware/issues/2358)\)\.
+* vmware\_cluster\_ha \- The deprecated module has been removed\. Use <code>vmware\.vmware\.cluster\_ha</code> instead \([https\://github\.com/ansible\-collections/community\.vmware/issues/2333](https\://github\.com/ansible\-collections/community\.vmware/issues/2333)\)\.
+* vmware\_cluster\_info \- The deprecated module has been removed\. Use <code>vmware\.vmware\.cluster\_info</code> instead \([https\://github\.com/ansible\-collections/community\.vmware/issues/2261](https\://github\.com/ansible\-collections/community\.vmware/issues/2261)\)\.
+* vmware\_content\_deploy\_ovf\_template \- The deprecated module has been removed\. Use <code>vmware\.vmware\.deploy\_content\_library\_ovf</code> instead \([https\://github\.com/ansible\-collections/community\.vmware/issues/2334](https\://github\.com/ansible\-collections/community\.vmware/issues/2334)\)\.
+* vmware\_content\_deploy\_template \- The deprecated module has been removed\. Use <code>vmware\.vmware\.deploy\_content\_library\_template</code> instead \([https\://github\.com/ansible\-collections/community\.vmware/issues/2334](https\://github\.com/ansible\-collections/community\.vmware/issues/2334)\)\.
+* vmware\_content\_library\_manager \- The deprecated module has been removed\. Use <code>vmware\.vmware\.local\_content\_library</code> and <code>vmware\.vmware\.subscribed\_content\_library</code> instead \([https\://github\.com/ansible\-collections/community\.vmware/issues/2359](https\://github\.com/ansible\-collections/community\.vmware/issues/2359)\)\.
+* vmware\_dvs\_portgroup \- The deprecated option <code>mac\_learning</code> has been removed\. Use <code>network\_policy\.mac\_learning</code> instead \([https\://github\.com/ansible\-collections/community\.vmware/issues/2466](https\://github\.com/ansible\-collections/community\.vmware/issues/2466)\)\.
+* vmware\_guest\_powerstate \- The deprecated module has been removed\. Use <code>vmware\.vmware\.vm\_powerstate</code> instead \([https\://github\.com/ansible\-collections/community\.vmware/issues/2440](https\://github\.com/ansible\-collections/community\.vmware/issues/2440)\)\.
+* vmware\_host \- The deprecated module has been removed\. Use <code>vmware\.vmware\.esxi\_host</code> and <code>vmware\.vmware\.esxi\_connection</code> instead \([https\://github\.com/ansible\-collections/community\.vmware/issues/2341](https\://github\.com/ansible\-collections/community\.vmware/issues/2341)\)\.
+* vmware\_host\_inventory \- The deprecated inventory plugin has been removed\. Use <code>vmware\.vmware\.esxi\_hosts</code> instead \([https\://github\.com/ansible\-collections/community\.vmware/issues/2292](https\://github\.com/ansible\-collections/community\.vmware/issues/2292)\)\.
+* vmware\_maintenancemode \- The deprecated module has been removed\. Use <code>vmware\.vmware\.esxi\_maintenance\_mode</code> instead \([https\://github\.com/ansible\-collections/community\.vmware/issues/2299](https\://github\.com/ansible\-collections/community\.vmware/issues/2299)\)\.
+* vmware\_vm\_inventory \- The deprecated inventory plugin has been removed\. Use <code>vmware\.vmware\.vms</code> instead \([https\://github\.com/ansible\-collections/community\.vmware/issues/2292](https\://github\.com/ansible\-collections/community\.vmware/issues/2292)\)\.
+
+<a id="dellemc-openmanage-2"></a>
+#### dellemc\.openmanage
+
+* dellemc\_configure\_idrac\_eventing \- Use idrac\_attributes as alternative\.
+* dellemc\_configure\_idrac\_services \- Use idrac\_attributes as alternative\.
+* dellemc\_idrac\_lc\_attributes \- Use idrac\_attributes as alternative\.
+* dellemc\_idrac\_storage\_volume \- Use idrac\_storage\_volume as alternative\.
+* dellemc\_system\_lockdown\_mode \- Use idrac\_attributes as alternative\.
+* idrac\_network \- Use idrac\_network\_attributes as alternative\.
+* idrac\_syslog \- Use idrac\_attributes as alternative\.
+* idrac\_timezone\_ntp \- Use idrac\_attributes as alternative\.
+
+<a id="vmware-vmware-rest-4"></a>
+#### vmware\.vmware\_rest
+
+* appliance\_access\_consolecli \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_access\_consolecli\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_access\_dcui \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_access\_dcui\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_access\_shell \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_access\_shell\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_access\_ssh \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_access\_ssh\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_networking\_dns\_domains \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_networking\_dns\_domains\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_networking\_dns\_hostname \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_networking\_dns\_hostname\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_networking\_dns\_servers \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_networking\_dns\_servers\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_networking\_firewall\_inbound \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_networking\_firewall\_inbound\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_networking\_noproxy \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_networking\_noproxy\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_networking\_proxy \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_networking\_proxy\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_ntp \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_ntp\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_system\_globalfips \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_system\_globalfips\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_system\_time\_timezone \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_system\_time\_timezone\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_timesync \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* appliance\_timesync\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* cluster\_moid \- The deprecated lookup plugin has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* content\_library\_item\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* content\_locallibrary \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* content\_subscribedlibrary \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* datacenter\_moid \- The deprecated lookup plugin has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* datastore\_moid \- The deprecated lookup plugin has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* folder\_moid \- The deprecated lookup plugin has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* host\_moid \- The deprecated lookup plugin has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* network\_moid \- The deprecated lookup plugin has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* resource\_pool\_moid \- The deprecated lookup plugin has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_cluster\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_host \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm\_guest\_customization \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm\_guest\_networking\_interfaces\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm\_guest\_power \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm\_hardware\_adapter\_sata \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm\_hardware\_adapter\_scsi \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm\_hardware\_cdrom \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm\_hardware\_cpu \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm\_hardware\_cpu\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm\_hardware\_disk \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm\_hardware\_ethernet \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm\_hardware\_memory \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm\_hardware\_memory\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm\_libraryitem\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vm\_power \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vcenter\_vmtemplate\_libraryitems\_info \- The deprecated module has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+* vm\_moid \- The deprecated lookup plugin has been removed \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/648)\)
+
+<a id="security-fixes"></a>
+### Security Fixes
+
+<a id="dellemc-powerflex-1"></a>
+#### dellemc\.powerflex
+
+* Replaced hardcoded credentials in example playbooks\, role READMEs\, and Molecule test files with <code>lookup\(\'env\'\, \.\.\.\)</code> based credential resolution to avoid accidental credential exposure in git history\.
+* Resolved Checkmarx\-flagged hardcoded password findings in unit tests by generating credentials at runtime instead of using literal values\.
+
+<a id="bugfixes"></a>
+### Bugfixes
+
+<a id="ansible-core-2"></a>
+#### Ansible\-core
+
+* ansible\-connection \- ensure that the connection persistent directory has private permissions\. This covers the corner case in which the preceding directories do not exist or do not have private enough permissions\.
+
+<a id="community-clickhouse-1"></a>
+#### community\.clickhouse
+
+* clickhouse\_quota \- fix interval idempotency\. Since now interval units will be converted to seconds before executing query\. \([https\://github\.com/ansible\-collections/community\.clickhouse/issues/226](https\://github\.com/ansible\-collections/community\.clickhouse/issues/226)\)
+
+<a id="dellemc-powerflex-2"></a>
+#### dellemc\.powerflex
+
+* sdt \- deleting an SDT that has already been removed is now idempotent and reports <code>changed\=false</code> instead of failing\.
+* storagepool\_v2 \- added validation to reject empty or whitespace\-only <code>storage\_pool\_name</code> and <code>storage\_pool\_new\_name</code> values\, matching the existing behavior of the <code>storagepool</code> module\.
+
+<a id="netapp-ontap-2"></a>
+#### netapp\.ontap
+
+* na\_ontap\_iscsi\_security \- Fixed issue with querying iscsi security settings for a given initiator based on svm\.
+* na\_ontap\_security\_certificates \- Fixed issue with creating or installing certificates of same name with different type\.
+* na\_ontap\_snapmirror \- Fixed issue with intermittent initialization failure post creation\.
+
+<a id="netapp-storagegrid-1"></a>
+#### netapp\.storagegrid
+
+* na\_sg\_grid\_gateway \- updated documentation examples for <em class="title-reference">display\_name</em> option and added the missing <em class="title-reference">state</em> parameter\.
+* na\_sg\_grid\_login \- set module state to ok after generating auth token\.
+* na\_sg\_grid\_recovery\_package \- fix issue with downloading to the destination directory for recovery package\.
+* na\_sg\_org\_container \- fix issue where bucket policy was not being handled correctly\.
+* na\_sg\_org\_container \- fix issue with setting object versioning state for buckets\.
+* na\_sg\_org\_group \- fix idempotency issue when managing S3 bucket policies\.
+
+<a id="vmware-vmware-1"></a>
+#### vmware\.vmware
+
+* event\_query \- <code>deploy\_content\_library\_ovf</code>\, <code>deploy\_content\_library\_template</code> and <code>deploy\_folder\_template</code> report a virtual machine\, but were labelled <code>content\_library</code> and <code>folder</code> \([https\://github\.com/ansible\-collections/vmware\.vmware/pull/414](https\://github\.com/ansible\-collections/vmware\.vmware/pull/414)\)\.
+* event\_query \- <code>esxi\_maintenance\_mode</code>\, <code>import\_content\_library\_ovf</code>\, <code>import\_content\_library\_iso</code>\, <code>cluster\_info</code>\, <code>tags</code>\, <code>tag\_categories</code> and <code>vm\_list\_group\_by\_clusters\_info</code> read their identifier from a path the module does not populate\, so <code>canonical\_facts</code> held a null under that key\. The controller cannot hash null and silently drops such records\, so these modules never reported a node \([https\://github\.com/ansible\-collections/vmware\.vmware/pull/414](https\://github\.com/ansible\-collections/vmware\.vmware/pull/414)\)\.
+* event\_query \- <code>vm</code>\, <code>license\_info</code> and <code>tag\_associations</code> read a key whose value is not an object \(a bool\, and two lists of strings\)\, which raises a jq error\. The controller catches jq errors at the event level\, so each of these discarded the audit records of every other module in the same event\, not just its own \([https\://github\.com/ansible\-collections/vmware\.vmware/pull/414](https\://github\.com/ansible\-collections/vmware\.vmware/pull/414)\)\.
+* event\_query \- the module\'s own name was part of <code>canonical\_facts</code>\, which is the only key the controller deduplicates on\. One virtual machine touched by <code>vm</code>\, <code>vm\_powerstate</code>\, <code>vm\_snapshot</code> and the other VM modules was therefore counted as a separate node per module\. The module name moved to <code>facts</code> \([https\://github\.com/ansible\-collections/vmware\.vmware/pull/414](https\://github\.com/ansible\-collections/vmware\.vmware/pull/414)\)\.
+* inventory plugins \- warn when an object cannot be found mid execution instead of throwing an error \(fixes [https\://github\.com/ansible\-collections/vmware\.vmware/issues/419](https\://github\.com/ansible\-collections/vmware\.vmware/issues/419)\)
+* vm \- Add check mode support so create\, update\, and delete operations report the change without modifying the VM\.
+
+<a id="vmware-vmware-rest-5"></a>
+#### vmware\.vmware\_rest
+
+* appliance\_networking \- Add <code>present</code> to the <code>state</code> choices so the <code>ipv6\_enabled</code> update can actually be applied\. Previously <code>state</code> only accepted <code>reset</code>\, leaving the IPv4/IPv6 update path unreachable\.
+* appliance\_networking\_interfaces\_ipv4\_info \- Mark <code>interface\_name</code> as required so the module fails clearly during argument validation instead of attempting a request against an incomplete endpoint path\.
+* appliance\_networking\_interfaces\_ipv6\_info \- Mark <code>interface\_name</code> as required so the module fails clearly during argument validation instead of attempting a request against an incomplete endpoint path\.
+
+<a id="new-modules"></a>
+### New Modules
+
+<a id="dellemc-openmanage-3"></a>
+#### dellemc\.openmanage
+
+* dellemc\.openmanage\.idrac\_bios\_registry\_info \- Retrieve BIOS registry attribute information from iDRAC\.
+* dellemc\.openmanage\.idrac\_network\_attributes\_info \- Retrieve network attributes information from iDRAC\.
+* dellemc\.openmanage\.idrac\_network\_info \- Retrieve network information from iDRAC\.
+* dellemc\.openmanage\.idrac\_session\_info \- Retrieve session information from iDRAC\.
+
+<a id="dellemc-powerflex-3"></a>
+#### dellemc\.powerflex
+
+* dellemc\.powerflex\.storage\_node \- Manage storage node on Dell PowerFlex 5\.x
+
+<a id="netapp-storagegrid-2"></a>
+#### netapp\.storagegrid
+
+* netapp\.storagegrid\.na\_sg\_grid\_cluster\_config \- NetApp StorageGRID cluster configuration via install API\.
+* netapp\.storagegrid\.na\_sg\_grid\_self\_signed\_certificate \- Generate self signed certificate on StorageGRID\.
+* netapp\.storagegrid\.na\_sg\_grid\_sso \- Manage single sign\-on \(SSO\) configuration on StorageGRID\.
+* netapp\.storagegrid\.na\_sg\_pge\_config \- NetApp StorageGRID node PGE configuration\.
+* netapp\.storagegrid\.na\_sg\_pge\_install \- NetApp StorageGRID PGE load install\.
+* netapp\.storagegrid\.na\_sg\_pge\_setup \- NetApp StorageGRID PGE initial system setup\.
+* netapp\.storagegrid\.na\_sg\_reset\_node\_to\_pge \- NetApp StorageGRID PGE Primary admin node reset\.
+
+<a id="vmware-vmware-rest-6"></a>
+#### vmware\.vmware\_rest
+
+* vmware\.vmware\_rest\.content\_library\_info \- Gather information about vCenter content libraries\.
+* vmware\.vmware\_rest\.content\_library\_subscriptions\_info \- Gather information about the subscriptions of a published content library\.
+
+<a id="unchanged-collections"></a>
+### Unchanged Collections
+
+* amazon\.aws \(still version 11\.4\.0\)
+* ansible\.mariadb \(still version 6\.0\.2\)
+* ansible\.mysql \(still version 5\.2\.0\)
+* ansible\.netcommon \(still version 8\.7\.1\)
+* ansible\.posix \(still version 2\.2\.2\)
+* ansible\.utils \(still version 6\.1\.1\)
+* ansible\.windows \(still version 3\.8\.0\)
+* arista\.eos \(still version 12\.3\.0\)
+* check\_point\.mgmt \(still version 7\.0\.1\)
+* chocolatey\.chocolatey \(still version 1\.6\.0\)
+* cisco\.aci \(still version 2\.13\.0\)
+* cisco\.intersight \(still version 2\.21\.0\)
+* cisco\.ios \(still version 11\.6\.0\)
+* cisco\.iosxr \(still version 12\.5\.0\)
+* cisco\.meraki \(still version 2\.25\.1\)
+* cisco\.mso \(still version 2\.13\.0\)
+* cisco\.nxos \(still version 13\.0\.0\)
+* cisco\.ucs \(still version 1\.16\.0\)
+* cloudscale\_ch\.cloud \(still version 2\.7\.0\)
+* community\.aws \(still version 11\.1\.0\)
+* community\.ciscosmb \(still version 1\.0\.12\)
+* community\.crypto \(still version 3\.4\.0\)
+* community\.dns \(still version 4\.1\.1\)
+* community\.docker \(still version 5\.3\.0\)
+* community\.general \(still version 13\.4\.0\)
+* community\.grafana \(still version 2\.3\.0\)
+* community\.hashi\_vault \(still version 7\.1\.0\)
+* community\.hrobot \(still version 2\.7\.2\)
+* community\.library\_inventory\_filtering\_v1 \(still version 1\.1\.5\)
+* community\.libvirt \(still version 2\.3\.0\)
+* community\.mongodb \(still version 1\.8\.0\)
+* community\.mysql \(still version 5\.0\.2\)
+* community\.okd \(still version 6\.0\.0\)
+* community\.postgresql \(still version 5\.0\.0\)
+* community\.proxmox \(still version 2\.0\.0\)
+* community\.proxysql \(still version 1\.8\.0\)
+* community\.rabbitmq \(still version 1\.7\.0\)
+* community\.routeros \(still version 3\.22\.0\)
+* community\.sap\_libs \(still version 1\.7\.1\)
+* community\.sops \(still version 2\.4\.0\)
+* community\.windows \(still version 3\.3\.0\)
+* community\.zabbix \(still version 4\.2\.0\)
+* containers\.podman \(still version 1\.20\.2\)
+* cyberark\.conjur \(still version 1\.3\.12\)
+* dellemc\.enterprise\_sonic \(still version 4\.1\.0\)
+* dellemc\.unity \(still version 2\.1\.0\)
+* f5networks\.f5\_modules \(still version 1\.44\.0\)
+* fortinet\.fortimanager \(still version 2\.15\.0\)
+* fortinet\.fortios \(still version 2\.6\.0\)
+* google\.cloud \(still version 1\.14\.0\)
+* grafana\.grafana \(still version 6\.1\.0\)
+* graphiant\.naas \(still version 26\.8\.0\)
+* hetzner\.hcloud \(still version 7\.1\.0\)
+* hitachivantara\.vspone\_block \(still version 4\.8\.3\)
+* hitachivantara\.vspone\_object \(still version 1\.2\.0\)
+* ibm\.storage\_virtualize \(still version 3\.4\.0\)
+* ieisystem\.inmanage \(still version 4\.0\.0\)
+* infinidat\.infinibox \(still version 1\.8\.6\)
+* infoblox\.nios\_modules \(still version 1\.10\.0\)
+* inspur\.ispim \(still version 2\.2\.4\)
+* kaytus\.ksmanage \(still version 4\.0\.0\)
+* kubernetes\.core \(still version 6\.6\.0\)
+* kubevirt\.core \(still version 2\.3\.0\)
+* lowlydba\.sqlserver \(still version 3\.1\.0\)
+* microsoft\.ad \(still version 1\.12\.1\)
+* microsoft\.iis \(still version 1\.3\.0\)
+* netapp\_eseries\.santricity \(still version 2\.0\.3\)
+* netbox\.netbox \(still version 3\.23\.0\)
+* ngine\_io\.cloudstack \(still version 3\.3\.0\)
+* openstack\.cloud \(still version 2\.6\.0\)
+* ovirt\.ovirt \(still version 3\.2\.2\)
+* pcg\.alpaca\_operator \(still version 2\.2\.0\)
+* purestorage\.flasharray \(still version 1\.43\.0\)
+* purestorage\.flashblade \(still version 1\.26\.0\)
+* ravendb\.ravendb \(still version 1\.0\.4\)
+* splunk\.es \(still version 6\.0\.1\)
+* telekom\_mms\.icinga\_director \(still version 2\.6\.1\)
+* vultr\.cloud \(still version 1\.14\.1\)
+* vyos\.vyos \(still version 6\.0\.0\)
+* wti\.remote \(still version 1\.0\.11\)
 
 <a id="v15-0-0a1"></a>
 ## v15\.0\.0a1
 
-- <a href="#release-summary">Release Summary</a>
+- <a href="#release-summary-1">Release Summary</a>
 - <a href="#removed-collections">Removed Collections</a>
 - <a href="#added-collections">Added Collections</a>
-- <a href="#ansible-core">Ansible\-core</a>
+- <a href="#ansible-core-3">Ansible\-core</a>
 - <a href="#included-collections">Included Collections</a>
-- <a href="#major-changes">Major Changes</a>
-    - <a href="#ansible-core-1">Ansible\-core</a>
+- <a href="#major-changes-1">Major Changes</a>
+    - <a href="#ansible-core-4">Ansible\-core</a>
     - <a href="#ansible-mysql">ansible\.mysql</a>
-    - <a href="#community-clickhouse">community\.clickhouse</a>
-    - <a href="#community-vmware">community\.vmware</a>
+    - <a href="#community-clickhouse-2">community\.clickhouse</a>
+    - <a href="#community-vmware-4">community\.vmware</a>
     - <a href="#fortinet-fortios">fortinet\.fortios</a>
-    - <a href="#netapp-ontap">netapp\.ontap</a>
+    - <a href="#netapp-ontap-3">netapp\.ontap</a>
     - <a href="#splunk-es">splunk\.es</a>
-    - <a href="#vmware-vmware-rest">vmware\.vmware\_rest</a>
-- <a href="#minor-changes">Minor Changes</a>
-    - <a href="#ansible-core-2">Ansible\-core</a>
+    - <a href="#vmware-vmware-rest-7">vmware\.vmware\_rest</a>
+- <a href="#minor-changes-1">Minor Changes</a>
+    - <a href="#ansible-core-5">Ansible\-core</a>
     - <a href="#amazon-aws">amazon\.aws</a>
     - <a href="#ansible-mysql-1">ansible\.mysql</a>
     - <a href="#ansible-netcommon">ansible\.netcommon</a>
@@ -52,7 +623,7 @@ This changelog describes changes since Ansible 14\.0\.0\.
     - <a href="#cloudscale-ch-cloud">cloudscale\_ch\.cloud</a>
     - <a href="#community-aws">community\.aws</a>
     - <a href="#community-ciscosmb">community\.ciscosmb</a>
-    - <a href="#community-clickhouse-1">community\.clickhouse</a>
+    - <a href="#community-clickhouse-3">community\.clickhouse</a>
     - <a href="#community-crypto">community\.crypto</a>
     - <a href="#community-dns">community\.dns</a>
     - <a href="#community-docker">community\.docker</a>
@@ -64,7 +635,8 @@ This changelog describes changes since Ansible 14\.0\.0\.
     - <a href="#community-sops">community\.sops</a>
     - <a href="#community-windows">community\.windows</a>
     - <a href="#containers-podman">containers\.podman</a>
-    - <a href="#dellemc-powerflex">dellemc\.powerflex</a>
+    - <a href="#dellemc-openmanage-4">dellemc\.openmanage</a>
+    - <a href="#dellemc-powerflex-4">dellemc\.powerflex</a>
     - <a href="#fortinet-fortimanager">fortinet\.fortimanager</a>
     - <a href="#google-cloud">google\.cloud</a>
     - <a href="#graphiant-naas">graphiant\.naas</a>
@@ -77,18 +649,18 @@ This changelog describes changes since Ansible 14\.0\.0\.
     - <a href="#lowlydba-sqlserver">lowlydba\.sqlserver</a>
     - <a href="#microsoft-ad">microsoft\.ad</a>
     - <a href="#microsoft-iis">microsoft\.iis</a>
-    - <a href="#netapp-ontap-1">netapp\.ontap</a>
+    - <a href="#netapp-ontap-4">netapp\.ontap</a>
     - <a href="#netapp-eseries-santricity">netapp\_eseries\.santricity</a>
     - <a href="#ngine-io-cloudstack">ngine\_io\.cloudstack</a>
     - <a href="#purestorage-flasharray">purestorage\.flasharray</a>
     - <a href="#purestorage-flashblade">purestorage\.flashblade</a>
     - <a href="#splunk-es-1">splunk\.es</a>
     - <a href="#telekom-mms-icinga-director">telekom\_mms\.icinga\_director</a>
-    - <a href="#theforeman-foreman">theforeman\.foreman</a>
-    - <a href="#vmware-vmware">vmware\.vmware</a>
-    - <a href="#vmware-vmware-rest-1">vmware\.vmware\_rest</a>
-- <a href="#breaking-changes--porting-guide">Breaking Changes / Porting Guide</a>
-    - <a href="#ansible-core-3">Ansible\-core</a>
+    - <a href="#theforeman-foreman-1">theforeman\.foreman</a>
+    - <a href="#vmware-vmware-2">vmware\.vmware</a>
+    - <a href="#vmware-vmware-rest-8">vmware\.vmware\_rest</a>
+- <a href="#breaking-changes--porting-guide-1">Breaking Changes / Porting Guide</a>
+    - <a href="#ansible-core-6">Ansible\-core</a>
     - <a href="#cisco-nxos-1">cisco\.nxos</a>
     - <a href="#community-okd-1">community\.okd</a>
     - <a href="#community-postgresql-1">community\.postgresql</a>
@@ -96,32 +668,32 @@ This changelog describes changes since Ansible 14\.0\.0\.
     - <a href="#infoblox-nios-modules-1">infoblox\.nios\_modules</a>
     - <a href="#lowlydba-sqlserver-1">lowlydba\.sqlserver</a>
     - <a href="#netapp-eseries-santricity-1">netapp\_eseries\.santricity</a>
-- <a href="#deprecated-features">Deprecated Features</a>
-    - <a href="#ansible-core-4">Ansible\-core</a>
-    - <a href="#community-clickhouse-2">community\.clickhouse</a>
+- <a href="#deprecated-features-1">Deprecated Features</a>
+    - <a href="#ansible-core-7">Ansible\-core</a>
+    - <a href="#community-clickhouse-4">community\.clickhouse</a>
     - <a href="#community-crypto-1">community\.crypto</a>
     - <a href="#community-general-1">community\.general</a>
     - <a href="#community-postgresql-2">community\.postgresql</a>
     - <a href="#community-rabbitmq">community\.rabbitmq</a>
-    - <a href="#community-vmware-1">community\.vmware</a>
+    - <a href="#community-vmware-5">community\.vmware</a>
     - <a href="#hetzner-hcloud-2">hetzner\.hcloud</a>
     - <a href="#kubernetes-core-1">kubernetes\.core</a>
     - <a href="#netapp-eseries-santricity-2">netapp\_eseries\.santricity</a>
     - <a href="#purestorage-flashblade-1">purestorage\.flashblade</a>
-    - <a href="#theforeman-foreman-1">theforeman\.foreman</a>
-    - <a href="#vmware-vmware-rest-2">vmware\.vmware\_rest</a>
-- <a href="#removed-features-previously-deprecated">Removed Features \(previously deprecated\)</a>
-    - <a href="#ansible-core-5">Ansible\-core</a>
+    - <a href="#theforeman-foreman-2">theforeman\.foreman</a>
+    - <a href="#vmware-vmware-rest-9">vmware\.vmware\_rest</a>
+- <a href="#removed-features-previously-deprecated-1">Removed Features \(previously deprecated\)</a>
+    - <a href="#ansible-core-8">Ansible\-core</a>
     - <a href="#community-postgresql-3">community\.postgresql</a>
     - <a href="#hetzner-hcloud-3">hetzner\.hcloud</a>
     - <a href="#ngine-io-cloudstack-1">ngine\_io\.cloudstack</a>
-- <a href="#security-fixes">Security Fixes</a>
-    - <a href="#ansible-core-6">Ansible\-core</a>
+- <a href="#security-fixes-1">Security Fixes</a>
+    - <a href="#ansible-core-9">Ansible\-core</a>
     - <a href="#ansible-posix">ansible\.posix</a>
     - <a href="#graphiant-naas-1">graphiant\.naas</a>
     - <a href="#splunk-es-2">splunk\.es</a>
-- <a href="#bugfixes">Bugfixes</a>
-    - <a href="#ansible-core-7">Ansible\-core</a>
+- <a href="#bugfixes-1">Bugfixes</a>
+    - <a href="#ansible-core-10">Ansible\-core</a>
     - <a href="#amazon-aws-1">amazon\.aws</a>
     - <a href="#ansible-mysql-2">ansible\.mysql</a>
     - <a href="#ansible-netcommon-1">ansible\.netcommon</a>
@@ -135,7 +707,7 @@ This changelog describes changes since Ansible 14\.0\.0\.
     - <a href="#cisco-nxos-2">cisco\.nxos</a>
     - <a href="#cloudscale-ch-cloud-1">cloudscale\_ch\.cloud</a>
     - <a href="#community-aws-1">community\.aws</a>
-    - <a href="#community-clickhouse-3">community\.clickhouse</a>
+    - <a href="#community-clickhouse-5">community\.clickhouse</a>
     - <a href="#community-crypto-2">community\.crypto</a>
     - <a href="#community-dns-1">community\.dns</a>
     - <a href="#community-docker-1">community\.docker</a>
@@ -143,7 +715,7 @@ This changelog describes changes since Ansible 14\.0\.0\.
     - <a href="#community-libvirt-1">community\.libvirt</a>
     - <a href="#community-postgresql-4">community\.postgresql</a>
     - <a href="#community-sap-libs">community\.sap\_libs</a>
-    - <a href="#community-vmware-2">community\.vmware</a>
+    - <a href="#community-vmware-6">community\.vmware</a>
     - <a href="#community-windows-1">community\.windows</a>
     - <a href="#containers-podman-1">containers\.podman</a>
     - <a href="#fortinet-fortios-1">fortinet\.fortios</a>
@@ -155,46 +727,46 @@ This changelog describes changes since Ansible 14\.0\.0\.
     - <a href="#lowlydba-sqlserver-2">lowlydba\.sqlserver</a>
     - <a href="#microsoft-ad-1">microsoft\.ad</a>
     - <a href="#microsoft-iis-1">microsoft\.iis</a>
-    - <a href="#netapp-ontap-2">netapp\.ontap</a>
+    - <a href="#netapp-ontap-5">netapp\.ontap</a>
     - <a href="#netapp-eseries-santricity-3">netapp\_eseries\.santricity</a>
     - <a href="#ngine-io-cloudstack-2">ngine\_io\.cloudstack</a>
     - <a href="#purestorage-flasharray-1">purestorage\.flasharray</a>
     - <a href="#purestorage-flashblade-2">purestorage\.flashblade</a>
     - <a href="#splunk-es-3">splunk\.es</a>
     - <a href="#telekom-mms-icinga-director-1">telekom\_mms\.icinga\_director</a>
-    - <a href="#theforeman-foreman-2">theforeman\.foreman</a>
-    - <a href="#vmware-vmware-1">vmware\.vmware</a>
-    - <a href="#vmware-vmware-rest-3">vmware\.vmware\_rest</a>
+    - <a href="#theforeman-foreman-3">theforeman\.foreman</a>
+    - <a href="#vmware-vmware-3">vmware\.vmware</a>
+    - <a href="#vmware-vmware-rest-10">vmware\.vmware\_rest</a>
     - <a href="#vultr-cloud">vultr\.cloud</a>
 - <a href="#known-issues">Known Issues</a>
-    - <a href="#ansible-core-8">Ansible\-core</a>
+    - <a href="#ansible-core-11">Ansible\-core</a>
 - <a href="#new-plugins">New Plugins</a>
     - <a href="#callback">Callback</a>
     - <a href="#filter">Filter</a>
     - <a href="#inventory">Inventory</a>
     - <a href="#lookup">Lookup</a>
-- <a href="#new-modules">New Modules</a>
+- <a href="#new-modules-1">New Modules</a>
     - <a href="#ansible-mysql-3">ansible\.mysql</a>
     - <a href="#ansible-windows-2">ansible\.windows</a>
     - <a href="#cloudscale-ch-cloud-2">cloudscale\_ch\.cloud</a>
-    - <a href="#community-clickhouse-4">community\.clickhouse</a>
+    - <a href="#community-clickhouse-6">community\.clickhouse</a>
     - <a href="#community-crypto-3">community\.crypto</a>
     - <a href="#community-dns-2">community\.dns</a>
     - <a href="#community-general-3">community\.general</a>
-    - <a href="#dellemc-powerflex-1">dellemc\.powerflex</a>
+    - <a href="#dellemc-powerflex-5">dellemc\.powerflex</a>
     - <a href="#fortinet-fortimanager-1">fortinet\.fortimanager</a>
     - <a href="#kubernetes-core-3">kubernetes\.core</a>
     - <a href="#microsoft-ad-2">microsoft\.ad</a>
     - <a href="#microsoft-iis-2">microsoft\.iis</a>
-    - <a href="#netapp-ontap-3">netapp\.ontap</a>
+    - <a href="#netapp-ontap-6">netapp\.ontap</a>
     - <a href="#ngine-io-cloudstack-3">ngine\_io\.cloudstack</a>
     - <a href="#purestorage-flasharray-2">purestorage\.flasharray</a>
     - <a href="#purestorage-flashblade-3">purestorage\.flashblade</a>
     - <a href="#telekom-mms-icinga-director-2">telekom\_mms\.icinga\_director</a>
-    - <a href="#vmware-vmware-2">vmware\.vmware</a>
-- <a href="#unchanged-collections">Unchanged Collections</a>
+    - <a href="#vmware-vmware-4">vmware\.vmware</a>
+- <a href="#unchanged-collections-1">Unchanged Collections</a>
 
-<a id="release-summary"></a>
+<a id="release-summary-1"></a>
 ### Release Summary
 
 Release Date\: 2026\-09\-22
@@ -214,7 +786,7 @@ You can still install a removed collection manually with <code>ansible\-galaxy c
 
 * ansible\.mariadb \(version 6\.0\.2\)
 
-<a id="ansible-core"></a>
+<a id="ansible-core-3"></a>
 ### Ansible\-core
 
 Ansible 15\.0\.0a1 contains ansible\-core version 2\.22\.0b1\.
@@ -264,7 +836,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 | community.windows            | 3.1.0          | 3.3.0            |                                                                                                                                                                                                              |
 | containers.podman            | 1.20.1         | 1.20.2           |                                                                                                                                                                                                              |
 | cyberark.conjur              | 1.3.9          | 1.3.12           | You can find the collection's changelog at [https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md](https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md). |
-| dellemc.openmanage           | 10.0.2         | 10.0.3           | The collection did not have a changelog in this version.                                                                                                                                                     |
+| dellemc.openmanage           | 10.0.2         | 10.0.3           |                                                                                                                                                                                                              |
 | dellemc.powerflex            | 3.0.0          | 3.1.0            |                                                                                                                                                                                                              |
 | f5networks.f5_modules        | 1.41.0         | 1.44.0           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                 |
 | fortinet.fortimanager        | 2.14.0         | 2.15.0           |                                                                                                                                                                                                              |
@@ -295,29 +867,28 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 | vmware.vmware_rest           | 4.10.0         | 4.11.0           |                                                                                                                                                                                                              |
 | vultr.cloud                  | 1.14.0         | 1.14.1           |                                                                                                                                                                                                              |
 
-<a id="major-changes"></a>
+<a id="major-changes-1"></a>
 ### Major Changes
 
-<a id="ansible-core-1"></a>
+<a id="ansible-core-4"></a>
 #### Ansible\-core
 
 * Secret masking \- Ansible now automatically redacts known secret values from the output it generates\, such as <code>display</code> output \(including verbose\, warning\, deprecation\, and error output\)\, module logging\, and task results passed to callback plugins\. Masking is non\-destructive\; the real value remains available to tasks\, conditionals\, and registered variables\, only the rendered output is redacted with <code>\$REDACTED\$</code>\. Secrets shorter than 4 characters are never masked\, secrets of 4 to 6 characters are only masked when they appear as a whole word or when they overlap or are adjacent to another secret\, and secrets longer than 65536 characters are matched on their first 65536 characters\.
 * Secret masking \- add the <code>ansible\.module\_utils\.secrets</code> public API for working with secrets manually\. It provides <code>register\_secret</code> and <code>register\_secrets</code> to register values that should be redacted from masked output\, and <code>mask\_secrets</code> to redact any registered secrets from a string\. The API can be used on the controller and in Python modules\; the new <code>Ansible\.Secrets</code> C\# module\_util provides the equivalent <code>\[Ansible\.Secrets\.SecretMasker\]\:\:RegisterSecret\(\)</code> and <code>MaskString\(\)</code> methods for PowerShell modules\. Secrets registered inside a module or worker process are propagated back to the controller so they are also masked there\.
 * ansible \- Add support for Python 3\.15\.
 * ansible \- Drop support for Python 3\.12 on the controller\.
-* callback plugins \- callback plugin authors should opt into the new secret masking behaviour by setting the class attribute <code>ANSIBLE\_SUPPORTS\_MASKING \= True</code>\. A callback that sets this receives the unmasked task result and must ensure any secrets are redacted before they are written\, either by emitting output through <code>Display</code> which masks automatically\, or by passing the values through <code>ansible\.module\_utils\.secrets\.mask\_secrets\(\)</code> before writing them elsewhere\. Callbacks that do not set the attribute continue to receive task results with any registered secrets replaced by <code>\$REDACTED\$</code>\, matching the redacted results they receive today\. This implicit masking exists only for backwards compatibility with existing callbacks and will be removed in a future release\, at which point all callbacks will receive unmasked results and must mask them manually if not using <code>Display</code>\. Task\-level <code>no\_log\: true</code> continues to censor the entire result regardless of this attribute\.
 
 <a id="ansible-mysql"></a>
 #### ansible\.mysql
 
 * MariaDB support is deprecated and is scheduled for removal in version 6\.0\.0 of this collection\. If you already use this collection with MariaDB\, please install the <em class="title-reference">ansible\.mariadb</em> collection from Ansible Galaxy and change FQCNs in tasks in your playbooks to use ansible\.mariadb equivalents\, for example\, <em class="title-reference">ansible\.mysql\.mysql\_info</em> \-\> <em class="title-reference">ansible\.mariadb\.mariadb\_info</em>\, etc\. No other changes are needed\. This collection was cloned to the <em class="title-reference">ansible\.mariadb</em> collection to allow its contributors and maintainers to focus on MariaDB\-related automation development\. This <em class="title-reference">ansible\.mysql</em> collection still supports MariaDB \(only bugfixes and security fixes\) until its release 6\.0\.0 \(not earlier than mid 2027\)\, then its support will be dropped\!
 
-<a id="community-clickhouse"></a>
+<a id="community-clickhouse-2"></a>
 #### community\.clickhouse
 
 * clickhouse\_named\_collection \- new module to add/modify/delete named collections in database\.
 
-<a id="community-vmware"></a>
+<a id="community-vmware-4"></a>
 #### community\.vmware
 
 * Bump required <code>vmware\.vmware</code> collection version to 2\.10\.0 \([https\://github\.com/ansible\-collections/community\.vmware/pull/2568](https\://github\.com/ansible\-collections/community\.vmware/pull/2568)\)\.
@@ -329,7 +900,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * Supported new versions 7\.6\.7 and 8\.0\.0\.
 * Updated the Q\&A for importing a certificate in the fortios\_certificate\_remote module\.
 
-<a id="netapp-ontap"></a>
+<a id="netapp-ontap-3"></a>
 #### netapp\.ontap
 
 * na\_ontap\_cg\_snapshot \- AWS Lambda support added to the module\.
@@ -371,15 +942,15 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * ci \- integration tests now run against both Splunk Server 9\.4 and 10\.4 with Enterprise Security \(ES\)\, providing full coverage across supported major versions and catching regressions against real Splunk ES instances\.
 
-<a id="vmware-vmware-rest"></a>
+<a id="vmware-vmware-rest-7"></a>
 #### vmware\.vmware\_rest
 
 * Update minimum required ansible\-core version to 2\.16 in meta/runtime\.yml
 
-<a id="minor-changes"></a>
+<a id="minor-changes-1"></a>
 ### Minor Changes
 
-<a id="ansible-core-2"></a>
+<a id="ansible-core-5"></a>
 #### Ansible\-core
 
 * Add new OrderedSet class for situations a unique ordered list is needed
@@ -656,7 +1227,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * Solve CI doesn\'t satisfy ACP requirements
 * Update unit tests to use collection\-local helpers instead of community\.internal\_test\_tools\, and make set\_module\_args compatible with current Ansible module argument serialization\.
 
-<a id="community-clickhouse-1"></a>
+<a id="community-clickhouse-3"></a>
 #### community\.clickhouse
 
 * Added warning about using unsupported server version\.
@@ -802,7 +1373,14 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * podman\_quadlet \- Add support for aliases for Quadlets
 
-<a id="dellemc-powerflex"></a>
+<a id="dellemc-openmanage-4"></a>
+#### dellemc\.openmanage
+
+* Bump pytest from 8\.3\.5 to 9\.0\.3\.
+* Update README\.md\.
+* Update galaxy\.yml to exclude unnecessary files from collection build\.
+
+<a id="dellemc-powerflex-4"></a>
 #### dellemc\.powerflex
 
 * Added the <code>device\_group</code> module to manage existing PowerFlex Gen2 device groups\. The module supports getting device group details by name or ID\, renaming a device group\, updating spare node and spare device counts\, and querying usable capacity\. Device group creation and deletion are not supported\.
@@ -952,7 +1530,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * microsoft\.iis\.website \- Add preload support for websites using the <code>preload\_enabled</code> option
 
-<a id="netapp-ontap-1"></a>
+<a id="netapp-ontap-4"></a>
 #### netapp\.ontap
 
 * na\_ontap\_ems\_filter \- Added support for rule deletion in REST\.
@@ -1099,14 +1677,14 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * add support for managing and querying Icinga Director import sources\, jobs\, and sync rules \([https\://github\.com/telekom\-mms/ansible\-collection\-icinga\-director/pull/312](https\://github\.com/telekom\-mms/ansible\-collection\-icinga\-director/pull/312)\)
 
-<a id="theforeman-foreman"></a>
+<a id="theforeman-foreman-1"></a>
 #### theforeman\.foreman
 
 * activation\_key \- internally convert deprecated <code>content\_view</code>/<code>lifecycle\_environment</code> to content view environment labels for compatibility with newer Katello API versions \([https\://github\.com/theforeman/foreman\-ansible\-modules/pull/1982](https\://github\.com/theforeman/foreman\-ansible\-modules/pull/1982)\)
 * auth\_source\_ldap \- add <code>cacert</code> parameter to set CA certificates for LDAP server verification \([https\://github\.com/theforeman/foreman\-ansible\-modules/pull/1985](https\://github\.com/theforeman/foreman\-ansible\-modules/pull/1985)\)
 * host\, hostgroup \- internally convert <code>content\_view</code>/<code>lifecycle\_environment</code> to content view environment ID for compatibility with newer Katello API versions \([https\://github\.com/theforeman/foreman\-ansible\-modules/pull/1977](https\://github\.com/theforeman/foreman\-ansible\-modules/pull/1977)\)
 
-<a id="vmware-vmware"></a>
+<a id="vmware-vmware-2"></a>
 #### vmware\.vmware
 
 * cluster\_drs\_vm\_overrides \- add module to manage DRS VM override settings on vSphere clusters
@@ -1128,15 +1706,15 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * vm\_snapshot \- Add relevant parent and child snapshot IDs to the returned snapshot value\.
 * vm\_snapshot\_info \- Add module to gather information about snapshots and the snapshot tree\.
 
-<a id="vmware-vmware-rest-1"></a>
+<a id="vmware-vmware-rest-8"></a>
 #### vmware\.vmware\_rest
 
 * Add support for ansible\-core 2\.21
 
-<a id="breaking-changes--porting-guide"></a>
+<a id="breaking-changes--porting-guide-1"></a>
 ### Breaking Changes / Porting Guide
 
-<a id="ansible-core-3"></a>
+<a id="ansible-core-6"></a>
 #### Ansible\-core
 
 * AnsibleModule \- <code>log\(\)</code> and the automatic invocation logging now only redact values registered as secrets \(such as <code>no\_log</code> option values\) and no longer apply the <code>heuristic\_log\_sanitize\(\)</code> heuristics\, for example <code>user\:password\@host</code> in URLs is no longer rewritten unless the password is a registered secret\. <code>no\_log</code> and password\-like options are logged as <code>\$REDACTED\$</code> instead of <code>NOT\_LOGGING\_PARAMETER</code> or <code>NOT\_LOGGING\_PASSWORD</code>\.
@@ -1189,7 +1767,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * na\_santricity\_volume and nar\_santricity\_host \- Rename volume option raid\_level to ddp\_raid\_level for dynamic disk pool volumes\.
 
-<a id="deprecated-features"></a>
+<a id="deprecated-features-1"></a>
 ### Deprecated Features
 
 * The dellemc\.unity collection will be removed from Ansible 16 due to violations of the Ansible inclusion requirements\.
@@ -1197,7 +1775,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
   See [Collections Removal Process for collections not satisfying the collection requirements](https\://docs\.ansible\.com/projects/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#collections\-not\-satisfying\-the\-collection\-requirements) for more details\, including for how this can be cancelled \([https\://forum\.ansible\.com/t/46085](https\://forum\.ansible\.com/t/46085)\)\.
   After removal\, users can still install this collection with <code>ansible\-galaxy collection install dellemc\.unity</code>\.
 
-<a id="ansible-core-4"></a>
+<a id="ansible-core-7"></a>
 #### Ansible\-core
 
 * AGNOSTIC\_BECOME\_PROMPT setting\, no external tools should need this any more\.
@@ -1209,7 +1787,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * module\_utils \- the <code>remove\_values\(\)</code> and <code>sanitize\_keys\(\)</code> functions in <code>ansible\.module\_utils\.common\.parameters</code> are deprecated and will be removed in ansible\-core 2\.25\. Secret values are now masked automatically\, use functions from the <code>ansible\.module\_utils\.secrets</code> module to handle secrets manually\.
 * task result \- Returning <code>skipped</code> from a module or action plugin is deprecated and will be removed in ansible\-core 2\.25\. Use task\-level conditionals \(<code>when\:</code>\) to control execution\.
 
-<a id="community-clickhouse-2"></a>
+<a id="community-clickhouse-4"></a>
 #### community\.clickhouse
 
 * clickhouse\_db \- deprecate pre 22\.x handling code for comments \([https\://github\.com/ansible\-collections/community\.clickhouse/issues/217](https\://github\.com/ansible\-collections/community\.clickhouse/issues/217)\)\.
@@ -1285,7 +1863,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * Support for ansible\-core versions prior to 2\.16\.0 will be dropped in version 2\.0\.0 of this collection \([https\://github\.com/ansible\-collections/community\.rabbitmq/issues/224](https\://github\.com/ansible\-collections/community\.rabbitmq/issues/224)\)\.
 * collection \- Python 2 support will be dropped in version 2\.0\.0 of this collection\. Make sure you have Python 3 installed on your target machines \([https\://github\.com/ansible\-collections/community\.rabbitmq/issues/214](https\://github\.com/ansible\-collections/community\.rabbitmq/issues/214)\)\.
 
-<a id="community-vmware-1"></a>
+<a id="community-vmware-5"></a>
 #### community\.vmware
 
 * plugins\.module\_utils\.vmware \- The function <code>find\_host\_by\_cluster\_datacenter</code> is deprecated and will be removed in community\.vmware 8\.0\.0 \([https\://github\.com/ansible\-collections/community\.vmware/pull/2599](https\://github\.com/ansible\-collections/community\.vmware/pull/2599)\)\.
@@ -1337,17 +1915,17 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * purefb\_fs \- The <code>nfs\_rules</code> parameter is deprecated in favour of <code>export\_policy</code> and will be removed in 2\.0\.0\. A deprecation notice is emitted when it is used\.
 
-<a id="theforeman-foreman-1"></a>
+<a id="theforeman-foreman-2"></a>
 #### theforeman\.foreman
 
 * activation\_key \- the <code>content\_view</code> and <code>lifecycle\_environment</code> parameters are deprecated\, please use <code>content\_view\_environments</code> instead \([https\://github\.com/theforeman/foreman\-ansible\-modules/pull/1982](https\://github\.com/theforeman/foreman\-ansible\-modules/pull/1982)\)
 
-<a id="vmware-vmware-rest-2"></a>
+<a id="vmware-vmware-rest-9"></a>
 #### vmware\.vmware\_rest
 
 * turbo mode and the associated environment variable <code>VMWARE\_ENABLE\_TURBO</code> are deprecated and will be removed from <code>vmware\.vmware\_rest</code> 5\.0\.0 \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/639](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/pull/639)\)\.
 
-<a id="removed-features-previously-deprecated"></a>
+<a id="removed-features-previously-deprecated-1"></a>
 ### Removed Features \(previously deprecated\)
 
 * The <code>netapp\.cloudmanager</code> collection was considered unmaintained and has been removed from Ansible 15 \([https\://forum\.ansible\.com/t/44891](https\://forum\.ansible\.com/t/44891)\)\.
@@ -1357,7 +1935,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
   See [Collections Removal Process for collections not satisfying the collection requirements](https\://docs\.ansible\.com/projects/ansible/devel/community/collection\_contributors/collection\_package\_removal\.html\#collections\-not\-satisfying\-the\-collection\-requirements) for more details \([https\://forum\.ansible\.com/t/45816](https\://forum\.ansible\.com/t/45816)\)\.
   Users can still install this collection with <code>ansible\-galaxy collection install cyberark\.pas</code>\.
 
-<a id="ansible-core-5"></a>
+<a id="ansible-core-8"></a>
 #### Ansible\-core
 
 * Remove deprecated <code>ANSIBLE\_CONNECTION\_PATH</code> option
@@ -1411,10 +1989,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * The deprecated routing to module names with <code>cs\_</code> prefix has been removed\. Use the new module names instead\.
 
-<a id="security-fixes"></a>
+<a id="security-fixes-1"></a>
 ### Security Fixes
 
-<a id="ansible-core-6"></a>
+<a id="ansible-core-9"></a>
 #### Ansible\-core
 
 * ansible\-galaxy install \- Ensure role requirements are passed as positional arguments to <a href="#system-message-1"><span class="problematic">\:command\:\`git clone\`</span></a>\. Previously\, a malicious role author could inject arbitrary git configuration in role dependencies\. \(CVE\-2026\-11332\)
@@ -1443,10 +2021,10 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * tests\.yml \- replaced <code>pull\_request\_target</code> trigger with <code>pull\_request</code> for all code\-testing jobs \(<code>sanity</code>\, <code>unit\-galaxy</code>\, <code>ansible\-lint</code>\, <code>build\-import</code>\)\. Using <code>pull\_request\_target</code> exposed repository secrets to workflows that execute untrusted fork code\, creating a potential secret\-exfiltration vector \(pwn request\)\.
 
-<a id="bugfixes"></a>
+<a id="bugfixes-1"></a>
 ### Bugfixes
 
-<a id="ansible-core-7"></a>
+<a id="ansible-core-10"></a>
 #### Ansible\-core
 
 * Add deprecation status to the tree and oneline callback DOCUMENTATION\. \([https\://github\.com/ansible/ansible/issues/87020](https\://github\.com/ansible/ansible/issues/87020)\)
@@ -1783,7 +2361,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * autoscaling\_policy \- allow float type for <code>step\_adjustments</code> <code>lower\_bound</code> and <code>upper\_bound</code> parameters \([https\://github\.com/ansible\-collections/community\.aws/issues/2355](https\://github\.com/ansible\-collections/community\.aws/issues/2355)\)
 * wafv2\_web\_acl \- Fixed idempotency issue where rules with rate\_based\_statement would always show as changed when evaluation\_window\_sec was not explicitly specified due to AWS returning the default value of 300 \([https\://github\.com/ansible\-collections/community\.aws/pull/2427](https\://github\.com/ansible\-collections/community\.aws/pull/2427)\)\.
 
-<a id="community-clickhouse-3"></a>
+<a id="community-clickhouse-5"></a>
 #### community\.clickhouse
 
 * clickhouse\_quota \- add missing on cluster for drop
@@ -1895,7 +2473,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * sapcar\_extract \- Update SAPCAR command from PATH and add explanation with HANA limitations \([https\://github\.com/sap\-linuxlab/community\.sap\_libs/pull/86](https\://github\.com/sap\-linuxlab/community\.sap\_libs/pull/86)\)
 
-<a id="community-vmware-2"></a>
+<a id="community-vmware-6"></a>
 #### community\.vmware
 
 * vmware\_guest\_network \- Fix an issue with trunked / PVLAN portgroups \([https\://github\.com/ansible\-collections/community\.vmware/issues/2567](https\://github\.com/ansible\-collections/community\.vmware/issues/2567)\)\.
@@ -2060,7 +2638,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * website \- fix failure to set bindings \(unsupported protocols result in partial filtering\) \([https\://github\.com/ansible\-collections/microsoft\.iis/pull/71](https\://github\.com/ansible\-collections/microsoft\.iis/pull/71)\)
 * website\_info \- Fix logic for determining <code>use\_ccs</code> is set to take into account new SSL flags added in Server 1809 or newer \- [https\://github\.com/ansible\-collections/microsoft\.iis/pull/57](https\://github\.com/ansible\-collections/microsoft\.iis/pull/57)
 
-<a id="netapp-ontap-2"></a>
+<a id="netapp-ontap-5"></a>
 #### netapp\.ontap
 
 * na\_ontap\_nvme\_namespace \- Fixed issue with NVME Namespace get operation\.
@@ -2268,12 +2846,12 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * fix\: prevent simultaneous deploy handler \([https\://github\.com/telekom\-mms/ansible\-collection\-icinga\-director/pull/323](https\://github\.com/telekom\-mms/ansible\-collection\-icinga\-director/pull/323)\)
 
-<a id="theforeman-foreman-2"></a>
+<a id="theforeman-foreman-3"></a>
 #### theforeman\.foreman
 
 * content\_view \- scope lifecycle\_environments by organization to avoid errors with duplicate names across organizations \([https\://github\.com/theforeman/foreman\-ansible\-modules/pull/1980](https\://github\.com/theforeman/foreman\-ansible\-modules/pull/1980)\)
 
-<a id="vmware-vmware-1"></a>
+<a id="vmware-vmware-3"></a>
 #### vmware\.vmware
 
 * folder \- Add check mode support for create and delete operations \([https\://github\.com/ansible\-collections/vmware\.vmware/issues/387](https\://github\.com/ansible\-collections/vmware\.vmware/issues/387)\)\.
@@ -2291,7 +2869,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * vm\_snapshot \- remove empty string default for the description field\. Descriptions will only be updated if you specify one\. Fixes [https\://github\.com/ansible\-collections/vmware\.vmware/issues/395](https\://github\.com/ansible\-collections/vmware\.vmware/issues/395)
 * vm\_snapshot\_revert \- search the snapshot tree fully to find a matching snapshot Fixes [https\://github\.com/ansible\-collections/vmware\.vmware/issues/330](https\://github\.com/ansible\-collections/vmware\.vmware/issues/330)
 
-<a id="vmware-vmware-rest-3"></a>
+<a id="vmware-vmware-rest-10"></a>
 #### vmware\.vmware\_rest
 
 * module\_utils \- Avoid importing cloud\.common turbo exceptions unless turbo mode is explicitly enabled\, preventing a cloud\.common Ansible 2\.20 support warning in module runs when turbo is off \([https\://github\.com/ansible\-collections/vmware\.vmware\_rest/issues/637](https\://github\.com/ansible\-collections/vmware\.vmware\_rest/issues/637)\)\.
@@ -2304,7 +2882,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 <a id="known-issues"></a>
 ### Known Issues
 
-<a id="ansible-core-8"></a>
+<a id="ansible-core-11"></a>
 #### Ansible\-core
 
 * Secret masking \- when <code>ANSIBLE\_DEBUG\=1</code> is set\, the raw stdout and stderr of commands executed on the target\, including module results\, are displayed before the secrets contained in the module result have been registered for masking\. Secrets which are only known to the module\, such as <code>no\_log</code> option values\, may therefore be shown in plaintext in debug output\.
@@ -2334,7 +2912,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * community\.general\.proton\_pass \- Fetch secrets from Proton Pass via the <code>pass\-cli</code> command\-line tool\.
 
-<a id="new-modules"></a>
+<a id="new-modules-1"></a>
 ### New Modules
 
 <a id="ansible-mysql-3"></a>
@@ -2366,7 +2944,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * cloudscale\_ch\.cloud\.interface \- Manages network interfaces on the cloudscale\.ch IaaS service
 * cloudscale\_ch\.cloud\.router \- Manages routers on the cloudscale\.ch IaaS service
 
-<a id="community-clickhouse-4"></a>
+<a id="community-clickhouse-6"></a>
 #### community\.clickhouse
 
 * community\.clickhouse\.clickhouse\_named\_collection \- Creates\, removes or modify a ClickHouse named collection using the clickhouse\-driver Client interface
@@ -2405,7 +2983,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * community\.general\.write\_binary\_file \- Write binary file from Base64 encoded input\.
 * community\.general\.xml\_info \- Query XML files or strings\.
 
-<a id="dellemc-powerflex-1"></a>
+<a id="dellemc-powerflex-5"></a>
 #### dellemc\.powerflex
 
 * dellemc\.powerflex\.device\_group \- Manage Device Groups on Dell PowerFlex Gen2
@@ -2461,7 +3039,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * microsoft\.iis\.authentication \- Configures authentication options in IIS\.
 * microsoft\.iis\.page\_order \- Configures default document order in IIS\.
 
-<a id="netapp-ontap-3"></a>
+<a id="netapp-ontap-6"></a>
 #### netapp\.ontap
 
 * netapp\.ontap\.na\_ontap\_user\_role\_config \- NetApp ONTAP local user account restrictions
@@ -2498,7 +3076,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 
 * telekom\_mms\.icinga\_director\.icinga\_importsource \- Manage import sources in Icinga2 Director
 
-<a id="vmware-vmware-2"></a>
+<a id="vmware-vmware-4"></a>
 #### vmware\.vmware
 
 * vmware\.vmware\.esxi\_info \- Gathers information about one or more ESXi hosts
@@ -2506,7 +3084,7 @@ If not mentioned explicitly\, the changes are reported in the combined changelog
 * vmware\.vmware\.esxi\_service \- Manage the state and startup policy of a service on an ESXi host
 * vmware\.vmware\.esxi\_service\_info \- Gather information about the services on an ESXi host
 
-<a id="unchanged-collections"></a>
+<a id="unchanged-collections-1"></a>
 ### Unchanged Collections
 
 * chocolatey\.chocolatey \(still version 1\.6\.0\)
