@@ -7,6 +7,534 @@ This changelog describes changes since Ansible 14.0.0.
 .. contents::
   :depth: 2
 
+v15.0.0a2
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-09-29
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 15.0.0a2 contains ansible-core version 2.22.0b2.
+This is a newer version than version 2.22.0b1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++----------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection           | Ansible 15.0.0a1 | Ansible 15.0.0a2 | Notes                                                                                                                        |
++======================+==================+==================+==============================================================================================================================+
+| azure.azcollection   | 4.0.0            | 4.1.0            | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++----------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.clickhouse | 2.3.0            | 2.4.0            |                                                                                                                              |
++----------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware     | 6.4.0            | 7.0.0            |                                                                                                                              |
++----------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.openmanage   | 10.0.3           | 11.0.0           |                                                                                                                              |
++----------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.powerflex    | 3.1.0            | 3.2.0            |                                                                                                                              |
++----------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.ontap         | 23.6.0           | 24.0.0           |                                                                                                                              |
++----------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| netapp.storagegrid   | 21.16.0          | 21.17.0          |                                                                                                                              |
++----------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman   | 5.12.0           | 5.13.0           |                                                                                                                              |
++----------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware        | 2.10.0           | 2.11.0           |                                                                                                                              |
++----------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware_rest   | 4.11.0           | 5.0.0            |                                                                                                                              |
++----------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Major Changes
+-------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- callback plugins - task results passed to callback plugins now always have any registered secrets replaced with ``$REDACTED$``, so callbacks no longer need to mask the result themselves. The ``ANSIBLE_SUPPORTS_MASKING`` callback class attribute introduced in ansible-core 2.22.0b1 to opt into receiving unmasked results has been removed and is now ignored.
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- Added BIOS registry info module: idrac_bios_registry_info.
+- Added network attributes info modules: idrac_network_attributes_info, and idrac_network_info.
+- Added session info module: idrac_session_info.
+- Complete removal of OMSDK library dependency from the collection.
+- Enhanced idrac_certificates module with SCEP_CA_CERT support for ACME and SCEP enrollment.
+- Enhanced idrac_lifecycle_controller_logs module with pagination, filtering, and export capabilities.
+- Enhanced idrac_session module with self-session protection to prevent accidental lockout when deleting sessions.
+- Removed 8 deprecated OMSDK-dependent modules: dellemc_configure_idrac_eventing, dellemc_configure_idrac_services, dellemc_idrac_lc_attributes, dellemc_system_lockdown_mode, idrac_network, idrac_timezone_ntp, dellemc_idrac_storage_volume, and idrac_syslog.
+- Removed OMSDK requirement from idrac_system_info module.
+- Removed OMSDK-specific code from dellemc_idrac.py utility module.
+- Removed deprecated parameters from idrac_bios module (share_name, share_user, share_password, share_mnt, boot_sources).
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_active_directory - AWS Lambda support added to the module.
+- na_ontap_active_directory_domain_controllers - AWS Lambda support added to the module.
+- na_ontap_dns - GCNV support added to the module.
+- na_ontap_ems_filter - GCNV support added to the module.
+- na_ontap_export_policy - GCNV support added to the module.
+- na_ontap_export_policy_rule - GCNV support added to the module.
+- na_ontap_ldap_client - GCNV support added to the module.
+- na_ontap_license - GCNV support added to the module.
+- na_ontap_nvme - AWS Lambda support added to the module.
+- na_ontap_nvme_subsystem - AWS Lambda support added to the module.
+- na_ontap_qtree - GCNV support added to the module.
+- na_ontap_quotas - GCNV support added to the module.
+- na_ontap_rest_cli - GCNV support added to the module.
+- na_ontap_rest_info - GCNV support added to the module.
+- na_ontap_restit - GCNV support added to the module.
+- na_ontap_security_certificates - AWS Lambda support added to the module.
+- na_ontap_security_ipsec_config - AWS Lambda support added to the module.
+- na_ontap_security_ipsec_policy - AWS Lambda support added to the module.
+- na_ontap_snapshot - GCNV support added to the module.
+- na_ontap_snapshot_policy - GCNV support added to the module.
+- na_ontap_volume - GCNV support added to the module.
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- vcenter_vm_guest_filesystem_directories - The module now raises an error when the vSphere API request fails (for example when creating a directory that already exists) instead of silently returning a successful, unchanged result. Playbooks that relied on the previous behavior should handle the failure explicitly.
+
+Minor Changes
+-------------
+
+community.clickhouse
+~~~~~~~~~~~~~~~~~~~~
+
+- clickhouse_grants - added the ``partial_revokes`` option to support partial revokes. Requires ClickHouse 25.8 or later (https://github.com/ansible-collections/community.clickhouse/issues/161).
+- clickhouse_grants - the ``privileges`` option is no longer required when ``state=present`` and the ``partial_revokes`` option is set. It stays required when ``exclusive=true`` (https://github.com/ansible-collections/community.clickhouse/issues/161).
+- clickhouse_quota - lazy loading of exists property only once at module execution time. This is to avoid multiple queries to system.quotas table when checking for existence of the quota.
+- clickhouse_quota - refactor fetching current state of existing quota. Move fully to system tables instead of parsing create query.
+- settings - convert data size short formats to bytes. It makes system settings, user and role module idempotent when passing values like Gi, G etc.
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_host_kernel_manager - Remove the deprecated ``community.vmware.vmware_host_powerstate`` module from the documentation (https://github.com/ansible-collections/community.vmware/pull/2607).
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- Enhanced idrac_firmware module with improved error handling and cleanup.
+- Enhanced idrac_lifecycle_controller_job_status_info module with improved status reporting.
+- Enhanced idrac_lifecycle_controller_jobs module with improved job tracking.
+- Enhanced idrac_lifecycle_controller_status_info module with improved status reporting.
+- Enhanced idrac_storage_volume module with improved error handling.
+
+dellemc.powerflex
+~~~~~~~~~~~~~~~~~
+
+- Added the ``powerflex_common_v2`` role providing automatic PowerFlex Gen2 version detection, module compatibility validation, and graceful degradation on Gen1 systems. It is a prerequisite for the ``powerflex_provisioning_v2`` and ``powerflex_system_v2`` roles.
+- Added the ``powerflex_provisioning_v2`` role for Gen2 infrastructure provisioning, including volume lifecycle management and snapshot/thin clone workflows.
+- Added the ``powerflex_system_v2`` role for Gen2 system-level configuration validation, diagnostics, and system queries.
+- Added the ``storage_node`` gather_subset to the ``info_v2`` module for bulk storage node discovery.
+- Added the ``storage_node`` module to manage PowerFlex Gen2 storage nodes. The module supports querying storage node details by name or ID, adding and removing IP addresses with role assignment, changing IP roles, updating device pathnames, and renaming a storage node. Storage node creation and deletion are not supported.
+- Extended the ``force`` parameter of the ``replication_consistency_group`` module to also apply to failover operations, matching the existing behavior for switchover. Added state-transition validation and a wait for initial-copy completion before failover/switchover operations, with ``force`` available to bypass the wait when needed.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- Replaced deprecated imports across collection.
+- na_ontap_cifs_server - Added new REST only option `advertised_kdc_encryptions`, requires ONTAP 9.13.1 or later.
+- na_ontap_export_policy_rule - New REST only option `allow_nfs_tls_only`, requires ONTAP 9.19.1 or later.
+- na_ontap_log_forward - Added rest only option `message_format`, requires ONTAP 9.13.1 or later.
+- na_ontap_rest_info - Support added for ``security`` endpoints.
+- na_ontap_rest_info - Support added for `protocols/nfs/tls/interfaces`.
+- na_ontap_security_config - New REST only option `software_data_encryption`.
+- na_ontap_snapmirror - updated example for initializing a snapmirror relationship.
+- na_ontap_svm - New REST only options `is_space_reporting_logical`, `is_space_enforcement_logical`, requires ONTAP 9.11.1 or later.
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- all modules - add support for `api_url` to be specified with or without "https://" prefix.
+- na_sg_grid_info - retrieve information for autosupport, proxy, node-health and syslog on StorageGRID.
+- na_sg_grid_login - added `api_url` as an alias for the `hostname` parameter to improve usability.
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- Ansible 2.22 support
+- Support inventory reports from Foreman 5.1+
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- esxi_hosts inventory - add ``gather_path`` option (default ``true``) with the same semantics as the vms inventory plugin (https://github.com/ansible-collections/vmware.vmware/pull/XXX).
+- esxi_hosts inventory - same bulk tag-fetching optimisation as the vms plugin, using C(get_tags_for_host_moids_bulk) with object type C(HostSystem) (https://github.com/ansible-collections/vmware.vmware/pull/XXX).
+- event_query - added ``tests/unit/extensions/audit/test_event_query_contract.py``, which asserts the constraints the controller imposes on this file (https://github.com/ansible-collections/vmware.vmware/pull/414).
+- event_query - removed the entries for ``folder_template_from_vm``, ``license_info``, ``vm_portgroup_info``, ``vcsa_settings``, ``vcsa_backup_schedule`` and ``vcsa_backup_schedule_info``. None of these modules returns an identifier that can distinguish one node from another, so none of them could report a node regardless of the query used (https://github.com/ansible-collections/vmware.vmware/pull/414).
+- folder_info - Added module to collect information about folders in vSphere
+- vms inventory - add ``gather_path`` option (default ``true``) to omit the C(path) host variable when it is not needed. Path computation traverses the parent folder chain via pyVmomi lazy loading, which issues one synchronous vCenter RPC per folder level per object; setting ``gather_path`` to ``false`` saves roughly 1-2 seconds per object on a local network connection (https://github.com/ansible-collections/vmware.vmware/pull/XXX).
+- vms inventory - fetch tags for all VMs in a single REST call using C(list_attached_tags_on_objects) instead of one call per VM. Resolves each unique tag object exactly once. Replaces the two-loop structure with a single loop over a materialised source list, satisfying the constraint that C(initialize_rest_client) must be called before iteration (https://github.com/ansible-collections/vmware.vmware/pull/XXX).
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- appliance_networking_interfaces_info - The redundant ``id`` return value is no longer emitted. It only ever echoed back the ``interface_name`` input, which callers already know. Use the ``value`` or ``info`` return values for interface details.
+- vcenter_vm_hardware_floppy - The non-operational ``label`` parameter has been removed. This parameter was accepted but never used by the vSphere API as an input.
+- vcenter_vm_hardware_floppy_info - The non-operational ``label`` parameter has been removed. This parameter was accepted but never used by the vSphere API as an input.
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- Removed support for ansible-core < 2.21.0.
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- appliance_monitoring_query - The ``interval``, ``function``, ``start_time`` and ``end_time`` parameters have been grouped under a new required ``item`` dictionary parameter to match the vSphere 9.1.0 API specification. The module will not work with older versions of the API.
+- appliance_networking_interfaces_ipv4 - The ``state`` parameter now accepts ``present`` instead of ``set``. Playbooks that explicitly set ``state: set`` must be updated to ``state: present``.
+- appliance_networking_interfaces_ipv6 - The ``state`` parameter now accepts ``present`` instead of ``set``. Playbooks that explicitly set ``state: set`` must be updated to ``state: present``.
+- appliance_system_storage - The ``state`` parameter now accepts ``resize-ex`` instead of ``resize_ex``. This was done to better align with the API expectations.
+- vcenter_folder_info - The ``type`` parameter (and its ``filter_type`` alias) has been moved into a new ``filter`` dictionary as ``filter.type``, reflecting the ``Vcenter.Folder.FilterSpec`` object introduced in the vSphere 9.1.0 API specification. Playbooks that set ``type`` or ``filter_type`` at the top level must now use ``filter.type``. The ``folders``, ``names``, ``parent_folders``, and ``datacenters`` filters remain top-level parameters.
+- vcenter_folder_info and vcenter_network_info - The 'value' return is not guaranteed to be a list. If a list is desired, the 'info' return will always be a list (as documented)
+- vcenter_host_info - The ``standalone`` parameter has been moved into a new ``filter`` dictionary as ``filter.standalone``, reflecting the ``Vcenter.Host.FilterSpec`` object introduced in the vSphere 9.1.0 API specification. Playbooks that set ``standalone`` at the top level must now use ``filter.standalone``. The other host filters remain top-level parameters.
+- vcenter_ovf_libraryitem - The ``deployment_spec.accept_all_EULA`` parameter has been renamed to ``deployment_spec.accept_all_eula`` (snake_case) in the vSphere 9.1.0 API specification and module arguments. The module will not work with older versions of the API.
+- vcenter_vm_guest_filesystem_directories - The 'present', 'absent', 'create_temporary' states have been removed and replaced with options that better reflect the action taken by the API.
+- vcenter_vm_guest_filesystem_directories - The state option has no default value and must be specified.
+
+Deprecated Features
+-------------------
+
+- The cisco.ucs collection will be removed from Ansible 16.
+  There is no active development happening on the collection. This has moved to cisco.intersight which is also part of the ACP.
+  See `the removal discussion for details <https://forum.ansible.com/t/46220>`__.
+  After removal, users can still install this collection with ``ansible-galaxy collection install cisco.ucs``.
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- module_utils.vmware - The ``ansible_date_time_facts`` funtion is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
+- module_utils.vmware_rest_client - The ``VmwareRestClient.get_tag_by_name`` method is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
+- module_utils.vmware_rest_client - The ``VmwareRestClient.get_tags_for_hostsystem`` method is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- Deprecate appliance_health_applmgmt_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_databasestorage_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_load_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_mem_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_storage_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_swap_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_health_system_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_networking_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_networking_interfaces_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_networking_interfaces_ipv4_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_networking_interfaces_ipv6_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_system_time_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_system_version_info module. Use vmware.vmware.appliance_info
+- Deprecate appliance_vmon_service and appliance_vmon_service_info modules as the endpoint has been removed. Use appliance_services and appliance_services_info instead.
+- Deprecate vcenter_folder_info module. Use vmware.vmware.folder_info
+- Deprecate vcenter_host_info module. Use vmware.vmware.esxi_info
+- Deprecate vcenter_vm_guest_filesystem_directories module. Use ansible.builtin.file
+- Deprecate vcenter_vm_hardware_floppy and vcenter_vm_hardware_floppy_info modules as floppy drives are legacy hardware.
+- Deprecate vcenter_vm_info module. Use vmware.vmware.vm_info
+- Deprecate vcenter_vm_power_info module. Use vmware.vmware.vm_info
+- Deprecate vcenter_vmtemplate_libraryitems module. Use vmware.vmware.deploy_content_library_template or vmware.vmware.content_template
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- module_utils.vm_device_helper - The deprecated ``PyVmomiDeviceHelper.is_nvdimm_controller`` method has been removed (https://github.com/ansible-collections/community.vmware/pull/2314).
+- module_utils.vm_device_helper - The deprecated ``PyVmomiDeviceHelper.is_nvdimm_device`` method has been removed (https://github.com/ansible-collections/community.vmware/pull/2314).
+- module_utils.vmware - The deprecated ``PyVmomi.find_vmdk_file`` method has been removed (https://github.com/ansible-collections/community.vmware/pull/2314).
+- module_utils.vmware - The deprecated ``PyVmomi.host_version_at_least`` method has been removed (https://github.com/ansible-collections/community.vmware/issues/2309).
+- module_utils.vmware - The deprecated ``PyVmomi.network_exists_by_name`` method has been removed (https://github.com/ansible-collections/community.vmware/pull/2314).
+- module_utils.vmware - The deprecated ``PyVmomi.vmdk_disk_path_split`` method has been removed (https://github.com/ansible-collections/community.vmware/pull/2314).
+- module_utils.vmware - The deprecated ``connect_to_api`` function has been removed. (https://github.com/ansible-collections/community.vmware/issues/2465).
+- module_utils.vmware - The deprecated ``find_host_portgroup_by_name`` function and ``PyVmomi.find_host_portgroup_by_name`` method have been removed (https://github.com/ansible-collections/community.vmware/pull/2314).
+- module_utils.vmware_rest_client - The deprecated ``VmwareRestClient.get_folder_by_name`` method has been removed (https://github.com/ansible-collections/community.vmware/pull/2314).
+- plugin_utils.inventory - The deprecated plugin util has been removed (https://github.com/ansible-collections/community.vmware/issues/2292).
+- plugins.httpapi - The deprecated ``plugins.httpapi`` has been removed (https://github.com/ansible-collections/community.vmware/issues/2310).
+- vcenter_folder - The deprecated module has been removed. Use ``vmware.vmware.folder`` instead (https://github.com/ansible-collections/community.vmware/issues/2358).
+- vmware_cluster_ha - The deprecated module has been removed. Use ``vmware.vmware.cluster_ha`` instead (https://github.com/ansible-collections/community.vmware/issues/2333).
+- vmware_cluster_info - The deprecated module has been removed. Use ``vmware.vmware.cluster_info`` instead (https://github.com/ansible-collections/community.vmware/issues/2261).
+- vmware_content_deploy_ovf_template - The deprecated module has been removed. Use ``vmware.vmware.deploy_content_library_ovf`` instead (https://github.com/ansible-collections/community.vmware/issues/2334).
+- vmware_content_deploy_template - The deprecated module has been removed. Use ``vmware.vmware.deploy_content_library_template`` instead (https://github.com/ansible-collections/community.vmware/issues/2334).
+- vmware_content_library_manager - The deprecated module has been removed. Use ``vmware.vmware.local_content_library`` and ``vmware.vmware.subscribed_content_library`` instead (https://github.com/ansible-collections/community.vmware/issues/2359).
+- vmware_dvs_portgroup - The deprecated option ``mac_learning`` has been removed. Use ``network_policy.mac_learning`` instead (https://github.com/ansible-collections/community.vmware/issues/2466).
+- vmware_guest_powerstate - The deprecated module has been removed. Use ``vmware.vmware.vm_powerstate`` instead (https://github.com/ansible-collections/community.vmware/issues/2440).
+- vmware_host - The deprecated module has been removed. Use ``vmware.vmware.esxi_host`` and ``vmware.vmware.esxi_connection`` instead (https://github.com/ansible-collections/community.vmware/issues/2341).
+- vmware_host_inventory - The deprecated inventory plugin has been removed. Use ``vmware.vmware.esxi_hosts`` instead (https://github.com/ansible-collections/community.vmware/issues/2292).
+- vmware_maintenancemode - The deprecated module has been removed. Use ``vmware.vmware.esxi_maintenance_mode`` instead (https://github.com/ansible-collections/community.vmware/issues/2299).
+- vmware_vm_inventory - The deprecated inventory plugin has been removed. Use ``vmware.vmware.vms`` instead (https://github.com/ansible-collections/community.vmware/issues/2292).
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- dellemc_configure_idrac_eventing - Use idrac_attributes as alternative.
+- dellemc_configure_idrac_services - Use idrac_attributes as alternative.
+- dellemc_idrac_lc_attributes - Use idrac_attributes as alternative.
+- dellemc_idrac_storage_volume - Use idrac_storage_volume as alternative.
+- dellemc_system_lockdown_mode - Use idrac_attributes as alternative.
+- idrac_network - Use idrac_network_attributes as alternative.
+- idrac_syslog - Use idrac_attributes as alternative.
+- idrac_timezone_ntp - Use idrac_attributes as alternative.
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- appliance_access_consolecli - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_access_consolecli_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_access_dcui - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_access_dcui_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_access_shell - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_access_shell_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_access_ssh - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_access_ssh_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_dns_domains - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_dns_domains_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_dns_hostname - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_dns_hostname_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_dns_servers - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_dns_servers_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_firewall_inbound - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_firewall_inbound_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_noproxy - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_noproxy_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_proxy - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_networking_proxy_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_ntp - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_ntp_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_system_globalfips - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_system_globalfips_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_system_time_timezone - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_system_time_timezone_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_timesync - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- appliance_timesync_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- cluster_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- content_library_item_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- content_locallibrary - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- content_subscribedlibrary - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- datacenter_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- datastore_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- folder_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- host_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- network_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- resource_pool_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_cluster_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_host - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_guest_customization - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_guest_networking_interfaces_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_guest_power - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_adapter_sata - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_adapter_scsi - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_cdrom - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_cpu - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_cpu_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_disk - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_ethernet - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_memory - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_hardware_memory_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_libraryitem_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vm_power - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vcenter_vmtemplate_libraryitems_info - The deprecated module has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+- vm_moid - The deprecated lookup plugin has been removed (https://github.com/ansible-collections/vmware.vmware_rest/pull/648)
+
+Security Fixes
+--------------
+
+dellemc.powerflex
+~~~~~~~~~~~~~~~~~
+
+- Replaced hardcoded credentials in example playbooks, role READMEs, and Molecule test files with ``lookup('env', ...)`` based credential resolution to avoid accidental credential exposure in git history.
+- Resolved Checkmarx-flagged hardcoded password findings in unit tests by generating credentials at runtime instead of using literal values.
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-connection - ensure that the connection persistent directory has private permissions. This covers the corner case in which the preceding directories do not exist or do not have private enough permissions.
+
+community.clickhouse
+~~~~~~~~~~~~~~~~~~~~
+
+- clickhouse_quota - fix interval idempotency. Since now interval units will be converted to seconds before executing query. (https://github.com/ansible-collections/community.clickhouse/issues/226)
+
+dellemc.powerflex
+~~~~~~~~~~~~~~~~~
+
+- sdt - deleting an SDT that has already been removed is now idempotent and reports ``changed=false`` instead of failing.
+- storagepool_v2 - added validation to reject empty or whitespace-only ``storage_pool_name`` and ``storage_pool_new_name`` values, matching the existing behavior of the ``storagepool`` module.
+
+netapp.ontap
+~~~~~~~~~~~~
+
+- na_ontap_iscsi_security - Fixed issue with querying iscsi security settings for a given initiator based on svm.
+- na_ontap_security_certificates - Fixed issue with creating or installing certificates of same name with different type.
+- na_ontap_snapmirror - Fixed issue with intermittent initialization failure post creation.
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- na_sg_grid_gateway - updated documentation examples for `display_name` option and added the missing `state` parameter.
+- na_sg_grid_login - set module state to ok after generating auth token.
+- na_sg_grid_recovery_package - fix issue with downloading to the destination directory for recovery package.
+- na_sg_org_container - fix issue where bucket policy was not being handled correctly.
+- na_sg_org_container - fix issue with setting object versioning state for buckets.
+- na_sg_org_group - fix idempotency issue when managing S3 bucket policies.
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- event_query - ``deploy_content_library_ovf``, ``deploy_content_library_template`` and ``deploy_folder_template`` report a virtual machine, but were labelled ``content_library`` and ``folder`` (https://github.com/ansible-collections/vmware.vmware/pull/414).
+- event_query - ``esxi_maintenance_mode``, ``import_content_library_ovf``, ``import_content_library_iso``, ``cluster_info``, ``tags``, ``tag_categories`` and ``vm_list_group_by_clusters_info`` read their identifier from a path the module does not populate, so ``canonical_facts`` held a null under that key. The controller cannot hash null and silently drops such records, so these modules never reported a node (https://github.com/ansible-collections/vmware.vmware/pull/414).
+- event_query - ``vm``, ``license_info`` and ``tag_associations`` read a key whose value is not an object (a bool, and two lists of strings), which raises a jq error. The controller catches jq errors at the event level, so each of these discarded the audit records of every other module in the same event, not just its own (https://github.com/ansible-collections/vmware.vmware/pull/414).
+- event_query - the module's own name was part of ``canonical_facts``, which is the only key the controller deduplicates on. One virtual machine touched by ``vm``, ``vm_powerstate``, ``vm_snapshot`` and the other VM modules was therefore counted as a separate node per module. The module name moved to ``facts`` (https://github.com/ansible-collections/vmware.vmware/pull/414).
+- inventory plugins - warn when an object cannot be found mid execution instead of throwing an error (fixes https://github.com/ansible-collections/vmware.vmware/issues/419)
+- vm - Add check mode support so create, update, and delete operations report the change without modifying the VM.
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- appliance_networking - Add ``present`` to the ``state`` choices so the ``ipv6_enabled`` update can actually be applied. Previously ``state`` only accepted ``reset``, leaving the IPv4/IPv6 update path unreachable.
+- appliance_networking_interfaces_ipv4_info - Mark ``interface_name`` as required so the module fails clearly during argument validation instead of attempting a request against an incomplete endpoint path.
+- appliance_networking_interfaces_ipv6_info - Mark ``interface_name`` as required so the module fails clearly during argument validation instead of attempting a request against an incomplete endpoint path.
+
+New Modules
+-----------
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- dellemc.openmanage.idrac_bios_registry_info - Retrieve BIOS registry attribute information from iDRAC.
+- dellemc.openmanage.idrac_network_attributes_info - Retrieve network attributes information from iDRAC.
+- dellemc.openmanage.idrac_network_info - Retrieve network information from iDRAC.
+- dellemc.openmanage.idrac_session_info - Retrieve session information from iDRAC.
+
+dellemc.powerflex
+~~~~~~~~~~~~~~~~~
+
+- dellemc.powerflex.storage_node - Manage storage node on Dell PowerFlex 5.x
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- netapp.storagegrid.na_sg_grid_cluster_config - NetApp StorageGRID cluster configuration via install API.
+- netapp.storagegrid.na_sg_grid_self_signed_certificate - Generate self signed certificate on StorageGRID.
+- netapp.storagegrid.na_sg_grid_sso - Manage single sign-on (SSO) configuration on StorageGRID.
+- netapp.storagegrid.na_sg_pge_config - NetApp StorageGRID node PGE configuration.
+- netapp.storagegrid.na_sg_pge_install - NetApp StorageGRID PGE load install.
+- netapp.storagegrid.na_sg_pge_setup - NetApp StorageGRID PGE initial system setup.
+- netapp.storagegrid.na_sg_reset_node_to_pge - NetApp StorageGRID PGE Primary admin node reset.
+
+vmware.vmware_rest
+~~~~~~~~~~~~~~~~~~
+
+- vmware.vmware_rest.content_library_info - Gather information about vCenter content libraries.
+- vmware.vmware_rest.content_library_subscriptions_info - Gather information about the subscriptions of a published content library.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 11.4.0)
+- ansible.mariadb (still version 6.0.2)
+- ansible.mysql (still version 5.2.0)
+- ansible.netcommon (still version 8.7.1)
+- ansible.posix (still version 2.2.2)
+- ansible.utils (still version 6.1.1)
+- ansible.windows (still version 3.8.0)
+- arista.eos (still version 12.3.0)
+- check_point.mgmt (still version 7.0.1)
+- chocolatey.chocolatey (still version 1.6.0)
+- cisco.aci (still version 2.13.0)
+- cisco.intersight (still version 2.21.0)
+- cisco.ios (still version 11.6.0)
+- cisco.iosxr (still version 12.5.0)
+- cisco.meraki (still version 2.25.1)
+- cisco.mso (still version 2.13.0)
+- cisco.nxos (still version 13.0.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.7.0)
+- community.aws (still version 11.1.0)
+- community.ciscosmb (still version 1.0.12)
+- community.crypto (still version 3.4.0)
+- community.dns (still version 4.1.1)
+- community.docker (still version 5.3.0)
+- community.general (still version 13.4.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.7.2)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.3.0)
+- community.mongodb (still version 1.8.0)
+- community.mysql (still version 5.0.2)
+- community.okd (still version 6.0.0)
+- community.postgresql (still version 5.0.0)
+- community.proxmox (still version 2.0.0)
+- community.proxysql (still version 1.8.0)
+- community.rabbitmq (still version 1.7.0)
+- community.routeros (still version 3.22.0)
+- community.sap_libs (still version 1.7.1)
+- community.sops (still version 2.4.0)
+- community.windows (still version 3.3.0)
+- community.zabbix (still version 4.2.0)
+- containers.podman (still version 1.20.2)
+- cyberark.conjur (still version 1.3.12)
+- dellemc.enterprise_sonic (still version 4.1.0)
+- dellemc.unity (still version 2.1.0)
+- f5networks.f5_modules (still version 1.44.0)
+- fortinet.fortimanager (still version 2.15.0)
+- fortinet.fortios (still version 2.6.0)
+- google.cloud (still version 1.14.0)
+- grafana.grafana (still version 6.1.0)
+- graphiant.naas (still version 26.8.0)
+- hetzner.hcloud (still version 7.1.0)
+- hitachivantara.vspone_block (still version 4.8.3)
+- hitachivantara.vspone_object (still version 1.2.0)
+- ibm.storage_virtualize (still version 3.4.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infinidat.infinibox (still version 1.8.6)
+- infoblox.nios_modules (still version 1.10.0)
+- inspur.ispim (still version 2.2.4)
+- kaytus.ksmanage (still version 4.0.0)
+- kubernetes.core (still version 6.6.0)
+- kubevirt.core (still version 2.3.0)
+- lowlydba.sqlserver (still version 3.1.0)
+- microsoft.ad (still version 1.12.1)
+- microsoft.iis (still version 1.3.0)
+- netapp_eseries.santricity (still version 2.0.3)
+- netbox.netbox (still version 3.23.0)
+- ngine_io.cloudstack (still version 3.3.0)
+- openstack.cloud (still version 2.6.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- purestorage.flasharray (still version 1.43.0)
+- purestorage.flashblade (still version 1.26.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 6.0.1)
+- telekom_mms.icinga_director (still version 2.6.1)
+- vultr.cloud (still version 1.14.1)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.11)
+
 v15.0.0a1
 =========
 
@@ -120,7 +648,7 @@ If not mentioned explicitly, the changes are reported in the combined changelog 
 +------------------------------+----------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | cyberark.conjur              | 1.3.9          | 1.3.12           | You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`__. |
 +------------------------------+----------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| dellemc.openmanage           | 10.0.2         | 10.0.3           | The collection did not have a changelog in this version.                                                                                                                                                        |
+| dellemc.openmanage           | 10.0.2         | 10.0.3           |                                                                                                                                                                                                                 |
 +------------------------------+----------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | dellemc.powerflex            | 3.0.0          | 3.1.0            |                                                                                                                                                                                                                 |
 +------------------------------+----------------+------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -191,7 +719,6 @@ Ansible-core
 - Secret masking - add the ``ansible.module_utils.secrets`` public API for working with secrets manually. It provides ``register_secret`` and ``register_secrets`` to register values that should be redacted from masked output, and ``mask_secrets`` to redact any registered secrets from a string. The API can be used on the controller and in Python modules; the new ``Ansible.Secrets`` C# module_util provides the equivalent ``[Ansible.Secrets.SecretMasker]::RegisterSecret()`` and ``MaskString()`` methods for PowerShell modules. Secrets registered inside a module or worker process are propagated back to the controller so they are also masked there.
 - ansible - Add support for Python 3.15.
 - ansible - Drop support for Python 3.12 on the controller.
-- callback plugins - callback plugin authors should opt into the new secret masking behaviour by setting the class attribute ``ANSIBLE_SUPPORTS_MASKING = True``. A callback that sets this receives the unmasked task result and must ensure any secrets are redacted before they are written, either by emitting output through ``Display`` which masks automatically, or by passing the values through ``ansible.module_utils.secrets.mask_secrets()`` before writing them elsewhere. Callbacks that do not set the attribute continue to receive task results with any registered secrets replaced by ``$REDACTED$``, matching the redacted results they receive today. This implicit masking exists only for backwards compatibility with existing callbacks and will be removed in a future release, at which point all callbacks will receive unmasked results and must mask them manually if not using ``Display``. Task-level ``no_log: true`` continues to censor the entire result regardless of this attribute.
 
 ansible.mysql
 ~~~~~~~~~~~~~
@@ -687,6 +1214,13 @@ containers.podman
 ~~~~~~~~~~~~~~~~~
 
 - podman_quadlet - Add support for aliases for Quadlets
+
+dellemc.openmanage
+~~~~~~~~~~~~~~~~~~
+
+- Bump pytest from 8.3.5 to 9.0.3.
+- Update README.md.
+- Update galaxy.yml to exclude unnecessary files from collection build.
 
 dellemc.powerflex
 ~~~~~~~~~~~~~~~~~
