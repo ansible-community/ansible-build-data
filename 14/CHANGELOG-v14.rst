@@ -7,6 +7,642 @@ This changelog describes changes since Ansible 13.0.0.
 .. contents::
   :depth: 2
 
+v14.5.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-10-06
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 14.5.0 contains ansible-core version 2.21.5.
+This is a newer version than version 2.21.4 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Collection                  | Ansible 14.4.0 | Ansible 14.5.0 | Notes                                                                                                                                                                                                           |
++=============================+================+================+=================================================================================================================================================================================================================+
+| ansible.netcommon           | 8.6.2          | 8.7.1          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ansible.utils               | 6.1.0          | 6.1.1          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| arista.eos                  | 12.2.0         | 12.3.0         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.ios                   | 11.5.1         | 11.6.0         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cisco.iosxr                 | 12.4.2         | 12.5.0         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cloudscale_ch.cloud         | 2.7.0          | 2.8.0          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.aws               | 11.1.0         | 11.2.0         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.clickhouse        | 2.3.0          | 2.4.0          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto            | 3.4.0          | 3.5.0          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.dns               | 4.1.1          | 4.2.0          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.docker            | 5.3.0          | 5.4.0          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.general           | 13.4.0         | 13.5.0         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.hrobot            | 2.7.2          | 2.8.0          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.sops              | 2.4.0          | 2.5.0          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| community.vmware            | 6.3.0          | 6.5.0          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman           | 1.20.2         | 1.21.0         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.conjur             | 1.3.12         | 1.3.14         | You can find the collection's changelog at `https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md <https://github.com/cyberark/ansible-conjur-collection/blob/master/CHANGELOG.md>`__. |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| cyberark.pas                | 1.0.39         | 1.0.40         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator.                                                                                    |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| dellemc.powerflex           | 3.1.0          | 3.2.0          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules       | 1.43.0         | 1.44.0         | The collection did not have a changelog in this version.                                                                                                                                                        |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| google.cloud                | 1.14.0         | 1.15.0         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| graphiant.naas              | 26.8.0         | 26.9.0         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| hitachivantara.vspone_block | 4.8.2          | 4.8.3          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| kubernetes.core             | 6.5.0          | 6.6.0          |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| netapp.storagegrid          | 21.16.0        | 21.17.0        |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| theforeman.foreman          | 5.12.0         | 5.13.0         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware               | 2.10.0         | 2.11.0         |                                                                                                                                                                                                                 |
++-----------------------------+----------------+----------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- network_cli - Add transcript recording support to capture command/response pairs exchanged over SSH sessions. Enable via ``ANSIBLE_NETWORK_CLI_RECORD=1`` environment variable. Recordings are written as JSONL files to ``/tmp/transcript-recordings/`` (configurable via ``ANSIBLE_NETWORK_CLI_RECORD_PATH``). Useful for generating offline test fixtures for CISSHGO-based integration testing.
+
+cisco.ios
+~~~~~~~~~
+
+- ios_snmp_server - add ``traps.vrrpv3`` bool parameter to configure ``snmp-server enable traps vrrpv3``.
+
+cloudscale_ch.cloud
+~~~~~~~~~~~~~~~~~~~
+
+- Add update support for routers.
+
+community.aws
+~~~~~~~~~~~~~
+
+- s3_cors - Added support for check_mode operation (https://github.com/ansible-collections/community.aws/pull/2471).
+
+community.clickhouse
+~~~~~~~~~~~~~~~~~~~~
+
+- clickhouse_grants - added the ``partial_revokes`` option to support partial revokes. Requires ClickHouse 25.8 or later (https://github.com/ansible-collections/community.clickhouse/issues/161).
+- clickhouse_grants - the ``privileges`` option is no longer required when ``state=present`` and the ``partial_revokes`` option is set. It stays required when ``exclusive=true`` (https://github.com/ansible-collections/community.clickhouse/issues/161).
+- clickhouse_quota - lazy loading of exists property only once at module execution time. This is to avoid multiple queries to system.quotas table when checking for existence of the quota.
+- clickhouse_quota - refactor fetching current state of existing quota. Move fully to system tables instead of parsing create query.
+- settings - convert data size short formats to bytes. It makes system settings, user and role module idempotent when passing values like Gi, G etc.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- openssh_keypair - add support for the ``mldsa44`` key type using ``ssh-keygen``. This is only supported for ``backend=opensshbin`` or ``backend=auto`` with ``ssh-keygen`` installed (https://github.com/ansible-collections/community.crypto/pull/1081).
+- openssl_pkcs12_info - if ``return_private_key=true``, the private key's content returned is marked as sensitive on ansible-core 2.22+ (https://github.com/ansible-collections/community.crypto/pull/1076).
+- openssl_privatekey - if ``return_content=true``, the private key's content returned is marked as sensitive on ansible-core 2.22+ (https://github.com/ansible-collections/community.crypto/pull/1076).
+- openssl_privatekey_info - if ``return_private_key_data=true``, the private data returned is marked as sensitive on ansible-core 2.22+ (https://github.com/ansible-collections/community.crypto/pull/1076).
+- openssl_privatekey_info filter plugin - if ``return_private_key_data=true``, the private data returned is marked as sensitive on ansible-core 2.22+ (https://github.com/ansible-collections/community.crypto/pull/1076).
+- openssl_privatekey_pipe - if ``return_content=true``, the private key's content returned is marked as sensitive on ansible-core 2.22+ (https://github.com/ansible-collections/community.crypto/pull/1076).
+
+community.dns
+~~~~~~~~~~~~~
+
+- inventory plugins - sensitive options (tokens, passwords) are now marked as ``secret=true`` for ansible-core 2.22+'s secret masking (https://github.com/ansible-collections/community.dns/pull/353).
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- docker_swarm - on ansible-core 2.22+, the ``Manager`` and ``Worker`` join tokens and ``UnlockKey`` are marked as secrets (https://github.com/ansible-collections/community.docker/pull/1312).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- cloudflare_dns - add diff mode support (https://github.com/ansible-collections/community.general/issues/10797, https://github.com/ansible-collections/community.general/pull/12817).
+- composer - relay composer's own warning about running as root/super user as an Ansible warning (https://github.com/ansible-collections/community.general/issues/2388, https://github.com/ansible-collections/community.general/pull/12090).
+- consul_kv lookup plugin - the plugin no longer requires the ``py-consul`` Python library, it now uses ``ansible.module_utils.urls.open_url`` directly (https://github.com/ansible-collections/community.general/issues/5251, https://github.com/ansible-collections/community.general/pull/12659).
+- elastic callback plugin - internal refactoring that has no visible behavior changes (https://github.com/ansible-collections/community.general/pull/12791).
+- elastic callback plugin - redact sensitive output on ansible-core 2.22+ (https://github.com/ansible-collections/community.general/pull/12829).
+- etcd3 lookup plugin - change the type of the ``ca_cert``, ``cert_cert``, and ``cert_key`` options from string to path, since they specify paths to certificates/keys (https://github.com/ansible-collections/community.general/pull/12860).
+- github_app_access_token lookup plugin - add ``client_id`` as an alias for ``app_id`` so the GitHub App's client ID can be specified without using a confusing option name (https://github.com/ansible-collections/community.general/issues/12802, https://github.com/ansible-collections/community.general/pull/12804).
+- github_secrets - add support for managing repository environment secrets (https://github.com/ansible-collections/community.general/pull/12756, https://github.com/ansible-collections/community.general/issues/12755).
+- github_secrets_info - add support for listing repository environment secrets (https://github.com/ansible-collections/community.general/pull/12756, https://github.com/ansible-collections/community.general/issues/12755).
+- gitlab_group - add new value ``unchanged`` for ``visibility`` parameter (https://github.com/ansible-collections/community.general/pull/12694).
+- gitlab_issue - add ``all`` as a valid value for the ``state_filter`` parameter (https://github.com/ansible-collections/community.general/pull/12821).
+- gitlab_project - added ``archived`` and ``unarchived`` values for ``state`` (https://github.com/ansible-collections/community.general/pull/12698).
+- jabber callback plugin - redact sensitive output on ansible-core 2.22+ (https://github.com/ansible-collections/community.general/pull/12785).
+- ldap_* modules - add support for specifying a SASL authorization identity (equivalent to ``-X 'dn:...' flag``) (https://github.com/ansible-collections/community.general/pull/12781).
+- log_plays callback plugin - redact sensitive output on ansible-core 2.22+ (https://github.com/ansible-collections/community.general/pull/12785).
+- loganalytics callback plugin - redact sensitive output on ansible-core 2.22+ (https://github.com/ansible-collections/community.general/pull/12785).
+- loganalytics_ingestion callback plugin - refactor to use ansible-core 2.22's new secrets API in order to properly mark and mask secrets (https://github.com/ansible-collections/community.general/pull/12758).
+- logrotate - add diff mode support, showing before/after content of the configuration file when running with ``--diff`` (https://github.com/ansible-collections/community.general/issues/12845, https://github.com/ansible-collections/community.general/pull/12846).
+- logrotate - refactor without changing functionality (https://github.com/ansible-collections/community.general/pull/12866).
+- logstash callback plugin - redact sensitive output on ansible-core 2.22+ (https://github.com/ansible-collections/community.general/pull/12785).
+- lvm_pv - add ``zero``, ``metadatasize``, ``dataalignment``, and ``pvmetadatacopies`` options to control ``pvcreate`` behavior, and ``allocatable``, ``metadataignore``, and ``tags`` options to manage existing physical volume attributes with ``pvchange`` (https://github.com/ansible-collections/community.general/pull/12701).
+- mail callback plugin - redact sensitive output on ansible-core 2.22+ (https://github.com/ansible-collections/community.general/pull/12785).
+- maven_artifact - add SHA-256 and SHA-512 support to ``checksum_alg`` (https://github.com/ansible-collections/community.general/pull/12747).
+- maven_artifact - internal refactoring, no change in behavior (https://github.com/ansible-collections/community.general/pull/12776).
+- nrdp callback plugin - redact sensitive output on ansible-core 2.22+ (https://github.com/ansible-collections/community.general/pull/12785).
+- opennebula inventory plugin - add ``set_name_variable`` option to allow disabling the ``name`` host variable, avoiding the ``Found variable using reserved name 'name'`` warning. ``inventory_hostname`` is unaffected (https://github.com/ansible-collections/community.general/pull/12695).
+- opentelemetry callback plugin - internal refactoring that has no visible behavior changes (https://github.com/ansible-collections/community.general/pull/12791).
+- opentelemetry callback plugin - redact sensitive output on ansible-core 2.22+ (https://github.com/ansible-collections/community.general/pull/12787).
+- pkgng - support installing packages from local package files (https://github.com/ansible-collections/community.general/issues/3428, https://github.com/ansible-collections/community.general/pull/12233).
+- say callback plugin - redact sensitive output on ansible-core 2.22+ (https://github.com/ansible-collections/community.general/pull/12785).
+- slack callback plugin - redact sensitive output on ansible-core 2.22+ (https://github.com/ansible-collections/community.general/pull/12785).
+- splunk callback plugin - redact sensitive output on ansible-core 2.22+ (https://github.com/ansible-collections/community.general/pull/12785).
+- sumologic callback plugin - redact sensitive output on ansible-core 2.22+ (https://github.com/ansible-collections/community.general/pull/12785).
+- syslog_json callback plugin - redact sensitive output on ansible-core 2.22+ (https://github.com/ansible-collections/community.general/pull/12785).
+- zpool - make ``vdevs`` optional when the pool already exists, leaving its vdev layout unchanged (https://github.com/ansible-collections/community.general/issues/10766, https://github.com/ansible-collections/community.general/pull/12816).
+
+community.hrobot
+~~~~~~~~~~~~~~~~
+
+- robot inventory plugin - the ``hetzner_password`` option is now marked as ``secret=true`` for ansible-core 2.22+'s secret masking (https://github.com/ansible-collections/community.hrobot/pull/196).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- decrypt filter plugin - the result of the filter is marked as a secret on ansible-core 2.22+ unless the new option ``register_result_as_secret`` is set to ``false``. Note that the filter does not parse structured output, so invidiual values appearing in it are not registered (https://github.com/ansible-collections/community.sops/pull/304).
+- load_vars - a new option ``register_values_as_secrets`` allows to register all loaded values as secrets on ansible-core 2.22+. Note that this is not enabled by default since it can easily happen that non-sensitive, common words or phrases appear as values in encrypted files (https://github.com/ansible-collections/community.sops/pull/304).
+- sops lookup and sops vars plugin - the values for the ``age_key``, ``aws_secret_access_key``, ``aws_session_token``, and ``gcp_oauth_access_token`` options are marked as secret on ansible-core 2.22+ (https://github.com/ansible-collections/community.sops/pull/304).
+- sops lookup plugin - the result of the lookup is marked as a secret on ansible-core 2.22+ unless the new option ``register_result_as_secret`` is set to ``false``. Note that the lookup does not parse structured output, so invidiual values appearing in it are not registered (https://github.com/ansible-collections/community.sops/pull/304).
+- sops vars plugin - a new option ``register_values_as_secrets`` allows to register all loaded values as secrets on ansible-core 2.22+. Note that this is not enabled by default since it can easily happen that non-sensitive, common words or phrases appear as values in encrypted files (https://github.com/ansible-collections/community.sops/pull/304).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- vmware_host_kernel_manager - Remove the deprecated ``community.vmware.vmware_host_powerstate`` module from the documentation (https://github.com/ansible-collections/community.vmware/pull/2607).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- podman_container - Add cert_dir, creds, health_log_destination, health_max_log_count, health_max_log_size, hosts_file, link_local_ip and no_hostname options, including support in Quadlet output.
+- podman_container - Allow arbitrary logging driver options in log_opt.
+- podman_image - Add pull_policy, retry and retry_delay options, and sign_by_sq_fingerprint and compression_format push options.
+- podman_network - Add network labels and support strict isolation with Podman 6 and Netavark 2.
+- podman_network - Emit InterfaceName in generated Quadlet network files.
+- podman_play - Add no_hostname and no_pod_prefix options.
+- podman_pod - Add hosts_file and no_hostname options.
+- podman_prune - Add system_build to prune interrupted build containers.
+- podman_quadlet - Add Podman 6 support for application directories, nested subdirectories and .quadlets files.
+- podman_volume - Add uid and gid options for volume ownership.
+
+dellemc.powerflex
+~~~~~~~~~~~~~~~~~
+
+- Added the ``powerflex_common_v2`` role providing automatic PowerFlex Gen2 version detection, module compatibility validation, and graceful degradation on Gen1 systems. It is a prerequisite for the ``powerflex_provisioning_v2`` and ``powerflex_system_v2`` roles.
+- Added the ``powerflex_provisioning_v2`` role for Gen2 infrastructure provisioning, including volume lifecycle management and snapshot/thin clone workflows.
+- Added the ``powerflex_system_v2`` role for Gen2 system-level configuration validation, diagnostics, and system queries.
+- Added the ``storage_node`` gather_subset to the ``info_v2`` module for bulk storage node discovery.
+- Added the ``storage_node`` module to manage PowerFlex Gen2 storage nodes. The module supports querying storage node details by name or ID, adding and removing IP addresses with role assignment, changing IP roles, updating device pathnames, and renaming a storage node. Storage node creation and deletion are not supported.
+- Extended the ``force`` parameter of the ``replication_consistency_group`` module to also apply to failover operations, matching the existing behavior for switchover. Added state-transition validation and a wait for initial-copy completion before failover/switchover operations, with ``force`` available to bypass the wait when needed.
+
+google.cloud
+~~~~~~~~~~~~
+
+- gcp_alloydb_* - update to most recent version generated from MMv1
+- gcp_binaryauthorization_* - Adding 4 new binauthz modules for attestor/policy and accompanying info modules (https://github.com/ansible-collections/google.cloud/pull/782)
+- gcp_cloudbuild_trigger - update to most recent version generated from MMv1
+- gcp_cloudbuildv2_* - update to most recent version generated from MMv1
+- gcp_colab_* - update to most recent version generated from MMv1
+- gcp_compute inventory plugin - print an aggregate warning at the end of a sync when ``folders:`` is used and one or more resolved projects were skipped, summarizing how many out of the total.
+- gcp_containeranalysis_* - Adding 2 new container analysis module and info module (https://github.com/ansible-collections/google.cloud/pull/782)
+- gcp_vertexai_* - update to most recent version generated from MMv1
+
+graphiant.naas
+~~~~~~~~~~~~~~
+
+- New ``graphiant_gateway_services`` module and ``gateway_services_management.yml`` playbook for managing Graphiant Gateway Services via ``POST/PUT/DELETE /v1/gateways``; a single YAML config file (``sample_gateway_services_config.yaml``) drives two service types under the top-level ``gatewayServices`` key — ``cloudGateway`` (cloud peering for ``aws``/``azure``/``gcp``/``oci``) and ``connectivity`` (site-to-site IPSec VPN gateway, ``ipsecGatewayPeers`` with ``static`` or ``bgp`` routing); operations ``create`` (idempotent create-or-update) / ``delete`` (derived from ``state`` when ``operation`` is omitted); region names, LAN segment names, and speeds are resolved to ``regionId`` / ``vrfId`` / the ``S``-prefixed speed enum before the request, and region / LAN segment / connectivity ``vpnProfile`` names are validated against the enterprise (fail-fast with the available list) before any gateway is pushed; cloud gateways are create/delete only (an existing match is skipped — update is not supported), while connectivity gateways are updated in place (PUT) when the desired config differs and skipped when it already matches; full check mode and diff mode (``--check --diff`` returns ``details.diff_plan`` and Ansible ``diff``); the module result reports ``created``, ``updated``, ``skipped_services``, and ``deleted`` service lists; connectivity tunnel ``insideIpv4Cidr`` / ``insideIpv6Cidr`` are optional — left ``null`` they are auto-allocated by the portal (matching Data Exchange); tunnel ``psk`` supports three sourcing modes — an inline value (direct input, wins), ``vault_gateway_ipsec_psks`` (keyed gateway name -> ``peer-N`` -> ``tunnel1`` / ``tunnel2``) when left ``null``, or API auto-fill when ``null`` with no vault entry; BGP ``routing.bgp.md5Password`` is filled from ``vault_gateway_bgp_md5_passwords`` (keyed by gateway name) when left ``null``; both vault params are ``no_log: true``; volatile tunnel fields (``psk``, inside CIDRs, BGP ``md5Password``) are excluded from the idempotency comparison so re-runs of an unchanged gateway are skipped without re-allocating; examples for all three PSK modes and a BGP connectivity gateway added to ``sample_gateway_services_config.yaml`` and ``vault_secrets.yml.example``. Because tunnel ``psk`` / inside CIDRs / BGP ``md5Password`` are excluded from the idempotency comparison (they are auto-generated/auto-allocated per apply when left null), a new ``force_update`` module option re-pushes matching connectivity gateways so a rotated PSK/MD5 takes effect (cloud gateways are never updated). All ``psk`` and ``md5Password`` values are redacted as ``********`` in ``--diff`` output regardless of source. Cloud gateway DELETE is asynchronous (the gateway lingers in the summary as ``requested_removal``), so gateways in that status are treated as absent, keeping re-runs of ``delete`` (and ``create``) idempotent.
+- ``graphiant_bgp``: major update to BGP peering management. (1) Idempotency + full check/diff mode — ``configure`` / ``deconfigure`` / ``detach_policies`` read each device's live BGP state via ``get_device_info`` and compare it per LAN segment against the desired neighbors, ``bgpAggregations``, device-level ``routePolicies``, and ``ebgpMultipath``; unchanged devices are skipped (``skipped_devices``), changed devices are pushed (``configured_devices``), ``changed`` reflects whether any device was pushed, and ``--check --diff`` returns accurate ``changed``, ``details.diff_plan``, and Ansible ``diff`` with per-device ``before``/``after`` under ``edge.segments``. (2) Per-entry ``state: absent`` — under ``configure``, a single neighbor or ``bgpAggregations`` entry marked ``state: absent`` is removed while the rest of the device is configured normally (no full ``deconfigure``), idempotent and shown in diff. (3) Per-policy detach — under ``configure``, setting a neighbor filter field (``ipv4InboundFilter``/``ipv4OutboundFilter``/``ipv6InboundFilter``/``ipv6OutboundFilter``) to ``absent`` detaches just that routing policy while keeping the neighbor; omitting a filter leaves the attached policy unchanged. (4) New per-segment ``ebgpMultipath`` config field (``true``/``false``) to enable/disable eBGP multipath (built as ``edge.segments.<name>.ebgpMultipath = {config: {enabled: <bool>}}``, compared against the device GET ``bgpMultipath.enabled``). (5) New ``vault_bgp_peering_md5_passwords`` module param (configure only, ``no_log: true``) fills a neighbor's ``md5Password`` from Ansible Vault (keyed device name -> neighbor ``remoteIpv4Address``) when the config leaves it null/absent (a non-null config value wins); redacted in logs/diff and excluded from the idempotency comparison since the device GET never returns it; example added to ``vault_secrets.yml.example``. (6) Config-file fields are now documented in camelCase (e.g. ``remoteIpv4Address``, ``peerAs``, ``lanSegment``, ``bgpAggregations``, ``ipv4InboundFilter``, ``holdTimer``, ``asSet``) matching the rest of the collection, with ``sample_bgp_peering.yaml`` updated — non-breaking, as the original snake_case keys are still accepted as aliases (camelCase wins when both are given) and the ``bgp_config_file`` module parameter is unchanged. (7) The BGP peering API payload is now built in Python instead of the ``bgp_peering_template.yaml`` Jinja2 template, which has been removed along with ``ConfigTemplates.render_bgp_peering`` and its ``bgp_peering`` template mapping (generated payload unchanged; config files still support Jinja2 templating). New unit tests for the manager (``test_bgp_manager.py``) and module (``test_graphiant_bgp.py``), plus integration coverage in ``tests/test.py``.
+- ``graphiant_data_assurance``: all Data Assurance configuration parameters can now be supplied directly as module parameters, in addition to the existing config-file workflow. New ``DataAssurancePolicies`` and ``ContentFilterPolicies`` list options mirror the config file's ``DataAssurancePolicies`` / ``ContentFilterPolicies`` keys exactly (including nested ``apps`` and ``servers``); ``data_assurance_config_file`` is now optional and at least one of the three sources is required (``required_one_of``). When both a config file and module parameters are given, the parameters are overlaid on the config file per policy ``name`` — a field set in the parameters overrides the config-file value and a policy not present in the file is added; unset (``None``) sub-options are pruned so they neither clobber config-file values nor leak into the API payload. Existing validation, telemetry auto-fill, and idempotency are unchanged since all sources resolve to the same config shape. ``data_assurance_management.yml`` now passes each source via ``default(omit)`` so callers can supply any combination; module ``EXAMPLES``, ``docs/guides/EXAMPLES.md``, and unit tests (manager merge/override/prune and module parameter pass-through) updated.
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Added support for SVOS 10.5.4 VSP One B24/B26/B28 storage models.
+- Fixed an issue affecting VSM creation for B-series storage.
+- Fixed an issue where adding an iSCSI target to a VSM returned empty output.
+- Fixed an issue where an external LDEV could not be created on the first ELUN in local storage for Hitachi UVM.
+- Fixed an issue where creating a GAD pair failed with "No free LDEV found in the range."
+- Fixed an issue where external path group facts returned an empty external path.
+- Fixed an issue where the IQN was blank in iSCSI target facts.
+- Fixed an issue where the WWN was blank in host group facts.
+
+kubernetes.core
+~~~~~~~~~~~~~~~
+
+- Remove the remaining ``ansible.module_utils.six`` import to avoid deprecation warnings, replacing it with the Python standard library equivalent (https://github.com/ansible-collections/kubernetes.core/pull/1197).
+- helm - Add ``wait_for_jobs`` option to wait for all Jobs to complete before marking a Helm release as successful. Requires Helm >= 3.5.0 (https://github.com/ansible-collections/kubernetes.core/pull/1140).
+- helm - add the ``cleanup_on_fail`` option, mapping to the ``--cleanup-on-fail`` flag, to allow deletion of new resources created during a failed upgrade. It complements ``atomic`` and can be combined with it, but cannot be used with ``replace``, since that deploys through ``helm install`` which does not accept the flag (https://github.com/ansible-collections/kubernetes.core/pull/1206).
+- helm - warn when ``reuse_values`` or ``reset_then_reuse_values`` is requested in a combination helm ignores, which happens by default because ``reset_values`` defaults to ``true``, and whenever either is combined with ``replace``. The option descriptions and the examples now state that ``reset_values`` has to be set to ``false`` for either option to take effect (https://github.com/ansible-collections/kubernetes.core/pull/1230).
+- k8s lookup - warn when ``ENABLE_TURBO_MODE`` is set but the ``cloud.common`` collection is not installed, instead of silently falling back to the standard lookup base (https://github.com/ansible-collections/kubernetes.core/pull/1242).
+- k8s_cp - Add the ``copy_timeout`` option (default 300 seconds) bounding how long the module will spend streaming an archive to a pod and waiting for the remote ``tar`` to finish, so that a stalled copy fails instead of hanging indefinitely (https://github.com/ansible-collections/kubernetes.core/pull/1217).
+- k8s_cp - Stream the tar archive to the pod chunk by chunk instead of building the whole archive in memory first, which cuts peak memory use when copying large files (https://github.com/ansible-collections/kubernetes.core/pull/1217).
+- k8s_cp - When copying to a pod, the module now also uses ``/bin/sh`` and ``head`` in the container, when present, to confirm the copy completed. Containers without them keep the previous behaviour and get a warning that completion could not be verified (https://github.com/ansible-collections/kubernetes.core/pull/1217).
+- k8s_info - Support for metadata-only fetches in k8s_info module (https://github.com/ansible-collections/kubernetes.core/pull/1030)
+- meta - Add ``helm_plugin`` and ``helm_plugin_info`` to the ``helm`` action group, and ``k8s_taint`` to the ``k8s`` action group, so that ``module_defaults`` set on those groups applies to them (https://github.com/ansible-collections/kubernetes.core/pull/1216).
+- use `collections.abc` instead of deprecated `ansible.module_utils.common._collections_compat` (https://github.com/ansible-collections/kubernetes.core/pull/1057).
+- waiter - Add ``job_complete`` predicate to support waiting for Job resources to reach ``Complete`` or ``Failed`` condition (https://github.com/ansible-collections/kubernetes.core/issues/1201).
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- all modules - add support for `api_url` to be specified with or without "https://" prefix.
+- na_sg_grid_info - retrieve information for autosupport, proxy, node-health and syslog on StorageGRID.
+- na_sg_grid_login - added `api_url` as an alias for the `hostname` parameter to improve usability.
+
+theforeman.foreman
+~~~~~~~~~~~~~~~~~~
+
+- Ansible 2.22 support
+- Support inventory reports from Foreman 5.1+
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- esxi_hosts inventory - add ``gather_path`` option (default ``true``) with the same semantics as the vms inventory plugin (https://github.com/ansible-collections/vmware.vmware/pull/XXX).
+- esxi_hosts inventory - same bulk tag-fetching optimisation as the vms plugin, using C(get_tags_for_host_moids_bulk) with object type C(HostSystem) (https://github.com/ansible-collections/vmware.vmware/pull/XXX).
+- event_query - added ``tests/unit/extensions/audit/test_event_query_contract.py``, which asserts the constraints the controller imposes on this file (https://github.com/ansible-collections/vmware.vmware/pull/414).
+- event_query - removed the entries for ``folder_template_from_vm``, ``license_info``, ``vm_portgroup_info``, ``vcsa_settings``, ``vcsa_backup_schedule`` and ``vcsa_backup_schedule_info``. None of these modules returns an identifier that can distinguish one node from another, so none of them could report a node regardless of the query used (https://github.com/ansible-collections/vmware.vmware/pull/414).
+- folder_info - Added module to collect information about folders in vSphere
+- vms inventory - add ``gather_path`` option (default ``true``) to omit the C(path) host variable when it is not needed. Path computation traverses the parent folder chain via pyVmomi lazy loading, which issues one synchronous vCenter RPC per folder level per object; setting ``gather_path`` to ``false`` saves roughly 1-2 seconds per object on a local network connection (https://github.com/ansible-collections/vmware.vmware/pull/XXX).
+- vms inventory - fetch tags for all VMs in a single REST call using C(list_attached_tags_on_objects) instead of one call per VM. Resolves each unique tag object exactly once. Replaces the two-loop structure with a single loop over a materialised source list, satisfying the constraint that C(initialize_rest_client) must be called before iteration (https://github.com/ansible-collections/vmware.vmware/pull/XXX).
+
+Deprecated Features
+-------------------
+
+- The cisco.ucs collection will be removed from Ansible 16.
+  There is no active development happening on the collection. This has moved to cisco.intersight which is also part of the ACP.
+  See `the removal discussion for details <https://forum.ansible.com/t/46220>`__.
+  After removal, users can still install this collection with ``ansible-galaxy collection install cisco.ucs``.
+
+community.aws
+~~~~~~~~~~~~~
+
+- inspector_target - The module has been deprecated as Amazon has retired the ``Amazon Inspector Classic`` service on May 20, 2026 (Complete End of Life), revoking access to its console, APIs, and associated resources. The module will be removed in version 12.0.0 (https://github.com/ansible-collections/community.aws/pull/2485).
+
+community.vmware
+~~~~~~~~~~~~~~~~
+
+- module_utils.vmware - The ``ansible_date_time_facts`` funtion is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
+- module_utils.vmware_rest_client - The ``VmwareRestClient.get_tag_by_name`` method is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
+- module_utils.vmware_rest_client - The ``VmwareRestClient.get_tags_for_hostsystem`` method is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2607).
+- plugins.module_utils.vmware - The function ``find_host_by_cluster_datacenter`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware - The function ``vmware_argument_spec`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware - The method ``PyVmomi.get_all_hosts_by_cluster`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware - The method ``PyVmomi.get_folder_path`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware - The method ``PyVmomi.vcenter_version_at_least`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_cluster_by_name`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_datacenter_by_name`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_datastore_by_name`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_host_by_name`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_library_item_by_name`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_library_item_from_content_library_name`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_resource_pool_by_name`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.get_tags_for_cluster`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+- plugins.module_utils.vmware_rest_client - The method ``VMwareRestClient.vmware_client_argument_spec`` is deprecated and will be removed in community.vmware 8.0.0 (https://github.com/ansible-collections/community.vmware/pull/2599).
+
+kubernetes.core
+~~~~~~~~~~~~~~~
+
+- Ansible Turbo mode (``ENABLE_TURBO_MODE``) has been deprecated and will be removed in release 8.0.0, as it depends on the ``cloud.common`` collection, which is being retired (https://github.com/ansible-collections/kubernetes.core/pull/1242).
+- helm - the ``status.values`` return value has been deprecated and will be removed in version 8.0.0. Use ``status.release_values`` instead (https://github.com/ansible-collections/kubernetes.core/issues/1239).
+- helm - the ``wait_timeout`` parameter has been deprecated and will be removed in version 7.0.0. Use ``timeout`` instead (https://github.com/ansible-collections/kubernetes.core/issues/1239).
+- helm_info - the ``status.values`` return value has been deprecated and will be removed in version 8.0.0. Use ``status.release_values`` instead (https://github.com/ansible-collections/kubernetes.core/issues/1239).
+- k8s_exec - the ``return_code`` return value has been deprecated and will be removed in version 7.0.0. Use ``rc`` instead (https://github.com/ansible-collections/kubernetes.core/issues/1239).
+- k8s_service - the ``merge_type=json`` option has been deprecated and will be removed in version 7.0.0. Use ``kubernetes.core.k8s_json_patch`` module instead (https://github.com/ansible-collections/kubernetes.core/issues/1239).
+
+Security Fixes
+--------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- proton_pass lookup plugin - no longer exposes the personal access token in error messages, verbose output, or the process list (https://github.com/ansible-collections/community.general/issues/12710, https://github.com/ansible-collections/community.general/pull/12726).
+
+dellemc.powerflex
+~~~~~~~~~~~~~~~~~
+
+- Replaced hardcoded credentials in example playbooks, role READMEs, and Molecule test files with ``lookup('env', ...)`` based credential resolution to avoid accidental credential exposure in git history.
+- Resolved Checkmarx-flagged hardcoded password findings in unit tests by generating credentials at runtime instead of using literal values.
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-connection - ensure that the connection persistent directory has private permissions. This covers the corner case in which the preceding directories do not exist or do not have private enough permissions.
+- ansible-test - Do not fail the ``validate-modules`` sanity test when a plugin documents an option with the ``secret`` key. The key is only honored by ansible-core 2.22 and later, where it masks the option value in output. It is ignored by earlier versions, but is now accepted by the sanity test so a collection can document it while still testing against those versions.
+- dnf5 module - Set the dnf ``destdir`` configuration option from ``download_dir`` when ``download_only`` is true, as documented.
+
+ansible.netcommon
+~~~~~~~~~~~~~~~~~
+
+- netconf_rpc - Fix ``output`` returning a ``bytes`` object instead of ``str`` when
+    display is set to pretty or xml by passing encoding="unicode"
+    (https://github.com/ansible-collections/ansible.netcommon/issues/791).
+
+ansible.utils
+~~~~~~~~~~~~~
+
+- AnsibleArgSpecValidator - Add a `_to_plain` function to handle ansible-core 2.21+ deep copy warnings by lazy containers.
+
+arista.eos
+~~~~~~~~~~
+
+- eos terminal plugin - Fix on_become enable prompt failing with TACACS+ authentication due to missing trailing space in password prompt (https://github.com/ansible-collections/arista.eos/issues/665).
+- eos_acls - Fix state replaced putting ACEs under wrong ACL context when multiple ACLs require changes and a new ACL sorts alphabetically before an existing one (https://github.com/ansible-collections/arista.eos/issues/643).
+
+cisco.ios
+~~~~~~~~~
+
+- ios_bgp_address_family - Fix idempotency issue where specifying ``remote_as`` for a neighbor caused the module to emit ``neighbor X remote-as Y`` on every run.  It can be specified at address-family and at global level, but always resides at the global level. Hence, the config class now correctly associates global-level attributes with the corresponding address-family during have-facts comparison.
+- ios_bgp_address_family - Fix replaced state not generating ``no neighbor X route-map/prefix-list`` commands when a route-map or prefix-list is present in have but absent from want.
+- ios_bgp_address_family - Update `_compare_redist_ospf` loop to read both ospf and ospfv3 as parser inputs
+- ios_bgp_global - fix ios_bgp_global and ios_facts crash on ASDOT (4-byte dotted) local_as notation (e.g. "501.65083") by changing local_as.number argspec type from int to str, consistent with remote_as which already accepts ASDOT values
+- ios_hsrp_interfaces - Fixed parsed-state integration tests to handle Ansible-core masking ``$REDACTED$`` values while retaining compatibility with older ``VALUE_SPECIFIED_IN_NO_LOG_PARAMETER`` results.
+- ios_hsrp_interfaces - Fixed use_bia.set:false not generating "no standby use-bia" by adding compval "use_bia.set" to the parser so comparison evaluates the boolean leaf instead of the parent dict (which is always truthy).
+- ios_route_maps - fix bare entries (action+sequence only) being silently dropped; the cmd_len guard in entries_compare() now emits the route-map header command even when no sub-commands are generated (description/match/set absent), so catch-all rules like ``route-map MYMAP deny 6`` are correctly applied.
+- ios_route_maps - fix continue_entry.set=true silently ignored; bare "continue" command was never generated because the setval template raised UndefinedError when entry_sequence was absent.
+- ios_snmp_server - anchor the ``traps.vrrp`` parser regex with ``$`` so that ``snmp-server enable traps vrrpv3`` lines are not incorrectly parsed as ``traps.vrrp``.
+
+cisco.iosxr
+~~~~~~~~~~~
+
+- route_maps - Fix ``set med +<N>`` / ``set med -<N>`` parsing in ``Route_mapsTemplate`` so that incremental MED statements using device-native attached-sign syntax are no longer silently skipped during fact gathering.
+
+community.aws
+~~~~~~~~~~~~~
+
+- s3_cors - Fixed CORS rule comparison logic by replacing IAM policy comparison with CORS-specific normalization to ensure accurate change detection (https://github.com/ansible-collections/community.aws/pull/2471).
+- s3_cors - Fixed idempotency issue in ``state=absent`` where the module always reported changes even when no CORS configuration existed (https://github.com/ansible-collections/community.aws/pull/2471).
+
+community.clickhouse
+~~~~~~~~~~~~~~~~~~~~
+
+- clickhouse_quota - fix interval idempotency. Since now interval units will be converted to seconds before executing query. (https://github.com/ansible-collections/community.clickhouse/issues/226)
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- openssl_privatekey_pipe - on ansible-core 2.22+, avoid deprecated function (https://github.com/ansible-collections/community.crypto/pull/1082).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+
+community.docker
+~~~~~~~~~~~~~~~~
+
+- all modules using the vendored Docker SDK for Python - update list of reasons for not found images (https://github.com/ansible-collections/community.docker/pull/1315).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- bitwarden lookup plugin - mark the ``bw_session`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- bitwarden_secrets_manager lookup plugin - mark the ``bws_access_token`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- capabilities - fix idempotency when the installed ``libcap`` normalizes capability operators or flags, or when multiple capabilities are set at once (https://github.com/ansible-collections/community.general/issues/4067, https://github.com/ansible-collections/community.general/pull/12650).
+- cobbler inventory plugin - do not use TLS when connecting to ``http://`` URLs (https://github.com/ansible-collections/community.general/issues/11246, https://github.com/ansible-collections/community.general/pull/12847).
+- cobbler inventory plugin - fix crash about a missing ``_cache`` attribute when inventory caching is disabled (https://github.com/ansible-collections/community.general/pull/12848).
+- cobbler inventory plugin - mark the ``password`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- consul_kv lookup plugin - mark the ``token`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- credstash lookup plugin - mark the ``aws_secret_access_key`` and ``aws_session_token`` options as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- doas become plugin - mark the ``become_pass`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- dsv lookup plugin - mark the ``client_secret`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- dzdo become plugin - mark the ``become_pass`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- elastic callback plugin - mark the ``apm_secret_token`` and ``apm_api_key`` options as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- etcd3 lookup plugin - mark the ``password`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- git_config and git_config_info - allow empty string values and preserve idempotency (https://github.com/ansible-collections/community.general/issues/12502, https://github.com/ansible-collections/community.general/pull/12708).
+- github_app_access_token lookup plugin - mark the ``private_key`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- github_app_access_token lookup plugin - mark the return value as a secret on ansible-core 2.22+ (https://github.com/ansible-collections/community.general/pull/12884).
+- gitlab_project - return ``project`` in the result when running in check mode (https://github.com/ansible-collections/community.general/pull/12689, https://github.com/ansible-collections/community.general/issues/5689).
+- gitlab_runners inventory plugin - mark the ``api_token`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- icinga2 inventory plugin - mark the ``password`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- ip_netns - fix namespace existence checks when one namespace name is a prefix of another (https://github.com/ansible-collections/community.general/issues/12731, https://github.com/ansible-collections/community.general/pull/12743).
+- ip_netns - report no change in check mode for ``state=present`` when the requested namespace already exists (https://github.com/ansible-collections/community.general/issues/12839, https://github.com/ansible-collections/community.general/pull/12842).
+- jabber callback plugin - mark the ``password`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- ksu become plugin - mark the ``become_pass`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- linode inventory plugin - mark the ``access_token`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- loganalytics callback plugin - mark the ``client_secret`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- loganalytics_ingestion callback plugin - mark the ``shared_key`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- logdna callback plugin - mark the ``conf_key`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- logentries callback plugin - mark the ``token`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- lvol - fix a hang when ensuring an LVM snapshot that already exists (https://github.com/ansible-collections/community.general/issues/12477, https://github.com/ansible-collections/community.general/pull/12810).
+- lxd inventory plugin - mark the ``trust_password`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- machinectl become plugin - mark the ``become_pass`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- nrdp callback plugin - mark the ``token`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- onepassword, onepassword_doc, onepassword_raw, and onepassword_ssh_key lookup plugins - mark the ``master_password``, ``secret_key``, ``service_account_token``, and ``connect_token`` options as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- online inventory plugin - mark the ``oauth_token`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- opennebula inventory plugin - mark the ``api_password`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- opentelemetry callback plugin - fix ``KeyError`` when a meta task is skipped by its ``when`` condition (https://github.com/ansible-collections/community.general/issues/12833, https://github.com/ansible-collections/community.general/pull/12837).
+- pacman - tolerate the AUR package age badge (for example ``[9d2h]``) that AUR helpers such as ``yay`` append to the ``--query --upgrades`` output, instead of failing with an ``Invalid line`` error (https://github.com/ansible-collections/community.general/pull/12857).
+- passwordstore lookup plugin - mark the ``userpass`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- pbrun become plugin - mark the ``become_pass`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- pfexec become plugin - mark the ``become_pass`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- pkgng - fix ``state=latest`` for specific packages on FreeBSD 14.4+ (https://github.com/ansible-collections/community.general/issues/11907, https://github.com/ansible-collections/community.general/pull/12789).
+- pmrun become plugin - mark the ``become_pass`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- proton_pass lookup plugin - mark the ``pat`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- proton_pass lookup plugin - use ``pass-cli info`` instead of the removed ``pass-cli test`` command when checking for an active session, restoring session detection with ``pass-cli`` 2.2.4 and later (https://github.com/ansible-collections/community.general/pull/12639).
+- revbitspss lookup plugin - mark the ``api_key`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- scaleway inventory plugin - mark the ``oauth_token`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- sesu become plugin - mark the ``become_pass`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- splunk callback plugin - mark the ``authtoken`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- sudosu become plugin - mark the ``become_pass`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- tss lookup plugin - mark the ``password`` and ``token`` options as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- wsl connection plugin - mark the ``password`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- xen_orchestra inventory plugin - mark the ``password`` option as sensitive so that ansible-core 2.22+ will automatically redact its values in outputs (https://github.com/ansible-collections/community.general/pull/12723).
+- xenserver_guest - skip provisioning when existing VM is used as a template (https://github.com/ansible-collections/community.general/issues/12576, https://github.com/ansible-collections/community.general/pull/12717).
+- zpool - fix idempotency of vdevs ``special`` and ``dedup`` (https://github.com/ansible-collections/community.general/issues/12744, https://github.com/ansible-collections/community.general/pull/12745).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- load_vars - on ansible-core 2.22+, avoid deprecated function (https://github.com/ansible-collections/community.sops/pull/307).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- podman_image - Determine build changes by comparing image IDs before and after the build, including forced builds.
+- podman_network - Compare all explicitly configured network driver options for idempotency.
+- podman_network - Normalize IPv6 addresses, subnets, gateways and routes to avoid unnecessary network recreation.
+- podman_prune - Preserve pruning of all unused volumes on Podman 6.
+- podman_quadlet - Fix installed file detection, companion file handling, content comparison and removal of multiple Quadlets with the same name.
+- podman_tag - Fail when the source image cannot be resolved instead of silently returning unchanged.
+
+dellemc.powerflex
+~~~~~~~~~~~~~~~~~
+
+- sdt - deleting an SDT that has already been removed is now idempotent and reports ``changed=false`` instead of failing.
+- storagepool_v2 - added validation to reject empty or whitespace-only ``storage_pool_name`` and ``storage_pool_new_name`` values, matching the existing behavior of the ``storagepool`` module.
+
+google.cloud
+~~~~~~~~~~~~
+
+- gcp_compute inventory plugin - deduplicate resolved projects when ``folders:`` lists both a folder and one of its descendants, which previously caused that descendant's projects (and therefore its hosts) to be resolved twice.
+- gcp_compute inventory plugin - resolve subfolders recursively when using ``folders:``, instead of only the projects that are direct children of the given folder. On hierarchies where the given folder only contains subfolders (no projects directly attached), the plugin previously always returned zero hosts.
+- gcp_compute inventory plugin - skip a project instead of failing the entire inventory sync when a project resolved via ``folders:`` cannot be queried (Compute Engine API disabled, or blocked by a VPC Service Controls perimeter). Any other error still fails as before.
+- module_utils.gcp_v2 - Fix a premature encoding bug by moving the encoding to right before sending to the API (https://github.com/ansible-collections/google.cloud/pull/782)
+- module_utils.gcp_v2 - Fix double decoding bug where async operations went through the custom decoder (if any) twice (https://github.com/ansible-collections/google.cloud/pull/782)
+
+kubernetes.core
+~~~~~~~~~~~~~~~
+
+- Ansible Turbo mode - ignore ``ENABLE_TURBO_MODE`` on ansible-core 2.19.0 and later, where the ``cloud.common`` collection is not supported, and fall back to the standard ``AnsibleModule`` instead of failing with ``byte indices must be integers or slices, not str`` (https://github.com/ansible-collections/kubernetes.core/pull/1242).
+- helm - do not pass the upgrade-only ``--reuse-values`` and ``--reset-then-reuse-values`` flags to ``helm install``, which rejected them with ``unknown flag`` whenever ``reuse_values`` or ``reset_then_reuse_values`` was combined with ``replace`` (https://github.com/ansible-collections/kubernetes.core/pull/1230).
+- helm - fix the ``reuse_values`` example, which set only ``reuse_values=true``. ``reset_values`` defaults to ``true`` and helm ignores ``--reuse-values`` whenever ``--reset-values`` is passed, so following the example reset the release values instead of reusing them (https://github.com/ansible-collections/kubernetes.core/pull/1230).
+- helm - skip Helm's OCI registry progress messages when parsing the output of ``helm show chart``. As of Helm 4.2.1 these are printed to stdout instead of stderr (https://github.com/helm/helm/pull/32056), which made installing a chart from an OCI registry fail with a YAML scanner error when the chart version contained a ``+`` (https://github.com/ansible-collections/kubernetes.core/pull/1223).
+- helm_repository - normalize both sides of the repository URL comparison, so that a repository already registered with a trailing slash is recognized as matching instead of failing with ``Repository already have a repository named <name>`` (https://github.com/ansible-collections/kubernetes.core/pull/1236).
+- helm_template - strip Helm's OCI registry progress messages from the returned ``stdout``, which is documented to contain only the rendered templates (https://github.com/ansible-collections/kubernetes.core/pull/1223).
+- k8s lookup - ignore ``ENABLE_TURBO_MODE`` on ansible-core 2.19.0 and later, where the ``cloud.common`` collection is not supported. Fall back to the standard ``LookupBase`` instead of failing with a traceback (https://github.com/ansible-collections/kubernetes.core/pull/1253).
+- k8s_cp - Fix silent truncation when copying to a pod. The module closed the exec connection immediately after writing the last chunk of the tar archive, which killed the remote ``tar`` before it had finished extracting, and never checked the process exit status, so a partial copy was reported as a success. The archive is now bounded with ``head -c`` so ``tar`` gets a clean EOF and exits on its own, and the module waits for that exit and fails on a non-zero status (https://github.com/ansible-collections/kubernetes.core/pull/1217).
+- k8s_info - Handle empty template output gracefully by returning ``changed=false`` instead of failing when Jinja2 template renders to an empty string (https://github.com/ansible-collections/kubernetes.core/issues/1042).
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- na_sg_grid_gateway - updated documentation examples for `display_name` option and added the missing `state` parameter.
+- na_sg_grid_login - set module state to ok after generating auth token.
+- na_sg_grid_recovery_package - fix issue with downloading to the destination directory for recovery package.
+- na_sg_org_container - fix issue where bucket policy was not being handled correctly.
+- na_sg_org_container - fix issue with setting object versioning state for buckets.
+- na_sg_org_group - fix idempotency issue when managing S3 bucket policies.
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- event_query - ``deploy_content_library_ovf``, ``deploy_content_library_template`` and ``deploy_folder_template`` report a virtual machine, but were labelled ``content_library`` and ``folder`` (https://github.com/ansible-collections/vmware.vmware/pull/414).
+- event_query - ``esxi_maintenance_mode``, ``import_content_library_ovf``, ``import_content_library_iso``, ``cluster_info``, ``tags``, ``tag_categories`` and ``vm_list_group_by_clusters_info`` read their identifier from a path the module does not populate, so ``canonical_facts`` held a null under that key. The controller cannot hash null and silently drops such records, so these modules never reported a node (https://github.com/ansible-collections/vmware.vmware/pull/414).
+- event_query - ``vm``, ``license_info`` and ``tag_associations`` read a key whose value is not an object (a bool, and two lists of strings), which raises a jq error. The controller catches jq errors at the event level, so each of these discarded the audit records of every other module in the same event, not just its own (https://github.com/ansible-collections/vmware.vmware/pull/414).
+- event_query - the module's own name was part of ``canonical_facts``, which is the only key the controller deduplicates on. One virtual machine touched by ``vm``, ``vm_powerstate``, ``vm_snapshot`` and the other VM modules was therefore counted as a separate node per module. The module name moved to ``facts`` (https://github.com/ansible-collections/vmware.vmware/pull/414).
+- inventory plugins - warn when an object cannot be found mid execution instead of throwing an error (fixes https://github.com/ansible-collections/vmware.vmware/issues/419)
+- vm - Add check mode support so create, update, and delete operations report the change without modifying the VM.
+
+New Modules
+-----------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- community.general.flatpak_mask - Mask Flatpak applications.
+- community.general.packer - Manage HashiCorp Packer builds.
+- community.general.serestorecon - Restore SELinux file contexts.
+
+dellemc.powerflex
+~~~~~~~~~~~~~~~~~
+
+- dellemc.powerflex.storage_node - Manage storage node on Dell PowerFlex 5.x
+
+netapp.storagegrid
+~~~~~~~~~~~~~~~~~~
+
+- netapp.storagegrid.na_sg_grid_cluster_config - NetApp StorageGRID cluster configuration via install API.
+- netapp.storagegrid.na_sg_grid_self_signed_certificate - Generate self signed certificate on StorageGRID.
+- netapp.storagegrid.na_sg_grid_sso - Manage single sign-on (SSO) configuration on StorageGRID.
+- netapp.storagegrid.na_sg_pge_config - NetApp StorageGRID node PGE configuration.
+- netapp.storagegrid.na_sg_pge_install - NetApp StorageGRID PGE load install.
+- netapp.storagegrid.na_sg_pge_setup - NetApp StorageGRID PGE initial system setup.
+- netapp.storagegrid.na_sg_reset_node_to_pge - NetApp StorageGRID PGE Primary admin node reset.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 11.4.0)
+- ansible.mariadb (still version 6.0.2)
+- ansible.mysql (still version 5.2.0)
+- ansible.posix (still version 2.2.2)
+- ansible.windows (still version 3.8.0)
+- azure.azcollection (still version 3.21.0)
+- check_point.mgmt (still version 6.9.0)
+- chocolatey.chocolatey (still version 1.6.0)
+- cisco.aci (still version 2.13.0)
+- cisco.intersight (still version 2.21.0)
+- cisco.meraki (still version 2.25.1)
+- cisco.mso (still version 2.13.0)
+- cisco.nxos (still version 11.2.0)
+- cisco.ucs (still version 1.16.0)
+- community.ciscosmb (still version 1.0.12)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.3.0)
+- community.mongodb (still version 1.8.0)
+- community.mysql (still version 5.0.2)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxmox (still version 2.0.0)
+- community.proxysql (still version 1.8.0)
+- community.rabbitmq (still version 1.7.0)
+- community.routeros (still version 3.22.0)
+- community.sap_libs (still version 1.7.1)
+- community.windows (still version 3.3.0)
+- community.zabbix (still version 4.2.0)
+- dellemc.enterprise_sonic (still version 4.1.0)
+- dellemc.openmanage (still version 10.0.3)
+- dellemc.unity (still version 2.1.0)
+- fortinet.fortimanager (still version 2.15.0)
+- fortinet.fortios (still version 2.6.0)
+- grafana.grafana (still version 6.1.0)
+- hetzner.hcloud (still version 6.12.0)
+- hitachivantara.vspone_object (still version 1.2.0)
+- ibm.storage_virtualize (still version 3.4.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infinidat.infinibox (still version 1.8.6)
+- infoblox.nios_modules (still version 1.9.0)
+- inspur.ispim (still version 2.2.4)
+- kaytus.ksmanage (still version 4.0.0)
+- kubevirt.core (still version 2.3.0)
+- lowlydba.sqlserver (still version 2.8.1)
+- microsoft.ad (still version 1.12.1)
+- microsoft.iis (still version 1.3.0)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.6.0)
+- netapp_eseries.santricity (still version 2.0.3)
+- netbox.netbox (still version 3.23.0)
+- ngine_io.cloudstack (still version 3.3.0)
+- openstack.cloud (still version 2.6.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- purestorage.flasharray (still version 1.43.0)
+- purestorage.flashblade (still version 1.26.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 6.0.1)
+- telekom_mms.icinga_director (still version 2.6.1)
+- vmware.vmware_rest (still version 4.11.0)
+- vultr.cloud (still version 1.14.1)
+- vyos.vyos (still version 6.0.0)
+- wti.remote (still version 1.0.11)
+
 v14.4.0
 =======
 
