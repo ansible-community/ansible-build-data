@@ -80,10 +80,11 @@ jobs:
           ref: ${{ inputs.existing-branch || '' }}
           persist-credentials: false
 
-      - name: Set up Python 3.15
+      # Only bump this to Python 3.15 once we drop support for ansible-core 2.21 or earlier!
+      - name: Set up Python 3.14
         uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
         with:
-          python-version: 3.15
+          python-version: 3.14
 
       - name: Install dependencies
         working-directory: antsibull-build
