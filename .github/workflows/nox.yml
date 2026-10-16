@@ -31,9 +31,9 @@ jobs:
       matrix:
         include:
           - session: lint
-            python-versions: "3.14"
+            python-versions: "3.15"
           - session: zizmor
-            python-versions: "3.14"
+            python-versions: "3.15"
     name: "Run nox ${{ matrix.session }} session"
     steps:
       - name: Check out ansible-build-data
