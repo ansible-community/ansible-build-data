@@ -7,6 +7,288 @@ This changelog describes changes since Ansible 14.0.0.
 .. contents::
   :depth: 2
 
+v15.0.0a4
+=========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-10-27
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- everpure.flasharray (version 1.45.1)
+- everpure.flashblade (version 1.28.0)
+
+Ansible-core
+------------
+
+Ansible 15.0.0a4 contains ansible-core version 2.22.0rc2.
+This is a newer version than version 2.22.0rc1 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                  | Ansible 15.0.0a3 | Ansible 15.0.0a4 | Notes                                                                                                                        |
++=============================+==================+==================+==============================================================================================================================+
+| ansible.windows             | 3.8.0            | 3.9.2            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto            | 3.5.0            | 3.5.1            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mongodb           | 1.8.0            | 1.8.1            | There are no changes recorded in the changelog.                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.postgresql        | 5.0.0            | 5.1.0            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros          | 3.22.0           | 3.23.0           |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman           | 1.21.1           | 1.21.2           |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| everpure.flasharray         |                  | 1.45.1           | The collection was added to Ansible                                                                                          |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| everpure.flashblade         |                  | 1.28.0           | The collection was added to Ansible                                                                                          |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules       | 1.44.0           | 1.45.0           | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| hitachivantara.vspone_block | 4.8.3            | 4.9.0            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| ibm.storage_virtualize      | 3.4.0            | 3.5.0            |                                                                                                                              |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flasharray      | 1.43.0           | 1.45.0           | The collection did not have a changelog in this version.                                                                     |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+| purestorage.flashblade      | 1.26.0           | 1.28.0           | The collection did not have a changelog in this version.                                                                     |
++-----------------------------+------------------+------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- Add official support for Ansible 2.22
+- Added win_dns_record_info to list Windows DNS records and retrieve records by owner and type.
+- dsc3 - Add the ``parameters_file``, ``system_root``, ``ignore_settings_file``, ``resource_path``, ``chdir`` and ``executable`` options to support Microsoft DSC 3.3.
+- dsc3 - Return ``reboot_required``, ``restart_requirements``, ``security_context`` and ``execution_type``, surface DSC warning messages as Ansible warnings and include the DSC error message in ``msg`` when ``dsc`` fails.
+- win_template - Add the ``validate`` option to run a command against the rendered template on the remote host before it is copied to ``dest``. The path of the rendered template is substituted into the command in place of ``%s`` and is quoted for PowerShell so paths containing spaces are handled correctly. If the command fails ``dest`` is left untouched - https://github.com/ansible-collections/ansible.windows/issues/50
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_user - the role name in O(name) is now taken literally, the way every other module in this collection treats a role name. The value ``"foo"`` creates a role called ``"foo"`` rather than ``foo``, and the value ``we""ird`` creates ``we""ird`` rather than ``we"ird``. Pass the literal role name in both cases.
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info, api_modify - adds support for the ``mode`` parameter in the ``container mounts`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/477).
+- api_info, api_modify - removed support for the ``read-only`` parameter in the ``container mounts`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/477).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- podman_pod - Document that configuration differences can recreate a pod and remove its containers before generating systemd units, and show how to share pod configuration between tasks with module_defaults.
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Corrected deprecation warning text in meta/runtime.yml for hv_journal_volume_facts and hv_journal_volume.
+- Updated README.md with Ansible Automation Hub installation instructions for Red Hat customers and clarified Ansible Galaxy installation guidance for community users.
+
+ibm.storage_virtualize
+~~~~~~~~~~~~~~~~~~~~~~
+
+- ibm_sv_manage_flashsystem_grid - Added support for changing FlashSystem grid coordinator.
+- ibm_sv_manage_storage_partition - Added support for split partition by specifying the list of volume groups and target partition.
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- dsc3 - Check mode now runs ``dsc config set --what-if`` instead of ``dsc config test`` so the reported changes align with what ``dsc`` would do. Group resources such as ``Microsoft.DSC/Group`` and ``Microsoft.DSC/Include`` do not support what-if and fail in check mode.
+
+Deprecated Features
+-------------------
+
+- The collection ``purestorage.flasharray`` was renamed to ``everpure.flasharray``.
+  For now both collections are included in Ansible.
+  The content in ``purestorage.flasharray`` has been replaced by deprecated redirects in Ansible 15.0.0.
+  The collection will be completely removed from Ansible 17.
+  Please update your FQCNs from ``purestorage.flasharray`` to ``everpure.flasharray`` (`https://forum.ansible.com/t/46435 <https://forum.ansible.com/t/46435>`__).
+- The collection ``purestorage.flashblade`` was renamed to ``everpure.flashblade``.
+  For now both collections are included in Ansible.
+  The content in ``purestorage.flashblade`` has been replaced by deprecated redirects in Ansible 15.0.0.
+  The collection will be completely removed from Ansible 17.
+  Please update your FQCNs from ``purestorage.flashblade`` to ``everpure.flashblade`` (`https://forum.ansible.com/t/46435 <https://forum.ansible.com/t/46435>`__).
+
+Ansible-core
+~~~~~~~~~~~~
+
+- task result - Inferred task failure from a non-zero ``rc`` key and absence of a ``failed`` key emits a runtime deprecation warning. Actions and modules must explicitly communicate failure by setting the ``failed`` key, using APIs that do so, or raising an unhandled exception. In ansible-core 2.24, the ``rc`` key will receive no special handling during task result processing.
+
+Security Fixes
+--------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ``ansible-galaxy role install`` - fix validating the role name is contained to the configured role path. (CVE-2026-105929)
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ``module_utils.urls`` - restore support for the ``yes`` and ``no`` values of ``follow_redirects`` which were accidentally removed for direct callers of ``open_url``, ``fetch_url`` and ``Request`` (https://github.com/ansible/ansible/issues/87719)
+- ansible_facts - initial facts from ``run_once`` tasks no longer reference the same object and can be updated for individual hosts
+- git module - updated to avoid possible incorrect parameters read from the repo targets. CVE-2026-84503
+- user - On BusyBox systems, preserve the existing password lock marker when ``password_lock`` is omitted.
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- dsc3 - Map all DSC exit codes to a readable failure message and document ``remote_config_file`` as defaulting to ``false``, matching the existing behaviour.
+- dsc3 - Read the execution details from ``executionInformation`` with a fallback to the deprecated ``metadata.Microsoft.DSC`` property that DSC will remove in a future release.
+- dsc3 - Walk the nested results of group resources such as ``Microsoft.DSC/Group`` and ``Microsoft.DSC/Include`` instead of reporting every group as changed.
+- win_dns_record - Apply the requested TTL when creating SRV records and retain single-value lists during target-name normalization.
+- win_dns_record - Clarify that allow_update_any applies only when creating records and remove the unrelated dynamic Active Directory object TTL warning.
+- win_dns_record - Compare TXT values case-sensitively, normalize equivalent IP addresses, and avoid duplicate writes for repeated values.
+- win_dns_record - Normalize zone-qualified record owners before querying or modifying DNS records.
+- win_dns_record - Preserve DNS lookup errors and verify requested record values, TTL, aging, and SRV fields after mutations instead of reporting success when nothing was written.
+- win_dns_record - Preserve TXT values such as ``Count`` and ``Keys`` that collide with PowerShell dictionary properties.
+- win_dns_record - Validate SRV port, priority, and weight before changing records and include these fields consistently in normal and check-mode diffs.
+- win_updates - Do not detect a reboot loop when Windows Update reissues an update with a newer revision.
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- openssh_keypair - change the value ``mldsa44`` for ``type`` to ``mldsa44-ed25519`` for OpenSSH ML-DSA-44 keys, since ``mldsa44`` is not a valid ``ssh-keygen`` key type (https://github.com/ansible-collections/community.crypto/pull/1083).
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgres module_utils - fix ``session_role`` containing a double quote producing invalid SQL in the ``SET ROLE`` issued on connect, which affects every module in this collection.
+- postgres module_utils - fix ``set_comment`` interpolating the object name into ``COMMENT ON`` unquoted, so a name containing a double quote produced invalid SQL or, under psycopg2, executed the rest of the name as SQL. Affects ``postgresql_user``, ``postgresql_db``, ``postgresql_schema``, ``postgresql_ext``, ``postgresql_publication``, ``postgresql_subscription`` and ``postgresql_tablespace``.
+- postgresql_db - fix a database, owner or tablespace name containing a double quote producing invalid SQL in ``ALTER DATABASE`` and ``DROP DATABASE``.
+- postgresql_db - fix the database, owner, template and tablespace names in ``CREATE DATABASE`` being interpolated unquoted, so that a name containing a double quote produced invalid SQL. They are now quoted as single identifiers.
+- postgresql_ext - fix an extension or schema name containing a double quote producing invalid SQL in ``CREATE EXTENSION``, ``ALTER EXTENSION`` and ``DROP EXTENSION``. A per cent sign in such a name also broke ``CREATE EXTENSION`` and ``ALTER EXTENSION``, which carry query parameters.
+- postgresql_idx - fix an index, schema, table or tablespace name containing a double quote producing invalid SQL in ``CREATE INDEX`` and ``DROP INDEX``. The schema-qualified names are quoted per part, so a dot in either name stays part of that name.
+- postgresql_info - fix the module failing with ``'bool' object is not iterable`` when a database has no extensions installed. A query that returns no rows now gives an empty result instead of ``False`` (https://github.com/ansible-collections/community.postgresql/issues/959).
+- postgresql_owner - fix a database, tablespace or language name containing a double quote producing invalid SQL in ``ALTER DATABASE``, ``ALTER TABLESPACE`` and ``ALTER LANGUAGE``. The language name was interpolated unquoted and is now quoted as a single identifier.
+- postgresql_owner - fix a role whose name contains a double quote producing invalid SQL. The name is now quoted as a single identifier with embedded quotes doubled, in the ``OWNER TO`` and ``REASSIGN OWNED BY`` statements alike.
+- postgresql_privs - fix a name containing a double quote in ``objs`` producing invalid SQL for object types that are not schema qualified, which covers ``type=group`` as well as ``database``, ``schema``, ``language``, ``tablespace``, ``foreign_server``, ``foreign_data_wrapper`` and ``parameter``.
+- postgresql_privs - fix a role named in ``target_roles`` whose name contains a double quote producing invalid SQL in the generated ``ALTER DEFAULT PRIVILEGES FOR ROLE`` statement.
+- postgresql_privs - fix an object name containing a double quote producing invalid SQL for schema-qualified types, and ``session_role`` containing one producing invalid SQL in ``SET ROLE``.
+- postgresql_publication - fix an owner name containing a double quote producing invalid SQL in ``ALTER PUBLICATION ... OWNER TO``.
+- postgresql_schema - fix an owner name containing a double quote producing invalid SQL in ``CREATE SCHEMA ... AUTHORIZATION`` and ``ALTER SCHEMA ... OWNER TO``.
+- postgresql_sequence - fix a sequence, schema or owner name containing a double quote producing invalid SQL in ``ALTER SEQUENCE``.
+- postgresql_subscription - fix a subscription, publication or owner name containing a double quote producing invalid SQL in ``CREATE SUBSCRIPTION``, ``ALTER SUBSCRIPTION`` and ``DROP SUBSCRIPTION``.
+- postgresql_table - fix an owner or tablespace name containing a double quote producing invalid SQL in ``CREATE TABLE`` and ``ALTER TABLE``.
+- postgresql_tablespace - fix a tablespace or owner name containing a double quote producing invalid SQL in ``CREATE TABLESPACE``, ``ALTER TABLESPACE`` and ``DROP TABLESPACE``.
+- postgresql_user - fix a key in O(configuration) containing a double quote producing invalid SQL in ``ALTER ROLE ... SET`` and ``ALTER ROLE ... RESET`` when O(quote_configuration_values=false). The key is now quoted as a single identifier.
+- postgresql_user - fix a role whose name contains a double quote being rejected with ``User escaped identifiers must escape extra quotes``. Such a name is now escaped and accepted, and a name that is not a balanced pair of quotes no longer fails.
+- postgresql_user, postgresql_db, postgres module_utils - fix a name containing a per cent sign breaking ``CREATE USER``, ``ALTER USER``, ``CREATE DATABASE`` and ``COMMENT ON``, which also carry query parameters. Such a name either failed with ``unsupported format character`` or had a parameter interpolated into it; a name of the form ``x%(password)sy`` put the password into the role name.
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- podman_secret - Fix idempotency for binary file secrets by comparing their contents as bytes, fail on file read or secret inspection errors before removing an existing secret, and hide non-UTF-8 contents in debug diffs.
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 12.0.0)
+- ansible.mariadb (still version 6.0.2)
+- ansible.mysql (still version 5.2.0)
+- ansible.netcommon (still version 8.7.1)
+- ansible.posix (still version 2.2.2)
+- ansible.utils (still version 6.1.1)
+- arista.eos (still version 12.3.0)
+- azure.azcollection (still version 4.1.0)
+- check_point.mgmt (still version 7.0.1)
+- chocolatey.chocolatey (still version 1.6.0)
+- cisco.aci (still version 2.13.0)
+- cisco.intersight (still version 2.23.0)
+- cisco.ios (still version 11.6.0)
+- cisco.iosxr (still version 13.0.0)
+- cisco.meraki (still version 2.25.1)
+- cisco.mso (still version 2.13.0)
+- cisco.nxos (still version 13.0.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.8.0)
+- community.aws (still version 12.0.0)
+- community.ciscosmb (still version 1.0.12)
+- community.clickhouse (still version 2.4.0)
+- community.dns (still version 4.3.0)
+- community.docker (still version 5.4.0)
+- community.general (still version 13.5.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.8.0)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.4.0)
+- community.mysql (still version 5.0.2)
+- community.okd (still version 6.0.0)
+- community.proxmox (still version 2.1.0)
+- community.proxysql (still version 1.8.0)
+- community.rabbitmq (still version 1.7.0)
+- community.sap_libs (still version 1.7.1)
+- community.sops (still version 2.5.0)
+- community.vmware (still version 7.0.0)
+- community.windows (still version 3.3.0)
+- community.zabbix (still version 4.2.0)
+- cyberark.conjur (still version 1.3.14)
+- dellemc.enterprise_sonic (still version 4.1.0)
+- dellemc.openmanage (still version 11.0.0)
+- dellemc.powerflex (still version 3.2.0)
+- dellemc.unity (still version 2.1.0)
+- fortinet.fortimanager (still version 2.15.0)
+- fortinet.fortios (still version 2.6.0)
+- google.cloud (still version 1.15.0)
+- grafana.grafana (still version 6.1.0)
+- graphiant.naas (still version 26.9.0)
+- hetzner.hcloud (still version 7.2.0)
+- hitachivantara.vspone_object (still version 1.2.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infinidat.infinibox (still version 1.8.6)
+- infoblox.nios_modules (still version 1.10.0)
+- inspur.ispim (still version 2.2.4)
+- kaytus.ksmanage (still version 4.0.0)
+- kubernetes.core (still version 6.6.0)
+- kubevirt.core (still version 2.3.0)
+- lowlydba.sqlserver (still version 3.1.0)
+- microsoft.ad (still version 1.12.1)
+- microsoft.iis (still version 1.3.0)
+- netapp.ontap (still version 24.0.0)
+- netapp.storagegrid (still version 21.17.0)
+- netapp_eseries.santricity (still version 2.0.3)
+- netbox.netbox (still version 3.23.1)
+- ngine_io.cloudstack (still version 3.3.0)
+- openstack.cloud (still version 2.6.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 6.0.1)
+- telekom_mms.icinga_director (still version 2.6.1)
+- theforeman.foreman (still version 6.0.0)
+- vmware.vmware (still version 2.12.0)
+- vmware.vmware_rest (still version 5.0.0)
+- vultr.cloud (still version 1.14.1)
+- vyos.vyos (still version 6.1.0)
+- wti.remote (still version 1.0.11)
+
 v15.0.0a3
 =========
 
