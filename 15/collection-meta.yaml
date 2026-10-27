@@ -195,6 +195,10 @@ collections:
       reason_text: No CI runs / sanity tests for 10 months.
       announce_version: 15.0.0a1
       discussion: https://forum.ansible.com/t/46085
+  everpure.flasharray:
+    repository: https://github.com/Everpure-Ansible/FlashArray-Collection
+  everpure.flashblade:
+    repository: https://github.com/Everpure-Ansible/FlashBlade-Collection
   f5networks.f5_modules:
     repository: https://github.com/F5Networks/f5-ansible-f5modules
     collection-directory: "./ansible_collections/f5networks/f5_modules"
@@ -303,9 +307,23 @@ collections:
     maintainers:
       - JanKarstenHansmeyer
   purestorage.flasharray:
-    repository: https://github.com/Pure-Storage-Ansible/FlashArray-Collection
+    repository: https://github.com/Everpure-Ansible/purestorage.flasharray
+    removal:
+      major_version: 17
+      reason: renamed
+      new_name: everpure.flasharray
+      redirect_replacement_major_version: 15
+      announce_version: 15.0.0a4
+      discussion: https://forum.ansible.com/t/46435
   purestorage.flashblade:
-    repository: https://github.com/Pure-Storage-Ansible/FlashBlade-Collection
+    repository: https://github.com/Everpure-Ansible/purestorage.flashblade
+    removal:
+      major_version: 17
+      reason: renamed
+      new_name: everpure.flashblade
+      redirect_replacement_major_version: 15
+      announce_version: 15.0.0a4
+      discussion: https://forum.ansible.com/t/46435
   ravendb.ravendb:
     repository: https://github.com/ravendb/ansible-collection-ravendb
   splunk.es:

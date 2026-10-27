@@ -50,6 +50,8 @@ dellemc.enterprise_sonic
 dellemc.openmanage
 dellemc.powerflex
 dellemc.unity
+everpure.flasharray
+everpure.flashblade
 f5networks.f5_modules
 fortinet.fortimanager
 fortinet.fortios
