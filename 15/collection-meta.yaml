@@ -313,7 +313,7 @@ collections:
       reason: renamed
       new_name: everpure.flasharray
       redirect_replacement_major_version: 15
-      announce_version: 15.0.0b1
+      announce_version: 15.0.0a4
       discussion: https://forum.ansible.com/t/46435
   purestorage.flashblade:
     repository: https://github.com/Everpure-Ansible/purestorage.flashblade
@@ -322,7 +322,7 @@ collections:
       reason: renamed
       new_name: everpure.flashblade
       redirect_replacement_major_version: 15
-      announce_version: 15.0.0b1
+      announce_version: 15.0.0a4
       discussion: https://forum.ansible.com/t/46435
   ravendb.ravendb:
     repository: https://github.com/ravendb/ansible-collection-ravendb
