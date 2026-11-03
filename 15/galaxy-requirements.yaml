@@ -1,4 +1,4 @@
-# Collections included in Ansible 15.0.0a4
+# Collections included in Ansible 15.0.0b1
 collections:
 - name: amazon.aws
   source: https://galaxy.ansible.com
@@ -26,7 +26,7 @@ collections:
   version: 12.3.0
 - name: azure.azcollection
   source: https://galaxy.ansible.com
-  version: 4.1.0
+  version: 4.2.0
 - name: check_point.mgmt
   source: https://galaxy.ansible.com
   version: 7.0.1
@@ -35,7 +35,7 @@ collections:
   version: 1.6.0
 - name: cisco.aci
   source: https://galaxy.ansible.com
-  version: 2.13.0
+  version: 3.0.0
 - name: cisco.intersight
   source: https://galaxy.ansible.com
   version: 2.23.0
@@ -50,7 +50,7 @@ collections:
   version: 2.25.1
 - name: cisco.mso
   source: https://galaxy.ansible.com
-  version: 2.13.0
+  version: 3.0.0
 - name: cisco.nxos
   source: https://galaxy.ansible.com
   version: 13.0.0
@@ -74,13 +74,13 @@ collections:
   version: 3.5.1
 - name: community.dns
   source: https://galaxy.ansible.com
-  version: 4.3.0
+  version: 4.3.1
 - name: community.docker
   source: https://galaxy.ansible.com
   version: 5.4.0
 - name: community.general
   source: https://galaxy.ansible.com
-  version: 13.5.0
+  version: 14.0.0
 - name: community.grafana
   source: https://galaxy.ansible.com
   version: 2.3.0
@@ -155,10 +155,10 @@ collections:
   version: 2.1.0
 - name: everpure.flasharray
   source: https://galaxy.ansible.com
-  version: 1.45.1
+  version: 1.46.0
 - name: everpure.flashblade
   source: https://galaxy.ansible.com
-  version: 1.28.0
+  version: 1.29.0
 - name: f5networks.f5_modules
   source: https://galaxy.ansible.com
   version: 1.45.0
@@ -176,7 +176,7 @@ collections:
   version: 6.1.0
 - name: graphiant.naas
   source: https://galaxy.ansible.com
-  version: 26.9.0
+  version: 26.10.0
 - name: hetzner.hcloud
   source: https://galaxy.ansible.com
   version: 7.2.0
@@ -272,7 +272,7 @@ collections:
   version: 1.14.1
 - name: vyos.vyos
   source: https://galaxy.ansible.com
-  version: 6.1.0
+  version: 6.2.0
 - name: wti.remote
   source: https://galaxy.ansible.com
   version: 1.0.11
