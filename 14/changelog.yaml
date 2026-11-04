@@ -102,9 +102,14 @@ releases:
   14.6.0:
     changes:
       minor_changes:
-        - "ansible.windows.dsc3 - Check mode now runs ``dsc config set --what-if`` instead of ``dsc config test`` so the reported changes
-           align with what ``dsc`` would do. Group resources such as ``Microsoft.DSC/Group`` and ``Microsoft.DSC/Include``
-           do not support what-if and fail in check mode (https://github.com/ansible-collections/ansible.windows/pull/946)."
+        - ansible.windows.dsc3 - Check mode now runs ``dsc config set --what-if``
+          instead of ``dsc config test`` so the reported changes align with what ``dsc``
+          would do. Group resources such as ``Microsoft.DSC/Group`` and ``Microsoft.DSC/Include``
+          do not support what-if and fail in check mode (https://github.com/ansible-collections/ansible.windows/pull/946).
+      release_summary: 'Release Date: 2026-11-04
+
+
+        `Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_'
     release_date: '2026-11-04'
 remove_collection_changelog_entries:
   hetzner.hcloud:
@@ -164,7 +169,7 @@ remove_collection_changelog_entries:
     3.9.0:
       changes:
         breaking_changes:
-          - >-
-            dsc3 - Check mode now runs ``dsc config set --what-if`` instead of ``dsc config test`` so the reported changes
-            align with what ``dsc`` would do. Group resources such as ``Microsoft.DSC/Group`` and ``Microsoft.DSC/Include``
+          - dsc3 - Check mode now runs ``dsc config set --what-if`` instead of ``dsc
+            config test`` so the reported changes align with what ``dsc`` would do.
+            Group resources such as ``Microsoft.DSC/Group`` and ``Microsoft.DSC/Include``
             do not support what-if and fail in check mode.

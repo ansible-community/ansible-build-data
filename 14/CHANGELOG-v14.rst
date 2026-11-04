@@ -7,6 +7,556 @@ This changelog describes changes since Ansible 13.0.0.
 .. contents::
   :depth: 2
 
+v14.6.0
+=======
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-11-04
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Added Collections
+-----------------
+
+- everpure.flasharray (version 1.46.0)
+- everpure.flashblade (version 1.29.0)
+
+Ansible-core
+------------
+
+Ansible 14.6.0 contains ansible-core version 2.21.6.
+This is a newer version than version 2.21.5 contained in the previous Ansible release.
+
+The changes are reported in the combined changelog below.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| Collection                  | Ansible 14.5.0 | Ansible 14.6.0 | Notes                                                                                                                        |
++=============================+================+================+==============================================================================================================================+
+| amazon.aws                  | 11.4.0         | 11.5.1         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ansible.windows             | 3.8.0          | 3.9.2          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| cisco.intersight            | 2.21.0         | 2.23.0         | Unfortunately, this collection does not provide changelog data in a format that can be processed by the changelog generator. |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.aws               | 11.2.0         | 11.2.2         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.crypto            | 3.5.0          | 3.5.1          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.dns               | 4.2.0          | 4.3.1          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.general           | 13.5.0         | 13.5.1         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.libvirt           | 2.3.0          | 2.4.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.mongodb           | 1.8.0          | 1.8.1          | There are no changes recorded in the changelog.                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.proxmox           | 2.0.0          | 2.1.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| community.routeros          | 3.22.0         | 3.23.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| containers.podman           | 1.21.0         | 1.21.2         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| everpure.flasharray         |                | 1.46.0         | The collection was added to Ansible                                                                                          |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| everpure.flashblade         |                | 1.29.0         | The collection was added to Ansible                                                                                          |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| f5networks.f5_modules       | 1.44.0         | 1.45.0         | The collection did not have a changelog in this version.                                                                     |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| graphiant.naas              | 26.9.0         | 26.10.0        |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| hitachivantara.vspone_block | 4.8.3          | 4.9.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| ibm.storage_virtualize      | 3.4.0          | 3.5.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| netbox.netbox               | 3.23.0         | 3.23.1         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| vmware.vmware               | 2.11.0         | 2.12.0         |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+| vyos.vyos                   | 6.0.0          | 6.2.0          |                                                                                                                              |
++-----------------------------+----------------+----------------+------------------------------------------------------------------------------------------------------------------------------+
+
+Minor Changes
+-------------
+
+- ansible.windows.dsc3 - Check mode now runs ``dsc config set --what-if`` instead of ``dsc config test`` so the reported changes align with what ``dsc`` would do. Group resources such as ``Microsoft.DSC/Group`` and ``Microsoft.DSC/Include`` do not support what-if and fail in check mode (https://github.com/ansible-collections/ansible.windows/pull/946).
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible-test - Replace FreeBSD 14.4 remote with 14.5.
+- ansible-test - Replace FreeBSD 15.0 remote with 15.1.
+- ansible-test - Replace RHEL 10.1 remote with 10.2.
+- ansible-test - Replace RHEL 9.7 remote with 9.8.
+
+amazon.aws
+~~~~~~~~~~
+
+- Replace the deprecated ``ansible.module_utils.six`` compatibility shims with their Python standard library equivalents. ``ansible.module_utils.six`` is deprecated in ansible-core 2.21 and is scheduled for removal in 2.24 (https://github.com/ansible-collections/amazon.aws/pull/3039).
+- aws_ec2 inventory plugin - Added a ``use_deprecated_tags`` option to allow disabling the deprecated ``tags`` host variable (and its associated deprecation and reserved-name warnings) independently of global deprecation warning settings (https://github.com/ansible-collections/amazon.aws/issues/3028).
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- Add official support for Ansible 2.22
+- Added win_dns_record_info to list Windows DNS records and retrieve records by owner and type.
+- dsc3 - Add the ``parameters_file``, ``system_root``, ``ignore_settings_file``, ``resource_path``, ``chdir`` and ``executable`` options to support Microsoft DSC 3.3.
+- dsc3 - Return ``reboot_required``, ``restart_requirements``, ``security_context`` and ``execution_type``, surface DSC warning messages as Ansible warnings and include the DSC error message in ``msg`` when ``dsc`` fails.
+- win_template - Add the ``validate`` option to run a command against the rendered template on the remote host before it is copied to ``dest``. The path of the rendered template is substituted into the command in place of ``%s`` and is quoted for PowerShell so paths containing spaces are handled correctly. If the command fails ``dest`` is left untouched - https://github.com/ansible-collections/ansible.windows/issues/50
+
+community.dns
+~~~~~~~~~~~~~
+
+- wait_for_txt - ``records[].values`` has been renamed to its alias ``records[].entries``. No change in roles and playbooks is needed, it is just that documentation now shows the new preferred name ``entries``, with ``values`` as an alias (https://github.com/ansible-collections/community.dns/pull/362).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- copr - improve the error message when the ``dnf`` Python library is missing on systems where dnf5 is the default package manager (https://github.com/ansible-collections/community.general/issues/12501, https://github.com/ansible-collections/community.general/pull/12913).
+
+community.libvirt
+~~~~~~~~~~~~~~~~~
+
+- Replace the deprecated ``ansible.module_utils.six`` compatibility shims with their Python standard library equivalents. ``ansible.module_utils.six`` is deprecated in ansible-core 2.20 and is scheduled for removal in 2.24.
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- inventory - allow to customize generated ansible_hostname (https://github.com/ansible-collections/community.proxmox/pull/471).
+- inventory plugin - add api_timeout option for Proxmox API requests and keep hosts in inventory when optional LXC/QEMU fact gathering fails (https://github.com/ansible-collections/community.proxmox/pull/257).
+- inventory plugin - add exclude_vms option (https://github.com/ansible-collections/community.proxmox/pull/257).
+- inventory plugin - add facts_concurrency option for concurrent LXC/QEMU fact gathering (https://github.com/ansible-collections/community.proxmox/pull/257).
+- inventory plugin - fetch QEMU and LXC inventory records from /api2/json/cluster/resources?type=vm instead of querying every online node (https://github.com/ansible-collections/community.proxmox/pull/257).
+- inventory plugin - fetch nodes from /api2/json/cluster/status instead of /api2/json/nodes (https://github.com/ansible-collections/community.proxmox/pull/257).
+- proxmox - add ``mount_devices`` option to allow mounting passthrough devices for LXC containers. Note that Proxmox currently requires root@pam password login to manage passthrough devices (https://github.com/ansible-collections/community.proxmox/pull/506).
+- proxmox - make ``api_host`` optional to support ``local`` backend (https://github.com/ansible-collections/community.proxmox/pull/349).
+- proxmox - make ``api_user`` optional and default to ``root@pam`` (https://github.com/ansible-collections/community.proxmox/pull/349).
+- proxmox - use ``local`` backend if no ``api_host`` is specified (https://github.com/ansible-collections/community.proxmox/pull/349).
+- proxmox_ceph_pool - add ``application`` parameter to configure Ceph pool profile (``rbd``, ``cephfs``, ``rgw``), defaulting to ``rbd`` (https://github.com/ansible-collections/community.proxmox/issues/523).
+- proxmox_cluster - add support for optional ``nodeid`` parameter during cluster creation and join operations.
+- proxmox_cluster_firewall - rename to proxmox_cluster_firewall_options (https://github.com/ansible-collections/community.proxmox/issues/450).
+- proxmox_domain - add ``openid_audiences`` parameter introduced in Proxmox VE 9.2 (https://github.com/ansible-collections/community.proxmox/pull/437).
+- proxmox_kvm - add ``allow_ksm`` parameter to control the Proxmox VE ``allow-ksm`` QEMU option.
+- proxmox_nic - increase max queues to 64 (https://github.com/ansible-collections/community.proxmox/pull/468).
+- proxmox_node_firewall - rename to proxmox_node_firewall_options (https://github.com/ansible-collections/community.proxmox/issues/450).
+- proxmox_node_firewall_info - rename to proxmox_node_firewall_options_info (https://github.com/ansible-collections/community.proxmox/issues/450).
+- proxmox_pct_remote connection plugin - the ``password`` and ``token_secret`` options are now marked as ``secret=true`` for ansible-core 2.22+'s secret masking (https://github.com/ansible-collections/community.proxmox/pull/535).
+- proxmox_pct_remote connection plugin - the ``password`` option is now marked as ``secret=true`` for ansible-core 2.22+'s secret masking (https://github.com/ansible-collections/community.proxmox/pull/535).
+- proxmox_pool_member - add ``allow_move`` parameter to allow adding a guest even if already in another pool (https://github.com/ansible-collections/community.proxmox/pull/467).
+- proxmox_qemu_api - adds extra debug logging (exceptions) when trying to connect to guest agent (https://github.com/ansible-collections/community.proxmox/pull/460).
+- proxmox_qemu_api connection plugin - the ``api_password`` and ``api_token_secret`` options are now marked as ``secret=true`` for ansible-core 2.22+'s secret masking (https://github.com/ansible-collections/community.proxmox/pull/535).
+- proxmox_storage - add  common storage properties ``shared``, ``prune_backups``, ``format`` and ``preallocation`` (https://github.com/ansible-collections/community.proxmox/pull/476).
+- proxmox_storage - add diff mode functionality (https://github.com/ansible-collections/community.proxmox/pull/476).
+- proxmox_storage - add support for ``btrfs``, ``esxi``, ``iscsidirect`` and ``zfs`` storage types (https://github.com/ansible-collections/community.proxmox/pull/476).
+- proxmox_storage - add support for ``lvm`` and  ``lvm-thin`` storage types (https://github.com/ansible-collections/community.proxmox/issues/158).
+- proxmox_storage - add update functionality (https://github.com/ansible-collections/community.proxmox/pull/476).
+
+community.routeros
+~~~~~~~~~~~~~~~~~~
+
+- api_info, api_modify - adds support for the ``mode`` parameter in the ``container mounts`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/477).
+- api_info, api_modify - removed support for the ``read-only`` parameter in the ``container mounts`` path for RouterOS >= 7.23 (https://github.com/ansible-collections/community.routeros/pull/477).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- podman_pod - Document that configuration differences can recreate a pod and remove its containers before generating systemd units, and show how to share pod configuration between tasks with module_defaults.
+
+graphiant.naas
+~~~~~~~~~~~~~~
+
+- Collection version bumped to 26.10.0
+- Minimum ``graphiant-sdk`` raised to ``>= 26.10.0`` (see ``_version.py`` ``DEPENDENCIES``); Ansible module ``requirements`` entries updated accordingly
+- New ``graphiant_device_lifecycle`` module (``change_state``/``schedule_upgrade``/``rollback``) and ``graphiant_device_lifecycle_info`` module (read-only ``get_status``) for the portal's Maintain > Device Lifecycle page, plus ``device_lifecycle_management.yml`` playbook and ``sample_device_lifecycle.yaml``. ``change_state`` sets ``lifecycle_state`` (``activated``/``staging``/``maintenance``/``deactivated``/``decommissioned``) via ``PUT /v1/devices/bringup``, idempotent against live ``GET /v1/edges-summary`` status, with ``decommissioned`` rejected unless the device is currently ``deactivated`` (matches the portal UI). ``schedule_upgrade``/``rollback`` schedule or roll back software via ``PUT /v1/devices/upgrade/schedule`` (``upgrade_action`` ``InstallActivate``/``Install``/``Activate``, optional ``ts`` to schedule for later). ``release`` (``Stable``/``Recommended``/``Latest``/``Custom``) matches the portal's own "Change Release" dropdown exactly — ``Custom`` only resolves to anything for an enterprise that has a custom image enabled, and there is no way to target an arbitrary exact build string instead of a channel for either operation; ``rollback`` always targets the device's own ``upgradeSummary.lastRunningVersion`` with no override. ``schedule_upgrade`` skips a device already running the requested ``release``; ``rollback`` skips a device with no ``upgradeSummary.lastRunningVersion`` to return to. ``schedule_upgrade`` also does not schedule (``not_connected_devices``) a device whose portal Connectivity Status is Down (``ttConnCount`` below 1/Impaired), since there's no tunnel-terminator connection to deliver the upgrade over — this fails the task even when other devices in the same batch were scheduled successfully; ``schedule_upgrade``/``rollback`` also skip (not fail, ``schedule_in_progress_devices``) a device whose existing ``upgradeSummary.schedule.state`` hasn't reached ``Success``/``Failed`` yet (including ``Idle``), since submitting a new schedule while one is already in progress can race the upgrade backend's own duplicate-request guard; a named device (via ``device`` or ``config_file``) not found in ``GET /v1/edges-summary`` fails the task before any mutating call, with every unresolved device in the batch named together rather than just the first one hit, resolved from a single shared ``GET /v1/edges-summary`` per round (``change_state``'s pre-op/post-op fetches, ``schedule_upgrade``/``rollback``'s post-op table) rather than one call per device. After a mutating call, the module polls for completion: ``change_state``, and a ``schedule_upgrade``/``rollback`` whose schedule reaches ``Success``, both then poll ``portalStatus=Ready`` (toggle with ``verify_for_insync``); ``schedule_upgrade``/``rollback`` first poll ``upgradeSummary.schedule.state`` to a terminal ``Success``/``Failed`` value (toggle with ``wait_for_completion``). Both toggles default to true and can be overridden per device in ``config_file``; all PUT calls and polls run concurrently across devices. Results report ``configured_devices``/``skipped_devices``/``insync_devices``/``not_insync_devices`` (plus ``completed_devices``/``failed_devices``/``in_progress_devices`` for the upgrade operations) — a device that doesn't reach ``Ready``, or whose schedule reaches ``Failed``, fails the task even though the underlying change was still applied. Full check mode for ``change_state``/``rollback``; diff mode for ``change_state`` (before/after ``lifecycle_state``), ``rollback`` (before/after ``version``), and ``schedule_upgrade`` (before/after ``version``, resolved from the release channel's current build when the software releases catalog can resolve one, otherwise just the requested channel name). ``graphiant_device_lifecycle_info`` queries status via ``GET /v1/edges-summary?upgradeSummary=true`` and fails when a specifically-requested device isn't found. Both modules log a before/after device-state table with ``detailed_logs: true`` (requires ``tabulate``); ``schedule_upgrade``/``rollback`` additionally log the release channel -> current build table (``GET /v1/software/releases/summary``) used for the skip/schedule decision and the diff, so it's auditable from the log alone. New ``gcsdk_client`` helpers ``get_edges_summary_with_upgrade``, ``put_devices_upgrade_schedule``, ``poll_upgrade_schedule_completion_batch``, ``get_software_releases_summary``; ``verify_device_portal_status`` (shared with ``graphiant_device_config``) now accepts ``tt_conn_count >= 2`` with a longer poll timeout. New unit tests for the manager and both modules.
+- ``graphiant_interfaces``: (1) full check mode and diff mode — all eight operations (``configure_interfaces`` / ``deconfigure_interfaces`` / ``configure_lan_interfaces`` / ``deconfigure_lan_interfaces`` / ``configure_wan_circuits_interfaces`` / ``deconfigure_wan_circuits_interfaces`` / ``configure_circuits`` / ``deconfigure_circuits``) now return the standard apply-result (``changed``, ``configured_devices``, ``skipped_devices``, ``details.diff_plan``) and populate the Ansible ``diff`` under ``--diff`` with per-device ``before``/``after`` (branch ``edge``, or ``edge.circuits`` / ``edge.interfaces`` for the two-stage WAN deconfigure). Mutating writes were already skipped in check mode by the SDK; this change adds honest reporting. Both configure and deconfigure operations read live device state via ``get_device_info`` and are field-level idempotent — a device already in the desired state is skipped (listed in ``skipped_devices``), changed devices are pushed (``configured_devices``), and ``changed`` reflects whether any device was pushed. The desired-vs-current comparison covers functional fields (lan/circuit attachment, ipv4/ipv6 static-vs-DHCP, adminStatus, MTU, TCP MSS, loopback, circuit parameters, and static routes); ``description``/``alias`` are compared only when set in the config so auto-defaulted values never cause a spurious change. (2) The interface and circuit API payloads are now built in Python instead of the ``interface_template.yaml`` / ``circuit_template.yaml`` Jinja2 templates, which have been removed along with ``ConfigTemplates.render_interface`` / ``render_circuit`` and their ``interface`` / ``circuit`` template mappings (generated payload unchanged; config files still support Jinja2 templating). (3) Circuit config-file fields are now documented in API-aligned camelCase (``linkUpSpeedMbps``, ``linkDownSpeedMbps``, ``circuitType``, ``diaEnabled``, ``lastResort``, ``qosProfile``, ``qosProfileType``, ``staticRoutes``, ``destinationPrefix``, ``administrativeDistance``, ``nextHops``, ``nextHopAddress``) matching the rest of the collection, with ``sample_circuit_config.yaml`` updated — non-breaking, as the original snake_case keys (``upload_bandwidth``, ``download_bandwidth``, ``circuit_type``, ``dia``, ``last_resort``, ``qos_profile``, ``qos_profile_type``, ``static_routes``, ``destination_prefix``, ``administrative_distance``, ``next_hops``, ``next_hop_address``) are still accepted as aliases (camelCase wins when both are given). Interface config fields were already camelCase with snake_case aliases. (4) Prerequisite validation — before any device is fetched or pushed, every LAN segment referenced by an interface or subinterface ``lan:`` assignment is validated against live enterprise state (``get_lan_segments_dict``); if any referenced segment does not exist the operation fails fast with a ``ConfigurationError`` listing the missing name(s) and the available LAN segments, prompting the user to create them first (e.g. ``lan_segments_management.yml --tag configure``). Being a read, this also runs in check mode. (5) Per-entry ``state: absent`` (LAN only) — a LAN subinterface entry with ``state: absent`` and its ``vlan`` set is removed from the device (sends ``interface: null`` for that VLAN) while the parent interface and all other entries are configured normally; a LAN main interface entry with ``state: absent`` and its ``name`` set has its non-default LAN attachment reset to the enterprise default LAN (its subinterfaces are left untouched — remove them individually with per-sub ``state: absent``). WAN interfaces, WAN subinterfaces, and circuits are never affected by ``state: absent`` (skipped, including within ``configure_wan_circuits_interfaces``); the discriminator is the live device state, so a subinterface attached to a circuit is treated as WAN. All are idempotent (already-absent entries are skipped) and shown in ``--diff`` output. (6) ``alias`` is no longer synthesized for LAN interfaces/subinterfaces when omitted — it is sent in the payload only when explicitly set. Previously an omitted LAN alias fell back to a generated default (the ``lan`` segment name for a main interface, ``{vlan}_{lan}`` for a subinterface) that was not unique across the device: two interfaces on the same segment, or two parent interfaces sharing a VLAN+segment (e.g. ``Gi0/0/0.100`` and ``Gi0/0/1.100`` both on ``segment-A`` → ``100_segment-A``), collided. Leaving a LAN ``alias`` unset keeps it fully optional (no change for configs that already set it explicitly, which still pass through verbatim) and removes the collision-prone guesswork; the idempotency comparison already only considered ``alias`` when explicitly set, so no spurious diffs result. WAN/circuit interfaces and subinterfaces are unchanged — they keep a synthesized alias (the circuit name, which is unique across the device, so it never collides). The ``state: absent`` / default-LAN reset paths are also unchanged (they set a unique alias — the interface name or ``{parent}.{vlan}``). New unit tests for the manager (``test_interfaces_manager.py``) and module (``test_graphiant_interfaces.py``).
+- ``graphiant_vrrp``: (1) full check mode and diff mode — ``configure`` / ``enable`` / ``deconfigure`` now return the standard apply-result (``changed``, ``configured_devices``, ``skipped_devices``, ``details.diff_plan``) and populate the Ansible ``diff`` under ``--diff`` with per-device ``before``/``after`` (branch ``edge``, keyed by interface name — ``GigabitEthernet8/0/0.28`` for a subinterface — then ``ipv4``/``ipv6``). (2) ``configure`` is now field-level idempotent — it reads live VRRP state via ``get_device_info`` and pushes only the interfaces whose VRRP groups differ (a merge PUT); unchanged interfaces and devices are left untouched (reported in ``skipped_interfaces``/``skipped_devices``), the per-interface ``configured_interfaces`` list and a ``Configure completed`` summary log mirror the deconfigure path, and ``changed`` reflects whether anything was pushed. The desired-vs-current comparison covers ``enabled``, ``priority``, ``virtualIp``, ``preempt``, ``allowInterOperability``, and ``trackedInterfaces``; ``description`` is compared only when set in the config, and ``virtualRouterId`` is excluded because the device GET model (``ManaV2VrrpGroup``) does not expose it. Clearing ``trackedInterfaces`` in the config (an empty list, or a bare ``trackedInterfaces:`` which YAML reads as null) is detected as drift and pushes the portal's clear sentinel (``[{}]``) to remove them; omitting the key entirely leaves existing tracked interfaces unmanaged. ``enable`` and ``deconfigure`` remain idempotent and now also emit ``diff_plan``. (3) The VRRP API payload is now built in Python instead of the ``vrrp_interfaces_template.yaml`` Jinja2 template, which has been removed along with ``ConfigTemplates.render_vrrp_interfaces`` and its ``vrrp_interfaces`` template mapping (generated payload unchanged; config files still support Jinja2 templating). New unit tests for the manager (``test_vrrp_interface_manager.py``) and module (``test_graphiant_vrrp.py``).
+
+hitachivantara.vspone_block
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+- Corrected deprecation warning text in meta/runtime.yml for hv_journal_volume_facts and hv_journal_volume.
+- Updated README.md with Ansible Automation Hub installation instructions for Red Hat customers and clarified Ansible Galaxy installation guidance for community users.
+
+ibm.storage_virtualize
+~~~~~~~~~~~~~~~~~~~~~~
+
+- ibm_sv_manage_flashsystem_grid - Added support for changing FlashSystem grid coordinator.
+- ibm_sv_manage_storage_partition - Added support for split partition by specifying the list of volume groups and target partition.
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- event_query - the contract test now also asserts that ``name`` is derivable from the ``canonical_facts`` identity values, and that each query emits a stream of objects rather than collecting them into an array. The controller calls ``.get('canonical_facts')`` on every jq output, so an array output raises ``AttributeError`` outside the handler that catches jq errors (https://github.com/ansible-collections/vmware.vmware/pull/427).
+- event_query - the contract test now compiles every expression with ``jq``. Every other check in that file reads the query as text, so all of them pass on an expression that cannot run. The controller compiles the expression outside the error handling that guards evaluation, so a query that does not compile discards every indirect node audit record for the whole job - including the records of every other collection in it.
+- vm_portgroup_info - Add common vm search parameters to module (moid, folder, datacenter, etc).
+
+vyos.vyos
+~~~~~~~~~
+
+- Add unit tests for vyos_lldp_interfaces module.
+- Add unit tests for vyos_vlan module.
+- plugins/modules/vyos_config.py - Added an argument to control password filtering in vyos_config. Current filtering behavior is still the default.
+- vyos_bgp_global - remove commented-out pre-1.3 deprecated parameter documentation artifacts.
+- vyos_config - Add `enforce` match mode, which enforces the supplied configuration as the desired end-state.
+- vyos_config - add support for commit-confirm workflows (automatic/manual) including configurable timeout
+- vyos_config - added a new ``replace`` option value, ``config`` (in addition to the existing default, ``line``). When set to ``replace=config``, the module uploads the complete candidate configuration supplied via ``src`` to the device and issues VyOS's native ``load`` command in configuration mode, letting VyOS's own configuration engine perform the replacement, rather than the module computing a set/delete command diff. This mirrors the mechanism offered by ``cisco.iosxr.iosxr_config``'s ``replace=config`` (https://vyos.dev/T6837).
+- vyos_file - Add support for file upload, management and templating.
+- vyos_firewall_global - Added 'diff' support
+- vyos_firewall_global - Added Firewall Zone Policy support.
+- vyos_firewall_rules - Added 'return' and 'continue' to default action.
+- vyos_ha - Add VRRP (High Availability) support.
+- vyos_interfaces - Added VRF support.
+- vyos_nat - Add new module to support NAT configuration.
+- vyos_static_routes - Fixed interface handling in next-hop parsing
+- vyos_vpn_ipsec - Add global VPN IPsec resource module support.
+- vyos_vpn_ipsec_s2s - Add IPsec site-to-site peer resource module support.
+- vyos_vrf - Add VRF support
+
+Breaking Changes / Porting Guide
+--------------------------------
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- dsc3 - Check mode now runs ``dsc config set --what-if`` instead of ``dsc config test`` so the reported changes align with what ``dsc`` would do. Group resources such as ``Microsoft.DSC/Group`` and ``Microsoft.DSC/Include`` do not support what-if and fail in check mode.
+
+Deprecated Features
+-------------------
+
+- The collection ``purestorage.flasharray`` was renamed to ``everpure.flasharray``.
+  For now both collections are included in Ansible.
+  The content in ``purestorage.flasharray`` will be replaced by deprecated redirects in Ansible 15.0.0.
+  The collection will be completely removed from Ansible 17.
+  Please update your FQCNs from ``purestorage.flasharray`` to ``everpure.flasharray`` (`https://forum.ansible.com/t/46435 <https://forum.ansible.com/t/46435>`__).
+- The collection ``purestorage.flashblade`` was renamed to ``everpure.flashblade``.
+  For now both collections are included in Ansible.
+  The content in ``purestorage.flashblade`` will be replaced by deprecated redirects in Ansible 15.0.0.
+  The collection will be completely removed from Ansible 17.
+  Please update your FQCNs from ``purestorage.flashblade`` to ``everpure.flashblade`` (`https://forum.ansible.com/t/46435 <https://forum.ansible.com/t/46435>`__).
+
+community.dns
+~~~~~~~~~~~~~
+
+- nameserver_record_info - the return value ``results[].result[].values`` is deprecated and will be removed from community.dns 5.0.0. Use ``results[].result[].entries`` instead, which has been available for some time (https://github.com/ansible-collections/community.dns/pull/362).
+- wait_for_txt - the return value ``records[].values`` is deprecated and will be removed from community.dns 5.0.0. Use ``records[].entries`` instead, which has been available for some time (https://github.com/ansible-collections/community.dns/pull/362).
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- proxmox_cluster_firewall - add deprecation notice for ``proxmox_cluster_firewall`` module. This module will be renamed to ``proxmox_cluster_firewall_options`` in 3.0.0.
+- proxmox_cluster_firewall_security_group - the default of ``purge_omitted_rule_fields`` will change from ``false`` to ``true`` in community.proxmox 3.0.0. With ``true``, optional rule fields that are omitted from a ``rules`` entry are removed from the existing rule. Set ``purge_omitted_rule_fields=false`` to keep preserving omitted rule fields in 3.0.0 (https://github.com/ansible-collections/community.proxmox/issues/278, https://github.com/ansible-collections/community.proxmox/pull/527).
+- proxmox_node_firewall - add deprecation notice for ``proxmox_node_firewall`` module. This module will be renamed to ``proxmox_node_firewall_options`` in 3.0.0.
+- proxmox_node_firewall_info - add deprecation notice for ``proxmox_node_firewall_info`` module. This module will be renamed to ``proxmox_node_firewall_options_info`` in 3.0.0.
+
+Removed Features (previously deprecated)
+----------------------------------------
+
+vyos.vyos
+~~~~~~~~~
+
+- vyos.vyos - support for ansible-core 2.15 has been dropped; the minimum supported ansible-core version is now 2.16.0.
+
+Security Fixes
+--------------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ``ansible-galaxy collection install`` - fix validating ``FILES.json`` entries are contained in the collection before creating them. (CVE-2026-89091)
+- ``ansible-galaxy role install`` - fix validating the role name is contained to the configured role path. (CVE-2026-105929)
+
+Bugfixes
+--------
+
+Ansible-core
+~~~~~~~~~~~~
+
+- ansible_facts - initial facts from ``run_once`` tasks no longer reference the same object and can be updated for individual hosts
+- git module - updated to avoid possible incorrect parameters read from the repo targets. CVE-2026-84503
+- module_utils.mask_url - handle exceptions on parseurl to avoid disclosing url itself.
+- sudo become plugin, sudo-rs compatibility fix for non english locales
+- user - On BusyBox systems, preserve the existing password lock marker when ``password_lock`` is omitted.
+
+amazon.aws
+~~~~~~~~~~
+
+- aws_sqs_queue - Fix UUID generation in EDA event source plugin to set ``meta.uuid`` as a flat key readable by ansible-rulebook, validate the SQS ``MessageId`` as a proper RFC 4122 UUID, and fall back to a deterministic UUID5 when invalid (https://github.com/ansible-collections/amazon.aws/pull/3034).
+- aws_ssm - apply the transfer bucket's server-side-encryption settings when uploading files from the controller to the managed node (``put_file``), matching the existing ``fetch_file`` behaviour. Previously the upload was made without encryption settings, so buckets whose policy denies unencrypted ``PutObject`` requests rejected every file transfer with ``AccessDenied`` (https://github.com/ansible-collections/amazon.aws/issues/3018).
+- aws_ssm connection plugin - fix hang on reboot by handling ValidationException when terminating already-disconnected sessions (https://github.com/ansible-collections/amazon.aws/issues/3044).
+- ec2_spot_instance - fix the ``network_interfaces.ipv6_addresses`` suboption, which was defined as ``ipv6address`` and serialized to the invalid boto3 key ``Ipv6address`` instead of ``Ipv6Address``, causing a ``ParamValidationError`` when requesting a spot instance with an IPv6 address (https://github.com/ansible-collections/amazon.aws/issues/2557, https://github.com/ansible-collections/amazon.aws/pull/3110).
+- module_utils - fix fail_json_aws() to work with Python 3.14 and ansible-core 2.19+ by using try/except to detect fail_json exception parameter support instead of traceback.format_exc() which fails outside exception context in Python 3.14 (https://github.com/ansible-collections/amazon.aws/pull/3103).
+- module_utils/acm - fix ``KeyError`` when listing ACM certificates that have no ``DomainName``, for example a certificate imported without a valid domain name. The certificate ARN is now used in error messages instead (https://github.com/ansible-collections/amazon.aws/issues/2405).
+- rds_cluster - fix ``final_snapshot_identifier`` being silently dropped when deleting a DB cluster with ``skip_final_snapshot=false``, which made the deletion fail. The option is now ``final_db_snapshot_identifier``, matching ``rds_instance`` and the ``FinalDBSnapshotIdentifier`` API parameter, with ``final_snapshot_identifier`` kept as an alias (https://github.com/ansible-collections/amazon.aws/issues/3084).
+- ubuntu clients over ssm connection plugin failed with timeouts. dash on ubuntu needs oneline-commands without '\n' (https://github.com/ansible-collections/amazon.aws/pull/3036)
+
+ansible.windows
+~~~~~~~~~~~~~~~
+
+- dsc3 - Map all DSC exit codes to a readable failure message and document ``remote_config_file`` as defaulting to ``false``, matching the existing behaviour.
+- dsc3 - Read the execution details from ``executionInformation`` with a fallback to the deprecated ``metadata.Microsoft.DSC`` property that DSC will remove in a future release.
+- dsc3 - Walk the nested results of group resources such as ``Microsoft.DSC/Group`` and ``Microsoft.DSC/Include`` instead of reporting every group as changed.
+- win_dns_record - Apply the requested TTL when creating SRV records and retain single-value lists during target-name normalization.
+- win_dns_record - Clarify that allow_update_any applies only when creating records and remove the unrelated dynamic Active Directory object TTL warning.
+- win_dns_record - Compare TXT values case-sensitively, normalize equivalent IP addresses, and avoid duplicate writes for repeated values.
+- win_dns_record - Normalize zone-qualified record owners before querying or modifying DNS records.
+- win_dns_record - Preserve DNS lookup errors and verify requested record values, TTL, aging, and SRV fields after mutations instead of reporting success when nothing was written.
+- win_dns_record - Preserve TXT values such as ``Count`` and ``Keys`` that collide with PowerShell dictionary properties.
+- win_dns_record - Validate SRV port, priority, and weight before changing records and include these fields consistently in normal and check-mode diffs.
+- win_updates - Do not detect a reboot loop when Windows Update reissues an update with a newer revision.
+
+community.aws
+~~~~~~~~~~~~~
+
+- Fix ``COMMUNITY_AWS_COLLECTION_VERSION`` in ``plugins/module_utils/common.py``, which was not updated during the 11.2.1 release and still reported the collection version as ``11.2.0`` in the AWS API user-agent string.
+- eks_nodegroup - Fixed check mode to correctly report changed status when validating tags, labels, and taints. Fixed label comparison to detect value changes. Fixed sequential update operations by waiting for nodegroup to return to ACTIVE state after updating scaling/launch template configuration before attempting to update labels, taints, or tags. Fixed wait handling in check mode to avoid unnecessary waits when no actual changes were made (https://github.com/ansible-collections/community.aws/pull/2505).
+- eks_nodegroup - Fixed integration tests by removing unsupported ``create_instance_profile`` parameter from IAM role tasks (https://github.com/ansible-collections/community.aws/pull/2505).
+- integration tests - Remove unsupported ``create_instance_profile`` and ``delete_instance_profile`` parameters from iam_role tasks (https://github.com/ansible-collections/community.aws/pull/2500).
+
+community.crypto
+~~~~~~~~~~~~~~~~
+
+- openssh_keypair - change the value ``mldsa44`` for ``type`` to ``mldsa44-ed25519`` for OpenSSH ML-DSA-44 keys, since ``mldsa44`` is not a valid ``ssh-keygen`` key type (https://github.com/ansible-collections/community.crypto/pull/1083).
+
+community.dns
+~~~~~~~~~~~~~
+
+- Update Public Suffix List.
+- lookup_as_dict lookup plugin - make ``NSEC3`` decoding compatible with dnspython 2.9.0 (https://github.com/ansible-collections/community.dns/pull/360).
+- nameserver_record_info - make ``NSEC3`` decoding compatible with dnspython 2.9.0 (https://github.com/ansible-collections/community.dns/pull/360).
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- apache2_module - determine ``changed`` from the output of ``a2enmod``/``a2dismod`` when ``ignore_configcheck=true`` and the Apache configuration check fails (https://github.com/ansible-collections/community.general/issues/3510, https://github.com/ansible-collections/community.general/pull/13147).
+- apache2_module - fix ``state=absent`` doing nothing when ``ignore_configcheck=true`` and the Apache configuration check fails (https://github.com/ansible-collections/community.general/issues/3510, https://github.com/ansible-collections/community.general/pull/13147).
+- apk - fail cleanly when the ``world`` file cannot be read (https://github.com/ansible-collections/community.general/issues/10739, https://github.com/ansible-collections/community.general/pull/13179).
+- cloudflare_dns - fix detection of existing CAA, SRV, and TLSA records (https://github.com/ansible-collections/community.general/issues/7766, https://github.com/ansible-collections/community.general/issues/7780, https://github.com/ansible-collections/community.general/pull/13170).
+- cloudflare_dns - fix failure when looking up records whose value contains a comma (https://github.com/ansible-collections/community.general/issues/10208, https://github.com/ansible-collections/community.general/pull/13119).
+- composer - fix ``apcu_autoloader`` never passing ``--apcu-autoloader`` to composer, because the option was mapped to the misspelled ``acpu-autoloader`` (https://github.com/ansible-collections/community.general/pull/12988).
+- composer - pass ``--apcu`` for ``apcu_autoloader`` to ``dump-autoload``, which has no ``--apcu-autoloader`` flag (https://github.com/ansible-collections/community.general/pull/12989).
+- diy callback plugin - no longer emits deprecation warnings about ``v2_on_any`` with ansible-core 2.19 and later (https://github.com/ansible-collections/community.general/issues/10545, https://github.com/ansible-collections/community.general/pull/13093).
+- django_createcachetable - do not pass the unsupported ``--noinput`` option to ``django-admin createcachetable`` (https://github.com/ansible-collections/community.general/pull/13002).
+- github_deploy_key - do not delete an existing deploy key when running with ``state=absent`` in check mode (https://github.com/ansible-collections/community.general/issues/12348, https://github.com/ansible-collections/community.general/pull/13132).
+- gitlab_instance_variable - ignore the ``hidden`` attribute that GitLab 19.1 and newer return for instance variables when comparing them with the requested variables. Before, ``purge=true`` deleted every instance variable, including the ones the task had just created, and every run reported a change (https://github.com/ansible-collections/community.general/issues/12349, https://github.com/ansible-collections/community.general/pull/13029).
+- gitlab_project - fix ``'bool' object has no attribute 'attributes'`` (https://github.com/ansible-collections/community.general/issues/12902, https://github.com/ansible-collections/community.general/pull/12903).
+- gitlab_runner - do not fail with ``'<' not supported between instances of 'str' and 'int'`` when python-gitlab cannot read the GitLab server version. The module now assumes that the server is new enough and emits a warning (https://github.com/ansible-collections/community.general/issues/12707, https://github.com/ansible-collections/community.general/pull/12899).
+- gitlab_user - fix lookup of existing users whose username contains uppercase letters (https://github.com/ansible-collections/community.general/issues/5999, https://github.com/ansible-collections/community.general/pull/13064).
+- idrac_redfish_config - fix setting attributes on iDRAC10 (https://github.com/ansible-collections/community.general/issues/10232, https://github.com/ansible-collections/community.general/pull/13141).
+- ini_file - do not add an option without value when ``allow_no_value=true`` and the requested values already exist (https://github.com/ansible-collections/community.general/issues/9296, https://github.com/ansible-collections/community.general/pull/13089).
+- ipa_hostgroup - fix task failure when it actually succeeded (https://github.com/ansible-collections/community.general/issues/12853, https://github.com/ansible-collections/community.general/pull/12854).
+- lxc_container - fix archiving containers on LXC 2.1 and newer, which failed with ``KeyError`` because the module read the removed ``lxc.rootfs`` config key instead of ``lxc.rootfs.path`` (https://github.com/ansible-collections/community.general/issues/12562, https://github.com/ansible-collections/community.general/pull/12982).
+- mail - fail when an encrypted connection cannot be established with ``secure=always``, instead of sending the mail unencrypted (https://github.com/ansible-collections/community.general/pull/13068).
+- mail - open only one connection to the SMTP server instead of two (https://github.com/ansible-collections/community.general/pull/13069).
+- mail - report connection errors such as a refused connection as a module failure instead of a traceback (https://github.com/ansible-collections/community.general/issues/7122, https://github.com/ansible-collections/community.general/pull/13067).
+- modules using ``CmdRunner`` - environment variables set for a single command are no longer passed to subsequent commands (https://github.com/ansible-collections/community.general/issues/12904, https://github.com/ansible-collections/community.general/pull/12905).
+- nmcli - fail when the connection editor reports an error instead of reporting a change (https://github.com/ansible-collections/community.general/issues/9091, https://github.com/ansible-collections/community.general/pull/13116).
+- nmcli - fix ``wifi_sec`` flags options always reporting changes and failing with integer values (https://github.com/ansible-collections/community.general/issues/9121, https://github.com/ansible-collections/community.general/pull/13080).
+- nmcli - fix list suboptions of ``wifi`` and ``wifi_sec`` being sent to nmcli one character at a time when given as a string (https://github.com/ansible-collections/community.general/issues/7500, https://github.com/ansible-collections/community.general/pull/13072).
+- open_iscsi - fix login to a single target ignoring login failures and the ``portal`` option (https://github.com/ansible-collections/community.general/pull/12928).
+- opentelemetry callback plugin - each host's span event now carries that host's task result instead of the result of the host that reported last (https://github.com/ansible-collections/community.general/issues/12987, https://github.com/ansible-collections/community.general/pull/13011).
+- pacemaker_resource - fix non-idempotent behaviour when ``state=cloned`` is applied to a resource or group that is already part of a clone set (https://github.com/ansible-collections/community.general/issues/12217, https://github.com/ansible-collections/community.general/pull/12288).
+- pamd - fix crash when removing a rule that is the only line in the file with ``state=absent`` (https://github.com/ansible-collections/community.general/pull/13115).
+- passwordstore lookup plugin - do not return the folder tree as the password when the passname is a folder with ``backend=gopass`` (https://github.com/ansible-collections/community.general/issues/5028, https://github.com/ansible-collections/community.general/pull/13167).
+- pkgng - the module no longer hangs forever when ``pkg`` asks an interactive question, such as the one about an OS version mismatch; the question now takes its default answer, so the task fails instead of blocking (https://github.com/ansible-collections/community.general/issues/12896, https://github.com/ansible-collections/community.general/pull/12898).
+- scaleway_ip - fix failure when creating an IP with ``reverse`` set, and show the error details from the API when updating an IP fails (https://github.com/ansible-collections/community.general/issues/11362, https://github.com/ansible-collections/community.general/pull/13140).
+- sysrc - keep leading and trailing whitespace of the current value when comparing it, so setting a value that starts or ends with whitespace is idempotent, and report the correct change status for ``state=value_present`` and ``state=value_absent`` when a list item has leading or trailing whitespace (https://github.com/ansible-collections/community.general/issues/13108, https://github.com/ansible-collections/community.general/pull/13117).
+- terraform - pass ``state_file`` to the ``apply`` and ``destroy`` commands, not only to ``plan`` (https://github.com/ansible-collections/community.general/issues/6490, https://github.com/ansible-collections/community.general/pull/12997).
+- timezone - fix failure when setting timezone aliases on Debian and Ubuntu without systemd (https://github.com/ansible-collections/community.general/issues/7498, https://github.com/ansible-collections/community.general/pull/13169).
+- timezone - update ``/etc/timezone`` when using ``timedatectl`` (https://github.com/ansible-collections/community.general/issues/8784, https://github.com/ansible-collections/community.general/pull/13074).
+- xml - fix crash and idempotency of namespaced ``attribute`` values (https://github.com/ansible-collections/community.general/issues/10683, https://github.com/ansible-collections/community.general/pull/13121).
+- zpool - fix idempotency of ``vdevs`` with short device names, symbolic links, partitions, multi-disk stripes, and role groups (https://github.com/ansible-collections/community.general/issues/10771, https://github.com/ansible-collections/community.general/issues/10744, https://github.com/ansible-collections/community.general/pull/12948).
+- zypper - do not fail when zypper returns ``102`` (reboot needed) after a successful run, for example when applying patches with ``--with-interactive`` (https://github.com/ansible-collections/community.general/issues/12960, https://github.com/ansible-collections/community.general/pull/12965).
+- zypper - do not pass ``extra_args`` to the ``zypper search`` command used to determine the installed packages (https://github.com/ansible-collections/community.general/issues/4242, https://github.com/ansible-collections/community.general/pull/12958).
+- zypper - fail when ``zypper`` reports errors while run through ``transactional-update`` versions that return success regardless (https://github.com/ansible-collections/community.general/issues/9011, https://github.com/ansible-collections/community.general/pull/12957).
+- zypper_repository - fix idempotency when the repository URL contains ``$releasever`` on openSUSE Leap 16.0 (https://github.com/ansible-collections/community.general/pull/13017).
+
+community.libvirt
+~~~~~~~~~~~~~~~~~
+
+- virt_volume - fixed capacity/allocation unit parsing to recognize all unit strings documented by libvirt's storage volume XML format (e.g. GiB, MiB, KB, TB), instead of silently treating unrecognized units as a multiplier of 1 and attempting a bogus resize (https://github.com/ansible-collections/community.libvirt/issues/281).
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- All modules - support both API token authentication formats: ``api_token_id: username@realm!tokenid`` (recommended) and ``api_user: username@realm`` with ``api_token_id: tokenid``. Previously, the documented format with embedded user in the token ID was not working (https://github.com/ansible-collections/community.proxmox/issues/475).
+- proxmox - delegate ``mount_devices[].mode`` validation to the Proxmox API, allowing the API-required four-digit octal format such as ``0666`` (https://github.com/ansible-collections/community.proxmox/issues/533).
+- proxmox - do not send ``cmode`` on LXC container update when it is set to the ``default`` sentinel value (PVE rejects the literal value, same as was already handled on instance creation).
+- proxmox - fix default value for ``cmode`` parameter (https://github.com/ansible-collections/community.proxmox/pull/440).
+- proxmox - omit path parameters from LXC configuration update payloads and serialize tags as a semicolon-separated string, fixing updates with the local backend (https://github.com/ansible-collections/community.proxmox/issues/513).
+- proxmox inventory - fetch pool members via the ``GET /pools?poolid=<id>`` query form instead of the deprecated ``GET /pools/{poolid}`` path form, which returned a 501 error and aborted inventory parsing for nested pool IDs (poolid containing a slash, e.g. ``parent/child``) introduced in Proxmox VE 8.1 (https://github.com/ansible-collections/community.proxmox/issues/472).
+- proxmox inventory - pass ``verify`` explicitly on HTTP requests so ``validate_certs: false`` is honored when ``REQUESTS_CA_BUNDLE`` is set (regression when only ``session.verify`` was used) (https://github.com/ansible-collections/community.proxmox/pull/491).
+- proxmox_ceph_pool - change `target_size_ratio` parameter type from `int` to `float` to match Ceph and Proxmox VE API schema (https://github.com/ansible-collections/community.proxmox/issues/524).
+- proxmox_cluster_firewall_security_group - a rule entry with ``iface`` set to an empty string no longer fails to update an existing rule (https://github.com/ansible-collections/community.proxmox/pull/537).
+- proxmox_disk module - Ensure proper update handling of disks with an incomplete value set within proxmoxs configuration layer. In particular freshly imported  disks from ESX. (https://github.com/ansible-collections/community.proxmox/pull/531)
+- proxmox_domain - ignore immutable fields (``type`` and ``username-claim``) when updating existing realms (https://github.com/ansible-collections/community.proxmox/issues/448).
+- proxmox_firewall - fail on ipset entries that combine an IPv4 address with the IPv6 host prefix ``/128`` instead of silently treating them as the plain IPv4 address. Proxmox rejects such entries as well (https://github.com/ansible-collections/community.proxmox/pull/530).
+- proxmox_firewall - fix updating a rule when more than one field differs, which queued the rule multiple times and failed (https://github.com/ansible-collections/community.proxmox/pull/493).
+- proxmox_firewall - keep the prefix of IPv6 ``/32`` networks such as ``2001:db8::/32`` in ipsets instead of normalizing them to the single address ``2001:db8::/128``. This also fixes ``state=absent`` not removing such a network from an ipset (https://github.com/ansible-collections/community.proxmox/pull/530).
+- proxmox_firewall - omit unsupported "pos" API parameter (https://github.com/ansible-collections/community.proxmox/issues/485).
+- proxmox_firewall_info - skip aliases and ipsets API calls for firewall for node, vnet and group (https://github.com/ansible-collections/community.proxmox/pull/485).
+- proxmox_node_firewall_options - apply ``state=disabled`` on a node whose ``host.fw`` does not set ``enable`` (https://github.com/ansible-collections/community.proxmox/issues/511).
+- proxmox_node_firewall_options_info - report ``enabled`` as ``true`` for a node whose ``host.fw`` does not set ``enable`` (https://github.com/ansible-collections/community.proxmox/issues/511).
+- proxmox_node_info - skip node ``network`` and ``version`` info when node is offline to prevent errors (https://github.com/ansible-collections/community.proxmox/issues/453).
+- proxmox_pct_remote connection plugin - restore the ``_raise_paramiko_connect_exception`` helper that was referenced but not defined after a refactor, so unexpected SSH connection errors (connection refused, timeouts) are reported as ``AnsibleConnectionFailure`` with the real error message instead of crashing with ``AttributeError`` (https://github.com/ansible-collections/community.proxmox/issues/477).
+- proxmox_pool_member - fix incorrect type when adding members (https://github.com/ansible-collections/community.proxmox/issues/459).
+- proxmox_pool_member - fix support adding and removing in one execution in ``exclusive`` mode (https://github.com/ansible-collections/community.proxmox/pull/467).
+- proxmox_qemu_api connection plugin - export ``HOME`` for every command executed through the QEMU guest agent, which starts processes without a login environment. With ``HOME`` unset, POSIX sh left ``~`` unexpanded, breaking ansible-core's remote tmpdir discovery and causing ``copy``, ``template`` and module payload transfers to fail after creating a literal ``/~`` directory on the guest (https://github.com/ansible-collections/community.proxmox/issues/461).
+- proxmox_template - fix error if ``api_host`` and upload target `node` are not the same (https://github.com/ansible-collections/community.proxmox/issues/222).
+- proxmox_user - allow password change with e.g. local backend (https://github.com/ansible-collections/community.proxmox/issues/482).
+- proxmox_user - ignore ``password`` parameter when updating an existing user using API Token authentication (https://github.com/ansible-collections/community.proxmox/issues/451).
+- proxmox_user - omit unknown API parameter (https://github.com/ansible-collections/community.proxmox/issues/481).
+- proxmox_user - report changed in check mode when deleting user (https://github.com/ansible-collections/community.proxmox/pull/515).
+- proxmox_vm_info - ignore errors when retrieving VM network info if the QEMU guest agent is not running (https://github.com/ansible-collections/community.proxmox/pull/507).
+- proxmox_vm_info - skip VM network info when VM is stopped (https://github.com/ansible-collections/community.proxmox/pull/504).
+
+containers.podman
+~~~~~~~~~~~~~~~~~
+
+- podman_network - Fix idempotency for parent, bridge_name and driver_mtu options by comparing their normalized values in network inspect output.
+- podman_secret - Fix idempotency for binary file secrets by comparing their contents as bytes, fail on file read or secret inspection errors before removing an existing secret, and hide non-UTF-8 contents in debug diffs.
+
+netbox.netbox
+~~~~~~~~~~~~~
+
+- Reverted the slug-generation change introduced in 3.23.0, restoring the pre-3.23.0 behavior (leading and trailing separators are no longer trimmed). The 3.23.0 change altered auto-generated slugs, breaking idempotency for playbooks that rely on the derived slug as a lookup key, and it shipped in a minor release contrary to semantic versioning. The upstream-aligned slug generation will return in a future major release (https://github.com/netbox-community/ansible_modules/issues/1563).
+- Unordered many-to-many list fields (such as ``object_types``, ``tagged_vlans``, route targets, ``netbox_config_context`` scopes, and user permissions/groups) are now compared as sets, so a reordering by NetBox no longer reports a false ``changed`` (https://github.com/netbox-community/ansible_modules/issues/1486).
+- ``netbox_contact``: the NetBox-version compatibility gate (``contact_group`` vs ``contact_groups``, introduced in NetBox v4.3) now exits via ``module.fail_json`` instead of raising a bare ``Exception``. Previously the error string ended up in ``module_stderr`` as a Python traceback; ansible-core 2.19 no longer populates ``module_stderr`` for module subprocess failures, so the message is now reported via ``msg`` on every supported ansible-core version.
+- netbox_device_interface - the legacy ``mac_address`` option no longer reports a phantom change every run on NetBox v4.2+ (where the field is read-only); its value is now stored as the interface's ``primary_mac_address`` (https://github.com/netbox-community/ansible_modules/issues/1502).
+
+vmware.vmware
+~~~~~~~~~~~~~
+
+- event_query - every query emitted a vSphere display name as the top-level ``name``. ``IndirectManagedNodeAudit`` declares ``unique_together = [('name', 'job')]`` and the controller creates all of a job's records in one transaction, so two objects that deduplicate apart on ``canonical_facts`` but share a display name raise ``IntegrityError``. That rolls back the transaction and discards every audit record for the job, not just the colliding pair, and reverts ``event_queries_processed`` with it, so the fallback task re-picks the job and fails identically until it ages out. A vSphere name is only unique within its parent folder, so two VMs called ``web01`` in two folders, or a VM and a template of the same name, were enough to trigger it. ``name`` is now the moid or uuid and the display name moved to ``facts.name`` (https://github.com/ansible-collections/vmware.vmware/pull/427).
+- inventory plugins - Fix bug where instead of collecting all properties, only required properties were collected
+- vm_info - Display warning message when vm is deleted or moved while gathering info instead of raising an exception (Fixes https://github.com/ansible-collections/vmware.vmware/issues/419)
+- vm_portgroup_info - Fix module failure when DVS portgroups had NSX or unusual setups (causing mismatching IDs). Module should now be able to resolve all portgroups.
+
+vyos.vyos
+~~~~~~~~~
+
+- Fix edgecase with empty `commands` array.
+- Fix meta/runtime.yml redirect for snmp_server pointing to non-existent vyos_snmp_servers module.
+- Safeguard interface L2 configuration by deleting only L3 address attributes in vyos_l3_interfaces; update unit and integration tests accordingly.
+- bgp_address_family.py - Fix slow parse() to stop regex backtracking on prefix-sharing inputs.
+- bgp_address_family_14.py - Fix slow parse() to stop regex backtracking on prefix-sharing inputs.
+- bgp_global.py - Fix slow parse() to stop regex backtracking on prefix-sharing inputs.
+- bgp_global_14.py - Fix slow parse() to stop regex backtracking on prefix-sharing inputs.
+- cliconf/vyos.py - Fixed greedy matching in configuration parsing
+- facts/firewall_global.py - Fix confusion between firewall zone names and group names.
+- firewall_rules - fix parse_icmp_attr() using wrong split delimiter ('.' instead of '/') and referencing undefined variable type_no in the numeric-only branch, which caused ValueError or UnboundLocalError when gathering firewall rules with ICMP type conditions.
+- ospf_interfaces.py - Fix slow parse() to stop regex backtracking on prefix-sharing inputs.
+- ospf_interfaces_14.py - Fix slow parse() to stop regex backtracking on prefix-sharing inputs.
+- plugins/modules/vyos_user.py - Fix aggregate option when extra user properties are defined
+- route_maps.py - Fix slow parse() to stop regex backtracking on prefix-sharing inputs.
+- route_maps_14.py - Fix slow parse() to stop regex backtracking on prefix-sharing inputs.
+- snmp_server.py - Fix slow parse() to stop regex backtracking on prefix-sharing inputs.
+- test_rm_templates_perf.py - Add unit test for the bugfixes
+- vyos_config - the ``allow_password_change`` filter used a regular expression that only matched ``set`` lines (``set system login user ... authentication (encrypted|plaintext)-password``), so a ``delete`` line for the same path was never filtered regardless of the ``allow_password_change`` value. This meant an account omitted from a full-config candidate could have its password deleted without the existing safety filter ever inspecting the line. The regular expression now matches both ``set`` and ``delete`` lines.
+- vyos_config.py - Fixing test case
+- vyos_firewall_global - Fix disabling src route
+- vyos_firewall_rules - add 'offload' action
+- vyos_l3_interfaces - ipv6 auto-config option incorrectly set
+- vyos_logging_global - Add support for 1.5.0+ CLI changes.
+- vyos_user - Accept OpenSSH security key types ``sk-ecdsa-sha2-nistp256@openssh.com`` and ``sk-ssh-ed25519@openssh.com`` for ``public_keys.type``, which were previously rejected.
+- vyos_user - Quote and escape plaintext-password values in set commands so VyOS accepts special characters and embedded single quotes.
+- vyos_user - Set explicit ``no_log=False`` on ``update_password`` so Ansible does not treat it as sensitive and hide it from task output.
+- vyos_vlan - fix purge generating invalid ``delete ... vif None`` commands for bare interfaces without VLAN sub-interfaces.
+
+New Modules
+-----------
+
+community.proxmox
+~~~~~~~~~~~~~~~~~
+
+- community.proxmox.proxmox_cluster_firewall_security_group - Cluster firewall security group management for Proxmox VE.
+
+Unchanged Collections
+---------------------
+
+- ansible.mariadb (still version 6.0.2)
+- ansible.mysql (still version 5.2.0)
+- ansible.netcommon (still version 8.7.1)
+- ansible.posix (still version 2.2.2)
+- ansible.utils (still version 6.1.1)
+- arista.eos (still version 12.3.0)
+- azure.azcollection (still version 3.21.0)
+- check_point.mgmt (still version 6.9.0)
+- chocolatey.chocolatey (still version 1.6.0)
+- cisco.aci (still version 2.13.0)
+- cisco.ios (still version 11.6.0)
+- cisco.iosxr (still version 12.5.0)
+- cisco.meraki (still version 2.25.1)
+- cisco.mso (still version 2.13.0)
+- cisco.nxos (still version 11.2.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.8.0)
+- community.ciscosmb (still version 1.0.12)
+- community.clickhouse (still version 2.4.0)
+- community.docker (still version 5.4.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.8.0)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.mysql (still version 5.0.2)
+- community.okd (still version 5.0.0)
+- community.postgresql (still version 4.2.0)
+- community.proxysql (still version 1.8.0)
+- community.rabbitmq (still version 1.7.0)
+- community.sap_libs (still version 1.7.1)
+- community.sops (still version 2.5.0)
+- community.vmware (still version 6.5.0)
+- community.windows (still version 3.3.0)
+- community.zabbix (still version 4.2.0)
+- cyberark.conjur (still version 1.3.14)
+- cyberark.pas (still version 1.0.40)
+- dellemc.enterprise_sonic (still version 4.1.0)
+- dellemc.openmanage (still version 10.0.3)
+- dellemc.powerflex (still version 3.2.0)
+- dellemc.unity (still version 2.1.0)
+- fortinet.fortimanager (still version 2.15.0)
+- fortinet.fortios (still version 2.6.0)
+- google.cloud (still version 1.15.0)
+- grafana.grafana (still version 6.1.0)
+- hetzner.hcloud (still version 6.12.0)
+- hitachivantara.vspone_object (still version 1.2.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infinidat.infinibox (still version 1.8.6)
+- infoblox.nios_modules (still version 1.9.0)
+- inspur.ispim (still version 2.2.4)
+- kaytus.ksmanage (still version 4.0.0)
+- kubernetes.core (still version 6.6.0)
+- kubevirt.core (still version 2.3.0)
+- lowlydba.sqlserver (still version 2.8.1)
+- microsoft.ad (still version 1.12.1)
+- microsoft.iis (still version 1.3.0)
+- netapp.cloudmanager (still version 21.24.0)
+- netapp.ontap (still version 23.6.0)
+- netapp.storagegrid (still version 21.17.0)
+- netapp_eseries.santricity (still version 2.0.3)
+- ngine_io.cloudstack (still version 3.3.0)
+- openstack.cloud (still version 2.6.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- purestorage.flasharray (still version 1.43.0)
+- purestorage.flashblade (still version 1.26.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 6.0.1)
+- telekom_mms.icinga_director (still version 2.6.1)
+- theforeman.foreman (still version 5.13.0)
+- vmware.vmware_rest (still version 4.11.0)
+- vultr.cloud (still version 1.14.1)
+- wti.remote (still version 1.0.11)
+
 v14.5.0
 =======
 
@@ -219,12 +769,14 @@ containers.podman
 dellemc.powerflex
 ~~~~~~~~~~~~~~~~~
 
+- Added support for PowerFlex 5.1 PFMP 5.1 Core 4.5.6 Gen1 arrays. Updated module compatibility checks to use the underlying Core/MDM version instead of the PFMP gateway API version, allowing Gen1 modules to run against PFMP 5.x gateways managing Gen1 (Core 4.5.x) arrays.
 - Added the ``powerflex_common_v2`` role providing automatic PowerFlex Gen2 version detection, module compatibility validation, and graceful degradation on Gen1 systems. It is a prerequisite for the ``powerflex_provisioning_v2`` and ``powerflex_system_v2`` roles.
 - Added the ``powerflex_provisioning_v2`` role for Gen2 infrastructure provisioning, including volume lifecycle management and snapshot/thin clone workflows.
 - Added the ``powerflex_system_v2`` role for Gen2 system-level configuration validation, diagnostics, and system queries.
 - Added the ``storage_node`` gather_subset to the ``info_v2`` module for bulk storage node discovery.
 - Added the ``storage_node`` module to manage PowerFlex Gen2 storage nodes. The module supports querying storage node details by name or ID, adding and removing IP addresses with role assignment, changing IP roles, updating device pathnames, and renaming a storage node. Storage node creation and deletion are not supported.
 - Extended the ``force`` parameter of the ``replication_consistency_group`` module to also apply to failover operations, matching the existing behavior for switchover. Added state-transition validation and a wait for initial-copy completion before failover/switchover operations, with ``force`` available to bypass the wait when needed.
+- Updated minimum supported ansible-core version to 2.16.0 for compatibility with Ansible Automation Platform 2.4 lifecycle and Python 3.12.
 
 google.cloud
 ~~~~~~~~~~~~
@@ -7297,12 +7849,9 @@ community.proxmox
 - community.proxmox.proxmox_ceph_mgr - Add or delete Ceph Manager.
 - community.proxmox.proxmox_ceph_mon - Add or delete Ceph Monitor.
 - community.proxmox.proxmox_ceph_pool - Manage Ceph Pool.
-- community.proxmox.proxmox_cluster_firewall - Cluster-level firewall options management for Proxmox VE cluster.
 - community.proxmox.proxmox_cluster_ha_rules_info - Retrieve Proxmox VE HA rules.
 - community.proxmox.proxmox_domain - Manage authentication realms.
 - community.proxmox.proxmox_domain_sync - Sync realms.
-- community.proxmox.proxmox_node_firewall - Node-level firewall options management for Proxmox VE cluster.
-- community.proxmox.proxmox_node_firewall_info - Get node-level firewall options for Proxmox VE cluster.
 - community.proxmox.proxmox_role - Role management for Proxmox VE cluster.
 - community.proxmox.proxmox_sendkey - Send key presses to a Proxmox VM console.
 
