@@ -80,6 +80,7 @@ jobs:
           ref: ${{ inputs.existing-branch || '' }}
           persist-credentials: false
 
+      # Only bump this to Python 3.15 once we drop support for ansible-core 2.21 or earlier!
       - name: Set up Python 3.14
         uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0  # v7.1.0
         with:
