@@ -161,7 +161,7 @@ remove_collection_changelog_entries:
             for the renamed ``raid_level`` volume option by accepting it as an alias
             of ``ddp_raid_level``.
   ansible.windows:
-    3.9.0:
+    3.9.1:
       changes:
         breaking_changes:
           - >-
