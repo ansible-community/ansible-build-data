@@ -4,6 +4,8 @@ purestorage.flashblade: <1.28.0
 purestorage.flasharray: <1.45.0
 # infoblox.nios_modules 1.10.0 has a breaking change
 infoblox.nios_modules: <1.10.0
+# ansible.windows 3.9.0 has a breaking change
+ansible.windows: <3.9.0
 
 # Avoid specific versions:
 
