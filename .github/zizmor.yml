@@ -3,6 +3,4 @@ rules:
   unpinned-uses:
     config:
       policies:
-        "wntrblm/nox": ref-pin
-        "actions/*": ref-pin
-        "pypa/gh-action-pypi-publish": ref-pin
+        "ansible-community/github-action-run-nox": ref-pin
