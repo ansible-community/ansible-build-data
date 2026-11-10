@@ -7,6 +7,173 @@ This changelog describes changes since Ansible 14.0.0.
 .. contents::
   :depth: 2
 
+v15.0.0rc1
+==========
+
+.. contents::
+  :local:
+  :depth: 2
+
+Release Summary
+---------------
+
+Release Date: 2026-11-10
+
+`Porting Guide <https://docs.ansible.com/projects/ansible/devel/porting_guides.html>`_
+
+Ansible-core
+------------
+
+Ansible 15.0.0rc1 contains ansible-core version 2.22.0.
+This is the same version of ansible-core as in the previous Ansible release.
+
+Changed Collections
+-------------------
+
+If not mentioned explicitly, the changes are reported in the combined changelog below.
+
++----------------------+------------------+-------------------+-------+
+| Collection           | Ansible 15.0.0b1 | Ansible 15.0.0rc1 | Notes |
++======================+==================+===================+=======+
+| community.general    | 14.0.0           | 14.0.1            |       |
++----------------------+------------------+-------------------+-------+
+| community.postgresql | 5.1.0            | 5.1.1             |       |
++----------------------+------------------+-------------------+-------+
+| community.sops       | 2.5.0            | 2.5.1             |       |
++----------------------+------------------+-------------------+-------+
+
+Minor Changes
+-------------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- sysrc - remove case that occurred for FreeBSD 11 and prior (https://github.com/ansible-collections/community.general/pull/13185).
+
+Bugfixes
+--------
+
+community.general
+~~~~~~~~~~~~~~~~~
+
+- archive - do not add the destination archive to itself when it is located under one of the archived paths (https://github.com/ansible-collections/community.general/issues/1420, https://github.com/ansible-collections/community.general/pull/13208).
+- btrfs module utils - fix path of nested subvolumes when a parent subvolume is inside a directory (https://github.com/ansible-collections/community.general/issues/7454, https://github.com/ansible-collections/community.general/pull/13071).
+- ipa module utils - do not fail a task when the ``failed`` field of the API response only contains empty member lists. This fixes failures on success in ``ipa_group``, ``ipa_hbacrule``, ``ipa_sudorule`` and other modules that add members (https://github.com/ansible-collections/community.general/issues/12294, https://github.com/ansible-collections/community.general/pull/13188).
+- lvm_pv - determine the parent disk of a partition from sysfs instead of from its name, which fixes rescanning partitions of devices such as ``mmcblk0p1`` (https://github.com/ansible-collections/community.general/issues/13212, https://github.com/ansible-collections/community.general/pull/13218).
+- lvm_pv - do not warn on every run with ``resize=true`` when the underlying disk has no rescan attribute, for example virtio-blk disks (https://github.com/ansible-collections/community.general/issues/13212, https://github.com/ansible-collections/community.general/pull/13218).
+- lvm_pv - resolve symbolic links such as ``/dev/disk/by-id/...`` before looking up the device in sysfs, so the disk is rescanned before resizing (https://github.com/ansible-collections/community.general/issues/13212, https://github.com/ansible-collections/community.general/pull/13218).
+- pamd - keep comments and empty lines next to rules inserted with ``state=before`` or ``state=after`` (https://github.com/ansible-collections/community.general/issues/9374, https://github.com/ansible-collections/community.general/pull/13114).
+- splunk callback plugin - report ``ansible_check_mode`` per task instead of keeping it set to ``true`` for the rest of the run once a single task ran in check mode (https://github.com/ansible-collections/community.general/issues/13194, https://github.com/ansible-collections/community.general/pull/13195).
+- zypper_repository - keep the ``description`` option when adding a ``.repo`` file instead of using the name from the file (https://github.com/ansible-collections/community.general/issues/4532, https://github.com/ansible-collections/community.general/pull/13168).
+- zypper_updates_info - list the updates from the other repositories and warn instead of failing when zypper skips a repository that cannot be refreshed (https://github.com/ansible-collections/community.general/pull/13191).
+
+community.postgresql
+~~~~~~~~~~~~~~~~~~~~
+
+- postgresql_alter_system - consistently quote configuration parameter name components in ALTER SYSTEM SET and RESET, preserving case and supporting quoted and unquoted names containing SQL keywords such as ``online_analyze.verbose`` (https://github.com/ansible-collections/community.postgresql/issues/940).
+- postgresql_db - keep the inherited environment (for example ``PGSSLMODE``, ``PGSSLROOTCERT`` or ``PATH``) when restoring a compressed dump with ``login_password`` set. Before, the environment of the restore command was replaced by ``PGPASSWORD`` alone, so it differed from the uncompressed restore path.
+- postgresql_ping - Handle beta and release-candidate server versions when parsing the version number.
+- postgresql_table - change the persistence of an existing table with ``ALTER TABLE ... SET UNLOGGED`` or ``ALTER TABLE ... SET LOGGED`` when ``unlogged`` is set explicitly and differs from the current state. ``unlogged`` no longer defaults to ``false``, so existing tables are left as they are when the option is not set (https://github.com/ansible-collections/community.postgresql/issues/878).
+
+community.sops
+~~~~~~~~~~~~~~
+
+- load_vars - load variable files without stripping trailing whitespace. This could accidentally modify content of YAML files which end with a block scalar (https://github.com/ansible-collections/community.sops/issues/309, https://github.com/ansible-collections/community.sops/pull/310).
+- sops vars plugin - load variable files without stripping trailing whitespace. This could accidentally modify content of YAML files which end with a block scalar (https://github.com/ansible-collections/community.sops/issues/309, https://github.com/ansible-collections/community.sops/pull/310).
+
+Unchanged Collections
+---------------------
+
+- amazon.aws (still version 12.0.0)
+- ansible.mariadb (still version 6.0.2)
+- ansible.mysql (still version 5.2.0)
+- ansible.netcommon (still version 8.7.1)
+- ansible.posix (still version 2.2.2)
+- ansible.utils (still version 6.1.1)
+- ansible.windows (still version 3.9.2)
+- arista.eos (still version 12.3.0)
+- azure.azcollection (still version 4.2.0)
+- check_point.mgmt (still version 7.0.1)
+- chocolatey.chocolatey (still version 1.6.0)
+- cisco.aci (still version 3.0.0)
+- cisco.intersight (still version 2.23.0)
+- cisco.ios (still version 11.6.0)
+- cisco.iosxr (still version 13.0.0)
+- cisco.meraki (still version 2.25.1)
+- cisco.mso (still version 3.0.0)
+- cisco.nxos (still version 13.0.0)
+- cisco.ucs (still version 1.16.0)
+- cloudscale_ch.cloud (still version 2.8.0)
+- community.aws (still version 12.0.0)
+- community.ciscosmb (still version 1.0.12)
+- community.clickhouse (still version 2.4.0)
+- community.crypto (still version 3.5.1)
+- community.dns (still version 4.3.1)
+- community.docker (still version 5.4.0)
+- community.grafana (still version 2.3.0)
+- community.hashi_vault (still version 7.1.0)
+- community.hrobot (still version 2.8.0)
+- community.library_inventory_filtering_v1 (still version 1.1.5)
+- community.libvirt (still version 2.4.0)
+- community.mongodb (still version 1.8.1)
+- community.mysql (still version 5.0.2)
+- community.okd (still version 6.0.0)
+- community.proxmox (still version 2.1.0)
+- community.proxysql (still version 1.8.0)
+- community.rabbitmq (still version 1.7.0)
+- community.routeros (still version 3.23.0)
+- community.sap_libs (still version 1.7.1)
+- community.vmware (still version 7.0.0)
+- community.windows (still version 3.3.0)
+- community.zabbix (still version 4.2.0)
+- containers.podman (still version 1.21.2)
+- cyberark.conjur (still version 1.3.14)
+- dellemc.enterprise_sonic (still version 4.1.0)
+- dellemc.openmanage (still version 11.0.0)
+- dellemc.powerflex (still version 3.2.0)
+- dellemc.unity (still version 2.1.0)
+- everpure.flasharray (still version 1.46.0)
+- everpure.flashblade (still version 1.29.0)
+- f5networks.f5_modules (still version 1.45.0)
+- fortinet.fortimanager (still version 2.15.0)
+- fortinet.fortios (still version 2.6.0)
+- google.cloud (still version 1.15.0)
+- grafana.grafana (still version 6.1.0)
+- graphiant.naas (still version 26.10.0)
+- hetzner.hcloud (still version 7.2.0)
+- hitachivantara.vspone_block (still version 4.9.0)
+- hitachivantara.vspone_object (still version 1.2.0)
+- ibm.storage_virtualize (still version 3.5.0)
+- ieisystem.inmanage (still version 4.0.0)
+- infinidat.infinibox (still version 1.8.6)
+- infoblox.nios_modules (still version 1.10.0)
+- inspur.ispim (still version 2.2.4)
+- kaytus.ksmanage (still version 4.0.0)
+- kubernetes.core (still version 6.6.0)
+- kubevirt.core (still version 2.3.0)
+- lowlydba.sqlserver (still version 3.1.0)
+- microsoft.ad (still version 1.12.1)
+- microsoft.iis (still version 1.3.0)
+- netapp.ontap (still version 24.0.0)
+- netapp.storagegrid (still version 21.17.0)
+- netapp_eseries.santricity (still version 2.0.3)
+- netbox.netbox (still version 3.23.1)
+- ngine_io.cloudstack (still version 3.3.0)
+- openstack.cloud (still version 2.6.0)
+- ovirt.ovirt (still version 3.2.2)
+- pcg.alpaca_operator (still version 2.2.0)
+- purestorage.flasharray (still version 1.45.0)
+- purestorage.flashblade (still version 1.28.0)
+- ravendb.ravendb (still version 1.0.4)
+- splunk.es (still version 6.0.1)
+- telekom_mms.icinga_director (still version 2.6.1)
+- theforeman.foreman (still version 6.0.0)
+- vmware.vmware (still version 2.12.0)
+- vmware.vmware_rest (still version 5.0.0)
+- vultr.cloud (still version 1.14.1)
+- vyos.vyos (still version 6.2.0)
+- wti.remote (still version 1.0.11)
+
 v15.0.0b1
 =========
 
