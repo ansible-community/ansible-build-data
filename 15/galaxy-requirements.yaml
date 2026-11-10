@@ -1,4 +1,4 @@
-# Collections included in Ansible 15.0.0b1
+# Collections included in Ansible 15.0.0rc1
 collections:
 - name: amazon.aws
   source: https://galaxy.ansible.com
@@ -80,7 +80,7 @@ collections:
   version: 5.4.0
 - name: community.general
   source: https://galaxy.ansible.com
-  version: 14.0.0
+  version: 14.0.1
 - name: community.grafana
   source: https://galaxy.ansible.com
   version: 2.3.0
@@ -107,7 +107,7 @@ collections:
   version: 6.0.0
 - name: community.postgresql
   source: https://galaxy.ansible.com
-  version: 5.1.0
+  version: 5.1.1
 - name: community.proxmox
   source: https://galaxy.ansible.com
   version: 2.1.0
@@ -125,7 +125,7 @@ collections:
   version: 1.7.1
 - name: community.sops
   source: https://galaxy.ansible.com
-  version: 2.5.0
+  version: 2.5.1
 - name: community.vmware
   source: https://galaxy.ansible.com
   version: 7.0.0
