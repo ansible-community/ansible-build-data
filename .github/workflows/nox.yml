@@ -23,17 +23,14 @@ env:
 jobs:
   nox:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ansible-build-data
     strategy:
       fail-fast: false
       matrix:
         include:
           - session: lint
-            python-versions: "3.14"
+            python-versions: "3.15"
           - session: zizmor
-            python-versions: "3.14"
+            python-versions: "3.15"
     name: "Run nox ${{ matrix.session }} session"
     steps:
       - name: Check out ansible-build-data
@@ -45,9 +42,9 @@ jobs:
         uses: wntrblm/nox@afa3983bbac3143bab5c8406244327581f76a3d7  # 2026.10.20
         with:
           python-versions: "${{ matrix.python-versions }}"
-      - name: Set up nox environments
-        run: |
-          nox -v -e "${{ matrix.session }}" --install-only
-      - name: "Run nox -e ${{ matrix.session }}"
-        run: |
-          nox -v -e "${{ matrix.session }}" --reuse-existing-virtualenvs --no-install
+      - name: Run nox
+        uses: ansible-community/github-action-run-nox@main
+        with:
+          sessions: ${{ matrix.session }}
+          force-pythons: ${{ matrix.python-versions }}
+          working-directory: ansible-build-data
