@@ -1,4 +1,4 @@
-# Collections included in Ansible 15.0.0rc1
+# Collections included in Ansible 15.0.0
 collections:
 - name: amazon.aws
   source: https://galaxy.ansible.com
