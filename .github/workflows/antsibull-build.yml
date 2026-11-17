@@ -34,6 +34,10 @@ jobs:
             ansible_version: 15.99.0
             ansible_major_version: 15
             python: 3.15
+          - name: Ansible 16
+            ansible_version: 16.99.0
+            ansible_major_version: 16
+            python: 3.15
 
     steps:
       - name: Check out antsibull-build
